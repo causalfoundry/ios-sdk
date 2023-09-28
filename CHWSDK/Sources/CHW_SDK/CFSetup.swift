@@ -10,16 +10,41 @@ import UIKit
 import FileProvider
 
 
-class CFSetup:IngestProtocol{
+class CFSetup:NSObject, IngestProtocol {
     
     private var ingestApiHandler = IngestAPIHandler()
     private var catalogAPIHandler = CatalogAPIHandler()
     private var userId: String? = nil
     
-    func initalize(application: UIApplication, event: UIApplication.State, pauseSDK: Bool, autoShowInAppNudge: Bool, updateImmediately: Bool) {
-       // verifyAccessToken(context:application)
-        CoreConstants.shared.application = application
+    
+    private func setup(context:UIApplication){
+        verifyAccessToken(context:context)
+        CoreConstants.shared.deviceObject = DInfo(brand:"Apple" , id: UIDevice.current.identifierForVendor!.uuidString, model: UIDevice.modelName, os: "iOS", osVer:"\(UIDevice.current.systemVersion)")
+        
+        CoreConstants.shared.appInfoObject = self.getApplicationInfo(application: CoreConstants.shared.application!)
+        
+        // Need to Implement Below Code
+        //        userId = PaperObject.readString(CoreConstants.userIdKey)
+        //                if (!userId.isNullOrEmpty()) {
+        //                    scheduleBackendNudgeListener()
+        //                }
     }
+    
+    func initalize(application: UIApplication, event: UIApplication.State, pauseSDK: Bool, autoShowInAppNudge: Bool, updateImmediately: Bool) {
+        CoreConstants.shared.application = application
+        CoreConstants.shared.isAppDebuggable = true
+        CoreConstants.shared.updateImmediately = updateImmediately
+        CoreConstants.shared.pauseSDK = pauseSDK
+        CoreConstants.shared.autoShowInAppNudge = autoShowInAppNudge
+    }
+    
+    private func scheduleBackendNudgeListener() {
+        // Need to Implement Below Code
+        //            val nudgeScheduler = BackendNudgeScheduler()
+        //            nudgeScheduler.backendNudgeScheduler(CoreConstants.application!!.applicationContext)
+    }
+    
+    
     
     func updateUserId(appUserId: String) {
         
@@ -53,6 +78,17 @@ class CFSetup:IngestProtocol{
                 CoreConstants.shared.sdkKey = "Bearer \(getSDKAccessKey()! )"
             }
         }
+    }
+    
+    // Get Application Info Of app
+    
+    private func getApplicationInfo(application:UIApplication) -> AppInfo {
+        return AppInfo(id:application.bundleIdentifier(),
+                       minSDKVersion: application.minimumVersion(),
+                       targetSDKVersion: application.targetVersion(),
+                       version:application.versionBuild(),
+                       versionCode: application.appVersion(),
+                       versionName: application.build())
     }
 }
 

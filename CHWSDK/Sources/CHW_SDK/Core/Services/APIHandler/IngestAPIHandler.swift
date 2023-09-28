@@ -12,6 +12,7 @@ import UIKit
 class IngestAPIHandler:NSObject {
     
     static let shared = IngestAPIHandler()
+    let reachability = try! Reachability()
     
     func ingestTrackAPI(contentBlock: String,
                         eventType: String,
@@ -21,31 +22,27 @@ class IngestAPIHandler:NSObject {
         
         if (!CoreConstants.shared.pauseSDK) {
             _ =  CoreConstants.shared.application
-            var timezone = Date().convertMillisToTimeString(eventTime:1000)
-            var isInternetAvailable:Bool = false
             
-            var cancellables = Set<AnyCancellable>()
+            let timezone = Date().convertMillisToTimeString(eventTime:1000)
             
-            let combineNetworkMonitor = NetworkMonitor.shared
-            combineNetworkMonitor.startMonitoring()
-            combineNetworkMonitor.connectivityStatus
-                .removeDuplicates()
-                .sink { [weak self] status in
-                    guard self != nil else { return }
-                    isInternetAvailable = (status == .connected) ?  true :  false
-                    var eventOnject = EventDataObject(block:contentBlock , props: trackProperties as! Props, type: eventType, ol: isInternetAvailable, ts:"\(eventTime)")
+            reachability.stopNotifier()
+            let isInternetAvailable :Bool = (reachability.connection == .wifi || reachability.connection == .cellular) ? true :  false
+            
+            let eventObject = EventDataObject(block:contentBlock ,
+                                              props: trackProperties as! Props,
+                                              type: eventType,
+                                              ol: isInternetAvailable,
+                                              ts:"\(timezone)")
                     
                     if(updateImmediately) {
-                        self?.updateEvenrTrack(eventArray:[eventOnject])
+                        self.updateEvenrTrack(eventArray:[eventObject])
                     }else {
                         //storeEventTrack ()
                     }
                 }
-                .store(in: &cancellables)
+               
         }
         
-        
-    }
     
     // Update Track Event
     func updateEvenrTrack(eventArray:[EventDataObject]) {

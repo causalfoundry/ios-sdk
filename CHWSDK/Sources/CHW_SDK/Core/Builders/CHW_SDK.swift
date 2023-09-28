@@ -24,8 +24,8 @@ public class CFLog : NSObject {
          * automatically and manage app lifecycle components required by SDK to operate
          */
         
-        public func setApplicationCurrentState(currentState: UIApplication.State ) {
-            self.applicationState = currentState
+        public func setLifecycleEvent(event: UIApplication.State ) {
+            self.applicationState = event
             
         }
         
@@ -44,7 +44,7 @@ public class CFLog : NSObject {
          * the CF platform.
          */
         public func setSdkKey(sdkKey: String){
-            CoreConstants.shared.sdkKey = "Bearer\(sdkKey)"
+            CoreConstants.shared.sdkKey = "Bearer \(sdkKey)"
         }
         
         /**
@@ -97,14 +97,14 @@ public class CFLog : NSObject {
          * enums or else the events will be discarded.
          *
          * NOTE that this will only update for the values in the core block and not for the rest.
-         */
-        //        public func setAppLevelxContentBlock(content_block: String) {
-        //            if (ContentBlock.RawValue == content_block ) {
-        //                CoreConstants.contentBlockName = content_block
-        //            } else {
-        //                ExceptionManager.throwEnumException("CFLog", ContentBlock::class.java.simpleName)
-        //            }
-        //        }
+//         */
+//                public func setAppLevelxContentBlock(content_block: String) {
+//                    if (ContentBlock.RawValue == content_block ) {
+//                        CoreConstants.contentBlockName = content_block
+//                    } else {
+//                        ExceptionManager.throwEnumException("CFLog", ContentBlock::class.java.simpleName)
+//                    }
+//                }
         
         public func setAutoShowInAppNudge(showInAppNudge: Bool) {
             self.showInAppBudge = showInAppNudge

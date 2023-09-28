@@ -22,4 +22,48 @@ extension UIApplication {
 
         return icon
     }
+
+    func appVersion() -> String {
+        if let appVersionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") {
+            return "\(appVersionNumber)"
+        } else {
+            return ""
+        }
+    }
+
+    func build() -> String {
+        if let buildVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) {
+            return "\(buildVersion)"
+        } else {
+            return ""
+        }
+    }
+
+    func versionBuild() -> String {
+        var versionString:String = ""
+        let versionNumber:String = self.appVersion()
+        let build:String = self.build()
+        versionString = "\(versionNumber)\(build)"
+
+        return  versionString
+    }
+    
+    func bundleIdentifier() -> String {
+        return Bundle.main.bundleIdentifier ?? "0.0"
+    }
+
+
+    func targetVersion() -> String {
+        return "0.0"
+       
+    }
+     
+    func minimumVersion() -> String{
+        if let appVersionNumber = Bundle.main.object(forInfoDictionaryKey: "MinimumOSVersion") {
+            return "\(appVersionNumber)"
+        } else {
+            return ""
+        }
+        
+    }
 }

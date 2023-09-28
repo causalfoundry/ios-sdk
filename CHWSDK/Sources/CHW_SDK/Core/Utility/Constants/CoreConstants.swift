@@ -40,5 +40,7 @@ class CoreConstants {
     
 
     var userIdKey: String = "userIdKey"
+    
+    var isAppDebuggable: Bool = true
 
 }

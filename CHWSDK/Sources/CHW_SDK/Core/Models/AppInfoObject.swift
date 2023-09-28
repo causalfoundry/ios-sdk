@@ -11,9 +11,9 @@ import Foundation
 // MARK: - AppInfo
 struct AppInfo: Codable {
     let id: String
-    let minSDKVersion, targetSDKVersion: Int
+    let minSDKVersion, targetSDKVersion: String
     let version: String
-    let versionCode: Int
+    let versionCode: String
     let versionName: String
 
     enum CodingKeys: String, CodingKey {
@@ -46,10 +46,10 @@ extension AppInfo {
 
     func with(
         id: String? = nil,
-        minSDKVersion: Int? = nil,
-        targetSDKVersion: Int? = nil,
+        minSDKVersion: String? = nil,
+        targetSDKVersion: String? = nil,
         version: String? = nil,
-        versionCode: Int? = nil,
+        versionCode: String? = nil,
         versionName: String? = nil
     ) -> AppInfo {
         return AppInfo(
