@@ -11,11 +11,9 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "CausalFoundry",
-            path: "Core/Sources/Core",
-            publicHeadersPath: "./"
-        ),
+            path: "Core/Sources"),
         .testTarget(
-            name: "CoreRTests",
+            name: "CoreTests",
             dependencies: ["Core"]),
        
     ]
