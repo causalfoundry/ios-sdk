@@ -8,6 +8,15 @@
         "branch" : "develop",
         "revision" : "a92342e21a5e38851979eaa47c9c6a9800ed1f5f"
       }
+    },
+    {
+      "identity" : "ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/causalfoundry/ios-sdk.git",
+      "state" : {
+        "branch" : "develop",
+        "revision" : "4f3436b200b83ace4bfbe9af6e428a14bb317eee"
+      }
     }
   ],
   "version" : 2

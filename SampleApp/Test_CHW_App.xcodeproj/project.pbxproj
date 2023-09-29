@@ -219,6 +219,7 @@
 			mainGroup = C4353C9D2AAE55B500EED486;
 			packageReferences = (
 				C4534B252AAF544A00674B63 /* XCRemoteSwiftPackageReference "CHW_SDK" */,
+				C4AFCBD92AC71E9B00728DCA /* XCRemoteSwiftPackageReference "ios-sdk" */,
 			);
 			productRefGroup = C4353CA72AAE55B500EED486 /* Products */;
 			projectDirPath = "";
@@ -619,6 +620,14 @@
 		C4534B252AAF544A00674B63 /* XCRemoteSwiftPackageReference "CHW_SDK" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/khushbupatel64/CHW_SDK.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+		C4AFCBD92AC71E9B00728DCA /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/causalfoundry/ios-sdk.git";
 			requirement = {
 				branch = develop;
 				kind = branch;
