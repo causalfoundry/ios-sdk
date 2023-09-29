@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "9C7EA2A9-1CC7-44DD-9528-D0BDC169DE16"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8E316C58-50F6-4460-AC01-2EFB65F38F8E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/Core/Services/APIHandler/IngestAPIHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "ingestTrackAPI(contentBlock:eventType:trackProperties:updateImmediately:eventTime:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ED451A6F-99AD-4605-808A-3383856DAA18"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/Core/Services/APIHandler/IngestAPIHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "ingestTrackAPI(contentBlock:eventType:trackProperties:updateImmediately:eventTime:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0A31FC76-93A6-47A0-BD18-45F540E382B6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/Core/Builders/CFLogAppEvent.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "build()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3571C127-CC82-4F0A-B173-8A0066885F87"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/Core/Builders/CHW_SDK.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "build()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "622C7A6D-590A-4C61-AEC6-8C26124489EA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/CFSetup.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "initalize(application:event:pauseSDK:autoShowInAppNudge:updateImmediately:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "622C7A6D-590A-4C61-AEC6-8C26124489EA - c2cfb0a99e06f521"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CHW_SDK.CFSetup.initalize(application: __C.UIApplication, event: __C.UIApplicationState, pauseSDK: Swift.Bool, autoShowInAppNudge: Swift.Bool, updateImmediately: Swift.Bool) -&gt; ()"
+                  moduleName = "Test_CHW_App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/CFSetup.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "622C7A6D-590A-4C61-AEC6-8C26124489EA - c2cfb0a99e06f521"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CHW_SDK.CFSetup.initalize(application: __C.UIApplication, event: __C.UIApplicationState, pauseSDK: Swift.Bool, autoShowInAppNudge: Swift.Bool, updateImmediately: Swift.Bool) -&gt; ()"
+                  moduleName = "Test_CHW_App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/CFSetup.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "82">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2F9FAA15-13FA-46FB-A82A-8D5F58100FFE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/CFSetup.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "initalize(application:event:pauseSDK:autoShowInAppNudge:updateImmediately:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2F9FAA15-13FA-46FB-A82A-8D5F58100FFE - c2cfb0a99e06f540"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CHW_SDK.CFSetup.initalize(application: __C.UIApplication, event: __C.UIApplicationState, pauseSDK: Swift.Bool, autoShowInAppNudge: Swift.Bool, updateImmediately: Swift.Bool) -&gt; ()"
+                  moduleName = "Test_CHW_App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/CFSetup.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "93">
+               </Location>
+               <Location
+                  uuid = "2F9FAA15-13FA-46FB-A82A-8D5F58100FFE - c2cfb0a99e06f540"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CHW_SDK.CFSetup.initalize(application: __C.UIApplication, event: __C.UIApplicationState, pauseSDK: Swift.Bool, autoShowInAppNudge: Swift.Bool, updateImmediately: Swift.Bool) -&gt; ()"
+                  moduleName = "Test_CHW_App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/CFSetup.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "99">
+               </Location>
+               <Location
+                  uuid = "2F9FAA15-13FA-46FB-A82A-8D5F58100FFE - c2cfb0a99e06f567"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CHW_SDK.CFSetup.initalize(application: __C.UIApplication, event: __C.UIApplicationState, pauseSDK: Swift.Bool, autoShowInAppNudge: Swift.Bool, updateImmediately: Swift.Bool) -&gt; ()"
+                  moduleName = "Test_CHW_App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/CFSetup.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "99">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "218E1F97-5E8C-4A9B-BF10-8B626377F126"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/CFSetup.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "verifyAccessToken(context:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "218E1F97-5E8C-4A9B-BF10-8B626377F126 - 796bd9009e3870d4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CHW_SDK.CFSetup.verifyAccessToken(context: __C.UIApplication) -&gt; ()"
+                  moduleName = "Test_CHW_App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/CFSetup.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "264">
+               </Location>
+               <Location
+                  uuid = "218E1F97-5E8C-4A9B-BF10-8B626377F126 - 796bd9009e3870d4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CHW_SDK.CFSetup.verifyAccessToken(context: __C.UIApplication) -&gt; ()"
+                  moduleName = "Test_CHW_App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/CFSetup.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "92">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C8E6A4A6-7323-40BA-B006-9DB08F139E2D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/CFSetup.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "verifyAccessToken(context:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C8E6A4A6-7323-40BA-B006-9DB08F139E2D - 796bd9009e387071"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CHW_SDK.CFSetup.verifyAccessToken(context: __C.UIApplication) -&gt; ()"
+                  moduleName = "Test_CHW_App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/CFSetup.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "1354">
+               </Location>
+               <Location
+                  uuid = "C8E6A4A6-7323-40BA-B006-9DB08F139E2D - 796bd9009e387050"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CHW_SDK.CFSetup.verifyAccessToken(context: __C.UIApplication) -&gt; ()"
+                  moduleName = "Test_CHW_App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/CFSetup.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "899">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F959013F-4114-4DC2-AA18-8F83CFC65A83"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/CFSetup.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "getSDKAccessKey()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F959013F-4114-4DC2-AA18-8F83CFC65A83 - 7e9be8071a0baaf9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CHW_SDK.CFSetup.getSDKAccessKey() -&gt; Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "Test_CHW_App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/CFSetup.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "194">
+               </Location>
+               <Location
+                  uuid = "F959013F-4114-4DC2-AA18-8F83CFC65A83 - 7e9be8071a0baaf9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CHW_SDK.CFSetup.getSDKAccessKey() -&gt; Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "Test_CHW_App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/CFSetup.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "176">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5DC3C9F2-9D50-4817-A03B-F0BBAD281ED3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/CFSetup.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "verifyAccessToken(context:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "295C0017-8919-4A58-A3B6-DCC1499D5135"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/Test_CHW_App-cljlllgxmksjvdfoegozolysqzvr/SourcePackages/checkouts/CHW_SDK/Sources/CHW_SDK/CFSetup.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "getSDKAccessKey()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
