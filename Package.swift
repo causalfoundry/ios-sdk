@@ -15,8 +15,8 @@ let package = Package(
             publicHeadersPath: "./"
         ),
         .testTarget(
-            name: "CausalFoundryTests",
-            dependencies: ["CausalFoundry"]),
+            name: "CoreRTests",
+            dependencies: ["Core"]),
        
     ]
 )
