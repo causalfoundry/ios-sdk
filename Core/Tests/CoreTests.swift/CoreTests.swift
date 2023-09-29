@@ -1,7 +1,7 @@
 import XCTest
 @testable import CausalFoundry
 
-final class CausalFoundryTests: XCTestCase {
+final class CoreTests: XCTestCase {
     func testExample() throws {
         // XCTest Documentation
         // https://developer.apple.com/documentation/xctest

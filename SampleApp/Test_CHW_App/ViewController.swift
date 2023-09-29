@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import CHW_SDK
+import CausalFoundry
 
 
 class ViewController: UIViewController {
