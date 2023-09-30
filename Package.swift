@@ -1,36 +1,26 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 5.4
 // The swift-tools-version declares the minimum version of Swift required to build this package.
-
-//import PackageDescription
-//
-//let package = Package(
-//    name: "CausalFoundry_ios_SDK",
-//    platforms: [.iOS(.v13)],
-//    targets: [
-//        // Targets are the basic building blocks of a package, defining a module or a test suite.
-//        // Targets can depend on other targets in this package and products from dependencies.
-//        .target(
-//            name: "CausalFoundry",
-//            path: "Core/Sources")
-//       // ,
-////        .testTarget(
-////            name: "CoreTests",
-////            dependencies: ["Core"]),
-//       
-//    ]
-//)
 
 import PackageDescription
 
 let package = Package(
     name: "CausalFoundry_ios_SDK",
     platforms: [.iOS(.v13)],
-    targets: [
-           // Targets are the basic building blocks of a package, defining a module or a test suite.
-           // Targets can depend on other targets in this package and products from dependencies.
-           .testTarget(
-               name: "CoreTests",
-               dependencies: ["CausalFoundry_ios_SDK"]),
-   
-       ]
+    products: [
+        // Products define the executables and libraries a package produces, making them visible to other packages.
+        .library(
+            name: "CausalFoundry_ios_SDK",
+            targets: ["CausalFoundry_ios_SDK"]),
+    ],
+   targets: [
+        // Targets are the basic building blocks of a package, defining a module or a test suite.
+        // Targets can depend on other targets in this package and products from dependencies.
+        .target(
+            name: "CausalFoundry_ios_SDK"
+           
+        ),
+        .testTarget(
+            name: "CausalFoundry_ios_SDKTests",
+            dependencies: ["CausalFoundry_ios_SDK"]
+        )]
 )
