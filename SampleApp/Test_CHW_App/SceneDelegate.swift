@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CHW_SDK
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 

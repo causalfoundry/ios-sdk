@@ -9,18 +9,19 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "CausalFoundry_ios_SDK",
-            targets: ["CausalFoundry_ios_SDK"]),
+            name: "Core",
+            targets: ["CasualFoundryCore"]),
     ],
    targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "CausalFoundry_ios_SDK"
+            name: "CasualFoundryCore",
+            path: "Core/Sources"
            
         ),
         .testTarget(
-            name: "CausalFoundry_ios_SDKTests",
-            dependencies: ["CausalFoundry_ios_SDK"]
-        )]
+          name: "CoreTests",
+          path: "Core/Tests/CoreTests"
+    )]
 )

@@ -1,21 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "chw_sdk",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/khushbupatel64/CHW_SDK.git",
-      "state" : {
-        "branch" : "develop",
-        "revision" : "a92342e21a5e38851979eaa47c9c6a9800ed1f5f"
-      }
-    },
-    {
       "identity" : "ios-sdk",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/causalfoundry/ios-sdk.git",
       "state" : {
         "branch" : "develop",
-        "revision" : "27ffff4da9df3aa20325b596de5c78e022188b9a"
+        "revision" : "112aaa91fd0151fedba1d5dd29090348b01ec551"
       }
     }
   ],

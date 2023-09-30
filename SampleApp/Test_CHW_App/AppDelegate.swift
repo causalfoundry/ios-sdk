@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import CHW_SDK
+import CausalFoundry_ios_SDK
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,14 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let application = UIApplication.value(forKeyPath: #keyPath(UIApplication.shared)) as! UIApplication
+       
         
         
-        let objCHW = CHW_SDK.CFLog.Builder(application:application)
-        //objCHW.setSdkKey(sdkKey: "ai.causalfoundry.android.sdk.APPLICATION_KEY")
-        objCHW.disableAutoPageTrack()
-        objCHW.setAppLevelContentBlock(contentBlock: ContentBlock.core)
-        objCHW.setApplicationCurrentState(currentState: application.applicationState)
-        objCHW.build()
+//        let objCHW = CHW_SDK.CFLog.Builder(application:application)
+//        //objCHW.setSdkKey(sdkKey: "ai.causalfoundry.android.sdk.APPLICATION_KEY")
+//        objCHW.disableAutoPageTrack()
+//        objCHW.setAppLevelContentBlock(contentBlock: ContentBlock.core)
+//        objCHW.setApplicationCurrentState(currentState: application.applicationState)
+//        objCHW.build()
         return true
     }
     

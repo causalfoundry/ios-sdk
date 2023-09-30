@@ -76,6 +76,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C41DB9B92AC8E10000F0B037 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C4353C9D2AAE55B500EED486 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +90,7 @@
 				C4353CBF2AAE55C600EED486 /* Test_CHW_AppTests */,
 				C4353CC92AAE55C700EED486 /* Test_CHW_AppUITests */,
 				C4353CA72AAE55B500EED486 /* Products */,
+				C41DB9B92AC8E10000F0B037 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -218,7 +226,6 @@
 			);
 			mainGroup = C4353C9D2AAE55B500EED486;
 			packageReferences = (
-				C4534B252AAF544A00674B63 /* XCRemoteSwiftPackageReference "CHW_SDK" */,
 				C4AFCBD92AC71E9B00728DCA /* XCRemoteSwiftPackageReference "ios-sdk" */,
 			);
 			productRefGroup = C4353CA72AAE55B500EED486 /* Products */;
@@ -617,14 +624,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C4534B252AAF544A00674B63 /* XCRemoteSwiftPackageReference "CHW_SDK" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/khushbupatel64/CHW_SDK.git";
-			requirement = {
-				branch = develop;
-				kind = branch;
-			};
-		};
 		C4AFCBD92AC71E9B00728DCA /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/causalfoundry/ios-sdk.git";
