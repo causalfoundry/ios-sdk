@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import CausalFoundry_ios_SDK
+import Core
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
