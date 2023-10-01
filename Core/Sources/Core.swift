@@ -32,14 +32,12 @@ public class CFLog {
         /**
          * Passing the application Object to SDK for initialising listeners
 //         */
-//       public init(application: UIApplication) -> CFLogBuilder {
-//            self.application = application
-//            return self
-//        }
-        
-       public init() {
-            
+       
+        public init(application: UIApplication){
+            self.application = application
+           
         }
+       
        /**
          * Passing the lifecycle event variable to SDK to log app open and resume events
          * automatically and manage app lifecycle components required by SDK to operate
