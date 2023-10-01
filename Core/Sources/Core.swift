@@ -208,7 +208,7 @@ public class CFLog {
         /**
          * Using this will validate the endpoints provided and initialise the SDK
          */
-       public func build() -> CFLog {
+       public func build() {
             while(self.application == nil ) {
                 ExceptionManager.shared.throwInitException(eventType: "CFLog")
                 fatalError("Application object not found")
@@ -218,7 +218,5 @@ public class CFLog {
                 fatalError("Application state object not found")
             }
             CFSetup().initalize(application: self.application!, event: self.applicationState!, pauseSDK: pauseSDK, autoShowInAppNudge: showInAppBudge, updateImmediately: updateImmediately)
-            return CFLog(application: self.application,showInAppBudge: self.showInAppBudge, updateImmediately: self.updateImmediately, pauseSDK: self.pauseSDK)
-            
-        }
+           }
     }
