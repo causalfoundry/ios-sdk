@@ -4,7 +4,7 @@
 import Foundation
 import UIKit
 
-class CFLog {
+public class CFLog {
     
      var application: UIApplication?
      var applicationState: UIApplication.State?
@@ -22,7 +22,7 @@ class CFLog {
    
 }
     
-    class CFLogBuilder {
+   public  class CFLogBuilder {
         
         private var application: UIApplication?
         private var applicationState: UIApplication.State?
