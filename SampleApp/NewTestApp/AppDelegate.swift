@@ -17,9 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     .setSdkKey(sdkKey:"cfkey4dxUm8RIJmWmxgY4uakWFXqd1KmNk4Y14uHb0ogvqPpkJiGwEaKge4iGXAg")
                     .setAppLevelContentBlock(contentBlock: .core)
                     .disableAutoPageTrack()
+                    .setLifecycleEvent(event: .active)
                     .setAutoShowInAppNudge(showInAppNudge: true)
                     .allowAnonymousUsers()
                     .build()
+        CFLogAppEventBuilder().setAppEvent(appAction: .open)
+                              .build()
             return true
     }
     
@@ -27,7 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        CFLogAppEventBuilder().setAppEvent(appAction: .open)
+       
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        CFLogAppEventBuilder().setAppEvent(appAction: .background)
+        CFLogAppEventBuilder().build()
+
     }
 
     // MARK: UISceneSession Lifecycle

@@ -11,7 +11,7 @@ import Foundation
 // MARK: - EventDataObject
 struct EventDataObject: Codable {
     let block: String
-    let props: Props
+    let props: AppObject
     let type: String
     let ol: Bool
     let ts: String
@@ -37,7 +37,7 @@ extension EventDataObject {
 
     func with(
         block: String? = nil,
-        props: Props? = nil,
+        props: AppObject? = nil,
         type: String? = nil,
         ol: Bool? = nil,
         ts: String? = nil
