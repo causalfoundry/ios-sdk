@@ -12,8 +12,18 @@ final class APIManager:NSObject {
     
    static let shared = APIManager()
     
-    func getAPIDetails(url:String,params:String,isPost:Bool,headers:[String:Any]? ,completion: @escaping (_ result:[String:Any]?) -> Void) {
+    func getAPIDetails(url:String,params:String,_ strMethod :String,headers:[String:Any]? , completion: @escaping (_ result:[String:Any]?) -> Void) {
         // Check Internet is available or not
+        
+        let headersData = ["Authorization":""]
+        
+        RequestManager.sharedManager.getDataFromServer(params, url, "POST") { success, data in
+            var data = [String:Any]()
+            
+            completion(data)
+          
+        }
+       
         
     }
     

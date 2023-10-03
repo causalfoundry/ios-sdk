@@ -62,10 +62,12 @@ class IngestAPIHandler:NSObject {
                 }
             }
             do {
-                try APIManager.shared.getAPIDetails(url: APIConstants.trackEvent, params: mainBody.jsonString() ?? "", isPost: true, headers:nil) { result in
+                try APIManager.shared.getAPIDetails(url:CoreConstants.shared.devUrl , params: mainBody.jsonString()!, "POST", headers: ["Authorization":CoreConstants.shared.sdkKey], completion:{ (result) in
                     
-                }
-            } catch {
+                    print(result)
+                    
+                })
+        } catch {
                 
             }
             
