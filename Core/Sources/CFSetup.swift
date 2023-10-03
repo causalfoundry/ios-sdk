@@ -36,6 +36,7 @@ class CFSetup:NSObject, IngestProtocol {
         CoreConstants.shared.updateImmediately = updateImmediately
         CoreConstants.shared.pauseSDK = pauseSDK
         CoreConstants.shared.autoShowInAppNudge = autoShowInAppNudge
+        self.setup(context:application)
     }
     
     private func scheduleBackendNudgeListener() {
