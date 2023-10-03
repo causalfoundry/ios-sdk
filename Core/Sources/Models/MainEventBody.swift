@@ -11,6 +11,9 @@ struct MainBody: Codable {
     let sdk: String
     let up: Int
     let data: [EventDataObject]
+    
+    static let encoder = JSONEncoder()
+    
 
     enum CodingKeys: String, CodingKey {
         case sID = "s_id"
@@ -39,6 +42,14 @@ extension MainBody {
         try self.init(data: try Data(contentsOf: url))
     }
 
+    
+    subscript(key: String) -> Any? {
+            return dictionary[key]
+        }
+        var dictionary: [String: Any] {
+            return (try? JSONSerialization.jsonObject(with: MainBody.encoder.encode(self))) as? [String: Any] ?? [:]
+        }
+    
     func with(
         sID: String? = nil,
         uID: String? = nil,

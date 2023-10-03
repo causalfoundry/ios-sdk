@@ -47,7 +47,7 @@ class RequestManager {
     }()
     
     
-    public func getDataFromServer(_ strParams : String,_ strUrl :String, _ strMethod :String ,completionHandler:@escaping (_ success:Bool, _ data: NSDictionary?) -> Void){
+    public func getDataFromServer(_ strParams : [String:Any],_ strUrl :String, _ strMethod :String ,completionHandler:@escaping (_ success:Bool, _ data: NSDictionary?) -> Void){
         //        let session :URLSession = URLSession.shared
         
         let url = URL(string: strUrl)
@@ -55,9 +55,10 @@ class RequestManager {
         
         request.httpMethod = strMethod
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(CoreConstants.shared.sdkKey, forHTTPHeaderField: "Authorization")
         
         if strParams.count > 0 {
-            guard let httpBody = try? JSONSerialization.data(withJSONObject: strParams, options: .prettyPrinted) else {
+            guard let httpBody = try? JSONSerialization.data(withJSONObject: strParams.json, options: .prettyPrinted) else {
                return
             }
             
