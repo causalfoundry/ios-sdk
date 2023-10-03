@@ -1,14 +1,14 @@
 //
-//  Test_CHW_AppTests.swift
-//  Test_CHW_AppTests
+//  NewTestAppTests.swift
+//  NewTestAppTests
 //
-//  Created by khushbu on 10/09/23.
+//  Created by khushbu on 29/09/23.
 //
 
 import XCTest
-@testable import Test_CHW_App
+@testable import NewTestApp
 
-final class Test_CHW_AppTests: XCTestCase {
+final class NewTestAppTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

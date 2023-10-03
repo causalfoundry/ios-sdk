@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CFSetup.swift
 //
 //
 //  Created by khushbu on 12/09/23.
@@ -17,7 +17,7 @@ class CFSetup:NSObject, IngestProtocol {
     private var userId: String? = nil
     
     
-    private func setup(context:UIApplication){
+    private func setup(context:UIApplication)   {
         verifyAccessToken(context:context)
         CoreConstants.shared.deviceObject = DInfo(brand:"Apple" , id: UIDevice.current.identifierForVendor!.uuidString, model: UIDevice.modelName, os: "iOS", osVer:"\(UIDevice.current.systemVersion)")
         

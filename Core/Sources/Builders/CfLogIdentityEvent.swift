@@ -7,19 +7,40 @@
 
 import Foundation
 
+/**
+ * CfLogIdentityEvent is required to log events related user login and register.
+ * Identity events are divided into 3 events:
+ * register: after successful signup/register.
+ * login: after successful login.
+ * logout: after successful logout.
+ */
 
-class CfLogIdentityEvent :NSObject {
-    /**
-     * CfLogIdentityEvent is required to log events related user login and register.
-     * Identity events are divided into 3 events:
-     * register: after successful signup/register.
-     * login: after successful login.
-     * logout: after successful logout.
-     */
+
+class CfLogIdentityEvent  {
+     var identity_action:String = ""
+     var app_user_id:String = ""
+     var meta:Any?
+     var update_immediately:Bool = CoreConstants.shared.updateImmediately
+    
+    init(identity_action: String, app_user_id: String, meta: Any? = nil, update_immediately: Bool) {
+        self.identity_action = identity_action
+        self.app_user_id = app_user_id
+        self.meta = meta
+        self.update_immediately = update_immediately
+    }
+}
+
+
+class CfLogIdnetityBuilder {
     private var identity_action:String = ""
     private var app_user_id:String = ""
     private var meta:Any?
     private var update_immediately:Bool = CoreConstants.shared.updateImmediately
+
+    init() {
+        
+}
+    
     
     /**
      * setIdentifyAction is used to specify the identify action for the User,
@@ -31,7 +52,7 @@ class CfLogIdentityEvent :NSObject {
      * function provided for the enum based usage.
      *
      */
-    func setIdentifyAction(identity_action: IdentityAction) -> CfLogIdentityEvent {
+    func setIdentifyAction(identity_action: IdentityAction) -> CfLogIdnetityBuilder {
         self.identity_action = identity_action.rawValue
         return self
     }
@@ -46,7 +67,7 @@ class CfLogIdentityEvent :NSObject {
      * function provided for the string based usage. Remember to use the same strings as
      * provided in the enums or else the event will be discarded.
      */
-    func setIdentifyAction(identity_action: String) -> CfLogIdentityEvent {
+    func setIdentifyAction(identity_action: String) -> CfLogIdnetityBuilder {
         return self
         
     }
@@ -58,7 +79,7 @@ class CfLogIdentityEvent :NSObject {
      * action will remove any data stored by the SDK including the userID but only after
      * successfully uploading the existing data to the backend.
      */
-    func setAppUserId(app_user_id: String) -> CfLogIdentityEvent{
+    func setAppUserId(app_user_id: String) -> CfLogIdnetityBuilder{
         self.app_user_id = app_user_id
         return self
     }
@@ -68,7 +89,7 @@ class CfLogIdentityEvent :NSObject {
      * additional information with the log that they find would be helpful for logging and
      * providing more context to the log. Default value for the meta is null.
      */
-    func setMeta(meta: Any?) -> CfLogIdentityEvent{
+    func setMeta(meta: Any?) -> CfLogIdnetityBuilder{
         self.meta = meta
         return self
     }
@@ -80,12 +101,12 @@ class CfLogIdentityEvent :NSObject {
      * the SDK will log the content instantly and if false it will wait till the end of user
      * session which is whenever the app goes into background.
      */
-    func updateImmediately(update_immediately: Bool)  -> CfLogIdentityEvent{
+    func updateImmediately(update_immediately: Bool)  -> CfLogIdnetityBuilder{
         self.update_immediately = update_immediately
         return self
     }
     
-    func setCountry(country:String?) ->  CfLogIdentityEvent {
+    func setCountry(country:String?) ->  CfLogIdnetityBuilder {
         if country == "" {
             
         }

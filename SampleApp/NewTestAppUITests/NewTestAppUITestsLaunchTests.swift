@@ -1,13 +1,13 @@
 //
-//  Test_CHW_AppUITestsLaunchTests.swift
-//  Test_CHW_AppUITests
+//  NewTestAppUITestsLaunchTests.swift
+//  NewTestAppUITests
 //
-//  Created by khushbu on 10/09/23.
+//  Created by khushbu on 29/09/23.
 //
 
 import XCTest
 
-final class Test_CHW_AppUITestsLaunchTests: XCTestCase {
+final class NewTestAppUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

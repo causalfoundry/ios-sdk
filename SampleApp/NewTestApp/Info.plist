@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>ai.causalfoundry.iOS.sdk.APPLICATION_KEY</key>
-	<string>GUlMjBtYXAlMjBrZXkEdF9zdG1wAzE2OTUwNDkwNjE-?p=google+map+key&amp;fr2=sb-top&amp;fr</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
