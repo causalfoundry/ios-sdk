@@ -10,13 +10,13 @@ import UIKit
 
 
 public final class appLifecycleobserver:NSObject,UIApplicationDelegate {
-    var application:UIApplication?
+    public var application:UIApplication?
     
     public init(application:UIApplication)
     {
         super.init()
         self.application = application
-        self.application?.delegate = self
+       
     }
     
     public func applicationDidBecomeActive(_ application: UIApplication) {

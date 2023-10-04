@@ -15,16 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         appLifecycleobserver(application: application)
-        CFLogBuilder(application: application)
-                    .setSdkKey(sdkKey:"cfkey4dxUm8RIJmWmxgY4uakWFXqd1KmNk4Y14uHb0ogvqPpkJiGwEaKge4iGXAg")
-                    .setAppLevelContentBlock(contentBlock: .core)
-                    .disableAutoPageTrack()
-                    .setLifecycleEvent(event: .active)
-                    .setAutoShowInAppNudge(showInAppNudge: true)
-                    .allowAnonymousUsers()
-                    .build()
-        CFLogAppEventBuilder().setAppEvent(appAction: .open)
-                              .build()
+        
+//        CFLogBuilder(application: application)
+//                    .setSdkKey(sdkKey:"cfkey4dxUm8RIJmWmxgY4uakWFXqd1KmNk4Y14uHb0ogvqPpkJiGwEaKge4iGXAg")
+//                    .setAppLevelContentBlock(contentBlock: .core)
+//                    .disableAutoPageTrack()
+//                    .setLifecycleEvent(event: .active)
+//                    .setAutoShowInAppNudge(showInAppNudge: true)
+//                    .allowAnonymousUsers()
+//                    .build()
+//        CFLogAppEventBuilder().setAppEvent(appAction: .open)
+//                              .build()
             return true
     }
     
