@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by khushbu on 28/09/23.
 //
@@ -17,15 +17,15 @@ public final class appLifecycleobserver:NSObject,UIApplicationDelegate {
         super.init()
         self.application = application
         self.application?.delegate = self
-       
+        
     }
     
-    public func applicationDidBecomeActive(_ application: UIApplication) {
+    public dynamic func applicationDidBecomeActive(_ application: UIApplication) {
         onStateChnaged(applicationState: .active)
     }
     
     
-    public func applicationWillResignActive(_ application: UIApplication) {
+    public dynamic func applicationWillResignActive(_ application: UIApplication) {
         onStateChnaged(applicationState: .background)
     }
     
@@ -35,3 +35,4 @@ public final class appLifecycleobserver:NSObject,UIApplicationDelegate {
     }
     
 }
+
