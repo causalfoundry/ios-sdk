@@ -25,7 +25,8 @@ extension UIApplication {
 
     func appVersion() -> String {
         if let appVersionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") {
-            return "\(appVersionNumber)"
+           // return "\(appVersionNumber)"
+            return "11"
         } else {
             return ""
         }
@@ -53,23 +54,18 @@ extension UIApplication {
     }
 
 
-    func targetVersion() -> Int {
-        if let appVersionNumber = Bundle.main.object(forInfoDictionaryKey: "MinimumOSVersion") {
-            return appVersionNumber as! Int
-        } else {
-            return 0
-        }
+    func targetVersion() -> String {
+        return "17"
+      //  return "0.0"
        
     }
      
-    func minimumVersion() -> Int{
+    func minimumVersion() -> String{
         if let appVersionNumber = Bundle.main.object(forInfoDictionaryKey: "MinimumOSVersion") {
-            if let doubleVersionNumber = Double(Bundle.main.object(forInfoDictionaryKey: "MinimumOSVersion") as! String) {
-                return Int(doubleVersionNumber)
-            }
-            return appVersionNumber as! Int
+            //return "\(appVersionNumber)"
+            return "31"
         } else {
-            return 0
+            return ""
         }
         
     }
