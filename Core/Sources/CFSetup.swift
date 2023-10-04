@@ -85,10 +85,10 @@ class CFSetup:NSObject, IngestProtocol {
     
     private func getApplicationInfo(application:UIApplication) -> AppInfo {
         return AppInfo(id:application.bundleIdentifier(),
-                       minSDKVersion: application.minimumVersion(),
-                       targetSDKVersion: application.targetVersion(),
-                       version:application.versionBuild(),
-                       versionCode: application.appVersion(),
+                       minSDKVersion: "\(application.minimumVersion())",
+                       targetSDKVersion: "\(application.targetVersion())",
+                       version:"\(application.versionBuild())",
+                       versionCode: "\(application.appVersion())",
                        versionName: application.build())
     }
 }
