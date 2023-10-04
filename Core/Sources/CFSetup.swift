@@ -12,6 +12,7 @@ import FileProvider
 
 class CFSetup:NSObject, IngestProtocol {
     
+    
     private var ingestApiHandler = IngestAPIHandler()
     private var catalogAPIHandler = CatalogAPIHandler()
     private var userId: String? = nil
