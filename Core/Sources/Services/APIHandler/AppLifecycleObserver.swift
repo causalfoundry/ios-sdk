@@ -16,6 +16,7 @@ public final class appLifecycleobserver:NSObject,UIApplicationDelegate {
     {
         super.init()
         self.application = application
+        self.application?.delegate = self
        
     }
     
