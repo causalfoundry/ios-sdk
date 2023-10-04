@@ -12,7 +12,7 @@ import UIKit
 public final class appLifecycleobserver:NSObject,UIApplicationDelegate {
     var application:UIApplication?
     
-    init(application:UIApplication)
+    public init(application:UIApplication)
     {
         super.init()
         self.application = application
