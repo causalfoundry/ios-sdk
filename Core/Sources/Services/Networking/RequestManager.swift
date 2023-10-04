@@ -58,7 +58,7 @@ class RequestManager {
         request.setValue(CoreConstants.shared.sdkKey, forHTTPHeaderField: "Authorization")
         
         if strParams.count > 0 {
-            guard let httpBody = try? JSONSerialization.data(withJSONObject: strParams.json, options: .prettyPrinted) else {
+            guard let httpBody = try? JSONSerialization.data(withJSONObject: strParams, options: .prettyPrinted) else {
                return
             }
             
