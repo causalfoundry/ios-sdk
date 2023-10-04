@@ -53,16 +53,20 @@ extension UIApplication {
     }
 
 
-    func targetVersion() -> String {
-        return "0.0"
+    func targetVersion() -> Int {
+        if let appVersionNumber = Bundle.main.object(forInfoDictionaryKey: "MinimumOSVersion") {
+            return appVersionNumber as! Int
+        } else {
+            return 0
+        }
        
     }
      
-    func minimumVersion() -> String{
+    func minimumVersion() -> Int{
         if let appVersionNumber = Bundle.main.object(forInfoDictionaryKey: "MinimumOSVersion") {
-            return "\(appVersionNumber)"
+            return appVersionNumber as! Int
         } else {
-            return ""
+            return 0
         }
         
     }
