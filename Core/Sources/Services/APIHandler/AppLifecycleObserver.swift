@@ -28,19 +28,19 @@ private let swizzling: (AnyClass, Selector, Selector) -> () = { forClass, origin
     
 }
 
-// extension UIApplicationDelegate {
-//     
-//    public func applicationDidBecomeActive(_ application: UIApplication) {
-//        lifecycleObserver().didBecomeActive(_application: application)
-//     }
-//     
-//     func applicationDidEnterBackground(_ application: UIApplication) {
-//         lifecycleObserver().didBecomeActive(_application: application)
-//     }
-//     
-//     
-//    
-//}
+ extension UIApplicationDelegate {
+     
+    public func applicationDidBecomeActive(_ application: UIApplication) {
+        lifecycleObserver().didBecomeActive(_application: application)
+     }
+     
+    public func applicationDidEnterBackground(_ application: UIApplication) {
+         lifecycleObserver().didBecomeActive(_application: application)
+     }
+     
+     
+    
+}
 
 public class lifecycleObserver: NSObject,UIApplicationDelegate {
     public var application:UIApplication?
