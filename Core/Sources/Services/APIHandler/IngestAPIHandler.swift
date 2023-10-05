@@ -29,7 +29,7 @@ class IngestAPIHandler:NSObject {
             let isInternetAvailable :Bool = (reachability.connection == .wifi || reachability.connection == .cellular) ? true :  false
             
             let eventObject = EventDataObject(block:contentBlock ,
-                                              props: trackProperties as! AppObject,
+                                              props: trackProperties as! JSONData,
                                               type: eventType,
                                               ol: isInternetAvailable,
                                               ts:"\(timezone)")
@@ -63,8 +63,7 @@ class IngestAPIHandler:NSObject {
             }
             do {
                 try APIManager.shared.getAPIDetails(url:APIConstants.trackEvent , params: mainBody.dictionary, "POST", headers:nil, completion:{ (result) in
-                    
-                    print(result)
+                   
                     
                 })
         } catch {

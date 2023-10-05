@@ -48,10 +48,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CFLogAppEventBuilder().setAppEvent(appAction: .open)
                               .build()
     }
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        CFLogAppEventBuilder().setAppEvent(appAction: .resume)
+                              .build()
+    }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-//        CFLogAppEventBuilder().setAppEvent(appAction: .background)
-//        CFLogAppEventBuilder().build()
+        CFLogAppEventBuilder().setAppEvent(appAction: .background)
+                              .build()
+
+    }
+    func applicationWillTerminate(_ application: UIApplication) {
+        CFLogAppEventBuilder().setAppEvent(appAction: .close)
+                              .build()
 
     }
 

@@ -8,10 +8,29 @@
 import Foundation
 
 
+
+struct JSONData: Codable {
+    var value:Any?
+    
+    public init(from decoder: Decoder) throws {
+        if let value = try? decoder.singleValueContainer() {
+              if value.decodeNil() {
+                self.value = nil
+              } else {
+                if let result = try? value.decode(AppObject.self) { self.value = result }
+                if let result = try? value.decode(IdentifyObject.self) { self.value = result }
+               }
+            }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+      }
+    
+}
 // MARK: - EventDataObject
 struct EventDataObject: Codable {
     let block: String
-    let props: AppObject
+    let props: JSONData
     let type: String
     let ol: Bool
     let ts: String
@@ -37,7 +56,7 @@ extension EventDataObject {
 
     func with(
         block: String? = nil,
-        props: AppObject? = nil,
+        props: JSONData? = nil,
         type: String? = nil,
         ol: Bool? = nil,
         ts: String? = nil

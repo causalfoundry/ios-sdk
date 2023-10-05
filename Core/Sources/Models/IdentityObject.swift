@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct IdentifyObject {
+struct IdentifyObject:Codable {
     var action:String?
     
     init(action: String? = nil) {
