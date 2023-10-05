@@ -30,9 +30,15 @@ private let swizzling: (AnyClass, Selector, Selector) -> () = { forClass, origin
 
  extension UIApplicationDelegate {
      
-    func applicationDidBecomeActive(_application:UIApplication) {
-        lifecycleObserver().didBecomeActive(_application: _application)
+     func applicationDidBecomeActive(_ application: UIApplication) {
+        lifecycleObserver().didBecomeActive(_application: application)
      }
+     
+     func applicationDidEnterBackground(_ application: UIApplication) {
+         lifecycleObserver().didBecomeActive(_application: application)
+     }
+     
+     
     
 }
 
@@ -49,7 +55,11 @@ public class lifecycleObserver {
     }
     
     func didBecomeActive(_application:UIApplication) {
-        
+        print("Become active")
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        print("Enter in Background")
     }
     
 }
