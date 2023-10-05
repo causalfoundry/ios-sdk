@@ -21,7 +21,7 @@ private let swizzling: (AnyClass, Selector, Selector) -> () = { forClass, origin
     func configure() {
         let originalSelector = #selector(self.delegate?.applicationDidBecomeActive(_:))
         let swizzledSelector = #selector(self.applicationDidBecomeActiveNew(_:))
-        swizzling(UIApplicationDelegate.self, originalSelector, swizzledSelector)
+        swizzling(UIApplication.self, originalSelector, swizzledSelector)
         
     }
     @objc func applicationDidBecomeActiveNew(_ application: UIApplication) {
@@ -30,7 +30,6 @@ private let swizzling: (AnyClass, Selector, Selector) -> () = { forClass, origin
     }
     
 }
-
 
 
 public class lifecycleObserver {
