@@ -21,7 +21,9 @@ class ViewController: UIViewController {
     
 
     @IBAction func action_Login(_ sender: Any) {
-        
+        CfLogIdnetityBuilder().setAppUserId(app_user_id:"sdkTestUserId")
+                              .setIdentifyAction(identity_action: .login)
+                              .build()
     }
     
 }

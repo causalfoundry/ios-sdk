@@ -30,24 +30,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     
      
-//        CFLogBuilder(application: application)
-//                    .setSdkKey(sdkKey:"cfkey4dxUm8RIJmWmxgY4uakWFXqd1KmNk4Y14uHb0ogvqPpkJiGwEaKge4iGXAg")
-//                    .setAppLevelContentBlock(contentBlock: .core)
-//                    .disableAutoPageTrack()
-//                    .setLifecycleEvent(event: .active)
-//                    .setAutoShowInAppNudge(showInAppNudge: true)
-//                    .allowAnonymousUsers()
-//                    .build()
-//        CFLogAppEventBuilder().setAppEvent(appAction: .open)
-//                              .build()
-            return true
+        CFLogBuilder(application: application)
+                    .setSdkKey(sdkKey:"cfkey4dxUm8RIJmWmxgY4uakWFXqd1KmNk4Y14uHb0ogvqPpkJiGwEaKge4iGXAg")
+                    .setAppLevelContentBlock(contentBlock: .core)
+                    .disableAutoPageTrack()
+                    .setLifecycleEvent(event: .active)
+                    .setAutoShowInAppNudge(showInAppNudge: true)
+                    .allowAnonymousUsers()
+                    .build()
+        return true
     }
     
     
     
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-       
+        CFLogAppEventBuilder().setAppEvent(appAction: .open)
+                              .build()
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {

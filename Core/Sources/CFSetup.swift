@@ -22,8 +22,8 @@ class CFSetup:NSObject, IngestProtocol {
         CoreConstants.shared.deviceObject = DInfo(brand:"Apple" , id: UIDevice.current.identifierForVendor!.uuidString, model: UIDevice.modelName, os: "iOS", osVer:"\(UIDevice.current.systemVersion)")
         
         CoreConstants.shared.appInfoObject = self.getApplicationInfo(application: CoreConstants.shared.application!)
-        CoreConstants.shared.sessionStartTime = Int64(Date().timeIntervalSinceNow)
-        CoreConstants.shared.sessionEndTime = Int64(Date().timeIntervalSinceNow)
+        CoreConstants.shared.sessionStartTime = Int64(Date().timeIntervalSince1970)
+        CoreConstants.shared.sessionEndTime = Int64(Date().timeIntervalSince1970)
         
         // Need to Implement Below Code
         //        userId = PaperObject.readString(CoreConstants.userIdKey)
