@@ -8,34 +8,48 @@
 import Foundation
 
 
-
-//struct JSONData: Codable {
-//    var value:Any?
-//    
-//    public init(from decoder: Decoder) throws {
-//        if let value = try? decoder.singleValueContainer() {
-//              if value.decodeNil() {
-//                self.value = nil
-//              } else {
-//                if let result = try? value.decode(AppObject.self) { self.value = result }
-//                if let result = try? value.decode(IdentifyObject.self) { self.value = result }
-//               }
-//            }
-//      }
-//
-//      public func encode(to encoder: Encoder) throws {
-//      }
-//    
-//}
 // MARK: - EventDataObject
 struct EventDataObject: Codable {
-    let block: String
-    let props: Any?
-    let type: String
-    let ol: Bool
-    let ts: String
-}
+    let block : String?
+    let props : Any?
+    let type : String?
+    let ol : Bool?
+    let ts : String?
+    
+    enum CodingKeys: String, CodingKey {
 
+        case block = "block"
+        case props = "props"
+        case type = "type"
+        case ol = "ol"
+        case ts = "ts"
+    }
+    
+    init(block: String?, props: Any?, type: String?, ol: Bool?, ts: String?) {
+        self.block = block
+        self.props = props
+        self.type = type
+        self.ol = ol
+        self.ts = ts
+    }
+
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        block = try values.decodeIfPresent(String.self, forKey: .block)
+        if let decodeAppobject =  try values.decodeIfPresent(AppObject.self, forKey: .props) {
+            props = decodeAppobject
+        }else if let  decodeIndentityObject = try values.decodeIfPresent(IdentifyObject.self, forKey: .props) {
+            props = decodeIndentityObject
+        }else {
+            props = nil
+        }
+        type = try values.decodeIfPresent(String.self, forKey: .type)
+        ol = try values.decodeIfPresent(Bool.self, forKey: .ol)
+        ts = try values.decodeIfPresent(String.self, forKey: .ts)
+    }
+
+}
 // MARK: EventDataObject convenience initializers and mutators
 
 extension EventDataObject {
@@ -53,23 +67,7 @@ extension EventDataObject {
     init(fromURL url: URL) throws {
         try self.init(data: try Data(contentsOf: url))
     }
-    
-    func with(
-        block: String? = nil,
-        props: Any? = nil,
-        type: String? = nil,
-        ol: Bool? = nil,
-        ts: String? = nil
-    ) -> EventDataObject {
-        return EventDataObject(
-            block: block ?? self.block,
-            props: props ?? self.props,
-            type: type ?? self.type,
-            ol: ol ?? self.ol,
-            ts: ts ?? self.ts
-        )
-    }
-    
+ 
     func jsonData() throws -> Data {
         return try newJSONEncoder().encode(self)
     }
@@ -78,15 +76,9 @@ extension EventDataObject {
         return String(data: try self.jsonData(), encoding: encoding)
     }
     
-    public init(from decoder: Decoder) throws {
-        if let value = try? decoder.singleValueContainer() {
-            if value.decodeNil() {
-                self.props = nil
-            } else {
-                if let result = try? value.decode(AppObject.self) { self.props = result }
-                if let result = try? value.decode(IdentifyObject.self) { self.props = result }
-            }
-        }
+    
+    public func encode(to encoder: Encoder) throws {
+   
     }
 }
 

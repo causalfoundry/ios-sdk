@@ -29,7 +29,7 @@ class IngestAPIHandler:NSObject {
             let isInternetAvailable :Bool = (reachability.connection == .wifi || reachability.connection == .cellular) ? true :  false
             
             let eventObject = EventDataObject(block:contentBlock ,
-                                              props: trackProperties as! JSONData,
+                                              props: trackProperties,
                                               type: eventType,
                                               ol: isInternetAvailable,
                                               ts:"\(timezone)")
