@@ -24,6 +24,12 @@ protocol IngestProtocol {
     func updateCatalogItem(subject: CatalogSubject,
                            catalogObject: Any?)
     
+    func track(contentBlockName: String,
+                eventType: String,
+                logObject: Any?,
+                updateImmediately: Bool,
+                eventTime: Int64)
+    
     
     
 }

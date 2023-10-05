@@ -12,7 +12,6 @@ import FileProvider
 
 class CFSetup:NSObject, IngestProtocol {
     
-    
     private var ingestApiHandler = IngestAPIHandler()
     private var catalogAPIHandler = CatalogAPIHandler()
     private var userId: String? = nil
@@ -42,16 +41,14 @@ class CFSetup:NSObject, IngestProtocol {
         self.setup(context:application)
     }
     
-    private func scheduleBackendNudgeListener() {
-        // Need to Implement Below Code
-        //            val nudgeScheduler = BackendNudgeScheduler()
-        //            nudgeScheduler.backendNudgeScheduler(CoreConstants.application!!.applicationContext)
-    }
-    
-    
     
     func updateUserId(appUserId: String) {
-        
+        if userId != "" && CoreConstants.shared.application != nil {
+            // update a UserdID in Database
+            userId = appUserId
+            CoreConstants.shared.userId = appUserId
+            scheduleBackendNudgeListener()
+        }
     }
     
     func getUSDRate(fromCurrency: String, callback: (Float) -> Float) {
@@ -72,6 +69,22 @@ class CFSetup:NSObject, IngestProtocol {
         
         return contents["ai.causalfoundry.iOS.sdk.APPLICATION_KEY"] ?? ""
     }
+    
+    func track(contentBlockName: String, eventType: String, logObject: Any?, updateImmediately: Bool, eventTime: Int64) {
+        
+        if CoreConstants.shared.application != nil {
+            verifyAccessToken(context:CoreConstants.shared.application!)
+        }
+        var cBlockName = contentBlockName
+        if (cBlockName == ContentBlock.e_commerce.rawValue) {
+            cBlockName = "e-commerce"
+        }else if (contentBlockName == ContentBlock.e_learning.rawValue) {
+            cBlockName = "e-learning"
+        }
+        
+        ingestApiHandler.ingestTrackAPI(contentBlock: cBlockName, eventType: eventType, trackProperties: logObject, updateImmediately: updateImmediately,eventTime: eventTime)
+    }
+    
     
     
     private func verifyAccessToken(context:UIApplication) {
@@ -94,6 +107,12 @@ class CFSetup:NSObject, IngestProtocol {
                        versionCode: application.appVersion(),
                        versionName: application.build())
     }
+    
+    
+    private func scheduleBackendNudgeListener() {
+        // Code Reamining
+    }
+
 }
 
 

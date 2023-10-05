@@ -7,8 +7,12 @@
 
 import Foundation
 
-enum  IdentityAction:String {
+enum  IdentityAction:String,HasOnlyAFixedSetOfPossibleValues {
+    
+    
     case register = "register"
     case login = "login"
     case logout = "logout"
+    
+    static var allValues: [IdentityAction] =  IdentityAction.allValues
 }

@@ -28,5 +28,18 @@ class ExceptionManager {
 //                stackTrace = exception
 //            )
         }
+    
+    func throwIsRequiredException(eventType: String, elementName: String) {
+//        var msg = "\(elementName) is required."
+//        var exception = NullPointerException(msg)
+    }
+    
+    
+    private func callExceptionAPI(title:String,
+                                  eventType: String,
+                                  exceptionType: String,
+                                  stackTrace: String) {
+        
+    }
 
 }

@@ -17,10 +17,10 @@ import Foundation
 
 
 class CfLogIdentityEvent  {
-     var identity_action:String = ""
-     var app_user_id:String = ""
-     var meta:Any?
-     var update_immediately:Bool = CoreConstants.shared.updateImmediately
+    var identity_action:String = ""
+    var app_user_id:String = ""
+    var meta:Any?
+    var update_immediately:Bool = CoreConstants.shared.updateImmediately
     
     init(identity_action: String, app_user_id: String, meta: Any? = nil, update_immediately: Bool) {
         self.identity_action = identity_action
@@ -36,12 +36,10 @@ class CfLogIdnetityBuilder {
     private var app_user_id:String = ""
     private var meta:Any?
     private var update_immediately:Bool = CoreConstants.shared.updateImmediately
-
+    
     init() {
         
-}
-    
-    
+    }
     /**
      * setIdentifyAction is used to specify the identify action for the User,
      * it can register in case of signup and registration
@@ -68,6 +66,11 @@ class CfLogIdnetityBuilder {
      * provided in the enums or else the event will be discarded.
      */
     func setIdentifyAction(identity_action: String) -> CfLogIdnetityBuilder {
+        if (IdentityAction.allValues.filter({$0.rawValue == identity_action }).first != nil) {
+            self.identity_action = identity_action
+        }else {
+            ExceptionManager.shared.throwEnumException(eventType: CoreEventType.identify.rawValue, className: String(describing: CfLogIdentityEvent.self))
+        }
         return self
         
     }
@@ -107,8 +110,15 @@ class CfLogIdnetityBuilder {
     }
     
     func setCountry(country:String?) ->  CfLogIdnetityBuilder {
-        if country == "" {
+        if let countryNameORCode  = country {
+            let countries : [CountryCodes] = NSLocale.isoCountryCodes.map { (code:String) -> CountryCodes in
+                let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
+                return CountryCodes(countryName: NSLocale(localeIdentifier: "en_US").displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)", countryISO2Code: code)
+            }
             
+            if countries.filter({$0.countryName == countryNameORCode || $0.countryISO2Code == countryNameORCode }).first != nil {
+                ExceptionManager.shared.throwEnumException(eventType: CoreEventType.identify.rawValue, className:String(describing: CfLogIdentityEvent.self))
+            }
         }
         return self
         
@@ -121,7 +131,32 @@ class CfLogIdnetityBuilder {
      */
     
     func build() {
+        /**
+         * Will throw and exception if the appUserId provided is null or no value is
+         * provided at all.
+         */
+        while(self.app_user_id == nil ) {
+            ExceptionManager.shared.throwIsRequiredException(eventType: CoreEventType.identify.rawValue, elementName: "app_user_id")
+        }
+        /**
+         * Will throw and exception if the identityAction provided is null or no action is
+         * provided at all.
+         */
+        while(self.identity_action == nil ) {
+            ExceptionManager.shared.throwIsRequiredException(eventType: CoreEventType.identify.rawValue, elementName: "identity_action")
+        }
+        /**
+         * Parsing the values into an object and passing to the setup block to queue
+         * the event based on its priority.
+         */
         
+        if self.identity_action == IdentityAction.logout.rawValue {
+            CoreConstants.shared.logoutEvent = true
+        } else {
+            CFSetup().updateUserId(appUserId: self.app_user_id)
+        }
+        var indetityObject = IdentifyObject(action: self.identity_action)
+        CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.identify.rawValue, logObject: indetityObject, updateImmediately: update_immediately, eventTime:0)
     }
     
 }

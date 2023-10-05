@@ -24,8 +24,6 @@ private let swizzling: (AnyClass, Selector, Selector) -> () = { forClass, origin
         swizzling(UIApplication.self, originalSelector, swizzledSelector)
         
     }
-    
-    
 }
 
  extension UIApplicationDelegate {
@@ -37,9 +35,6 @@ private let swizzling: (AnyClass, Selector, Selector) -> () = { forClass, origin
     public func applicationDidEnterBackground(_ application: UIApplication) {
          lifecycleObserver().didBecomeActive(_application: application)
      }
-     
-     
-    
 }
 
 public class lifecycleObserver: NSObject,UIApplicationDelegate {

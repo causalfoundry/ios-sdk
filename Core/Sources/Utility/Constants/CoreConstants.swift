@@ -16,7 +16,7 @@ class CoreConstants {
     let prodUrl = "https://api.causalfoundry.ai/v1/"
     
     
-    
+    var userId: String = ""
     var sdkKey: String = ""
     var isDebugMode: Bool = true
     var allowAutoPageTrack:Bool = true
@@ -42,5 +42,7 @@ class CoreConstants {
     var userIdKey: String = "userIdKey"
     
     var isAppDebuggable: Bool = true
+    
+    var logoutEvent: Bool = false
 
 }

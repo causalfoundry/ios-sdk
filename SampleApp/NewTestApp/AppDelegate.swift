@@ -16,8 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let vc = lifecycleObserver(application: application)
-        vc.configure()
+//        let vc = lifecycleObserver(application: application)
+//        vc.configure()
+        
+        let countries : [String] = NSLocale.isoCountryCodes.map { (code:String) -> String in
+                let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
+                return NSLocale(localeIdentifier: "en_US").displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)"
+            }
+
+
+        print(countries)
+        
         
     
      
