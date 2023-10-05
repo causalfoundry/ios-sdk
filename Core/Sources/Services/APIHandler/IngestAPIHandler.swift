@@ -23,7 +23,7 @@ class IngestAPIHandler:NSObject {
         if (!CoreConstants.shared.pauseSDK) {
             _ =  CoreConstants.shared.application
             
-            let timezone = Date().convertMillisToTimeString(eventTime:1000)
+            let timezone = "\(Date())"
             
             reachability.stopNotifier()
             let isInternetAvailable :Bool = (reachability.connection == .wifi || reachability.connection == .cellular) ? true :  false
