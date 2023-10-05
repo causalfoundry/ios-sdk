@@ -19,30 +19,30 @@ private let swizzling: (AnyClass, Selector, Selector) -> () = { forClass, origin
 
 @objc extension UIApplication {
     func configure() {
-//        let originalSelector = #selector(self.delegate?.applicationDidBecomeActive(_:))
-//        let swizzledSelector = #selector(self.delegate?.applicationDidBecomeActiveNew(_:))
-//        swizzling(UIApplication.self, originalSelector, swizzledSelector)
+        let originalSelector = #selector(self.delegate?.applicationDidBecomeActive(_:))
+        let swizzledSelector = #selector(lifecycleObserver().didBecomeActive(_application:))
+        swizzling(UIApplication.self, originalSelector, swizzledSelector)
         
     }
     
     
 }
 
- extension UIApplicationDelegate {
-     
-     func applicationDidBecomeActive(_ application: UIApplication) {
-        lifecycleObserver().didBecomeActive(_application: application)
-     }
-     
-     func applicationDidEnterBackground(_ application: UIApplication) {
-         lifecycleObserver().didBecomeActive(_application: application)
-     }
-     
-     
-    
-}
+// extension UIApplicationDelegate {
+//     
+//    public func applicationDidBecomeActive(_ application: UIApplication) {
+//        lifecycleObserver().didBecomeActive(_application: application)
+//     }
+//     
+//     func applicationDidEnterBackground(_ application: UIApplication) {
+//         lifecycleObserver().didBecomeActive(_application: application)
+//     }
+//     
+//     
+//    
+//}
 
-public class lifecycleObserver {
+public class lifecycleObserver: NSObject,UIApplicationDelegate {
     public var application:UIApplication?
     
     
@@ -50,15 +50,15 @@ public class lifecycleObserver {
         self.application = application
     }
     
-   public func configure () {
+    public func configure () {
         self.application?.configure()
     }
     
-    func didBecomeActive(_application:UIApplication) {
+    @objc public func didBecomeActive(_application:UIApplication) {
         print("Become active")
     }
     
-    func applicationDidEnterBackground(_ application: UIApplication) {
+    public func applicationDidEnterBackground(_ application: UIApplication) {
         print("Enter in Background")
     }
     
