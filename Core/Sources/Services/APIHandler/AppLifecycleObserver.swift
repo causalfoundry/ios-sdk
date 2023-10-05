@@ -19,18 +19,22 @@ private let swizzling: (AnyClass, Selector, Selector) -> () = { forClass, origin
 
 @objc extension UIApplication {
     func configure() {
-        let originalSelector = #selector(self.delegate?.applicationDidBecomeActive(_:))
-        let swizzledSelector = #selector(self.applicationDidBecomeActiveNew(_:))
-        swizzling(UIApplication.self, originalSelector, swizzledSelector)
+//        let originalSelector = #selector(self.delegate?.applicationDidBecomeActive(_:))
+//        let swizzledSelector = #selector(self.delegate?.applicationDidBecomeActiveNew(_:))
+//        swizzling(UIApplication.self, originalSelector, swizzledSelector)
         
     }
-    @objc func applicationDidBecomeActiveNew(_ application: UIApplication) {
-        applicationDidBecomeActiveNew(application)
-        print("swizzled_layoutSubviews")
-    }
+    
     
 }
 
+ extension UIApplicationDelegate {
+     
+    func applicationDidBecomeActive(_application:UIApplication) {
+        lifecycleObserver().didBecomeActive(_application: _application)
+     }
+    
+}
 
 public class lifecycleObserver {
     public var application:UIApplication?
@@ -42,6 +46,10 @@ public class lifecycleObserver {
     
    public func configure () {
         self.application?.configure()
+    }
+    
+    func didBecomeActive(_application:UIApplication) {
+        
     }
     
 }
