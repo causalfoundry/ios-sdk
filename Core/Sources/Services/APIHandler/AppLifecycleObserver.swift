@@ -9,30 +9,40 @@ import Foundation
 import UIKit
 
 
-public final class appLifecycleobserver:NSObject,UIApplicationDelegate {
-    public var application:UIApplication?
-    
-    public init(application:UIApplication)
-    {
-        super.init()
-        self.application = application
-        self.application?.delegate = self
+private let swizzling: (AnyClass, Selector, Selector) -> () = { forClass, originalSelector, swizzledSelector in
+    guard
+        let originalMethod = class_getInstanceMethod(forClass, originalSelector),
+        let swizzledMethod = class_getInstanceMethod(forClass, swizzledSelector)
+    else { return }
+    method_exchangeImplementations(originalMethod, swizzledMethod)
+}
+
+@objc extension UIApplication {
+    func configure() {
+        let originalSelector = #selector(self.delegate?.applicationDidBecomeActive(_:))
+        let swizzledSelector = #selector(self.applicationDidBecomeActiveNew(_:))
+        swizzling(UIApplicationDelegate.self, originalSelector, swizzledSelector)
         
     }
-    
-    public dynamic func applicationDidBecomeActive(_ application: UIApplication) {
-        onStateChnaged(applicationState: .active)
-    }
-    
-    
-    public dynamic func applicationWillResignActive(_ application: UIApplication) {
-        onStateChnaged(applicationState: .background)
-    }
-    
-    func onStateChnaged(applicationState: UIApplication.State) {
-        print("application state is:\(applicationState)")
-        
+    @objc func applicationDidBecomeActiveNew(_ application: UIApplication) {
+        applicationDidBecomeActiveNew(application)
+        print("swizzled_layoutSubviews")
     }
     
 }
 
+
+
+public class lifecycleObserver {
+    public var application:UIApplication?
+    
+    
+    public init(application: UIApplication? = nil) {
+        self.application = application
+    }
+    
+   public func configure () {
+        self.application?.configure()
+    }
+    
+}
