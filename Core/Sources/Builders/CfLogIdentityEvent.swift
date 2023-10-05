@@ -22,7 +22,7 @@ public class CfLogIdentityEvent  {
     var meta:Any?
     var update_immediately:Bool = CoreConstants.shared.updateImmediately
     
-  public init(identity_action: String, app_user_id: String, meta: Any? = nil, update_immediately: Bool) {
+  init(identity_action: String, app_user_id: String, meta: Any? = nil, update_immediately: Bool) {
         self.identity_action = identity_action
         self.app_user_id = app_user_id
         self.meta = meta
