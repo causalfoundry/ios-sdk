@@ -30,6 +30,11 @@ class ViewController: UIViewController {
         
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
    
     @IBAction func action_Logout(_ sender: Any) {
         CfLogIdnetityBuilder().setAppUserId(app_user_id:"sdkTestUserId")

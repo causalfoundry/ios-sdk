@@ -11,11 +11,11 @@ import Foundation
 struct PageObject {
     var path:String?
     var title:String?
-    var duration:String?
-    var render_time:String?
-    var meta:String?
+    var duration:Float?
+    var render_time:Int?
+    var meta:Any?
     
-    init(path: String? = nil, title: String? = nil, duration: String? = nil, render_time: String? = nil, meta: String? = nil) {
+    init(path: String? = nil, title: String? = nil, duration: Float? = nil, render_time: Int? = nil, meta: Any? = nil) {
         self.path = path
         self.title = title
         self.duration = duration

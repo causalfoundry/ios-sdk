@@ -14,22 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
-//        let vc = lifecycleObserver(application: application)
-//        vc.configure()
-        
-        let countries : [String] = NSLocale.isoCountryCodes.map { (code:String) -> String in
-                let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
-                return NSLocale(localeIdentifier: "en_US").displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)"
-            }
-
-
-        print(countries)
-        
-        
-    
      
+        CausulFoundry().configure()
         CFLogBuilder(application: application)
                     .setSdkKey(sdkKey:"cfkey4dxUm8RIJmWmxgY4uakWFXqd1KmNk4Y14uHb0ogvqPpkJiGwEaKge4iGXAg")
                     .setAppLevelContentBlock(contentBlock: .core)

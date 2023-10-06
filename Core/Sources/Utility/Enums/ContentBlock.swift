@@ -8,7 +8,7 @@
 import Foundation
 
 
-public enum ContentBlock: String{
+public enum ContentBlock: String,HasOnlyAFixedSetOfPossibleValues{
    
     case core,
     e_learning,
@@ -17,4 +17,5 @@ public enum ContentBlock: String{
     social,
     loyalty,
     chw_mgmt
+    static var allValues: [ContentBlock] =  ContentBlock.allValues
 }

@@ -13,18 +13,18 @@ public class CfLogPageEvent {
     var duration_value: Float? = nil
     var render_time_value: Int = 0
     var content_block: String = CoreConstants.shared.contentBlockName
-    var meta: Any?
-    var update_immediately: Boolean = CoreConstants.shared.updateImmediately
+    var meta: Any? = nil
+    var update_immediately: Bool = CoreConstants.shared.updateImmediately
 }
 
-public class CfLogPageBuilder () {
+public class CfLogPageBuilder {
     private var path_value: String? = nil
     private var title_value: String? = nil
     private var duration_value: Float? = nil
     private var render_time_value: Int = 0
     private var content_block: String = CoreConstants.shared.contentBlockName
     private var meta: Any?
-    private var update_immediately: Boolean = CoreConstants.shared.updateImmediately
+    private var update_immediately: Bool = CoreConstants.shared.updateImmediately
     
     /**
      * setPath is required to log the package details for the activity/screen/page to know
@@ -39,7 +39,7 @@ public class CfLogPageBuilder () {
      * to know the context the user is spending the time on.
      */
     public func setTitle(title: String) -> CfLogPageBuilder {
-        self.title = title
+        self.title_value = title
         return self
     }
     
@@ -48,7 +48,7 @@ public class CfLogPageBuilder () {
      * to compute the required KPIs in order to define the right metrics.
      */
     public func setDuration(duration: Float) -> CfLogPageBuilder {
-        self.duration_value = ((duration * 100.0).roundToInt() / 100.0).toFloat()
+        self.duration_value = Float((duration * 100.0).rounded() / 100.0)
         return self
     }
     /**
@@ -80,11 +80,11 @@ public class CfLogPageBuilder () {
      */
     public func setContentBlock(content_block: String) -> CfLogPageBuilder {
         if (ContentBlock.allValues.filter({$0.rawValue == content_block}).first != nil) {
-            this.content_block = content_block
+            self.content_block = content_block
         } else {
-            ExceptionManager.throwEnumException(
-                CoreEventType.page.name,
-                String(String(describing: CfLogPageEvent.self))
+            ExceptionManager().throwEnumException(
+                eventType: CoreEventType.page.rawValue,
+                className: String(String(describing: CfLogPageEvent.self))
             )
         }
         return self
@@ -131,7 +131,7 @@ public class CfLogPageBuilder () {
          * Will throw and exception if the title provided is null or no value is
          * provided at all.
          */
-        while(self.title == nil ) {
+        while(self.title_value == nil ) {
             
             ExceptionManager.shared.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "title")
         }
@@ -139,7 +139,7 @@ public class CfLogPageBuilder () {
          * Will throw and exception if the duration provided is null or no value is
          * provided at all.
          */
-        while(self.duration == nil ) {
+        while(self.duration_value == nil ) {
             
             ExceptionManager.shared.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "duration")
         }
@@ -155,17 +155,17 @@ public class CfLogPageBuilder () {
          * Will throw and exception if the render_time_value provided is more than 10000 - 10 sec
          */
         if self.render_time_value > 1000 {
-            ExceptionManager.throwInvalidException(CoreEventType.page.name,
-                                                   "render_time"
+            ExceptionManager().throwInvalidException(eventType: CoreEventType.page.rawValue,
+                                                     paramName: "render_time"
             )
         }
         
-        var pageObject = PageObject(path: self.path_value, title: self.title, duration: self.duration, render_time: self.render_time_value, meta: self.meta)
-        if pageObject.render_time > 1000 {
+        var pageObject = PageObject(path: self.path_value, title: self.title_value, duration: self.duration_value, render_time: self.render_time_value, meta: self.meta)
+        if pageObject.render_time! > 1000 {
             pageObject.render_time = 0
         }
         
-        CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.page.rawValue, logObject: pageObject, updateImmediately: update_immediately)
+        CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.page.rawValue, logObject: pageObject, updateImmediately: update_immediately, eventTime:0)
         
     }
 }
