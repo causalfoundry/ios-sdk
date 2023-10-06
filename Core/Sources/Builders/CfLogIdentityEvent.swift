@@ -32,8 +32,8 @@ public class CfLogIdentityEvent  {
 
 
 public class CfLogIdnetityBuilder {
-    private var identity_action:String = ""
-    private var app_user_id:String = ""
+    private var identity_action:String?
+    private var app_user_id:String?
     private var meta:Any?
     private var update_immediately:Bool = CoreConstants.shared.updateImmediately
     
@@ -153,7 +153,7 @@ public class CfLogIdnetityBuilder {
         if self.identity_action == IdentityAction.logout.rawValue {
             CoreConstants.shared.logoutEvent = true
         } else {
-            CFSetup().updateUserId(appUserId: self.app_user_id)
+            CFSetup().updateUserId(appUserId: self.app_user_id!)
         }
         let indetityObject = IdentifyObject(action: self.identity_action)
         CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.identify.rawValue, logObject: indetityObject, updateImmediately: update_immediately, eventTime:0)
