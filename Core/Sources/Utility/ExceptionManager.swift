@@ -42,4 +42,16 @@ class ExceptionManager {
         
     }
 
+    func throwInvalidException(eventType: String, paramName: String) {
+//            var msg = "Invalid \(paramName) provided"
+//            var exception = IllegalArgumentException(msg)
+//            callExceptionAPI(
+//                title = msg,
+//                eventType = eventType,
+//                exceptionType = "IllegalArgumentException",
+//                stackTrace = exception
+//            )
+        }
+    
+    
 }

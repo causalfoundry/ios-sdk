@@ -155,7 +155,7 @@ public class CfLogIdnetityBuilder {
         } else {
             CFSetup().updateUserId(appUserId: self.app_user_id)
         }
-        var indetityObject = IdentifyObject(action: self.identity_action)
+        let indetityObject = IdentifyObject(action: self.identity_action)
         CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.identify.rawValue, logObject: indetityObject, updateImmediately: update_immediately, eventTime:0)
     }
     
