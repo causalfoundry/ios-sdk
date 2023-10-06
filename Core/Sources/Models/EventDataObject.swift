@@ -54,14 +54,20 @@ struct EventDataObject: Codable {
     func encode(to encoder: Encoder) throws {
         var baseContainer = encoder.container(keyedBy: CodingKeys.self)
         try baseContainer.encode(self.block, forKey: .block)
-       // try baseContainer.encode(self.props, forKey: .props)
+       
         try baseContainer.encode(self.type, forKey: .type)
         try baseContainer.encode(self.ol, forKey: .ol)
         try baseContainer.encode(self.ts, forKey: .ts)
-    }
-    
+        
+        let dataEncoder = baseContainer.superEncoder(forKey: .props)
 
-}
+            // Use the Encoder directly:
+        var  encodeAppObject = try (self.props as! AppObject).encode(to: dataEncoder)
+        var  encodeIdentifyObject = try (self.props as! IdentifyObject).encode(to: dataEncoder)
+        var  encodeProps = try (self.props as! Props).encode(to: dataEncoder)
+        }
+    
+    }
 // MARK: EventDataObject convenience initializers and mutators
 
 extension EventDataObject {
