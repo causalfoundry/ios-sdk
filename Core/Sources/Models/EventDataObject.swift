@@ -17,7 +17,6 @@ struct EventDataObject: Codable {
     var ts : String?
     
     enum CodingKeys: String, CodingKey {
-
         case block = "block"
         case props = "props"
         case type = "type"
@@ -36,16 +35,16 @@ struct EventDataObject: Codable {
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        block = try values.decodeIfPresent(String.self, forKey: .block)
-        if let decodeAppobject =  try values.decodeIfPresent(AppObject.self, forKey: .props) {
-            props = decodeAppobject
-        }else if let decodeIndentityObject = try values.decodeIfPresent(IdentifyObject.self, forKey: .props) {
-            props = decodeIndentityObject
-        }else if let decodePropsObject = try values.decodeIfPresent(Props.self, forKey: .props) {
-            props = decodePropsObject
-        }else {
+//        block = try values.decodeIfPresent(String.self, forKey: .block)
+//        if let decodeAppobject =  try values.decodeIfPresent(AppObject.self, forKey: .props) {
+//            props = decodeAppobject
+//        }else if let decodeIndentityObject = try values.decodeIfPresent(IdentifyObject.self, forKey: .props) {
+//            props = decodeIndentityObject
+//        }else if let decodePropsObject = try values.decodeIfPresent(Props.self, forKey: .props) {
+//            props = decodePropsObject
+//        }else {
             props = nil
-        }
+       // }
         type = try values.decodeIfPresent(String.self, forKey: .type)
         ol = try values.decodeIfPresent(Bool.self, forKey: .ol)
         ts = try values.decodeIfPresent(String.self, forKey: .ts)
@@ -98,6 +97,7 @@ extension EventDataObject {
         ts = try values.decodeIfPresent(String.self, forKey: .ts)
         
     }
+    
     public func encode(to encoder: Encoder) throws {
         
    
