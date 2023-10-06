@@ -10,11 +10,11 @@ import Foundation
 
 // MARK: - EventDataObject
 struct EventDataObject: Codable {
-    let block : String?
-    let props : Any?
-    let type : String?
-    let ol : Bool?
-    let ts : String?
+    var block : String?
+    var props : Any?
+    var type : String?
+    var ol : Bool?
+    var ts : String?
     
     enum CodingKeys: String, CodingKey {
 
@@ -50,6 +50,8 @@ struct EventDataObject: Codable {
         ol = try values.decodeIfPresent(Bool.self, forKey: .ol)
         ts = try values.decodeIfPresent(String.self, forKey: .ts)
     }
+    
+    
 
 }
 // MARK: EventDataObject convenience initializers and mutators
@@ -79,7 +81,25 @@ extension EventDataObject {
     }
     
     
+    public mutating func decode(to decoder: Decoder)throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        block = try values.decodeIfPresent(String.self, forKey: .block)
+        if let decodeAppobject =  try values.decodeIfPresent(AppObject.self, forKey: .props) {
+            props = decodeAppobject
+        }else if let decodeIndentityObject = try values.decodeIfPresent(IdentifyObject.self, forKey: .props) {
+            props = decodeIndentityObject
+        }else if let decodePropsObject = try values.decodeIfPresent(Props.self, forKey: .props) {
+            props = decodePropsObject
+        }else {
+            props = nil
+        }
+        type = try values.decodeIfPresent(String.self, forKey: .type)
+        ol = try values.decodeIfPresent(Bool.self, forKey: .ol)
+        ts = try values.decodeIfPresent(String.self, forKey: .ts)
+        
+    }
     public func encode(to encoder: Encoder) throws {
+        
    
     }
 }
