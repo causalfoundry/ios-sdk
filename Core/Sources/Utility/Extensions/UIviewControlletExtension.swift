@@ -32,7 +32,7 @@ extension UIViewController {
     }
     
     static func startSwizzlingDidappear() {
-        let defaultSelector = #selector(self.viewDidAppear(_:))
+        let defaultSelector = #selector(self.viewDidLoad)
         let newSelector = #selector(viewDidLoadSwizzlingMethod)
         
         // 2
