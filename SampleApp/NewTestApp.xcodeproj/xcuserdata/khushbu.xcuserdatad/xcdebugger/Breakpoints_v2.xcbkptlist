@@ -896,22 +896,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A6E4E22B-E399-468A-A1DB-8817DB165E45"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/MainEventBody.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "dictionary"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "D28BE9A4-8FA7-4C11-9E79-4EEA6C6AF129"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -1061,6 +1045,21 @@
                   startingLineNumber = "40"
                   endingLineNumber = "40"
                   offsetFromSymbolStart = "1042">
+               </Location>
+               <Location
+                  uuid = "D91BE538-A095-428F-8074-1B7C2CF2ADAF - 64c9ea853f995c18"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.EventDataObject.init(from: Swift.Decoder) throws -&gt; CasualFoundryCore.EventDataObject"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/EventDataObject.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "384">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1215,6 +1214,21 @@
                   endingLineNumber = "42"
                   offsetFromSymbolStart = "1491">
                </Location>
+               <Location
+                  uuid = "CDBF57CA-0162-41F4-9183-BDCA27D680FF - 64c9ea853f995c18"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.EventDataObject.init(from: Swift.Decoder) throws -&gt; CasualFoundryCore.EventDataObject"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/EventDataObject.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "384">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -1338,6 +1352,21 @@
                   endingLineNumber = "44"
                   offsetFromSymbolStart = "2080">
                </Location>
+               <Location
+                  uuid = "A0D0F8E7-6A90-4400-82F0-A9E9F2586E6E - 64c9ea853f995c18"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.EventDataObject.init(from: Swift.Decoder) throws -&gt; CasualFoundryCore.EventDataObject"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/EventDataObject.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "384">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -1386,23 +1415,22 @@
                   endingLineNumber = "13"
                   offsetFromSymbolStart = "220">
                </Location>
+               <Location
+                  uuid = "491A7F1D-FC14-4A7A-9C64-B44B2C2C2A95 - 64c9ea853f995b31"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.EventDataObject.init(from: Swift.Decoder) throws -&gt; CasualFoundryCore.EventDataObject"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/EventDataObject.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "288">
+               </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7ECA3F6F-0266-474E-A3BD-D8B6DF2DEB02"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/MainEventBody.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "with(sID:uID:appInfo:dInfo:dn:sdk:up:data:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1435,22 +1463,38 @@
             endingLineNumber = "19"
             landmarkName = "CodingKeys"
             landmarkType = "13">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "021C232A-1060-4E22-A145-10C19C46D927"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/MainEventBody.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "jsonData()"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "71AA2DC1-EEAA-4F33-A940-DBF429708C11 - 68ff2f0b0fced28a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.EventDataObject.CodingKeys.rawValue.getter : Swift.String"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/EventDataObject.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "77">
+               </Location>
+               <Location
+                  uuid = "71AA2DC1-EEAA-4F33-A940-DBF429708C11 - 68ff2f0b0fced2a9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.EventDataObject.CodingKeys.rawValue.getter : Swift.String"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/EventDataObject.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "77">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1467,6 +1511,38 @@
             endingLineNumber = "29"
             landmarkName = "init(block:props:type:ol:ts:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0112024D-F5EF-4FBD-9858-3E4D829F63B2 - b457813a844daae9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.EventDataObject.init(block: Swift.Optional&lt;Swift.String&gt;, props: Swift.Optional&lt;Any&gt;, type: Swift.Optional&lt;Swift.String&gt;, ol: Swift.Optional&lt;Swift.Bool&gt;, ts: Swift.Optional&lt;Swift.String&gt;) -&gt; CasualFoundryCore.EventDataObject"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/EventDataObject.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "344">
+               </Location>
+               <Location
+                  uuid = "0112024D-F5EF-4FBD-9858-3E4D829F63B2 - b457813a844daae9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.EventDataObject.init(block: Swift.Optional&lt;Swift.String&gt;, props: Swift.Optional&lt;Any&gt;, type: Swift.Optional&lt;Swift.String&gt;, ol: Swift.Optional&lt;Swift.Bool&gt;, ts: Swift.Optional&lt;Swift.String&gt;) -&gt; CasualFoundryCore.EventDataObject"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/EventDataObject.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "401">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1531,54 +1607,6 @@
             endingLineNumber = "99"
             landmarkName = "init(data:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AC77D4DE-019F-4ECE-BFA9-B4EBFFB9992C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/MainEventBody.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "jsonString(encoding:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "AC77D4DE-019F-4ECE-BFA9-B4EBFFB9992C - 99c7684fcbf780b3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "default argument 0 of CasualFoundryCore.MainBody.jsonString(encoding: Swift.String.Encoding) throws -&gt; Swift.Optional&lt;Swift.String&gt;"
-                  moduleName = "NewTestApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/MainEventBody.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  uuid = "AC77D4DE-019F-4ECE-BFA9-B4EBFFB9992C - 84be99c341e30ea6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CasualFoundryCore.MainBody.jsonString(encoding: Swift.String.Encoding) throws -&gt; Swift.Optional&lt;Swift.String&gt;"
-                  moduleName = "NewTestApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/MainEventBody.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "100">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
