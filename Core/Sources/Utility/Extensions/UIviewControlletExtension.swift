@@ -21,7 +21,7 @@ extension UIViewController {
     
     
     @objc func viewDidLoadSwizzlingMethod() {
-       /// self.viewDidLoadSwizzlingMethod()
+        self.viewDidLoadSwizzlingMethod()
         CfLogPageBuilder().setContentBlock(content_block:.core)
                           .setTitle(title:self.className)
                           .setPath(path:self.path)
@@ -31,7 +31,7 @@ extension UIViewController {
         
     }
     
-    static func startSwizzlingDidappear() {
+    static func startSwizzlingViewDidLoad() {
         let defaultSelector = #selector(self.viewDidLoad)
         let newSelector = #selector(viewDidLoadSwizzlingMethod)
         

@@ -36,7 +36,7 @@ public class CausulFoundry:NSObject {
     
     
     public func configure(){
-        UIViewController().viewDidLoadSwizzlingMethod()
+        UIViewController.startSwizzlingViewDidLoad()
                 
     }
 }
