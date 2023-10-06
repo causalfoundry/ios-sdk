@@ -21,7 +21,7 @@ extension UIViewController {
     
     
     @objc func viewDidLoadSwizzlingMethod() {
-        self.viewDidLoadSwizzlingMethod()
+       /// self.viewDidLoadSwizzlingMethod()
         CfLogPageBuilder().setContentBlock(content_block:.core)
                           .setTitle(title:self.className)
                           .setPath(path:self.path)
