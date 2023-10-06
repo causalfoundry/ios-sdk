@@ -26,5 +26,15 @@ class ViewController: UIViewController {
                               .build()
     }
     
+    @IBAction func actionRegister(_ sender: Any) {
+        
+    }
+    
+   
+    @IBAction func action_Logout(_ sender: Any) {
+        CfLogIdnetityBuilder().setAppUserId(app_user_id:"sdkTestUserId")
+                              .setIdentifyAction(identity_action: .logout)
+                              .build()
+    }
 }
 

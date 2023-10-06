@@ -20,7 +20,8 @@ struct MainBody: Codable {
         case uID = "u_id"
         case appInfo = "app_info"
         case dInfo = "d_info"
-        case dn, sdk, up, data
+        case dn, sdk, up
+        case data  = "data"
     }
 }
 
