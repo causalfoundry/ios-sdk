@@ -18,43 +18,25 @@ private let swizzling: (AnyClass, Selector, Selector) -> () = { forClass, origin
 }
 
 @objc extension UIApplication {
-    func configure() {
-        let originalSelector = #selector(self.delegate?.applicationDidBecomeActive(_:))
-        let swizzledSelector = #selector(lifecycleObserver().didBecomeActive(_application:))
-        swizzling(UIApplication.self, originalSelector, swizzledSelector)
+//    func configure() {
+//        let originalSelector = #selector(self.delegate?.applicationDidBecomeActive(_:))
+//        let swizzledSelector = #selector(lifecycleObserver().didBecomeActive(_application:))
+//        swizzling(UIApplication.self, originalSelector, swizzledSelector)
+//        
+//    }
+}
+
+
+public class CausulFoundry:NSObject {
+    
+    
+    public override init() {
         
     }
-}
-
- extension UIApplicationDelegate {
-     
-    public func applicationDidBecomeActive(_ application: UIApplication) {
-        lifecycleObserver().didBecomeActive(_application: application)
-     }
-     
-    public func applicationDidEnterBackground(_ application: UIApplication) {
-         lifecycleObserver().didBecomeActive(_application: application)
-     }
-}
-
-public class lifecycleObserver: NSObject,UIApplicationDelegate {
-    public var application:UIApplication?
     
     
-    public init(application: UIApplication? = nil) {
-        self.application = application
+    public func configure(){
+        UIViewController.startSwizzlingDidappear()
+                
     }
-    
-    public func configure () {
-        self.application?.configure()
-    }
-    
-    @objc public func didBecomeActive(_application:UIApplication) {
-        print("Become active")
-    }
-    
-    public func applicationDidEnterBackground(_ application: UIApplication) {
-        print("Enter in Background")
-    }
-    
 }
