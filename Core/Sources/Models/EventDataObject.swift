@@ -39,8 +39,10 @@ struct EventDataObject: Codable {
         block = try values.decodeIfPresent(String.self, forKey: .block)
         if let decodeAppobject =  try values.decodeIfPresent(AppObject.self, forKey: .props) {
             props = decodeAppobject
-        }else if let  decodeIndentityObject = try values.decodeIfPresent(IdentifyObject.self, forKey: .props) {
+        }else if let decodeIndentityObject = try values.decodeIfPresent(IdentifyObject.self, forKey: .props) {
             props = decodeIndentityObject
+        }else if let decodePropsObject = try values.decodeIfPresent(Props.self, forKey: .props) {
+            props = decodePropsObject
         }else {
             props = nil
         }
