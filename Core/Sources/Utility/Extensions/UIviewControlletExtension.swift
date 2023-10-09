@@ -16,7 +16,7 @@ extension UIViewController {
         
     }
     var path:String {
-        return "\(Bundle.main.bundleIdentifier ?? "")\(self.className)"
+        return "\(Bundle.main.bundleIdentifier ?? "")/\(self.className)"
     }
     
     
