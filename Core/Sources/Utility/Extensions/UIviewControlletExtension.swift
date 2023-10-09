@@ -25,7 +25,8 @@ extension UIViewController {
         CfLogPageBuilder().setContentBlock(content_block:.core)
                           .setTitle(title:self.className)
                           .setPath(path:self.path)
-                          .setDuration(duration: 0)
+                          .setDuration(duration:5000)
+                          .setRenderTime(render_time:100)
                           .build()
                              
         
