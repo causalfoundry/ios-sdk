@@ -21,7 +21,7 @@ public class CfLogPageBuilder {
     private var path_value: String? = nil
     private var title_value: String? = nil
     private var duration_value: Float? = nil
-    private var render_time_value: Int = 0
+    private var render_time_value: Int? = nil
     private var content_block: String = CoreConstants.shared.contentBlockName
     private var meta: Any?
     private var update_immediately: Bool = CoreConstants.shared.updateImmediately
@@ -154,7 +154,7 @@ public class CfLogPageBuilder {
         /**
          * Will throw and exception if the render_time_value provided is more than 10000 - 10 sec
          */
-        if self.render_time_value > 1000 {
+        if self.render_time_value! > 1000 {
             ExceptionManager().throwInvalidException(eventType: CoreEventType.page.rawValue,
                                                      paramName: "render_time"
             )
