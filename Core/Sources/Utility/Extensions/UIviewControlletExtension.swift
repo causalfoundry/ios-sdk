@@ -16,7 +16,7 @@ extension UIViewController {
         
     }
     var path:String {
-        return Bundle.main.path(forResource: self.className, ofType: "swift") ?? ""
+        return "\(Bundle.main.bundleIdentifier ?? "")\(self.className)"
     }
     
     
