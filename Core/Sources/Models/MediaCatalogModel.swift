@@ -24,4 +24,7 @@ public struct MediaCatalogModel:Codable{
         self.resolution = resolution
         self.language = language
     }
+    
+    
+    
 }

@@ -182,9 +182,18 @@ public class  CfLogMediaEventBuilder {
     }
     
     public func setMediaModel(mediaModelValue: String?) -> CfLogMediaEventBuilder {
-        //        if (mediaModelValue != nil) {
-        //            self.mediaModel_value = try JSONSerialization()
-        //            }
+        if (mediaModelValue != nil) {
+            if let jsonData = mediaModelValue!.data(using: .utf8) {
+                // Decode the JSON data into a MediaCatalogModel instance
+                do {
+                    let mediaModel = try JSONDecoder().decode(MediaCatalogModel.self, from: jsonData)
+                    // Use the mediaModel instance as needed
+                    print("Decoded mediaModel: \(mediaModel)")
+                } catch {
+                    print("Error decoding JSON: \(error)")
+                }
+            }
+        }
         return self
     }
     /**
@@ -264,7 +273,7 @@ public class  CfLogMediaEventBuilder {
             self.duration_value = 0
         }
         
-        var mediaObject = MediaObject(id: self.media_id!,type:media_type, action: self.media_action,time:"\(duration_value ?? 0)")
+        let mediaObject = MediaObject(id: self.media_id!,type:media_type, action: self.media_action,time:"\(duration_value ?? 0)")
         
         if self.mediaModel_value != nil {
             self.callCatalogAPI()
