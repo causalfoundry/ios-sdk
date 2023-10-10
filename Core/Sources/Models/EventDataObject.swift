@@ -70,6 +70,8 @@ struct EventDataObject: Codable {
             try (propsTypeData).encode(to: dataEncoder)
         }else if let pageObjectTypeData = self.props as? PageObject {
             try (pageObjectTypeData).encode(to: dataEncoder)
+        }else if let mediaObjectTypeData = self.props as? MediaObject {
+            try (mediaObjectTypeData).encode(to: dataEncoder)
         }
         
     }
@@ -110,6 +112,10 @@ extension EventDataObject {
             props = decodeIndentityObject
         }else if let decodePropsObject = try values.decodeIfPresent(Props.self, forKey: .props) {
             props = decodePropsObject
+        }else if let decodePageObject = try values.decodeIfPresent(PageObject.self, forKey: .props) {
+            props = decodePageObject
+        }else if let decodeMediaObject = try values.decodeIfPresent(MediaObject.self, forKey: .props) {
+            props = decodeMediaObject
         }else {
             props = nil
         }
