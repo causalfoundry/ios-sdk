@@ -8,7 +8,7 @@
 import Foundation
 
 
-public enum ContentBlock: String,HasOnlyAFixedSetOfPossibleValues{
+public enum ContentBlock: String,HasOnlyAFixedSetOfPossibleValues,EnumComposable{
    
     case core,
     e_learning,

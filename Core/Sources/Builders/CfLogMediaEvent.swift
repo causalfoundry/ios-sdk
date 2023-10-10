@@ -275,9 +275,9 @@ public class  CfLogMediaEventBuilder {
         
         let mediaObject = MediaObject(id: self.media_id!,type:media_type, action: self.media_action,time:"\(duration_value ?? 0)")
         
-//        if self.mediaModel_value != nil {
-//            self.callCatalogAPI()
-//        }
+        if self.mediaModel_value != nil {
+            self.callCatalogAPI()
+        }
         CFSetup().track(contentBlockName: self.content_block, eventType:CoreEventType.media.rawValue, logObject: mediaObject, updateImmediately: self.update_immediately)
     }
     

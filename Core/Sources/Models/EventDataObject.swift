@@ -72,6 +72,8 @@ struct EventDataObject: Codable {
             try (pageObjectTypeData).encode(to: dataEncoder)
         }else if let mediaObjectTypeData = self.props as? MediaObject {
             try (mediaObjectTypeData).encode(to: dataEncoder)
+        }else if let rateObjectTypeData = self.props as? RateObject {
+            try (rateObjectTypeData).encode(to: dataEncoder)
         }
         
     }
@@ -116,6 +118,8 @@ extension EventDataObject {
             props = decodePageObject
         }else if let decodeMediaObject = try values.decodeIfPresent(MediaObject.self, forKey: .props) {
             props = decodeMediaObject
+        }else if let decodeRateObject = try values.decodeIfPresent(RateObject.self, forKey: .props) {
+            props = decodeRateObject
         }else {
             props = nil
         }
