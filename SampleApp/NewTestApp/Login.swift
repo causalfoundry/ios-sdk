@@ -46,7 +46,7 @@ class Login: UIViewController {
     
     
     @IBAction func action_Media(_ sender: Any) {
-        var mediaDetail = MediaCatalogModel(name: "TestVideo", description: "Testing video player", length: "6.8", resolution: "50", language: "English")
+        let mediaDetail = MediaCatalogModel(name: "TestVideo", description: "Testing video player", length: "6.8", resolution: "50", language: "Afar")
         CfLogMediaEventBuilder()
             .setMediaId(media_id: "374784738")
             .setMediaType(media_type: MediaType.video) //Required - MediaType
@@ -57,17 +57,13 @@ class Login: UIViewController {
             .build()
     }
     
-    
-    
     @IBAction func rateAction(_ sender: Any) {
-        CfLogRateEvent.Builder()
-                    .setContentBlock(ContentBlock.e_commerce)
-                    .setRateValue(4.5f) //Required -  Float 0 to 5
-                    .setRateType(RateType.order) //Required -  RateType
-                    .setSubjectId("testOrderId") //Required -  String
-                    .build()
+        CfLogRateEventBuilder()
+            .setContentBlock(contentBlock: ContentBlock.e_commerce)
+            .setRateValue(rateValue: 4.5) //Required -  Float 0 to 5
+            .setRateType(type: RateType.order) //Required -  RateType
+            .setSubjectId(subjectId: "testOrderId") //Required -  String
+            .build()
     }
-    
-    
 }
 

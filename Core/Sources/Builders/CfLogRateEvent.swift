@@ -7,9 +7,6 @@
 
 import Foundation
 
-
-import Foundation
-
 public class CfLogRateEvent {
     
     var rateValue: Float?
@@ -36,7 +33,7 @@ public class CfLogRateEventBuilder {
         private var subjectId: String? = ""
         private var contentBlock: String? = ""
         private var meta: Any? = nil
-        private var updateImmediately: Bool = false
+        private var updateImmediately: Bool = true
     
         public init() {
         
