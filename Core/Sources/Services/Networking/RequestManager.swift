@@ -8,13 +8,6 @@
 import Foundation
 import UIKit
 
-
-enum JSONError: String, Error {
-    case NoData = "ERROR: no data"
-    case ConversionFailed = "ERROR: conversion from JSON failed"
-}
-
-
 class RequestManager {
     
     open class var sharedManager: RequestManager {
@@ -30,8 +23,6 @@ class RequestManager {
     
     var task:URLSessionDataTask!
     
-    
-    
     private var session: URLSession = {
         let configuration = URLSessionConfiguration.default
         configuration.allowsCellularAccess = true
@@ -40,15 +31,11 @@ class RequestManager {
         configuration.requestCachePolicy = .useProtocolCachePolicy
         configuration.timeoutIntervalForRequest = 60.0
         configuration.urlCache = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
-        //        URLCache.shared.removeAllCachedResponses()
-        //        URLCache.shared.diskCapacity = 0
-        //        URLCache.shared.memoryCapacity = 0
         return  URLSession(configuration: configuration)
     }()
     
     
-    public func getDataFromServer(_ strParams : [String:Any],_ strUrl :String, _ strMethod :String ,completionHandler:@escaping (_ success:Bool, _ data: NSDictionary?) -> Void){
-        //        let session :URLSession = URLSession.shared
+    public func getDataFromServer(_ strParams : Any,_ strUrl :String, _ strMethod :String ,completionHandler:@escaping (_ success:Bool, _ data: NSDictionary?) -> Void){
         
         let url = URL(string: strUrl)
         var request = URLRequest(url: url!,cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,timeoutInterval: 3.0 * 1000)
@@ -57,7 +44,7 @@ class RequestManager {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(CoreConstants.shared.sdkKey, forHTTPHeaderField: "Authorization")
         
-        if strParams.count > 0 {
+        if (strParams as AnyObject).count > 0 {
             guard let httpBody = try? JSONSerialization.data(withJSONObject: strParams, options: .prettyPrinted) else {
                return
             }
@@ -84,25 +71,27 @@ class RequestManager {
                                 completionHandler(false, nil)
                             }
                         }else{
-                            
                             guard let data = data else {
                                 print(strParams)
                                 print(request)
-                                
-                                throw JSONError.NoData
+                                return
                             }
+                            
+                            
                             print("response", response as Any);
                             if let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as? NSArray {
                                 for dictData in jsonResult {
                                     guard let dict = dictData as? NSDictionary else {
-                                        throw JSONError.ConversionFailed
+                                        print("Conversion failed")
+                                        return
                                     }
                                     completionHandler(true, dict)
                                 }
                                 completionHandler(false, nil)
                             }else {
                                 guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary else {
-                                    throw JSONError.ConversionFailed
+                                    print("Conversion failed")
+                                    return
                                 }
                                 completionHandler(true, json)
                             }

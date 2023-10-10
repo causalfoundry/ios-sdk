@@ -82,7 +82,7 @@ public class CfLogPageBuilder {
         if (ContentBlock.allValues.filter({$0.rawValue == content_block}).first != nil) {
             self.content_block = content_block
         } else {
-            ExceptionManager().throwEnumException(
+            ExceptionManager.throwEnumException(
                 eventType: CoreEventType.page.rawValue,
                 className: String(String(describing: CfLogPageEvent.self))
             )
@@ -125,7 +125,7 @@ public class CfLogPageBuilder {
         
         while(self.path_value == nil ) {
             
-            ExceptionManager.shared.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "path_value")
+            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "path_value")
         }
         /**
          * Will throw and exception if the title provided is null or no value is
@@ -133,7 +133,7 @@ public class CfLogPageBuilder {
          */
         while(self.title_value == nil ) {
             
-            ExceptionManager.shared.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "title")
+            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "title")
         }
         /**
          * Will throw and exception if the duration provided is null or no value is
@@ -141,7 +141,7 @@ public class CfLogPageBuilder {
          */
         while(self.duration_value == nil ) {
             
-            ExceptionManager.shared.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "duration")
+            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "duration")
         }
         
         /**
@@ -149,13 +149,13 @@ public class CfLogPageBuilder {
          */
         while(self.render_time_value == nil ) {
             
-            ExceptionManager.shared.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "render_time_value")
+            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "render_time_value")
         }
         /**
          * Will throw and exception if the render_time_value provided is more than 10000 - 10 sec
          */
         if self.render_time_value! > 1000 {
-            ExceptionManager().throwInvalidException(eventType: CoreEventType.page.rawValue,
+            ExceptionManager.throwInvalidException(eventType: CoreEventType.page.rawValue,
                                                      paramName: "render_time"
             )
         }

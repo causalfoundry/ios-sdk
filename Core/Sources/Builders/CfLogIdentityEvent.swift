@@ -69,7 +69,7 @@ public class CfLogIdnetityBuilder {
         if (IdentityAction.allValues.filter({$0.rawValue == identity_action }).first != nil) {
             self.identity_action = identity_action
         }else {
-            ExceptionManager.shared.throwEnumException(eventType: CoreEventType.identify.rawValue, className: String(describing: CfLogIdentityEvent.self))
+            ExceptionManager.throwEnumException(eventType: CoreEventType.identify.rawValue, className: String(describing: CfLogIdentityEvent.self))
         }
         return self
         
@@ -110,18 +110,14 @@ public class CfLogIdnetityBuilder {
     }
     
     public func setCountry(country:String?) ->  CfLogIdnetityBuilder {
-        if let countryNameORCode  = country {
-            let countries : [CountryCodes] = NSLocale.isoCountryCodes.map { (code:String) -> CountryCodes in
-                let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
-                return CountryCodes(countryName: NSLocale(localeIdentifier: "en_US").displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)", countryISO2Code: code)
-            }
-            
-            if countries.filter({$0.countryName == countryNameORCode || $0.countryISO2Code == countryNameORCode }).first != nil {
-                ExceptionManager.shared.throwEnumException(eventType: CoreEventType.identify.rawValue, className:String(describing: CfLogIdentityEvent.self))
+        if country != nil {
+            if !CoreConstants.shared.enumContains(CountryCode.self, name: country!) {
+                ExceptionManager.throwEnumException(eventType: CoreEventType.identify.rawValue, className:String(describing:"CfLogIdentityEvent"))
+               
             }
         }
-        return self
         
+        return self
     }
     
     /**
@@ -136,14 +132,14 @@ public class CfLogIdnetityBuilder {
          * provided at all.
          */
         while(self.app_user_id == nil ) {
-            ExceptionManager.shared.throwIsRequiredException(eventType: CoreEventType.identify.rawValue, elementName: "app_user_id")
+            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.identify.rawValue, elementName: "app_user_id")
         }
         /**
          * Will throw and exception if the identityAction provided is null or no action is
          * provided at all.
          */
         while(self.identity_action == nil ) {
-            ExceptionManager.shared.throwIsRequiredException(eventType: CoreEventType.identify.rawValue, elementName: "identity_action")
+            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.identify.rawValue, elementName: "identity_action")
         }
         /**
          * Parsing the values into an object and passing to the setup block to queue
@@ -156,6 +152,7 @@ public class CfLogIdnetityBuilder {
             CFSetup().updateUserId(appUserId: self.app_user_id!)
         }
         let indetityObject = IdentifyObject(action: self.identity_action)
+        
         CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.identify.rawValue, logObject: indetityObject, updateImmediately: update_immediately, eventTime:0)
     }
     

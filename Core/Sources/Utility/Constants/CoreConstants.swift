@@ -26,9 +26,9 @@ class CoreConstants {
     
     //private var SDKString: String = "/0.2.2"
     var SDKVersion: String = "ios\(0.2)"
-
+    
     var updateImmediately: Bool = false
-
+    
     var pauseSDK: Bool = false
     var autoShowInAppNudge: Bool = true
     var application: UIApplication? = nil
@@ -38,11 +38,20 @@ class CoreConstants {
     var deviceObject: DInfo?
     var appInfoObject:AppInfo?
     
-
+    
     var userIdKey: String = "userIdKey"
     
     var isAppDebuggable: Bool = true
     
     var logoutEvent: Bool = false
-
+    
+    
+    func enumContains<T: EnumComposable>(_ type: T.Type, name: String) -> Bool where T.RawValue == String {
+        return T.allValues.contains{ $0.rawValue == name }
+    }
 }
+
+protocol EnumComposable :RawRepresentable,HasOnlyAFixedSetOfPossibleValues{
+    
+}
+

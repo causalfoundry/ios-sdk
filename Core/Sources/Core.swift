@@ -210,11 +210,11 @@ public class CFLog {
          */
        public func build() {
             while(self.application == nil ) {
-                ExceptionManager.shared.throwInitException(eventType: "CFLog")
+                ExceptionManager.throwInitException(eventType: "CFLog")
                 fatalError("Application object not found")
             }
             while(self.applicationState == nil ) {
-                ExceptionManager.shared.throwInitException(eventType: "CFLog")
+                ExceptionManager.throwInitException(eventType: "CFLog")
                 fatalError("Application state object not found")
             }
             CFSetup().initalize(application: self.application!, event: self.applicationState!, pauseSDK: pauseSDK, autoShowInAppNudge: showInAppBudge, updateImmediately: updateImmediately)

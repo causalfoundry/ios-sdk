@@ -21,25 +21,18 @@ extension UIViewController {
     
     
     @objc func viewDidLoadSwizzlingMethod() {
-        self.viewDidLoadSwizzlingMethod()
-        CfLogPageBuilder().setContentBlock(content_block:.core)
-                          .setTitle(title:self.className)
-                          .setPath(path:self.path)
-                          .setDuration(duration:5000)
-                          .setRenderTime(render_time:100)
-                          .build()
-                             
-        
-    }
-    
-    @objc func viewDidDisappearSwizzlingMethod() {
-        self.viewDidLoadSwizzlingMethod()
         CfLogPageBuilder().setContentBlock(content_block:.core)
                           .setTitle(title:self.className)
                           .setPath(path:self.path)
                           .setDuration(duration: 300)
                           .build()
                              
+        
+    }
+    
+    @objc func viewDidDisappearSwizzlingMethod() {
+        self.viewDidDisappearSwizzlingMethod()
+        
         
     }
     

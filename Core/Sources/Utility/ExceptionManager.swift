@@ -1,57 +1,195 @@
 //
-//  File.swift
-//  
+//  ExceptionManager.swift
+//
 //
 //  Created by khushbu on 12/09/23.
 //
 
 import Foundation
+import Network
 
+struct ExceptionDataObject {
+    let title: String
+    let eventType: String
+    let exceptionType: String
+    let exceptionSource: String
+    let stackTrace: String
+    let ts: String
+}
+
+class ExceptionAPIHandler {
+    func exceptionTrackAPI(exceptionObject: ExceptionDataObject, updateImmediately: Bool) {
+        // Implement the API handling logic here
+    }
+}
 
 
 class ExceptionManager {
-    
-    static let shared = ExceptionManager()
-    
-    func  throwEnumException(eventType: String, className: String) {
-           // Thraw Execption
-        // Call Exception API
-        }
-    
-    func throwInitException(eventType: String) {
-//            var msg = "init is required to provide context."
-//            val exception = NullPointerException(msg)
-//            callExceptionAPI(
-//                title = msg,
-//                eventType = eventType,
-//                exceptionType = "NullPointerException",
-//                stackTrace = exception
-//            )
-        }
-    
-    func throwIsRequiredException(eventType: String, elementName: String) {
-//        var msg = "\(elementName) is required."
-//        var exception = NullPointerException(msg)
-    }
-    
-    
-    private func callExceptionAPI(title:String,
-                                  eventType: String,
-                                  exceptionType: String,
-                                  stackTrace: String) {
-        
+    static func throwEnumException(eventType: String, className: String) {
+        let msg = "Invalid \(className) provided"
+        let exception = IllegalArgumentException(msg)
+        callExceptionAPI(
+            title: msg,
+            eventType: eventType,
+            exceptionType: "IllegalArgumentException",
+            stackTrace: exception
+        )
     }
 
-    func throwInvalidException(eventType: String, paramName: String) {
-//            var msg = "Invalid \(paramName) provided"
-//            var exception = IllegalArgumentException(msg)
-//            callExceptionAPI(
-//                title = msg,
-//                eventType = eventType,
-//                exceptionType = "IllegalArgumentException",
-//                stackTrace = exception
-//            )
+    static func throwInvalidException(eventType: String, paramName: String) {
+        let msg = "Invalid \(paramName) provided"
+        let exception = IllegalArgumentException(msg)
+        callExceptionAPI(
+            title: msg,
+            eventType: eventType,
+            exceptionType: "IllegalArgumentException",
+            stackTrace: exception
+        )
+    }
+    
+    static func throwInitException(eventType: String) {
+        let msg = "init is required to provide context."
+        let exception = NullPointerException(msg)
+        callExceptionAPI(title: msg, eventType: eventType, exceptionType: "NullPointerException", stackTrace: exception)
+    }
+    
+    
+    static func throwIsRequiredException(eventType: String, elementName: String) {
+        let msg = "\(elementName) is required."
+        let exception = RuntimeException(msg)
+        callExceptionAPI(title: msg, eventType: eventType, exceptionType: "NullPointerException", stackTrace: exception)
+    }
+    
+    
+   static func throwAPIFailException(apiName: String, response: HTTPURLResponse?, responseBody: Data?) {
+        let statusCode = response?.statusCode ?? -1
+        let responseBodyString = String(data: responseBody ?? Data(), encoding: .utf8) ?? "nil"
+        let msg = "\(statusCode): \(responseBodyString)"
+        let exception = RuntimeException(msg)
+        callExceptionAPI(title: msg, eventType: apiName, exceptionType: "NullPointerException", stackTrace: exception)
+    }
+
+    static func throwRuntimeException(eventType: String, message: String) {
+        let exception = RuntimeException(message)
+        callExceptionAPI(title: message, eventType: eventType, exceptionType: "RuntimeException", stackTrace: exception)
+    }
+    
+    static func throwIllegalStateException(eventType: String, message: String) {
+        let exception = IllegalStateException(message)
+        ExceptionManager.callExceptionAPI(title: message, eventType: eventType, exceptionType: "IllegalStateException", stackTrace: exception)
+    }
+    
+    static func throwPageNumberException(eventType: String) {
+        let message = "Page numbers should not be less than 1"
+        let exception = IllegalArgumentException(message)
+        callExceptionAPI(title: message, eventType: eventType, exceptionType: "IllegalArgumentException", stackTrace: exception)
+    }
+    
+    static func throwItemQuantityException(eventType: String) {
+        let message = "Item Quantity should be 0 or greater than 0"
+        let exception = IllegalArgumentException(message)
+        callExceptionAPI(title: message, eventType: eventType, exceptionType: "IllegalArgumentException", stackTrace: exception)
+    }
+    
+    static func throwCurrencyNotSameException(eventType: String, valueName: String) {
+        let message = "Currency for \(valueName) and item(s) should be same."
+        let exception = IllegalArgumentException(message)
+        callExceptionAPI(title: message, eventType: eventType, exceptionType: "IllegalArgumentException", stackTrace: exception)
+    }
+
+    static func throwInvalidNudgeException(message: String, nudgeObject: String) {
+        let exception = IllegalArgumentException(message)
+
+        let exceptionDataObject = ExceptionDataObject(
+            title: message,
+            eventType: CoreEventType.nudge_response.rawValue,
+            exceptionType: "IllegalArgumentException",
+            exceptionSource: "SDK",
+            stackTrace: "Nudge Object:\n\(nudgeObject) \n\nException:\n\(exception)",
+            ts: Converters.convertMillisToTimeString(millis: UInt64(Int64(Date().timeIntervalSince1970 * 1000)))
+        )
+
+        if let application = CoreConstants.shared.application {
+            ExceptionAPIHandler().exceptionTrackAPI(
+                exceptionObject: exceptionDataObject,
+                updateImmediately: false
+            )
         }
+    }
     
+    static func throwInvalidNetworkException(message: String, speed: Int) {
+        let exception = IllegalArgumentException(message)
+
+        let exceptionDataObject = ExceptionDataObject(
+            title: message,
+            eventType: CoreEventType.app.rawValue,
+            exceptionType: "IllegalArgumentException",
+            exceptionSource: "SDK",
+            stackTrace: "Value: \(speed) \n\nException:\n\(exception)",
+            ts: Converters.convertMillisToTimeString(millis: UInt64(Int64(Date().timeIntervalSince1970 * 1000)))
+        )
+
+        if CoreConstants.shared.application != nil {
+            ExceptionAPIHandler().exceptionTrackAPI(
+                exceptionObject: exceptionDataObject,
+                updateImmediately: false
+            )
+        }
+    }
     
+    func throwInternalCrashException(eventType: String, message: String, exception: Error) {
+       let exceptionDataObject = ExceptionDataObject(
+            title: message,
+            eventType: eventType,
+            exceptionType: "RuntimeException",
+            exceptionSource: "SDK",
+            stackTrace: exception.localizedDescription,
+            ts: Converters.convertMillisToTimeString(millis: UInt64(Int64(Date().timeIntervalSince1970 * 1000)))
+        )
+
+        if CoreConstants.shared.application != nil {
+            ExceptionAPIHandler().exceptionTrackAPI(
+                exceptionObject: exceptionDataObject,
+                updateImmediately: false
+            )
+        }
+    }
+
+    // Other exception throwing functions...
+
+    private static func callExceptionAPI (
+        title: String,
+        eventType: String,
+        exceptionType: String,
+        stackTrace: ExceptionError
+    ) {
+        let exceptionDataObject = ExceptionDataObject(
+            title: title,
+            eventType: eventType,
+            exceptionType: exceptionType,
+            exceptionSource: "SDK",
+            stackTrace: stackTrace.localizedDescription,
+            ts: Converters.convertMillisToTimeString(millis: UInt64(Date().timeIntervalSince1970 * 1000))
+        )
+        
+        if CoreConstants.shared.application != nil {
+            ExceptionAPIHandler().exceptionTrackAPI(exceptionObject: exceptionDataObject, updateImmediately: false)
+        }
+        
+        if CoreConstants.shared.isDebugMode && CoreConstants.shared.isAppDebuggable {
+            // Handle debug mode throwing exception
+            fatalError(stackTrace.localizedDescription)
+        }
+    }
 }
+
+
+
+class Converters {
+    static func convertMillisToTimeString(millis: UInt64) -> String {
+        // Implement the conversion logic if needed
+        return "\(millis)"
+    }
+}
+
+

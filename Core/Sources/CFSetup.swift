@@ -56,7 +56,9 @@ class CFSetup:NSObject, IngestProtocol {
     }
     
     func updateCatalogItem(subject: CatalogSubject, catalogObject: Any?) {
-        
+        if CoreConstants.shared.application != nil {
+            catalogAPIHandler.updateCatalogItem(subject: subject, catalogObject: catalogObject)
+        }
     }
     
     @discardableResult
@@ -70,7 +72,7 @@ class CFSetup:NSObject, IngestProtocol {
         return contents["ai.causalfoundry.iOS.sdk.APPLICATION_KEY"] ?? ""
     }
     
-    func track(contentBlockName: String, eventType: String, logObject: Any?, updateImmediately: Bool, eventTime: Int64) {
+    func track(contentBlockName: String, eventType: String, logObject: Any?, updateImmediately: Bool, eventTime: Int64 = 0) {
         
         if CoreConstants.shared.application != nil {
             verifyAccessToken(context:CoreConstants.shared.application!)

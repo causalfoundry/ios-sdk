@@ -111,7 +111,7 @@ public class CFLogAppEventBuilder {
         
         public func build() {
             while(self.action == nil ) {
-                ExceptionManager.shared.throwInitException(eventType: "CFLog")
+                ExceptionManager.throwInitException(eventType: "CFLog")
                 fatalError("action not found")
             }
             
