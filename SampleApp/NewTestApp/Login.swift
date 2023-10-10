@@ -8,7 +8,7 @@
 import UIKit
 import CasualFoundryCore
 
-class ViewController: UIViewController {
+class Login: UIViewController {
     
     
     @IBOutlet weak var txtPassword: UITextField!

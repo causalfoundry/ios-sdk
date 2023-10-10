@@ -9,27 +9,27 @@ import Foundation
 
 class ExceptionError: Error {
     init() {
-        fatalError("Stub!")
+        
     }
 
     init(message: String) {
-        fatalError("Stub!")
+       
     }
 
     init(message: String, cause: Error) {
-        fatalError("Stub!")
+       
     }
 
     init(cause: Error) {
-        fatalError("Stub!")
+        
     }
 
     init(message: String, cause: Error?, enableSuppression: Bool, writableStackTrace: Bool) {
-        fatalError("Stub!")
+       
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        
     }
 }
 
