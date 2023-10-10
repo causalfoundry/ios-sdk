@@ -17,7 +17,7 @@ public struct MediaCatalogModel:Codable{
     var language:String?
     
     
-    init(name: String? = nil, description: String? = nil, length: String? = nil, resolution: String? = nil, language: String? = nil) {
+   public init(name: String? = nil, description: String? = nil, length: String? = nil, resolution: String? = nil, language: String? = nil) {
         self.name = name
         self.description = description
         self.length = length

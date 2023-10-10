@@ -27,6 +27,7 @@ class Login: UIViewController {
     }
     
     @IBAction func actionRegister(_ sender: Any) {
+        var mediaDetail = MediaCatalogModel(
         CfLogMediaEventBuilder()
             .setMediaId(media_id: "374784738")
             .setMediaType(media_type: MediaType.video) //Required - MediaType
