@@ -37,6 +37,17 @@ struct MediaObject:Codable {
         type = try values.decodeIfPresent(String.self, forKey: .type)
         action = try values.decodeIfPresent(String.self, forKey: .action)
         time = try values.decodeIfPresent(String.self, forKey: .time)
+        
+        if let decodeMetaInt =  try values.decodeIfPresent(Int.self, forKey: .meta) {
+            meta = decodeMetaInt
+        }else if let decodeMetaString = try values.decodeIfPresent(String.self, forKey: .meta) {
+            meta = decodeMetaString
+        }else {
+            meta = nil
+        }
+       
+        
+        
     }
     
     // MARK: Encodable
@@ -50,15 +61,14 @@ struct MediaObject:Codable {
         
         let dataEncoder = baseContainer.superEncoder(forKey: .meta)
         
-//        // Use the Encoder directly:
-//        if let mediaObjectIntTypeData = self.meta as? Int {
-//            try (mediaObjectTypeData).encode(to: dataEncoder)
-//        }else if let mediaObjectTypeData = self.meta as? String {
-//            try (identityTypeData).encode(to: dataEncoder)
-//        }else if let mediaObjectData = self.meta as? Double {
-//            try (propsTypeData).encode(to: dataEncoder)
-//        }
+        // Use the Encoder directly:
+        if let metaAsInt = self.meta as? Int {
+            try (metaAsInt).encode(to: dataEncoder)
+        }else if let metaAsString = self.meta as? String {
+            try (metaAsString).encode(to: dataEncoder)
+        }else if let metaAsDouble = self.meta as? Double {
+            try (metaAsDouble).encode(to: dataEncoder)
+        }
         
- //   }
-}
+    }
 }

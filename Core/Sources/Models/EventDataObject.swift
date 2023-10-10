@@ -68,6 +68,8 @@ struct EventDataObject: Codable {
             try (identityTypeData).encode(to: dataEncoder)
         }else if let propsTypeData = self.props as? Props {
             try (propsTypeData).encode(to: dataEncoder)
+        }else if let pageObjectTypeData = self.props as? PageObject {
+            try (pageObjectTypeData).encode(to: dataEncoder)
         }
         
     }
