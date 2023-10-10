@@ -252,7 +252,7 @@ public class  CfLogMediaEventBuilder {
         }
         
         if self.media_type != MediaType.image.rawValue {
-            if ((self.media_action?.isNilOREmpty()) != nil) {
+            if ((self.media_action?.isNilOREmpty()) == true) {
                 ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_type")
             }
             

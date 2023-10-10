@@ -27,10 +27,11 @@ class Login: UIViewController {
     }
     
     @IBAction func actionRegister(_ sender: Any) {
-        var mediaDetail = MediaCatalogModel(
+        var mediaDetail = MediaCatalogModel(name: "TestVideo", description: "Testing video player", length: "6.8", resolution: "50", language: "English")
         CfLogMediaEventBuilder()
             .setMediaId(media_id: "374784738")
             .setMediaType(media_type: MediaType.video) //Required - MediaType
+            .setMediaModel(mediaModelValue: mediaDetail)
             .setMediaAction(media_action: MediaAction.pause) // Required - MediaAction
             .setCurrentDuration(duration: 1234556) // Required - Int
             .setContentBlock(content_block: ContentBlock.core) // Optional - ContentBlock > default is core
