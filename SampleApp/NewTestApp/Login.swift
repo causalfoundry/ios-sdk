@@ -27,6 +27,25 @@ class Login: UIViewController {
     }
     
     @IBAction func actionRegister(_ sender: Any) {
+        CfLogIdnetityBuilder().setAppUserId(app_user_id:"sdkTestUserId")
+            .setIdentifyAction(identity_action: .register)
+                              .build()
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+   
+    @IBAction func action_Logout(_ sender: Any) {
+        CfLogIdnetityBuilder().setAppUserId(app_user_id:"sdkTestUserId")
+            .setIdentifyAction(identity_action: .logout)
+            .build()
+    }
+    
+    
+    @IBAction func action_Media(_ sender: Any) {
         var mediaDetail = MediaCatalogModel(name: "TestVideo", description: "Testing video player", length: "6.8", resolution: "50", language: "English")
         CfLogMediaEventBuilder()
             .setMediaId(media_id: "374784738")
@@ -39,15 +58,16 @@ class Login: UIViewController {
     }
     
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    
+    @IBAction func rateAction(_ sender: Any) {
+        CfLogRateEvent.Builder()
+                    .setContentBlock(ContentBlock.e_commerce)
+                    .setRateValue(4.5f) //Required -  Float 0 to 5
+                    .setRateType(RateType.order) //Required -  RateType
+                    .setSubjectId("testOrderId") //Required -  String
+                    .build()
     }
     
-   
-    @IBAction func action_Logout(_ sender: Any) {
-        CfLogIdnetityBuilder().setAppUserId(app_user_id:"sdkTestUserId")
-                              .setIdentifyAction(identity_action: .logout)
-                              .build()
-    }
+    
 }
 
