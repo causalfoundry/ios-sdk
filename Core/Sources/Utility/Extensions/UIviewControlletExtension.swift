@@ -25,6 +25,7 @@ extension UIViewController {
                           .setTitle(title:self.className)
                           .setPath(path:self.path)
                           .setDuration(duration: 300)
+                          .setRenderTime(render_time: 1000)
                           .build()
                              
         
