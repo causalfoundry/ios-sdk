@@ -13,36 +13,7 @@ public class CoreDataHelper {
     static let shared = CoreDataHelper()
     
     public init() {
-        let model = NSManagedObjectModel()
-        var filePath = Bundle.main.url(forResource: "file", withExtension: "txt")
         
-        // Save the model to a file
-        guard let modelURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("_CausulFoundry.xcdatamodel") else {
-            fatalError("Unable to create model URL")
-        }
-        
-        guard let compiledURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("MyModel.momd") else {
-            fatalError("Unable to create compiled model URL")
-        }
-        
-        //        guard NSManagedObjectModel.mergedModel(from: [model]) != nil else {
-        //            fatalError("Unable to merge the models")
-        //        }
-        
-        guard NSManagedObjectModel.mergedModel(from: nil) != nil else {
-            fatalError("Unable to compile the model")
-        }
-        
-        do {
-           // try model.write(to:modelURL )
-            print("Model saved to: \(modelURL)")
-            
-            // Move the model to a location where Xcode can compile it
-            try FileManager.default.copyItem(at: modelURL, to: compiledURL)
-            print("Model compiled to: \(compiledURL)")
-        } catch {
-            fatalError("Failed to save or compile the model: \(error)")
-        }
     }
     
     
