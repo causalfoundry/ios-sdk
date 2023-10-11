@@ -23,16 +23,38 @@ public class CoreDataHelper {
         saveManagedObjectModelToFile(model: model, filePath: modelURL)
     }
     
-    var persistentContainer: NSPersistentContainer {
-        let container = NSPersistentContainer(name: "_causulFoundry")
-        container.loadPersistentStores { (_, error) in
+    func loadPersistentContainer() -> NSPersistentContainer? {
+        // Get the URL of the Core Data model in the Documents directory
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let modelURL = documentsDirectory.appendingPathComponent("_causulFoundry.xcdatamodeld")
+        
+        // Load the NSManagedObjectModel from the model URL
+        guard let model = NSManagedObjectModel(contentsOf: modelURL) else {
+            print("Failed to load the managed object model from \(modelURL)")
+            return nil
+        }
+        
+        // Initialize the NSPersistentContainer with the loaded model
+        let persistentContainer = NSPersistentContainer(name: "YourModelName", managedObjectModel: model)
+        
+        persistentContainer.loadPersistentStores { (_, error) in
             if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                print("Failed to load persistent stores: \(error), \(error.userInfo)")
             }
         }
-        return container
+        
+        return persistentContainer
+    }
+
+
+    var persistentContainer: NSPersistentContainer? {
+        if let container = loadPersistentContainer() {
+            return container
+        }
+        return nil
         
     }
+
     
     func createManagedObjectModel() -> NSManagedObjectModel {
         // Create an entity description
@@ -82,7 +104,7 @@ public class CoreDataHelper {
         // MARK: - Core Data Context
         
         private var context: NSManagedObjectContext {
-            return persistentContainer.viewContext
+            return persistentContainer!.viewContext
         }
         
         // MARK: - Core Data Operations
