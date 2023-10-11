@@ -7,18 +7,24 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 public class CoreDataHelper {
     
     static let shared = CoreDataHelper()
     
     public init() {
-        
+        let model = createManagedObjectModel()
+
+        // Specify the file path where you want to save the model
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let modelURL = documentsDirectory.appendingPathComponent("_causulFoundry.xcdatamodeld")
+
+        saveManagedObjectModelToFile(model: model, filePath: modelURL)
     }
     
-    
     var persistentContainer: NSPersistentContainer {
-        let container = NSPersistentContainer(name: "_CausulFoundry")
+        let container = NSPersistentContainer(name: "_causulFoundry")
         container.loadPersistentStores { (_, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -27,6 +33,52 @@ public class CoreDataHelper {
         return container
         
     }
+    
+    func createManagedObjectModel() -> NSManagedObjectModel {
+        // Create an entity description
+        let entityDescription = NSEntityDescription()
+        entityDescription.name = "User"
+        
+        // Create attributes
+        let attributeUser = NSAttributeDescription()
+        attributeUser.name = "userID"
+        attributeUser.attributeType = .stringAttributeType
+        
+        
+        let attributeDeviceID = NSAttributeDescription()
+        
+        attributeDeviceID.name = "deviceID"
+        attributeDeviceID.attributeType = .stringAttributeType
+        
+        // Add the attribute to the entity
+        entityDescription.properties = [attributeUser, attributeDeviceID]
+        
+        // Create a managed object model
+        let managedObjectModel = NSManagedObjectModel()
+        managedObjectModel.entities = [entityDescription]
+        
+        return managedObjectModel
+    }
+
+    
+    func saveManagedObjectModelToFile(model: NSManagedObjectModel, filePath: URL) {
+        // Convert the managed object model to data
+        guard let modelData = try? NSKeyedArchiver.archivedData(withRootObject: model, requiringSecureCoding: true) else {
+                print("Failed to archive model data.")
+                return
+            }
+            
+        
+        // Write the data to the specified file path
+        do {
+            try modelData.write(to: filePath)
+            print("Managed object model saved successfully at: \(filePath.path)")
+        } catch {
+            print("Error saving managed object model: \(error.localizedDescription)")
+        }
+    }
+   
+    
         // MARK: - Core Data Context
         
         private var context: NSManagedObjectContext {
