@@ -35,7 +35,7 @@ public class CoreDataHelper {
         }
         
         // Initialize the NSPersistentContainer with the loaded model
-        let persistentContainer = NSPersistentContainer(name: "YourModelName", managedObjectModel: model)
+        let persistentContainer = NSPersistentContainer(name: "_causulFoundry", managedObjectModel: model)
         
         persistentContainer.loadPersistentStores { (_, error) in
             if let error = error as NSError? {
