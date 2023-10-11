@@ -62,7 +62,7 @@ class Login: UIViewController {
             .setContentBlock(contentBlock: ContentBlock.e_commerce)
             .setRateValue(rateValue: 4.5) //Required -  Float 0 to 5
             .setRateType(type: RateType.order) //Required -  RateType
-            .setSubjectId(subjectId: "testOrderId") //Required -  String
+           // .setSubjectId(subjectId: "testOrderId") //Required -  String
             .build()
     }
 }

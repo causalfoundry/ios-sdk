@@ -14,7 +14,7 @@ public class CfLogRateEvent {
     var subjectId: String?
     var contentBlock: String
     var meta: Any?
-    var updateImmediately: Bool
+    var updateImmediately: Bool = CoreConstants.shared.updateImmediately
     
     init(rateValue: Float? = nil, type: String? = nil, subjectId: String? = nil, contentBlock: String, meta: Any? = nil, updateImmediately: Bool) {
         self.rateValue = rateValue
@@ -22,7 +22,7 @@ public class CfLogRateEvent {
         self.subjectId = subjectId
         self.contentBlock = contentBlock
         self.meta = meta
-        self.updateImmediately = updateImmediately
+        self.updateImmediately = CoreConstants.shared.updateImmediately
     }
     
 }
