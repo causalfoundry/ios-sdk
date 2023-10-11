@@ -194,7 +194,7 @@ public class CoreDataHelper {
         func writeUser(user: String,deviceID:String) {
             
             let managedContext = context
-            let entity = NSEntityDescription.entity(forEntityName: "userDataEntity", in: managedContext)!
+            let entity = NSEntityDescription.entity(forEntityName: "User", in: managedContext)!
             let managedObject = NSManagedObject(entity: entity, insertInto: managedContext)
             
             // Set properties of the Core Data entity based on ExceptionDataObject properties
