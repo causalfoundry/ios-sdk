@@ -45,32 +45,97 @@ public class CoreDataHelper {
         }
     }
     
-    
     func writeExceptionEvents(eventArray: [ExceptionDataObject]) {
-        
         let managedContext = context
         
-        for exceptionDataObject in eventArray {
-            let entity = NSEntityDescription.entity(forEntityName: "ExceptionDataEntity", in: managedContext)!
-            let managedObject = NSManagedObject(entity: entity, insertInto: managedContext)
-            
-            // Set properties of the Core Data entity based on ExceptionDataObject properties
-            managedObject.setValue(exceptionDataObject.title, forKey: "title")
-            managedObject.setValue(exceptionDataObject.eventType, forKey: "eventType")
-            managedObject.setValue(exceptionDataObject.exceptionType, forKey: "exceptionType")
-            managedObject.setValue(exceptionDataObject.exceptionSource, forKey: "exceptionSource")
-            managedObject.setValue(exceptionDataObject.stackTrace, forKey: "stackTrace")
-            managedObject.setValue(exceptionDataObject.ts, forKey: "ts")
-            
-            // Add additional properties as needed
-            
-            do {
-                try managedContext.save()
-            } catch let error as NSError {
-                print("Could not save. \(error), \(error.userInfo)")
+        if let existingEntity = NSEntityDescription.entity(forEntityName: "ExceptionDataEntity", in: context) {
+            for exceptionDataObject in eventArray {
+               
+                let managedObject = NSManagedObject(entity: existingEntity, insertInto: managedContext)
+                
+                
+                // Set properties of the Core Data entity based on ExceptionDataObject properties
+                managedObject.setValue(exceptionDataObject.title, forKey: "title")
+                managedObject.setValue(exceptionDataObject.eventType, forKey: "eventType")
+                managedObject.setValue(exceptionDataObject.exceptionType, forKey: "exceptionType")
+                managedObject.setValue(exceptionDataObject.exceptionSource, forKey: "exceptionSource")
+                managedObject.setValue(exceptionDataObject.stackTrace, forKey: "stackTrace")
+                managedObject.setValue(exceptionDataObject.ts, forKey: "ts")
+                
+                // Add additional properties as needed
+                
+                do {
+                    try managedContext.save()
+                } catch let error as NSError {
+                    print("Could not save. \(error), \(error.userInfo)")
+                }
             }
+        }else{
+            let newEntity = NSEntityDescription()
+            newEntity.name = "ExceptionDataEntity" // Set the entity name
+            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "title", attributeType: .stringAttributeType, context: managedContext)
+            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "eventType", attributeType: .stringAttributeType, context: managedContext)
+            
+            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "exceptionType", attributeType: .stringAttributeType, context: managedContext)
+            
+            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "exceptionSource", attributeType: .stringAttributeType, context: managedContext)
+            
+            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "stackTrace", attributeType: .stringAttributeType, context: managedContext)
+            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "ts", attributeType: .stringAttributeType, context: managedContext)
+            
+            for exceptionDataObject in eventArray {
+                let entity = NSEntityDescription.entity(forEntityName: "ExceptionDataEntity", in: managedContext)!
+                let managedObject = NSManagedObject(entity: entity, insertInto: managedContext)
+                
+                
+                // Set properties of the Core Data entity based on ExceptionDataObject properties
+                managedObject.setValue(exceptionDataObject.title, forKey: "title")
+                managedObject.setValue(exceptionDataObject.eventType, forKey: "eventType")
+                managedObject.setValue(exceptionDataObject.exceptionType, forKey: "exceptionType")
+                managedObject.setValue(exceptionDataObject.exceptionSource, forKey: "exceptionSource")
+                managedObject.setValue(exceptionDataObject.stackTrace, forKey: "stackTrace")
+                managedObject.setValue(exceptionDataObject.ts, forKey: "ts")
+                
+                // Add additional properties as needed
+                
+                do {
+                    try managedContext.save()
+                } catch let error as NSError {
+                    print("Could not save. \(error), \(error.userInfo)")
+                }
+            }
+            
+        }
+        
+    }
+    func addAttributeToEntity(entityName: String, attributeName: String, attributeType: NSAttributeType, context: NSManagedObjectContext) {
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else {
+            print("Entity not found: \(entityName)")
+            return
+        }
+
+        let newAttribute = NSAttributeDescription()
+        newAttribute.name = attributeName
+        newAttribute.attributeType = attributeType // Set the attribute type (e.g., .stringAttributeType, .integer16AttributeType, etc.)
+        // Add any other properties or configurations you need for the attribute
+
+        // Add the new attribute to the entity
+        entity.properties.append(newAttribute)
+
+        // Save the managed object context to persist the changes
+        do {
+            try context.save()
+            print("Attribute '\(attributeName)' added to entity '\(entityName)' successfully.")
+        } catch {
+            print("Failed to save context: \(error)")
         }
     }
+
+    
+
+    
+
+    
     
     
     func writeUser(user: String,deviceID:String) {
