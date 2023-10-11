@@ -57,7 +57,8 @@ class ExceptionAPIHandler {
         
     }
         func storeEventTrack(event:ExceptionDataObject) {
-            
+            guard let applicationDelegate = CoreConstants.shared.application!.delegate else { return }
+            var userId = CoreDataHelper.shared.writeExceptionEvents(eventArray: [event])
         }
     }
     
