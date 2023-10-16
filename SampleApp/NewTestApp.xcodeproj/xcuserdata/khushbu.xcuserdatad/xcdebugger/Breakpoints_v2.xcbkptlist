@@ -1988,6 +1988,36 @@
                   endingLineNumber = "60"
                   offsetFromSymbolStart = "2451">
                </Location>
+               <Location
+                  uuid = "42EA7E8A-7236-46FE-A712-3E96F5F62E66 - 4d536ba2b50ba2c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.SearchObject.init(from: Swift.Decoder) throws -&gt; CasualFoundryCore.SearchObject"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/SearchObject.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "2213">
+               </Location>
+               <Location
+                  uuid = "42EA7E8A-7236-46FE-A712-3E96F5F62E66 - 4d536ba2b50ba2c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.SearchObject.init(from: Swift.Decoder) throws -&gt; CasualFoundryCore.SearchObject"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/SearchObject.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "2448">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -2179,6 +2209,21 @@
                   endingLineNumber = "63"
                   offsetFromSymbolStart = "2361">
                </Location>
+               <Location
+                  uuid = "1563DF2D-C31E-4C99-8C59-0B345E01A557 - 4d536ba2b50ba223"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.SearchObject.init(from: Swift.Decoder) throws -&gt; CasualFoundryCore.SearchObject"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/SearchObject.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "2334">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -2226,6 +2271,21 @@
                   startingLineNumber = "67"
                   endingLineNumber = "67"
                   offsetFromSymbolStart = "2787">
+               </Location>
+               <Location
+                  uuid = "77995C24-825D-4D7C-8768-AAD78519231A - 4d536ba2b50bbdaf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.SearchObject.init(from: Swift.Decoder) throws -&gt; CasualFoundryCore.SearchObject"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/SearchObject.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "2832">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2319,6 +2379,21 @@
                   startingLineNumber = "96"
                   endingLineNumber = "96"
                   offsetFromSymbolStart = "2040">
+               </Location>
+               <Location
+                  uuid = "F77BB792-6B05-42A3-9FF7-57B4CDDCF844 - 10e49ab7cec0b1f3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.SearchObject.encode(to: Swift.Encoder) throws -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/SearchObject.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "96"
+                  endingLineNumber = "96"
+                  offsetFromSymbolStart = "2051">
                </Location>
             </Locations>
          </BreakpointContent>

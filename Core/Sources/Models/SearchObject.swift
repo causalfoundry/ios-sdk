@@ -63,9 +63,9 @@ struct SearchObject: Codable {
             results_list = nil
         }
         
-        if let decodeMetaInt =  try values.decodeIfPresent([String:String].self, forKey: .results_list) {
+        if let decodeMetaInt =  try values.decodeIfPresent([String:String].self, forKey: .filter) {
             filter = decodeMetaInt
-        }else if let decodeMetaString = try values.decodeIfPresent(String.self, forKey: .results_list) {
+        }else if let decodeMetaString = try values.decodeIfPresent(String.self, forKey: .filter) {
             filter = decodeMetaString
         }else {
             filter = nil
