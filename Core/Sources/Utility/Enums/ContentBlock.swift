@@ -9,8 +9,7 @@ import Foundation
 
 
 public enum ContentBlock: String,HasOnlyAFixedSetOfPossibleValues,EnumComposable{
-   
-    case core,
+   case core,
     e_learning,
     e_commerce,
     payment,

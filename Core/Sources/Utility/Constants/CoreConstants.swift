@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  CoreConstants.swift
+//
 //
 //  Created by khushbu on 11/09/23.
 //
@@ -37,7 +37,7 @@ class CoreConstants {
     
     var deviceObject: DInfo?
     var appInfoObject:AppInfo?
-    
+    var previousSearchId:String? = ""
     
     var userIdKey: String = "userIdKey"
     
@@ -45,6 +45,8 @@ class CoreConstants {
     
     var logoutEvent: Bool = false
     
+    
+   var impressionItemsList = [String]()
     
     func enumContains<T: EnumComposable>(_ type: T.Type, name: String) -> Bool where T.RawValue == String {
         return T.allValues.contains{ $0.rawValue == name }
@@ -55,3 +57,26 @@ protocol EnumComposable :RawRepresentable,HasOnlyAFixedSetOfPossibleValues{
     
 }
 
+
+
+extension CoreConstants {
+    
+    func isSearchItemModelObjectValid(itemValue: SearchItemModel, eventType: CoreEventType) {
+        let eventName = eventType.rawValue
+
+        guard !itemValue.item_id.isEmpty else {
+            ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_id")
+            return
+        }
+
+        guard !itemValue.item_type.isEmpty else {
+             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_type")
+            return
+        }
+
+        guard let _ = SearchItemType(rawValue: itemValue.item_type) else {
+            ExceptionManager.throwEnumException(eventType: eventName, className: "ItemType")
+            return
+        }
+    }
+}

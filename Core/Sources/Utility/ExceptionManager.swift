@@ -31,29 +31,10 @@ class ExceptionAPIHandler {
     func updateExceptionEvents(eventArray:[ExceptionDataObject]) {
         guard let applicationDelegate = CoreConstants.shared.application!.delegate else { return }
         var userId = CoreDataHelper.shared.writeUser(user:CoreConstants.shared.userId, deviceID: CoreConstants.shared.deviceObject!.id)
-//        var userdID = CoreConstants.shared.userId
-//        if(CoreConstants.shared.isAnonymousUserAllowed){
-//            userId = PaperObject.readString(CoreConstants.userIdKey, CoreConstants.deviceObject.device_id)
-//        }
-//        
-//        if(userId.isNotEmpty()){
-//            val mainEventBody = MainExceptionBody(
-//                user_id = userId,
-//                device_info = CoreConstants.deviceObject,
-//                app_info = CoreConstants.appInfoObject,
-//                sdk_version= CoreConstants.SDKVersion,
-//                data = eventArray
-//            )
-//            
-//            // Show notification if tasks takes more then 10 seconds to complete and if allowed
-//            val handler = Handler(Looper.getMainLooper())
-//            if (NotificationConstants.EXCEPTION_NOTIFICATION_ENABLED) {
-//                handler.postDelayed({
-//                    showExceptionNotification(CoreConstants.application!!.applicationContext)
-//                }, NotificationConstants.EXCEPTION_NOTIFICATION_INTERVAL_TIME)
-//            }
-//            
-//        }
+        
+        
+
+
         
     }
         func storeEventTrack(event:ExceptionDataObject) {

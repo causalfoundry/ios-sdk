@@ -23,6 +23,15 @@ public class CoreDataHelper {
         saveManagedObjectModelToFile(model: model, filePath: modelURL)
     }
     
+    
+    var persistentContainer: NSPersistentContainer? {
+        if let container = loadPersistentContainer() {
+            return container
+        }
+        return nil
+        
+    }
+
     func loadPersistentContainer() -> NSPersistentContainer? {
         // Get the URL of the Core Data model in the Documents directory
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -46,14 +55,6 @@ public class CoreDataHelper {
         return persistentContainer
     }
 
-
-    var persistentContainer: NSPersistentContainer? {
-        if let container = loadPersistentContainer() {
-            return container
-        }
-        return nil
-        
-    }
 
     
     func createManagedObjectModel() -> NSManagedObjectModel {
@@ -89,9 +90,7 @@ public class CoreDataHelper {
                 print("Failed to archive model data.")
                 return
             }
-            
-        
-        // Write the data to the specified file path
+            // Write the data to the specified file path
         do {
             try modelData.write(to: filePath)
             print("Managed object model saved successfully at: \(filePath.path)")
@@ -206,13 +205,6 @@ public class CoreDataHelper {
             }
         }
         
-        
-        
-        
-        
-        
-        
-        
         func writeUser(user: String,deviceID:String) {
             
             let managedContext = context
@@ -231,13 +223,6 @@ public class CoreDataHelper {
             }
             
         }
-        
-        
-        func getUserID() {
-            
-        }
-        
-        
         
         // MARK: - Insert
         
@@ -263,11 +248,8 @@ public class CoreDataHelper {
             saveContext()
         }
         
-        // MARK: - Fetch
-        
-        
-        
-        func fetchUserID(){
+        // MARK: - Fetch User ID
+        func fetchUserID() {
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "userDataEntity")
             do {
                 let items = try context.fetch(fetchRequest)
@@ -277,7 +259,6 @@ public class CoreDataHelper {
                 
             }
         }
-        
-    }
+}
     
 
