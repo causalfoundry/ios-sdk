@@ -101,5 +101,8 @@ struct SearchObject: Codable {
             try (metaAsDouble).encode(to: dataEncoder)
         }
         
+        
+        
+        
     }
 }
