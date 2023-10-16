@@ -249,15 +249,19 @@ public class CoreDataHelper {
         }
         
         // MARK: - Fetch User ID
-        func fetchUserID() {
-            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "userDataEntity")
+    func fetchUserID(deviceID:String = "") -> String {
+            var fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
+            fetchRequest.predicate = NSPredicate(format: "deviceID == %@", deviceID)
             do {
                 let items = try context.fetch(fetchRequest)
+                var user = items.first?.value(forKey: "userID")
                 print(items)
+                return user as! String
             } catch let error as NSError {
                 print("Could not fetch. \(error), \(error.userInfo)")
                 
             }
+        return ""
         }
 }
     

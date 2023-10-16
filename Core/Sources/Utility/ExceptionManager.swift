@@ -30,7 +30,11 @@ class ExceptionAPIHandler {
     
     func updateExceptionEvents(eventArray:[ExceptionDataObject]) {
         guard let applicationDelegate = CoreConstants.shared.application!.delegate else { return }
-        var userId = CoreDataHelper.shared.writeUser(user:CoreConstants.shared.userId, deviceID: CoreConstants.shared.deviceObject!.id)
+        var userId = CoreDataHelper.shared.fetchUserID()
+        
+        if CoreConstants.shared.isAnonymousUserAllowed {
+            userId = CoreDataHelper.shared.fetchUserID()
+        }
         
         
 
