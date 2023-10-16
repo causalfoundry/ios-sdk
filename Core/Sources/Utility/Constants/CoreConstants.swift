@@ -64,17 +64,17 @@ extension CoreConstants {
     func isSearchItemModelObjectValid(itemValue: SearchItemModel, eventType: CoreEventType) {
         let eventName = eventType.rawValue
 
-        guard !itemValue.item_id.isEmpty else {
+        guard !itemValue.item_id!.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_id")
             return
         }
 
-        guard !itemValue.item_type.isEmpty else {
+        guard !itemValue.item_type!.isEmpty else {
              ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_type")
             return
         }
 
-        guard let _ = SearchItemType(rawValue: itemValue.item_type) else {
+        guard let _ = SearchItemType(rawValue: itemValue.item_type!) else {
             ExceptionManager.throwEnumException(eventType: eventName, className: "ItemType")
             return
         }
