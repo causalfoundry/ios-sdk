@@ -8,7 +8,7 @@
 import Foundation
 
 public enum SearchItemType: String,EnumComposable {
-   case blood
+    case blood
     case oxygen
     case drug
     case grocery
@@ -26,11 +26,6 @@ public enum SearchItemType: String,EnumComposable {
     case other
 
     static var allValues: [SearchItemType] = SearchItemType.allValues
-    
-    // Function to check if a rawValue belongs to the enum
-    static func contains(rawValue: String) -> Bool {
-        return SearchItemType(rawValue: rawValue) != nil
-    }
 }
 
 

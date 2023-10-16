@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  SearchModuleType.swift
+//
 //
 //  Created by khushbu on 16/10/23.
 //
@@ -8,7 +8,7 @@
 import Foundation
 
 
-public enum SearchModuleType: String {
+public enum SearchModuleType: String,EnumComposable {
     case core
     case screening
     case assessment
@@ -21,4 +21,6 @@ public enum SearchModuleType: String {
     case treatment_plan
     case transfers
     case other
+    
+    static var allValues: [SearchModuleType] = SearchModuleType.allValues
 }
