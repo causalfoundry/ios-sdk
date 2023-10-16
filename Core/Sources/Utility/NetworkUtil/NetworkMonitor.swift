@@ -81,7 +81,7 @@ final class NetworkMonitor {
     }
     
    func measureDownloadSpeed(completionHandler: @escaping (Double?) -> Void) {
-        guard let url = URL(string: "https://www.pixelstalk.net/wp-content/uploads/2016/06/HD-Peacock-Wallpaper.jpg") else {
+        guard let url = URL(string: "https://cdn.cocoacasts.com/cc00ceb0c6bff0d536f25454d50223875d5c79f1/above-the-clouds.jpg") else {
             print("Invalid URL")
             completionHandler(nil)
             return
