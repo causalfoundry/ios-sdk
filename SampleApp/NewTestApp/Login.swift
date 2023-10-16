@@ -70,10 +70,29 @@ class Login: UIViewController {
     
     
     func testCoreEvents() {
+        
+        let resultItems: [SearchItemModel] = [
+            SearchItemModel(from: <#Decoder#>, item_id: "item ID 1", item_type: SearchItemType.patient_record.rawValue),
+            SearchItemModel(item_id: "item ID 2", item_type: SearchItemType.patient_record.rawValue)
+        ]
+
+    
+        let filtersDictionaryData: [String: String] = ["FirstName": "Hello", "LastName": "World"]
+
+        
+        
+        
         CfLogSearchEventBuilder().setContentBlock(contentBlock: .chw_mgmt)
-            .
+            .setSearchModule(searchModule: .screening)
+            .setQuery(query:"Test Query")
+            .setResultItemsList(resultsList: resultItems)
+            .setFilter(filter: filtersDictionaryData)
+            .setIsNewSearch(isNewSearch: true)
+            .setPage(page: 1)
+            .build()
             
 
+        
     }
 }
 
