@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum  IdentityAction:String,HasOnlyAFixedSetOfPossibleValues {
+public enum  IdentityAction:String,EnumComposable {
     
     
     case register = "register"

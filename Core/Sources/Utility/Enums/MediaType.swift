@@ -8,7 +8,7 @@
 import Foundation
 
 
-public enum  MediaType:String, HasOnlyAFixedSetOfPossibleValues{
+public enum  MediaType:String, EnumComposable{
     case audio = "audio"
     case video = "video"
     case image = "image"

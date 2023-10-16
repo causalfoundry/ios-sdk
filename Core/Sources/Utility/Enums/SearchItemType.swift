@@ -7,10 +7,8 @@
 
 import Foundation
 
-public enum SearchItemType: String,HasOnlyAFixedSetOfPossibleValues,EnumComposable {
-   
-    
-    case blood
+public enum SearchItemType: String,EnumComposable {
+   case blood
     case oxygen
     case drug
     case grocery

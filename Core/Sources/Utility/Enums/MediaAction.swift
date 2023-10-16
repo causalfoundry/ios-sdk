@@ -8,7 +8,7 @@
 import Foundation
 
 
-public enum  MediaAction :String,HasOnlyAFixedSetOfPossibleValues{
+public enum  MediaAction :String,EnumComposable{
     case view = "View"
     case play = "play"
     case pause = "pause"
