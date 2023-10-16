@@ -19,6 +19,10 @@ public struct SearchItemModel: Codable {
         self.facility_id = facility_id
     }
 
-   
+    enum CodingKeys: String, CodingKey {
+        case item_id = "id"
+        case item_type = "Type"
+        case facility_id = "facility_id"
+   }
 }
 
