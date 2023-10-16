@@ -53,8 +53,9 @@ public class CfLogSearchEventBuilder {
      * results are obtained.
      */
     
-    public  func setQuery(query: String) {
+    public  func setQuery(query: String) -> CfLogSearchEventBuilder  {
         self.queryText = query
+        return self
     }
     
     
@@ -65,8 +66,9 @@ public class CfLogSearchEventBuilder {
      * well in order to log the content block type. Below is the function for the usage of enum
      * type function.
      */
-    public func setContentBlock(contentBlock: ContentBlock) {
+    public func setContentBlock(contentBlock: ContentBlock) -> CfLogSearchEventBuilder  {
         self.contentBlock = contentBlock.rawValue
+        return self
     }
     
     /**
