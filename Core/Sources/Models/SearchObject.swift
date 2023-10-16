@@ -57,7 +57,7 @@ struct SearchObject: Codable {
             meta = nil
         }
         
-        if let decodeMetaInt =  try values.decodeIfPresent([SearchItemModel].self, forKey: .results_list) {
+        if let decodeMetaInt =  try values.decodeIfPresent(String.self, forKey: .results_list) {
             results_list = decodeMetaInt
         }else {
             results_list = nil
