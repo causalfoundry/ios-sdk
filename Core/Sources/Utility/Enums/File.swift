@@ -10,22 +10,22 @@ import Foundation
 public enum SearchItemType: String,HasOnlyAFixedSetOfPossibleValues {
     static var allValues: [SearchItemType] = SearchItemType.allValues
     
-    case blood
-    case oxygen
-    case drug
-    case grocery
-    case facility
-    case medicalEquipment
+    case blood = "blood"
+    case oxygen = "oxygen"
+    case drug = "drug"
+    case grocery = "grocery"
+    case facility = "facility"
+    case medicalEquipment = "medicalEquipment"
 
-    case electronics
-    case clothing
-    case book
+    case electronics = "electronics"
+    case clothing = "clothing"
+    case book = "book"
 
-    case patientRecord
-    case lifestylePlanItem
-    case investigationTestItem
-    case treatmentPlanItem
-    case other
+    case patientRecord = "patientRecord"
+    case lifestylePlanItem = "lifestylePlanItem"
+    case investigationTestItem = "investigationTestItem"
+    case treatmentPlanItem = "treatmentPlanItem"
+    case other = "other"
 
     // Function to check if a rawValue belongs to the enum
     static func contains(rawValue: String) -> Bool {
