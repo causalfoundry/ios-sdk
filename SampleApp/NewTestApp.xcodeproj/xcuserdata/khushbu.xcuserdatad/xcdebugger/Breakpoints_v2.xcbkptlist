@@ -1839,69 +1839,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2312EDD6-CB82-4E9B-8817-CE61F4FED5F3"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Enums/SearchItemType.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "unknown"
-            landmarkType = "0">
-            <Locations>
-               <Location
-                  uuid = "2312EDD6-CB82-4E9B-8817-CE61F4FED5F3 - 4e25bea50ed2e5dc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "one-time initialization function for allValues"
-                  moduleName = "NewTestApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Enums/SearchItemType.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "57">
-               </Location>
-               <Location
-                  uuid = "2312EDD6-CB82-4E9B-8817-CE61F4FED5F3 - 35a8ee45edd09ca2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CasualFoundryCore.SearchItemType.allValues.unsafeMutableAddressor : Swift.Array&lt;CasualFoundryCore.SearchItemType&gt;"
-                  moduleName = "NewTestApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Enums/SearchItemType.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  uuid = "2312EDD6-CB82-4E9B-8817-CE61F4FED5F3 - b548afb380bbd2ae"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static CasualFoundryCore.SearchItemType.contains(rawValue: Swift.String) -&gt; Swift.Bool"
-                  moduleName = "NewTestApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Enums/SearchItemType.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "31"
-                  endingLineNumber = "31"
-                  offsetFromSymbolStart = "48">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "53432491-83C2-426D-B608-3D7800FCB914"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -1943,54 +1880,6 @@
                   startingLineNumber = "297"
                   endingLineNumber = "297"
                   offsetFromSymbolStart = "29">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4D1DEA6F-74B5-491D-948E-D2BF476A1A28"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Enums/SearchItemType.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "SearchItemType"
-            landmarkType = "13">
-            <Locations>
-               <Location
-                  uuid = "4D1DEA6F-74B5-491D-948E-D2BF476A1A28 - 4e25bea50ed2e61e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "one-time initialization function for allValues"
-                  moduleName = "NewTestApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Enums/SearchItemType.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "57">
-               </Location>
-               <Location
-                  uuid = "4D1DEA6F-74B5-491D-948E-D2BF476A1A28 - 35a8ee45edd09f60"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CasualFoundryCore.SearchItemType.allValues.unsafeMutableAddressor : Swift.Array&lt;CasualFoundryCore.SearchItemType&gt;"
-                  moduleName = "NewTestApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Enums/SearchItemType.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "4">
                </Location>
             </Locations>
          </BreakpointContent>

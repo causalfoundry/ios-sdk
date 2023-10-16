@@ -14,11 +14,9 @@ public enum SearchItemType: String,EnumComposable {
      grocery,
      facility,
      medicalEquipment,
-
      electronics,
      clothing,
      book,
-
      patientRecord,
      lifestylePlanItem,
      investigationTestItem,
