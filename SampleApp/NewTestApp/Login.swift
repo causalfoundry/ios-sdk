@@ -80,7 +80,7 @@ class Login: UIViewController {
         ]
 
     
-        let filtersDictionaryData: [String: String] = ["FirstName": "Hello", "LastName": "World"]
+        let filtersDictionaryData: [String: String] = ["FirstName": "Hello"]
 
         CfLogSearchEventBuilder().setContentBlock(contentBlock: .chw_mgmt)
             .setSearchModule(searchModule: .screening)

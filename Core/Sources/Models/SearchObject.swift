@@ -37,7 +37,7 @@ struct SearchObject: Codable {
         case query = "query"
         case search_module = "module"
         case results_list = "results_list"
-        case filter = "filetr"
+        case filter = "filter"
         case page = "page"
         case meta = "meta"
     }
