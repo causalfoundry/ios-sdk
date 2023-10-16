@@ -9,9 +9,9 @@ import Foundation
 
 
 public struct SearchItemModel: Codable {
-    var item_id: String
-    var item_type: String
-    var facility_id: String
+    var item_id: String?
+    var item_type: String?
+    var facility_id: String?
 
     init(item_id: String, item_type: String, facility_id: String = "") {
         self.item_id = item_id

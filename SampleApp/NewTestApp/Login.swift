@@ -72,7 +72,7 @@ class Login: UIViewController {
     func testCoreEvents() {
         
         let resultItems: [SearchItemModel] = [
-            SearchItemModel(from: <#Decoder#>, item_id: "item ID 1", item_type: SearchItemType.patient_record.rawValue),
+            SearchItemModel(
             SearchItemModel(item_id: "item ID 2", item_type: SearchItemType.patient_record.rawValue)
         ]
 
