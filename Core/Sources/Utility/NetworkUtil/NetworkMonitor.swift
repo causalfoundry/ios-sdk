@@ -102,7 +102,7 @@ final class NetworkMonitor {
             
             let fileSizeInBytes = Double(httpResponse.expectedContentLength)
             let downloadTimeInSeconds = convertHTTPDateToTimeInterval(httpDate: httpResponse.allHeaderFields["Date"] as! String)
-            let downloadSpeedMbps = (fileSizeInBytes / downloadTimeInSeconds!) * 8 / 1_000_000
+            let downloadSpeedMbps = (fileSizeInBytes / downloadTimeInSeconds!) * 8 / 1024.0
             completionHandler(downloadSpeedMbps)
         }
         
