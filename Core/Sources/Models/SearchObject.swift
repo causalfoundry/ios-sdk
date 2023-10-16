@@ -103,8 +103,10 @@ struct SearchObject: Codable {
             try (metaAsDouble).encode(to: dataEncoderResult)
         }
         
+        
+        let dataEncoderFilter = baseContainer.superEncoder(forKey: .filter)
         if let resultTypeDictionary = self.filter as? [String:String] {
-            try (resultTypeDictionary).encode(to: dataEncoderResult)
+            try (resultTypeDictionary).encode(to: dataEncoderFilter)
         }
     }
 }
