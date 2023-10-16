@@ -63,7 +63,7 @@ struct SearchObject: Codable {
             results_list = nil
         }
         
-        if let decodeMetaInt =  try values.decodeIfPresent(Int.self, forKey: .results_list) {
+        if let decodeMetaInt =  try values.decodeIfPresent([String:String].self, forKey: .results_list) {
             filter = decodeMetaInt
         }else if let decodeMetaString = try values.decodeIfPresent(String.self, forKey: .results_list) {
             filter = decodeMetaString
@@ -103,8 +103,19 @@ struct SearchObject: Codable {
             try (metaAsDouble).encode(to: dataEncoderResult)
         }
         
-        
-        
-        
+        if let resultTypeDictionary = self.results_list as? [String:String] {
+            try (resultTypeDictionary).encode(to: dataEncoderResult)
+        }
+    }
+}
+
+
+func serializeToJSON(data: Any) -> Data? {
+    do {
+        let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+        return jsonData
+    } catch {
+        print("Error serializing to JSON: \(error.localizedDescription)")
+        return nil
     }
 }
