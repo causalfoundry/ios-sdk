@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum SearchItemType: String,HasOnlyAFixedSetOfPossibleValues {
+public enum SearchItemType: String,HasOnlyAFixedSetOfPossibleValues,EnumComposable {
    
     
     case blood = "blood"
