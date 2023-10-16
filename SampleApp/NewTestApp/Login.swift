@@ -72,8 +72,9 @@ class Login: UIViewController {
     func testCoreEvents() {
         
         let resultItems: [SearchItemModel] = [
-            SearchItemModel(
-            SearchItemModel(item_id: "item ID 2", item_type: SearchItemType.patient_record.rawValue)
+            SearchItemModel(item_id:"item ID 2" , item_type: SearchItemType.patient_record.rawValue, facility_id: "112123"),
+            SearchItemModel(item_id:"item ID 2" , item_type: SearchItemType.patient_record.rawValue, facility_id: "112123")
+            
         ]
 
     
