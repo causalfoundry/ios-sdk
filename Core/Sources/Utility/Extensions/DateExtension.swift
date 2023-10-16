@@ -17,6 +17,7 @@ extension Date {
         dateFMT.locale = Locale(identifier: "en_US_POSIX")
         dateFMT.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
         returnDate = dateFMT.string(from:self)
+        return returnDate!
         }
     }
 

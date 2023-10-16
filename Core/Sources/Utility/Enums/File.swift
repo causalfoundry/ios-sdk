@@ -7,7 +7,9 @@
 
 import Foundation
 
-public enum SearchItemType: String {
+public enum SearchItemType: String,HasOnlyAFixedSetOfPossibleValues {
+    static var allValues: [SearchItemType] = SearchItemType.allValues
+    
     case blood
     case oxygen
     case drug
