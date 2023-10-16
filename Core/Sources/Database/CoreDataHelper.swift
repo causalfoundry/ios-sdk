@@ -128,6 +128,24 @@ public class CoreDataHelper {
                 
             }
         }else {
+            let newEntity = NSEntityDescription()
+            let managedContext = context
+            
+            newEntity.name = "ExceptionDataEntity" // Set the entity name
+            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "title", attributeType: .stringAttributeType, context: managedContext)
+            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "eventType", attributeType: .stringAttributeType, context: managedContext)
+            
+            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "exceptionType", attributeType: .stringAttributeType, context: managedContext)
+            
+            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "exceptionSource", attributeType: .stringAttributeType, context: managedContext)
+            
+            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "stackTrace", attributeType: .stringAttributeType, context: managedContext)
+            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "ts", attributeType: .stringAttributeType, context: managedContext)
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
             
         }
         

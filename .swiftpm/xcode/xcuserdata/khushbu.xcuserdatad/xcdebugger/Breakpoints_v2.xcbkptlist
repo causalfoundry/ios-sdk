@@ -110,8 +110,8 @@
             filePath = "Core/Sources/Database/CoreDataHelper.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
             landmarkName = "fetchUserID(deviceID:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,8 +126,8 @@
             filePath = "Core/Sources/Database/CoreDataHelper.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
             landmarkName = "fetchUserID(deviceID:)"
             landmarkType = "7">
          </BreakpointContent>
