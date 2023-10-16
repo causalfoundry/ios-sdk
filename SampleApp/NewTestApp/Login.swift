@@ -16,6 +16,7 @@ class Login: UIViewController {
     @IBOutlet weak var txtUserName: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.testCoreEvents()
         // Do any additional setup after loading the view.
     }
     

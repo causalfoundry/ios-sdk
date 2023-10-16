@@ -46,7 +46,7 @@ extension UIApplication {
         var versionString:String = ""
         let versionNumber:String = "\(self.appVersion())"
         let build:String = self.build()
-        versionString = "\(versionNumber)\(build)"
+        versionString = "\(versionNumber).\(build)"
 
         return  versionString
     }
