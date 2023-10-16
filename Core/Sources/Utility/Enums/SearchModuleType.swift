@@ -9,18 +9,18 @@ import Foundation
 
 
 public enum SearchModuleType: String,EnumComposable {
-    case core
-    case screening
-    case assessment
-    case enrolment
-    case medical_review
-    case my_patients
-    case prescription
-    case lifestyle_mgmt
-    case investigation
-    case treatment_plan
-    case transfers
-    case other
+    case core,
+         screening,
+         assessment,
+         enrolment,
+         medical_review,
+         my_patients,
+         prescription,
+         lifestyle_mgmt,
+         investigation,
+         treatment_plan,
+         transfers,
+         other
     
     static var allValues: [SearchModuleType] = SearchModuleType.allValues
 }

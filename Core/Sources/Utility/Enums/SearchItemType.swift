@@ -8,22 +8,22 @@
 import Foundation
 
 public enum SearchItemType: String,EnumComposable {
-    case blood
-    case oxygen
-    case drug
-    case grocery
-    case facility
-    case medicalEquipment
+    case blood,
+     oxygen,
+     drug,
+     grocery,
+     facility,
+     medicalEquipment,
 
-    case electronics
-    case clothing
-    case book
+     electronics,
+     clothing,
+     book,
 
-    case patientRecord
-    case lifestylePlanItem
-    case investigationTestItem
-    case treatmentPlanItem
-    case other
+     patientRecord,
+     lifestylePlanItem,
+     investigationTestItem,
+     treatmentPlanItem,
+     other
 
     static var allValues: [SearchItemType] = SearchItemType.allValues
 }

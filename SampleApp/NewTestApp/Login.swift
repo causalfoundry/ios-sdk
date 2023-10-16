@@ -16,7 +16,7 @@ class Login: UIViewController {
     @IBOutlet weak var txtUserName: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.testCoreEvents()
+        //self.testCoreEvents()
         // Do any additional setup after loading the view.
     }
     
@@ -59,12 +59,13 @@ class Login: UIViewController {
     }
     
     @IBAction func rateAction(_ sender: Any) {
-        CfLogRateEventBuilder()
-            .setContentBlock(contentBlock: ContentBlock.e_commerce)
-            .setRateValue(rateValue: 4.5) //Required -  Float 0 to 5
-            .setRateType(type: RateType.order) //Required -  RateType
-           .setSubjectId(subjectId: "testOrderId") //Required -  String
-            .build()
+//        CfLogRateEventBuilder()
+//            .setContentBlock(contentBlock: ContentBlock.e_commerce)
+//            .setRateValue(rateValue: 4.5) //Required -  Float 0 to 5
+//            .setRateType(type: RateType.order) //Required -  RateType
+//           .setSubjectId(subjectId: "testOrderId") //Required -  String
+//            .build()
+        testCoreEvents()
     }
     
     
