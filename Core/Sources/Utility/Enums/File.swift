@@ -8,7 +8,7 @@
 import Foundation
 
 public enum SearchItemType: String,HasOnlyAFixedSetOfPossibleValues {
-    static var allValues: [SearchItemType] = SearchItemType.allValues
+   
     
     case blood = "blood"
     case oxygen = "oxygen"
@@ -27,6 +27,8 @@ public enum SearchItemType: String,HasOnlyAFixedSetOfPossibleValues {
     case treatmentPlanItem = "treatmentPlanItem"
     case other = "other"
 
+    static var allValues: [SearchItemType] = SearchItemType.allValues
+    
     // Function to check if a rawValue belongs to the enum
     static func contains(rawValue: String) -> Bool {
         return SearchItemType(rawValue: rawValue) != nil
