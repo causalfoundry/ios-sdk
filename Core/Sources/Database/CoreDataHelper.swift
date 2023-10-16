@@ -141,11 +141,15 @@ public class CoreDataHelper {
             
             self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "stackTrace", attributeType: .stringAttributeType, context: managedContext)
             self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "ts", attributeType: .stringAttributeType, context: managedContext)
-            do {
-                try managedContext.save()
-            } catch let error as NSError {
-                print("Could not save. \(error), \(error.userInfo)")
-            }
+            
+            
+            let managedObjectModel = NSManagedObjectModel()
+            managedObjectModel.entities = [newEntity]
+            
+            
+            let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let modelURL = documentsDirectory.appendingPathComponent("_causulFoundry.xcdatamodeld")
+            saveManagedObjectModelToFile(model: managedObjectModel, filePath: modelURL)
             
         }
         
