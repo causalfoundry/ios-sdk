@@ -292,7 +292,7 @@ public class CfLogSearchEventBuilder {
                             
         default:
             for item in resultsList {
-                if item.item_id!.isEmpty {
+                if item.id!.isEmpty {
                     ExceptionManager.throwIsRequiredException(eventType: CoreEventType.search.rawValue, elementName: "search result_item_id")
                     
                     // need to uncommnted code - Temporary
