@@ -294,7 +294,7 @@ public class CfLogSearchEventBuilder {
             for item in resultsList {
                 if item.item_id!.isEmpty {
                     ExceptionManager.throwIsRequiredException(eventType: CoreEventType.search.rawValue, elementName: "search result_item_id")
-                } else if !(ContentBlock.allValues.filter({$0.rawValue == searchModule}).first != nil) {
+                } else if !(SearchItemType.allValues.filter({$0.rawValue == searchModule}).first != nil) {
                     ExceptionManager.throwEnumException(eventType: CoreEventType.search.rawValue, className: "SearchItemType")
                 }
             }
