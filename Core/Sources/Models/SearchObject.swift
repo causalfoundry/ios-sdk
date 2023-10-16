@@ -82,7 +82,7 @@ struct SearchObject: Codable {
         try baseContainer.encode(self.search_module, forKey: .search_module)
         try baseContainer.encode(self.page, forKey: .page)
        
-    let dataEncoder = baseContainer.superEncoder(forKey: .meta)
+        let dataEncoder = baseContainer.superEncoder(forKey: .meta)
         
         // Use the Encoder directly:
         if let metaAsInt = self.meta as? Int {
@@ -93,12 +93,14 @@ struct SearchObject: Codable {
             try (metaAsDouble).encode(to: dataEncoder)
         }
         
+        let dataEncoderResult = baseContainer.superEncoder(forKey: .results_list)
+        
         if let resultTypeDictionary = self.results_list as? [SearchItemModel] {
-            try (resultTypeDictionary).encode(to: dataEncoder)
-        }else if let metaAsString = self.meta as? String {
-            try (metaAsString).encode(to: dataEncoder)
-        }else if let metaAsDouble = self.meta as? Double {
-            try (metaAsDouble).encode(to: dataEncoder)
+            try (resultTypeDictionary).encode(to: dataEncoderResult)
+        }else if let metaAsString = self.results_list as? String {
+            try (metaAsString).encode(to: dataEncoderResult)
+        }else if let metaAsDouble = self.results_list as? Double {
+            try (metaAsDouble).encode(to: dataEncoderResult)
         }
         
         
