@@ -101,8 +101,8 @@ final class NetworkMonitor {
             }
             
             let fileSizeInBytes = Double(httpResponse.expectedContentLength)
-            let downloadTimeInSeconds = httpResponse.allHeaderFields["Date"] as? TimeInterval ?? 0
-            let downloadSpeedMbps = (fileSizeInBytes / downloadTimeInSeconds) * 8 / 1_000_000
+            let downloadTimeInSeconds = convertHTTPDateToTimeInterval(httpDate: httpResponse.allHeaderFields["Date"] as! String)
+            let downloadSpeedMbps = (fileSizeInBytes / downloadTimeInSeconds!) * 8 / 1_000_000
             completionHandler(downloadSpeedMbps)
         }
         
@@ -146,3 +146,24 @@ final class NetworkMonitor {
     // Usage: Measure download and upload speeds
    }
 
+func convertHTTPDateToTimeInterval(httpDate: String) -> TimeInterval? {
+    // Create a date formatter for the HTTP date format
+    let dateFormatter = DateFormatter()
+    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+    dateFormatter.dateFormat = "E, dd MMM yyyy HH:mm:ss z"
+    dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+
+    // Attempt to convert the HTTP date string to a Date object
+    if let date = dateFormatter.date(from: httpDate) {
+        // Calculate the time interval from the current time to the HTTP date
+        let currentTimeInterval = Date().timeIntervalSince1970
+        let httpDateTimeInterval = date.timeIntervalSince1970
+
+        // Calculate the time interval difference
+        let timeDifference = currentTimeInterval - httpDateTimeInterval
+
+        return timeDifference
+    }
+
+    return nil
+}
