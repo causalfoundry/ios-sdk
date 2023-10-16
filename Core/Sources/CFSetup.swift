@@ -22,6 +22,10 @@ class CFSetup:NSObject, IngestProtocol {
         CoreConstants.shared.deviceObject = DInfo(brand:"Apple" , id: UIDevice.current.identifierForVendor!.uuidString, model: UIDevice.modelName, os: "iOS", osVer:"\(UIDevice.current.systemVersion)")
         
         CoreConstants.shared.appInfoObject = self.getApplicationInfo(application: CoreConstants.shared.application!)
+        
+        
+        //Change implementation
+        
         CoreConstants.shared.sessionStartTime = Int64(Date().timeIntervalSince1970)
         CoreConstants.shared.sessionEndTime = Int64(Date().timeIntervalSince1970)
         
@@ -84,7 +88,7 @@ class CFSetup:NSObject, IngestProtocol {
             cBlockName = "e-learning"
         }
         
-        ingestApiHandler.ingestTrackAPI(contentBlock: cBlockName, eventType: eventType, trackProperties: logObject, updateImmediately: updateImmediately,eventTime: eventTime)
+        ingestApiHandler.ingestTrackAPI(contentBlock: cBlockName, eventType: eventType, trackProperties: logObject!, updateImmediately: updateImmediately,eventTime: eventTime)
     }
     
     
@@ -106,7 +110,7 @@ class CFSetup:NSObject, IngestProtocol {
                        minSDKVersion: application.minimumVersion(),
                        targetSDKVersion: application.targetVersion(),
                        version:application.versionBuild(),
-                       versionCode: application.appVersion(),
+                       versionCode:application.appVersion() ,
                        versionName: application.build())
     }
     

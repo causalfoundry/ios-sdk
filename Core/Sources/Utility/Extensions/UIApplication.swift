@@ -25,8 +25,10 @@ extension UIApplication {
 
     func appVersion() -> Int {
         if let appVersionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") {
-           // return "\(appVersionNumber)"
-            return 11
+            guard let majorVersion = (appVersionNumber as! String).split(separator: ".").first else {
+                   return 0
+               }
+            return Int(majorVersion)!
         } else {
             return 0
         }
@@ -55,15 +57,19 @@ extension UIApplication {
 
 
     func targetVersion() -> Int {
+        // you have to set Manually
         return 17
-      //  return "0.0"
+      
        
     }
      
     func minimumVersion() -> Int{
         if let appVersionNumber = Bundle.main.object(forInfoDictionaryKey: "MinimumOSVersion") {
-            //return "\(appVersionNumber)"
-            return 31
+            guard let majorVersion = (appVersionNumber as! String).split(separator: ".").first else {
+                   return 0
+               }
+            return Int(majorVersion)!
+            
         } else {
             return 0
         }
