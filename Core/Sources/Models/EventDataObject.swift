@@ -42,6 +42,8 @@ struct EventDataObject: Codable {
             props = decodeIndentityObject
         }else if let decodePropsObject = try values.decodeIfPresent(Props.self, forKey: .props) {
             props = decodePropsObject
+        }else if let decodeSearchObject = try values.decodeIfPresent(SearchObject.self, forKey: .props) {
+            props = decodeSearchObject
         }else {
             props = nil
         }
@@ -74,6 +76,8 @@ struct EventDataObject: Codable {
             try (mediaObjectTypeData).encode(to: dataEncoder)
         }else if let rateObjectTypeData = self.props as? RateObject {
             try (rateObjectTypeData).encode(to: dataEncoder)
+        }else if let searchObjectTypeData = self.props as? SearchObject {
+            try (searchObjectTypeData).encode(to: dataEncoder)
         }
         
     }
