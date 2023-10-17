@@ -20,11 +20,6 @@ public class CoreDataHelper {
             let usermodel = createManagedObjectModel()
             // Specify the file path where you want to save the model
             createEnitity(model:usermodel )
-            
-            // Create Exception Model table
-            let exceptionModel = createExceptionEntity()
-            createEnitity(model:exceptionModel )
-            
         }
         
     }
@@ -65,8 +60,8 @@ public class CoreDataHelper {
     
     func createManagedObjectModel() -> NSManagedObjectModel {
         // Create an entity description
-        let entityDescription = NSEntityDescription()
-        entityDescription.name = "User"
+        let userDataEntity = NSEntityDescription()
+        userDataEntity.name = "User"
         
         // Create attributes
         let attributeUser = NSAttributeDescription()
@@ -75,16 +70,49 @@ public class CoreDataHelper {
         
         
         let attributeDeviceID = NSAttributeDescription()
-        
         attributeDeviceID.name = "deviceID"
         attributeDeviceID.attributeType = .stringAttributeType
         
         // Add the attribute to the entity
-        entityDescription.properties = [attributeUser, attributeDeviceID]
+        userDataEntity.properties = [attributeUser, attributeDeviceID]
+        
+        let exceptionDataEntity = NSEntityDescription()
+        exceptionDataEntity.name = "ExceptionData" // Set the entity name
+        
+        
+        // Create attributes
+        
+        let attributEventTitle = NSAttributeDescription()
+        attributEventTitle.name = "title"
+        attributEventTitle.attributeType = .stringAttributeType
+        
+        let attributEventType = NSAttributeDescription()
+        attributEventType.name = "eventType"
+        attributEventType.attributeType = .stringAttributeType
+        
+        
+        let attributeExceptionType = NSAttributeDescription()
+        attributeExceptionType.name = "exceptionType"
+        attributeExceptionType.attributeType = .stringAttributeType
+        
+        let attributeExceptionSource = NSAttributeDescription()
+        attributeExceptionSource.name = "exceptionSource"
+        attributeExceptionSource.attributeType = .stringAttributeType
+        
+        let attributeDeviceTs = NSAttributeDescription()
+        attributeDeviceTs.name = "ts"
+        attributeDeviceTs.attributeType = .stringAttributeType
+        
+        let attributeStackTrace = NSAttributeDescription()
+        attributeStackTrace.name = "stackTrace"
+        attributeStackTrace.attributeType = .stringAttributeType
+        
+        // Add the attribute to the entity
+        exceptionDataEntity.properties = [attributEventTitle, attributEventType,attributeExceptionType, attributeExceptionSource,attributeDeviceTs, attributeStackTrace  ]
         
         // Create a managed object model
         let managedObjectModel = NSManagedObjectModel()
-        managedObjectModel.entities = [entityDescription]
+        managedObjectModel.entities = [userDataEntity,exceptionDataEntity]
         
         return managedObjectModel
     }
@@ -134,7 +162,7 @@ extension CoreDataHelper {
     func getStoredExceptionsData() -> [ExceptionDataObject]{
         var itemData:[ExceptionDataObject]? = []
         if let existingEntity = NSEntityDescription.entity(forEntityName: "ExceptionData", in: context) {
-            var fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ExceptionData")
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: existingEntity.name!)
             do {
                 let items = try context.fetch(fetchRequest)
                 itemData = items as? [ExceptionDataObject]
@@ -143,56 +171,12 @@ extension CoreDataHelper {
                 
             }
         }else {
-            createExceptionEntity()
+           
             
         }
         return itemData!
     }
-    
-    func createExceptionEntity() -> NSManagedObjectModel{
-        let newEntity = NSEntityDescription()
-        let managedContext = context
-        
-        newEntity.name = "ExceptionData" // Set the entity name
-        
-        
-        // Create attributes
-        
-        let attributEventTitle = NSAttributeDescription()
-        attributEventTitle.name = "title"
-        attributEventTitle.attributeType = .stringAttributeType
-        
-        let attributEventType = NSAttributeDescription()
-        attributEventType.name = "eventType"
-        attributEventType.attributeType = .stringAttributeType
-        
-        
-        let attributeExceptionType = NSAttributeDescription()
-        attributeExceptionType.name = "exceptionType"
-        attributeExceptionType.attributeType = .stringAttributeType
-        
-        let attributeExceptionSource = NSAttributeDescription()
-        attributeExceptionSource.name = "exceptionSource"
-        attributeExceptionSource.attributeType = .stringAttributeType
-        
-        let attributeDeviceTs = NSAttributeDescription()
-        attributeDeviceTs.name = "ts"
-        attributeDeviceTs.attributeType = .stringAttributeType
-        
-        let attributeStackTrace = NSAttributeDescription()
-        attributeStackTrace.name = "stackTrace"
-        attributeStackTrace.attributeType = .stringAttributeType
-        
-        // Add the attribute to the entity
-        newEntity.properties = [attributEventTitle, attributEventType,attributeExceptionType, attributeExceptionSource,attributeDeviceTs, attributeStackTrace  ]
-        
-        
-        let managedObjectModel = NSManagedObjectModel()
-        managedObjectModel.entities = [newEntity]
-        return managedObjectModel
-       
-    }
-    
+   
     func createEnitity(model:NSManagedObjectModel) {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let modelURL = documentsDirectory.appendingPathComponent("_causulFoundry.xcdatamodeld")
@@ -203,9 +187,6 @@ extension CoreDataHelper {
     func writeExceptionEvents(eventArray: [ExceptionDataObject]) {
         let managedContext = context
         
-        if NSEntityDescription.entity(forEntityName: "ExceptionData", in: context) == nil  {
-            self.createExceptionEntity()
-        }
         var existingEntity = NSEntityDescription.entity(forEntityName: "ExceptionData", in: context)
         for exceptionDataObject in eventArray {
             
@@ -230,28 +211,6 @@ extension CoreDataHelper {
         }
     }
     
-    func addAttributeToEntity(entityName: String, attributeName: String, attributeType: NSAttributeType, context: NSManagedObjectContext) {
-        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else {
-            print("Entity not found: \(entityName)")
-            return
-        }
-        
-        let newAttribute = NSAttributeDescription()
-        newAttribute.name = attributeName
-        newAttribute.attributeType = attributeType // Set the attribute type (e.g., .stringAttributeType, .integer16AttributeType, etc.)
-        // Add any other properties or configurations you need for the attribute
-        
-        // Add the new attribute to the entity
-        entity.properties.append(newAttribute)
-        
-        // Save the managed object context to persist the changes
-        do {
-            try context.save()
-            print("Attribute '\(attributeName)' added to entity '\(entityName)' successfully.")
-        } catch {
-            print("Failed to save context: \(error)")
-        }
-    }
     
     func writeUser(user: String,deviceID:String) {
         
