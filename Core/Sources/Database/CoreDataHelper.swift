@@ -135,7 +135,7 @@ public class CoreDataHelper {
             let newEntity = NSEntityDescription()
             let managedContext = context
             
-            newEntity.name = "ExceptionDataEntity" // Set the entity name
+            newEntity.name = "ExceptionData" // Set the entity name
             self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "title", attributeType: .stringAttributeType, context: managedContext)
             self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "eventType", attributeType: .stringAttributeType, context: managedContext)
             
