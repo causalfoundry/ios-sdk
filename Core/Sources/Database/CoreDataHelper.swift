@@ -144,6 +144,14 @@ public class CoreDataHelper {
         let managedContext = context
         
         newEntity.name = "ExceptionData" // Set the entity name
+        
+        let managedObjectModel = NSManagedObjectModel()
+        managedObjectModel.entities = [newEntity]
+        
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let modelURL = documentsDirectory.appendingPathComponent("_causulFoundry.xcdatamodeld")
+        saveManagedObjectModelToFile(model: managedObjectModel, filePath: modelURL)
+        
         self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "title", attributeType: .stringAttributeType, context: managedContext)
         self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "eventType", attributeType: .stringAttributeType, context: managedContext)
         
@@ -154,14 +162,6 @@ public class CoreDataHelper {
         self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "stackTrace", attributeType: .stringAttributeType, context: managedContext)
         self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "ts", attributeType: .stringAttributeType, context: managedContext)
         
-        
-        let managedObjectModel = NSManagedObjectModel()
-        managedObjectModel.entities = [newEntity]
-        
-        
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let modelURL = documentsDirectory.appendingPathComponent("_causulFoundry.xcdatamodeld")
-        saveManagedObjectModelToFile(model: managedObjectModel, filePath: modelURL)
     }
     
     func writeExceptionEvents(eventArray: [ExceptionDataObject]) {

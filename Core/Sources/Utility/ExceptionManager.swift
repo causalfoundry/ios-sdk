@@ -35,12 +35,8 @@ class ExceptionAPIHandler {
         if CoreConstants.shared.isAnonymousUserAllowed {
             userId = CoreDataHelper.shared.fetchUserID()
         }
-        
-        
-
-
-        
     }
+    
         func storeEventTrack(event:ExceptionDataObject) {
             var previousExceptions = CoreDataHelper.shared.getStoredExceptionsData()
             previousExceptions.append(event)
