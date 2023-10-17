@@ -17,11 +17,14 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "CasualFoundryCore",
-            path: "Core/Sources"
+            path: "Core/Sources",
+            exclude: ["SampleApp"]
            
         ),
         .testTarget(
-          name: "CoreTests",
-          path: "Core/Tests/CoreTests"
+        name: "CoreTests",
+        dependencies: ["CasualFoundryCore"],
+        path: "Core/Tests"
+        
     )]
 )

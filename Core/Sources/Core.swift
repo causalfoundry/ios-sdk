@@ -23,12 +23,11 @@ public class CFLog {
 }
     
    public class CFLogBuilder {
-        
-        private var application: UIApplication?
-        private var applicationState: UIApplication.State?
-        private var showInAppBudge:Bool = true
-        private var updateImmediately :Bool = true
-        private var pauseSDK : Bool =  false
+         var application: UIApplication?
+         var applicationState: UIApplication.State?
+         var showInAppBudge:Bool = true
+         var updateImmediately :Bool = true
+         var pauseSDK : Bool =  false
         /**
          * Passing the application Object to SDK for initialising listeners
 //         */

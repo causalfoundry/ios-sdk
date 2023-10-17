@@ -34,6 +34,38 @@
             endingLineNumber = "290"
             landmarkName = "callCatalogAPI()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CE7CBB9C-6A6E-477B-9B53-7C88A784AE1E - bf72c10f1c8c57dd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CfLogMediaEventBuilder.callCatalogAPI() -&gt; ()"
+                  moduleName = "CoreTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogMediaEvent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "290"
+                  endingLineNumber = "290"
+                  offsetFromSymbolStart = "642">
+               </Location>
+               <Location
+                  uuid = "CE7CBB9C-6A6E-477B-9B53-7C88A784AE1E - bf72c10f1c8c57dd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CfLogMediaEventBuilder.callCatalogAPI() -&gt; ()"
+                  moduleName = "CoreTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogMediaEvent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "290"
+                  endingLineNumber = "290"
+                  offsetFromSymbolStart = "737">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -97,6 +129,54 @@
             startingLineNumber = "30"
             endingLineNumber = "30"
             landmarkName = "setup(context:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1D023CE2-ACF1-434B-9AC3-45D23C82D0DF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Core/Tests/CoreTests/CoreTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "testSetLifecycleEvent()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "855D24D7-6D04-4926-B40C-8E5CFF7751DE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Core/Tests/CoreTests/CoreTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "testSetLifecycleEvent()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2273F1AA-141C-4CF5-9975-D102F77E5ACF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Core/Tests/CoreTests/CoreTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "testSetLifecycleEvent()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
