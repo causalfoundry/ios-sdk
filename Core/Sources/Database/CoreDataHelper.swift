@@ -132,96 +132,67 @@ public class CoreDataHelper {
                 
             }
         }else {
-            let newEntity = NSEntityDescription()
-            let managedContext = context
             
-            newEntity.name = "ExceptionData" // Set the entity name
-            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "title", attributeType: .stringAttributeType, context: managedContext)
-            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "eventType", attributeType: .stringAttributeType, context: managedContext)
-            
-            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "exceptionType", attributeType: .stringAttributeType, context: managedContext)
-            
-            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "exceptionSource", attributeType: .stringAttributeType, context: managedContext)
-            
-            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "stackTrace", attributeType: .stringAttributeType, context: managedContext)
-            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "ts", attributeType: .stringAttributeType, context: managedContext)
-            
-            
-            let managedObjectModel = NSManagedObjectModel()
-            managedObjectModel.entities = [newEntity]
-            
-            
-            let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let modelURL = documentsDirectory.appendingPathComponent("_causulFoundry.xcdatamodeld")
-            saveManagedObjectModelToFile(model: managedObjectModel, filePath: modelURL)
             
         }
         
     }
     
+    func createExceptionEntity() {
+        let newEntity = NSEntityDescription()
+        let managedContext = context
+        
+        newEntity.name = "ExceptionData" // Set the entity name
+        self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "title", attributeType: .stringAttributeType, context: managedContext)
+        self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "eventType", attributeType: .stringAttributeType, context: managedContext)
+        
+        self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "exceptionType", attributeType: .stringAttributeType, context: managedContext)
+        
+        self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "exceptionSource", attributeType: .stringAttributeType, context: managedContext)
+        
+        self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "stackTrace", attributeType: .stringAttributeType, context: managedContext)
+        self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "ts", attributeType: .stringAttributeType, context: managedContext)
+        
+        
+        let managedObjectModel = NSManagedObjectModel()
+        managedObjectModel.entities = [newEntity]
+        
+        
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let modelURL = documentsDirectory.appendingPathComponent("_causulFoundry.xcdatamodeld")
+        saveManagedObjectModelToFile(model: managedObjectModel, filePath: modelURL)
+    }
+    
     func writeExceptionEvents(eventArray: [ExceptionDataObject]) {
         let managedContext = context
         
-        if let existingEntity = NSEntityDescription.entity(forEntityName: "ExceptionData", in: context) {
-            for exceptionDataObject in eventArray {
-                
-                let managedObject = NSManagedObject(entity: existingEntity, insertInto: managedContext)
-                
-                
-                // Set properties of the Core Data entity based on ExceptionDataObject properties
-                managedObject.setValue(exceptionDataObject.title, forKey: "title")
-                managedObject.setValue(exceptionDataObject.eventType, forKey: "eventType")
-                managedObject.setValue(exceptionDataObject.exceptionType, forKey: "exceptionType")
-                managedObject.setValue(exceptionDataObject.exceptionSource, forKey: "exceptionSource")
-                managedObject.setValue(exceptionDataObject.stackTrace, forKey: "stackTrace")
-                managedObject.setValue(exceptionDataObject.ts, forKey: "ts")
-                
-                // Add additional properties as needed
-                
-                do {
-                    try managedContext.save()
-                } catch let error as NSError {
-                    print("Could not save. \(error), \(error.userInfo)")
-                }
-            }
-        }else{
-            let newEntity = NSEntityDescription()
-            newEntity.name = "ExceptionData" // Set the entity name
-            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "title", attributeType: .stringAttributeType, context: managedContext)
-            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "eventType", attributeType: .stringAttributeType, context: managedContext)
-            
-            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "exceptionType", attributeType: .stringAttributeType, context: managedContext)
-            
-            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "exceptionSource", attributeType: .stringAttributeType, context: managedContext)
-            
-            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "stackTrace", attributeType: .stringAttributeType, context: managedContext)
-            self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "ts", attributeType: .stringAttributeType, context: managedContext)
-            
-            for exceptionDataObject in eventArray {
-                let entity = NSEntityDescription.entity(forEntityName: "ExceptionData", in: managedContext)!
-                let managedObject = NSManagedObject(entity: entity, insertInto: managedContext)
-                
-                
-                // Set properties of the Core Data entity based on ExceptionDataObject properties
-                managedObject.setValue(exceptionDataObject.title, forKey: "title")
-                managedObject.setValue(exceptionDataObject.eventType, forKey: "eventType")
-                managedObject.setValue(exceptionDataObject.exceptionType, forKey: "exceptionType")
-                managedObject.setValue(exceptionDataObject.exceptionSource, forKey: "exceptionSource")
-                managedObject.setValue(exceptionDataObject.stackTrace, forKey: "stackTrace")
-                managedObject.setValue(exceptionDataObject.ts, forKey: "ts")
-                
-                // Add additional properties as needed
-                
-                do {
-                    try managedContext.save()
-                } catch let error as NSError {
-                    print("Could not save. \(error), \(error.userInfo)")
-                }
-            }
-            
+        if NSEntityDescription.entity(forEntityName: "ExceptionData", in: context) == nil  {
+            self.createExceptionEntity()
         }
-        
+        var existingEntity = NSEntityDescription.entity(forEntityName: "ExceptionData", in: context)
+        for exceptionDataObject in eventArray {
+            
+            let managedObject = NSManagedObject(entity: existingEntity!, insertInto: managedContext)
+            
+            
+            // Set properties of the Core Data entity based on ExceptionDataObject properties
+            managedObject.setValue(exceptionDataObject.title, forKey: "title")
+            managedObject.setValue(exceptionDataObject.eventType, forKey: "eventType")
+            managedObject.setValue(exceptionDataObject.exceptionType, forKey: "exceptionType")
+            managedObject.setValue(exceptionDataObject.exceptionSource, forKey: "exceptionSource")
+            managedObject.setValue(exceptionDataObject.stackTrace, forKey: "stackTrace")
+            managedObject.setValue(exceptionDataObject.ts, forKey: "ts")
+            
+            // Add additional properties as needed
+            
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+        }
     }
+    
     func addAttributeToEntity(entityName: String, attributeName: String, attributeType: NSAttributeType, context: NSManagedObjectContext) {
         guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else {
             print("Entity not found: \(entityName)")
