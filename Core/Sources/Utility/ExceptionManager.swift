@@ -42,6 +42,7 @@ class ExceptionAPIHandler {
         
     }
         func storeEventTrack(event:ExceptionDataObject) {
+            CoreDataHelper.shared.writeExceptionEvents(eventArray:[event])
             var previousExceptions = CoreDataHelper.shared.getStoredExceptionsData()
             print(previousExceptions)
         }
