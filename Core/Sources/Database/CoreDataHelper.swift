@@ -188,10 +188,8 @@ extension CoreDataHelper {
         let managedContext = context
         
         var existingEntity = NSEntityDescription.entity(forEntityName: "ExceptionData", in: context)
+        let managedObject = NSManagedObject(entity: existingEntity!, insertInto: managedContext)
         for exceptionDataObject in eventArray {
-            
-            let managedObject = NSManagedObject(entity: existingEntity!, insertInto: managedContext)
-            
             
             // Set properties of the Core Data entity based on ExceptionDataObject properties
             managedObject.setValue(exceptionDataObject.title, forKey: "title")

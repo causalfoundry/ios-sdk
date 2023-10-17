@@ -2182,7 +2182,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "153"
             endingLineNumber = "153"
-            landmarkName = "createExceptionEntity()"
+            landmarkName = "saveContext()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -2260,6 +2260,21 @@
                   endingLineNumber = "153"
                   offsetFromSymbolStart = "132">
                </Location>
+               <Location
+                  uuid = "D127F480-6F46-48B7-B55F-E4BE1D671F0C - 7e26f7495359d6fd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CoreDataHelper.saveContext() -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Database/CoreDataHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "284">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -2275,7 +2290,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "170"
             endingLineNumber = "170"
-            landmarkName = "createExceptionEntity()"
+            landmarkName = "getStoredExceptionsData()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -2338,6 +2353,21 @@
                   endingLineNumber = "170"
                   offsetFromSymbolStart = "663">
                </Location>
+               <Location
+                  uuid = "6AD4DCB5-C4C4-4F2E-9F86-5D3ADA6DA1E7 - fc3e5a59fc91e07b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CoreDataHelper.getStoredExceptionsData() -&gt; Swift.Array&lt;CasualFoundryCore.ExceptionDataObject&gt;"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Database/CoreDataHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "170"
+                  endingLineNumber = "170"
+                  offsetFromSymbolStart = "1453">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -2353,8 +2383,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "179"
             endingLineNumber = "179"
-            landmarkName = "createExceptionEntity()"
-            landmarkType = "7">
+            landmarkName = "CoreDataHelper"
+            landmarkType = "21">
             <Locations>
                <Location
                   uuid = "9CE23A52-7F7D-4535-ABC8-703039A36F22 - 112f0f9a52b1f984"
@@ -2416,6 +2446,21 @@
                   endingLineNumber = "179"
                   offsetFromSymbolStart = "1044">
                </Location>
+               <Location
+                  uuid = "9CE23A52-7F7D-4535-ABC8-703039A36F22 - 53c5e08201cf6151"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CoreDataHelper.createEnitity(model: __C.NSManagedObjectModel) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Database/CoreDataHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "180"
+                  endingLineNumber = "180"
+                  offsetFromSymbolStart = "146">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -2431,7 +2476,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "198"
             endingLineNumber = "198"
-            landmarkName = "createEnitity(model:)"
+            landmarkName = "writeExceptionEvents(eventArray:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -2478,6 +2523,21 @@
                   startingLineNumber = "198"
                   endingLineNumber = "198"
                   offsetFromSymbolStart = "320">
+               </Location>
+               <Location
+                  uuid = "8FBF4B8A-A5C2-4A5A-AC33-00D26842E087 - 112f0f9a52b1fe09"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CoreDataHelper.writeExceptionEvents(eventArray: Swift.Array&lt;CasualFoundryCore.ExceptionDataObject&gt;) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Database/CoreDataHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "1578">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2542,6 +2602,21 @@
                   endingLineNumber = "203"
                   offsetFromSymbolStart = "193">
                </Location>
+               <Location
+                  uuid = "237C84F3-6312-497A-88B7-90F21EAB2CC6 - 112f0f9a52b1fd01"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CoreDataHelper.writeExceptionEvents(eventArray: Swift.Array&lt;CasualFoundryCore.ExceptionDataObject&gt;) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Database/CoreDataHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "206"
+                  endingLineNumber = "206"
+                  offsetFromSymbolStart = "3726">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -2605,6 +2680,21 @@
                   endingLineNumber = "206"
                   offsetFromSymbolStart = "237">
                </Location>
+               <Location
+                  uuid = "4089DA85-D212-451B-89FD-C7E3C1EEFC0F - 112f0f9a52b1fd01"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CoreDataHelper.writeExceptionEvents(eventArray: Swift.Array&lt;CasualFoundryCore.ExceptionDataObject&gt;) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Database/CoreDataHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "206"
+                  endingLineNumber = "206"
+                  offsetFromSymbolStart = "3726">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -2620,8 +2710,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "213"
             endingLineNumber = "213"
-            landmarkName = "writeExceptionEvents(eventArray:)"
-            landmarkType = "7">
+            landmarkName = "CoreDataHelper"
+            landmarkType = "21">
             <Locations>
                <Location
                   uuid = "BA80A13E-4BB8-49C9-9071-2ED4C69120B9 - a38a2295fa72b750"
@@ -2683,7 +2773,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "167"
             endingLineNumber = "167"
-            landmarkName = "createExceptionEntity()"
+            landmarkName = "getStoredExceptionsData()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -2731,6 +2821,21 @@
                   endingLineNumber = "167"
                   offsetFromSymbolStart = "651">
                </Location>
+               <Location
+                  uuid = "7ADE7420-0BDE-4942-9AB9-40F2196322AE - fc3e5a59fc91e0de"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CoreDataHelper.getStoredExceptionsData() -&gt; Swift.Array&lt;CasualFoundryCore.ExceptionDataObject&gt;"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Database/CoreDataHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "167"
+                  endingLineNumber = "167"
+                  offsetFromSymbolStart = "787">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -2746,8 +2851,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "142"
             endingLineNumber = "142"
-            landmarkName = "getStoredExceptionsData()"
-            landmarkType = "7">
+            landmarkName = "CoreDataHelper"
+            landmarkType = "3">
             <Locations>
                <Location
                   uuid = "BE5F93CE-B861-4C5D-8A2A-3EF6CDB2C313 - 3aa4cd1828a04f6c"
@@ -2809,8 +2914,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "155"
             endingLineNumber = "155"
-            landmarkName = "createExceptionEntity()"
-            landmarkType = "7">
+            landmarkName = "CoreDataHelper"
+            landmarkType = "3">
             <Locations>
                <Location
                   uuid = "7DF8DB07-1CCC-4A62-8CFD-A0794CF1CC26 - 3aa4cd1828a04e91"
@@ -2872,7 +2977,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "216"
             endingLineNumber = "216"
-            landmarkName = "writeExceptionEvents(eventArray:)"
+            landmarkName = "writeUser(user:deviceID:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -2905,6 +3010,21 @@
                   endingLineNumber = "216"
                   offsetFromSymbolStart = "1719">
                </Location>
+               <Location
+                  uuid = "3C46C254-AAE1-43CF-A152-95F5BA79622C - 5790a226cadfa63b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CoreDataHelper.writeUser(user: Swift.String, deviceID: Swift.String) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Database/CoreDataHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "217"
+                  endingLineNumber = "217"
+                  offsetFromSymbolStart = "194">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -2920,8 +3040,40 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "193"
             endingLineNumber = "193"
-            landmarkName = "createExceptionEntity()"
+            landmarkName = "writeExceptionEvents(eventArray:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F5CF93A1-79A3-4474-A88A-8E61AD88397E - 112f0f9a52b1ffd6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CoreDataHelper.writeExceptionEvents(eventArray: Swift.Array&lt;CasualFoundryCore.ExceptionDataObject&gt;) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Database/CoreDataHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "193"
+                  endingLineNumber = "193"
+                  offsetFromSymbolStart = "237">
+               </Location>
+               <Location
+                  uuid = "F5CF93A1-79A3-4474-A88A-8E61AD88397E - 112f0f9a52b1ffd6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CoreDataHelper.writeExceptionEvents(eventArray: Swift.Array&lt;CasualFoundryCore.ExceptionDataObject&gt;) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Database/CoreDataHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "193"
+                  endingLineNumber = "193"
+                  offsetFromSymbolStart = "1179">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
