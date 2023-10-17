@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C490FF302ACC8A99005AA4E5 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = C490FF2F2ACC8A99005AA4E5 /* Core */; };
 		C4A8BD9C2AC7758F00BA1323 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A8BD9B2AC7758F00BA1323 /* AppDelegate.swift */; };
 		C4A8BDA02AC7758F00BA1323 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A8BD9F2AC7758F00BA1323 /* Login.swift */; };
 		C4A8BDA32AC7758F00BA1323 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4A8BDA12AC7758F00BA1323 /* Main.storyboard */; };
@@ -16,6 +15,7 @@
 		C4A8BDB32AC7759200BA1323 /* NewTestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A8BDB22AC7759200BA1323 /* NewTestAppTests.swift */; };
 		C4A8BDBD2AC7759200BA1323 /* NewTestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A8BDBC2AC7759200BA1323 /* NewTestAppUITests.swift */; };
 		C4A8BDBF2AC7759200BA1323 /* NewTestAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A8BDBE2AC7759200BA1323 /* NewTestAppUITestsLaunchTests.swift */; };
+		C4A984E52ADEE7C00053E1A4 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = C4A984E42ADEE7C00053E1A4 /* Core */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C490FF302ACC8A99005AA4E5 /* Core in Frameworks */,
+				C4A984E52ADEE7C00053E1A4 /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,7 +151,7 @@
 			);
 			name = NewTestApp;
 			packageProductDependencies = (
-				C490FF2F2ACC8A99005AA4E5 /* Core */,
+				C4A984E42ADEE7C00053E1A4 /* Core */,
 			);
 			productName = NewTestApp;
 			productReference = C4A8BD982AC7758F00BA1323 /* NewTestApp.app */;
@@ -226,7 +226,7 @@
 			);
 			mainGroup = C4A8BD8F2AC7758F00BA1323;
 			packageReferences = (
-				C41DB9C72ACC2F0600F0B037 /* XCRemoteSwiftPackageReference "ios-sdk" */,
+				C4A984E32ADEE7C00053E1A4 /* XCRemoteSwiftPackageReference "ios-sdk" */,
 			);
 			productRefGroup = C4A8BD992AC7758F00BA1323 /* Products */;
 			projectDirPath = "";
@@ -621,7 +621,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C41DB9C72ACC2F0600F0B037 /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
+		C4A984E32ADEE7C00053E1A4 /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/causalfoundry/ios-sdk.git";
 			requirement = {
@@ -632,9 +632,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C490FF2F2ACC8A99005AA4E5 /* Core */ = {
+		C4A984E42ADEE7C00053E1A4 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C41DB9C72ACC2F0600F0B037 /* XCRemoteSwiftPackageReference "ios-sdk" */;
+			package = C4A984E32ADEE7C00053E1A4 /* XCRemoteSwiftPackageReference "ios-sdk" */;
 			productName = Core;
 		};
 /* End XCSwiftPackageProductDependency section */

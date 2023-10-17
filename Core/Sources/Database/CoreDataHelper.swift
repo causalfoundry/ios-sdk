@@ -15,9 +15,16 @@ public class CoreDataHelper {
     
     public init() {
         if persistentContainer == nil {
-            let model = createManagedObjectModel()
+            
+            // Create a Persistace container and user Table
+            let usermodel = createManagedObjectModel()
             // Specify the file path where you want to save the model
-            createEnitity(model:model )
+            createEnitity(model:usermodel )
+            
+            // Create Exception Model table
+            let exceptionModel = createExceptionEntity()
+            createEnitity(model:exceptionModel )
+            
         }
         
     }
@@ -117,6 +124,12 @@ public class CoreDataHelper {
             }
         }
     }
+}
+
+
+
+
+extension CoreDataHelper {
     // GET ALL EXCEPTION LOGS
     func getStoredExceptionsData() -> [ExceptionDataObject]{
         var itemData:[ExceptionDataObject]? = []
@@ -136,7 +149,7 @@ public class CoreDataHelper {
         return itemData!
     }
     
-    func createExceptionEntity() {
+    func createExceptionEntity() -> NSManagedObjectModel{
         let newEntity = NSEntityDescription()
         let managedContext = context
         
@@ -176,7 +189,7 @@ public class CoreDataHelper {
         
         let managedObjectModel = NSManagedObjectModel()
         managedObjectModel.entities = [newEntity]
-        createEnitity(model:managedObjectModel)
+        return managedObjectModel
        
     }
     
@@ -276,5 +289,3 @@ public class CoreDataHelper {
         return ""
     }
 }
-
-
