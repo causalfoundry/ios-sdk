@@ -15,18 +15,20 @@ public class CoreDataHelper {
     
     public init() {
         
+        if persistentContainer == nil {
+            let model = createManagedObjectModel()
+            // Specify the file path where you want to save the model
+            let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let modelURL = documentsDirectory.appendingPathComponent("_causulFoundry.xcdatamodeld")
+            saveManagedObjectModelToFile(model: model, filePath: modelURL)
+        }
+        
     }
     
     
     var persistentContainer: NSPersistentContainer? {
         if let container = loadPersistentContainer() {
             return container
-        }else{
-            let model = createManagedObjectModel()
-            // Specify the file path where you want to save the model
-            let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let modelURL = documentsDirectory.appendingPathComponent("_causulFoundry.xcdatamodeld")
-            saveManagedObjectModelToFile(model: model, filePath: modelURL)
         }
         return nil
         
