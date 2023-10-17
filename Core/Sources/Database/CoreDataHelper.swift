@@ -121,12 +121,13 @@ public class CoreDataHelper {
         }
     }
     // GET ALL EXCEPTION LOGS
-    func getStoredExceptionsData()  {
+    func getStoredExceptionsData() -> [ExceptionDataObject]{
+        var itemData:[ExceptionDataObject]? = []
         if let existingEntity = NSEntityDescription.entity(forEntityName: "ExceptionData", in: context) {
             var fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ExceptionData")
             do {
                 let items = try context.fetch(fetchRequest)
-                print(items)
+                itemData = items as? [ExceptionDataObject]
             } catch let error as NSError {
                 print("Could not fetch. \(error), \(error.userInfo)")
                 
@@ -135,7 +136,7 @@ public class CoreDataHelper {
             
             
         }
-        
+        return itemData!
     }
     
     func createExceptionEntity() {
