@@ -14,13 +14,10 @@ public class CoreDataHelper {
     static let shared = CoreDataHelper()
     
     public init() {
-        
         if persistentContainer == nil {
             let model = createManagedObjectModel()
             // Specify the file path where you want to save the model
-            let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let modelURL = documentsDirectory.appendingPathComponent("_causulFoundry.xcdatamodeld")
-            saveManagedObjectModelToFile(model: model, filePath: modelURL)
+            createEnitity(model:model )
         }
         
     }
@@ -133,7 +130,7 @@ public class CoreDataHelper {
                 
             }
         }else {
-            
+            createExceptionEntity()
             
         }
         return itemData!
@@ -145,22 +142,48 @@ public class CoreDataHelper {
         
         newEntity.name = "ExceptionData" // Set the entity name
         
+        
+        // Create attributes
+        
+        let attributEventTitle = NSAttributeDescription()
+        attributEventTitle.name = "title"
+        attributEventTitle.attributeType = .stringAttributeType
+        
+        let attributEventType = NSAttributeDescription()
+        attributEventType.name = "eventType"
+        attributEventType.attributeType = .stringAttributeType
+        
+        
+        let attributeExceptionType = NSAttributeDescription()
+        attributeExceptionType.name = "exceptionType"
+        attributeExceptionType.attributeType = .stringAttributeType
+        
+        let attributeExceptionSource = NSAttributeDescription()
+        attributeExceptionSource.name = "exceptionSource"
+        attributeExceptionSource.attributeType = .stringAttributeType
+        
+        let attributeDeviceTs = NSAttributeDescription()
+        attributeDeviceTs.name = "ts"
+        attributeDeviceTs.attributeType = .stringAttributeType
+        
+        let attributeStackTrace = NSAttributeDescription()
+        attributeStackTrace.name = "stackTrace"
+        attributeStackTrace.attributeType = .stringAttributeType
+        
+        // Add the attribute to the entity
+        newEntity.properties = [attributEventTitle, attributEventType,attributeExceptionType, attributeExceptionSource,attributeDeviceTs, attributeStackTrace  ]
+        
+        
         let managedObjectModel = NSManagedObjectModel()
         managedObjectModel.entities = [newEntity]
-        
+        createEnitity(model:managedObjectModel)
+       
+    }
+    
+    func createEnitity(model:NSManagedObjectModel) {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let modelURL = documentsDirectory.appendingPathComponent("_causulFoundry.xcdatamodeld")
-        saveManagedObjectModelToFile(model: managedObjectModel, filePath: modelURL)
-        
-        self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "title", attributeType: .stringAttributeType, context: managedContext)
-        self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "eventType", attributeType: .stringAttributeType, context: managedContext)
-        
-        self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "exceptionType", attributeType: .stringAttributeType, context: managedContext)
-        
-        self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "exceptionSource", attributeType: .stringAttributeType, context: managedContext)
-        
-        self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "stackTrace", attributeType: .stringAttributeType, context: managedContext)
-        self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "ts", attributeType: .stringAttributeType, context: managedContext)
+        saveManagedObjectModelToFile(model: model, filePath: modelURL)
         
     }
     
