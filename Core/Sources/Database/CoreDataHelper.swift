@@ -186,7 +186,7 @@ public class CoreDataHelper {
             }
         }else{
             let newEntity = NSEntityDescription()
-            newEntity.name = "ExceptionDataEntity" // Set the entity name
+            newEntity.name = "ExceptionData" // Set the entity name
             self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "title", attributeType: .stringAttributeType, context: managedContext)
             self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "eventType", attributeType: .stringAttributeType, context: managedContext)
             
@@ -198,7 +198,7 @@ public class CoreDataHelper {
             self.addAttributeToEntity(entityName:  newEntity.name!, attributeName: "ts", attributeType: .stringAttributeType, context: managedContext)
             
             for exceptionDataObject in eventArray {
-                let entity = NSEntityDescription.entity(forEntityName: "ExceptionDataEntity", in: managedContext)!
+                let entity = NSEntityDescription.entity(forEntityName: "ExceptionData", in: managedContext)!
                 let managedObject = NSManagedObject(entity: entity, insertInto: managedContext)
                 
                 
