@@ -222,7 +222,7 @@ extension CoreDataHelper {
     }
     
     
-    func writeUser(user: String,deviceID:String) {
+    func writeUser(user: String?,deviceID:String?) {
         
         let managedContext = context
         let entity = NSEntityDescription.entity(forEntityName: "User", in: managedContext)!

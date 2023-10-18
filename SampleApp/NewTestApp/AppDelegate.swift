@@ -28,22 +28,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        CFLogAppEventBuilder().setAppEvent(appAction: .open)
-                              .build()
+//        CFLogAppEventBuilder().setAppEvent(appAction: .open)
+//                              .build()
     }
     func applicationWillEnterForeground(_ application: UIApplication) {
-        CFLogAppEventBuilder().setAppEvent(appAction: .resume)
-                              .build()
+//        CFLogAppEventBuilder().setAppEvent(appAction: .resume)
+//                              .build()
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        CFLogAppEventBuilder().setAppEvent(appAction: .background)
-                              .build()
+//        CFLogAppEventBuilder().setAppEvent(appAction: .background)
+//        CFLogAppEventBuilder().setAppEvent(appAction: .background)
+//                              .build()
 
     }
     func applicationWillTerminate(_ application: UIApplication) {
-        CFLogAppEventBuilder().setAppEvent(appAction: .close)
-                              .build()
+//        CFLogAppEventBuilder().setAppEvent(appAction: .close)
+//                              .build()
 
     }
 
