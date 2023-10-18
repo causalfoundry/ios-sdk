@@ -24,7 +24,6 @@ public class CoreDataHelper {
         
     }
     
-    
     var persistentContainer: NSPersistentContainer? {
         if let container = loadPersistentContainer() {
             return container
@@ -165,18 +164,29 @@ extension CoreDataHelper {
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: existingEntity.name!)
             do {
                 let items = try context.fetch(fetchRequest)
+                if items.count > 0 {
+                    itemData =  items.map({ (data) in
+                        var exceptionData = ExceptionDataObject(title: (data.value(forKey:"title") as? String ?? "" ) ,
+                                                                eventType: data.value(forKey:"eventType") as? String  ?? "",
+                                                                exceptionType: data.value(forKey:"exceptionType") as? String ?? "",
+                                                                exceptionSource: data.value(forKey:"exceptionSource") as? String ?? "" ,
+                                                                stackTrace: data.value(forKey:"stackTrace") as? String ?? "",
+                                                                ts: data.value(forKey:"ts") as? String ??  "")
+                        return exceptionData
+                    })
+                }
                 itemData = items as? [ExceptionDataObject]
             } catch let error as NSError {
                 print("Could not fetch. \(error), \(error.userInfo)")
                 
             }
         }else {
-           
+            
             
         }
         return itemData!
     }
-   
+    
     func createEnitity(model:NSManagedObjectModel) {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let modelURL = documentsDirectory.appendingPathComponent("_causulFoundry.xcdatamodeld")
