@@ -48,9 +48,9 @@ class CFSetup:NSObject, IngestProtocol {
     
     func updateUserId(appUserId: String) {
         if userId != "" && CoreConstants.shared.application != nil {
+            CoreConstants.shared.userId = appUserId
             CoreDataHelper.shared.writeUser(user: CoreConstants.shared.userId, deviceID: CoreConstants.shared.deviceObject?.id)
             userId = appUserId
-            CoreConstants.shared.userId = appUserId
             scheduleBackendNudgeListener()
         }
     }
