@@ -166,7 +166,7 @@ extension CoreDataHelper {
                 let items = try context.fetch(fetchRequest)
                 if items.count > 0 {
                     itemData =  items.map({ (data) in
-                        var exceptionData = ExceptionDataObject(title: (data.value(forKey:"title") as? String ?? "" ) ,
+                        let exceptionData = ExceptionDataObject(title: (data.value(forKey:"title") as? String ?? "" ) ,
                                                                 eventType: data.value(forKey:"eventType") as? String  ?? "",
                                                                 exceptionType: data.value(forKey:"exceptionType") as? String ?? "",
                                                                 exceptionSource: data.value(forKey:"exceptionSource") as? String ?? "" ,
@@ -174,8 +174,9 @@ extension CoreDataHelper {
                                                                 ts: data.value(forKey:"ts") as? String ??  "")
                         return exceptionData
                     })
+                }else{
+                    itemData = items as? [ExceptionDataObject]
                 }
-                itemData = items as? [ExceptionDataObject]
             } catch let error as NSError {
                 print("Could not fetch. \(error), \(error.userInfo)")
                 
