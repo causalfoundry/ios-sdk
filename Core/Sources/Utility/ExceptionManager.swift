@@ -47,7 +47,7 @@ class ExceptionAPIHandler {
         }
         
         if userId != ""{
-            mainExceptionBody = MainExceptionBody(user_id: userId,app_info: CoreConstants.shared.appInfoObject,sdk_version: CoreConstants.shared.SDKVersion,data: eventArray)
+            mainExceptionBody = MainExceptionBody(user_id: userId,device_info:CoreConstants.shared.deviceObject, app_info: CoreConstants.shared.appInfoObject,sdk_version: CoreConstants.shared.SDKVersion,data: eventArray)
         }
         
         // Show notification if tasks takes more then 10 seconds to complete and if allowed
