@@ -20,4 +20,8 @@ class NotificationConstants {
     
     // in-app message initial delay
     var IN_APP_MESSAGE_INITIAL_DELAY_IN_MILLIS: Int64 = 5000
+    
+    // props for notification values regarding exception notification
+    var EXCEPTION_NOTIFICATION_INTERVAL_TIME = 10000 // 10 sec
+    var EXCEPTION_NOTIFICATION_ENABLED = true
 }

@@ -248,9 +248,9 @@ extension CoreDataHelper {
         fetchRequest.predicate = NSPredicate(format: "deviceID == %@", deviceID)
         do {
             let items = try context.fetch(fetchRequest)
-            var user = items.first?.value(forKey: "userID")
-            print(items)
-            return user as! String
+            var user:String = items.first?.value(forKey: "userID") as? String ?? ""
+            return user
+            
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
             
