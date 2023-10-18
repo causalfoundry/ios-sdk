@@ -35,7 +35,7 @@ public class CoreDataHelper {
     
     func loadPersistentContainer() -> NSPersistentContainer? {
         // Get the URL of the Core Data model in the Documents directory
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let modelURL = documentsDirectory.appendingPathComponent("_causulFoundry.xcdatamodeld")
         
         // Load the NSManagedObjectModel from the model URL
@@ -187,7 +187,7 @@ extension CoreDataHelper {
     func writeExceptionEvents(eventArray: [ExceptionDataObject]) {
         let managedContext = context
         
-        var existingEntity = NSEntityDescription.entity(forEntityName: "ExceptionData", in: context)
+        let existingEntity = NSEntityDescription.entity(forEntityName: "ExceptionData", in: managedContext)
         let managedObject = NSManagedObject(entity: existingEntity!, insertInto: managedContext)
         for exceptionDataObject in eventArray {
             
@@ -201,11 +201,12 @@ extension CoreDataHelper {
             
             // Add additional properties as needed
             
-            do {
-                try managedContext.save()
-            } catch let error as NSError {
-                print("Could not save. \(error), \(error.userInfo)")
-            }
+            
+        }
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
         }
     }
     
