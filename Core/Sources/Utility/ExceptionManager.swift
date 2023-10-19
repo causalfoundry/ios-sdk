@@ -192,7 +192,7 @@ class ExceptionManager {
             exceptionType: "IllegalArgumentException",
             exceptionSource: "SDK",
             stackTrace: "Value: \(speed) \n\nException:\n\(exception)",
-            ts: Date().timeIntervalSince1970.convertMillisToTimeString()
+            ts: Date().convertMillisToTimeString()
         )
         
         if CoreConstants.shared.application != nil {
@@ -210,7 +210,7 @@ class ExceptionManager {
             exceptionType: "RuntimeException",
             exceptionSource: "SDK",
             stackTrace: exception.localizedDescription,
-            ts: Date().timeIntervalSince1970.convertMillisToTimeString()
+            ts: Date().convertMillisToTimeString()
         )
         
         if CoreConstants.shared.application != nil {
@@ -235,7 +235,7 @@ class ExceptionManager {
             exceptionType: exceptionType,
             exceptionSource: "SDK",
             stackTrace: stackTrace.localizedDescription,
-            ts: Date().timeIntervalSince1970.convertMillisToTimeString()
+            ts: Date().convertMillisToTimeString()
         )
         
         if CoreConstants.shared.application != nil {
@@ -249,18 +249,5 @@ class ExceptionManager {
     }
 }
 
-
-
-extension TimeInterval {
-    func convertMillisToTimeString() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        
-        var date: Date
-        date = Date(timeIntervalSince1970: self * 1000) // Convert milliseconds to seconds
-        return dateFormatter.string(from: date)
-    }
-}
 
 
