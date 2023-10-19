@@ -35,7 +35,7 @@ struct MainExceptionBody: Codable {
         case device_info = "d_info"
         case app_info = "app_info"
         case sdk_version = "sdk"
-        case data
+        case data = "data"
     }
     
     
