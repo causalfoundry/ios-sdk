@@ -40,6 +40,14 @@ struct ExceptionDataObject : Codable {
         self.ts = ts
     }
     
+    func jsonData() throws -> Data {
+        return try newJSONEncoder().encode(self)
+    }
+
+    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
+        return String(data: try self.jsonData(), encoding: encoding)
+    }
+    
     
 }
 
