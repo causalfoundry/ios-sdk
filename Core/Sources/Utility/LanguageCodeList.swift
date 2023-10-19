@@ -56,7 +56,7 @@ enum LanguageCode: String,EnumComposable {
         default: return nil
         }
     }
-    static var allValues: [LanguageCode] = LanguageCode.allValues
+    
 }
 
 
