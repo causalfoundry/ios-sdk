@@ -172,7 +172,7 @@ class ExceptionManager {
             exceptionType: "IllegalArgumentException",
             exceptionSource: "SDK",
             stackTrace: "Nudge Object:\n\(nudgeObject) \n\nException:\n\(exception)",
-            ts: Date().timeIntervalSince1970.convertMillisToTimeString()
+            ts: Date().convertMillisToTimeString()
         )
         
         if let application = CoreConstants.shared.application {
