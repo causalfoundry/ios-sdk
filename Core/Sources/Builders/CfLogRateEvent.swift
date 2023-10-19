@@ -151,7 +151,7 @@ public class CfLogRateEventBuilder {
         }
         
         guard rateValue >= 0 && rateValue <= 5 else {
-            ExceptionManager.throwIllegalStateException(eventType: CoreEventType.rate.rawValue, message: "Rate Value should be 0 to 5 (both inclusive)")
+            ExceptionManager.throwIllegalStateException(eventType: CoreEventType.rate.rawValue, message: "Rate Value should be 0 to 5 (both inclusive)", className: String(describing: CfLogRateEvent.self))
             return
         }
         

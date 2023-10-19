@@ -156,7 +156,7 @@ public class CfLogPageBuilder {
          */
         if self.render_time_value! > 1000 {
             ExceptionManager.throwInvalidException(eventType: CoreEventType.page.rawValue,
-                                                     paramName: "render_time"
+                                                   paramName: "render_time", className: String(describing: CfLogPageEvent.self)
             )
         }
         

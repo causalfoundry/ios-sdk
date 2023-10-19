@@ -64,6 +64,8 @@ class ExceptionError: Error {
 
 class IllegalStateException: ExceptionError {
     var message: String  = "Illegal State"
+    var line:String?
+    var className:String?
     
     public override init() {
         super.init()

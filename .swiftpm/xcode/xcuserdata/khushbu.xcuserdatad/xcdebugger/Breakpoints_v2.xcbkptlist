@@ -272,7 +272,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "129"
             endingLineNumber = "129"
-            landmarkName = "throwInvalidException(eventType:paramName:)"
+            landmarkName = "throwInvalidException(eventType:paramName:className:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -286,8 +286,8 @@
             filePath = "Core/Sources/Utility/ExceptionManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "throwInitException(eventType:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -302,8 +302,8 @@
             filePath = "Core/Sources/Utility/ExceptionManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "throwIsRequiredException(eventType:elementName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -318,8 +318,8 @@
             filePath = "Core/Sources/Utility/ExceptionManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "throwAPIFailException(apiName:response:responseBody:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -334,8 +334,8 @@
             filePath = "Core/Sources/Utility/ExceptionManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "throwRuntimeException(eventType:message:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -350,8 +350,8 @@
             filePath = "Core/Sources/Utility/ExceptionManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "throwIllegalStateException(eventType:message:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -366,8 +366,8 @@
             filePath = "Core/Sources/Utility/ExceptionManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "throwPageNumberException(eventType:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -382,8 +382,8 @@
             filePath = "Core/Sources/Utility/ExceptionManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "throwItemQuantityException(eventType:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -398,8 +398,8 @@
             filePath = "Core/Sources/Utility/ExceptionManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "throwCurrencyNotSameException(eventType:valueName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -414,8 +414,8 @@
             filePath = "Core/Sources/Utility/ExceptionManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "throwInvalidNudgeException(message:nudgeObject:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -430,8 +430,8 @@
             filePath = "Core/Sources/Utility/ExceptionManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
             landmarkName = "throwInvalidNetworkException(message:speed:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -446,8 +446,8 @@
             filePath = "Core/Sources/Utility/ExceptionManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "throwInternalCrashException(eventType:message:exception:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -462,8 +462,8 @@
             filePath = "Core/Sources/Utility/ExceptionManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
             landmarkName = "callExceptionAPI(title:eventType:exceptionType:stackTrace:)"
             landmarkType = "7">
          </BreakpointContent>

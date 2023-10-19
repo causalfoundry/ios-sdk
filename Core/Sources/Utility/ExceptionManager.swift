@@ -126,8 +126,9 @@ class ExceptionManager {
         )
     }
     
-    static func throwInvalidException(eventType: String, paramName: String) {
-        let msg = "Invalid \(paramName) provided"
+    static func throwInvalidException(eventType: String, paramName: String,className:String) {
+        let line =  #line
+        let msg = "Invalid \(paramName) provided at \(line) in \(className)"
         let exception = IllegalArgumentException(msg)
         callExceptionAPI(
             title: msg,
@@ -164,7 +165,9 @@ class ExceptionManager {
         callExceptionAPI(title: message, eventType: eventType, exceptionType: "RuntimeException", stackTrace: exception)
     }
     
-    static func throwIllegalStateException(eventType: String, message: String) {
+    static func throwIllegalStateException(eventType: String, message: String,className:String) {
+        let lineNumber = #line
+        
         let exception = IllegalStateException(message)
         ExceptionManager.callExceptionAPI(title: message, eventType: eventType, exceptionType: "IllegalStateException", stackTrace: exception)
     }
