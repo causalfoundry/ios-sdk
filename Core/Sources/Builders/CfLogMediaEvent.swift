@@ -226,59 +226,63 @@ public class  CfLogMediaEventBuilder {
      * user's network resources.
      */
     public func build() {
-        
-        /**
-         * Will throw and exception if the mediaId provided is null or no value is
-         * provided at all.
-         */
-        while(self.media_id!.isNilOREmpty()) {
+        switch true {
+            
+            /**
+             * Will throw and exception if the mediaId provided is null or no value is
+             * provided at all.
+             */
+        case self.media_id!.isNilOREmpty():
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_id")
-        }
-        /**
-         * Will throw and exception if the appUserId provided is null or no value is
-         * provided at all.
-         */
-        while(self.mediaModel_value == nil ) {
+            
+            /**
+             * Will throw and exception if the appUserId provided is null or no value is
+             * provided at all.
+             */
+        case self.mediaModel_value == nil :
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "mediaModel_value")
-        }
-        /**
-         * Will throw and exception if the mediaType provided is null or no type is
-         * provided at all.
-         */
-        
-        
-        while(self.media_type?.isNilOREmpty() == true) {
+            
+            /**
+             * Will throw and exception if the mediaType provided is null or no type is
+             * provided at all.
+             */
+            
+            
+        case self.media_type?.isNilOREmpty() == true :
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_type")
-        }
-        
-        if self.media_type != MediaType.image.rawValue {
-            if ((self.media_action?.isNilOREmpty()) == true) {
-                ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_type")
-            }
             
-            /**
-             * Will throw and exception if the time provided is null or no value is
-             * provided at all in case of type is audio or video.
-             */
             
-            if self.duration_value == nil {
-                ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "Current Seek Time")
+            if self.media_type != MediaType.image.rawValue {
+                if ((self.media_action?.isNilOREmpty()) == true) {
+                    ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_type")
+                }
+                
+                /**
+                 * Will throw and exception if the time provided is null or no value is
+                 * provided at all in case of type is audio or video.
+                 */
+                
+                if self.duration_value == nil {
+                    ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "Current Seek Time")
+                }
+            }else {
+                /**
+                 * Will override the values for time to current time and mediaAction to
+                 * play in case of type is an image.
+                 */
+                self.media_action = MediaAction.play.rawValue
+                self.duration_value = 0
             }
-        }else {
-            /**
-             * Will override the values for time to current time and mediaAction to
-             * play in case of type is an image.
-             */
-            self.media_action = MediaAction.play.rawValue
-            self.duration_value = 0
+        default:
+            
+            let mediaObject = MediaObject(id: self.media_id!,type:media_type, action: self.media_action,time:"\(duration_value ?? 0)")
+            
+            if self.mediaModel_value != nil {
+                self.callCatalogAPI()
+            }
+            CFSetup().track(contentBlockName: self.content_block, eventType:CoreEventType.media.rawValue, logObject: mediaObject, updateImmediately: self.update_immediately)
+            
         }
-        
-        let mediaObject = MediaObject(id: self.media_id!,type:media_type, action: self.media_action,time:"\(duration_value ?? 0)")
-        
-        if self.mediaModel_value != nil {
-            self.callCatalogAPI()
-        }
-        CFSetup().track(contentBlockName: self.content_block, eventType:CoreEventType.media.rawValue, logObject: mediaObject, updateImmediately: self.update_immediately)
     }
     
     private func callCatalogAPI() {
