@@ -53,7 +53,7 @@ class CoreConstants {
     }
 }
 
-protocol EnumComposable :RawRepresentable,HasOnlyAFixedSetOfPossibleValues{
+protocol EnumComposable :RawRepresentable,HasOnlyAFixedSetOfPossibleValues,CaseIterable{
     
 }
 
