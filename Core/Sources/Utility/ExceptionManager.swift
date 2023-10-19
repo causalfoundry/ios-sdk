@@ -10,12 +10,12 @@ import Network
 import UIKit
 
 struct ExceptionDataObject : Codable {
-    let title: String
-    let eventType: String
-    let exceptionType: String
-    let exceptionSource: String
-    let stackTrace: String
-    let ts: String
+    let title: String?
+    let eventType: String?
+    let exceptionType: String?
+    let exceptionSource: String?
+    let stackTrace: String?
+    let ts: String?
     
     
     static let encoder = JSONEncoder()
@@ -31,7 +31,7 @@ struct ExceptionDataObject : Codable {
     }
     
     
-    init(title: String, eventType: String, exceptionType: String, exceptionSource: String, stackTrace: String, ts: String) {
+    init(title: String?, eventType: String?, exceptionType: String?, exceptionSource: String?, stackTrace: String?, ts: String?) {
         self.title = title
         self.eventType = eventType
         self.exceptionType = exceptionType
