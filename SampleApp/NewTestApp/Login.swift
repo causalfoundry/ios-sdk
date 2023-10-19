@@ -61,9 +61,9 @@ class Login: UIViewController {
     @IBAction func rateAction(_ sender: Any) {
         CfLogRateEventBuilder()
             .setContentBlock(contentBlock: ContentBlock.e_commerce)
-            .setRateValue(rateValue: 6) //Required -  Float 0 to 5
+            .setRateValue(rateValue: 4) //Required -  Float 0 to 5
             .setRateType(type: RateType.order) //Required -  RateType
-            .setSubjectId(subjectId: "testOrderId") //Required -  String
+           // .setSubjectId(subjectId: "testOrderId") //Required -  String
             .build()
        // testCoreEvents()
     }

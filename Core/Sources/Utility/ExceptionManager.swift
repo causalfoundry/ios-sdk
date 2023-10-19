@@ -23,10 +23,10 @@ struct ExceptionDataObject : Codable {
 
     enum CodingKeys: String, CodingKey {
         case title = "title"
-        case eventType = "eventType"
-        case exceptionType = "exceptionType"
-        case exceptionSource = "exceptionSource"
-        case stackTrace = "stackTrace"
+        case eventType = "event_type"
+        case exceptionType = "exception_type"
+        case exceptionSource = "exception_source"
+        case stackTrace = "stack_trace"
         case ts  = "ts"
     }
     
