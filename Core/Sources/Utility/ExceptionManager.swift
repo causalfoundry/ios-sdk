@@ -17,6 +17,20 @@ struct ExceptionDataObject : Codable{
     let stackTrace: String
     let ts: String
     
+    
+    static let encoder = JSONEncoder()
+    
+
+    enum CodingKeys: String, CodingKey {
+        case title = "title"
+        case eventType = "eventType"
+        case exceptionType = "exceptionType"
+        case exceptionSource = "exceptionSource"
+        case stackTrace = "stackTrace"
+        case ts  = "ts"
+    }
+    
+    
     init(title: String, eventType: String, exceptionType: String, exceptionSource: String, stackTrace: String, ts: String) {
         self.title = title
         self.eventType = eventType
@@ -25,6 +39,8 @@ struct ExceptionDataObject : Codable{
         self.stackTrace = stackTrace
         self.ts = ts
     }
+    
+    
 }
 
 class ExceptionAPIHandler {
