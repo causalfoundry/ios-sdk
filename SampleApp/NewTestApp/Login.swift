@@ -53,7 +53,7 @@ class Login: UIViewController {
             .setMediaType(media_type: MediaType.video) //Required - MediaType
             .setMediaModel(mediaModelValue: mediaDetail)
             .setMediaAction(media_action: MediaAction.pause) // Required - MediaAction
-            .setCurrentDuration(duration: 1234556) // Required - Int
+           // .setCurrentDuration(duration: 1234556) // Required - Int
             .setContentBlock(content_block: ContentBlock.core) // Optional - ContentBlock > default is core
             .build()
     }
@@ -63,7 +63,7 @@ class Login: UIViewController {
             .setContentBlock(contentBlock: ContentBlock.e_commerce)
             .setRateValue(rateValue: 4) //Required -  Float 0 to 5
             .setRateType(type: RateType.order) //Required -  RateType
-           // .setSubjectId(subjectId: "testOrderId") //Required -  String
+            .setSubjectId(subjectId: "testOrderId") //Required -  String
             .build()
        // testCoreEvents()
     }

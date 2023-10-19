@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 enum LanguageCode: String,EnumComposable {
-    static var allValues: [LanguageCode] = LanguageCode.allValues
+   
     
     case Afar = "Afar"
     case Abkhaz = "Abkhaz"
@@ -56,6 +56,7 @@ enum LanguageCode: String,EnumComposable {
         default: return nil
         }
     }
+    static var allValues: [LanguageCode] = LanguageCode.allValues
 }
 
 
