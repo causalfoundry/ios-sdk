@@ -384,7 +384,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "166"
             endingLineNumber = "166"
-            landmarkName = "throwInvalidNudgeException(message:nudgeObject:)"
+            landmarkName = "throwPageNumberException(eventType:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -552,6 +552,21 @@
                   endingLineNumber = "166"
                   offsetFromSymbolStart = "219">
                </Location>
+               <Location
+                  uuid = "A1EAB1FA-3498-4C24-8C8F-DE52006B6EFF - 6951422569f0d62b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CasualFoundryCore.ExceptionManager.throwPageNumberException(eventType: Swift.String) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/ExceptionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "166"
+                  endingLineNumber = "166"
+                  offsetFromSymbolStart = "129">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -567,8 +582,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "175"
             endingLineNumber = "175"
-            landmarkName = "throwInvalidNudgeException(message:nudgeObject:)"
-            landmarkType = "7">
+            landmarkName = "ExceptionManager"
+            landmarkType = "3">
             <Locations>
                <Location
                   uuid = "18F54655-0D1E-442B-97D1-AA6FFF73D3B9 - 607ca2677b497434"
@@ -735,6 +750,21 @@
                   endingLineNumber = "175"
                   offsetFromSymbolStart = "791">
                </Location>
+               <Location
+                  uuid = "18F54655-0D1E-442B-97D1-AA6FFF73D3B9 - 78a82c5f5b5ae11b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CasualFoundryCore.ExceptionManager.throwCurrencyNotSameException(eventType: Swift.String, valueName: Swift.String) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/ExceptionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
+                  offsetFromSymbolStart = "99">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -750,7 +780,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "160"
             endingLineNumber = "160"
-            landmarkName = "throwCurrencyNotSameException(eventType:valueName:)"
+            landmarkName = "throwIllegalStateException(eventType:message:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -903,6 +933,21 @@
                   endingLineNumber = "160"
                   offsetFromSymbolStart = "99">
                </Location>
+               <Location
+                  uuid = "C22FE4BA-084F-404C-8ACD-1E92EA0F4C4F - d9a844ea93a38221"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CasualFoundryCore.ExceptionManager.throwIllegalStateException(eventType: Swift.String, message: Swift.String) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/ExceptionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "160"
+                  endingLineNumber = "160"
+                  offsetFromSymbolStart = "98">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -918,7 +963,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "98"
             endingLineNumber = "98"
-            landmarkName = "throwEnumException(eventType:className:)"
+            landmarkName = "storeEventTrack(events:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -1055,6 +1100,21 @@
                   startingLineNumber = "100"
                   endingLineNumber = "100"
                   offsetFromSymbolStart = "465">
+               </Location>
+               <Location
+                  uuid = "AEB69095-6C1E-4EB5-A742-8AE1357EB55D - c4b53461e0d9bdb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.ExceptionAPIHandler.storeEventTrack(events: Swift.Array&lt;CasualFoundryCore.ExceptionDataObject&gt;) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/ExceptionManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "1151">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2470,16 +2530,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DD8BD316-3FC5-471C-AD32-E8A081366155"
+            uuid = "114948B5-9966-4F3E-A740-85230AC2D82F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/ExceptionManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "updateExceptionEvents(eventArray:)"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "throwIsRequiredException(eventType:elementName:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DEBE757F-B609-4CFE-B781-2BC75B6723AE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/ExceptionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "throwIsRequiredException(eventType:elementName:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5C4C1E76-506A-4E11-9800-FD3F899647C2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/ExceptionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "throwIsRequiredException(eventType:elementName:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C60DA323-5DE8-42EB-9593-B2500F8D98F2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/ExceptionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
+            landmarkName = "callExceptionAPI(title:eventType:exceptionType:stackTrace:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6C6EE8B6-F000-4C76-8B1F-577D43CC0B62"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/ExceptionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
+            landmarkName = "callExceptionAPI(title:eventType:exceptionType:stackTrace:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

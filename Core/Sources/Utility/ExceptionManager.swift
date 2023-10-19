@@ -9,7 +9,7 @@ import Foundation
 import Network
 import UIKit
 
-struct ExceptionDataObject : Codable{
+struct ExceptionDataObject : Codable {
     let title: String
     let eventType: String
     let exceptionType: String
@@ -246,11 +246,11 @@ class ExceptionManager {
         stackTrace: ExceptionError
     ) {
         let exceptionDataObject = ExceptionDataObject(
-            title: title,
-            eventType: eventType,
-            exceptionType: exceptionType,
+            title: title ,
+            eventType: (eventType as? String)!,
+            exceptionType: (exceptionType as? String)!,
             exceptionSource: "SDK",
-            stackTrace: stackTrace.localizedDescription,
+            stackTrace: (stackTrace.localizedDescription as? String)!,
             ts: Date().convertMillisToTimeString()
         )
         
