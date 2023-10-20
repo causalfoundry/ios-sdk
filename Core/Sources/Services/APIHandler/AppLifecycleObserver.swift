@@ -27,23 +27,6 @@ private let swizzling: (AnyClass, Selector, Selector) -> () = { forClass, origin
 }
 
 
-public class CausulFoundry:NSObject {
-    
-    
-    public override init() {
-        
-    }
-    
-    
-    public func configure(){
-        UIViewController.startSwizzlingViewDidLoad()
-        UIViewController.startSwizzlingDidDisapper()
-                
-    }
-}
-
-
-
 public protocol AppLifecycleObserver {
     func appDidFinishLaunching()
     func appDidEnterBackground()
@@ -52,6 +35,64 @@ public protocol AppLifecycleObserver {
     func appWillTerminate()
     func appWillEnterForeground()
 }
+
+
+
+
+
+public class CausulFoundry:NSObject {
+    
+    var lifecycleObservers: [AppLifecycleObserver] = []
+    
+    public override init() {
+        
+    }
+    public func configure(){
+//        UIViewController.startSwizzlingViewDidLoad()
+//        UIViewController.startSwizzlingDidDisapper()
+                
+    }
+    
+    // lifecycle observers Event
+    func appDidFinishLaunching() {
+        for observer in lifecycleObservers {
+            observer.appDidFinishLaunching()
+        }
+    }
+
+    func appDidEnterBackground() {
+        for observer in lifecycleObservers {
+            observer.appDidEnterBackground()
+        }
+    }
+    
+    func appDidBecomeActive() {
+        for observer in lifecycleObservers {
+            observer.appDidBecomeActive()
+        }
+    }
+    
+    func appWillResignActive() {
+        for observer in lifecycleObservers {
+            observer.appWillResignActive()
+        }
+     }
+    
+    func appWillTerminate() {
+        for observer in lifecycleObservers {
+            observer.appWillTerminate()
+        }
+    }
+    
+    func appWillEnterForeground() {
+        for observer in lifecycleObservers {
+            observer.appWillEnterForeground()
+        }
+    }
+}
+
+
+
 
 
 
