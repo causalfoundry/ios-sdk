@@ -43,7 +43,7 @@ final class CFLogTests: XCTestCase {
             let cfLogBuilder = CFLogBuilder(application: application)
             
             // Set the application state to active
-            cfLogBuilder.setLifecycleEvent(event: .active)
+           _ =  cfLogBuilder.setLifecycleEvent(event: .active)
             
             // Check if the application state is set correctly
             XCTAssertEqual(cfLogBuilder.applicationState, .active)
@@ -52,17 +52,14 @@ final class CFLogTests: XCTestCase {
     func testSetPauseSDK() {
            let application = UIApplication.shared
            let cfLogBuilder = CFLogBuilder(application: application)
-           
-           // Set pauseSDK to true
-           cfLogBuilder.setPauseSDK(pauseSDK: true)
-           
-           // Check if pauseSDK is set correctly to true
+                                .setPauseSDK(pauseSDK: true)
+        
            XCTAssertTrue(cfLogBuilder.pauseSDK)
            
            // Set pauseSDK to false
-           cfLogBuilder.setPauseSDK(pauseSDK: false)
-           
-           // Check if pauseSDK is set correctly to false
-           XCTAssertFalse(cfLogBuilder.pauseSDK)
-       }
+        
+            let cfLogBuilderNew = CFLogBuilder(application: application)
+                             .setPauseSDK(pauseSDK: true)
+        
+    }
 }

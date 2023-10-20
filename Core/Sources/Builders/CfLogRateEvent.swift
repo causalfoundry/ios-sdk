@@ -28,16 +28,16 @@ public class CfLogRateEvent {
 }
 
 public class CfLogRateEventBuilder {
-    private var rateValue: Float? = 0.0
-        private  var type: String? = ""
-        private var subjectId: String? = ""
-        private var contentBlock: String? = ""
-        private var meta: Any? = nil
-        private var updateImmediately: Bool = CoreConstants.shared.updateImmediately
+    var rateValue: Float? = 0.0
+    var type: String? = ""
+    var subjectId: String? = ""
+    var contentBlock: String? = ""
+    var meta: Any? = nil
+    var updateImmediately: Bool = CoreConstants.shared.updateImmediately
     
-        public init() {
+    public init() {
         
-        }
+    }
     /**
      * setContentBlock is used to specify the type of module the rate is applied to.
      * rate can be used for multiple modules i.e. core, e-commerce, e-learning, ...
@@ -47,9 +47,8 @@ public class CfLogRateEventBuilder {
      */
     
     public func setContentBlock(contentBlock: ContentBlock) -> CfLogRateEventBuilder {
-        var builder = self
-        builder.contentBlock = contentBlock.rawValue
-        return builder
+        self.contentBlock = contentBlock.rawValue
+        return self
     }
     /**
      * setContentBlock is used to specify the type of module the rate is applied to.
@@ -61,13 +60,13 @@ public class CfLogRateEventBuilder {
      */
     
     public func setContentBlock(contentBlock: String) -> CfLogRateEventBuilder {
-        var builder = self
+        
         if CoreConstants.shared.enumContains(ContentBlock.self, name: contentBlock) {
-            builder.contentBlock = contentBlock
+            self.contentBlock = contentBlock
         } else {
             ExceptionManager.throwEnumException(eventType: CoreEventType.rate.rawValue,className: String(describing:ContentBlock.self))
         }
-        return builder
+        return self
     }
     
     /**
@@ -75,9 +74,8 @@ public class CfLogRateEventBuilder {
      * if there are more elements like 0 to 10, make sure to divide the value by 2.
      */
     public func setRateValue(rateValue: Float) -> CfLogRateEventBuilder {
-        var builder = self
-        builder.rateValue = rateValue
-        return builder
+        self.rateValue = rateValue
+        return self
     }
     
     /**
@@ -89,19 +87,17 @@ public class CfLogRateEventBuilder {
      */
     
     public func setRateType(type: RateType) -> CfLogRateEventBuilder {
-        var builder = self
-        builder.type = type.rawValue
-        return builder
+        self.type = type.rawValue
+        return self
     }
     
     public func setRateType(type: String) -> CfLogRateEventBuilder {
-        var builder = self
         if CoreConstants.shared.enumContains(RateType.self,name:type) {
-            builder.type = type
+            self.type = type
         } else {
             ExceptionManager.throwEnumException(eventType: CoreEventType.rate.rawValue, className: String(describing: RateType.self))
         }
-        return builder
+        return self
     }
     
     /**
@@ -109,9 +105,8 @@ public class CfLogRateEventBuilder {
      * in all cases, if the app is rated then provide the application id
      */
     public func setSubjectId(subjectId: String) -> CfLogRateEventBuilder {
-        var builder = self
-        builder.subjectId = subjectId
-        return builder
+        self.subjectId = subjectId
+        return self
     }
     /**
      * You can pass any type of value in setMeta. It is for developer and partners to log
@@ -121,9 +116,8 @@ public class CfLogRateEventBuilder {
     
     
     public func setMeta(meta: Any?) -> CfLogRateEventBuilder {
-        var builder = self
-        builder.meta = meta
-        return builder
+        self.meta = meta
+        return self
     }
     /**
      * updateImmediately is responsible for updating the values ot the backend immediately.
@@ -134,9 +128,8 @@ public class CfLogRateEventBuilder {
      */
     
     public  func updateImmediately(updateImmediately: Bool) -> CfLogRateEventBuilder {
-        var builder = self
-        builder.updateImmediately = updateImmediately
-        return builder
+        self.updateImmediately = updateImmediately
+        return self
     }
     
     /**

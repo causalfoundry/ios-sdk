@@ -12,11 +12,11 @@ import UIKit
 public class CatalogAPIHandler {
 
     func updateCatalogItem(subject: CatalogSubject, catalogObject: Any?) {
-        if let catalogObject = catalogObject {
-//            var prevEvent[Any] = PaperObject.readCatalog(subject) ?? []
-//            prevEvent.append(catalogObject)
-//            PaperObject.writeCatalog(subject, prevEvent)
-        }
+//        if let catalogObject = catalogObject {
+//            if catalogObject != nil {
+//                
+//            }
+//        }
     }
 
     private func updateCatalogArray(subject: CatalogSubject, catalogArray: [Any]) {

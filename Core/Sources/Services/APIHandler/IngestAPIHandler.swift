@@ -46,7 +46,7 @@ class IngestAPIHandler:NSObject {
     
     // Update Track Event
     func updateEvenrTrack(eventArray:[EventDataObject]) {
-        var userID:String = "user123"
+        var userID:String = CoreConstants.shared.userId
         
         if (!CoreConstants.shared.isAnonymousUserAllowed) {
             userID = ""

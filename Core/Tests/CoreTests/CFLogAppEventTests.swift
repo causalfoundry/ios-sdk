@@ -1,48 +1,86 @@
-////
-////  CFLogAppEventTests.swift
-////  
-////
-////  Created by khushbu on 11/10/23.
-////
 //
-//import XCTest
+//  CFLogAppEventTests.swift
+//  
 //
-//@testable import CasualFoundryCore
+//  Created by khushbu on 11/10/23.
 //
-//class CFLogAppEventTests: XCTestCase {
-//
-//    func testCFLogAppEventInitialization() {
-//        // Test CFLogAppEvent initialization
-//        let cfLogAppEvent = CFLogAppEvent(action: "SomeAction", meta: "SomeMeta", startTimeValue: 10, eventTimeValue: 100, update_immediately: true)
-//
-//        XCTAssertEqual(cfLogAppEvent.action, "SomeAction")
-//        XCTAssertEqual(cfLogAppEvent.meta as? String, "SomeMeta")
-//        XCTAssertEqual(cfLogAppEvent.startTimeValue, 10)
-//        XCTAssertEqual(cfLogAppEvent.eventTimeValue, 100)
-//        XCTAssertEqual(cfLogAppEvent.update_immediately, true)
-//    }
-//}
-//
-//class CFLogAppEventBuilderTests: XCTestCase {
-//
-//    func testCFLogAppEventBuilder() {
-//        // Test CFLogAppEventBuilder
-//        let cfLogAppEventBuilder = CFLogAppEventBuilder()
-//            .setAppEvent(appAction: .appOpen)
-//            .setEventTime(event_time: 123456789)
-//            .setStartTime(start_time: 100)
-//            .setMeta(meta: "SomeMeta")
-//            .updateImmediately(update_immediately: false)
-//
-//        // Build CFLogAppEvent instance
-//        cfLogAppEventBuilder.build()
-//
-//        // Add assertions for CFLogAppEvent properties
-//        // For example:
-//        XCTAssertEqual(cfLogAppEventBuilder.action, "AppOpen")
-//        XCTAssertEqual(cfLogAppEventBuilder.eventTimeValue, 123456789)
-//        XCTAssertEqual(cfLogAppEventBuilder.startTimeValue, 100)
-//        XCTAssertEqual(cfLogAppEventBuilder.meta as? String, "SomeMeta")
-//        XCTAssertEqual(cfLogAppEventBuilder.update_immediately, false)
-//    }
-//}
+
+import XCTest
+
+@testable import CasualFoundryCore
+
+class CFLogAppEventTests: XCTestCase {
+    
+    var builder: CFLogAppEventBuilder!
+    
+    override func setUp() {
+        super.setUp()
+        // Create an instance of CFLogAppEventBuilder before each test
+        builder = CFLogAppEventBuilder()
+    }
+    
+    override func tearDown() {
+        // Clean up after each test
+        builder = nil
+        super.tearDown()
+    }
+    
+    func testSetAppEventWithEnum() {
+        // Test setting the app event with an enum
+        _ = builder.setAppEvent(appAction: .open)
+        XCTAssertEqual(builder.action, AppAction.open.rawValue)
+    }
+    
+    func testSetAppEventWithString() {
+        // Test setting the app event with a valid string
+        _ = builder.setAppEvent(appAction: .open)
+        XCTAssertEqual(builder.action,AppAction.open.rawValue)
+    }
+    
+    func testSetAppEventWithInvalidString() {
+        // Test setting the app event with an invalid string
+        // This should throw an exception
+        XCTAssertThrowsError(try builder.setAppEvent(appAction: "invalid_action"))
+    }
+    
+    func testSetEventTime() {
+        // Test setting the event time
+        _ = builder.setEventTime(event_time: 1234567890)
+        XCTAssertEqual(builder.eventTimeValue, 1234567890)
+    }
+    
+    func testSetStartTime() {
+        // Test setting the start time
+        _ = builder.setStartTime(start_time: 1000)
+        XCTAssertEqual(builder.startTimeValue, 1000)
+    }
+    
+    func testSetMeta() {
+        // Test setting the meta
+        _ = builder.setMeta(meta: ["key": "value"])
+        XCTAssertEqual(builder.meta as? [String: String], ["key": "value"])
+    }
+    
+    func testUpdateImmediately() {
+        // Test setting updateImmediately
+        _ = builder.updateImmediately(update_immediately: true)
+        XCTAssertTrue(builder.update_immediately)
+    }
+    
+    func testBuild() {
+        // Test the build method
+        
+        // Set required properties
+        builder.setAppEvent(appAction: .open)
+        builder.setEventTime(event_time: 1234567890)
+        builder.setStartTime(start_time: 1000)
+        builder.updateImmediately(update_immediately: false)
+        
+        // You can add assertions to verify the behavior of the build method
+        // For example, you can check if it calls IngestAPIHandler.shared.ingestTrackAPI correctly.
+        
+        builder.build()
+        
+        // Add your assertions here
+    }
+}

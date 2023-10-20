@@ -18,13 +18,13 @@ public class CfLogPageEvent {
 }
 
 public class CfLogPageBuilder {
-    private var path_value: String? = nil
-    private var title_value: String? = nil
-    private var duration_value: Float? = nil
-    private var render_time_value: Int? = nil
-    private var content_block: String = CoreConstants.shared.contentBlockName
-    private var meta: Any?
-    private var update_immediately: Bool = CoreConstants.shared.updateImmediately
+     var path_value: String? = nil
+     var title_value: String? = nil
+     var duration_value: Float? = nil
+     var render_time_value: Int? = nil
+     var content_block: String = CoreConstants.shared.contentBlockName
+     var meta: Any?
+     var update_immediately: Bool = CoreConstants.shared.updateImmediately
     
     /**
      * setPath is required to log the package details for the activity/screen/page to know

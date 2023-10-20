@@ -109,9 +109,67 @@ public class CoreDataHelper {
         // Add the attribute to the entity
         exceptionDataEntity.properties = [attributEventTitle, attributEventType,attributeExceptionType, attributeExceptionSource,attributeDeviceTs, attributeStackTrace  ]
         
-        // Create a managed object model
+        
+        
+        
+        // Create a UserCatalog Table
+        let userCatalogEntity = NSEntityDescription()
+        userCatalogEntity.name = "UserCatalog"
+        
+        // Create attributes
+        let attributedUserName = NSAttributeDescription()
+        attributedUserName.name = "name"
+        attributedUserName.attributeType = .stringAttributeType
+        
+        let attributedCountry = NSAttributeDescription()
+        attributedCountry.name = "country"
+        attributedCountry.attributeType = .stringAttributeType
+        
+        let attributedRegion = NSAttributeDescription()
+        attributedRegion.name = "region_state"
+        attributedRegion.attributeType = .stringAttributeType
+        
+        let attributedCity = NSAttributeDescription()
+        attributedCity.name = "city"
+        attributedCity.attributeType = .stringAttributeType
+        
+        let attributedWorkPlace = NSAttributeDescription()
+        attributedWorkPlace.name = "workplace"
+        attributedWorkPlace.attributeType = .stringAttributeType
+        
+        let attributedProfession = NSAttributeDescription()
+        attributedProfession.name = "profession"
+        attributedProfession.attributeType = .stringAttributeType
+        
+        let attributedZipCode = NSAttributeDescription()
+        attributedZipCode.name = "zipcode"
+        attributedZipCode.attributeType = .stringAttributeType
+        
+        let attributedLanguage = NSAttributeDescription()
+        attributedLanguage.name = "language"
+        attributedLanguage.attributeType = .stringAttributeType
+        
+        let attributedexperience = NSAttributeDescription()
+        attributedexperience.name = "experience"
+        attributedexperience.attributeType = .stringAttributeType
+        
+        let attributeEducation = NSAttributeDescription()
+        attributeEducation.name = "education_level"
+        attributeEducation.attributeType = .stringAttributeType
+        
+        let attributeOrganizationID = NSAttributeDescription()
+        attributeOrganizationID.name = "organization_id"
+        attributeOrganizationID.attributeType = .stringAttributeType
+        
+        let attributeOrganizationName = NSAttributeDescription()
+        attributeOrganizationName.name = "organization_name"
+        attributeOrganizationName.attributeType = .stringAttributeType
+        
+        userCatalogEntity.properties = [attributedUserName,attributedCountry,attributedRegion, attributedCity, attributedWorkPlace, attributedProfession, attributedZipCode, attributedLanguage,attributedexperience,attributeEducation, attributeOrganizationID, attributeOrganizationName ]
+        
+    // Create a managed object model
         let managedObjectModel = NSManagedObjectModel()
-        managedObjectModel.entities = [userDataEntity,exceptionDataEntity]
+        managedObjectModel.entities = [userDataEntity,exceptionDataEntity,userCatalogEntity]
         
         return managedObjectModel
     }
@@ -256,5 +314,9 @@ extension CoreDataHelper {
             
         }
         return ""
+    }
+    
+    func readUserCatalog(userID:String) {
+        
     }
 }

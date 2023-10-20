@@ -374,22 +374,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B7B00552-2757-43AD-A60E-0C135902B8EA"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Builders/CfLogMediaEvent.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
-            landmarkName = "build()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "12B6EEAF-71EF-43AE-A2DC-B87F05E4CD5A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -3886,16 +3870,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A8201909-6F13-4AAB-8FF4-E1396A005D16"
+            uuid = "7E6D6D48-845C-4F2E-8D90-DF953FB30861"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Extensions/Enum.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "HasOnlyAFixedSetOfPossibleValues"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "251BB94B-1D61-41B0-9C0A-B54A3D16D9C4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Constants/CoreConstants.swift"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Extensions/Enum.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "enumContains(_:name:)"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "allValues"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5F4D6D5B-FB44-491C-B597-4B5E032923C8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Builders/CfLogMediaEvent.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
+            landmarkName = "build()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EA058605-49D2-445A-965C-1860EE32307F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Extensions/Enum.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "cases()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "99D52E82-3BF0-42F8-9F92-4F3C493008E8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Extensions/Enum.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "cases()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

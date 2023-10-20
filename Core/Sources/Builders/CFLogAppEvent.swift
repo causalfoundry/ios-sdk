@@ -35,11 +35,11 @@ public class CFLogAppEvent {
 
 public class CFLogAppEventBuilder {
     
-    private var action:String?
-    private var meta:Any?
-    private var startTimeValue:Int = 0
-    private var eventTimeValue:Int64 = 0
-    private var update_immediately:Bool = CoreConstants.shared.updateImmediately
+     var action:String?
+     var meta:Any?
+     var startTimeValue:Int = 0
+     var eventTimeValue:Int64 = 0
+     var update_immediately:Bool = CoreConstants.shared.updateImmediately
     
     public init() {
             
@@ -54,6 +54,12 @@ public class CFLogAppEventBuilder {
         
         public func setAppEvent(appAction: AppAction) ->CFLogAppEventBuilder {
             self.action = appAction.rawValue
+            return self
+        }
+    
+    
+        public func setAppEvent(appAction: String) ->CFLogAppEventBuilder {
+            self.action = appAction
             return self
         }
         

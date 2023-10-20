@@ -41,3 +41,17 @@ public class CausulFoundry:NSObject {
                 
     }
 }
+
+
+
+public protocol AppLifecycleObserver {
+    func appDidFinishLaunching()
+    func appDidEnterBackground()
+    func appDidBecomeActive()
+    func appWillResignActive()
+    func appWillTerminate()
+    func appWillEnterForeground()
+}
+
+
+

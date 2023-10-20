@@ -59,6 +59,7 @@ class RequestManager {
             do {
                 if error != nil {
                     if let dic  = error?.localizedDescription {
+                        print(dic)
                        //  Show Error
                     }
                 }else{

@@ -12,6 +12,7 @@ public class CFLog {
      var updateImmediately :Bool = true
      var pauseSDK : Bool =  false
     
+    
     init(application: UIApplication? = nil, applicationState: UIApplication.State? = nil, showInAppBudge: Bool, updateImmediately: Bool, pauseSDK: Bool) {
         self.application = application
         self.applicationState = applicationState
@@ -28,6 +29,8 @@ public class CFLog {
          var showInAppBudge:Bool = true
          var updateImmediately :Bool = true
          var pauseSDK : Bool =  false
+       
+       var lifecycleObservers: [AppLifecycleObserver] = []
         /**
          * Passing the application Object to SDK for initialising listeners
 //         */
@@ -218,4 +221,42 @@ public class CFLog {
             }
             CFSetup().initalize(application: self.application!, event: self.applicationState!, pauseSDK: pauseSDK, autoShowInAppNudge: showInAppBudge, updateImmediately: updateImmediately)
            }
-    }
+       
+       
+       // lifecycle observers Event
+       func appDidFinishLaunching() {
+           for observer in lifecycleObservers {
+               observer.appDidFinishLaunching()
+           }
+       }
+
+       func appDidEnterBackground() {
+           for observer in lifecycleObservers {
+               observer.appDidEnterBackground()
+           }
+       }
+       
+       func appDidBecomeActive() {
+           for observer in lifecycleObservers {
+               observer.appDidBecomeActive()
+           }
+       }
+       
+       func appWillResignActive() {
+           for observer in lifecycleObservers {
+               observer.appWillResignActive()
+           }
+        }
+       
+       func appWillTerminate() {
+           for observer in lifecycleObservers {
+               observer.appWillTerminate()
+           }
+       }
+       
+       func appWillEnterForeground() {
+           for observer in lifecycleObservers {
+               observer.appWillEnterForeground()
+           }
+       }
+}
