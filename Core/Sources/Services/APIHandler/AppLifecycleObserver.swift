@@ -42,7 +42,7 @@ public protocol AppLifecycleObserver {
 
 public class CausulFoundry:NSObject {
     
-    var lifecycleObservers: [AppLifecycleObserver] = []
+   public var lifecycleObservers: [AppLifecycleObserver] = []
     
     public override init() {
         
