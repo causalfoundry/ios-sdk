@@ -31,7 +31,6 @@ final class APIManager:NSObject {
         
         if headers != nil {
             headersData.updateValue(headers!.values.first!, forKey: headers!.keys.first!)
-            
         }
         RequestManager.sharedManager.getDataFromServer(params, url, "POST") { success, data in
             var data = [String:Any]()

@@ -60,7 +60,7 @@ public class CoreDataHelper {
     func createManagedObjectModel() -> NSManagedObjectModel {
         // Create an entity description
         let userDataEntity = NSEntityDescription()
-        userDataEntity.name = "User"
+        userDataEntity.name = TableName.user.rawValue
         
         // Create attributes
         let attributeUser = NSAttributeDescription()
@@ -76,7 +76,7 @@ public class CoreDataHelper {
         userDataEntity.properties = [attributeUser, attributeDeviceID]
         
         let exceptionDataEntity = NSEntityDescription()
-        exceptionDataEntity.name = "ExceptionData" // Set the entity name
+        exceptionDataEntity.name = TableName.exceptionData.rawValue // Set the entity name
         
         
         // Create attributes
@@ -114,7 +114,7 @@ public class CoreDataHelper {
         
         // Create a UserCatalog Table
         let userCatalogEntity = NSEntityDescription()
-        userCatalogEntity.name = "UserCatalog"
+        userCatalogEntity.name = TableName.userCatalog.rawValue
         
         // Create attributes
         let attributedUserName = NSAttributeDescription()
@@ -167,7 +167,7 @@ public class CoreDataHelper {
         
         userCatalogEntity.properties = [attributedUserName,attributedCountry,attributedRegion, attributedCity, attributedWorkPlace, attributedProfession, attributedZipCode, attributedLanguage,attributedexperience,attributeEducation, attributeOrganizationID, attributeOrganizationName ]
         
-    // Create a managed object model
+        // Create a managed object model
         let managedObjectModel = NSManagedObjectModel()
         managedObjectModel.entities = [userDataEntity,exceptionDataEntity,userCatalogEntity]
         
@@ -218,7 +218,7 @@ extension CoreDataHelper {
     // GET ALL EXCEPTION LOGS
     func getStoredExceptionsData() -> [ExceptionDataObject]{
         var itemData:[ExceptionDataObject]? = []
-        if let existingEntity = NSEntityDescription.entity(forEntityName: "ExceptionData", in: context) {
+        if let existingEntity = NSEntityDescription.entity(forEntityName:TableName.exceptionData.rawValue, in: context) {
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: existingEntity.name!)
             do {
                 let items = try context.fetch(fetchRequest)
@@ -256,7 +256,7 @@ extension CoreDataHelper {
     func writeExceptionEvents(eventArray: [ExceptionDataObject]) {
         let managedContext = context
         
-        let existingEntity = NSEntityDescription.entity(forEntityName: "ExceptionData", in: managedContext)
+        let existingEntity = NSEntityDescription.entity(forEntityName: TableName.exceptionData.rawValue, in: managedContext)
         let managedObject = NSManagedObject(entity: existingEntity!, insertInto: managedContext)
         for exceptionDataObject in eventArray {
             
@@ -283,7 +283,7 @@ extension CoreDataHelper {
     func writeUser(user: String?,deviceID:String?) {
         
         let managedContext = context
-        let entity = NSEntityDescription.entity(forEntityName: "User", in: managedContext)!
+        let entity = NSEntityDescription.entity(forEntityName: TableName.user.rawValue, in: managedContext)!
         let managedObject = NSManagedObject(entity: entity, insertInto: managedContext)
         
         // Set properties of the Core Data entity based on ExceptionDataObject properties
@@ -302,11 +302,11 @@ extension CoreDataHelper {
     
     // MARK: - Fetch User ID
     func fetchUserID(deviceID:String = "") -> String {
-        var fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.user.rawValue)
         fetchRequest.predicate = NSPredicate(format: "deviceID == %@", deviceID)
         do {
             let items = try context.fetch(fetchRequest)
-            var user:String = items.first?.value(forKey: "userID") as? String ?? ""
+            let user:String = items.first?.value(forKey: "userID") as? String ?? ""
             return user
             
         } catch let error as NSError {
@@ -316,7 +316,66 @@ extension CoreDataHelper {
         return ""
     }
     
-    func readUserCatalog(userID:String) {
+    func readUserCatalog() -> [UserCatalogModel] {
+        var userCataLogItems = [UserCatalogModel]()
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.userCatalog.rawValue)
+        do {
+            let items = try context.fetch(fetchRequest)
+            if items.count > 0 {
+                userCataLogItems =  items.map({ (userData) in
+                  return UserCatalogModel(name: userData.value(forKey:"name") as? String ?? "",
+                                          country: userData.value(forKey:"country") as? String ?? "",
+                                          region_state: userData.value(forKey:"region_state") as? String ?? "",
+                                          city: userData.value(forKey:"city") as? String ?? "",
+                                          workplace: userData.value(forKey:"workplace") as? String ?? "",
+                                          profession: userData.value(forKey:"profession") as? String ?? "",
+                                          zipcode: userData.value(forKey:"zipcode") as? String ?? "",
+                                          language: userData.value(forKey:"language") as? String ?? "",
+                                          experience: userData.value(forKey:"experience") as? String ?? "",
+                                          education_level: userData.value(forKey:"education_level") as? String ?? "",
+                                          organization_id: userData.value(forKey:"organization_id") as? String ?? "",
+                                          organization_name: userData.value(forKey:"organization_name") as? String ?? "")
+                    
+                })
+                
+            }else{
+                userCataLogItems = (items as? [UserCatalogModel])!
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            
+        }
+        return userCataLogItems
+    }
+    
+    
+    func writeUserCatalog(catalogArray:[UserCatalogModel])  {
+        let managedContext = context
         
+        let existingEntity = NSEntityDescription.entity(forEntityName: TableName.userCatalog.rawValue, in: managedContext)
+        let managedObject = NSManagedObject(entity: existingEntity!, insertInto: managedContext)
+        for exceptionDataObject in catalogArray {
+            
+            // Set properties of the Core Data entity based on ExceptionDataObject properties
+            managedObject.setValue(exceptionDataObject.name, forKey: "name")
+            managedObject.setValue(exceptionDataObject.country, forKey: "country")
+            managedObject.setValue(exceptionDataObject.region_state, forKey: "region_state")
+            managedObject.setValue(exceptionDataObject.city, forKey: "city")
+            managedObject.setValue(exceptionDataObject.workplace, forKey: "workplace")
+            managedObject.setValue(exceptionDataObject.profession, forKey: "profession")
+            managedObject.setValue(exceptionDataObject.zipcode, forKey: "zipcode")
+            managedObject.setValue(exceptionDataObject.language, forKey: "language")
+            managedObject.setValue(exceptionDataObject.experience, forKey: "experience")
+            managedObject.setValue(exceptionDataObject.education_level, forKey: "education_level")
+            managedObject.setValue(exceptionDataObject.organization_id, forKey: "organization_id")
+            managedObject.setValue(exceptionDataObject.organization_name, forKey: "organization_name")
+            
+            // Add additional properties as needed
+        }
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
     }
 }

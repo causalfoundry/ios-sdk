@@ -15,8 +15,8 @@ public class CfLogMediaEvent {
     var duration_value: Int?
     var content_block: String = CoreConstants.shared.contentBlockName
     var mediaModel_value: MediaCatalogModel?
-    private var meta: Any?
-    private var update_immediately: Bool = CoreConstants.shared.updateImmediately
+    var meta: Any?
+    var update_immediately: Bool = CoreConstants.shared.updateImmediately
     
     
     init(media_id: String? = nil, media_type: String? = nil, media_action: String? = nil, duration_value: Int? = nil, content_block: String, mediaModel_value: MediaCatalogModel? = nil, meta: Any? = nil, update_immediately: Bool) {
@@ -33,14 +33,14 @@ public class CfLogMediaEvent {
 
 
 public class  CfLogMediaEventBuilder {
-    private var media_id: String?
-    private var media_type: String?
-    private var media_action: String?
-    private var duration_value: Int?
-    private var content_block: String = CoreConstants.shared.contentBlockName
-    private var mediaModel_value: MediaCatalogModel? = nil
-    private var meta: Any?
-    private var update_immediately: Bool = CoreConstants.shared.updateImmediately
+     var media_id: String?
+     var media_type: String?
+     var media_action: String?
+     var duration_value: Int?
+     var content_block: String = CoreConstants.shared.contentBlockName
+     var mediaModel_value: MediaCatalogModel? = nil
+     var meta: Any?
+     var update_immediately: Bool = CoreConstants.shared.updateImmediately
     
     public init() {
         
@@ -311,4 +311,6 @@ public class  CfLogMediaEventBuilder {
     }
     
 }
+
+
 

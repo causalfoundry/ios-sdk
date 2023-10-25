@@ -27,72 +27,52 @@ private let swizzling: (AnyClass, Selector, Selector) -> () = { forClass, origin
 }
 
 
-public protocol AppLifecycleObserver {
-    func appDidFinishLaunching()
-    func appDidEnterBackground()
-    func appDidBecomeActive()
-    func appWillResignActive()
-    func appWillTerminate()
-    func appWillEnterForeground()
-}
-
-
-
-
-
-public class CausulFoundry:NSObject {
+class AppLifecycleTracker {
+    static let shared = AppLifecycleTracker()
     
-   public var lifecycleObservers: [AppLifecycleObserver] = []
-    
-    public override init() {
-        
-    }
-    public func configure(){
-//        UIViewController.startSwizzlingViewDidLoad()
-//        UIViewController.startSwizzlingDidDisapper()
-                
+    private init() {
+        // Register for application lifecycle notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
     }
     
-    // lifecycle observers Event
-    func appDidFinishLaunching() {
-        for observer in lifecycleObservers {
-            observer.appDidFinishLaunching()
-        }
-    }
-
-    func appDidEnterBackground() {
-        for observer in lifecycleObservers {
-            observer.appDidEnterBackground()
-        }
+    deinit {
+        // Unregister for notifications when the instance is deallocated
+        NotificationCenter.default.removeObserver(self)
     }
     
-    func appDidBecomeActive() {
-        for observer in lifecycleObservers {
-            observer.appDidBecomeActive()
-        }
+    @objc func appWillEnterForeground() {
+        // Handle app entering the foreground
+        print("App entered the foreground")
     }
     
-    func appWillResignActive() {
-        for observer in lifecycleObservers {
-            observer.appWillResignActive()
-        }
-     }
-    
-    func appWillTerminate() {
-        for observer in lifecycleObservers {
-            observer.appWillTerminate()
-        }
+    @objc func appDidBecomeActive() {
+        // Handle app becoming active
+        print("App became active")
     }
     
-    func appWillEnterForeground() {
-        for observer in lifecycleObservers {
-            observer.appWillEnterForeground()
-        }
+    @objc func appWillResignActive() {
+        // Handle app resigning active status
+        print("App will resign active")
+    }
+    
+    @objc func appDidEnterBackground() {
+        // Handle app entering the background
+        print("App entered the background")
+    }
+    
+    @objc func appWillTerminate() {
+        // Handle app termination
+        print("App will terminate")
     }
 }
 
+// Usage:
+// Create an instance to start tracking
 
-
-
-
-
+// Don't forget to remove the observer when it's no longer needed to avoid leaks
+// For example, in a UIViewController's deinit or when the observing object is deallocated:
+// NotificationCenter.default.removeObserver(AppLifecycleTracker.shared)

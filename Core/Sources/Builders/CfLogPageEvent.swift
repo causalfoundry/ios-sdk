@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CfLogPageEvent.swift
 //
 //
 //  Created by khushbu on 05/10/23.

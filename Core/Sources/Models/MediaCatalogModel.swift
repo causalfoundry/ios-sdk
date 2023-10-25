@@ -8,7 +8,7 @@
 import Foundation
 
 
-public struct MediaCatalogModel:Codable{
+public struct MediaCatalogModel:Codable,Equatable{
     
     let name:String?
     let description:String?
