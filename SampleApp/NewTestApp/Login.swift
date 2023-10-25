@@ -36,9 +36,9 @@ class Login: UIViewController {
                                            zipcode: "08008",
                                            language: LanguageCode.Abkhaz.rawValue,
                                            experience: "4 Years",
-                                           education_level: <#T##String#>,
-                                           organization_id: <#T##String#>,
-                                           organization_name: <#T##String#>)
+                                           education_level: EducationalLevel.bachelors.name,
+                                           organization_id: "1244",
+                                           organization_name: "Causal Foundry")
     }
     
     @IBAction func actionRegister(_ sender: Any) {
