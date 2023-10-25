@@ -30,7 +30,7 @@ private let swizzling: (AnyClass, Selector, Selector) -> () = { forClass, origin
 public class AppLifecycleTracker {
     public static let shared = AppLifecycleTracker()
     
-    private init() {
+    public init() {
         // Register for application lifecycle notifications
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
