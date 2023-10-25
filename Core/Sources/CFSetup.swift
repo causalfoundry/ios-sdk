@@ -16,7 +16,7 @@ class CFSetup:NSObject, IngestProtocol {
     
     private var ingestApiHandler = IngestAPIHandler()
     private var catalogAPIHandler = CatalogAPIHandler()
-    private var userId: String? = nil
+    private var userId: String = ""
     
     
     private func setup(context:UIApplication)   {
@@ -31,20 +31,22 @@ class CFSetup:NSObject, IngestProtocol {
         CoreConstants.shared.sessionStartTime = Int64(Date().timeIntervalSince1970)
         CoreConstants.shared.sessionEndTime = Int64(Date().timeIntervalSince1970)
         
-        // Need to Implement Below Code
-        //        userId = PaperObject.readString(CoreConstants.userIdKey)
-        //                if (!userId.isNullOrEmpty()) {
-        //                    scheduleBackendNudgeListener()
-        //                }
+        
+        userId = CoreDataHelper.shared.fetchUserID()
+        if (!userId.isNilOREmpty()) {
+                scheduleBackendNudgeListener()
+            }
     }
     
-    func initalize(application: UIApplication, event: UIApplication.State, pauseSDK: Bool, autoShowInAppNudge: Bool, updateImmediately: Bool) {
-        CoreConstants.shared.application = application
+    func initalize(event: UIApplication.State, pauseSDK: Bool, autoShowInAppNudge: Bool, updateImmediately: Bool) {
         CoreConstants.shared.isAppDebuggable = true
         CoreConstants.shared.updateImmediately = updateImmediately
         CoreConstants.shared.pauseSDK = pauseSDK
         CoreConstants.shared.autoShowInAppNudge = autoShowInAppNudge
-        self.setup(context:application)
+        if let application = CoreConstants.shared.application {
+            self.setup(context:application)
+        }
+        
     }
     
     

@@ -6,15 +6,15 @@ import UIKit
 
 public class CFLog {
     
-     var application: UIApplication?
+     
      var applicationState: UIApplication.State?
      var showInAppBudge:Bool = true
      var updateImmediately :Bool = true
      var pauseSDK : Bool =  false
     
-    
-    init(application: UIApplication? = nil, applicationState: UIApplication.State? = nil, showInAppBudge: Bool, updateImmediately: Bool, pauseSDK: Bool) {
-        self.application = application
+
+    init(applicationState: UIApplication.State? = nil, showInAppBudge: Bool, updateImmediately: Bool, pauseSDK: Bool) {
+        
         self.applicationState = applicationState
         self.showInAppBudge = showInAppBudge
         self.updateImmediately = updateImmediately
@@ -30,15 +30,6 @@ public class CFLogBuilder {
     var updateImmediately :Bool = true
     var pauseSDK : Bool =  false
     
-    
-    /**
-     * Passing the application Object to SDK for initialising listeners
-     //         */
-    
-    public init(application: UIApplication){
-        self.application = application
-        
-    }
     
     /**
      * Passing the lifecycle event variable to SDK to log app open and resume events
@@ -219,7 +210,7 @@ public class CFLogBuilder {
             ExceptionManager.throwInitException(eventType: "CFLog")
             fatalError("Application state object not found")
         }
-        CFSetup().initalize(application: self.application!, event: self.applicationState!, pauseSDK: pauseSDK, autoShowInAppNudge: showInAppBudge, updateImmediately: updateImmediately)
+        CFSetup().initalize(event: self.applicationState!, pauseSDK: pauseSDK, autoShowInAppNudge: showInAppBudge, updateImmediately: updateImmediately)
     }
     
     

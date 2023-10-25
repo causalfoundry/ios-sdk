@@ -20,6 +20,7 @@ public class CausualFoundry {
     
 @discardableResult
     public func configure() -> CausualFoundry {
+        CoreConstants.shared.application = self.appplication
         // Register for application lifecycle notifications
         NotificationCenter.default.addObserver(self, selector: #selector(appDidFinishLaunching), name: UIApplication.didFinishLaunchingNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -36,30 +37,25 @@ public class CausualFoundry {
     
     
     @objc func appDidFinishLaunching() {
-        CFLogBuilder(application: self.appplication!)
-            .setAppLevelContentBlock(contentBlock:.core)
-            .setSdkKey(sdkKey:"")
-            .disableAutoPageTrack()
-            .setAppLevelContentBlock(contentBlock: ContentBlock.core)
-            .build()
+        
     }
 
     @objc func appDidEnterBackground() {
-        CFLogBuilder(application: self.appplication!)
-            .setAppLevelContentBlock(contentBlock:.core)
-            .setLifecycleEvent(event:.background)
-            .build()
+        CFLogAppEventBuilder().setAppEvent(appAction:.background)
+                              .setStartTime(start_time: 123)
+                             
+       
     }
     
     @objc func appWillEnterForeground() {
-        CFLogBuilder(application: self.appplication!)
+        CFLogBuilder()
             .setAppLevelContentBlock(contentBlock:.core)
             .setLifecycleEvent(event:.active)
             .build()
     }
     
     @objc func appWillTerminate() {
-        CFLogBuilder(application: self.appplication!)
+        CFLogBuilder()
             .setAppLevelContentBlock(contentBlock:.core)
             .setLifecycleEvent(event:.inactive)
             .build()
