@@ -6,16 +6,13 @@ import UIKit
 
 public class CFLog {
     
-     var applicationState: UIApplication.State?
-     var showInAppBudge:Bool = true
-     var updateImmediately :Bool = true
-     var pauseSDK : Bool =  false
+    var applicationState: UIApplication.State?
+    var showInAppBudge:Bool = true
+    var updateImmediately :Bool = true
+    var pauseSDK : Bool =  false
     
     
-    public init() {
-        
-    }
-
+    
     init(applicationState: UIApplication.State? = nil, showInAppBudge: Bool, updateImmediately: Bool, pauseSDK: Bool) {
         
         self.applicationState = applicationState
@@ -23,9 +20,9 @@ public class CFLog {
         self.updateImmediately = updateImmediately
         self.pauseSDK = pauseSDK
     }
-   
-}
     
+}
+
 public class CFLogBuilder {
     var application: UIApplication?
     var applicationState: UIApplication.State?
@@ -34,11 +31,16 @@ public class CFLogBuilder {
     var pauseSDK : Bool =  false
     
     
+    public init() {
+        
+    }
+    
+    
     /**
      * Passing the lifecycle event variable to SDK to log app open and resume events
      * automatically and manage app lifecycle components required by SDK to operate
      */
-    
+    @discardableResult
     public func setLifecycleEvent(event: UIApplication.State) -> CFLogBuilder {
         self.applicationState = event
         return self
@@ -50,6 +52,7 @@ public class CFLogBuilder {
      * for the nudges but FCM based nudges will still work base on the device token status.
      * DEFAULT value is FALSE
      */
+    @discardableResult
     public func setPauseSDK(pauseSDK: Bool)-> CFLogBuilder {
         self.pauseSDK = pauseSDK
         return self
@@ -60,6 +63,7 @@ public class CFLogBuilder {
      * the API key from info.plist or using this endpoint. SDK key can be obtained from
      * the CF platform.
      */
+    @discardableResult
     public func setSdkKey(sdkKey: String) -> CFLogBuilder {
         CoreConstants.shared.sdkKey = "Bearer \(sdkKey)"
         return self
@@ -72,6 +76,7 @@ public class CFLogBuilder {
      * by default.
      */
     
+    @discardableResult
     public func disableDebugMode() -> CFLogBuilder {
         CoreConstants.shared.isDebugMode = false
         return self
@@ -82,6 +87,7 @@ public class CFLogBuilder {
      * event at your own based on your navigation graph pr page/activity change logic.
      * Auto Page Track mode is enabled by default.
      */
+    @discardableResult
     public func disableAutoPageTrack() -> CFLogBuilder {
         CoreConstants.shared.allowAutoPageTrack = false
         return self
@@ -92,6 +98,7 @@ public class CFLogBuilder {
      * this flag, will send the events data regardless of the login state of the user.
      * In such cases, the device Id will be used as the userId
      */
+    @discardableResult
     public func allowAnonymousUsers()-> CFLogBuilder  {
         CoreConstants.shared.isAnonymousUserAllowed = true
         return self
@@ -106,6 +113,7 @@ public class CFLogBuilder {
      *
      * NOTE that this will only update for the values in the core block and not for the rest.
      */
+    @discardableResult
     public func setAppLevelContentBlock(contentBlock: ContentBlock) -> CFLogBuilder {
         CoreConstants.shared.contentBlockName = contentBlock.rawValue
         return self
@@ -127,7 +135,7 @@ public class CFLogBuilder {
     //                        ExceptionManager.throwEnumException("CFLog", ContentBlock::class.java.simpleName)
     //                    }
     //                }
-    
+    @discardableResult
     public func setAutoShowInAppNudge(showInAppNudge: Bool) -> CFLogBuilder  {
         self.showInAppBudge = showInAppNudge
         return self
@@ -139,6 +147,7 @@ public class CFLogBuilder {
      * updateImmediately for each event.
      * DEFAULT value is FALSE
      */
+    @discardableResult
     public func updateImmediately(updateImmediately: Bool) -> CFLogBuilder {
         self.updateImmediately = updateImmediately
         return self
@@ -153,6 +162,7 @@ public class CFLogBuilder {
      * `setIngestNotificationTitle` is for setting your own custom title for the
      * notification, by default SDK shows `Backing up events` in LOCALE EN
      */
+    @discardableResult
     public func setIngestNotificationTitle(notificationTitle: String) -> CFLogBuilder  { NotificationConstants.shared.INGEST_NOTIFICATION_TITLE = notificationTitle
         return self
     }
@@ -162,6 +172,7 @@ public class CFLogBuilder {
      * notification, by default SDK shows `Please wait while we are backing
      * up events.` in LOCALE EN
      */
+    @discardableResult
     public  func setIngestNotificationDescription(notificationDescription: String)-> CFLogBuilder {
         NotificationConstants.shared.INGEST_NOTIFICATION_DESCRIPTION = notificationDescription
         return self
@@ -174,6 +185,7 @@ public class CFLogBuilder {
      * notification if the API takes more then 10 seconds as per recommended by google.
      * You can change that to false based on your app configuration but it is not recommended.
      */
+    @discardableResult
     public func setIngestNotificationEnabled(isNotificationEnabled: Bool) -> CFLogBuilder {
         NotificationConstants.shared.INGEST_NOTIFICATION_ENABLED = isNotificationEnabled
         return self
@@ -185,6 +197,7 @@ public class CFLogBuilder {
      * recommended by google but you can change that based on your app configuration.
      * However it is not recommended to do so.
      */
+    @discardableResult
     public func updateIngestNotificationShowInterval(notificationShowInterval: Int64)-> CFLogBuilder {
         NotificationConstants.shared.INGEST_NOTIFICATION_INTERVAL_TIME = notificationShowInterval
         return self
@@ -196,6 +209,7 @@ public class CFLogBuilder {
      * the SDK waits for 5 seconds (5000L). However, you can pass a value as per your app's
      * configuration.
      */
+    @discardableResult
     public func updateInAppMessageInitialDelay(initialDelayInMillis: Int64) -> CFLogBuilder {
         NotificationConstants.shared.IN_APP_MESSAGE_INITIAL_DELAY_IN_MILLIS = initialDelayInMillis
         return self
@@ -205,17 +219,15 @@ public class CFLogBuilder {
      * Using this will validate the endpoints provided and initialise the SDK
      */
     public func build() {
-        while(self.application == nil ) {
+        switch true {
+        case self.application == nil :
             ExceptionManager.throwInitException(eventType: "CFLog")
-            fatalError("Application object not found")
-        }
-        while(self.applicationState == nil ) {
+        case self.applicationState == nil :
             ExceptionManager.throwInitException(eventType: "CFLog")
-            fatalError("Application state object not found")
+        default:
+            CFSetup().initalize(event: self.applicationState!, pauseSDK: pauseSDK, autoShowInAppNudge: showInAppBudge, updateImmediately: updateImmediately)
+            
         }
-        CFSetup().initalize(event: self.applicationState!, pauseSDK: pauseSDK, autoShowInAppNudge: showInAppBudge, updateImmediately: updateImmediately)
+        
     }
-    
-    
-    
 }
