@@ -25,6 +25,20 @@ class Login: UIViewController {
         CfLogIdnetityBuilder().setAppUserId(app_user_id:"sdkTestUserId")
                               .setIdentifyAction(identity_action: .login)
                               .build()
+        
+        
+        var userCatalog = UserCatalogModel(name: "sdkTestUserId",
+                                           country: Countrycode,
+                                           region_state: <#T##String#>,
+                                           city: <#T##String#>,
+                                           workplace: <#T##String#>,
+                                           profession: <#T##String#>,
+                                           zipcode: <#T##String#>,
+                                           language: <#T##String#>,
+                                           experience: <#T##String#>,
+                                           education_level: <#T##String#>,
+                                           organization_id: <#T##String#>,
+                                           organization_name: <#T##String#>)
     }
     
     @IBAction func actionRegister(_ sender: Any) {
