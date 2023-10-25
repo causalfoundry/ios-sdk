@@ -15,12 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         CausualFoundry(appplication: application).configure()
-        
-        CFLogBuilder(application:application)
+        CFLogBuilder()
             .setAppLevelContentBlock(contentBlock:.core)
             .setSdkKey(sdkKey:"cfkey4dxUm8RIJmWmxgY4uakWFXqd1KmNk4Y14uHb0ogvqPpkJiGwEaKge4iGXAg")
             .disableAutoPageTrack()
-            .setAppLevelContentBlock(contentBlock: ContentBlock.core)
+            
             .build()
         
         

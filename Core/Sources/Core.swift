@@ -6,12 +6,15 @@ import UIKit
 
 public class CFLog {
     
-     
      var applicationState: UIApplication.State?
      var showInAppBudge:Bool = true
      var updateImmediately :Bool = true
      var pauseSDK : Bool =  false
     
+    
+    public init() {
+        
+    }
 
     init(applicationState: UIApplication.State? = nil, showInAppBudge: Bool, updateImmediately: Bool, pauseSDK: Bool) {
         
