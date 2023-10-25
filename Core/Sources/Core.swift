@@ -220,8 +220,6 @@ public class CFLogBuilder {
      */
     public func build() {
         switch true {
-        case self.application == nil :
-            ExceptionManager.throwInitException(eventType: "CFLog")
         case self.applicationState == nil :
             ExceptionManager.throwInitException(eventType: "CFLog")
         default:
