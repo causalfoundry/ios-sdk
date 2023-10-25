@@ -50,7 +50,7 @@ public class CfCoreCatalog {
 //            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing:CfCoreCatalog.self))
 //        }
 
-        if CoreConstants.shared.application != nil {
+     //   if CoreConstants.shared.application != nil {
             let userCatalogModelItem: UserCatalogModel? = CoreDataHelper.shared.readUserCatalog()
             if userCatalogModel != userCatalogModelItem {
                 let internalUserModel = InternalUserModel(
@@ -73,6 +73,6 @@ public class CfCoreCatalog {
                 CoreDataHelper.shared.writeUserCatalog(userCataLogData:userCatalogModel)
                 CFSetup().updateCatalogItem(subject: CatalogSubject.user, catalogObject: internalUserModel)
             }
-        }
+      //  }
     }
 }

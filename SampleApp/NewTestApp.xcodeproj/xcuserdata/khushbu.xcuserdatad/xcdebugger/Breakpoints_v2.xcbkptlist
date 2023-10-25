@@ -4791,6 +4791,38 @@
             endingLineNumber = "54"
             landmarkName = "updateUserCatalogData(appUserId:userCatalogModel:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1BAF6237-FFAF-4DC1-B4D0-B65F8D7B71C3 - 73d2b6f3b325c3c7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CasualFoundryCore.CfCoreCatalog.updateUserCatalogData(appUserId: Swift.String, userCatalogModel: CasualFoundryCore.UserCatalogModel) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Catalog/CfCoreCatalog.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "2888">
+               </Location>
+               <Location
+                  uuid = "1BAF6237-FFAF-4DC1-B4D0-B65F8D7B71C3 - 73d2b6f3b325c3c7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CasualFoundryCore.CfCoreCatalog.updateUserCatalogData(appUserId: Swift.String, userCatalogModel: CasualFoundryCore.UserCatalogModel) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Catalog/CfCoreCatalog.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "1415">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4807,6 +4839,38 @@
             endingLineNumber = "73"
             landmarkName = "updateUserCatalogData(appUserId:userCatalogModel:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "23EABECA-CB47-45D6-BB49-06094FC0873B - 73d2b6f3b325c430"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CasualFoundryCore.CfCoreCatalog.updateUserCatalogData(appUserId: Swift.String, userCatalogModel: CasualFoundryCore.UserCatalogModel) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Catalog/CfCoreCatalog.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "4926">
+               </Location>
+               <Location
+                  uuid = "23EABECA-CB47-45D6-BB49-06094FC0873B - 73d2b6f3b325c430"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CasualFoundryCore.CfCoreCatalog.updateUserCatalogData(appUserId: Swift.String, userCatalogModel: CasualFoundryCore.UserCatalogModel) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Catalog/CfCoreCatalog.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "3453">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4823,6 +4887,38 @@
             endingLineNumber = "74"
             landmarkName = "updateUserCatalogData(appUserId:userCatalogModel:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "968351E5-2FF8-461D-BC8F-90BA903321C9 - 73d2b6f3b325c453"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CasualFoundryCore.CfCoreCatalog.updateUserCatalogData(appUserId: Swift.String, userCatalogModel: CasualFoundryCore.UserCatalogModel) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Catalog/CfCoreCatalog.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "4973">
+               </Location>
+               <Location
+                  uuid = "968351E5-2FF8-461D-BC8F-90BA903321C9 - 73d2b6f3b325c453"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CasualFoundryCore.CfCoreCatalog.updateUserCatalogData(appUserId: Swift.String, userCatalogModel: CasualFoundryCore.UserCatalogModel) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Catalog/CfCoreCatalog.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "3500">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4871,6 +4967,38 @@
             endingLineNumber = "39"
             landmarkName = "updateUserCatalogData(appUserId:userCatalogModel:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "37B69316-8C0B-4A21-B41F-581135D3D2B6 - 73d2b6f3b325c1d6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CasualFoundryCore.CfCoreCatalog.updateUserCatalogData(appUserId: Swift.String, userCatalogModel: CasualFoundryCore.UserCatalogModel) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Catalog/CfCoreCatalog.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "1551">
+               </Location>
+               <Location
+                  uuid = "37B69316-8C0B-4A21-B41F-581135D3D2B6 - 73d2b6f3b325c3a4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CasualFoundryCore.CfCoreCatalog.updateUserCatalogData(appUserId: Swift.String, userCatalogModel: CasualFoundryCore.UserCatalogModel) -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Catalog/CfCoreCatalog.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "1210">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
