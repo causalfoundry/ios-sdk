@@ -31,7 +31,7 @@ public class CausualFoundry {
     
     deinit {
         // Unregister for notifications when the instance is deallocated
-        NotificationCenter.default.removeObserver(self)
+       // NotificationCenter.default.removeObserver(self)
     }
     
     
