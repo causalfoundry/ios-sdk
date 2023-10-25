@@ -28,14 +28,14 @@ class Login: UIViewController {
         
         
         var userCatalog = UserCatalogModel(name: "sdkTestUserId",
-                                           country: Countrycode,
-                                           region_state: <#T##String#>,
-                                           city: <#T##String#>,
-                                           workplace: <#T##String#>,
-                                           profession: <#T##String#>,
-                                           zipcode: <#T##String#>,
-                                           language: <#T##String#>,
-                                           experience: <#T##String#>,
+                                           country: CountryCode.Andorra.rawValue,
+                                           region_state: "Barcelona",
+                                           city: "Barcelona",
+                                           workplace: "facility",
+                                           profession: "Medical",
+                                           zipcode: "08008",
+                                           language: LanguageCode.Abkhaz.rawValue,
+                                           experience: "4 Years",
                                            education_level: <#T##String#>,
                                            organization_id: <#T##String#>,
                                            organization_name: <#T##String#>)
