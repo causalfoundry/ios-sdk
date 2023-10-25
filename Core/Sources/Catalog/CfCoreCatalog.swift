@@ -7,13 +7,13 @@
 
 import Foundation
 
-class CfCoreCatalog {
+public class CfCoreCatalog {
 
     //////////////////////////////////////////////////////
     // User Catalog
     //////////////////////////////////////////////////////
 
-    static func updateUserCatalog(appUserId: String, userCatalogModel: String) {
+    public static func updateUserCatalog(appUserId: String, userCatalogModel: String) {
         if let jsonData = userCatalogModel.data(using: .utf8) {
             do {
                 let jsonModel = try JSONDecoder().decode(UserCatalogModel.self, from: jsonData)
@@ -28,7 +28,7 @@ class CfCoreCatalog {
         
     }
 
-    static func updateUserCatalogData(appUserId: String, userCatalogModel: UserCatalogModel) {
+    public static func updateUserCatalogData(appUserId: String, userCatalogModel: UserCatalogModel) {
         let catalogName = "\(CatalogSubject.user.rawValue) catalog"
 
         if appUserId.isEmpty {
