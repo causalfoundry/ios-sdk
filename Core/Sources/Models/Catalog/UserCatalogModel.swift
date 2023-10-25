@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct UserCatalogModel:Codable {
+public struct UserCatalogModel:Codable {
     var name: String
     var country: String
     var region_state: String
@@ -22,7 +22,7 @@ struct UserCatalogModel:Codable {
     var organization_id: String
     var organization_name: String
     
-    init(name: String, country: String, region_state: String, city: String, workplace: String, profession: String, zipcode: String, language: String, experience: String, education_level: String, organization_id: String, organization_name: String) {
+    public init(name: String, country: String, region_state: String, city: String, workplace: String, profession: String, zipcode: String, language: String, experience: String, education_level: String, organization_id: String, organization_name: String) {
         self.name = name
         self.country = country
         self.region_state = region_state
