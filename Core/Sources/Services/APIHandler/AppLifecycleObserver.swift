@@ -18,7 +18,7 @@ public class CausualFoundry {
         self.appplication = appplication
     }
     
-    
+@discardableResult
     public func configure() -> CausualFoundry {
         // Register for application lifecycle notifications
         NotificationCenter.default.addObserver(self, selector: #selector(appDidFinishLaunching), name: UIApplication.didFinishLaunchingNotification, object: nil)
