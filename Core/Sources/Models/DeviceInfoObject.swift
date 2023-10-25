@@ -50,7 +50,6 @@ extension DInfo {
             osVer: osVer ?? self.osVer
         )
     }
-
     func jsonData() throws -> Data {
         return try newJSONEncoder().encode(self)
     }

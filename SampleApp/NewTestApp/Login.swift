@@ -40,7 +40,7 @@ class Login: UIViewController {
                                            organization_id: "1244",
                                            organization_name: "Causal Foundry")
         
-        CfCoreCatalog.updateUserCatalog(appUserId = Common.testUserId, userCatalogModel)
+        CfCoreCatalog.updateUserCatalogData(appUserId:"sdkTestUserId", userCatalogModel: userCatalog)
     }
     
     @IBAction func actionRegister(_ sender: Any) {
