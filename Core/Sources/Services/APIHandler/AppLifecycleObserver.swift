@@ -18,47 +18,45 @@ public class CausualFoundry {
         self.appplication = appplication
     }
     
-@discardableResult
-    public func configure()  {
-        CoreConstants.shared.application = self.appplication
+    
+    public static func configure() {
         // Register for application lifecycle notifications
         NotificationCenter.default.addObserver(self, selector: #selector(appDidFinishLaunching), name: UIApplication.didFinishLaunchingNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
-        
     }
     
     deinit {
         // Unregister for notifications when the instance is deallocated
-       // NotificationCenter.default.removeObserver(self)
-    }
-    
-    
-    
-    @objc func appDidFinishLaunching() {
-        
-    }
-
-    @objc func appDidEnterBackground() {
-        CFLogAppEventBuilder().setAppEvent(appAction:.background)
-                              .setStartTime(start_time: 123)
-                             
-       
+        NotificationCenter.default.removeObserver(self)
     }
     
     @objc func appWillEnterForeground() {
-        CFLogBuilder()
-            .setAppLevelContentBlock(contentBlock:.core)
-            .setLifecycleEvent(event:.active)
-            .build()
+        CFLogAppEventBuilder().setAppEvent(appAction:.resume)
+    }
+    
+    @objc func appDidFinishLaunching() {
+        CFLogAppEventBuilder().setAppEvent(appAction:.open)
+    }
+    
+    @objc func appDidBecomeActive() {
+        
+    }
+    
+    @objc func appWillResignActive() {
+        
+        
+    }
+    
+    @objc func appDidEnterBackground() {
+        CFLogAppEventBuilder().setAppEvent(appAction:.background)
     }
     
     @objc func appWillTerminate() {
-        CFLogBuilder()
-            .setAppLevelContentBlock(contentBlock:.core)
-            .setLifecycleEvent(event:.inactive)
-            .build()
+        CFLogAppEventBuilder().setAppEvent(appAction:.close)
     }
 }
 
