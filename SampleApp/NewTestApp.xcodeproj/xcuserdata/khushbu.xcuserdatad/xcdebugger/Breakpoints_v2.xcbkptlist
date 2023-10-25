@@ -4253,99 +4253,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E6B4037B-589C-47EA-AF53-B402E6288EC1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Services/APIHandler/AppLifecycleObserver.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "CausulFoundry"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "E6B4037B-589C-47EA-AF53-B402E6288EC1 - f888ee50e7b55f3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CasualFoundryCore.CausulFoundry.lifecycleObservers.getter : Swift.Array&lt;CasualFoundryCore.AppLifecycleObserver&gt;"
-                  moduleName = "NewTestApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Services/APIHandler/AppLifecycleObserver.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  uuid = "E6B4037B-589C-47EA-AF53-B402E6288EC1 - 7dd449b194a4b7ca"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CasualFoundryCore.CausulFoundry.lifecycleObservers.setter : Swift.Array&lt;CasualFoundryCore.AppLifecycleObserver&gt;"
-                  moduleName = "NewTestApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Services/APIHandler/AppLifecycleObserver.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "E6B4037B-589C-47EA-AF53-B402E6288EC1 - 130801e32da35adb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CasualFoundryCore.CausulFoundry.lifecycleObservers.modify : Swift.Array&lt;CasualFoundryCore.AppLifecycleObserver&gt;"
-                  moduleName = "NewTestApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Services/APIHandler/AppLifecycleObserver.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "E6B4037B-589C-47EA-AF53-B402E6288EC1 - 55c88e70fcc7f74b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CasualFoundryCore.CausulFoundry.lifecycleObservers.modify : Swift.Array&lt;CasualFoundryCore.AppLifecycleObserver&gt; with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "NewTestApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/%3Ccompiler-generated%3E"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "15">
-               </Location>
-               <Location
-                  uuid = "E6B4037B-589C-47EA-AF53-B402E6288EC1 - 8ee25badd05f4a0b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CasualFoundryCore.CausulFoundry.init() -&gt; CasualFoundryCore.CausulFoundry"
-                  moduleName = "NewTestApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Services/APIHandler/AppLifecycleObserver.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "40">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "9BED49A3-A432-4EEE-95ED-39356A1E7C50"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -4355,7 +4262,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "58"
             endingLineNumber = "58"
-            landmarkName = "appDidFinishLaunching()"
+            landmarkName = "appWillResignActive()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -4451,7 +4358,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "69"
             endingLineNumber = "69"
-            landmarkName = "appDidBecomeActive()"
+            landmarkName = "appWillTerminate()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -4467,8 +4374,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
             endingLineNumber = "76"
-            landmarkName = "appWillResignActive()"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
             <Locations>
                <Location
                   uuid = "281E7B00-49D4-438B-A2A9-195BBEFA084E - c76f5726cb000d29"
@@ -4514,9 +4421,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "appWillTerminate()"
-            landmarkType = "7">
+            endingLineNumber = "82">
             <Locations>
                <Location
                   uuid = "D8D8F539-9EB3-48A1-90B7-1A6DFB592E4F - 7afb74f4ce49b37d"
@@ -4562,9 +4467,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "appWillEnterForeground()"
-            landmarkType = "7">
+            endingLineNumber = "88">
             <Locations>
                <Location
                   uuid = "4BB47A30-8793-4217-BA4F-1F87D4C5A8F9 - 1951ac9f0df5e0cd"

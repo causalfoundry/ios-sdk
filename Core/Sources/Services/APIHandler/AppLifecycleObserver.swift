@@ -28,7 +28,7 @@ private let swizzling: (AnyClass, Selector, Selector) -> () = { forClass, origin
 
 
 public class AppLifecycleTracker {
-    static let shared = AppLifecycleTracker()
+    public static let shared = AppLifecycleTracker()
     
     private init() {
         // Register for application lifecycle notifications
