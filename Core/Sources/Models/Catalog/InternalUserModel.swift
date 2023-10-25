@@ -1,14 +1,15 @@
 //
-//  File.swift
-//  
+//  InternalUserModel.swift
 //
-//  Created by khushbu on 19/10/23.
+//
+//  Created by khushbu on 25/10/23.
 //
 
 import Foundation
 
 
-public struct UserCatalogModel:Codable,Equatable {
+struct InternalUserModel: Codable {
+    var id: String
     var name: String
     var country: String
     var region_state: String
@@ -19,10 +20,12 @@ public struct UserCatalogModel:Codable,Equatable {
     var language: String
     var experience: String
     var education_level: String
+    var timezone: String
     var organization_id: String
     var organization_name: String
     
-    public init(name: String, country: String, region_state: String, city: String, workplace: String, profession: String, zipcode: String, language: String, experience: String, education_level: String, organization_id: String, organization_name: String) {
+    init(id: String, name: String, country: String, region_state: String, city: String, workplace: String, profession: String, zipcode: String, language: String, experience: String, education_level: String, timezone: String, organization_id: String, organization_name: String) {
+        self.id = id
         self.name = name
         self.country = country
         self.region_state = region_state
@@ -33,6 +36,7 @@ public struct UserCatalogModel:Codable,Equatable {
         self.language = language
         self.experience = experience
         self.education_level = education_level
+        self.timezone = timezone
         self.organization_id = organization_id
         self.organization_name = organization_name
     }

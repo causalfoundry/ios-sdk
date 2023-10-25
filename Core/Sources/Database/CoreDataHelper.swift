@@ -316,62 +316,60 @@ extension CoreDataHelper {
         return ""
     }
     
-    func readUserCatalog() -> [UserCatalogModel] {
-        var userCataLogItems = [UserCatalogModel]()
+    func readUserCatalog() -> UserCatalogModel? {
+        var userCataLogItem:UserCatalogModel?
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.userCatalog.rawValue)
         do {
-            let items = try context.fetch(fetchRequest)
-            if items.count > 0 {
-                userCataLogItems =  items.map({ (userData) in
-                  return UserCatalogModel(name: userData.value(forKey:"name") as? String ?? "",
-                                          country: userData.value(forKey:"country") as? String ?? "",
-                                          region_state: userData.value(forKey:"region_state") as? String ?? "",
-                                          city: userData.value(forKey:"city") as? String ?? "",
-                                          workplace: userData.value(forKey:"workplace") as? String ?? "",
-                                          profession: userData.value(forKey:"profession") as? String ?? "",
-                                          zipcode: userData.value(forKey:"zipcode") as? String ?? "",
-                                          language: userData.value(forKey:"language") as? String ?? "",
-                                          experience: userData.value(forKey:"experience") as? String ?? "",
-                                          education_level: userData.value(forKey:"education_level") as? String ?? "",
-                                          organization_id: userData.value(forKey:"organization_id") as? String ?? "",
-                                          organization_name: userData.value(forKey:"organization_name") as? String ?? "")
-                    
-                })
+            let resultData = try context.fetch(fetchRequest)
+            if resultData.count > 0 {
+                let userData = resultData.first
+                userCataLogItem =  UserCatalogModel(name: userData?.value(forKey:"name") as? String ?? "",
+                                                    country: userData?.value(forKey:"country") as? String ?? "",
+                                                    region_state: userData?.value(forKey:"region_state") as? String ?? "",
+                                                    city: userData?.value(forKey:"city") as? String ?? "",
+                                                    workplace: userData?.value(forKey:"workplace") as? String ?? "",
+                                                    profession: userData?.value(forKey:"profession") as? String ?? "",
+                                                    zipcode: userData?.value(forKey:"zipcode") as? String ?? "",
+                                                    language: userData?.value(forKey:"language") as? String ?? "",
+                                                    experience: userData?.value(forKey:"experience") as? String ?? "",
+                                                    education_level: userData?.value(forKey:"education_level") as? String ?? "",
+                                                    organization_id: userData?.value(forKey:"organization_id") as? String ?? "",
+                                                    organization_name: userData?.value(forKey:"organization_name") as? String ?? "")
                 
-            }else{
-                userCataLogItems = (items as? [UserCatalogModel])!
+                
+                
             }
+            
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
             
         }
-        return userCataLogItems
+        return  nil
     }
     
     
-    func writeUserCatalog(catalogArray:[UserCatalogModel])  {
+    func writeUserCatalog(userCataLogData:UserCatalogModel)  {
         let managedContext = context
         
         let existingEntity = NSEntityDescription.entity(forEntityName: TableName.userCatalog.rawValue, in: managedContext)
         let managedObject = NSManagedObject(entity: existingEntity!, insertInto: managedContext)
-        for exceptionDataObject in catalogArray {
-            
+       
             // Set properties of the Core Data entity based on ExceptionDataObject properties
-            managedObject.setValue(exceptionDataObject.name, forKey: "name")
-            managedObject.setValue(exceptionDataObject.country, forKey: "country")
-            managedObject.setValue(exceptionDataObject.region_state, forKey: "region_state")
-            managedObject.setValue(exceptionDataObject.city, forKey: "city")
-            managedObject.setValue(exceptionDataObject.workplace, forKey: "workplace")
-            managedObject.setValue(exceptionDataObject.profession, forKey: "profession")
-            managedObject.setValue(exceptionDataObject.zipcode, forKey: "zipcode")
-            managedObject.setValue(exceptionDataObject.language, forKey: "language")
-            managedObject.setValue(exceptionDataObject.experience, forKey: "experience")
-            managedObject.setValue(exceptionDataObject.education_level, forKey: "education_level")
-            managedObject.setValue(exceptionDataObject.organization_id, forKey: "organization_id")
-            managedObject.setValue(exceptionDataObject.organization_name, forKey: "organization_name")
+            managedObject.setValue(userCataLogData.name, forKey: "name")
+            managedObject.setValue(userCataLogData.country, forKey: "country")
+            managedObject.setValue(userCataLogData.region_state, forKey: "region_state")
+            managedObject.setValue(userCataLogData.city, forKey: "city")
+            managedObject.setValue(userCataLogData.workplace, forKey: "workplace")
+            managedObject.setValue(userCataLogData.profession, forKey: "profession")
+            managedObject.setValue(userCataLogData.zipcode, forKey: "zipcode")
+            managedObject.setValue(userCataLogData.language, forKey: "language")
+            managedObject.setValue(userCataLogData.experience, forKey: "experience")
+            managedObject.setValue(userCataLogData.education_level, forKey: "education_level")
+            managedObject.setValue(userCataLogData.organization_id, forKey: "organization_id")
+            managedObject.setValue(userCataLogData.organization_name, forKey: "organization_name")
             
             // Add additional properties as needed
-        }
+        
         do {
             try managedContext.save()
         } catch let error as NSError {

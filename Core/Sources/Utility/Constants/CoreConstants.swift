@@ -79,4 +79,11 @@ extension CoreConstants {
             return
         }
     }
+    
+    func getUserTimeZone() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "Z"
+        return dateFormatter.string(from: Date())
+    }
+
 }
