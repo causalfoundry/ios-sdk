@@ -14,41 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        _ =  AppLifecycleTracker.shared
+        
+        CasualFoundry.configure()
+        
         
         return true
     }
-
-
-    
-    func appDidFinishLaunching() {
-        
-    }
-    
-    func appDidEnterBackground() {
-        
-    }
-    
-    func appDidBecomeActive() {
-        
-    }
-    
-    func appWillResignActive() {
-        
-    }
-    
-    func appWillTerminate() {
-        
-    }
-    
-    func appWillEnterForeground() {
-        
-    }
-    
-    
-    
-
-
-
 }
 
