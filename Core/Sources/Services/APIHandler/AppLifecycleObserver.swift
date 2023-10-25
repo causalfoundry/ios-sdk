@@ -19,7 +19,9 @@ public class CausualFoundry {
     }
     
     
-    public static func configure() {
+    
+    
+    public func configure() -> CausualFoundry {
         // Register for application lifecycle notifications
         NotificationCenter.default.addObserver(self, selector: #selector(appDidFinishLaunching), name: UIApplication.didFinishLaunchingNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -27,6 +29,7 @@ public class CausualFoundry {
         NotificationCenter.default.addObserver(self, selector: #selector(appWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
+        return self
     }
     
     deinit {
@@ -36,6 +39,8 @@ public class CausualFoundry {
     
     @objc func appWillEnterForeground() {
         CFLogAppEventBuilder().setAppEvent(appAction:.resume)
+            .setStartTime(start_time: 1000)
+                                .build()
     }
     
     @objc func appDidFinishLaunching() {

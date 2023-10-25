@@ -4273,9 +4273,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            endingLineNumber = "69">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4665,8 +4663,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
             endingLineNumber = "49"
-            landmarkName = "CausualFoundry"
-            landmarkType = "3">
+            landmarkName = "appWillResignActive()"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "AE717706-D5C2-4447-8577-4617C08038F7 - d20e3b646e030f47"
@@ -4728,7 +4726,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "54"
             endingLineNumber = "54"
-            landmarkName = "appWillEnterForeground()"
+            landmarkName = "appDidEnterBackground()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -5286,8 +5284,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
             endingLineNumber = "44"
-            landmarkName = "appDidEnterBackground()"
-            landmarkType = "7">
+            landmarkName = "CausualFoundry"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -5302,7 +5300,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
             endingLineNumber = "39"
-            landmarkName = "appDidFinishLaunching()"
+            landmarkName = "appWillEnterForeground()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -5366,7 +5364,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
             endingLineNumber = "43"
-            landmarkName = "appDidEnterBackground()"
+            landmarkName = "appDidFinishLaunching()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
