@@ -14,8 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let cs = CausualFoundry(appplication: application)
-        CausualFoundry
+        CausualFoundry(appplication: application).configure()
+        
         CFLogBuilder().setAppLevelContentBlock(contentBlock:.core)
             .updateImmediately(updateImmediately:true)
             .setLifecycleEvent(event: .active)

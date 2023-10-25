@@ -18,9 +18,6 @@ public class CausualFoundry {
         self.appplication = appplication
     }
     
-    
-    
-    
     public func configure() -> CausualFoundry {
         // Register for application lifecycle notifications
         NotificationCenter.default.addObserver(self, selector: #selector(appDidFinishLaunching), name: UIApplication.didFinishLaunchingNotification, object: nil)
@@ -34,7 +31,7 @@ public class CausualFoundry {
     
     deinit {
         // Unregister for notifications when the instance is deallocated
-        NotificationCenter.default.removeObserver(self)
+       // NotificationCenter.default.removeObserver(self)
     }
     
     @objc func appWillEnterForeground() {
