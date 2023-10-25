@@ -1329,7 +1329,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "153"
             endingLineNumber = "153"
-            landmarkName = "saveContext()"
+            landmarkName = "createManagedObjectModel()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -1452,7 +1452,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "179"
             endingLineNumber = "179"
-            landmarkName = "getStoredExceptionsData()"
+            landmarkName = "saveManagedObjectModelToFile(model:filePath:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -1590,7 +1590,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "167"
             endingLineNumber = "167"
-            landmarkName = "getStoredExceptionsData()"
+            landmarkName = "createManagedObjectModel()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -1683,8 +1683,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "142"
             endingLineNumber = "142"
-            landmarkName = "CoreDataHelper"
-            landmarkType = "3">
+            landmarkName = "createManagedObjectModel()"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "BE5F93CE-B861-4C5D-8A2A-3EF6CDB2C313 - 3aa4cd1828a04f6c"
@@ -1746,8 +1746,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "155"
             endingLineNumber = "155"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "createManagedObjectModel()"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "7DF8DB07-1CCC-4A62-8CFD-A0794CF1CC26 - 3aa4cd1828a04e91"
@@ -1809,7 +1809,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "178"
             endingLineNumber = "178"
-            landmarkName = "getStoredExceptionsData()"
+            landmarkName = "saveManagedObjectModelToFile(model:filePath:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -4103,8 +4103,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "58"
             endingLineNumber = "58"
-            landmarkName = "CausualFoundry"
-            landmarkType = "3">
+            landmarkName = "appDidEnterBackground()"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "9BED49A3-A432-4EEE-95ED-39356A1E7C50 - 506aa82eb8fcdc4a"
@@ -4196,6 +4196,21 @@
                   endingLineNumber = "59"
                   offsetFromSymbolStart = "22">
                </Location>
+               <Location
+                  uuid = "9BED49A3-A432-4EEE-95ED-39356A1E7C50 - eca074f1a4d364b0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CausualFoundry.appDidEnterBackground() -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Services/APIHandler/AppLifecycleObserver.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "89">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -4211,8 +4226,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
             endingLineNumber = "64"
-            landmarkName = "appWillTerminate()"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
             <Locations>
                <Location
                   uuid = "C2508FE6-1B2C-47A8-A056-E4E179BB3323 - 43e5db5ff538c10"
@@ -4695,8 +4710,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
             endingLineNumber = "49"
-            landmarkName = "CausualFoundry"
-            landmarkType = "3">
+            landmarkName = "appDidBecomeActive()"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "AE717706-D5C2-4447-8577-4617C08038F7 - d20e3b646e030f47"
@@ -4757,6 +4772,21 @@
                   startingLineNumber = "50"
                   endingLineNumber = "50"
                   offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "AE717706-D5C2-4447-8577-4617C08038F7 - e5992b5fc21ca069"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CausualFoundry.appDidBecomeActive() -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Services/APIHandler/AppLifecycleObserver.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "33">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -4835,6 +4865,21 @@
                   startingLineNumber = "54"
                   endingLineNumber = "54"
                   offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "8A9F84FA-F853-41A3-B63D-4D15B885E3AB - e1bc5551dc823a99"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CausualFoundry.appWillResignActive() -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Services/APIHandler/AppLifecycleObserver.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "33">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -5346,7 +5391,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
             endingLineNumber = "44"
-            landmarkName = "appWillEnterForeground()"
+            landmarkName = "appDidFinishLaunching()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -5379,6 +5424,21 @@
                   endingLineNumber = "44"
                   offsetFromSymbolStart = "148">
                </Location>
+               <Location
+                  uuid = "F8BF5A76-2025-4F92-90B9-FAA5EFF808A4 - 7f9fc0d2fe7db866"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CausualFoundry.appDidFinishLaunching() -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Services/APIHandler/AppLifecycleObserver.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "46">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -5394,8 +5454,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
             endingLineNumber = "39"
-            landmarkName = "CausualFoundry"
-            landmarkType = "3">
+            landmarkName = "appWillEnterForeground()"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "63956E04-C3F2-4CDC-80B9-3A7F3285137A - 7f9fc0d2fe7db939"
@@ -5426,6 +5486,21 @@
                   startingLineNumber = "40"
                   endingLineNumber = "40"
                   offsetFromSymbolStart = "22">
+               </Location>
+               <Location
+                  uuid = "63956E04-C3F2-4CDC-80B9-3A7F3285137A - dac19b754f6d35d0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CausualFoundry.appWillEnterForeground() -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Services/APIHandler/AppLifecycleObserver.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "97">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -5490,7 +5565,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
             endingLineNumber = "43"
-            landmarkName = "appWillEnterForeground()"
+            landmarkName = "appDidFinishLaunching()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -5523,7 +5598,54 @@
                   endingLineNumber = "43"
                   offsetFromSymbolStart = "131">
                </Location>
+               <Location
+                  uuid = "42510C24-FA3D-4B82-82D2-929E3A812433 - 7f9fc0d2fe7db845"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CausualFoundry.appDidFinishLaunching() -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Services/APIHandler/AppLifecycleObserver.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "22">
+               </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "528A03B6-E239-49FC-8E18-CFB3E5B96187"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Services/APIHandler/AppLifecycleObserver.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "appWillEnterForeground()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "212EF7DE-9F50-40C9-BA4A-916ACC72431F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Services/APIHandler/AppLifecycleObserver.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "configure()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
