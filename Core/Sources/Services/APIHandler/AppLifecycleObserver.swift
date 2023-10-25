@@ -16,6 +16,7 @@ public class CausualFoundry {
     
     public init(appplication: UIApplication? = nil) {
         self.appplication = appplication
+        CoreConstants.shared.application = self.appplication
         NotificationCenter.default.addObserver(self, selector: #selector(appDidFinishLaunching), name: UIApplication.didFinishLaunchingNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
