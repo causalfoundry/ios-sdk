@@ -7,6 +7,7 @@
 
 import UIKit
 import CasualFoundryCore
+import CHWManagement
 
 class Login: UIViewController {
     
@@ -17,6 +18,7 @@ class Login: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.testCoreEvents()
+        self.testCHW_ManagementEvents()
         // Do any additional setup after loading the view.
     }
     
@@ -107,6 +109,13 @@ class Login: UIViewController {
             
 
         
+    }
+    
+    
+    func testCHW_ManagementEvents () {
+        CfLogChwModuleEvent.Builder()
+                   .setChwModuleEvent(ChwModuleType.screening)
+                   .build()
     }
 }
 

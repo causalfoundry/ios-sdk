@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CasualFoundryCore
+import  CasualFoundryCore
 
 
 public class CfLogChwModuleEvent {
