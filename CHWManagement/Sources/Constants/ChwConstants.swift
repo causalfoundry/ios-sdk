@@ -44,8 +44,7 @@ enum ChwConstants {
             role: chwCatalogModel.role,
             rolePermissions: chwCatalogModel.rolePermissions,
             siteIdsList: chwCatalogModel.siteIdsList,
-            servicesList:chwCatalogModel.servicesList,
-           
+            servicesList:chwCatalogModel.servicesList
         )
     }
 
@@ -66,12 +65,12 @@ enum ChwConstants {
             id: siteId,
             name: chwSiteCatalogModel.name,
             country: chwSiteCatalogModel.country,
-            region_state: chwSiteCatalogModel.regionState,
+            regionState: chwSiteCatalogModel.regionState,
             city: chwSiteCatalogModel.city,
             zipcode: chwSiteCatalogModel.zipcode,
             level: chwSiteCatalogModel.level,
             category: chwSiteCatalogModel.category,
-            is_active: chwSiteCatalogModel.isActive,
+            isActive: chwSiteCatalogModel.isActive,
             address: chwSiteCatalogModel.address,
             addresstype: chwSiteCatalogModel.addressType,
             latitude: chwSiteCatalogModel.latitude,
