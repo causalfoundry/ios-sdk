@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C45DCA8F2AEAA42C00509892 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = C45DCA8E2AEAA42C00509892 /* Core */; };
 		C4A8BD9C2AC7758F00BA1323 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A8BD9B2AC7758F00BA1323 /* AppDelegate.swift */; };
 		C4A8BDA02AC7758F00BA1323 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A8BD9F2AC7758F00BA1323 /* Login.swift */; };
 		C4A8BDA32AC7758F00BA1323 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4A8BDA12AC7758F00BA1323 /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C45DCA8F2AEAA42C00509892 /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +151,7 @@
 			);
 			name = NewTestApp;
 			packageProductDependencies = (
+				C45DCA8E2AEAA42C00509892 /* Core */,
 			);
 			productName = NewTestApp;
 			productReference = C4A8BD982AC7758F00BA1323 /* NewTestApp.app */;
@@ -223,6 +226,7 @@
 			);
 			mainGroup = C4A8BD8F2AC7758F00BA1323;
 			packageReferences = (
+				C45DCA8D2AEAA42C00509892 /* XCRemoteSwiftPackageReference "ios-sdk" */,
 			);
 			productRefGroup = C4A8BD992AC7758F00BA1323 /* Products */;
 			projectDirPath = "";
@@ -615,6 +619,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C45DCA8D2AEAA42C00509892 /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/causalfoundry/ios-sdk.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C45DCA8E2AEAA42C00509892 /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C45DCA8D2AEAA42C00509892 /* XCRemoteSwiftPackageReference "ios-sdk" */;
+			productName = Core;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C4A8BD902AC7758F00BA1323 /* Project object */;
 }
