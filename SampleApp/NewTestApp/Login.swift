@@ -25,7 +25,7 @@ class Login: UIViewController {
         CfLogIdnetityBuilder().setAppUserId(app_user_id:"sdkTestUserId")
                               .setIdentifyAction(identity_action: .login)
                               .build()
-        var userCatalog = UserCatalogModel(name: "sdkTestUserId",
+        let userCatalog = UserCatalogModel(name: "sdkTestUserId",
                                            country: CountryCode.Andorra.rawValue,
                                            region_state: "Barcelona",
                                            city: "Barcelona",

@@ -12,11 +12,10 @@ import UIKit
 
 public class CausualFoundry {
     
-    private var appplication:UIApplication?
+    public static let shared = CausualFoundry()
     
-    public init(appplication: UIApplication? = nil) {
-        self.appplication = appplication
-        CoreConstants.shared.application = self.appplication
+    public init() {
+       
         NotificationCenter.default.addObserver(self, selector: #selector(appDidFinishLaunching), name: UIApplication.didFinishLaunchingNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
@@ -27,7 +26,7 @@ public class CausualFoundry {
     
     deinit {
         // Unregister for notifications when the instance is deallocated
-       // NotificationCenter.default.removeObserver(self)
+       NotificationCenter.default.removeObserver(self)
     }
     
     @objc func appWillEnterForeground() {
