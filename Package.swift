@@ -14,23 +14,27 @@ let package = Package(
         .library(
             name: "CHWManagement",
             targets: ["CHWManagement"])
-       
+        
     ],
-   targets: [
+    targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "CasualFoundryCore",
             path: "Core/Sources"
-           ),
+        ),
         .target(
             name: "CHWManagement",
             dependencies:["CasualFoundryCore"], path: "CHWManagement/Sources"
             
         ),
         .testTarget(
-        name: "CoreTests",
-        dependencies: ["CasualFoundryCore"],
-        path: "Core/Tests"
-        )]
+            name: "CoreTests",
+            dependencies: ["CasualFoundryCore"],
+            path: "Core/Tests"),
+        .testTarget(
+            name: "CHWManagementTests",
+            dependencies: ["CHWManagement"],
+            path: "CHWManagement/Tests")
+    ]
 )

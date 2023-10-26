@@ -23,8 +23,9 @@ class MainVC: UIViewController {
     
     
     func testCHW_ManagementEvents () {
-        CfLogChwModuleEventBuilder().setChwModuleEvent(.assessment)
+        CfLogChwModuleEventBuilder().setChwModuleEvent(.enrolment)
                                     .updateImmediately(true)
+                                    .setMeta("Test")
                                     .build()
     }
     
