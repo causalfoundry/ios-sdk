@@ -58,7 +58,7 @@ public class CfLogChwModuleEvent {
                     ChwMgmtEventType.module_selection.rawValue,
                     "ChwModuleType"
                 )
-                /Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models            }
+                         }
             return self
         }
         
@@ -81,7 +81,7 @@ public class CfLogChwModuleEvent {
          * session which is whenever the app goes into background.
          */
         @discardableResult
-        public   func updateImmediately(_ updateImmediately: Bool) -> CfLogChwModuleEventBuilder {
+        public func updateImmediately(_ updateImmediately: Bool) -> CfLogChwModuleEventBuilder {
             self.updateImmediately = updateImmediately
             return self
         }
@@ -115,5 +115,5 @@ public class CfLogChwModuleEvent {
             )
         }
     }
-}
+
 
