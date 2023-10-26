@@ -17,23 +17,27 @@ enum ChwConstants {
 
         guard !chwId.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Chw Id")
+            return
         }
 
         for item in chwCatalogModel.rolePermissions {
             guard !item.isEmpty else {
                 ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid role_permissions provided")
+                return
             }
         }
 
         for item in chwCatalogModel.siteIdsList {
             guard !item.isEmpty else {
                  ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid site_id_list provided")
+                return
             }
         }
 
         for item in chwCatalogModel.servicesList {
             guard !item.isEmpty else {
                  ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid services provided")
+                return
             }
         }
 
@@ -53,11 +57,13 @@ enum ChwConstants {
         
         guard !siteId.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Site Id")
+            return
         }
         
         if !chwSiteCatalogModel.country.isEmpty {
             guard let countryCode = CountryCode(rawValue: chwSiteCatalogModel.country) else {
                 ExceptionManager.throwEnumException(eventType: catalogName, className: "CountryCode")
+                return
             }
         }
         
@@ -85,23 +91,27 @@ enum ChwConstants {
 
         guard !patientId.isEmpty else {
              ExceptionManager.throwIsRequiredException(eventType:catalogName , elementName: "Patient Id")
+            return
         }
 
         if !patientCatalogModel.country.isEmpty {
             guard let countryCode = CountryCode(rawValue: patientCatalogModel.country) else {
                  ExceptionManager.throwEnumException(eventType:catalogName , className:"CountryCode")
+                return
             }
         }
 
         if !patientCatalogModel.educationLevel.isEmpty {
             guard let educationalLevel = EducationalLevel(rawValue: patientCatalogModel.educationLevel) else {
                  ExceptionManager.throwEnumException(eventType:catalogName , className: "EducationalLevel")
+                return
             }
         }
 
         for item in patientCatalogModel.siteIdsList {
             guard !item.isEmpty else {
                  ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid site_ids_list provided")
+                return
             }
         }
 
