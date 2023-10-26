@@ -11,6 +11,10 @@ let package = Package(
         .library(
             name: "Core",
             targets: ["CasualFoundryCore"]),
+        .library(
+            name: "CHW_Management",
+            targets: ["CasualFoundry_CHW_Management"])
+       
     ],
    targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -19,8 +23,14 @@ let package = Package(
             name: "CasualFoundryCore",
             path: "Core/Sources",
             exclude: ["SampleApp"]
+        ),
+        .target(
+            name: "CasualFoundry_CHW_Management",
+            dependencies:["CasualFoundryCore"], path: "CHW_Management/Sources",
+            exclude: ["SampleApp"]
            
         ),
+        
         .testTarget(
         name: "CoreTests",
         dependencies: ["CasualFoundryCore"],

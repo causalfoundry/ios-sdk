@@ -111,7 +111,7 @@ public class CfLogSearchEventBuilder {
      * an string as param.
      */
     
-    public func setSearchModule(searchModule: String)  ->CfLogSearchEventBuilder  {
+    public func setSearchModule(searchModule: String) -> CfLogSearchEventBuilder  {
         if (ContentBlock.allCases.filter({$0.rawValue == searchModule}).first != nil) {
             self.searchModule = searchModule
         } else {

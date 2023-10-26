@@ -33,14 +33,14 @@ public class CfLogMediaEvent {
 
 
 public class  CfLogMediaEventBuilder {
-     var media_id: String?
-     var media_type: String?
-     var media_action: String?
-     var duration_value: Int?
-     var content_block: String = CoreConstants.shared.contentBlockName
-     var mediaModel_value: MediaCatalogModel? = nil
-     var meta: Any?
-     var update_immediately: Bool = CoreConstants.shared.updateImmediately
+    var media_id: String?
+    var media_type: String?
+    var media_action: String?
+    var duration_value: Int?
+    var content_block: String = CoreConstants.shared.contentBlockName
+    var mediaModel_value: MediaCatalogModel? = nil
+    var meta: Any?
+    var update_immediately: Bool = CoreConstants.shared.updateImmediately
     
     public init() {
         
@@ -50,6 +50,7 @@ public class  CfLogMediaEventBuilder {
      * It needs to be the same that is used inside the app and should be matched with
      * the catalog traits.
      */
+    @discardableResult
     public func setMediaId(media_id: String)-> CfLogMediaEventBuilder{
         self.media_id = media_id
         return self
@@ -63,6 +64,7 @@ public class  CfLogMediaEventBuilder {
      * You can also use the string format but usage of enums is appreciated. Below is the
      * method to provide the usage of enum to log the media type.
      */
+    @discardableResult
     public func setMediaType(media_type: MediaType) -> CfLogMediaEventBuilder {
         self.media_type = media_type.rawValue
         return self
@@ -76,9 +78,10 @@ public class  CfLogMediaEventBuilder {
      * method to provide the usage of string to log the media type. Remember to use the same
      * strings as provided in the enums or else the event will be discarded.
      */
+    @discardableResult
     public func setMediaType(media_type: String) -> CfLogMediaEventBuilder {
         if (MediaType.allCases.filter({$0.rawValue == media_type }).first != nil) {
-            self.media_action = media_type
+            self.media_type = media_type
         }else {
             ExceptionManager.throwEnumException(eventType: CoreEventType.media.rawValue, className: String(describing: CfLogMediaEvent.self))
         }
@@ -95,6 +98,7 @@ public class  CfLogMediaEventBuilder {
      * Below is the function for providing media action based on enum MediaAction but you
      * can also use string as well.
      */
+    @discardableResult
     public  func setMediaAction(media_action: MediaAction) -> CfLogMediaEventBuilder {
         self.media_action = media_action.rawValue
         return self
@@ -112,6 +116,7 @@ public class  CfLogMediaEventBuilder {
      * enum MediaAction as well. Remember to to provide the same string as given in enum or
      * the event will be discarded.
      */
+    @discardableResult
     public func setMediaAction(media_action: String)  -> CfLogMediaEventBuilder  {
         if (MediaAction.allCases.filter({$0.rawValue == media_action }).first != nil) {
             self.media_action = media_action
@@ -128,6 +133,7 @@ public class  CfLogMediaEventBuilder {
      * when the action is being performed. It is the timeframe in milliseconds for the
      * audio or when it is played or paused or the final timeframe when it is seek.
      */
+    @discardableResult
     public func setCurrentDuration(duration: Float) -> CfLogMediaEventBuilder{
         self.duration_value = Int(duration)
         return self
@@ -139,6 +145,7 @@ public class  CfLogMediaEventBuilder {
         
     }
     
+    @discardableResult
     public func setCurrentDuration(duration: Double) -> CfLogMediaEventBuilder{
         self.duration_value = Int(duration)
         return self
@@ -151,6 +158,7 @@ public class  CfLogMediaEventBuilder {
      * well in order to log the content block. Below is the function for the usage of enum type
      * function.
      */
+    @discardableResult
     public func setContentBlock(content_block: ContentBlock) -> CfLogMediaEventBuilder{
         self.content_block = content_block.rawValue
         return self
@@ -164,6 +172,7 @@ public class  CfLogMediaEventBuilder {
      * function. Remember to note that you need to use the same enum types as provided by the
      * enums or else the events will be discarded.
      */
+    @discardableResult
     public func setContentBlock(content_block: String) -> CfLogMediaEventBuilder {
         if (ContentBlock.allCases.filter({$0.rawValue == content_block}).first != nil) {
             self.content_block = content_block
@@ -176,11 +185,13 @@ public class  CfLogMediaEventBuilder {
         return self
     }
     
+    @discardableResult
     public func setMediaModel(mediaModelValue: MediaCatalogModel) -> CfLogMediaEventBuilder {
         self.mediaModel_value = mediaModelValue
         return self
     }
     
+    @discardableResult
     public func setMediaModel(mediaModelValue: String?) -> CfLogMediaEventBuilder {
         if (mediaModelValue != nil) {
             if let jsonData = mediaModelValue!.data(using: .utf8) {
@@ -201,6 +212,7 @@ public class  CfLogMediaEventBuilder {
      * additional information with the log that they find would be helpful for logging and
      * providing more context to the log. Default value for the meta is null.
      */
+    @discardableResult
     public func setMeta(meta: Any?)  -> CfLogMediaEventBuilder  {
         self.meta = meta
         return self
@@ -214,6 +226,7 @@ public class  CfLogMediaEventBuilder {
      * the SDK will log the content instantly and if false it will wait till the end of user
      * session which is whenever the app goes into background.
      */
+    @discardableResult
     public func updateImmediately(update_immediately: Bool) -> CfLogMediaEventBuilder {
         self.update_immediately = update_immediately
         return self
@@ -226,29 +239,30 @@ public class  CfLogMediaEventBuilder {
      * user's network resources.
      */
     public func build() {
-        switch true {
-            
-            /**
-             * Will throw and exception if the mediaId provided is null or no value is
-             * provided at all.
-             */
-        case self.media_id!.isNilOREmpty():
+        
+        
+        /**
+         * Will throw and exception if the mediaId provided is null or no value is
+         * provided at all.
+         */
+        if  self.media_id!.isNilOREmpty() {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_id")
-            
-            /**
-             * Will throw and exception if the appUserId provided is null or no value is
-             * provided at all.
-             */
-        case self.mediaModel_value == nil :
+        }
+        /**
+         * Will throw and exception if the appUserId provided is null or no value is
+         * provided at all.
+         */
+        else if self.mediaModel_value == nil  {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "mediaModel_value")
             
-            /**
-             * Will throw and exception if the mediaType provided is null or no type is
-             * provided at all.
-             */
-            
-            
-        case self.media_type?.isNilOREmpty() == true :
+        }
+        /**
+         * Will throw and exception if the mediaType provided is null or no type is
+         * provided at all.
+         */
+        
+        
+        else if self.media_type?.isNilOREmpty() == true {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_type")
             
             
@@ -273,7 +287,8 @@ public class  CfLogMediaEventBuilder {
                 self.media_action = MediaAction.play.rawValue
                 self.duration_value = 0
             }
-        default:
+        }else {
+            
             
             let mediaObject = MediaObject(id: self.media_id!,type:media_type, action: self.media_action,time:"\(duration_value ?? 0)")
             

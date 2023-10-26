@@ -16,5 +16,4 @@ public enum ContentBlock: String,CaseIterable,EnumComposable {
     case social = "social"
     case loyalty = "loyalty"
     case chw_mgmt = "chw_mgmt"
-   
 }

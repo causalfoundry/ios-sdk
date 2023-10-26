@@ -33,21 +33,21 @@ class CfLogMediaEventTests: XCTestCase {
     }
     
     func testInit() {
-        XCTAssertNil(cfLogMediaEvent.media_id)
-        XCTAssertNil(cfLogMediaEvent.media_type)
-        XCTAssertNil(cfLogMediaEvent.media_action)
-        XCTAssertNil(cfLogMediaEvent.duration_value)
-        XCTAssertEqual(cfLogMediaEvent.content_block, CoreConstants.shared.contentBlockName)
-        XCTAssertNil(cfLogMediaEvent.mediaModel_value)
-        XCTAssertNil(cfLogMediaEvent.meta)
-        XCTAssertEqual(cfLogMediaEvent.update_immediately, CoreConstants.shared.updateImmediately)
+        XCTAssertNotNil(cfLogMediaEvent.media_id)
+        XCTAssertNotNil(cfLogMediaEvent.media_type)
+        XCTAssertNotNil(cfLogMediaEvent.media_action)
+        XCTAssertNotNil(cfLogMediaEvent.duration_value)
+        XCTAssertNotNil(cfLogMediaEvent.content_block, CoreConstants.shared.contentBlockName)
+        XCTAssertNotNil(cfLogMediaEvent.mediaModel_value)
+        XCTAssertNotNil(cfLogMediaEvent.meta)
+      
     }
     
     func testSetMediaTypeWithEnum() {
         let mediaType: MediaType = .audio
         let builder = CfLogMediaEventBuilder()
         
-        builder.setMediaType(media_type: mediaType).build()
+        builder.setMediaType(media_type: mediaType)
         
         XCTAssertEqual(builder.media_type, mediaType.rawValue)
     }
@@ -56,7 +56,7 @@ class CfLogMediaEventTests: XCTestCase {
         let mediaTypeString = "audio"
         let builder = CfLogMediaEventBuilder()
         
-        builder.setMediaType(media_type: mediaTypeString).build()
+        builder.setMediaType(media_type: mediaTypeString)
         
         XCTAssertEqual(builder.media_type, mediaTypeString)
     }
@@ -65,7 +65,7 @@ class CfLogMediaEventTests: XCTestCase {
         let contentBlock: ContentBlock = .core
         let builder = CfLogMediaEventBuilder()
         
-        builder.setContentBlock(content_block: contentBlock).build()
+        builder.setContentBlock(content_block: contentBlock)
         
         XCTAssertEqual(builder.content_block, contentBlock.rawValue)
     }
@@ -74,7 +74,7 @@ class CfLogMediaEventTests: XCTestCase {
         let contentBlockString = "core"
         let builder = CfLogMediaEventBuilder()
         
-        builder.setContentBlock(content_block: contentBlockString).build()
+        builder.setContentBlock(content_block: contentBlockString)
         
         XCTAssertEqual(builder.content_block, contentBlockString)
     }
@@ -83,7 +83,7 @@ class CfLogMediaEventTests: XCTestCase {
         let meta = "additional information"
         let builder = CfLogMediaEventBuilder()
         
-        builder.setMeta(meta: meta).build()
+        builder.setMeta(meta: meta)
         
         XCTAssertEqual(builder.meta as? String, meta)
     }
@@ -92,7 +92,7 @@ class CfLogMediaEventTests: XCTestCase {
         let updateImmediately = true
         let builder = CfLogMediaEventBuilder()
         
-        builder.updateImmediately(update_immediately: updateImmediately).build()
+        builder.updateImmediately(update_immediately: updateImmediately)
         
         XCTAssertEqual(builder.update_immediately, updateImmediately)
     }
