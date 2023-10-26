@@ -12,45 +12,44 @@ import CasualFoundryCore
 enum ChwConstants {
     static var contentBlockName: String = ContentBlock.chw_mgmt.rawValue
 
-    static func verifyChwCatalog(_ chwId: String, _ chwCatalogModel: ChwCatalogModel) throws -> InternalChwModel {
+    static func verifyChwCatalog(_ chwId: String, _ chwCatalogModel: ChwCatalogModel) -> InternalChwModel {
         let catalogName = CatalogSubject.chw.rawValue + " catalog"
 
-        if chwId.isEmpty {
+        guard !chwId.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Chw Id")
-        }else if let permissions = chwCatalogModel.rolePermissions {
-            for item in permissions{
-                guard !item.isEmpty else {
-                    ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid role_permissions provided")
-                    
-                }
-            }
-
-        }else if let idLists = chwCatalogModel.siteIdsList {
-            for item in  idLists {
-                guard !item.isEmpty else {
-                     ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid site_id_list provided")
-                    return
-                }
-            }
-        }else if let serviceList = chwCatalogModel.servicesList {
-            for item in serviceList {
-                guard !item.isEmpty else {
-                     ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid services provided")
-                    return
-                }
-            }
-        }else {
             
-            return InternalChwModel(
-                id: chwId,
-                name: chwCatalogModel.name,
-                isVolunteer: false,
-                role: chwCatalogModel.role,
-                rolePermissions: chwCatalogModel.rolePermissions,
-                siteIdsList: chwCatalogModel.siteIdsList,
-                servicesList:chwCatalogModel.servicesList
-            )
         }
+
+        for item in chwCatalogModel.rolePermissions {
+            guard !item.isEmpty else {
+                ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid role_permissions provided")
+                
+            }
+        }
+
+        for item in chwCatalogModel.siteIdsList {
+            guard !item.isEmpty else {
+                 ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid site_id_list provided")
+                
+            }
+        }
+
+        for item in chwCatalogModel.servicesList {
+            guard !item.isEmpty else {
+                 ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid services provided")
+                
+            }
+        }
+
+        return InternalChwModel(
+            id: chwId,
+            name: chwCatalogModel.name,
+            isVolunteer: false,
+            role: chwCatalogModel.role,
+            rolePermissions: chwCatalogModel.rolePermissions,
+            siteIdsList: chwCatalogModel.siteIdsList,
+            servicesList:chwCatalogModel.servicesList
+        )
     }
 
     static func verifySiteCatalog(_ siteId: String, _ chwSiteCatalogModel: ChwSiteCatalogModel) throws -> InternalSiteModel {
@@ -58,13 +57,13 @@ enum ChwConstants {
         
         guard !siteId.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Site Id")
-            return
+            
         }
         
         if !chwSiteCatalogModel.country.isEmpty {
             guard let countryCode = CountryCode(rawValue: chwSiteCatalogModel.country) else {
                 ExceptionManager.throwEnumException(eventType: catalogName, className: "CountryCode")
-                return
+                
             }
         }
         
@@ -92,27 +91,27 @@ enum ChwConstants {
 
         guard !patientId.isEmpty else {
              ExceptionManager.throwIsRequiredException(eventType:catalogName , elementName: "Patient Id")
-            return
+            
         }
 
         if !patientCatalogModel.country.isEmpty {
             guard let countryCode = CountryCode(rawValue: patientCatalogModel.country) else {
                  ExceptionManager.throwEnumException(eventType:catalogName , className:"CountryCode")
-                return
+                
             }
         }
 
         if !patientCatalogModel.educationLevel.isEmpty {
             guard let educationalLevel = EducationalLevel(rawValue: patientCatalogModel.educationLevel) else {
                  ExceptionManager.throwEnumException(eventType:catalogName , className: "EducationalLevel")
-                return
+                
             }
         }
 
         for item in patientCatalogModel.siteIdsList {
             guard !item.isEmpty else {
                  ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid site_ids_list provided")
-                return
+                
             }
         }
 
