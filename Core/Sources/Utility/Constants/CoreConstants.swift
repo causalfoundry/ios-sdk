@@ -10,7 +10,7 @@ import UIKit
 
 
 public class CoreConstants {
-    static let shared = CoreConstants()
+    public static let shared = CoreConstants()
     
     let devUrl = "https://api-dev.causalfoundry.ai/v1/"
     let prodUrl = "https://api.causalfoundry.ai/v1/"
