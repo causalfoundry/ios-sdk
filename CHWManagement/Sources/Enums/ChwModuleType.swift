@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CasualFoundryCore
 
 
 public enum ChwModuleType: String,EnumComposable {
