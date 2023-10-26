@@ -23,7 +23,7 @@ public class CausualFoundry {
         NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
     }
     
-    func configure(application:UIApplication) {
+    public func configure(application:UIApplication) {
         self.application = application
     }
     
