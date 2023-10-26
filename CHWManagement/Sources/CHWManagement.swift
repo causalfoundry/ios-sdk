@@ -27,7 +27,7 @@ public class CfLogChwModuleEvent {
          * an enum as param.
          */
         
-        mutating func setChwModuleEvent(_ chwModuleType: ChwModuleType) -> Builder {
+        public  mutating func setChwModuleEvent(_ chwModuleType: ChwModuleType) -> Builder {
             self.moduleType = chwModuleType.rawValue
             return self
         }
@@ -39,7 +39,7 @@ public class CfLogChwModuleEvent {
          * an string as param.
          */
         
-        mutating func setChwModuleEvent(_ chwModuleType: String) -> Builder {
+        public  mutating func setChwModuleEvent(_ chwModuleType: String) -> Builder {
             if CoreConstants.shared.enumContains(ChwModuleType.self, name: chwModuleType) {
                 self.moduleType = chwModuleType
             } else {
@@ -56,7 +56,7 @@ public class CfLogChwModuleEvent {
          * additional information with the log that they find would be helpful for logging and
          * providing more context to the log. Default value for the meta is null.
          */
-        mutating func setMeta(_ meta: Any?) -> Builder {
+        public mutating func setMeta(_ meta: Any?) -> Builder {
             self.meta = meta
             return self
         }
@@ -69,7 +69,7 @@ public class CfLogChwModuleEvent {
          * session which is whenever the app goes into background.
          */
         
-        mutating func updateImmediately(_ updateImmediately: Bool) -> Builder {
+        public  mutating func updateImmediately(_ updateImmediately: Bool) -> Builder {
             self.updateImmediately = updateImmediately
             return self
         }
@@ -80,7 +80,7 @@ public class CfLogChwModuleEvent {
          * user's network resources.
          */
         
-        func build() {
+        public func build() {
             guard let moduleType = moduleType, !moduleType.isEmpty else {
                 ExceptionManager.throwIsRequiredException(eventType:ChwMgmtEventType.module_selection.rawValue, elementName: "ChwModuleType")
                    return
