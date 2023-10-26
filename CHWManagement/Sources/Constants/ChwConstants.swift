@@ -51,17 +51,17 @@ enum ChwConstants {
 
     static func verifySiteCatalog(_ siteId: String, _ chwSiteCatalogModel: ChwSiteCatalogModel) throws -> InternalSiteModel {
         let catalogName = CatalogSubject.chwsite.rawValue + " catalog"
-
+        
         guard !siteId.isEmpty else {
-             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Site Id")
+            ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Site Id")
         }
-
+        
         if !chwSiteCatalogModel.country.isEmpty {
-           guard let countryCode = CountryCode(rawValue: chwSiteCatalogModel.country) else {
-                 ExceptionManager.throwEnumException(eventType: catalogName, className: "CountryCode")
+            guard let countryCode = CountryCode(rawValue: chwSiteCatalogModel.country) else {
+                ExceptionManager.throwEnumException(eventType: catalogName, className: "CountryCode")
             }
         }
-
+        
         return InternalSiteModel(
             id: siteId,
             name: chwSiteCatalogModel.name,
@@ -78,7 +78,8 @@ enum ChwConstants {
             longitude: chwSiteCatalogModel.longitude,
             culture: chwSiteCatalogModel.culture
         )
-      
+        
+    }
 
     static func verifyPatientCatalog(_ patientId: String, _ patientCatalogModel: PatientCatalogModel) throws -> InternalPatientModel {
         let catalogName = CatalogSubject.patient.rawValue + " catalog"
