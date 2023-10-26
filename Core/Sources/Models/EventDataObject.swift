@@ -80,6 +80,8 @@ struct EventDataObject: Codable {
             try (rateObjectTypeData).encode(to: dataEncoder)
         }else if let searchObjectTypeData = self.props as? SearchObject {
             try (searchObjectTypeData).encode(to: dataEncoder)
+        }else if let CHWObjectTypeData = self.props as? ChwModelObject {
+            try (CHWObjectTypeData).encode(to: dataEncoder)
         }
         
     }
