@@ -35,8 +35,8 @@ public class CoreConstants {
     var sessionStartTime: Int64 = 0
     var sessionEndTime: Int64 = 0
     
-    public var deviceObject: DInfo?
-    public bvar appInfoObject:AppInfo?
+     var deviceObject: DInfo?
+     var appInfoObject:AppInfo?
     public var previousSearchId:String? = ""
     
     public  var userIdKey: String = "userIdKey"
