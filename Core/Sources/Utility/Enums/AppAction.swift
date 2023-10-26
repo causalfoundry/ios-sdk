@@ -8,33 +8,13 @@
 import Foundation
 
 
-public enum AppAction {
-    
-    case open,
-         close,
-         background,
-         resume
-    
-    var rawValue: String {
-        switch self {
-        case .open: return "open"
-        case .close: return "close"
-        case .background: return "background"
-        case .resume: return "resume"
-        }
-    }
-    
-    func compareMatchingValue(value:String) -> String {
-        switch self {
-        case .background:
-            return self.rawValue
-        case .close:
-            return self.rawValue
-        case .open:
-            return self.rawValue
-        case .resume:
-            return self.rawValue
-        }
-    }
-    
+public enum AppAction:String, RawRepresentable,CaseIterable {
+   
+    case open = "opem"
+    case close = "close"
+    case background = "background"
+    case resume = "resume"
 }
+   
+    
+

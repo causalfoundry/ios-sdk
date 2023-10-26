@@ -8,10 +8,8 @@
 import Foundation
 
 
-public enum  MediaType:String, EnumComposable{
+public enum  MediaType:String, CaseIterable{
     case audio = "audio"
     case video = "video"
     case image = "image"
-    
-    static var allValues: [MediaType] =  MediaType.allValues
 }

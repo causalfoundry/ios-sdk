@@ -81,7 +81,7 @@ public class CfLogSearchEventBuilder {
      */
     
     public func setContentBlock(content_block: String) -> CfLogSearchEventBuilder {
-        if (ContentBlock.allValues.filter({$0.rawValue == content_block}).first != nil) {
+        if (ContentBlock.allCases.filter({$0.rawValue == content_block}).first != nil) {
             self.contentBlock = content_block
         } else {
             ExceptionManager.throwEnumException(eventType: CoreEventType.search.rawValue, className: "ContentBlock")
@@ -112,7 +112,7 @@ public class CfLogSearchEventBuilder {
      */
     
     public func setSearchModule(searchModule: String)  ->CfLogSearchEventBuilder  {
-        if (ContentBlock.allValues.filter({$0.rawValue == searchModule}).first != nil) {
+        if (ContentBlock.allCases.filter({$0.rawValue == searchModule}).first != nil) {
             self.searchModule = searchModule
         } else {
             ExceptionManager.throwEnumException(eventType: CoreEventType.search.rawValue, className: "SearchModuleType")

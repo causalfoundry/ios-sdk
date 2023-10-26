@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum  CatalogSubject:String {
+public enum  CatalogSubject:String,CaseIterable {
     case user = "user"
     case media = "media"
     case chw = "chw"

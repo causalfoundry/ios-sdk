@@ -79,7 +79,7 @@ public class CfLogPageBuilder {
      * enums or else the events will be discarded.
      */
     public func setContentBlock(content_block: String) -> CfLogPageBuilder {
-        if (ContentBlock.allValues.filter({$0.rawValue == content_block}).first != nil) {
+        if (ContentBlock.allCases.filter({$0.rawValue == content_block}).first != nil) {
             self.content_block = content_block
         } else {
             ExceptionManager.throwEnumException(

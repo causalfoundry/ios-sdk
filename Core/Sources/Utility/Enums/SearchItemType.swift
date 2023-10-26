@@ -22,8 +22,6 @@ public enum SearchItemType: String,EnumComposable {
      investigationTestItem,
      treatmentPlanItem,
      other
-
-    static var allValues: [SearchItemType] = SearchItemType.allValues
 }
 
 

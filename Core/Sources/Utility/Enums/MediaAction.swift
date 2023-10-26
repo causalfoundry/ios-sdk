@@ -8,7 +8,7 @@
 import Foundation
 
 
-public enum  MediaAction :String,EnumComposable{
+public enum  MediaAction :String,CaseIterable{
     case view = "View"
     case play = "play"
     case pause = "pause"
@@ -16,6 +16,6 @@ public enum  MediaAction :String,EnumComposable{
     case finish = "finish"
     case impression = "impression"
     
-    static var allValues: [MediaAction] =  MediaAction.allValues
+   
 }
 

@@ -35,6 +35,7 @@ public class CausualFoundry {
     @objc func appWillEnterForeground() {
         CFLogBuilder(application:application!).setAutoShowInAppNudge(showInAppNudge: false)
             .setLifecycleEvent(event: .active)
+            .build()
     }
     
     @objc func appDidFinishLaunching() {

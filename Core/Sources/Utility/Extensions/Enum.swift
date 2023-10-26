@@ -1,37 +1,14 @@
 //
-//  File.swift
-//  
+//  Enum.swift
+//
 //
 //  Created by khushbu on 05/10/23.
 //
 
 import Foundation
 
-
-protocol HasOnlyAFixedSetOfPossibleValues : Hashable {
-    static func cases() -> AnySequence<Self>
-    static var allValues: [Self] { get }
-}
-
-
-extension HasOnlyAFixedSetOfPossibleValues {
-    
-    public static func cases() -> AnySequence<Self> {
-        return AnySequence { () -> AnyIterator<Self> in
-            var raw = 0
-            return AnyIterator {
-                let current: Self = withUnsafePointer(to: &raw) { $0.withMemoryRebound(to: self, capacity: 1) { $0.pointee } }
-                guard current.hashValue == raw else {
-                    return nil
-                }
-                raw += 1
-                return current
-            }
-        }
+extension RawRepresentable where RawValue: CaseIterable {
+    static var allRawValues: [RawValue] {
+        return RawValue.allCases as! [Self.RawValue]
     }
-    
-    public static var allValues: [Self] {
-        return Array(self.cases())
-    }
-    
 }

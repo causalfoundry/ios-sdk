@@ -66,7 +66,7 @@ public class CfLogIdnetityBuilder {
      * provided in the enums or else the event will be discarded.
      */
    public func setIdentifyAction(identity_action: String) -> CfLogIdnetityBuilder {
-        if (IdentityAction.allValues.filter({$0.rawValue == identity_action }).first != nil) {
+        if (IdentityAction.allCases.filter({$0.rawValue == identity_action }).first != nil) {
             self.identity_action = identity_action
         }else {
             ExceptionManager.throwEnumException(eventType: CoreEventType.identify.rawValue, className: String(describing: CfLogIdentityEvent.self))

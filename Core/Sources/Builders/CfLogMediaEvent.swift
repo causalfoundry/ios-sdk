@@ -77,7 +77,7 @@ public class  CfLogMediaEventBuilder {
      * strings as provided in the enums or else the event will be discarded.
      */
     public func setMediaType(media_type: String) -> CfLogMediaEventBuilder {
-        if (MediaType.allValues.filter({$0.rawValue == media_type }).first != nil) {
+        if (MediaType.allCases.filter({$0.rawValue == media_type }).first != nil) {
             self.media_action = media_type
         }else {
             ExceptionManager.throwEnumException(eventType: CoreEventType.media.rawValue, className: String(describing: CfLogMediaEvent.self))
@@ -113,7 +113,7 @@ public class  CfLogMediaEventBuilder {
      * the event will be discarded.
      */
     public func setMediaAction(media_action: String)  -> CfLogMediaEventBuilder  {
-        if (MediaAction.allValues.filter({$0.rawValue == media_action }).first != nil) {
+        if (MediaAction.allCases.filter({$0.rawValue == media_action }).first != nil) {
             self.media_action = media_action
         }else {
             ExceptionManager.throwEnumException(eventType: CoreEventType.media.rawValue, className: String(describing: CfLogMediaEvent.self))
@@ -165,7 +165,7 @@ public class  CfLogMediaEventBuilder {
      * enums or else the events will be discarded.
      */
     public func setContentBlock(content_block: String) -> CfLogMediaEventBuilder {
-        if (ContentBlock.allValues.filter({$0.rawValue == content_block}).first != nil) {
+        if (ContentBlock.allCases.filter({$0.rawValue == content_block}).first != nil) {
             self.content_block = content_block
         } else {
             ExceptionManager.throwEnumException(

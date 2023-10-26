@@ -49,11 +49,11 @@ class CoreConstants {
    var impressionItemsList = [String]()
     
     func enumContains<T: EnumComposable>(_ type: T.Type, name: String) -> Bool where T.RawValue == String {
-        return T.allValues.contains{ $0.rawValue == name }
+        return T.allCases.contains{ $0.rawValue == name }
     }
 }
 
-protocol EnumComposable :RawRepresentable,HasOnlyAFixedSetOfPossibleValues,CaseIterable{
+protocol EnumComposable :RawRepresentable,CaseIterable{
     
 }
 

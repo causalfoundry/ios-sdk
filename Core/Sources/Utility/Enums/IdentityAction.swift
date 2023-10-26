@@ -7,12 +7,12 @@
 
 import Foundation
 
-public enum  IdentityAction:String,EnumComposable {
+public enum  IdentityAction:String,CaseIterable {
     
     
     case register = "register"
     case login = "login"
     case logout = "logout"
     
-    static var allValues: [IdentityAction] =  IdentityAction.allValues
+   
 }

@@ -8,9 +8,8 @@
 import Foundation
 
 
-public enum RateType: String,EnumComposable {
-    static var allValues: [RateType] = RateType.allValues
-    
+public enum RateType: String,CaseIterable,EnumComposable {
+  
     case order = "order"
     case item = "item"
     case media = "media"

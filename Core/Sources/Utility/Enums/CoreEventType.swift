@@ -8,7 +8,7 @@
 import Foundation
 
 
-enum  CoreEventType {
+enum  CoreEventType:CaseIterable {
     case identify,
     page,
     app,

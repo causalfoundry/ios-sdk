@@ -1,6 +1,6 @@
 import Foundation
 
-public enum CountryCode: String,EnumComposable {
+public enum CountryCode: String,EnumComposable,CaseIterable{
     static var allValues: [CountryCode] = CountryCode.allValues
     
     case Ascension_Island = "ASC"

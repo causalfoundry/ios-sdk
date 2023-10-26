@@ -35,20 +35,20 @@ public class CfCoreCatalog {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "User Id")
         }
 
-//        if !userCatalogModel.country.isEmpty &&
-//            !CoreConstants.shared.enumContains(CountryCode.self , name: userCatalogModel.country) {
-//            ExceptionManager.throwEnumException(eventType: catalogName, className:  String(describing:CfCoreCatalog.self))
-//        }
-//
-//        if !userCatalogModel.language.isEmpty &&
-//            !CoreConstants.shared.enumContains(LanguageCode.self , name:userCatalogModel.language ) {
-//            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing:CfCoreCatalog.self))
-//        }
-//
-//        if !userCatalogModel.education_level.isEmpty &&
-//            !CoreConstants.shared.enumContains(EducationalLevel.self , name: userCatalogModel.education_level) {
-//            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing:CfCoreCatalog.self))
-//        }
+        if !userCatalogModel.country.isEmpty &&
+            !CoreConstants.shared.enumContains(CountryCode.self , name: userCatalogModel.country) {
+            ExceptionManager.throwEnumException(eventType: catalogName, className:  String(describing:CfCoreCatalog.self))
+        }
+
+        if !userCatalogModel.language.isEmpty &&
+            !CoreConstants.shared.enumContains(LanguageCode.self , name:userCatalogModel.language ) {
+            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing:CfCoreCatalog.self))
+        }
+
+        if !userCatalogModel.education_level.isEmpty &&
+            !CoreConstants.shared.enumContains(EducationalLevel.self , name: userCatalogModel.education_level) {
+            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing:CfCoreCatalog.self))
+        }
 
         if CoreConstants.shared.application != nil {
             let userCatalogModelItem: UserCatalogModel? = CoreDataHelper.shared.readUserCatalog()

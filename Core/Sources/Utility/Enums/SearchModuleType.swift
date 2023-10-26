@@ -21,6 +21,4 @@ public enum SearchModuleType: String,EnumComposable {
          treatment_plan,
          transfers,
          other
-    
-    static var allValues: [SearchModuleType] = SearchModuleType.allValues
-}
+    }
