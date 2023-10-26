@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QTJ-yF-ImY">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bLW-XO-YFN">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="RPE-5O-g8I">
                                         <rect key="frame" x="0.0" y="70" width="393" height="359.66666666666669"/>
@@ -54,6 +54,7 @@
                                                 <buttonConfiguration key="configuration" style="plain" title="LOGIN"/>
                                                 <connections>
                                                     <action selector="action_Login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1ya-4r-pBW"/>
+                                                    <segue destination="nSI-ET-m1d" kind="push" id="kNT-9T-hER"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8un-bA-JAa">
@@ -92,6 +93,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bLW-XO-YFN" secondAttribute="trailing" id="qBJ-ha-HYr"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="z8b-p1-q40"/>
                     <connections>
                         <outlet property="txtPassword" destination="lJ0-WJ-awV" id="DPa-Qf-Rsv"/>
                         <outlet property="txtUserName" destination="uFm-Ja-yec" id="Kvc-qp-GhW"/>
@@ -99,7 +101,62 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="31" y="4"/>
+            <point key="canvasLocation" x="956.48854961832058" y="3.5211267605633805"/>
+        </scene>
+        <!--MainVC-->
+        <scene sceneID="etw-3j-l0a">
+            <objects>
+                <viewController storyboardIdentifier="MainVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nSI-ET-m1d" customClass="MainVC" customModule="NewTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PAb-7d-N1x">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Goh-kP-utD">
+                                <rect key="frame" x="0.0" y="143" width="393" height="645"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDc-VV-kQT">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="645"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Test_CHWManagementEvents"/>
+                                        <connections>
+                                            <action selector="action_CHW_Managements_Events:" destination="nSI-ET-m1d" eventType="touchUpInside" id="suq-d6-sjV"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jBH-Mt-yN9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="jBH-Mt-yN9" firstAttribute="bottom" secondItem="Goh-kP-utD" secondAttribute="bottom" constant="30" id="aHp-OM-Szs"/>
+                            <constraint firstItem="Goh-kP-utD" firstAttribute="leading" secondItem="jBH-Mt-yN9" secondAttribute="leading" id="r5U-3x-8C5"/>
+                            <constraint firstItem="Goh-kP-utD" firstAttribute="top" secondItem="jBH-Mt-yN9" secondAttribute="top" constant="40" id="uev-jp-cLK"/>
+                            <constraint firstItem="jBH-Mt-yN9" firstAttribute="trailing" secondItem="Goh-kP-utD" secondAttribute="trailing" id="zji-jJ-Wbt"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="E6E-f7-bbF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TYE-qd-kVa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1710.6870229007634" y="3.5211267605633805"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="s7d-nJ-TQf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QTJ-yF-ImY" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pBN-Lq-uxo">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="w1Z-GC-JgQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VML-bO-JZo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="29.770992366412212" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>

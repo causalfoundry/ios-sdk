@@ -44,6 +44,8 @@ struct EventDataObject: Codable {
             props = decodePropsObject
         }else if let decodeSearchObject = try values.decodeIfPresent(SearchObject.self, forKey: .props) {
             props = decodeSearchObject
+        }else if let decodeSearchObject = try values.decodeIfPresent(ChwModelObject.self, forKey: .props) {
+            props = decodeSearchObject
         }else {
             props = nil
         }

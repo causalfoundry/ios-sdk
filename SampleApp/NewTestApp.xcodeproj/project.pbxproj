@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C45DCA9D2AEAA6FA00509892 /* CHWManagement in Frameworks */ = {isa = PBXBuildFile; productRef = C45DCA9C2AEAA6FA00509892 /* CHWManagement */; };
 		C45DCA9F2AEAA6FA00509892 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = C45DCA9E2AEAA6FA00509892 /* Core */; };
+		C48324CE2AEADE6A0097C9F4 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48324CD2AEADE6A0097C9F4 /* MainVC.swift */; };
 		C4A8BD9C2AC7758F00BA1323 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A8BD9B2AC7758F00BA1323 /* AppDelegate.swift */; };
 		C4A8BDA02AC7758F00BA1323 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A8BD9F2AC7758F00BA1323 /* Login.swift */; };
 		C4A8BDA32AC7758F00BA1323 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4A8BDA12AC7758F00BA1323 /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C48324CD2AEADE6A0097C9F4 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		C4A8BD982AC7758F00BA1323 /* NewTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4A8BD9B2AC7758F00BA1323 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4A8BD9F2AC7758F00BA1323 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				C4A8BDA42AC7759200BA1323 /* Assets.xcassets */,
 				C4A8BDA62AC7759200BA1323 /* LaunchScreen.storyboard */,
 				C4A8BDA92AC7759200BA1323 /* Info.plist */,
+				C48324CD2AEADE6A0097C9F4 /* MainVC.swift */,
 			);
 			path = NewTestApp;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C48324CE2AEADE6A0097C9F4 /* MainVC.swift in Sources */,
 				C4A8BDA02AC7758F00BA1323 /* Login.swift in Sources */,
 				C4A8BD9C2AC7758F00BA1323 /* AppDelegate.swift in Sources */,
 			);

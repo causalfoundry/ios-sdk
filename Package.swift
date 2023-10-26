@@ -22,15 +22,15 @@ let package = Package(
         .target(
             name: "CasualFoundryCore",
             path: "Core/Sources"
-        ),
+           ),
         .target(
             name: "CHWManagement",
             dependencies:["CasualFoundryCore"], path: "CHWManagement/Sources"
+            
         ),
         .testTarget(
         name: "CoreTests",
         dependencies: ["CasualFoundryCore"],
         path: "Core/Tests"
-        
-    )]
+        )]
 )

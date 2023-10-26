@@ -81,7 +81,7 @@ public class CFSetup:NSObject, IngestProtocol {
         return contents["ai.causalfoundry.iOS.sdk.APPLICATION_KEY"] ?? ""
     }
     
-   public  func track(contentBlockName: String, eventType: String, logObject: Any?, updateImmediately: Bool, eventTime: Int64 = 0) {
+   public func track(contentBlockName: String, eventType: String, logObject: Any?, updateImmediately: Bool, eventTime: Int64 = 0) {
         
         if CoreConstants.shared.application != nil {
             verifyAccessToken(context:CoreConstants.shared.application!)
