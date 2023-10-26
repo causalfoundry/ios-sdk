@@ -72,7 +72,7 @@ enum ChwConstants {
             category: chwSiteCatalogModel.category,
             isActive: chwSiteCatalogModel.isActive,
             address: chwSiteCatalogModel.address,
-            addresstype: chwSiteCatalogModel.addressType,
+            addressType: chwSiteCatalogModel.addressType,
             latitude: chwSiteCatalogModel.latitude,
             longitude: chwSiteCatalogModel.longitude,
             culture: chwSiteCatalogModel.culture
