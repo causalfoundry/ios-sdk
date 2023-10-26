@@ -108,18 +108,18 @@ enum ChwConstants {
         return InternalPatientModel(
             id: patientId,
             country: patientCatalogModel.country,
-            region_state: patientCatalogModel.regionState,
+            regionState: patientCatalogModel.regionState,
             city: patientCatalogModel.city,
             profession: patientCatalogModel.profession,
-            education_level: patientCatalogModel.educationLevel,
-            site_ids_list: patientCatalogModel.siteIdsList,
-            national_id: patientCatalogModel.nationalId,
-            insurance_id: patientCatalogModel.insuranceId,
-            insurance_type: patientCatalogModel.insuranceType,
-            insurance_status: patientCatalogModel.insuranceStatus,
+            educationLevel: patientCatalogModel.educationLevel,
+            siteIdsList: patientCatalogModel.siteIdsList,
+            nationalId: patientCatalogModel.nationalId,
+            insuranceId: patientCatalogModel.insuranceId,
+            insuranceType: patientCatalogModel.insuranceType,
+            insuranceStatus: patientCatalogModel.insuranceStatus,
             landmark: patientCatalogModel.landmark,
-            phone_number_category: patientCatalogModel.phoneNumberCategory,
-            program_id: patientCatalogModel.programId
+            phoneNumberCategory: patientCatalogModel.phoneNumberCategory,
+            programId: patientCatalogModel.programId
         )
     }
 }
