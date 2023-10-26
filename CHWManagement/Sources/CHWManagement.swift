@@ -31,6 +31,10 @@ public class CfLogChwModuleEventBuilder {
     var meta: Any?
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
     
+    
+    public init() {
+        
+    }
     /**
      * setChwModuleEvent is for the providing the current module selected by the
      * user in the chw mgmt section on the main screen. You can use the default enum
