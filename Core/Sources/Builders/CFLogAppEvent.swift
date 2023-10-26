@@ -68,7 +68,7 @@ public class CFLogAppEventBuilder {
      * app start time and session logs
      */
     @discardableResult
-    public func setEventTime(event_time:Int64) ->CFLogAppEventBuilder {
+    public func setEventTime(event_time:Int64) -> CFLogAppEventBuilder {
         self.eventTimeValue = event_time
         return self
     }
@@ -77,7 +77,7 @@ public class CFLogAppEventBuilder {
      * page on the screen since the app tap is pressed, difference in ms
      */
     @discardableResult
-    public func setStartTime(start_time :Int)  ->CFLogAppEventBuilder {
+    public func setStartTime(start_time :Int)  -> CFLogAppEventBuilder {
         self.startTimeValue = start_time
         return self
     }

@@ -18,7 +18,7 @@ class Login: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.testCoreEvents()
-        self.testCHW_ManagementEvents()
+        //self.testCHW_ManagementEvents()
         // Do any additional setup after loading the view.
     }
     

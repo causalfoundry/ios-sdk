@@ -45,6 +45,9 @@ public class CoreConstants {
     
     public var logoutEvent: Bool = false
     
+    public var isAppOpen:Bool = false
+    public var isAppPaused:Bool = false
+    
     
     public var impressionItemsList = [String]()
     
