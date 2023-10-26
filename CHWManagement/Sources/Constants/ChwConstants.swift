@@ -40,11 +40,12 @@ enum ChwConstants {
         return InternalChwModel(
             id: chwId,
             name: chwCatalogModel.name,
+            isVolunteer: false
             role: chwCatalogModel.role,
             role_permissions: chwCatalogModel.rolePermissions,
             site_id_list: chwCatalogModel.siteIdsList,
             servicesList:chwCatalogModel.servicesList,
-            isVolunteer: false
+           
         )
     }
 
@@ -72,12 +73,12 @@ enum ChwConstants {
             category: chwSiteCatalogModel.category,
             is_active: chwSiteCatalogModel.isActive,
             address: chwSiteCatalogModel.address,
-            address_type: chwSiteCatalogModel.addressType,
+            addresstype: chwSiteCatalogModel.addressType,
             latitude: chwSiteCatalogModel.latitude,
             longitude: chwSiteCatalogModel.longitude,
             culture: chwSiteCatalogModel.culture
         )
-    }
+      
 
     static func verifyPatientCatalog(_ patientId: String, _ patientCatalogModel: PatientCatalogModel) throws -> InternalPatientModel {
         let catalogName = CatalogSubject.patient.rawValue + " catalog"
@@ -93,7 +94,7 @@ enum ChwConstants {
         }
 
         if !patientCatalogModel.educationLevel.isEmpty {
-            guard let educationalLevel = EducationalLevel(rawValue: patientCatalogModel.education_level) else {
+            guard let educationalLevel = EducationalLevel(rawValue: patientCatalogModel.educationLevel) else {
                  ExceptionManager.throwEnumException(eventType:catalogName , className: "EducationalLevel")
             }
         }
