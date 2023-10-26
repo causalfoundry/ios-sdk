@@ -114,8 +114,8 @@ class ExceptionAPIHandler {
 }
 
 
-class ExceptionManager {
-    static func throwEnumException(eventType: String, className: String) {
+public class ExceptionManager {
+    public static func throwEnumException(eventType: String, className: String) {
         let msg = "Invalid \(className) provided"
         let exception = IllegalArgumentException(msg)
         callExceptionAPI(
@@ -126,7 +126,7 @@ class ExceptionManager {
         )
     }
     
-    static func throwInvalidException(eventType: String, paramName: String,className:String) {
+    public static func throwInvalidException(eventType: String, paramName: String,className:String) {
         let line =  #line
         let msg = "Invalid \(paramName) provided at \(line) in \(className)"
         let exception = IllegalArgumentException(msg)
@@ -138,21 +138,21 @@ class ExceptionManager {
         )
     }
     
-    static func throwInitException(eventType: String) {
+    public static func throwInitException(eventType: String) {
         let msg = "init is required to provide context."
         let exception = NullPointerException(msg)
         callExceptionAPI(title: msg, eventType: eventType, exceptionType: "NullPointerException", stackTrace: exception)
     }
     
     
-    static func throwIsRequiredException(eventType: String, elementName: String) {
+    public static func throwIsRequiredException(eventType: String, elementName: String) {
         let msg = "\(elementName) is required."
         let exception = RuntimeException(msg)
         callExceptionAPI(title: msg, eventType: eventType, exceptionType: "NullPointerException", stackTrace: exception)
     }
     
     
-    static func throwAPIFailException(apiName: String, response: HTTPURLResponse?, responseBody: Data?) {
+    public  static func throwAPIFailException(apiName: String, response: HTTPURLResponse?, responseBody: Data?) {
         let statusCode = response?.statusCode ?? -1
         let responseBodyString = String(data: responseBody ?? Data(), encoding: .utf8) ?? "nil"
         let msg = "\(statusCode): \(responseBodyString)"
@@ -160,37 +160,37 @@ class ExceptionManager {
         callExceptionAPI(title: msg, eventType: apiName, exceptionType: "NullPointerException", stackTrace: exception)
     }
     
-    static func throwRuntimeException(eventType: String, message: String) {
+    public static func throwRuntimeException(eventType: String, message: String) {
         let exception = RuntimeException(message)
         callExceptionAPI(title: message, eventType: eventType, exceptionType: "RuntimeException", stackTrace: exception)
     }
     
-    static func throwIllegalStateException(eventType: String, message: String,className:String) {
+    public static func throwIllegalStateException(eventType: String, message: String,className:String) {
         let lineNumber = #line
         
         let exception = IllegalStateException(message)
         ExceptionManager.callExceptionAPI(title: message, eventType: eventType, exceptionType: "IllegalStateException", stackTrace: exception)
     }
     
-    static func throwPageNumberException(eventType: String) {
+    public static func throwPageNumberException(eventType: String) {
         let message = "Page numbers should not be less than 1"
         let exception = IllegalArgumentException(message)
         callExceptionAPI(title: message, eventType: eventType, exceptionType: "IllegalArgumentException", stackTrace: exception)
     }
     
-    static func throwItemQuantityException(eventType: String) {
+    public static func throwItemQuantityException(eventType: String) {
         let message = "Item Quantity should be 0 or greater than 0"
         let exception = IllegalArgumentException(message)
         callExceptionAPI(title: message, eventType: eventType, exceptionType: "IllegalArgumentException", stackTrace: exception)
     }
     
-    static func throwCurrencyNotSameException(eventType: String, valueName: String) {
+    public static func throwCurrencyNotSameException(eventType: String, valueName: String) {
         let message = "Currency for \(valueName) and item(s) should be same."
         let exception = IllegalArgumentException(message)
         callExceptionAPI(title: message, eventType: eventType, exceptionType: "IllegalArgumentException", stackTrace: exception)
     }
     
-    static func throwInvalidNudgeException(message: String, nudgeObject: String) {
+    public  static func throwInvalidNudgeException(message: String, nudgeObject: String) {
         let exception = IllegalArgumentException(message)
         
         let exceptionDataObject = ExceptionDataObject(
@@ -210,7 +210,7 @@ class ExceptionManager {
         }
     }
     
-    static func throwInvalidNetworkException(message: String, speed: Int) {
+    public  static func throwInvalidNetworkException(message: String, speed: Int) {
         let exception = IllegalArgumentException(message)
         
         let exceptionDataObject = ExceptionDataObject(
@@ -230,7 +230,7 @@ class ExceptionManager {
         }
     }
     
-    func throwInternalCrashException(eventType: String, message: String, exception: Error) {
+    public static func throwInternalCrashException(eventType: String, message: String, exception: Error) {
         let exceptionDataObject = ExceptionDataObject(
             title: message,
             eventType: eventType,

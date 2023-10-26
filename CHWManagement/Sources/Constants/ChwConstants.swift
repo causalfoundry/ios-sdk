@@ -13,25 +13,25 @@ enum ChwConstants {
     static var contentBlockName: String = ContentBlock.chw_mgmt.rawValue
 
     static func verifyChwCatalog(_ chwId: String, _ chwCatalogModel: ChwCatalogModel) throws -> InternalChwModel {
-        let catalogName = CatalogSubject.chw.name + " catalog"
+        let catalogName = CatalogSubject.chw.rawValue + " catalog"
 
         guard !chwId.isEmpty else {
             throw ExceptionManager.RequiredException(catalogName, "Chw Id")
         }
 
-        for item in chwCatalogModel.role_permissions {
+        for item in chwCatalogModel.rolePermissions {
             guard !item.isEmpty else {
                 throw ExceptionManager.RuntimeException(catalogName, "Invalid role_permissions provided")
             }
         }
 
-        for item in chwCatalogModel.site_id_list {
+        for item in chwCatalogModel.siteIdsList {
             guard !item.isEmpty else {
                 throw ExceptionManager.RuntimeException(catalogName, "Invalid site_id_list provided")
             }
         }
 
-        for item in chwCatalogModel.services {
+        for item in chwCatalogModel.servicesList {
             guard !item.isEmpty else {
                 throw ExceptionManager.RuntimeException(catalogName, "Invalid services provided")
             }
@@ -41,14 +41,14 @@ enum ChwConstants {
             id: chwId,
             name: chwCatalogModel.name,
             role: chwCatalogModel.role,
-            role_permissions: chwCatalogModel.role_permissions,
-            site_id_list: chwCatalogModel.site_id_list,
-            services: chwCatalogModel.services
+            role_permissions: chwCatalogModel.rolePermissions,
+            site_id_list: chwCatalogModel.siteIdsList,
+            services: chwCatalogModel.servicesList
         )
     }
 
     static func verifySiteCatalog(_ siteId: String, _ chwSiteCatalogModel: ChwSiteCatalogModel) throws -> InternalSiteModel {
-        let catalogName = CatalogSubject.chwsite.name + " catalog"
+        let catalogName = CatalogSubject.chwsite.rawValue + " catalog"
 
         guard !siteId.isEmpty else {
             throw ExceptionManager.RequiredException(catalogName, "Site Id")
@@ -71,7 +71,7 @@ enum ChwConstants {
             category: chwSiteCatalogModel.category,
             is_active: chwSiteCatalogModel.is_active,
             address: chwSiteCatalogModel.address,
-            address_type: chwSiteCatalogModel.address_type,
+            address_type: chwSiteCatalogModel.addressType,
             latitude: chwSiteCatalogModel.latitude,
             longitude: chwSiteCatalogModel.longitude,
             culture: chwSiteCatalogModel.culture
@@ -79,7 +79,7 @@ enum ChwConstants {
     }
 
     static func verifyPatientCatalog(_ patientId: String, _ patientCatalogModel: PatientCatalogModel) throws -> InternalPatientModel {
-        let catalogName = CatalogSubject.patient.name + " catalog"
+        let catalogName = CatalogSubject.patient.rawValue + " catalog"
 
         guard !patientId.isEmpty else {
             throw ExceptionManager.RequiredException(catalogName, "Patient Id")
@@ -97,7 +97,7 @@ enum ChwConstants {
             }
         }
 
-        for item in patientCatalogModel.site_ids_list {
+        for item in patientCatalogModel.siteIdsList {
             guard !item.isEmpty else {
                 throw ExceptionManager.RuntimeException(catalogName, "Invalid site_ids_list provided")
             }

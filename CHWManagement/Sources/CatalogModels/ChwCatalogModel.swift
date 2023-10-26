@@ -16,5 +16,15 @@ struct ChwCatalogModel: Codable {
     var rolePermissions: [String]
     var siteIdsList: [String]
     var servicesList: [String]
+    
+    enum CodingKeys: String, CodingKey {
+            case name
+            case role
+            case isVolunteer = "is_volunteer"
+            case rolePermissions = "role_permissions_list"
+            case siteIdsList = "site_ids_list"
+            case servicesList = "services_list"
+        }
+
 }
 
