@@ -27,17 +27,26 @@ class MainVC: UIViewController {
                                     .updateImmediately(true)
                                     .setMeta("Test")
                                     .build()
+        
+        
+        let ordered_date = Date().timeIntervalSince1970 * 1000
+        let tested_date = Date().timeIntervalSince1970 * 1000
+        
+        
+        
+        var investigationItem  = InvestigationItem(name: "someItem2",
+                                                   testValue: "22.3f",
+                                                   testUnit: "mg",
+                                                   orderedDate: Int64(ordered_date),
+                                                   testedDate: Int64(tested_date),
+                                                   action: ItemAction.add.rawValue,
+                                                   remarks: "Hello World")
+        CfLogInvestigationEvent()
+                    .setPatientId("123")
+                    .setSiteId("345")
+                    .setInvestigationId("45454")
+                    .setInvestigationList([investigationItem])
+                    .build()
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -46,12 +46,18 @@ struct EventDataObject: Codable {
             props = decodeSearchObject
         }else if let decodeSearchObject = try values.decodeIfPresent(ChwModelObject.self, forKey: .props) {
             props = decodeSearchObject
+        }else if let decodeSearchObject = try values.decodeIfPresent(InvestigationEventObject.self, forKey: .props) {
+            props = decodeSearchObject
         }else {
             props = nil
         }
         type = try values.decodeIfPresent(String.self, forKey: .type)
         ol = try values.decodeIfPresent(Bool.self, forKey: .ol)
         ts = try values.decodeIfPresent(String.self, forKey: .ts)
+        
+        
+        
+        
     }
     
     // MARK: Encodable
@@ -82,6 +88,8 @@ struct EventDataObject: Codable {
             try (searchObjectTypeData).encode(to: dataEncoder)
         }else if let CHWObjectTypeData = self.props as? ChwModelObject {
             try (CHWObjectTypeData).encode(to: dataEncoder)
+        }else if let investigationDatabjectTypeData = self.props as? InvestigationEventObject {
+            try (investigationDatabjectTypeData).encode(to: dataEncoder)
         }
         
     }
