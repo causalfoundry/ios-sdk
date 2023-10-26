@@ -10,12 +10,23 @@ import  CasualFoundryCore
 
 
 public class CfLogChwModuleEvent {
+    
+    var moduleType: String?
+    var meta: Any?
+    var updateImmediately: Bool = CoreConstants.shared.updateImmediately
+    
+    init(moduleType: String? = nil, meta: Any? = nil, updateImmediately: Bool) {
+        self.moduleType = moduleType
+        self.meta = meta
+        self.updateImmediately = updateImmediately
+    }
     /**
      * CfLogChwModuleEvent is required to log events related to selection of modules in a
      * chw management app screen. You can select the module type with the log values.
      */
     
-    public struct Builder {
+}
+    public class CfLogChwModuleEventBuilder {
          var moduleType: String?
          var meta: Any?
          var updateImmediately: Bool = CoreConstants.shared.updateImmediately
@@ -26,8 +37,8 @@ public class CfLogChwModuleEvent {
          * provided in the SDK and can also use the string. Below is the function with
          * an enum as param.
          */
-        
-        public  mutating func setChwModuleEvent(_ chwModuleType: ChwModuleType) -> Builder {
+        @discardableResult
+        public  func setChwModuleEvent(_ chwModuleType: ChwModuleType) -> CfLogChwModuleEventBuilder {
             self.moduleType = chwModuleType.rawValue
             return self
         }
@@ -38,8 +49,8 @@ public class CfLogChwModuleEvent {
          * provided in the SDK and can also use the string. Below is the function with
          * an string as param.
          */
-        
-        public  mutating func setChwModuleEvent(_ chwModuleType: String) -> Builder {
+        @discardableResult
+        public   func setChwModuleEvent(_ chwModuleType: String) -> CfLogChwModuleEventBuilder {
             if CoreConstants.shared.enumContains(ChwModuleType.self, name: chwModuleType) {
                 self.moduleType = chwModuleType
             } else {
@@ -56,7 +67,8 @@ public class CfLogChwModuleEvent {
          * additional information with the log that they find would be helpful for logging and
          * providing more context to the log. Default value for the meta is null.
          */
-        public mutating func setMeta(_ meta: Any?) -> Builder {
+        @discardableResult
+        public  func setMeta(_ meta: Any?) -> CfLogChwModuleEventBuilder {
             self.meta = meta
             return self
         }
@@ -68,8 +80,8 @@ public class CfLogChwModuleEvent {
          * the SDK will log the content instantly and if false it will wait till the end of user
          * session which is whenever the app goes into background.
          */
-        
-        public  mutating func updateImmediately(_ updateImmediately: Bool) -> Builder {
+        @discardableResult
+        public   func updateImmediately(_ updateImmediately: Bool) -> CfLogChwModuleEventBuilder {
             self.updateImmediately = updateImmediately
             return self
         }
