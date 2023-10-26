@@ -40,10 +40,10 @@ enum ChwConstants {
         return InternalChwModel(
             id: chwId,
             name: chwCatalogModel.name,
-            isVolunteer: false
+            isVolunteer: false,
             role: chwCatalogModel.role,
-            role_permissions: chwCatalogModel.rolePermissions,
-            site_id_list: chwCatalogModel.siteIdsList,
+            rolePermissions: chwCatalogModel.rolePermissions,
+            siteIdsList: chwCatalogModel.siteIdsList,
             servicesList:chwCatalogModel.servicesList,
            
         )
