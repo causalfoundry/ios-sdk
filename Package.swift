@@ -26,9 +26,7 @@ let package = Package(
         .target(
             name: "CHWManagement",
             dependencies:["CasualFoundryCore"], path: "CHWManagement/Sources"
-           
         ),
-        
         .testTarget(
         name: "CoreTests",
         dependencies: ["CasualFoundryCore"],
