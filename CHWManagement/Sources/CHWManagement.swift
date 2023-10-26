@@ -15,7 +15,7 @@ public class CfLogChwModuleEvent {
     var meta: Any?
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
     
-    init(moduleType: String? = nil, meta: Any? = nil, updateImmediately: Bool) {
+    public init(moduleType: String? = nil, meta: Any? = nil, updateImmediately: Bool) {
         self.moduleType = moduleType
         self.meta = meta
         self.updateImmediately = updateImmediately
