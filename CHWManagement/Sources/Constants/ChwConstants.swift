@@ -16,24 +16,24 @@ enum ChwConstants {
         let catalogName = CatalogSubject.chw.rawValue + " catalog"
 
         guard !chwId.isEmpty else {
-            throw ExceptionManager.RequiredException(catalogName, "Chw Id")
+            throw ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Chw Id"
         }
 
         for item in chwCatalogModel.rolePermissions {
             guard !item.isEmpty else {
-                throw ExceptionManager.RuntimeException(catalogName, "Invalid role_permissions provided")
+                throw ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid role_permissions provided")
             }
         }
 
         for item in chwCatalogModel.siteIdsList {
             guard !item.isEmpty else {
-                throw ExceptionManager.RuntimeException(catalogName, "Invalid site_id_list provided")
+                throw ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid site_id_list provided")
             }
         }
 
         for item in chwCatalogModel.servicesList {
             guard !item.isEmpty else {
-                throw ExceptionManager.RuntimeException(catalogName, "Invalid services provided")
+                throw ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid services provided")
             }
         }
 
@@ -51,12 +51,12 @@ enum ChwConstants {
         let catalogName = CatalogSubject.chwsite.rawValue + " catalog"
 
         guard !siteId.isEmpty else {
-            throw ExceptionManager.RequiredException(catalogName, "Site Id")
+            throw ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Site Id")
         }
 
         if !chwSiteCatalogModel.country.isEmpty {
             guard let countryCode = CountryCode(rawValue: chwSiteCatalogModel.country) else {
-                throw ExceptionManager.EnumException(catalogName, CountryCode.self.simpleName)
+                throw ExceptionManager.throwEnumException(eventType: catalogName, className: "CountryCode")
             }
         }
 
@@ -82,24 +82,24 @@ enum ChwConstants {
         let catalogName = CatalogSubject.patient.rawValue + " catalog"
 
         guard !patientId.isEmpty else {
-            throw ExceptionManager.RequiredException(catalogName, "Patient Id")
+            throw ExceptionManager.throwIsRequiredException(eventType:catalogName , elementName: "Patient Id")
         }
 
         if !patientCatalogModel.country.isEmpty {
             guard let countryCode = CountryCode(rawValue: patientCatalogModel.country) else {
-                throw ExceptionManager.EnumException(catalogName, CountryCode.self.simpleName)
+                throw ExceptionManager.throwEnumException(eventType:catalogName , className:"CountryCode")
             }
         }
 
         if !patientCatalogModel.education_level.isEmpty {
             guard let educationalLevel = EducationalLevel(rawValue: patientCatalogModel.education_level) else {
-                throw ExceptionManager.EnumException(catalogName, EducationalLevel.self.simpleName)
+                throw ExceptionManager.throwEnumException(eventType:catalogName , className: "EducationalLevel")
             }
         }
 
         for item in patientCatalogModel.siteIdsList {
             guard !item.isEmpty else {
-                throw ExceptionManager.RuntimeException(catalogName, "Invalid site_ids_list provided")
+                throw ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid site_ids_list provided")
             }
         }
 
