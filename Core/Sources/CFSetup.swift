@@ -38,7 +38,8 @@ class CFSetup:NSObject, IngestProtocol {
             }
     }
     
-    func initalize(event: UIApplication.State, pauseSDK: Bool, autoShowInAppNudge: Bool, updateImmediately: Bool) {
+    func initalize(application:UIApplication,event: UIApplication.State, pauseSDK: Bool, autoShowInAppNudge: Bool, updateImmediately: Bool) {
+        CoreConstants.shared.application = application
         CoreConstants.shared.isAppDebuggable = true
         CoreConstants.shared.updateImmediately = updateImmediately
         CoreConstants.shared.pauseSDK = pauseSDK

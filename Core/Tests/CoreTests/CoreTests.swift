@@ -22,9 +22,9 @@ final class CFLogTests: XCTestCase {
     func testCFLogInitialization() {
         // Test CFLog initialization
         
-        let cfLog = CFLog(applicationState:.active,showInAppBudge: true, updateImmediately: true, pauseSDK: false)
+        let cfLog = CFLog(application: application!, applicationState:.active,showInAppBudge: true, updateImmediately: true, pauseSDK: false)
             
-        
+        XCTAssertEqual(cfLog.application, application)
         XCTAssertEqual(cfLog.applicationState, .active)
         XCTAssertEqual(cfLog.showInAppBudge, true)
         XCTAssertEqual(cfLog.updateImmediately, true)
@@ -33,14 +33,14 @@ final class CFLogTests: XCTestCase {
 
     func testCFLogBuilderInitialization() {
             
-            let cfLogBuilder = CFLogBuilder()
+        let cfLogBuilder = CFLogBuilder(application: application!)
             
             XCTAssertNotNil(cfLogBuilder)
         }
 
     func testSetLifecycleEvent() {
            
-            let cfLogBuilder = CFLogBuilder()
+        let cfLogBuilder = CFLogBuilder(application: application!)
             
             // Set the application state to active
            _ =  cfLogBuilder.setLifecycleEvent(event: .active)
@@ -51,7 +51,7 @@ final class CFLogTests: XCTestCase {
     
     func testSetPauseSDK() {
            
-           let cfLogBuilder = CFLogBuilder()
+        let cfLogBuilder = CFLogBuilder(application: application!)
                                 .setPauseSDK(pauseSDK: true)
         
            XCTAssertTrue(cfLogBuilder.pauseSDK)

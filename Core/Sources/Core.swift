@@ -5,7 +5,7 @@ import Foundation
 import UIKit
 
 public class CFLog {
-    
+    var application:UIApplication?
     var applicationState: UIApplication.State?
     var showInAppBudge:Bool = true
     var updateImmediately :Bool = true
@@ -13,8 +13,8 @@ public class CFLog {
     
     
     
-    init(applicationState: UIApplication.State? = nil, showInAppBudge: Bool, updateImmediately: Bool, pauseSDK: Bool) {
-        
+    init(application:UIApplication,applicationState: UIApplication.State? = nil, showInAppBudge: Bool, updateImmediately: Bool, pauseSDK: Bool) {
+        self.application = application
         self.applicationState = applicationState
         self.showInAppBudge = showInAppBudge
         self.updateImmediately = updateImmediately
@@ -31,7 +31,8 @@ public class CFLogBuilder {
     var pauseSDK : Bool =  false
     
     
-    public init() {
+    public init(application:UIApplication) {
+        self.application = application
         
     }
     
@@ -220,10 +221,12 @@ public class CFLogBuilder {
      */
     public func build() {
         switch true {
+        case self.application == nil :
+            ExceptionManager.throwInitException(eventType: "CFLog")
         case self.applicationState == nil :
             ExceptionManager.throwInitException(eventType: "CFLog")
         default:
-            CFSetup().initalize(event: self.applicationState!, pauseSDK: pauseSDK, autoShowInAppNudge: showInAppBudge, updateImmediately: updateImmediately)
+            CFSetup().initalize(application: self.application!, event: self.applicationState!, pauseSDK: pauseSDK, autoShowInAppNudge: showInAppBudge, updateImmediately: updateImmediately)
             
         }
         

@@ -11,7 +11,7 @@ import UIKit
 
 protocol IngestProtocol {
     
-    func initalize(event: UIApplication.State,
+    func initalize(application:UIApplication,event: UIApplication.State,
                    pauseSDK:Bool,
                    autoShowInAppNudge:Bool,
                    updateImmediately:Bool)
