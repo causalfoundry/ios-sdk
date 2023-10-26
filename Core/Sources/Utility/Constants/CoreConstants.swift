@@ -53,7 +53,7 @@ public class CoreConstants {
     }
 }
 
-protocol EnumComposable :RawRepresentable,CaseIterable{
+public protocol EnumComposable :RawRepresentable,CaseIterable{
     
 }
 
