@@ -10,7 +10,7 @@ import CasualFoundryCore
 
 
 enum ChwConstants {
-    static var contentBlockName: String = ContentBlock.chw_mgmt.name
+    static var contentBlockName: String = ContentBlock.chw_mgmt.rawValue
 
     static func verifyChwCatalog(_ chwId: String, _ chwCatalogModel: ChwCatalogModel) throws -> InternalChwModel {
         let catalogName = CatalogSubject.chw.name + " catalog"
