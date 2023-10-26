@@ -12,8 +12,8 @@ let package = Package(
             name: "Core",
             targets: ["CasualFoundryCore"]),
         .library(
-            name: "CHW_Management",
-            targets: ["CasualFoundry_CHW_Management"])
+            name: "CHWManagement",
+            targets: ["CHWManagement"])
        
     ],
    targets: [
@@ -25,8 +25,8 @@ let package = Package(
             exclude: ["SampleApp"]
         ),
         .target(
-            name: "CasualFoundry_CHW_Management",
-            dependencies:["CasualFoundryCore"], path: "CHW_Management/Sources",
+            name: "CHWManagement",
+            dependencies:["CasualFoundryCore"], path: "CHWManagement/Sources",
             exclude: ["SampleApp"]
            
         ),

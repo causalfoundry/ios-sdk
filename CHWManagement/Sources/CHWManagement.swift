@@ -47,7 +47,7 @@ public class CfLogChwModuleEvent {
                     ChwMgmtEventType.module_selection.rawValue,
                     "ChwModuleType"
                 )
-            }
+                /Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models            }
             return self
         }
         
