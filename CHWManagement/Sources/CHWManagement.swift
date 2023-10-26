@@ -97,21 +97,13 @@ public class CfLogChwModuleEventBuilder {
             return
         }
         
-        if !CoreConstants.shared.enumContains(ChwModuleType.self, name: self.moduleType){
-            ExceptionManager.throwEnumException(
-                ChwMgmtEventType.moduleSelection.rawValue,
-                "ChwModuleType"
-            )
+        if !CoreConstants.shared.enumContains(ChwModuleType.self, name: self.moduleType!){
+            ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.moduleSelection.rawValue, className: "ChwModuleType")
             return
         }
         
         let chwModelObject = ChwModelObject(moduleType: moduleType, meta: meta)
-        CFSetup().track(
-            ChwConstants.contentBlockName,
-            ChwMgmtEventType.moduleSelection.rawValue,
-            chwModelObject,
-            updateImmediately
-        )
+        CFSetup().track(contentBlockName: ChwConstants.contentBlockName, eventType: ChwMgmtEventType.moduleSelection.rawValue, logObject: chwModelObject, updateImmediately: updateImmediately)
     }
 }
 
