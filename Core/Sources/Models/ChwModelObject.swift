@@ -12,7 +12,7 @@ public struct ChwModelObject: Codable {
     var type: String
     var meta: Any?
 
-    init(type: String, meta: Any? = nil) {
+    public init(type: String, meta: Any? = nil) {
         self.type = type
         self.meta = meta
     }
