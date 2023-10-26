@@ -102,7 +102,7 @@ public class CfLogChwModuleEventBuilder {
             return
         }
         
-        let chwModelObject = ChwModelObject(moduleType: moduleType, meta: meta)
+        let chwModelObject = ChwModelObject(type: moduleType, meta: meta)
         CFSetup().track(contentBlockName: ChwConstants.contentBlockName, eventType: ChwMgmtEventType.moduleSelection.rawValue, logObject: chwModelObject, updateImmediately: updateImmediately)
     }
 }
