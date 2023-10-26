@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CFLogBuilder(application:application).setAppLevelContentBlock(contentBlock:.core)
             .updateImmediately(updateImmediately:true)
             .setLifecycleEvent(event:.active)
+            .allowAnonymousUsers()
             .setSdkKey(sdkKey:"cfkey4dxUm8RIJmWmxgY4uakWFXqd1KmNk4Y14uHb0ogvqPpkJiGwEaKge4iGXAg")
             //.disableAutoPageTrack()
             .build()

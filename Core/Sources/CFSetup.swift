@@ -52,7 +52,7 @@ public class CFSetup:NSObject, IngestProtocol {
     
     
     func updateUserId(appUserId: String) {
-        if userId != "" && CoreConstants.shared.application != nil {
+        if appUserId != "" && CoreConstants.shared.application != nil {
             CoreConstants.shared.userId = appUserId
             CoreDataHelper.shared.writeUser(user: CoreConstants.shared.userId, deviceID: CoreConstants.shared.deviceObject?.id)
             userId = appUserId
