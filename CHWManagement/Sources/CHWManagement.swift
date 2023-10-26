@@ -38,7 +38,7 @@ public class CfLogChwModuleEvent {
          * an enum as param.
          */
         @discardableResult
-        public  func setChwModuleEvent(_ chwModuleType: ChwModuleType) -> CfLogChwModuleEventBuilder {
+        public func setChwModuleEvent(_ chwModuleType: ChwModuleType) -> CfLogChwModuleEventBuilder {
             self.moduleType = chwModuleType.rawValue
             return self
         }
@@ -50,12 +50,12 @@ public class CfLogChwModuleEvent {
          * an string as param.
          */
         @discardableResult
-        public   func setChwModuleEvent(_ chwModuleType: String) -> CfLogChwModuleEventBuilder {
+        public func setChwModuleEvent(_ chwModuleType: String) -> CfLogChwModuleEventBuilder {
             if CoreConstants.shared.enumContains(ChwModuleType.self, name: chwModuleType) {
                 self.moduleType = chwModuleType
             } else {
                 ExceptionManager.throwEnumException(
-                    ChwMgmtEventType.module_selection.rawValue,
+                    ChwMgmtEventType.moduleSelection.rawValue,
                     "ChwModuleType"
                 )
                          }
@@ -100,8 +100,8 @@ public class CfLogChwModuleEvent {
             
             if !CoreConstants.shared.enumContains(ChwModuleType.self,, name: self.moduleType){
                 ExceptionManager.throwEnumException(
-                    ChwMgmtEventType.module_selection.rawValue,
-                    ChwModuleType.self.simpleName
+                    ChwMgmtEventType.moduleSelection.rawValue,
+                    "ChwModuleType"
                 )
                 return
             }
@@ -109,7 +109,7 @@ public class CfLogChwModuleEvent {
             let chwModelObject = ChwModelObject(moduleType: moduleType, meta: meta)
             CFSetup().track(
                 ChwConstants.contentBlockName,
-                ChwMgmtEventType.module_selection.rawValue,
+                ChwMgmtEventType.moduleSelection.rawValue,
                 chwModelObject,
                 updateImmediately
             )

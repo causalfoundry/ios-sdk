@@ -8,7 +8,7 @@
 import Foundation
 
 
-public enum ChwModuleType: String {
+public enum ChwModuleType: String,EnumComposable {
     case screening
     case assessment
     case enrolment
