@@ -114,6 +114,7 @@ class Login: UIViewController {
     
     func testCHW_ManagementEvents () {
         CfLogChwModuleEventBuilder().setChwModuleEvent(.assessment)
+                                    .updateImmediately(true)
                                     .build()
     }
 }
