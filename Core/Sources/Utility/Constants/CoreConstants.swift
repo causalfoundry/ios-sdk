@@ -16,7 +16,7 @@ public class CoreConstants {
     let prodUrl = "https://api.causalfoundry.ai/v1/"
     
     
-    var userId: String = ""
+    public var userId: String = ""
     var sdkKey: String = ""
     var isDebugMode: Bool = true
     var allowAutoPageTrack:Bool = true
@@ -27,28 +27,28 @@ public class CoreConstants {
     //private var SDKString: String = "/0.2.2"
     var SDKVersion: String = "ios\(0.2)"
     
-    var updateImmediately: Bool = false
+    public var updateImmediately: Bool = false
     
-    var pauseSDK: Bool = false
-    var autoShowInAppNudge: Bool = true
-    var application: UIApplication? = nil
+    public var pauseSDK: Bool = false
+    public var autoShowInAppNudge: Bool = true
+    public  var application: UIApplication? = nil
     var sessionStartTime: Int64 = 0
     var sessionEndTime: Int64 = 0
     
-    var deviceObject: DInfo?
-    var appInfoObject:AppInfo?
-    var previousSearchId:String? = ""
+    public var deviceObject: DInfo?
+    public bvar appInfoObject:AppInfo?
+    public var previousSearchId:String? = ""
     
-    var userIdKey: String = "userIdKey"
+    public  var userIdKey: String = "userIdKey"
     
-    var isAppDebuggable: Bool = true
+    public var isAppDebuggable: Bool = true
     
-    var logoutEvent: Bool = false
+    public var logoutEvent: Bool = false
     
     
-   var impressionItemsList = [String]()
+    public var impressionItemsList = [String]()
     
-    func enumContains<T: EnumComposable>(_ type: T.Type, name: String) -> Bool where T.RawValue == String {
+    public func enumContains<T: EnumComposable>(_ type: T.Type, name: String) -> Bool where T.RawValue == String {
         return T.allCases.contains{ $0.rawValue == name }
     }
 }
