@@ -16,9 +16,9 @@ public class CfLogChwModuleEvent {
      */
     
     public struct Builder {
-        var moduleType: String?
-        private var meta: Any?
-        private var updateImmediately: Bool = CoreConstants.shared.updateImmediately
+         var moduleType: String?
+         var meta: Any?
+         var updateImmediately: Bool = CoreConstants.shared.updateImmediately
         
         /**
          * setChwModuleEvent is for the providing the current module selected by the
