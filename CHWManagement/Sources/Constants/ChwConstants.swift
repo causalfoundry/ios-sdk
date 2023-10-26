@@ -43,7 +43,7 @@ enum ChwConstants {
             role: chwCatalogModel.role,
             role_permissions: chwCatalogModel.rolePermissions,
             site_id_list: chwCatalogModel.siteIdsList,
-            services: chwCatalogModel.servicesList,
+            servicesList:chwCatalogModel.servicesList,
             isVolunteer: false
         )
     }
@@ -57,7 +57,7 @@ enum ChwConstants {
 
         if !chwSiteCatalogModel.country.isEmpty {
            guard let countryCode = CountryCode(rawValue: chwSiteCatalogModel.country) else {
-                throw ExceptionManager.throwEnumException(eventType: catalogName, className: "CountryCode")
+                 ExceptionManager.throwEnumException(eventType: catalogName, className: "CountryCode")
             }
         }
 
