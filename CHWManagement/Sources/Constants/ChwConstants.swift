@@ -15,41 +15,42 @@ enum ChwConstants {
     static func verifyChwCatalog(_ chwId: String, _ chwCatalogModel: ChwCatalogModel) throws -> InternalChwModel {
         let catalogName = CatalogSubject.chw.rawValue + " catalog"
 
-        guard !chwId.isEmpty else {
+        if chwId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Chw Id")
-            return
-        }
-
-        for item in chwCatalogModel.rolePermissions {
-            guard !item.isEmpty else {
-                ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid role_permissions provided")
-                return
+        }else if let permissions = chwCatalogModel.rolePermissions {
+            for item in permissions{
+                guard !item.isEmpty else {
+                    ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid role_permissions provided")
+                    
+                }
             }
-        }
 
-        for item in chwCatalogModel.siteIdsList {
-            guard !item.isEmpty else {
-                 ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid site_id_list provided")
-                return
+        }else if let idLists = chwCatalogModel.siteIdsList {
+            for item in  idLists {
+                guard !item.isEmpty else {
+                     ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid site_id_list provided")
+                    return
+                }
             }
-        }
-
-        for item in chwCatalogModel.servicesList {
-            guard !item.isEmpty else {
-                 ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid services provided")
-                return
+        }else if let serviceList = chwCatalogModel.servicesList {
+            for item in serviceList {
+                guard !item.isEmpty else {
+                     ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid services provided")
+                    return
+                }
             }
+        }else {
+            
+            return InternalChwModel(
+                id: chwId,
+                name: chwCatalogModel.name,
+                isVolunteer: false,
+                role: chwCatalogModel.role,
+                rolePermissions: chwCatalogModel.rolePermissions,
+                siteIdsList: chwCatalogModel.siteIdsList,
+                servicesList:chwCatalogModel.servicesList
+            )
         }
-
-        return InternalChwModel(
-            id: chwId,
-            name: chwCatalogModel.name,
-            isVolunteer: false,
-            role: chwCatalogModel.role,
-            rolePermissions: chwCatalogModel.rolePermissions,
-            siteIdsList: chwCatalogModel.siteIdsList,
-            servicesList:chwCatalogModel.servicesList
-        )
     }
 
     static func verifySiteCatalog(_ siteId: String, _ chwSiteCatalogModel: ChwSiteCatalogModel) throws -> InternalSiteModel {
