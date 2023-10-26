@@ -16,7 +16,7 @@ enum ChwConstants {
         let catalogName = CatalogSubject.chw.rawValue + " catalog"
 
         guard !chwId.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Chw Id"
+            ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Chw Id")
         }
 
         for item in chwCatalogModel.rolePermissions {
@@ -43,7 +43,8 @@ enum ChwConstants {
             role: chwCatalogModel.role,
             role_permissions: chwCatalogModel.rolePermissions,
             site_id_list: chwCatalogModel.siteIdsList,
-            services: chwCatalogModel.servicesList
+            services: chwCatalogModel.servicesList,
+            isVolunteer: false
         )
     }
 
@@ -55,7 +56,7 @@ enum ChwConstants {
         }
 
         if !chwSiteCatalogModel.country.isEmpty {
-             let countryCode = CountryCode(rawValue: chwSiteCatalogModel.country) else {
+           guard let countryCode = CountryCode(rawValue: chwSiteCatalogModel.country) else {
                 throw ExceptionManager.throwEnumException(eventType: catalogName, className: "CountryCode")
             }
         }
@@ -64,12 +65,12 @@ enum ChwConstants {
             id: siteId,
             name: chwSiteCatalogModel.name,
             country: chwSiteCatalogModel.country,
-            region_state: chwSiteCatalogModel.region_state,
+            region_state: chwSiteCatalogModel.regionState,
             city: chwSiteCatalogModel.city,
             zipcode: chwSiteCatalogModel.zipcode,
             level: chwSiteCatalogModel.level,
             category: chwSiteCatalogModel.category,
-            is_active: chwSiteCatalogModel.is_active,
+            is_active: chwSiteCatalogModel.isActive,
             address: chwSiteCatalogModel.address,
             address_type: chwSiteCatalogModel.addressType,
             latitude: chwSiteCatalogModel.latitude,
@@ -82,7 +83,7 @@ enum ChwConstants {
         let catalogName = CatalogSubject.patient.rawValue + " catalog"
 
         guard !patientId.isEmpty else {
-            throw ExceptionManager.throwIsRequiredException(eventType:catalogName , elementName: "Patient Id")
+             ExceptionManager.throwIsRequiredException(eventType:catalogName , elementName: "Patient Id")
         }
 
         if !patientCatalogModel.country.isEmpty {
@@ -91,7 +92,7 @@ enum ChwConstants {
             }
         }
 
-        if !patientCatalogModel.education_level.isEmpty {
+        if !patientCatalogModel.educationLevel.isEmpty {
             guard let educationalLevel = EducationalLevel(rawValue: patientCatalogModel.education_level) else {
                  ExceptionManager.throwEnumException(eventType:catalogName , className: "EducationalLevel")
             }
@@ -106,18 +107,18 @@ enum ChwConstants {
         return InternalPatientModel(
             id: patientId,
             country: patientCatalogModel.country,
-            region_state: patientCatalogModel.region_state,
+            region_state: patientCatalogModel.regionState,
             city: patientCatalogModel.city,
             profession: patientCatalogModel.profession,
-            education_level: patientCatalogModel.education_level,
-            site_ids_list: patientCatalogModel.site_ids_list,
-            national_id: patientCatalogModel.national_id,
-            insurance_id: patientCatalogModel.insurance_id,
-            insurance_type: patientCatalogModel.insurance_type,
-            insurance_status: patientCatalogModel.insurance_status,
+            education_level: patientCatalogModel.educationLevel,
+            site_ids_list: patientCatalogModel.siteIdsList,
+            national_id: patientCatalogModel.nationalId,
+            insurance_id: patientCatalogModel.insuranceId,
+            insurance_type: patientCatalogModel.insuranceType,
+            insurance_status: patientCatalogModel.insuranceStatus,
             landmark: patientCatalogModel.landmark,
-            phone_number_category: patientCatalogModel.phone_number_category,
-            program_id: patientCatalogModel.program_id
+            phone_number_category: patientCatalogModel.phoneNumberCategory,
+            program_id: patientCatalogModel.programId
         )
     }
 }

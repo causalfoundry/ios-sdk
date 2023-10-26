@@ -1,6 +1,6 @@
 //
-//  File 2.swift
-//  
+//  InternalChwModel.swift
+//
 //
 //  Created by khushbu on 26/10/23.
 //
