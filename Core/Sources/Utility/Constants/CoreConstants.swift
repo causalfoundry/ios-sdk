@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class CoreConstants {
+public class CoreConstants {
     static let shared = CoreConstants()
     
     let devUrl = "https://api-dev.causalfoundry.ai/v1/"
