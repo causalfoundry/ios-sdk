@@ -50,6 +50,11 @@ class MainVC: UIViewController {
                     .build()
         
         
+        val lifestylePlanItem = LifestylePlanItem(
+               )
+        
+        
+        
         CfLogLifestyleEvent().
     }
     
