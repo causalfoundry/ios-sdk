@@ -7,7 +7,7 @@
 
 import Foundation
 
-import Foundation
+import CasualFoundryCore
 
 struct LifestyleEventObject: Codable {
     var patientId: String
