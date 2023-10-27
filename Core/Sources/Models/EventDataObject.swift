@@ -94,6 +94,8 @@ struct EventDataObject: Codable {
             try (investigationDatabjectTypeData).encode(to: dataEncoder)
         }else if let lifeStylePlanDatabjectTypeData = self.props as? LifestylePlanItem {
             try (lifeStylePlanDatabjectTypeData).encode(to: dataEncoder)
+        }else if let lifeStylePlanItemDatabjectTypeData = self.props as? LifestyleEventObject {
+            try (lifeStylePlanItemDatabjectTypeData).encode(to: dataEncoder)
         }
         
     }
@@ -138,6 +140,8 @@ extension EventDataObject {
             props = decodePageObject
         }else if let decodeMediaObject = try values.decodeIfPresent(MediaObject.self, forKey: .props) {
             props = decodeMediaObject
+        }else if let decodeRateObject = try values.decodeIfPresent(RateObject.self, forKey: .props) {
+            props = decodeRateObject
         }else if let decodeRateObject = try values.decodeIfPresent(RateObject.self, forKey: .props) {
             props = decodeRateObject
         }else {
