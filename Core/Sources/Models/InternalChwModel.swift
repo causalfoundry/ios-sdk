@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct InternalChwModel: Codable {
+public struct InternalChwModel: Codable {
     var id: String
     var name: String
     var isVolunteer: Bool = false
@@ -18,7 +18,7 @@ struct InternalChwModel: Codable {
     var servicesList: [String]
     
     
-    init(id: String, name: String, isVolunteer: Bool, role: String, rolePermissions: [String], siteIdsList: [String], servicesList: [String]) {
+    public  init(id: String, name: String, isVolunteer: Bool, role: String, rolePermissions: [String], siteIdsList: [String], servicesList: [String]) {
         self.id = id
         self.name = name
         self.isVolunteer = isVolunteer
