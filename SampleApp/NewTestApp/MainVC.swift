@@ -48,6 +48,9 @@ class MainVC: UIViewController {
                     .setInvestigationId("45454")
                     .setInvestigationList([investigationItem])
                     .build()
+        
+        
+        CfLogLifestyleEvent().
     }
     
 }

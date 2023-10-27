@@ -26,7 +26,7 @@ public class CfLogLifestyleEvent {
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
     
     
-    init(){
+    public init(){
         
     }
     
@@ -35,7 +35,7 @@ public class CfLogLifestyleEvent {
      * review is shown on screen.
      */
     @discardableResult
-    func setPatientId(_ patientId: String) -> CfLogLifestyleEvent {
+    public func setPatientId(_ patientId: String) -> CfLogLifestyleEvent {
         self.patientId = patientId
         return self
     }
@@ -46,7 +46,7 @@ public class CfLogLifestyleEvent {
      * review is being done.
      */
     @discardableResult
-    func setSiteId(_ siteId: String) -> CfLogLifestyleEvent {
+    public func setSiteId(_ siteId: String) -> CfLogLifestyleEvent {
         self.siteId = siteId
         return self
     }
@@ -57,7 +57,7 @@ public class CfLogLifestyleEvent {
      * lifestyle id, you can use the following id as the lifestyle id: lifestyle_<patient_id>
      */
     @discardableResult
-    func setLifestyleId(_ lifestyleId: String) -> CfLogLifestyleEvent {
+    public func setLifestyleId(_ lifestyleId: String) -> CfLogLifestyleEvent {
         self.lifestyleId = lifestyleId
         return self
     }
@@ -69,7 +69,7 @@ public class CfLogLifestyleEvent {
      * the SDK will throw an exception. Below is the function for providing item as an object.
      */
     @discardableResult
-    func addLifestylePlanItem(_ lifestylePlanItem: LifestylePlanItem) -> CfLogLifestyleEvent {
+    public func addLifestylePlanItem(_ lifestylePlanItem: LifestylePlanItem) -> CfLogLifestyleEvent {
         self.lifestylePlanList.append(lifestylePlanItem)
         return self
     }
@@ -81,7 +81,7 @@ public class CfLogLifestyleEvent {
      */
     
     @discardableResult
-    func addLifestylePlanItem(_ lifestylePlanItem: String) -> CfLogLifestyleEvent {
+    public func addLifestylePlanItem(_ lifestylePlanItem: String) -> CfLogLifestyleEvent {
         if let item = try? JSONDecoder().decode(LifestylePlanItem.self, from: Data(lifestylePlanItem.utf8)) {
             self.lifestylePlanList.append(item)
         }
@@ -95,7 +95,7 @@ public class CfLogLifestyleEvent {
      * the SDK will throw an exception. Below is the function for providing item as an object.
      */
     @discardableResult
-    func setLifestylePlanList(_ lifestylePlanList: [LifestylePlanItem]) -> CfLogLifestyleEvent {
+    public func setLifestylePlanList(_ lifestylePlanList: [LifestylePlanItem]) -> CfLogLifestyleEvent {
         self.lifestylePlanList = lifestylePlanList
         return self
     }
@@ -107,7 +107,7 @@ public class CfLogLifestyleEvent {
      * the SDK will throw an exception. Below is the function for providing item as a string.
      */
     @discardableResult
-    func setLifestylePlanList(_ lifestylePlanList: String) -> CfLogLifestyleEvent {
+    public func setLifestylePlanList(_ lifestylePlanList: String) -> CfLogLifestyleEvent {
         if let data = lifestylePlanList.data(using: .utf8),
            let items = try? JSONDecoder().decode([LifestylePlanItem].self, from: data) {
             self.lifestylePlanList = items
@@ -121,7 +121,7 @@ public class CfLogLifestyleEvent {
      * providing more context to the log. Default value for the meta is null.
      */
     @discardableResult
-    func setMeta(_ meta: Any?) -> CfLogLifestyleEvent {
+    public func setMeta(_ meta: Any?) -> CfLogLifestyleEvent {
         self.meta = meta
         return self
     }
@@ -133,12 +133,12 @@ public class CfLogLifestyleEvent {
      * session which is whenever the app goes into background.
      */
     @discardableResult
-    func updateImmediately(_ updateImmediately: Bool) -> CfLogLifestyleEvent {
+    public func updateImmediately(_ updateImmediately: Bool) -> CfLogLifestyleEvent {
         self.updateImmediately = updateImmediately
         return self
     }
     
-    func build() {
+    public func build() {
         guard let patientId = patientId, !patientId.isEmpty,
               let siteId = siteId, !siteId.isEmpty,
               let lifestyleId = lifestyleId, !lifestyleId.isEmpty,
