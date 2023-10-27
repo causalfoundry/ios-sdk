@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LifestylePlanItem: Codable {
+public struct LifestylePlanItem: Codable {
     var name: String
     var action: String
     var remarks: String?
