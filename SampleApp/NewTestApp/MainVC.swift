@@ -50,12 +50,12 @@ class MainVC: UIViewController {
                     .build()
         
         
-        val lifestylePlanItem = LifestylePlanItem(
-               )
+        var lifestylePlanItem = LifestylePlanItem(name:"LifeStypePlan1", action:ItemAction.update, remarks: "LifeStyle Plan1 Added")
         
         
         
-        CfLogLifestyleEvent().
+        CfLogLifestyleEvent().addLifestylePlanItem(lifestylePlanItem)
+                             .build()
     }
     
 }

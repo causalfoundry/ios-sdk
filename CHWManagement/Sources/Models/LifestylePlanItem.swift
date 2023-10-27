@@ -12,7 +12,7 @@ public struct LifestylePlanItem: Codable {
     var action: String
     var remarks: String?
     
-    init(name: String, action: String, remarks: String? = nil) {
+    public init(name: String, action: String, remarks: String? = nil) {
         self.name = name
         self.action = action
         self.remarks = remarks
