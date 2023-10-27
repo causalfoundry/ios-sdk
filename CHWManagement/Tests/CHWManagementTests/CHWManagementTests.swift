@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import CasualFoundryCHWManagement
 
 final class CfLogChwModuleEventBuilderTests: XCTestCase {
 

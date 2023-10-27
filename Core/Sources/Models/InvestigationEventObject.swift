@@ -7,9 +7,6 @@
 
 import Foundation
 
-
-import Foundation
-
 public struct InvestigationEventObject: Codable {
     var patientId: String
     var siteId: String
@@ -17,7 +14,7 @@ public struct InvestigationEventObject: Codable {
     var prescribedTestsList: [InvestigationItem]
     var meta: MetaValue?
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case patientId = "patient_id"
         case siteId = "site_id"
         case investigationId = "id"

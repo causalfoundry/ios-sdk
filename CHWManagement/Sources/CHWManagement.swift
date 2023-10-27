@@ -27,9 +27,9 @@ public class CfLogChwModuleEvent {
     
 }
 public class CfLogChwModuleEventBuilder {
-    var moduleType: String?
-    var meta: Any?
-    var updateImmediately: Bool = CoreConstants.shared.updateImmediately
+    public var moduleType: String?
+    public var meta: Any?
+    public var updateImmediately: Bool = CoreConstants.shared.updateImmediately
     
     
     public init() {

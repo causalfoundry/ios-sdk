@@ -13,7 +13,7 @@ let package = Package(
             targets: ["CasualFoundryCore"]),
         .library(
             name: "CHWManagement",
-            targets: ["CHWManagement"])
+            targets: ["CasualFoundryCHWManagement"])
         
     ],
     targets: [
@@ -24,7 +24,7 @@ let package = Package(
             path: "Core/Sources"
         ),
         .target(
-            name: "CHWManagement",
+            name: "CasualFoundryCHWManagement",
             dependencies:["CasualFoundryCore"], path: "CHWManagement/Sources"
             
         ),
@@ -34,7 +34,7 @@ let package = Package(
             path: "Core/Tests"),
         .testTarget(
             name: "CHWManagementTests",
-            dependencies: ["CHWManagement"],
+            dependencies: ["CasualFoundryCHWManagement"],
             path: "CHWManagement/Tests")
     ]
 )
