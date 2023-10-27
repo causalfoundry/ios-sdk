@@ -8,9 +8,9 @@
 import Foundation
 
 public struct LifestylePlanItem: Codable {
-    var name: String
-    var action: String
-    var remarks: String?
+   public  var name: String
+   public  var action: String
+   public  var remarks: String?
     
     public init(name: String, action: String, remarks: String? = nil) {
         self.name = name
