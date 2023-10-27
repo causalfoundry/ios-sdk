@@ -8,13 +8,13 @@
 import Foundation
 
 public struct InvestigationItem: Codable {
-    var name: String
-    var testValue: String
-    var testUnit: String
-    var orderedDate: Int64
-    var testedDate: Int64
-    var action: String
-    var remarks: String?
+   public var name: String
+    public var testValue: String
+    public var testUnit: String
+    public var orderedDate: Int64
+    public var testedDate: Int64
+    public var action: String
+    public var remarks: String?
 
     enum CodingKeys: String, CodingKey {
         case name
