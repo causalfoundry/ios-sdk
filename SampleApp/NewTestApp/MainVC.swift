@@ -6,7 +6,8 @@
 //
 
 import UIKit
-import CHWManagement
+import CasualFoundryCHWManagement
+import CasualFoundryCore
 
 class MainVC: UIViewController {
 
@@ -34,7 +35,7 @@ class MainVC: UIViewController {
         
         
         
-        var investigationItem  = InvestigationItem(name: "someItem2",
+        let investigationItem  = InvestigationItem(name: "someItem2",
                                                    testValue: "22.3f",
                                                    testUnit: "mg",
                                                    orderedDate: Int64(ordered_date),

@@ -8,7 +8,7 @@
 import Foundation
 
 
-public enum MetaValue: Codable {
+public enum MetaValue: Codable,Equatable {
     case string(String)
     case int(Int)
     case double(Double)
@@ -16,6 +16,10 @@ public enum MetaValue: Codable {
     case array([MetaValue])
     case dictionary([String: MetaValue])
 
+    
+    init(value:MetaValue) {
+        self = value 
+    }
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         

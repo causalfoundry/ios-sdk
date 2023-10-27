@@ -59,7 +59,7 @@ final class CfLogChwModuleEventBuilderTests: XCTestCase {
         let builder = CfLogChwModuleEventBuilder()
 
         // Set required values
-        builder.setChwModuleEvent(.someEnumValue)
+        builder.setChwModuleEvent(.medicalReview)
 
         // Build and track the event
         builder.build()

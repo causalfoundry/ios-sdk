@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct InvestigationItem: Codable {
+public struct InvestigationItem: Codable,Equatable {
    public var name: String
     public var testValue: String
     public var testUnit: String

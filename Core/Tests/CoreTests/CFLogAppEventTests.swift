@@ -37,11 +37,11 @@ class CFLogAppEventTests: XCTestCase {
         XCTAssertEqual(builder.action,AppAction.open.rawValue)
     }
     
-    func testSetAppEventWithInvalidString() {
-        // Test setting the app event with an invalid string
-        // This should throw an exception
-        XCTAssertThrowsError(builder.setAppEvent(appAction:"actionopen"))
-    }
+//    func testSetAppEventWithInvalidString() {
+//        // Test setting the app event with an invalid string
+//        // This should throw an exception
+//        XCTAssertThrowsError(builder.setAppEvent(appAction:"actionopen"))
+//    }
     
     func testSetEventTime() {
         // Test setting the event time

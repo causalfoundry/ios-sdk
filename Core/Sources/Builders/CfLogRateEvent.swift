@@ -45,7 +45,7 @@ public class CfLogRateEventBuilder {
      * well in order to log the content block type. Below is the function for the usage of enum
      * type function.
      */
-    
+    @discardableResult
     public func setContentBlock(contentBlock: ContentBlock) -> CfLogRateEventBuilder {
         self.contentBlock = contentBlock.rawValue
         return self
@@ -58,7 +58,7 @@ public class CfLogRateEventBuilder {
      * content block type function. Remember to note that you need to use the same enum types
      * as provided by the enums or else the events will be discarded.
      */
-    
+    @discardableResult
     public func setContentBlock(contentBlock: String) -> CfLogRateEventBuilder {
         
         if CoreConstants.shared.enumContains(ContentBlock.self, name: contentBlock) {
@@ -73,6 +73,7 @@ public class CfLogRateEventBuilder {
      * setRateValue is for the providing the value for the rate. Should be in between 0 to 5,
      * if there are more elements like 0 to 10, make sure to divide the value by 2.
      */
+    @discardableResult
     public func setRateValue(rateValue: Float) -> CfLogRateEventBuilder {
         self.rateValue = rateValue
         return self
@@ -85,12 +86,12 @@ public class CfLogRateEventBuilder {
      * using string.Remember to use the same strings as provided in the enums or else the
      * event will be discarded.
      */
-    
+    @discardableResult
     public func setRateType(type: RateType) -> CfLogRateEventBuilder {
         self.type = type.rawValue
         return self
     }
-    
+    @discardableResult
     public func setRateType(type: String) -> CfLogRateEventBuilder {
         if CoreConstants.shared.enumContains(RateType.self,name:type) {
             self.type = type
@@ -104,6 +105,7 @@ public class CfLogRateEventBuilder {
      * setSubjectId is required to set the subject Id for the item being rated. It is required
      * in all cases, if the app is rated then provide the application id
      */
+    @discardableResult
     public func setSubjectId(subjectId: String) -> CfLogRateEventBuilder {
         self.subjectId = subjectId
         return self
@@ -114,7 +116,7 @@ public class CfLogRateEventBuilder {
      * providing more context to the log. Default value for the meta is null.
      */
     
-    
+    @discardableResult
     public func setMeta(meta: Any?) -> CfLogRateEventBuilder {
         self.meta = meta
         return self
@@ -126,7 +128,7 @@ public class CfLogRateEventBuilder {
      * the SDK will log the content instantly and if false it will wait till the end of user
      * session which is whenever the app goes into background.
      */
-    
+    @discardableResult
     public  func updateImmediately(updateImmediately: Bool) -> CfLogRateEventBuilder {
         self.updateImmediately = updateImmediately
         return self

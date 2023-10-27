@@ -29,6 +29,7 @@ public class  CfLogInvestigationEvent {
          * setPatientId is for providing the ID for the patient whose Investigation tests
          * are in question.
          */
+    @discardableResult
     public func setPatientId(_ patientId: String) -> CfLogInvestigationEvent {
             var CfLogInvestigationEvent = self
             self.patientId = patientId
@@ -39,6 +40,7 @@ public class  CfLogInvestigationEvent {
          * setSiteId is for providing the ID for the site where Investigation tests
          * are being done.
          */
+    @discardableResult
     public func setSiteId(_ siteId: String) -> CfLogInvestigationEvent {
             self.siteId = siteId
              return self
@@ -50,6 +52,7 @@ public class  CfLogInvestigationEvent {
          * investigation ID, you can use the following ID as the
          * investigation ID: investigation_<patientId>
          */
+    @discardableResult
     public func setInvestigationId(_ investigationId: String) -> CfLogInvestigationEvent {
             
             self.investigationId = investigationId
@@ -62,6 +65,7 @@ public class  CfLogInvestigationEvent {
          * converted to the object with proper parameter names. In case the names are not correct,
          * the SDK will throw an exception.
          */
+    @discardableResult
     public func addInvestigationItem(_ investigationItem: InvestigationItem) -> CfLogInvestigationEvent {
              self.prescribedTestsList.append(investigationItem)
             return self
@@ -73,6 +77,7 @@ public class  CfLogInvestigationEvent {
          * converted to the object with proper parameter names. In case the names are not correct,
          * the SDK will throw an exception.
          */
+    @discardableResult
     public func addInvestigationItem(_ investigationItem: String) -> CfLogInvestigationEvent {
           
             if let item = try? JSONDecoder().decode(InvestigationItem.self, from: Data(investigationItem.utf8)) {
@@ -87,6 +92,7 @@ public class  CfLogInvestigationEvent {
          * converted to the object with proper parameter names. In case the names are not correct,
          * the SDK will throw an exception.
          */
+    @discardableResult
     public func setInvestigationList(_ prescribedTestsList: [InvestigationItem]) -> CfLogInvestigationEvent {
             self.prescribedTestsList = prescribedTestsList
             return self
@@ -98,6 +104,7 @@ public class  CfLogInvestigationEvent {
          * can be converted to the object with proper parameter names. In case the names are not correct,
          * the SDK will throw an exception.
          */
+    @discardableResult
     public func setInvestigationList(_ prescribedTestsList: String) -> CfLogInvestigationEvent {
             if let data = prescribedTestsList.data(using: .utf8),
                let itemsList = try? JSONDecoder().decode([InvestigationItem].self, from: data) {
@@ -111,6 +118,7 @@ public class  CfLogInvestigationEvent {
          * additional information with the log that they find would be helpful for logging and
          * providing more context to the log. The default value for meta is nil.
          */
+    @discardableResult
     public func setMeta(_ meta: MetaValue?) -> Self {
             self.meta = meta
             return self
@@ -123,6 +131,7 @@ public class  CfLogInvestigationEvent {
          * the SDK will log the content instantly, and if false, it will wait until the end of the user's
          * session, which is whenever the app goes into the background.
          */
+    @discardableResult
     public func updateImmediately(_ updateImmediately: Bool) -> CfLogInvestigationEvent {
             self.updateImmediately = updateImmediately
             return self

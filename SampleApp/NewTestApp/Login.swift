@@ -7,7 +7,7 @@
 
 import UIKit
 import CasualFoundryCore
-import CHWManagement
+import CasualFoundryCHWManagement
 
 class Login: UIViewController {
     
