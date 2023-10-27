@@ -50,7 +50,7 @@ class MainVC: UIViewController {
                     .build()
         
         
-        var lifestylePlanItem = LifestylePlanItem(name:"LifeStypePlan1", action:ItemAction.update, remarks: "LifeStyle Plan1 Added")
+        var lifestylePlanItem = LifestylePlanItem(name:"LifeStypePlan1", action:ItemAction.update.rawValue, remarks: "LifeStyle Plan1 Added")
         
         
         

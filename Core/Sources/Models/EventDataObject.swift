@@ -48,6 +48,8 @@ struct EventDataObject: Codable {
             props = decodeSearchObject
         }else if let decodeSearchObject = try values.decodeIfPresent(InvestigationEventObject.self, forKey: .props) {
             props = decodeSearchObject
+        }else if let decodeLifeStypePlanObject = try values.decodeIfPresent(LifestylePlanItem.self, forKey: .props) {
+            props = decodeLifeStypePlanObject
         }else {
             props = nil
         }
@@ -90,6 +92,8 @@ struct EventDataObject: Codable {
             try (CHWObjectTypeData).encode(to: dataEncoder)
         }else if let investigationDatabjectTypeData = self.props as? InvestigationEventObject {
             try (investigationDatabjectTypeData).encode(to: dataEncoder)
+        }else if let lifeStylePlanDatabjectTypeData = self.props as? LifestylePlanItem {
+            try (lifeStylePlanDatabjectTypeData).encode(to: dataEncoder)
         }
         
     }
