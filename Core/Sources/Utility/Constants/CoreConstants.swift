@@ -51,6 +51,8 @@ public class CoreConstants {
     
     public var impressionItemsList = [String]()
     
+    public var isAgainRate: Bool = false
+    
     public func enumContains<T: EnumComposable>(_ type: T.Type, name: String) -> Bool where T.RawValue == String {
         return T.allCases.contains{ $0.rawValue == name }
     }
@@ -88,5 +90,13 @@ extension CoreConstants {
         dateFormatter.dateFormat = "Z"
         return dateFormatter.string(from: Date())
     }
+    
+    func checkIfNull(_ inputValue: String?) -> String {
+        if let value = inputValue, !value.isEmpty {
+            return value
+        }
+        return ""
+    }
+
 
 }

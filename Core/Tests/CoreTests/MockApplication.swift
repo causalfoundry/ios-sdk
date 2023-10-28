@@ -9,15 +9,7 @@ import Foundation
 import UIKit
 
 class MockApplication: UIApplication {
-    var mockDelegate: UIApplicationDelegate?
-
-    override var delegate: UIApplicationDelegate? {
-        get {
-            return mockDelegate
-        }
-        set {
-            mockDelegate = newValue
-        }
-    }
-   
+    
+    
+    
 }

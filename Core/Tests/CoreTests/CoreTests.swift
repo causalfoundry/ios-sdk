@@ -1,7 +1,6 @@
 import XCTest
+import UIKit
 
-
-import XCTest
 @testable import CasualFoundryCore // Replace with your actual module name
 
 final class CFLogTests: XCTestCase {
@@ -10,7 +9,8 @@ final class CFLogTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Initialize your application object if needed
-        let mockApplication = MockApplication()
+        application = MockApplication()
+        
         
 }
     
