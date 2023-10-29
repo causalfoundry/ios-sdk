@@ -512,6 +512,36 @@
                   endingLineNumber = "193"
                   offsetFromSymbolStart = "840">
                </Location>
+               <Location
+                  uuid = "132BC0DF-9D6E-4438-B687-D72F29666541 - 6d502fa48e245711"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.EventDataObject.encode(to: Swift.Encoder) throws -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/EventDataObject.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "193"
+                  endingLineNumber = "193"
+                  offsetFromSymbolStart = "706">
+               </Location>
+               <Location
+                  uuid = "132BC0DF-9D6E-4438-B687-D72F29666541 - 6d502fa48e245711"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.EventDataObject.encode(to: Swift.Encoder) throws -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/EventDataObject.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "193"
+                  endingLineNumber = "193"
+                  offsetFromSymbolStart = "811">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -559,6 +589,21 @@
                   startingLineNumber = "195"
                   endingLineNumber = "195"
                   offsetFromSymbolStart = "1582">
+               </Location>
+               <Location
+                  uuid = "A9284B31-0CB5-4BA9-9564-8C2716EC01F5 - 6d502fa48e24576f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.EventDataObject.encode(to: Swift.Encoder) throws -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Models/EventDataObject.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "195"
+                  endingLineNumber = "195"
+                  offsetFromSymbolStart = "886">
                </Location>
             </Locations>
          </BreakpointContent>
