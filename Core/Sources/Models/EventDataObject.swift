@@ -191,9 +191,9 @@ struct EventDataObject: Codable {
         try container.encode(event_type, forKey: .event_type)
         
         if let properties = event_properties {
-            if let propertiesData = try? JSONSerialization.data(withJSONObject: properties) {
-                try container.encode(propertiesData, forKey: .event_properties)
-            }
+//            if let propertiesData = try? JSONSerialization.data(withJSONObject: properties) {
+                try container.encode(properties, forKey: .event_properties)
+           // }
         }
     }
     
