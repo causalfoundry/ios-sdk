@@ -98,6 +98,8 @@ class IngestAPIHandler:NSObject {
         if userID != "" {
             let mainBody = MainBody(sID: "\(userID)_\(CoreConstants.shared.sessionStartTime)_\(CoreConstants.shared.sessionEndTime)", uID: userID, appInfo:CoreConstants.shared.appInfoObject! , dInfo: CoreConstants.shared.deviceObject!, dn: Int(NetworkMonitor.shared.downloadSpeed), sdk:  CoreConstants.shared.SDKVersion, up: Int(NetworkMonitor.shared.uploadSpeed), data: eventArray)
             
+            
+            print(mainBody.dictionary)
             // Show notification if tasks takes more then 10 seconds to complete and if allowed
             
             DispatchQueue.main.async {
