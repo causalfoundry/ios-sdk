@@ -35,7 +35,7 @@ class IngestAPIHandler:NSObject {
 //                                              ol: isInternetAvailable,
 //                                              ts:"\(timezone)")
             
-            let eventObject = EventDataObject(content_block:contentBlock , online: isInternetAvailable, ts: "\(timezone)", event_type: eventType, event_properties: trackProperties)
+            let eventObject = EventDataObject(content_block:contentBlock , online: isInternetAvailable, ts: "\(timezone)", event_type: eventType, event_properties: (trackProperties as! Encodable))
                     
                     if(updateImmediately) {
                         self.updateEvenrTrack(eventArray:[eventObject])

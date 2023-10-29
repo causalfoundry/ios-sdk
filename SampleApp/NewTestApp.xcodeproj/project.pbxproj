@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C45DCA9D2AEAA6FA00509892 /* CHWManagement in Frameworks */ = {isa = PBXBuildFile; productRef = C45DCA9C2AEAA6FA00509892 /* CHWManagement */; };
-		C45DCA9F2AEAA6FA00509892 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = C45DCA9E2AEAA6FA00509892 /* Core */; };
+		C45AAFFC2AEEF6D100DB4A3E /* CHWManagement in Frameworks */ = {isa = PBXBuildFile; productRef = C45AAFFB2AEEF6D100DB4A3E /* CHWManagement */; };
+		C45AAFFE2AEEF6D500DB4A3E /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = C45AAFFD2AEEF6D500DB4A3E /* Core */; };
 		C48324CE2AEADE6A0097C9F4 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48324CD2AEADE6A0097C9F4 /* MainVC.swift */; };
 		C4A8BD9C2AC7758F00BA1323 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A8BD9B2AC7758F00BA1323 /* AppDelegate.swift */; };
 		C4A8BDA02AC7758F00BA1323 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A8BD9F2AC7758F00BA1323 /* Login.swift */; };
@@ -58,8 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C45DCA9D2AEAA6FA00509892 /* CHWManagement in Frameworks */,
-				C45DCA9F2AEAA6FA00509892 /* Core in Frameworks */,
+				C45AAFFC2AEEF6D100DB4A3E /* CHWManagement in Frameworks */,
+				C45AAFFE2AEEF6D500DB4A3E /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,8 +156,8 @@
 			);
 			name = NewTestApp;
 			packageProductDependencies = (
-				C45DCA9C2AEAA6FA00509892 /* CHWManagement */,
-				C45DCA9E2AEAA6FA00509892 /* Core */,
+				C45AAFFB2AEEF6D100DB4A3E /* CHWManagement */,
+				C45AAFFD2AEEF6D500DB4A3E /* Core */,
 			);
 			productName = NewTestApp;
 			productReference = C4A8BD982AC7758F00BA1323 /* NewTestApp.app */;
@@ -639,12 +639,12 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C45DCA9C2AEAA6FA00509892 /* CHWManagement */ = {
+		C45AAFFB2AEEF6D100DB4A3E /* CHWManagement */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C45DCA9B2AEAA6FA00509892 /* XCRemoteSwiftPackageReference "ios-sdk" */;
 			productName = CHWManagement;
 		};
-		C45DCA9E2AEAA6FA00509892 /* Core */ = {
+		C45AAFFD2AEEF6D500DB4A3E /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C45DCA9B2AEAA6FA00509892 /* XCRemoteSwiftPackageReference "ios-sdk" */;
 			productName = Core;

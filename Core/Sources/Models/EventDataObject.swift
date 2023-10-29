@@ -162,7 +162,7 @@ struct EventDataObject: Codable {
     var online: Bool
     var ts: String
     var event_type: String
-    var event_properties: Any?
+    var event_properties: Encodable?
     
     enum CodingKeys: String, CodingKey {
         case content_block = "block"
@@ -172,7 +172,7 @@ struct EventDataObject: Codable {
         case event_properties = "props"
     }
     
-    init(content_block: String, online: Bool, ts: String, event_type: String, event_properties: Any? = nil) {
+    init(content_block: String, online: Bool, ts: String, event_type: String, event_properties: Encodable? = nil) {
         self.content_block = content_block
         self.online = online
         self.ts = ts
@@ -205,7 +205,7 @@ struct EventDataObject: Codable {
         event_type = try container.decode(String.self, forKey: .event_type)
         
         if let propertiesData = try container.decodeIfPresent(Data.self, forKey: .event_properties) {
-            event_properties = try? JSONSerialization.jsonObject(with: propertiesData, options: .allowFragments)
+            event_properties = try? (JSONSerialization.jsonObject(with: propertiesData, options: .allowFragments) as! any Encodable)
         } else {
             event_properties = nil
         }
