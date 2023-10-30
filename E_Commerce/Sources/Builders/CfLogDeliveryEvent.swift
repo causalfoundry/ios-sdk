@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CausalFoundryCore
+import CasualFoundryCore
 
 public class CfLogDeliveryEvent {
     
