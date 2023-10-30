@@ -54,9 +54,9 @@ class CfLogInvestigationEventTests: XCTestCase {
     }
 
     func testSetMeta() {
-        let meta = MetaValue(value: MetaValue.string("Testing"))
+        let meta = "Testas"
         logEvent.setMeta(meta)
-        XCTAssertEqual(logEvent.meta, meta)
+        XCTAssertEqual(logEvent.meta as! String, meta)
     }
 
     func testUpdateImmediately() {

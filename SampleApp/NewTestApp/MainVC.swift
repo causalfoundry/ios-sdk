@@ -66,11 +66,10 @@ class MainVC: UIViewController {
         }
     
     
-    
     func testEcommerceEvents () {
         CfLogDeliveryEvent()
             .setOrderId(orderId: "83473843")
-            .setDeliveryAction(action:ScheduleDeliveryAction.schedule )
+            .setDeliveryAction(action:ScheduleDeliveryAction.schedule.rawValue)
             .setDeliveryId(deliveryId:"56509605")
             .setMeta(meta:["TestData":"Testting1"])
                     .build()

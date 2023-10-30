@@ -18,7 +18,7 @@ public class  CfLogInvestigationEvent {
         var siteId: String?
         var investigationId: String?
         var prescribedTestsList: [InvestigationItem] = []
-        var meta: MetaValue?
+        var meta: Any?
         var updateImmediately: Bool = CoreConstants.shared.updateImmediately
         
         
@@ -119,7 +119,7 @@ public class  CfLogInvestigationEvent {
          * providing more context to the log. The default value for meta is nil.
          */
     @discardableResult
-    public func setMeta(_ meta: MetaValue?) -> Self {
+    public func setMeta(_ meta: Any?) -> Self {
             self.meta = meta
             return self
         }
