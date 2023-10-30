@@ -13,7 +13,10 @@ let package = Package(
             targets: ["CasualFoundryCore"]),
         .library(
             name: "CHWManagement",
-            targets: ["CasualFoundryCHWManagement"])
+            targets: ["CasualFoundryCHWManagement"]),
+        .library(
+            name: "CHWEcommerce",
+            targets: ["CasualFoundryEcommerce"])
         
     ],
     targets: [
@@ -27,14 +30,22 @@ let package = Package(
             name: "CasualFoundryCHWManagement",
             dependencies:["CasualFoundryCore"], path: "CHWManagement/Sources"
             
+        ),.target(
+            name: "CasualFoundryEcommerce",
+            dependencies:["CasualFoundryCore"], path: "E_Commerce/Sources"
+            
         ),
-        .testTarget(
+        .target(
             name: "CoreTests",
             dependencies: ["CasualFoundryCore"],
             path: "Core/Tests"),
         .testTarget(
             name: "CHWManagementTests",
             dependencies: ["CasualFoundryCHWManagement"],
-            path: "CHWManagement/Tests")
+            path: "CHWManagement/Tests"),
+        .testTarget(
+            name: "ECommerceTests",
+            dependencies: ["CasualFoundryEcommerce"],
+            path: "E_Commerce/Tests")
     ]
 )

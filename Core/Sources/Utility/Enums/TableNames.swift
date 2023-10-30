@@ -13,5 +13,6 @@ enum TableName:String{
     case user = "User"
     case userCatalog = "UserCatalog"
     case exceptionData = "ExceptionData"
+    case currency = "currency"
     
 }

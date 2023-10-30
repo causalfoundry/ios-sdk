@@ -283,7 +283,7 @@ public class CfLogItemEvent {
                 itemObject.usd_rate = 1.0
                 CFSetup().track(ECommerceConstants.contentBlockName, EComEventType.item.rawValue, itemObject, updateImmediately)
             } else {
-                CFSetup().getUSDRate(itemValue.currency) { usdRate in
+                CFSetup().getUSDRate(fromCurrency: itemValue.currency, callback: { usdRate in
                     itemObject.usd_rate = usdRate
                     CFSetup().track(ECommerceConstants.contentBlockName, EComEventType.item.rawValue, itemObject, updateImmediately)
                 }

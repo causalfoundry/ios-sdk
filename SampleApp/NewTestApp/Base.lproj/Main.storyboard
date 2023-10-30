@@ -111,15 +111,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Goh-kP-utD">
+                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Goh-kP-utD">
                                 <rect key="frame" x="0.0" y="143" width="393" height="645"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDc-VV-kQT">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="645"/>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDc-VV-kQT">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="34.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Test_CHWManagementEvents"/>
                                         <connections>
                                             <action selector="action_CHW_Managements_Events:" destination="nSI-ET-m1d" eventType="touchUpInside" id="suq-d6-sjV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qwB-Yw-gW3">
+                                        <rect key="frame" x="0.0" y="34.333333333333314" width="393" height="610.66666666666674"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Test_EcommerceEvents"/>
+                                        <connections>
+                                            <action selector="action_CHW_Managements_Events:" destination="nSI-ET-m1d" eventType="touchUpInside" id="yYJ-fY-bl5"/>
+                                            <action selector="test_EcommerceEvents:" destination="nSI-ET-m1d" eventType="touchUpInside" id="aqn-GO-0bR"/>
                                         </connections>
                                     </button>
                                 </subviews>

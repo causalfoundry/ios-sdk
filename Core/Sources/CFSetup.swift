@@ -61,13 +61,7 @@ public class CFSetup:NSObject, IngestProtocol {
         }
     }
     
-    func getUSDRate(fromCurrency: String, callback: (Float) -> Float) {
-        if CoreConstants.shared.application != nil {
-//            ingestApiHandler.getUSDRate(fromCurrency: fromCurrency) { value  in
-//                return value
-//            }
-        }
-    }
+ 
     
     func updateCatalogItem(subject: CatalogSubject, catalogObject: Any?) {
         if CoreConstants.shared.application != nil {

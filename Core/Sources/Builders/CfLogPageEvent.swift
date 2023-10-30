@@ -160,7 +160,10 @@ public class CfLogPageBuilder {
             )
         }
         
-        var pageObject = PageObject(path: self.path_value, title: self.title_value, duration: self.duration_value, render_time: self.render_time_value, meta: self.meta)
+        var pageObject = PageObject(path: self.path_value, title: self.title_value, duration: self.duration_value, render_time: self.render_time_value, meta: (self.meta as! Encodable))
+        
+        
+        
         if pageObject.render_time! > 1000 {
             pageObject.render_time = 0
         }

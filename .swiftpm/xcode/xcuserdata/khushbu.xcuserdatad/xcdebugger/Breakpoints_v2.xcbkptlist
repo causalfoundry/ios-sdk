@@ -286,8 +286,8 @@
             filePath = "Core/Sources/Models/EventDataObject.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "init(from:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -302,8 +302,8 @@
             filePath = "Core/Sources/Models/EventDataObject.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "init(from:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -318,8 +318,8 @@
             filePath = "Core/Sources/Models/EventDataObject.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "init(from:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -167,9 +167,34 @@ public class CoreDataHelper {
         
         userCatalogEntity.properties = [attributedUserName,attributedCountry,attributedRegion, attributedCity, attributedWorkPlace, attributedProfession, attributedZipCode, attributedLanguage,attributedexperience,attributeEducation, attributeOrganizationID, attributeOrganizationName ]
         
+        
+        // Create an Currency description
+        
+        let currencyDataEntity = NSEntityDescription()
+        currencyDataEntity.name = TableName.currency.rawValue
+     
+        
+        // Create attributes
+        let attributefromCurrency = NSAttributeDescription()
+        attributefromCurrency.name = "fromCurrency"
+        attributefromCurrency.attributeType = .stringAttributeType
+        
+        
+        let attributeConversionDate = NSAttributeDescription()
+        attributeConversionDate.name = "conversionDate"
+        attributeConversionDate.attributeType = .stringAttributeType
+        
+        let attributeToCurrency = NSAttributeDescription()
+        attributeToCurrency.name = "toCurrency"
+        attributeToCurrency.attributeType = .stringAttributeType
+        
+        // Add the attribute to the entity
+        currencyDataEntity.properties = [attributefromCurrency, attributeConversionDate, attributeToCurrency]
+        
+        
         // Create a managed object model
         let managedObjectModel = NSManagedObjectModel()
-        managedObjectModel.entities = [userDataEntity,exceptionDataEntity,userCatalogEntity]
+        managedObjectModel.entities = [userDataEntity,exceptionDataEntity,userCatalogEntity,currencyDataEntity]
         
         return managedObjectModel
     }
@@ -376,4 +401,7 @@ extension CoreDataHelper {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
+    
+    
+    
 }

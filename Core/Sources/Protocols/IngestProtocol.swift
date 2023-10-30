@@ -18,8 +18,7 @@ protocol IngestProtocol {
     
     
     func updateUserId(appUserId: String)
-    func getUSDRate(fromCurrency: String,
-                    callback: (Float) -> Float)
+    
     func updateCatalogItem(subject: CatalogSubject,
                            catalogObject: Any?)
     
