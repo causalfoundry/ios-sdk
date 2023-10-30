@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C45AAFFC2AEEF6D100DB4A3E /* CHWManagement in Frameworks */ = {isa = PBXBuildFile; productRef = C45AAFFB2AEEF6D100DB4A3E /* CHWManagement */; };
-		C45AAFFE2AEEF6D500DB4A3E /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = C45AAFFD2AEEF6D500DB4A3E /* Core */; };
+		C45AB0012AEF3C1C00DB4A3E /* CHWEcommerce in Frameworks */ = {isa = PBXBuildFile; productRef = C45AB0002AEF3C1C00DB4A3E /* CHWEcommerce */; };
+		C45AB0032AEF3C1C00DB4A3E /* CHWManagement in Frameworks */ = {isa = PBXBuildFile; productRef = C45AB0022AEF3C1C00DB4A3E /* CHWManagement */; };
+		C45AB0052AEF3C1C00DB4A3E /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = C45AB0042AEF3C1C00DB4A3E /* Core */; };
 		C48324CE2AEADE6A0097C9F4 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48324CD2AEADE6A0097C9F4 /* MainVC.swift */; };
 		C4A8BD9C2AC7758F00BA1323 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A8BD9B2AC7758F00BA1323 /* AppDelegate.swift */; };
 		C4A8BDA02AC7758F00BA1323 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A8BD9F2AC7758F00BA1323 /* Login.swift */; };
@@ -58,8 +59,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C45AAFFC2AEEF6D100DB4A3E /* CHWManagement in Frameworks */,
-				C45AAFFE2AEEF6D500DB4A3E /* Core in Frameworks */,
+				C45AB0032AEF3C1C00DB4A3E /* CHWManagement in Frameworks */,
+				C45AB0012AEF3C1C00DB4A3E /* CHWEcommerce in Frameworks */,
+				C45AB0052AEF3C1C00DB4A3E /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,8 +158,9 @@
 			);
 			name = NewTestApp;
 			packageProductDependencies = (
-				C45AAFFB2AEEF6D100DB4A3E /* CHWManagement */,
-				C45AAFFD2AEEF6D500DB4A3E /* Core */,
+				C45AB0002AEF3C1C00DB4A3E /* CHWEcommerce */,
+				C45AB0022AEF3C1C00DB4A3E /* CHWManagement */,
+				C45AB0042AEF3C1C00DB4A3E /* Core */,
 			);
 			productName = NewTestApp;
 			productReference = C4A8BD982AC7758F00BA1323 /* NewTestApp.app */;
@@ -232,7 +235,7 @@
 			);
 			mainGroup = C4A8BD8F2AC7758F00BA1323;
 			packageReferences = (
-				C45DCA9B2AEAA6FA00509892 /* XCRemoteSwiftPackageReference "ios-sdk" */,
+				C45AAFFF2AEF3C1C00DB4A3E /* XCRemoteSwiftPackageReference "ios-sdk" */,
 			);
 			productRefGroup = C4A8BD992AC7758F00BA1323 /* Products */;
 			projectDirPath = "";
@@ -628,7 +631,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C45DCA9B2AEAA6FA00509892 /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
+		C45AAFFF2AEF3C1C00DB4A3E /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/causalfoundry/ios-sdk.git";
 			requirement = {
@@ -639,14 +642,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C45AAFFB2AEEF6D100DB4A3E /* CHWManagement */ = {
+		C45AB0002AEF3C1C00DB4A3E /* CHWEcommerce */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C45DCA9B2AEAA6FA00509892 /* XCRemoteSwiftPackageReference "ios-sdk" */;
+			package = C45AAFFF2AEF3C1C00DB4A3E /* XCRemoteSwiftPackageReference "ios-sdk" */;
+			productName = CHWEcommerce;
+		};
+		C45AB0022AEF3C1C00DB4A3E /* CHWManagement */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C45AAFFF2AEF3C1C00DB4A3E /* XCRemoteSwiftPackageReference "ios-sdk" */;
 			productName = CHWManagement;
 		};
-		C45AAFFD2AEEF6D500DB4A3E /* Core */ = {
+		C45AB0042AEF3C1C00DB4A3E /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C45DCA9B2AEAA6FA00509892 /* XCRemoteSwiftPackageReference "ios-sdk" */;
+			package = C45AAFFF2AEF3C1C00DB4A3E /* XCRemoteSwiftPackageReference "ios-sdk" */;
 			productName = Core;
 		};
 /* End XCSwiftPackageProductDependency section */

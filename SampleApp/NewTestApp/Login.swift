@@ -27,20 +27,20 @@ class Login: UIViewController {
         CfLogIdnetityBuilder().setAppUserId(app_user_id:"sdkTestUserId")
                               .setIdentifyAction(identity_action: .login)
                               .build()
-//        let userCatalog = UserCatalogModel(name: "sdkTestUserId",
-//                                           country: CountryCode.Andorra.rawValue,
-//                                           region_state: "Barcelona",
-//                                           city: "Barcelona",
-//                                           workplace: "facility",
-//                                           profession: "Medical",
-//                                           zipcode: "08008",
-//                                           language: LanguageCode.Abkhaz.rawValue,
-//                                           experience: "4 Years",
-//                                           education_level: EducationalLevel.bachelors.rawValue,
-//                                           organization_id: "1244",
-//                                           organization_name: "Causal Foundry")
-//        
-//        CfCoreCatalog.updateUserCatalogData(appUserId:"sdkTestUserId", userCatalogModel: userCatalog)
+        let userCatalog = UserCatalogModel(name: "sdkTestUserId",
+                                           country: CountryCode.Andorra.rawValue,
+                                           region_state: "Barcelona",
+                                           city: "Barcelona",
+                                           workplace: "facility",
+                                           profession: "Medical",
+                                           zipcode: "08008",
+                                           language: LanguageCode.Abkhaz.rawValue,
+                                           experience: "4 Years",
+                                           education_level: EducationalLevel.bachelors.rawValue,
+                                           organization_id: "1244",
+                                           organization_name: "Causal Foundry")
+        
+        CfCoreCatalog.updateUserCatalogData(appUserId:"sdkTestUserId", userCatalogModel: userCatalog)
     }
     
     @IBAction func actionRegister(_ sender: Any) {

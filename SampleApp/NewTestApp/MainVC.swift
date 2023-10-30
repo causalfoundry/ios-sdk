@@ -8,6 +8,7 @@
 import UIKit
 import CasualFoundryCHWManagement
 import CasualFoundryCore
+import CasualFoundryEcommerce
 
 class MainVC: UIViewController {
 
@@ -21,10 +22,6 @@ class MainVC: UIViewController {
         testCHW_ManagementEvents()
         
     }
-    
-    
-    
-    
     
     @IBAction func test_EcommerceEvents(_ sender: Any) {
         testEcommerceEvents()
@@ -71,8 +68,12 @@ class MainVC: UIViewController {
     
     
     func testEcommerceEvents () {
-        
-        
+        CfLogDeliveryEvent()
+            .setOrderId(orderId: "83473843")
+            .setDeliveryAction(action:ScheduleDeliveryAction.scheduled )
+            .setDeliveryId(deliveryId:"56509605")
+            .setMeta(meta:["TestData":"Testting1"])
+                    .build()
         
     }
 }
