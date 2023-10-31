@@ -284,10 +284,12 @@ public class CfLogItemEvent {
                 itemObject.usd_rate = 1.0
                 CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: itemObject, updateImmediately: updateImmediately)
             } else {
-                CFSetup().getUSDRate(fromCurrency: itemValue.currency!, callback: { usdRate in
-                    itemObject.usd_rate = usdRate
-                    CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: itemObject, updateImmediately: updateImmediately)
-                })
+                Task {
+                        let result = await CFSetup().getUSDRate(fromCurrency: itemValue.currency!, callback: { usdRate in
+                            itemObject.usd_rate = usdRate
+                            CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: itemObject, updateImmediately: updateImmediately)
+                        })
+                    }
             }
             
             if itemActionValue == ItemAction.view.rawValue, let catalogModel = catalogModel {
