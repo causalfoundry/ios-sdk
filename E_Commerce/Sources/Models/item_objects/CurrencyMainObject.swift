@@ -17,4 +17,3 @@ public struct CurrencyMainObject {
         self.toCurrencyObject = toCurrencyObject
     }
 }
-w

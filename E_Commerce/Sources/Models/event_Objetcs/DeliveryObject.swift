@@ -23,7 +23,7 @@ internal struct DeliveryObject: Codable {
         case meta
     }
     
-    init(id: String, order_id: String, action: String, meta: Any? = nil) {
+    init(id: String, order_id: String, action: String, meta: Encodable? = nil) {
         self.id = id
         self.order_id = order_id
         self.action = action
