@@ -31,13 +31,17 @@ internal struct DeliveryObject: Codable {
     }
     
     // MARK: - Codable
-
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         order_id = try container.decode(String.self, forKey: .order_id)
         action = try container.decode(String.self, forKey: .action)
-        meta = try container.decodeIfPresent(Any.self, forKey: .meta)
+        if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
+            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
+        } else {
+            meta = nil
+        }
     }
     
     func encode(to encoder: Encoder) throws {
@@ -45,7 +49,9 @@ internal struct DeliveryObject: Codable {
         try container.encode(id, forKey: .id)
         try container.encode(order_id, forKey: .order_id)
         try container.encode(action, forKey: .action)
-        try container.encode(meta, forKey: .meta)
+        if let metaData = meta {
+            try container.encode(metaData, forKey: .meta)
+        }
     }
 }
 
