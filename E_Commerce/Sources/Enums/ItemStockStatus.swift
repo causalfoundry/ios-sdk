@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import CasualFoundryCore
 
 
-enum ItemStockStatus: String {
+public enum ItemStockStatus: String,EnumComposable {
     case inStock = "in_stock"
     case lowStock = "low_stock"
     case outOfStock = "out_of_stock"

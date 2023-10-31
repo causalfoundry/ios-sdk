@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import CasualFoundryCore
 
 
-enum ItemType: String {
+public enum ItemType: String,EnumComposable {
     case blood = "blood"
     case oxygen = "oxygen"
     case drug = "drug"

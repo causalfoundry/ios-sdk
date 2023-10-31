@@ -9,7 +9,7 @@ import Foundation
 
 
 
-enum TableName:String{
+public enum TableName:String{
     case user = "User"
     case userCatalog = "UserCatalog"
     case exceptionData = "ExceptionData"

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CasualFoundryCore
 
 public class ECommerceConstants {
     // SDK API endpoints
@@ -22,21 +23,21 @@ public class ECommerceConstants {
     static func isItemValueObjectValid(itemValue: ItemModel, eventType: EComEventType) {
         let eventName = eventType.rawValue
         
-        if itemValue.id.isEmpty {
+        if itemValue.id == "" {
             ExceptionManager.throwIsRequiredException(eventType:eventName, elementName: "item_id")
-        } else if itemValue.quantity < 0 {
+        } else if itemValue.quantity! < 0 {
             ExceptionManager.throwItemQuantityException(eventType: eventName)
         } else if itemValue.price == nil {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_price")
         } else if itemValue.price == -1.0 {
             ExceptionManager.throwIsRequiredException(eventType:eventName, elementName: "item_price")
-        } else if itemValue.currency.isEmpty {
+        } else if itemValue.currency == "" {
             ExceptionManager.throwIsRequiredException(eventType:eventName , elementName: "item_currency")
-        } else if !CoreConstants.enumContains(InternalCurrencyCode.self, itemValue.currency) {
+        } else if !CoreConstants.shared.enumContains(InternalCurrencyCode.self, name:itemValue.currency!) {
             ExceptionManager.throwEnumException(eventType: eventName, className:"CurrencyCode")
-        } else if itemValue.type.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: ="item_type")
-        } else if !CoreConstants.enumContains(ItemType.self, itemValue.type) {
+        } else if itemValue.type == "" {
+            ExceptionManager.throwIsRequiredException(eventType: eventName, elementName:"item_type")
+        } else if !CoreConstants.shared.enumContains(ItemType.self, name:"item_type") {
             ExceptionManager.throwEnumException(eventType: eventName, className: "ItemType")
         } else if eventType == .checkout && itemValue.type == ItemType.blood.rawValue {
             if itemValue.meta == nil {
@@ -59,8 +60,8 @@ public class ECommerceConstants {
             ExceptionManager.throwIsRequiredException(eventType:eventName , elementName: "item_id")
         } else if itemValue.item_type.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_type")
-        } else if !CoreConstants.enumContains(ItemType.self, itemValue.item_type) {
-            ExceptionManager.throwEnumException(eventType:eventName , className: "ItemType")
+        } else if !CoreConstants.shared.enumContains(ItemType.self, name: itemValue.item_type) {
+            ExceptionManager.throwEnumException(eventType: eventName, className: "ItemType")
         }
     }
     
@@ -74,21 +75,20 @@ public class ECommerceConstants {
         guard let name = drugCatalogModel.name, !name.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "name")
         }
-        
         return InternalDrugModel(
             id: drugId,
             name: CoreConstants.shared.checkIfNull(drugCatalogModel.name),
-            market_id: CoreConstants.shared.checkIfNull(drugCatalogModel.market_id),
+            market_id: CoreConstants.shared.checkIfNull(drugCatalogModel.marketId),
             description: CoreConstants.shared.checkIfNull(drugCatalogModel.description),
-            supplier_id: CoreConstants.shared.checkIfNull(drugCatalogModel.supplier_id),
-            supplier_name: CoreConstants.shared.checkIfNull(drugCatalogModel.supplier_name),
+            supplier_id: CoreConstants.shared.checkIfNull(drugCatalogModel.supplierId),
+            supplier_name: CoreConstants.shared.checkIfNull(drugCatalogModel.supplierName),
             producer: CoreConstants.shared.checkIfNull(drugCatalogModel.producer),
             packaging: CoreConstants.shared.checkIfNull(drugCatalogModel.packaging),
-            active_ingredients: drugCatalogModel.active_ingredients ?? [],
-            drug_form: CoreConstants.shared.checkIfNull(drugCatalogModel.drug_form),
-            drug_strength: CoreConstants.shared.checkIfNull(drugCatalogModel.drug_strength),
-            atc_anatomical_group: CoreConstants.shared.checkIfNull(drugCatalogModel.ATC_anatomical_group),
-            otc_or_ethical: CoreConstants.shared.checkIfNull(drugCatalogModel.OTC_or_ethical)
+            active_ingredients: drugCatalogModel.activeIngredients ?? [],
+            drug_form: CoreConstants.shared.checkIfNull(drugCatalogModel.drugForm),
+            drug_strength: CoreConstants.shared.checkIfNull(drugCatalogModel.drugStrength),
+            atc_anatomical_group: CoreConstants.shared.checkIfNull(drugCatalogModel.atcAnatomicalGroup),
+            otc_or_ethical: CoreConstants.shared.checkIfNull(drugCatalogModel.otcOrEthical)
         )
     }
     
@@ -96,11 +96,11 @@ public class ECommerceConstants {
         let catalogName = CatalogSubject.grocery.rawValue + " catalog"
         
         guard !itemId.isEmpty else {
-            ExceptionManager.throwIsRequiredException(catalogName, "grocery item Id")
+            ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "grocery item Id")
         }
         
         guard let name = groceryCatalogModel.name, !name.isEmpty else {
-            ExceptionManager.throwIsRequiredException(catalogName, "name")
+            ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "name")
         }
         
         return InternalGroceryCatalogModel(
@@ -123,24 +123,98 @@ public class ECommerceConstants {
         let catalogName = CatalogSubject.blood.rawValue + " catalog"
         
         guard !itemId.isEmpty else {
-            ExceptionManager.throwIsRequiredException(catalogName, "blood item Id")
+            ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "blood item Id")
         }
         
-        guard let bloodGroup = bloodCatalogModel.blood_group, !bloodGroup.isEmpty else {
-            ExceptionManager.throwIsRequiredException(catalogName, "blood_group")
+        guard let bloodGroup = bloodCatalogModel.bloodGroup, !bloodGroup.isEmpty else {
+            ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "blood_group")
         }
         
         return InternalBloodCatalogModel(
             id: itemId,
-            market_id: CoreConstants.shared.checkIfNull(bloodCatalogModel.market_id),
-            blood_component: CoreConstants.shared.checkIfNull(bloodCatalogModel.blood_component),
-            blood_group: CoreConstants.shared.checkIfNull(bloodCatalogModel.blood_group),
+            market_id: CoreConstants.shared.checkIfNull(bloodCatalogModel.marketId),
+            blood_component: CoreConstants.shared.checkIfNull(bloodCatalogModel.bloodComponent),
+            blood_group: CoreConstants.shared.checkIfNull(bloodCatalogModel.bloodGroup),
             packaging: CoreConstants.shared.checkIfNull(bloodCatalogModel.packaging),
-            packaging_size: bloodCatalogModel.packaging_size ?? 0.0,
-            packaging_units: CoreConstants.shared.checkIfNull(bloodCatalogModel.packaging_units),
-            supplier_id: CoreConstants.shared.checkIfNull(bloodCatalogModel.supplier_id),
-            supplier_name: CoreConstants.shared.checkIfNull(bloodCatalogModel.supplier_name)
+            packaging_size: bloodCatalogModel.packagingSize ?? 0.0,
+            packaging_units: CoreConstants.shared.checkIfNull(bloodCatalogModel.packagingUnits),
+            supplier_id: CoreConstants.shared.checkIfNull(bloodCatalogModel.supplierId),
+            supplier_name: CoreConstants.shared.checkIfNull(bloodCatalogModel.supplierName)
         )
     }
     
-    static func verifyCatalogForOxygen
+    static func verifyCatalogForOxygen(itemId: String, oxygenCatalogModel: OxygenCatalogModel) -> InternalOxygenCatalogModel {
+        let catalogName = CatalogSubject.oxygen.rawValue + " catalog"
+        
+        guard !itemId.isEmpty else {
+            // Replace with appropriate error handling for required item Id
+            fatalError("Required item Id is empty")
+        }
+        
+        return InternalOxygenCatalogModel(
+            id: itemId,
+            market_id: CoreConstants.shared.checkIfNull(oxygenCatalogModel.marketId),
+            packaging: CoreConstants.shared.checkIfNull(oxygenCatalogModel.packaging),
+            packaging_size: oxygenCatalogModel.packagingSize ?? 0.0,
+            packaging_units: CoreConstants.shared.checkIfNull(oxygenCatalogModel.packagingUnits),
+            supplier_id: CoreConstants.shared.checkIfNull(oxygenCatalogModel.supplierId),
+            supplier_name: CoreConstants.shared.checkIfNull(oxygenCatalogModel.supplierName)
+        )
+    }
+
+    static func verifyCatalogForMedicalEquipment(itemId: String, medicalEquipmentCatalogModel: MedicalEquipmentCatalogModel) -> InternalMedicalEquipmentCatalogModel {
+        let catalogName = CatalogSubject.medical_equipment.rawValue + " catalog"
+        
+        guard !itemId.isEmpty else {
+            // Replace with appropriate error handling for required item Id
+            fatalError("Required item Id is empty")
+        }
+        guard let name = medicalEquipmentCatalogModel.name, !name.isEmpty else {
+            // Replace with appropriate error handling for required name
+            fatalError("Required name is empty")
+        }
+        
+        return InternalMedicalEquipmentCatalogModel(
+            id: itemId,
+            name: CoreConstants.shared.checkIfNull(medicalEquipmentCatalogModel.name),
+            description: CoreConstants.shared.checkIfNull(medicalEquipmentCatalogModel.description),
+            market_id: CoreConstants.shared.checkIfNull(medicalEquipmentCatalogModel.marketId),
+            supplier_id: CoreConstants.shared.checkIfNull(medicalEquipmentCatalogModel.supplierId),
+            supplier_name: CoreConstants.shared.checkIfNull(medicalEquipmentCatalogModel.supplierName),
+            producer: CoreConstants.shared.checkIfNull(medicalEquipmentCatalogModel.producer),
+            packaging: CoreConstants.shared.checkIfNull(medicalEquipmentCatalogModel.packaging),
+            packaging_size: medicalEquipmentCatalogModel.packagingSize ?? 0.0,
+            packaging_units: CoreConstants.shared.checkIfNull(medicalEquipmentCatalogModel.packagingUnits),
+            category: CoreConstants.shared.checkIfNull(medicalEquipmentCatalogModel.category)
+        )
+    }
+
+   static func verifyCatalogForFacility(facilityId: String, facilityCatalogModel: FacilityCatalogModel) -> InternalFacilityCatalogModel {
+        let catalogName = CatalogSubject.facility.rawValue + " catalog"
+        
+        guard !facilityId.isEmpty else {
+            // Replace with appropriate error handling for required facility Id
+            fatalError("Required facility Id is empty")
+        }
+        guard let name = facilityCatalogModel.name, !name.isEmpty else {
+            // Replace with appropriate error handling for required name
+            fatalError("Required name is empty")
+        }
+        guard let type = facilityCatalogModel.type, !type.isEmpty else {
+            // Replace with appropriate error handling for required type
+            fatalError("Required type is empty")
+        }
+        
+        return InternalFacilityCatalogModel(
+            id: facilityId,
+            name: CoreConstants.shared.checkIfNull(facilityCatalogModel.name),
+            type: CoreConstants.shared.checkIfNull(facilityCatalogModel.type),
+            country: CoreConstants.shared.checkIfNull(facilityCatalogModel.country),
+            region_state: CoreConstants.shared.checkIfNull(facilityCatalogModel.region_state),
+            city: CoreConstants.shared.checkIfNull(facilityCatalogModel.city),
+            is_active: facilityCatalogModel.is_active ?? false,
+            has_delivery: facilityCatalogModel.has_delivery ?? false,
+            is_sponsored: facilityCatalogModel.is_sponsored ?? false
+        )
+    }
+}

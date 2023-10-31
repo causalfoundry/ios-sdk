@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import CasualFoundryCore
 
 
-public enum DeliveryAction: String {
+public enum DeliveryAction: String,EnumComposable {
     case delivered
 }

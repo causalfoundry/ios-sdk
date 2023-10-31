@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CurrencyObject: Codable {
+public struct CurrencyObject: Codable {
     var date: String
     var usd: Float
     

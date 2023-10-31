@@ -10,7 +10,7 @@ import Combine
 import UIKit
 
 
-class IngestAPIHandler:NSObject {
+public class IngestAPIHandler:NSObject {
     
     static let shared = IngestAPIHandler()
     let reachability = try! Reachability()

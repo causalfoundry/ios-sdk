@@ -86,7 +86,7 @@ extension CoreConstants {
     }
     
     
-    func getCurrencyFromLocalStorage(fromCurrency: String) -> Float {
+   public func getCurrencyFromLocalStorage(fromCurrency: String) -> Float {
         do {
             if let path = Bundle.main.path(forResource: "usd_rates", ofType: "json") {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path))
@@ -112,7 +112,7 @@ extension CoreConstants {
         return dateFormatter.string(from: Date())
     }
     
-    func checkIfNull(_ inputValue: String?) -> String {
+    public func checkIfNull(_ inputValue: String?) -> String {
         if let value = inputValue, !value.isEmpty {
             return value
         }

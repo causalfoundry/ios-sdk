@@ -38,6 +38,23 @@ struct InternalDrugModel: Codable {
         case otc_or_ethical
     }
     
+    init(id: String? = nil, name: String? = nil, market_id: String? = nil, description: String? = nil, supplier_id: String? = nil, supplier_name: String? = nil, producer: String? = nil, packaging: String? = nil, active_ingredients: [String]? = nil, drug_form: String? = nil, drug_strength: String? = nil, atc_anatomical_group: String? = nil, otc_or_ethical: String? = nil) {
+        self.id = id
+        self.name = name
+        self.market_id = market_id
+        self.description = description
+        self.supplier_id = supplier_id
+        self.supplier_name = supplier_name
+        self.producer = producer
+        self.packaging = packaging
+        self.active_ingredients = active_ingredients
+        self.drug_form = drug_form
+        self.drug_strength = drug_strength
+        self.atc_anatomical_group = atc_anatomical_group
+        self.otc_or_ethical = otc_or_ethical
+    }
+    
+    
     // Encoding method to customize the encoding process
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

@@ -15,7 +15,7 @@ import FileProvider
 public class CFSetup:NSObject, IngestProtocol {
    
     
-    private var ingestApiHandler = IngestAPIHandler()
+    public var ingestApiHandler = IngestAPIHandler()
     private var catalogAPIHandler = CatalogAPIHandler()
     private var userId: String = ""
     
@@ -63,7 +63,7 @@ public class CFSetup:NSObject, IngestProtocol {
     
  
     
-    func updateCatalogItem(subject: CatalogSubject, catalogObject: Any?) {
+    public func updateCatalogItem(subject: CatalogSubject, catalogObject: Any?) {
         if CoreConstants.shared.application != nil {
             catalogAPIHandler.updateCatalogItem(subject: subject, catalogObject: catalogObject)
         }

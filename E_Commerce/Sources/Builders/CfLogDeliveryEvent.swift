@@ -49,7 +49,7 @@ public class CfLogDeliveryEvent {
      */
     @discardableResult
     public func setDeliveryAction(action: DeliveryAction) -> CfLogDeliveryEvent {
-        self.action = action.name
+        self.action = action.rawValue
         return self
     }
     
@@ -58,7 +58,7 @@ public class CfLogDeliveryEvent {
         if CoreConstants.shared.enumContains(DeliveryAction.self, name: action) {
             self.action = action
         } else {
-            ExceptionManager.throwEnumException(eventType: EComEventType.delivery.name, className: DeliveryAction.self)
+            ExceptionManager.throwEnumException(eventType: EComEventType.delivery.rawValue, className: String(describing:DeliveryAction.self))
         }
         return self
     }
@@ -93,17 +93,17 @@ public class CfLogDeliveryEvent {
      * function and queue the events based on it's updateImmediately value and also on the
      * user's network resources.
      */
-    @discardableResult
     public func build() {
         if orderId == nil || orderId!.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.rawValue, elementName:"order_id")
         } else if deliveryId == nil || deliveryId!.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.rawValue, elementName: "delivery_id")
         } else if action == nil || action!.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.name, elementName:DeliveryAction.self)
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.rawValue, elementName:String(describing: DeliveryAction.self))
         } else {
-            let deliveryObject = DeliveryObject(deliveryId: deliveryId!, orderId: orderId!, action: action!, meta: meta)
-            CFSetup().track(ECommerceConstants.contentBlockName, event: EComEventType.delivery.rawValue, object: deliveryObject, updateImmediately: updateImmediately)
+            let deliveryObject = DeliveryObject(id: deliveryId!, order_id: orderId!, action: action!, meta: meta)
+            CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.delivery.rawValue, logObject: deliveryObject, updateImmediately: updateImmediately)
+        
         }
     }
     

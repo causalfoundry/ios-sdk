@@ -6,6 +6,7 @@
 //
 
 import CasualFoundryCore
+import Foundation
 
 public class CfLogItemEvent {
     
@@ -15,14 +16,14 @@ public class CfLogItemEvent {
      */
     
     var itemActionValue: String?
-    var itemValue: ItemModel = ItemModel(id: "", quantity: 1, price: -1.0, currency: "", type: "", stockStatus: "", promoId: "", facilityId: nil)
+    var itemValue: ItemModel = ItemModel(id: "", quantity: 1, price: -1.0, currency: "", type: "", stockStatus: nil, promoId: "", facilityId: nil)
     var searchId: String?
     var catalogModel: Any?
     var meta: Any?
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
-
-    public init() {
     
+    public init() {
+        
     }
     
     /**
@@ -49,10 +50,10 @@ public class CfLogItemEvent {
      */
     @discardableResult
     public func setItemAction(_ itemActionValue: String) -> CfLogItemEvent {
-        if CoreConstants.shared.enumContains(ItemAction.self, value: itemActionValue) {
+        if CoreConstants.shared.enumContains(ItemAction.self, name: itemActionValue) {
             self.itemActionValue = itemActionValue
         } else {
-            ExceptionManager.throwEnumException(eventType: EComEventType.item.rawValue, className: ItemAction.self)
+            ExceptionManager.throwEnumException(eventType: EComEventType.item.rawValue, className:String(describing: ItemAction.self))
         }
         return self
     }
@@ -95,7 +96,7 @@ public class CfLogItemEvent {
     
     @discardableResult
     public func setItemPrice(_ itemPrice: Double) -> CfLogItemEvent {
-        self.itemValue.price = ((itemPrice * 100.0).rounded() / 100.0)
+        self.itemValue.price = Float(((itemPrice * 100.0).rounded() / 100.0))
         return self
     }
     
@@ -103,18 +104,18 @@ public class CfLogItemEvent {
      * setItemCurrency is required to log the currency for item the events are being logged. Details
      * about the item are to be provided in the catalog for more details about the item.
      */
-//    @discardableResult
-//    public func setItemCurrency(_ currencyCode: CurrencyCode) -> CfLogItemEvent {
-//        self.itemCurrency = currencyCode.rawValue
-//        return self
-//    }
+    //    @discardableResult
+    //    public func setItemCurrency(_ currencyCode: CurrencyCode) -> CfLogItemEvent {
+    //        self.itemCurrency = currencyCode.rawValue
+    //        return self
+    //    }
     
     @discardableResult
     public func setItemCurrency(_ currencyCode: String) -> CfLogItemEvent {
-        if CoreConstants.shared.enumContains(InternalCurrencyCode.self, value: currencyCode) {
+        if CoreConstants.shared.enumContains(InternalCurrencyCode.self, name: currencyCode) {
             self.itemValue.currency = currencyCode
         } else {
-            ExceptionManager.throwEnumException(eventType: EComEventType.item.rawValue, className: InternalCurrencyCode.self)
+            ExceptionManager.throwEnumException(eventType: EComEventType.item.rawValue, className: String(describing: InternalCurrencyCode.self))
         }
         return self
     }
@@ -132,10 +133,10 @@ public class CfLogItemEvent {
     
     @discardableResult
     public func setItemType(_ itemType: String) -> CfLogItemEvent {
-        if CoreConstants.shared.enumContains(ItemType.self, value: itemType) {
+        if CoreConstants.shared.enumContains(ItemType.self, name: itemType) {
             self.itemValue.type = itemType
         } else {
-            ExceptionManager.throwEnumException(eventType: EComEventType.item.rawValue, className:  ItemType.self)
+            ExceptionManager.throwEnumException(eventType:EComEventType.item.rawValue, className:  String(describing:ItemType.self))
         }
         return self
     }
@@ -153,10 +154,10 @@ public class CfLogItemEvent {
     
     @discardableResult
     public func setItemStockStatus(_ stockStatus: String) -> CfLogItemEvent {
-        if CoreConstants.shared.enumContains(ItemStockStatus.self, value: stockStatus) {
+        if CoreConstants.shared.enumContains(ItemStockStatus.self, name: stockStatus) {
             self.itemValue.stockStatus = stockStatus
         } else {
-            ExceptionManager.throwEnumException(eventType: EComEventType.item.rawValue, className: ItemStockStatus.self)
+            ExceptionManager.throwEnumException(eventType: EComEventType.item.rawValue, className: String(describing:ItemStockStatus.self))
         }
         return self
     }
@@ -271,30 +272,31 @@ public class CfLogItemEvent {
         return self
     }
     
-    public func build() -> CfLogItemEvent {
-        switch true {
-        case itemActionValue?.isEmpty ?? true:
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.item.rawValue, elementName: ItemAction.self)
-        default:
-            ECommerceConstants.isItemValueObjectValid(itemValue, EComEventType.item)
-            var itemObject = ViewItemObject(item_action_value: itemActionValue!, item_value: itemValue, search_id: searchId, meta: nil)
+    public func build()  {
+        if itemActionValue?.isEmpty ?? true {
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.item.rawValue, elementName: String(describing:ItemAction.self))
+        }else {
+            ECommerceConstants.isItemValueObjectValid(itemValue: itemValue, eventType: EComEventType.item)
+            
+            var itemObject = ViewItemObject(action:itemActionValue!, item: itemValue)
             
             if itemValue.currency == InternalCurrencyCode.USD.rawValue {
                 itemObject.usd_rate = 1.0
-                CFSetup().track(ECommerceConstants.contentBlockName, EComEventType.item.rawValue, itemObject, updateImmediately)
+                CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: itemObject, updateImmediately: updateImmediately)
             } else {
-                CFSetup().getUSDRate(fromCurrency: itemValue.currency, callback: { usdRate in
+                CFSetup().getUSDRate(fromCurrency: itemValue.currency!, callback: { usdRate in
                     itemObject.usd_rate = usdRate
-                    CFSetup().track(ECommerceConstants.contentBlockName, EComEventType.item.rawValue, itemObject, updateImmediately)
-                }
+                    CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: itemObject, updateImmediately: updateImmediately)
+                })
             }
             
             if itemActionValue == ItemAction.view.rawValue, let catalogModel = catalogModel {
-                let itemId = itemValue.id
-                let itemType = itemValue.type
-                CfEComCatalog.callCatalogAPI(itemId: itemId, itemtype: itemType, catalogModel: catalogModel)
+                guard let itemId = itemValue.id else { return  }
+                guard let itemType = itemValue.type else { return  }
+                CfEComCatalog.callCatalogAPI(itemId:itemId , itemType: itemType, catalogModel: catalogModel)
+                
             }
+            
         }
-        return self
     }
 }

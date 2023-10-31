@@ -11,7 +11,7 @@ import UIKit
 
 public class CoreDataHelper {
     
-    static let shared = CoreDataHelper()
+   public static let shared = CoreDataHelper()
     
     public init() {
         if persistentContainer == nil {
@@ -218,7 +218,7 @@ public class CoreDataHelper {
     
     // MARK: - Core Data Context
     
-    private var context: NSManagedObjectContext {
+    public var context: NSManagedObjectContext {
         return persistentContainer!.viewContext
     }
     
