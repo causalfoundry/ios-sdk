@@ -110,15 +110,15 @@ class MainVC: UIViewController {
 //                    .setCatalogProperties(drugProperties)
 //                    .build()
         
-        
-        CfLogCancelCheckoutEvent()
-            .setCheckoutId(checkoutId: "testCartId")
-            .setMeta(meta:  12.0)
-            .setCancelType(cancelType: CancelType.cart)
-            .setCancelReason(reason: "testreason")
-            .addItem(itemModel: ItemTypeModel(item_id: "ItemID1", item_type: ItemType.drug.rawValue))
-            .addItem(itemModel: ItemTypeModel(item_id: "ItemID2", item_type: ItemType.drug.rawValue))
-            .build()
+//        
+//        CfLogCancelCheckoutEvent()
+//            .setCheckoutId(checkoutId: "testCartId")
+//            .setMeta(meta:  12.0)
+//            .setCancelType(cancelType: CancelType.cart)
+//            .setCancelReason(reason: "testreason")
+//            .addItem(itemModel: ItemTypeModel(item_id: "ItemID1", item_type: ItemType.drug.rawValue))
+//            .addItem(itemModel: ItemTypeModel(item_id: "ItemID2", item_type: ItemType.drug.rawValue))
+//            .build()
         
         
         

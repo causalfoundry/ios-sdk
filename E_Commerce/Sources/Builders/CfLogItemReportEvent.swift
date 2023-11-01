@@ -117,12 +117,31 @@ public class CfLogItemReportEvent {
         return self
     }
     
-    // Build the event
+    /**
+     * build will validate all of the values provided and if passes will call the track
+     * function and queue the events based on it's updateImmediately value and also on the
+     * user's network resources.
+     */
     public func build() {
-        guard let item_object = item_object, let store_object = store_object, let report_object = report_object else {
+        guard let item_object = item_object else {
             ExceptionManager.throwIsRequiredException(
                 eventType: EComEventType.itemReport.rawValue,
-                elementName: "item_object, store_object, report_object"
+                elementName: "item_object"
+            )
+            return
+        }
+        
+        guard let store_object = store_object else {
+            ExceptionManager.throwIsRequiredException(
+                eventType: EComEventType.itemReport.rawValue,
+                elementName: "store_object"
+            )
+            return
+        }
+        guard let report_object = report_object else {
+            ExceptionManager.throwIsRequiredException(
+                eventType: EComEventType.itemReport.rawValue,
+                elementName: "report_object"
             )
             return
         }
