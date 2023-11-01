@@ -31,7 +31,7 @@ let package = Package(
         .target(
             name: "CasualFoundryEcommerce",
             dependencies:["CasualFoundryCore"], path: "E_Commerce/Sources",
-            resources: [.copy("Core/Sources/ResourcePackage")]
+            resources: [.copy("Core/Sources")]
         ),
        
         .target(
