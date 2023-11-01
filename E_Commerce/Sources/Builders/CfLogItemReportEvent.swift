@@ -113,7 +113,7 @@ public class CfLogItemReportEvent {
     }
     
     // Build the event
-    func build() {
+    public func build() {
         guard let item_object = item_object, let store_object = store_object, let report_object = report_object else {
             ExceptionManager.throwIsRequiredException(
                 eventType: EComEventType.itemReport.rawValue,

@@ -120,5 +120,14 @@ class MainVC: UIViewController {
             .addItem(itemModel: ItemTypeModel(item_id: "ItemID2", item_type: ItemType.drug.rawValue))
             .build()
         
+        
+        
+        CfLogItemReportEvent()
+            .setItem(item_object:
+                        ItemTypeModel(item_id: "itemId", item_type: ItemType.drug.rawValue))
+            .setStoreObject(store_object: StoreObject(id: "33434", lat: 23.67676, lon:76.67676 ))
+            .setReportObject(report_object: ReportObject(id: "reportId", short_desc: "short  Value", remarks: "large Value"))
+            .build()
+        
     }
 }
