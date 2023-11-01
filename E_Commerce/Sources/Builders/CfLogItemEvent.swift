@@ -272,7 +272,7 @@ public class CfLogItemEvent {
         return self
     }
     
-    public func build() async  {
+    public func build()   {
         if itemActionValue?.isEmpty ?? true {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.item.rawValue, elementName: String(describing:ItemAction.self))
         }else {
@@ -285,7 +285,7 @@ public class CfLogItemEvent {
                 CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: itemObject, updateImmediately: updateImmediately)
             } else {
                 var copyItemObject = itemObject
-                let _: () = await CFSetup().getUSDRate(fromCurrency: itemValue.currency!, callback: { [weak self] usdRate in
+                CFSetup().getUSDRate(fromCurrency: itemValue.currency!, callback: { [weak self] usdRate in
                     copyItemObject.usd_rate = usdRate
                     CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: copyItemObject, updateImmediately: self!.updateImmediately)
                     return usdRate

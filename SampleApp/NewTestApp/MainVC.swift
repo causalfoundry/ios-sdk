@@ -24,7 +24,7 @@ class MainVC: UIViewController {
     }
     
     @IBAction func test_EcommerceEvents(_ sender: Any) {
-        testEcommerceEvents()
+        _ = testEcommerceEvents()
     }
     func testCHW_ManagementEvents () {
         CfLogChwModuleEventBuilder().setChwModuleEvent(.enrolment)
@@ -103,7 +103,7 @@ class MainVC: UIViewController {
                     .setItemId("TestItemId")
                     .setItemPrice(200)
                     .setItemQuantity(1)
-                    .setItemCurrency(CurrencyCode.PKR.rawValue)
+                    .setItemCurrency(CurrencyCode.AMD.rawValue)
                     .setItemType(ItemType.drug)
                     .setCatalogProperties(drugProperties)
                     .build()
