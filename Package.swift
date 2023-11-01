@@ -34,11 +34,12 @@ let package = Package(
             dependencies:["CasualFoundryCore"], path: "CHWManagement/Sources"),
         .target(
             name: "CasualFoundryResourcePackage",
-            path: "ResourcePackage/Sources"),
+            path: "ResourcePackage/Sources",
+            resources: [.copy("Resources/usd_rates.json")]),
         .target(
             name: "CasualFoundryEcommerce",
-            dependencies:["CasualFoundryCore","CasualFoundryResourcePackage"], path: "E_Commerce/Sources",
-            resources: [.copy("Resources/usd_rates.json")]
+            dependencies:["CasualFoundryCore","CasualFoundryResourcePackage"], path: "E_Commerce/Sources"
+           
         ),
        
         .target(
