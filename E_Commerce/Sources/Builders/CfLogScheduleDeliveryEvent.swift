@@ -62,7 +62,7 @@ public class CfLogScheduleDeliveryEvent {
     @discardableResult
     public func setScheduleDeliveryAction(_ action: String) -> CfLogScheduleDeliveryEvent {
      
-        if CoreConstants.shared.enumContains(ScheduleDeliveryAction.Type, name: action) {
+        if CoreConstants.shared.enumContains(ScheduleDeliveryAction.self, name: action) {
             self.action = action
         } else {
             ExceptionManager.throwEnumException(
