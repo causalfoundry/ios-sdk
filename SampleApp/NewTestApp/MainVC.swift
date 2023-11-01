@@ -98,15 +98,27 @@ class MainVC: UIViewController {
 //            .build()
         
         
-        CfLogItemEvent()
-                    .setItemAction(ItemAction.view)
-                    .setItemId("TestItemId")
-                    .setItemPrice(200)
-                    .setItemQuantity(1)
-                    .setItemCurrency(CurrencyCode.AMD.rawValue)
-                    .setItemType(ItemType.drug)
-                    .setCatalogProperties(drugProperties)
-                    .build()
+        
+        // Have some issue need to fix
+//        CfLogItemEvent()
+//                    .setItemAction(ItemAction.view)
+//                    .setItemId("TestItemId")
+//                    .setItemPrice(200)
+//                    .setItemQuantity(1)
+//                    .setItemCurrency(CurrencyCode.AMD.rawValue)
+//                    .setItemType(ItemType.drug)
+//                    .setCatalogProperties(drugProperties)
+//                    .build()
+        
+        
+        CfLogCancelCheckoutEvent()
+            .setCheckoutId(checkoutId: "testCartId")
+            .setMeta(meta:  12.0)
+            .setCancelType(cancelType: CancelType.cart)
+            .setCancelReason(reason: "testreason")
+            .addItem(itemModel: ItemTypeModel(item_id: "ItemID1", item_type: ItemType.drug.rawValue))
+            .addItem(itemModel: ItemTypeModel(item_id: "ItemID2", item_type: ItemType.drug.rawValue))
+            .build()
         
     }
 }

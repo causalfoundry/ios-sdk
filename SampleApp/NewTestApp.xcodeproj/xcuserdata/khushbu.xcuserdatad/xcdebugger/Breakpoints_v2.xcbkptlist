@@ -507,8 +507,8 @@
             filePath = "NewTestApp/MainVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "testEcommerceEvents()"
             landmarkType = "7">
             <Locations>
@@ -555,8 +555,8 @@
             filePath = "NewTestApp/MainVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "testEcommerceEvents()"
             landmarkType = "7">
             <Locations>
@@ -699,8 +699,8 @@
             filePath = "NewTestApp/MainVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "testEcommerceEvents()"
             landmarkType = "7">
          </BreakpointContent>
