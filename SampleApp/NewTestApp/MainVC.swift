@@ -90,12 +90,12 @@ class MainVC: UIViewController {
                                                atcAnatomicalGroup: "parimal",
                                                otcOrEthical: "34343")
         
-        CfLogDeliveryEvent()
-            .setOrderId(orderId: "83473843")
-            .setDeliveryAction(action:ScheduleDeliveryAction.schedule.rawValue)
-            .setDeliveryId(deliveryId:"56509605")
-            .setMeta(meta:["TestData":"Testting1"])
-            .build()
+//        CfLogDeliveryEvent()
+//            .setOrderId(orderId: "83473843")
+//            .setDeliveryAction(action:DeliveryAction.delivered.rawValue)
+//            .setDeliveryId(deliveryId:"56509605")
+//            .setMeta(meta:["TestData":"Testting1"])
+//            .build()
         
         
         CfLogItemEvent()

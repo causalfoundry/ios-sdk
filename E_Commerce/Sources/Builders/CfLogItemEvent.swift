@@ -249,27 +249,22 @@ public class CfLogItemEvent {
     
     @discardableResult
     public func setCatalogProperties(_ catalogProperties: Any?) -> CfLogItemEvent {
-        if let catalogProperties = catalogProperties as? String, !catalogProperties.isEmpty {
-            do {
-                switch itemValue.type {
-                case ItemType.drug.rawValue:
-                    self.catalogModel = try JSONDecoder().decode(DrugCatalogModel.self, from: Data(catalogProperties.utf8))
-                case ItemType.blood.rawValue:
-                    self.catalogModel = try JSONDecoder().decode(BloodCatalogModel.self, from: Data(catalogProperties.utf8))
-                case ItemType.oxygen.rawValue:
-                    self.catalogModel = try JSONDecoder().decode(OxygenCatalogModel.self, from: Data(catalogProperties.utf8))
-                case ItemType.medicalEquipment.rawValue:
-                    self.catalogModel = try JSONDecoder().decode(MedicalEquipmentCatalogModel.self, from: Data(catalogProperties.utf8))
-                default:
-                    ExceptionManager.throwIllegalStateException(eventType:EComEventType.item.rawValue, message: "Please use correct catalog properties with the provided item type", className:String(String(describing: CfLogItemEvent.self)))
-                }
-            } catch {
+        if catalogProperties != nil {
+            if let catalogData = catalogProperties as? DrugCatalogModel {
+                    self.catalogModel = catalogData
+            } else if let bloodCatalogData = catalogProperties as? BloodCatalogModel {
+                self.catalogModel = bloodCatalogData
+            }else if let oxygenCatalogModelData =  catalogProperties as? OxygenCatalogModel {
+                self.catalogModel = oxygenCatalogModelData
+            }else if let medicalEquipmentCatalogData =  catalogProperties as? MedicalEquipmentCatalogModel {
+                self.catalogModel = medicalEquipmentCatalogData
+            }else {
                 ExceptionManager.throwIllegalStateException(eventType:EComEventType.item.rawValue, message: "Please use correct catalog properties with the provided item type", className:String(String(describing: CfLogItemEvent.self)))
             }
-        } else {
-            self.catalogModel = catalogProperties
         }
         return self
+
+          
     }
     
     public func build()   {
