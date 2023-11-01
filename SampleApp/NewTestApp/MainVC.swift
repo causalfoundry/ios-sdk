@@ -53,7 +53,7 @@ class MainVC: UIViewController {
                     .build()
         
         
-        var lifestylePlanItem = LifestylePlanItem(name:"LifeStypePlan1", action:ItemAction.update.rawValue, remarks: "LifeStyle Plan1 Added")
+        let lifestylePlanItem = LifestylePlanItem(name:"LifeStypePlan1", action:ItemAction.update.rawValue, remarks: "LifeStyle Plan1 Added")
         
         
         
@@ -72,6 +72,17 @@ class MainVC: UIViewController {
             .setDeliveryAction(action:ScheduleDeliveryAction.schedule.rawValue)
             .setDeliveryId(deliveryId:"56509605")
             .setMeta(meta:["TestData":"Testting1"])
+                    .build()
+        
+        
+        CfLogItemEvent().
+                    .setItemAction(ItemAction.view)
+                    .setItemId("TestItemId")
+                    .setItemPrice(200)
+                    .setItemQuantity(1)
+                    .setItemCurrency(CurrencyCode.PKR.name)
+                    .setItemType(ItemType.drug)
+                    .setCatalogProperties(drugProperties)
                     .build()
         
     }
