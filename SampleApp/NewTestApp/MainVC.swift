@@ -67,20 +67,43 @@ class MainVC: UIViewController {
     
     
     func testEcommerceEvents () {
+        
+        var itemModel = ItemModel(id: "testItemId",
+                                  quantity: 10, price: 1900,
+                                  currency: CurrencyCode.AED.rawValue,
+                                  type: ItemType.misc.rawValue,
+                                  stockStatus: "",
+                                  promoId: "",
+                                  facilityId: "test facilityId")
+        
+        
+        var drugProperties  = DrugCatalogModel(name: "Aciton",
+                                               marketId: "232323",
+                                               description: "Testing proupose for alcolhol",
+                                               supplierId: "76565",
+                                               supplierName: "Zydus",
+                                               producer: "Zydus",
+                                               packaging: "12/23/2023",
+                                               activeIngredients: ["dsded","sddsd","sdsdsds"],
+                                               drugForm: "Cadila",
+                                               drugStrength: "23434",
+                                               atcAnatomicalGroup: "parimal",
+                                               otcOrEthical: "34343")
+        
         CfLogDeliveryEvent()
             .setOrderId(orderId: "83473843")
             .setDeliveryAction(action:ScheduleDeliveryAction.schedule.rawValue)
             .setDeliveryId(deliveryId:"56509605")
             .setMeta(meta:["TestData":"Testting1"])
-                    .build()
+            .build()
         
         
-        CfLogItemEvent().
+        CfLogItemEvent()
                     .setItemAction(ItemAction.view)
                     .setItemId("TestItemId")
                     .setItemPrice(200)
                     .setItemQuantity(1)
-                    .setItemCurrency(CurrencyCode.PKR.name)
+                    .setItemCurrency(CurrencyCode.PKR.rawValue)
                     .setItemType(ItemType.drug)
                     .setCatalogProperties(drugProperties)
                     .build()

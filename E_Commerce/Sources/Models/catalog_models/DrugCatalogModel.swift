@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DrugCatalogModel: Codable {
+public struct DrugCatalogModel: Codable {
     var name: String?
     var marketId: String?
     var description: String?
@@ -20,6 +20,23 @@ struct DrugCatalogModel: Codable {
     var drugStrength: String?
     var atcAnatomicalGroup: String?
     var otcOrEthical: String?
+    
+    
+    
+    public init(name: String? = nil, marketId: String? = nil, description: String? = nil, supplierId: String? = nil, supplierName: String? = nil, producer: String? = nil, packaging: String? = nil, activeIngredients: [String]? = nil, drugForm: String? = nil, drugStrength: String? = nil, atcAnatomicalGroup: String? = nil, otcOrEthical: String? = nil) {
+        self.name = name
+        self.marketId = marketId
+        self.description = description
+        self.supplierId = supplierId
+        self.supplierName = supplierName
+        self.producer = producer
+        self.packaging = packaging
+        self.activeIngredients = activeIngredients
+        self.drugForm = drugForm
+        self.drugStrength = drugStrength
+        self.atcAnatomicalGroup = atcAnatomicalGroup
+        self.otcOrEthical = otcOrEthical
+    }
 
     enum CodingKeys: String, CodingKey {
         case name
@@ -37,14 +54,14 @@ struct DrugCatalogModel: Codable {
     }
     
     // Encoding method
-    func encode() throws -> Data {
+    public func encode() throws -> Data {
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase
         return try encoder.encode(self)
     }
     
     // Decoding method
-    static func decode(from data: Data) throws -> DrugCatalogModel {
+    public func decode(from data: Data) throws -> DrugCatalogModel {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return try decoder.decode(DrugCatalogModel.self, from: data)
