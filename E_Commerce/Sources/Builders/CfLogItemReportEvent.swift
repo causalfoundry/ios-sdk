@@ -17,6 +17,11 @@ public class CfLogItemReportEvent {
     var report_object: ReportObject?
     var meta: Any?
     var update_immediately: Bool = CoreConstants.shared.updateImmediately
+    
+    
+    public init() {
+        
+    }
     /**
      * setItem is for the providing item Id and type for the item in question.
      * The object should be based on the ItemTypeModel or a string that can be
