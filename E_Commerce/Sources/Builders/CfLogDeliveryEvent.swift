@@ -101,7 +101,8 @@ public class CfLogDeliveryEvent {
         } else if action == nil || action!.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.rawValue, elementName:String(describing: DeliveryAction.self))
         } else {
-            let deliveryObject = DeliveryObject(id: deliveryId!, order_id: orderId!, action: action!, meta: meta)
+//            let deliveryObject = DeliveryObject(id: deliveryId!, order_id: orderId!, action: action!, meta: meta)
+            let delievryObject  = DeliveryObject(id: deliveryId, order_id: orderId, action: action, meta: meta)
             CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.delivery.rawValue, logObject: deliveryObject, updateImmediately: updateImmediately)
         
         }
