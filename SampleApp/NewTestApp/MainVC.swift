@@ -130,11 +130,24 @@ class MainVC: UIViewController {
 //            .build()
         
         CfLogItemRequestEvent()
-                    .setItemRequestId("8yer8err")
-                    .setItemName("Request1")
-                    .setItemName([123,444,455])
+                    .setItemRequestId("881")
+                    .setItemName("Request2")
+                    .setMeta("12/03/2023")
                     .setItemManufacturer("Zydus")
                     .build()
+        let itemInfo = ItemInfoObject(
+            id: "12345",
+            type: "type1",
+            batchId: "batch123",
+            surveyId: "survey456",
+            rewardId: "reward789",
+            isFeatured: true,
+            productionDate: 1638569600,
+            expiryDate: 1670102400,
+            meta: ["key": "value"])
+            
+            
+            
         
         
     }
