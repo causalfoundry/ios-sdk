@@ -84,4 +84,5 @@ public enum CurrencyCode: String {
     case KGS = "KGS" // Kyrgyzstan Som
     case KHR = "KHR" // Cambodia Riel
     case KMF = "KMF" // Comor
-
+    
+}
