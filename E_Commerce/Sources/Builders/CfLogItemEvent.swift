@@ -272,7 +272,7 @@ public class CfLogItemEvent {
         return self
     }
     
-    public func build()  {
+    public func build() async  {
         if itemActionValue?.isEmpty ?? true {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.item.rawValue, elementName: String(describing:ItemAction.self))
         }else {
@@ -284,16 +284,15 @@ public class CfLogItemEvent {
                 itemObject.usd_rate = 1.0
                 CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: itemObject, updateImmediately: updateImmediately)
             } else {
-                Task {
-                        let result = await CFSetup().getUSDRate(fromCurrency: itemValue.currency!, callback: {[weak self] usdRate in
-                            
-                            self.itemObject.usd_rate = usdRate
-                            CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: itemObject, updateImmediately: updateImmediately)
-                        })
-                    }
+                var copyItemObject = itemObject
+                let _: () = await CFSetup().getUSDRate(fromCurrency: itemValue.currency!, callback: { [weak self] usdRate in
+                    copyItemObject.usd_rate = usdRate
+                    CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: copyItemObject, updateImmediately: self!.updateImmediately)
+                    return usdRate
+                })
             }
             
-if itemActionValue == ItemAction.view.rawValue, let catalogModel = catalogModel {
+            if itemActionValue == ItemAction.view.rawValue, let catalogModel = catalogModel {
                 guard let itemId = itemValue.id else { return  }
                 guard let itemType = itemValue.type else { return  }
                 CfEComCatalog.callCatalogAPI(itemId:itemId , itemType: itemType, catalogModel: catalogModel)
