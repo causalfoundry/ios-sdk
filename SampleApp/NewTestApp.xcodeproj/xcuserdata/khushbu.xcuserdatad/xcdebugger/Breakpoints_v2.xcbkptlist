@@ -799,6 +799,38 @@
             endingLineNumber = "254"
             landmarkName = "setCatalogProperties(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E4E7EC38-FC4B-46C8-9424-04A55C00A72B - 7b1a5fd5078faaac"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryEcommerce.CfLogItemEvent.setCatalogProperties(Swift.Optional&lt;Any&gt;) -&gt; CasualFoundryEcommerce.CfLogItemEvent"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "254"
+                  endingLineNumber = "254"
+                  offsetFromSymbolStart = "402">
+               </Location>
+               <Location
+                  uuid = "E4E7EC38-FC4B-46C8-9424-04A55C00A72B - 7b1a5fd5078faaac"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryEcommerce.CfLogItemEvent.setCatalogProperties(Swift.Optional&lt;Any&gt;) -&gt; CasualFoundryEcommerce.CfLogItemEvent"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "254"
+                  endingLineNumber = "254"
+                  offsetFromSymbolStart = "2693">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -815,6 +847,38 @@
             endingLineNumber = "256"
             landmarkName = "setCatalogProperties(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E37777F1-36C8-47B2-B861-2F5EC9629BEB - 7b1a5fd5078fab6e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryEcommerce.CfLogItemEvent.setCatalogProperties(Swift.Optional&lt;Any&gt;) -&gt; CasualFoundryEcommerce.CfLogItemEvent"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "969">
+               </Location>
+               <Location
+                  uuid = "E37777F1-36C8-47B2-B861-2F5EC9629BEB - 7b1a5fd5078fab6e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryEcommerce.CfLogItemEvent.setCatalogProperties(Swift.Optional&lt;Any&gt;) -&gt; CasualFoundryEcommerce.CfLogItemEvent"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "5108">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -831,6 +895,38 @@
             endingLineNumber = "251"
             landmarkName = "setCatalogProperties(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "04400B2B-8A21-485D-892D-1449BAB64123 - 7b1a5fd5078faac1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryEcommerce.CfLogItemEvent.setCatalogProperties(Swift.Optional&lt;Any&gt;) -&gt; CasualFoundryEcommerce.CfLogItemEvent"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "251"
+                  endingLineNumber = "251"
+                  offsetFromSymbolStart = "95">
+               </Location>
+               <Location
+                  uuid = "04400B2B-8A21-485D-892D-1449BAB64123 - 7b1a5fd5078faac1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryEcommerce.CfLogItemEvent.setCatalogProperties(Swift.Optional&lt;Any&gt;) -&gt; CasualFoundryEcommerce.CfLogItemEvent"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "251"
+                  endingLineNumber = "251"
+                  offsetFromSymbolStart = "157">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -847,6 +943,38 @@
             endingLineNumber = "275"
             landmarkName = "build()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4494A872-AB55-4072-9899-CA9F0F2EB630 - 70615656058440"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryEcommerce.CfLogItemEvent.build() -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "275"
+                  endingLineNumber = "275"
+                  offsetFromSymbolStart = "116">
+               </Location>
+               <Location
+                  uuid = "4494A872-AB55-4072-9899-CA9F0F2EB630 - 70615656058423"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryEcommerce.CfLogItemEvent.build() -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "276"
+                  endingLineNumber = "276"
+                  offsetFromSymbolStart = "597">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -863,6 +991,38 @@
             endingLineNumber = "279"
             landmarkName = "build()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E0CCA767-7AC5-47D5-B5A0-2E1767151649 - 706156560583dc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryEcommerce.CfLogItemEvent.build() -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "279"
+                  endingLineNumber = "279"
+                  offsetFromSymbolStart = "524">
+               </Location>
+               <Location
+                  uuid = "E0CCA767-7AC5-47D5-B5A0-2E1767151649 - 706156560583dc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryEcommerce.CfLogItemEvent.build() -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "279"
+                  endingLineNumber = "279"
+                  offsetFromSymbolStart = "1535">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -879,6 +1039,38 @@
             endingLineNumber = "280"
             landmarkName = "build()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4D73B024-017C-4F06-ADB0-9AA12F5F8267 - 7061565605839e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryEcommerce.CfLogItemEvent.build() -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "281"
+                  endingLineNumber = "281"
+                  offsetFromSymbolStart = "597">
+               </Location>
+               <Location
+                  uuid = "4D73B024-017C-4F06-ADB0-9AA12F5F8267 - 706156560583bf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryEcommerce.CfLogItemEvent.build() -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "280"
+                  endingLineNumber = "280"
+                  offsetFromSymbolStart = "1552">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -894,6 +1086,325 @@
             startingLineNumber = "283"
             endingLineNumber = "283"
             landmarkName = "build()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "89CBA92E-C550-4D9D-BAF3-BC0F5344166E - 70615656058358"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryEcommerce.CfLogItemEvent.build() -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "283"
+                  endingLineNumber = "283"
+                  offsetFromSymbolStart = "947">
+               </Location>
+               <Location
+                  uuid = "89CBA92E-C550-4D9D-BAF3-BC0F5344166E - 70615656058358"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryEcommerce.CfLogItemEvent.build() -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "283"
+                  endingLineNumber = "283"
+                  offsetFromSymbolStart = "1888">
+               </Location>
+               <Location
+                  uuid = "89CBA92E-C550-4D9D-BAF3-BC0F5344166E - e8186f2c2912ae09"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Float) -&gt; Swift.Float in CasualFoundryEcommerce.CfLogItemEvent.build() -&gt; ()"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "283"
+                  endingLineNumber = "283"
+                  offsetFromSymbolStart = "108">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "52A4CCD7-DBD6-4D15-9612-12F29BC99B5A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "setItemType(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6D3FCBA5-0DCD-4F77-A832-6423C48127A3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "setItemType(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "45DE2B43-4999-4937-B7CA-2AE9C50369C6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
+            landmarkName = "build()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "37E0DF15-6397-4A1C-871A-E8F0F9D90277"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "setItemAction(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DD3CA72B-814F-444D-A418-A556F22F27BC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "setItemCurrency(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8F517E58-8EA7-4368-9D52-26ABB4D68478"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "setItemType(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3424408C-BEEC-48F4-A594-77D9F5098336"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "setItemStockStatus(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F765C2B7-F4DF-4F7A-A03D-8EA0747EA775"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
+            landmarkName = "setCatalogProperties(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3CB5433C-8ACB-4F8D-B04C-C740E7A06E8D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Constants/Constants.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "isItemValueObjectValid(itemValue:eventType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "62AE6B0B-6396-4E38-85D0-E584BEDE002E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Constants/Constants.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "isItemValueObjectValid(itemValue:eventType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F8F46340-3B93-44C5-BD1B-EE28C308719C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Constants/Constants.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "isItemValueObjectValid(itemValue:eventType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "418874E1-C000-4FA1-9312-35DD52480466"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Constants/Constants.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "isItemValueObjectValid(itemValue:eventType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D1616C0A-5A05-4FA2-A733-5F848C633B7E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Constants/Constants.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "isItemValueObjectValid(itemValue:eventType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "88F7953B-8CCB-48AE-94F2-B5DA006FC8E3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Constants/Constants.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "isItemValueObjectValid(itemValue:eventType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F6E4D81E-A4A6-4353-9E66-FB1F14C0F644"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Constants/Constants.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "isItemValueObjectValid(itemValue:eventType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0503D55A-F5E0-4FC0-839B-E7177A454A65"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Constants/Constants.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "isItemValueObjectValid(itemValue:eventType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9182563B-BB21-418B-BBC3-A858C9449D89"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/E_Commerce/Sources/Constants/Constants.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "isItemValueObjectValid(itemValue:eventType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

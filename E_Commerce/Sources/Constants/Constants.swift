@@ -37,7 +37,7 @@ public class ECommerceConstants {
             ExceptionManager.throwEnumException(eventType: eventName, className:"CurrencyCode")
         } else if itemValue.type == "" {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName:"item_type")
-        } else if !CoreConstants.shared.enumContains(ItemType.self, name:"item_type") {
+        } else if !CoreConstants.shared.enumContains(ItemType.self, name:itemValue.type!) {
             ExceptionManager.throwEnumException(eventType: eventName, className: "ItemType")
         } else if eventType == .checkout && itemValue.type == ItemType.blood.rawValue {
             if itemValue.meta == nil {
