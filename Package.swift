@@ -6,6 +6,7 @@ import PackageDescription
 let package = Package(
     name: "CausalFoundry_ios_SDK",
     platforms: [.iOS(.v13)],
+  
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
@@ -16,7 +17,11 @@ let package = Package(
             targets: ["CasualFoundryCHWManagement"]),
         .library(
             name: "CHWEcommerce",
-            targets: ["CasualFoundryEcommerce"])
+            targets: ["CasualFoundryEcommerce"]),
+        .library(
+            name:"CHWResourcePackage",
+            targets: ["CasualFoundryResourcePackage"]
+        ),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -27,10 +32,12 @@ let package = Package(
         .target(
             name: "CasualFoundryCHWManagement",
             dependencies:["CasualFoundryCore"], path: "CHWManagement/Sources"),
-       
+        .target(
+            name: "CasualFoundryResourcePackage",
+            path: "ResourcePackage/Sources"),
         .target(
             name: "CasualFoundryEcommerce",
-            dependencies:["CasualFoundryCore"], path: "E_Commerce/Sources",
+            dependencies:["CasualFoundryCore","CasualFoundryResourcePackage"], path: "E_Commerce/Sources",
             resources: [.copy("Core/Sources")]
         ),
        
