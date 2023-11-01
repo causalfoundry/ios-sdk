@@ -65,15 +65,17 @@ public class ECommerceConstants {
         }
     }
     
-    static func verifyCatalogForDrug(drugId: String, drugCatalogModel: DrugCatalogModel) -> InternalDrugModel {
+    static func verifyCatalogForDrug(drugId: String, drugCatalogModel: DrugCatalogModel) -> InternalDrugModel? {
         let catalogName = CatalogSubject.drug.rawValue + " catalog"
         
         guard !drugId.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "drug Id")
+            return nil
         }
         
         guard let name = drugCatalogModel.name, !name.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "name")
+            return nil
         }
         return InternalDrugModel(
             id: drugId,
@@ -92,15 +94,17 @@ public class ECommerceConstants {
         )
     }
     
-    static func verifyCatalogForGrocery(itemId: String, groceryCatalogModel: GroceryCatalogModel) -> InternalGroceryCatalogModel {
+    static func verifyCatalogForGrocery(itemId: String, groceryCatalogModel: GroceryCatalogModel) -> InternalGroceryCatalogModel? {
         let catalogName = CatalogSubject.grocery.rawValue + " catalog"
         
         guard !itemId.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "grocery item Id")
+            return nil
         }
         
         guard let name = groceryCatalogModel.name, !name.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "name")
+            return nil
         }
         
         return InternalGroceryCatalogModel(
@@ -119,15 +123,17 @@ public class ECommerceConstants {
         )
     }
     
-    static func verifyCatalogForBlood(itemId: String, bloodCatalogModel: BloodCatalogModel) -> InternalBloodCatalogModel {
+    static func verifyCatalogForBlood(itemId: String, bloodCatalogModel: BloodCatalogModel) -> InternalBloodCatalogModel? {
         let catalogName = CatalogSubject.blood.rawValue + " catalog"
         
         guard !itemId.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "blood item Id")
+            return nil
         }
         
         guard let bloodGroup = bloodCatalogModel.bloodGroup, !bloodGroup.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "blood_group")
+            return nil
         }
         
         return InternalBloodCatalogModel(
