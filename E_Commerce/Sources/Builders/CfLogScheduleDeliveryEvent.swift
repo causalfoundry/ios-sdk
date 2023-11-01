@@ -21,6 +21,11 @@ public class CfLogScheduleDeliveryEvent {
     var meta: Any?
     var update_immediately: Bool = CoreConstants.shared.updateImmediately
     
+    
+    public init() {
+        
+    }
+    
     /**
      * setOrderId is required to associate the delivery event with the order. OrderId
      * should be a valid orderId and can be tracked from the checkout.

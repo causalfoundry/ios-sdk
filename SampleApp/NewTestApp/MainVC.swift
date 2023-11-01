@@ -137,15 +137,20 @@ class MainVC: UIViewController {
         //                    .build()
         
         
-        CfLogItemVerificationEvent()
-            .setScanChannel(ScanChannel.app)
-            .setScanType(ScanType.pin)
-            .isSuccessful(true)
-            .setItemInfo(
-                ItemInfoObject(id: "12121", type: ItemType.drug.rawValue, batchId: "batch000", surveyId: "survey_id0", rewardId: "reward_id0",isFeatured: false,productionDate: 232323232,expiryDate: 3438438643)
-            ).build()
-        
-        
+//        CfLogItemVerificationEvent()
+//            .setScanChannel(ScanChannel.app)
+//            .setScanType(ScanType.pin)
+//            .isSuccessful(true)
+//            .setItemInfo(
+//                ItemInfoObject(id: "12121", type: ItemType.drug.rawValue, batchId: "batch000", surveyId: "survey_id0", rewardId: "reward_id0",isFeatured: false,productionDate: 232323232,expiryDate: 3438438643)
+//            ).build()
+//        
+        CfLogScheduleDeliveryEvent()
+                   .setOrderId("testOrderId")
+                   .isUrgent(true)
+                   .setScheduleDeliveryAction(ScheduleDeliveryAction.schedule)
+                   .setDeliveryDateTime("1972527600000")
+                   .build()
         
     }
 }
