@@ -11,10 +11,10 @@ import CasualFoundryCore
 import CasualFoundryEcommerce
 
 class MainVC: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -28,9 +28,9 @@ class MainVC: UIViewController {
     }
     func testCHW_ManagementEvents () {
         CfLogChwModuleEventBuilder().setChwModuleEvent(.enrolment)
-                                    .updateImmediately(true)
-                                    .setMeta("Test")
-                                    .build()
+            .updateImmediately(true)
+            .setMeta("Test")
+            .build()
         
         
         let ordered_date = Date().timeIntervalSince1970 * 1000
@@ -46,11 +46,11 @@ class MainVC: UIViewController {
                                                    action: ItemAction.add.rawValue,
                                                    remarks: "Hello World")
         CfLogInvestigationEvent()
-                    .setPatientId("123")
-                    .setSiteId("345")
-                    .setInvestigationId("45454")
-                    .setInvestigationList([investigationItem])
-                    .build()
+            .setPatientId("123")
+            .setSiteId("345")
+            .setInvestigationId("45454")
+            .setInvestigationList([investigationItem])
+            .build()
         
         
         let lifestylePlanItem = LifestylePlanItem(name:"LifeStypePlan1", action:ItemAction.update.rawValue, remarks: "LifeStyle Plan1 Added")
@@ -63,7 +63,7 @@ class MainVC: UIViewController {
             .setSiteId("676767")
             .setLifestyleId("565656")
             .build()
-        }
+    }
     
     
     func testEcommerceEvents () {
@@ -90,64 +90,61 @@ class MainVC: UIViewController {
                                                atcAnatomicalGroup: "parimal",
                                                otcOrEthical: "34343")
         
-//        CfLogDeliveryEvent()
-//            .setOrderId(orderId: "83473843")
-//            .setDeliveryAction(action:DeliveryAction.delivered.rawValue)
-//            .setDeliveryId(deliveryId:"56509605")
-//            .setMeta(meta:["TestData":"Testting1"])
-//            .build()
+        //        CfLogDeliveryEvent()
+        //            .setOrderId(orderId: "83473843")
+        //            .setDeliveryAction(action:DeliveryAction.delivered.rawValue)
+        //            .setDeliveryId(deliveryId:"56509605")
+        //            .setMeta(meta:["TestData":"Testting1"])
+        //            .build()
         
         
         
         // Have some issue need to fix
-//        CfLogItemEvent()
-//                    .setItemAction(ItemAction.view)
-//                    .setItemId("TestItemId")
-//                    .setItemPrice(200)
-//                    .setItemQuantity(1)
-//                    .setItemCurrency(CurrencyCode.AMD.rawValue)
-//                    .setItemType(ItemType.drug)
-//                    .setCatalogProperties(drugProperties)
-//                    .build()
+        //        CfLogItemEvent()
+        //                    .setItemAction(ItemAction.view)
+        //                    .setItemId("TestItemId")
+        //                    .setItemPrice(200)
+        //                    .setItemQuantity(1)
+        //                    .setItemCurrency(CurrencyCode.AMD.rawValue)
+        //                    .setItemType(ItemType.drug)
+        //                    .setCatalogProperties(drugProperties)
+        //                    .build()
         
-//        
-//        CfLogCancelCheckoutEvent()
-//            .setCheckoutId(checkoutId: "testCartId")
-//            .setMeta(meta:  12.0)
-//            .setCancelType(cancelType: CancelType.cart)
-//            .setCancelReason(reason: "testreason")
-//            .addItem(itemModel: ItemTypeModel(item_id: "ItemID1", item_type: ItemType.drug.rawValue))
-//            .addItem(itemModel: ItemTypeModel(item_id: "ItemID2", item_type: ItemType.drug.rawValue))
-//            .build()
+        //
+        //        CfLogCancelCheckoutEvent()
+        //            .setCheckoutId(checkoutId: "testCartId")
+        //            .setMeta(meta:  12.0)
+        //            .setCancelType(cancelType: CancelType.cart)
+        //            .setCancelReason(reason: "testreason")
+        //            .addItem(itemModel: ItemTypeModel(item_id: "ItemID1", item_type: ItemType.drug.rawValue))
+        //            .addItem(itemModel: ItemTypeModel(item_id: "ItemID2", item_type: ItemType.drug.rawValue))
+        //            .build()
         
         
-//        
-//        CfLogItemReportEvent()
-//            .setItem(item_object:
-//                        ItemTypeModel(item_id: "itemId", item_type: ItemType.drug.rawValue))
-//            .setStoreObject(store_object: StoreObject(id: "33434", lat: 23.67676, lon:76.67676 ))
-//            .setReportObject(report_object: ReportObject(id: "reportId", short_desc: "short  Value", remarks: "large Value"))
-//            .build()
+        //
+        //        CfLogItemReportEvent()
+        //            .setItem(item_object:
+        //                        ItemTypeModel(item_id: "itemId", item_type: ItemType.drug.rawValue))
+        //            .setStoreObject(store_object: StoreObject(id: "33434", lat: 23.67676, lon:76.67676 ))
+        //            .setReportObject(report_object: ReportObject(id: "reportId", short_desc: "short  Value", remarks: "large Value"))
+        //            .build()
+        //
+        //        CfLogItemRequestEvent()
+        //                    .setItemRequestId("881")
+        //                    .setItemName("Request2")
+        //                    .setMeta("12/03/2023")
+        //                    .setItemManufacturer("Zydus")
+        //                    .build()
         
-        CfLogItemRequestEvent()
-                    .setItemRequestId("881")
-                    .setItemName("Request2")
-                    .setMeta("12/03/2023")
-                    .setItemManufacturer("Zydus")
-                    .build()
-        let itemInfo = ItemInfoObject(
-            id: "12345",
-            type: "type1",
-            batchId: "batch123",
-            surveyId: "survey456",
-            rewardId: "reward789",
-            isFeatured: true,
-            productionDate: 1638569600,
-            expiryDate: 1670102400,
-            meta: ["key": "value"])
-            
-            
-            
+        
+        CfLogItemVerificationEvent()
+            .setScanChannel(ScanChannel.app)
+            .setScanType(ScanType.pin)
+            .isSuccessful(true)
+            .setItemInfo(
+                ItemInfoObject(id: "12121", type: ItemType.drug.rawValue, batchId: "batch000", surveyId: "survey_id0", rewardId: "reward_id0",isFeatured: false,productionDate: 232323232,expiryDate: 3438438643)
+            ).build()
+        
         
         
     }

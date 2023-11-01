@@ -8,7 +8,4 @@
 import Foundation
 
 
-public enum ScheduleDeliveryAction: String {
-    case schedule
-    case update
-}
+
