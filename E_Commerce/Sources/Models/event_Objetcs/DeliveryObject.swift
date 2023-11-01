@@ -10,7 +10,7 @@ import Foundation
 
 import Foundation
 
-internal struct DeliveryObject: Codable {
+public struct DeliveryObject: Codable {
     var id: String
     var order_id: String
     var action: String
@@ -23,7 +23,7 @@ internal struct DeliveryObject: Codable {
         case meta
     }
     
-    init(id: String, order_id: String, action: String, meta: Encodable? = nil) {
+    public  init(id: String, order_id: String, action: String, meta: Encodable? = nil) {
         self.id = id
         self.order_id = order_id
         self.action = action
@@ -32,7 +32,7 @@ internal struct DeliveryObject: Codable {
     
     // MARK: - Codable
     
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         order_id = try container.decode(String.self, forKey: .order_id)
@@ -44,7 +44,7 @@ internal struct DeliveryObject: Codable {
         }
     }
     
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(order_id, forKey: .order_id)
