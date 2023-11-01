@@ -1741,6 +1741,36 @@
                   endingLineNumber = "91"
                   offsetFromSymbolStart = "728">
                </Location>
+               <Location
+                  uuid = "84DAAC2B-9AB5-46EE-9441-B06F69148A90 - cd66b6a655aec7f6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CoreConstants.getCurrencyFromLocalStorage(fromCurrency: Swift.String) -&gt; Swift.Float"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Constants/CoreConstants.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "311">
+               </Location>
+               <Location
+                  uuid = "84DAAC2B-9AB5-46EE-9441-B06F69148A90 - cd66b6a655aec7f6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CoreConstants.getCurrencyFromLocalStorage(fromCurrency: Swift.String) -&gt; Swift.Float"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Constants/CoreConstants.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "832">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -1758,6 +1788,38 @@
             endingLineNumber = "89"
             landmarkName = "getCurrencyFromLocalStorage(fromCurrency:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BBA3A2F0-9FAF-4B87-AC8B-5C83F0F196CE - cd66b6a655aec608"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CoreConstants.getCurrencyFromLocalStorage(fromCurrency: Swift.String) -&gt; Swift.Float"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Constants/CoreConstants.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "207">
+               </Location>
+               <Location
+                  uuid = "BBA3A2F0-9FAF-4B87-AC8B-5C83F0F196CE - cd66b6a655aec608"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CoreConstants.getCurrencyFromLocalStorage(fromCurrency: Swift.String) -&gt; Swift.Float"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Constants/CoreConstants.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "293">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1774,6 +1836,38 @@
             endingLineNumber = "93"
             landmarkName = "getCurrencyFromLocalStorage(fromCurrency:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D0225B70-782B-47E1-8809-D5901A1D3218 - cd66b6a655aec7b4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CoreConstants.getCurrencyFromLocalStorage(fromCurrency: Swift.String) -&gt; Swift.Float"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Constants/CoreConstants.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "882">
+               </Location>
+               <Location
+                  uuid = "D0225B70-782B-47E1-8809-D5901A1D3218 - cd66b6a655aec7b4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CoreConstants.getCurrencyFromLocalStorage(fromCurrency: Swift.String) -&gt; Swift.Float"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Constants/CoreConstants.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "1083">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1790,6 +1884,38 @@
             endingLineNumber = "96"
             landmarkName = "getCurrencyFromLocalStorage(fromCurrency:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6B2187E7-C6A0-441D-82B6-A7C49127B543 - cd66b6a655aec713"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CoreConstants.getCurrencyFromLocalStorage(fromCurrency: Swift.String) -&gt; Swift.Float"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Constants/CoreConstants.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "96"
+                  endingLineNumber = "96"
+                  offsetFromSymbolStart = "1734">
+               </Location>
+               <Location
+                  uuid = "6B2187E7-C6A0-441D-82B6-A7C49127B543 - cd66b6a655ae38fe"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CasualFoundryCore.CoreConstants.getCurrencyFromLocalStorage(fromCurrency: Swift.String) -&gt; Swift.Float"
+                  moduleName = "NewTestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khushbu/Library/Developer/Xcode/DerivedData/NewTestApp-gttvzzekqgqsdserqzvdyholxydn/SourcePackages/checkouts/ios-sdk/Core/Sources/Utility/Constants/CoreConstants.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "2111">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

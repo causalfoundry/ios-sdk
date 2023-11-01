@@ -88,7 +88,7 @@ extension CoreConstants {
     
     public func getCurrencyFromLocalStorage(fromCurrency: String) -> Float {
         do {
-            if let sharedBundle = Bundle.module.url(forResource: "usd_rates", withExtension:  "json") {
+            if let sharedBundle = Bundle.module.url(forResource: "usd_rates", withExtension: "json") {
                 let data = try Data(contentsOf: URL(fileURLWithPath:sharedBundle.path))
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
                     if let rate = json?[fromCurrency.lowercased()] as? Float {
