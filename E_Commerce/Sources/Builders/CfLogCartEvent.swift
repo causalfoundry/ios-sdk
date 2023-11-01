@@ -23,6 +23,10 @@ public class CfLogCartEvent {
 
     private var cartObject: CartObject?
     
+    public init() {
+        
+    }
+    
     /**
      * setCartId can be used to log the cartId the event is logged for. It is recommended to
      * include the unique cartId for the cart items so that they can be tracked.

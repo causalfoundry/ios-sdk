@@ -144,12 +144,20 @@ class MainVC: UIViewController {
 //            .setItemInfo(
 //                ItemInfoObject(id: "12121", type: ItemType.drug.rawValue, batchId: "batch000", surveyId: "survey_id0", rewardId: "reward_id0",isFeatured: false,productionDate: 232323232,expiryDate: 3438438643)
 //            ).build()
-//        
-        CfLogScheduleDeliveryEvent()
-                   .setOrderId("testOrderId")
-                   .isUrgent(true)
-                   .setScheduleDeliveryAction(ScheduleDeliveryAction.schedule)
-                   .setDeliveryDateTime("1972527600000")
+////        
+//        CfLogScheduleDeliveryEvent()
+//                   .setOrderId("testOrderId")
+//                   .isUrgent(true)
+//                   .setScheduleDeliveryAction(ScheduleDeliveryAction.schedule)
+//                   .setDeliveryDateTime("1972527600000")
+//                   .build()
+        
+        CfLogCartEvent()
+                   .setCartId("testCartId")
+                   .setCartAction(CartAction.add_item)
+                   .setItem(itemModel)
+                   .setCurrency(CurrencyCode.USD.name)
+                   .setCartPrice(1900)
                    .build()
         
     }
