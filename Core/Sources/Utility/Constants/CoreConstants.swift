@@ -35,8 +35,8 @@ public class CoreConstants {
     var sessionStartTime: Int64 = 0
     var sessionEndTime: Int64 = 0
     
-     var deviceObject: DInfo?
-     var appInfoObject:AppInfo?
+    var deviceObject: DInfo?
+    var appInfoObject:AppInfo?
     public var previousSearchId:String? = ""
     
     public  var userIdKey: String = "userIdKey"
@@ -68,17 +68,17 @@ extension CoreConstants {
     
     func isSearchItemModelObjectValid(itemValue: SearchItemModel, eventType: CoreEventType) {
         let eventName = eventType.rawValue
-
+        
         guard !itemValue.id!.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_id")
             return
         }
-
+        
         guard !itemValue.type!.isEmpty else {
-             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_type")
+            ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_type")
             return
         }
-
+        
         guard let _ = SearchItemType(rawValue: itemValue.type!) else {
             ExceptionManager.throwEnumException(eventType: eventName, className: "ItemType")
             return
@@ -86,24 +86,27 @@ extension CoreConstants {
     }
     
     
-   public func getCurrencyFromLocalStorage(fromCurrency: String) -> Float {
+    public func getCurrencyFromLocalStorage(fromCurrency: String) -> Float {
         do {
-            if let path = Bundle.main.path(forResource: "usd_rates", ofType: "json") {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path))
-                let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-
-                if let rate = json?[fromCurrency.lowercased()] as? Float {
-                    return 1.0 / rate
-                }
+            if let sharedBundle = Bundle.module.url(forResource: "usd_rates", withExtension:  "json") {
+                let data = try Data(contentsOf: URL(fileURLWithPath:sharedBundle.path))
+                    let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                    if let rate = json?[fromCurrency.lowercased()] as? Float {
+                        return 1.0 / rate
+                    }
+                    
+                
             }
-        } catch {
+        }
+        catch {
             // Handle the error, e.g., print or log it
             print("Error reading currency rates: \(error)")
         }
         
         return 1.0 // Default rate if not found
     }
-
+    
+    
     
     
     func getUserTimeZone() -> String {
@@ -118,6 +121,6 @@ extension CoreConstants {
         }
         return ""
     }
-
-
+    
+    
 }

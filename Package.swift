@@ -24,7 +24,8 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "CasualFoundryCore",
-            path: "Core/Sources"
+            path: "Core/Sources",
+            resources: [.copy("Sources/Utility/usd_rates.json")]
         ),
         .target(
             name: "CasualFoundryCHWManagement",
