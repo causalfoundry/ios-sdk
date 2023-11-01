@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ItemTypeModel: Codable {
+public struct ItemTypeModel: Codable {
     var item_id: String
     var item_type: String
     var facility_id: String
@@ -18,20 +18,20 @@ struct ItemTypeModel: Codable {
         case facility_id
     }
 
-    init(item_id: String, item_type: String, facility_id: String = "") {
+   public  init(item_id: String, item_type: String, facility_id: String = "") {
         self.item_id = item_id
         self.item_type = item_type
         self.facility_id = facility_id
     }
 
-    init(from decoder: Decoder) throws {
+   public  init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         item_id = try container.decode(String.self, forKey: .item_id)
         item_type = try container.decode(String.self, forKey: .item_type)
         facility_id = try container.decodeIfPresent(String.self, forKey: .facility_id) ?? ""
     }
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(item_id, forKey: .item_id)
         try container.encode(item_type, forKey: .item_type)
