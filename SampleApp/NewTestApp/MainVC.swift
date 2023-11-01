@@ -153,12 +153,12 @@ class MainVC: UIViewController {
 //                   .build()
         
         CfLogCartEvent()
-                   .setCartId("testCartId")
-                   .setCartAction(CartAction.add_item)
-                   .setItem(itemModel)
-                   .setCurrency(CurrencyCode.USD.name)
-                   .setCartPrice(1900)
-                   .build()
+            .setCartId(cartId: "testCartId")
+            .setCartAction(CartAction.addItem.rawValue)
+            .setItem(item: itemModel)
+            .setCurrency(currencyCode:CurrencyCode.AED.rawValue)
+            .setCartPrice(cartPrice: 1900)
+            .build()
         
     }
 }
