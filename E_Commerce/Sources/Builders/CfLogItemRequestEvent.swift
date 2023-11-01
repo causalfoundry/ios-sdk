@@ -89,7 +89,7 @@ public class CfLogItemRequestEvent {
      * user's network resources.
      */
     
-    func build() {
+    public func build() {
         guard let item_request_id = item_request_id else {
             ExceptionManager.throwIsRequiredException(
                 eventType: EComEventType.itemRequest.rawValue,

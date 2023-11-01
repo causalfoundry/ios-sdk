@@ -121,13 +121,21 @@ class MainVC: UIViewController {
 //            .build()
         
         
+//        
+//        CfLogItemReportEvent()
+//            .setItem(item_object:
+//                        ItemTypeModel(item_id: "itemId", item_type: ItemType.drug.rawValue))
+//            .setStoreObject(store_object: StoreObject(id: "33434", lat: 23.67676, lon:76.67676 ))
+//            .setReportObject(report_object: ReportObject(id: "reportId", short_desc: "short  Value", remarks: "large Value"))
+//            .build()
         
-        CfLogItemReportEvent()
-            .setItem(item_object:
-                        ItemTypeModel(item_id: "itemId", item_type: ItemType.drug.rawValue))
-            .setStoreObject(store_object: StoreObject(id: "33434", lat: 23.67676, lon:76.67676 ))
-            .setReportObject(report_object: ReportObject(id: "reportId", short_desc: "short  Value", remarks: "large Value"))
-            .build()
+        CfLogItemRequestEvent()
+                    .setItemRequestId("8yer8err")
+                    .setItemName("Request1")
+                    .setItemName([123,444,455])
+                    .setItemManufacturer("Zydus")
+                    .build()
+        
         
     }
 }
