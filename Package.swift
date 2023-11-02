@@ -1,3 +1,5 @@
+
+
 // swift-tools-version: 5.4
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
@@ -8,7 +10,6 @@ let package = Package(
     platforms: [.iOS(.v13)],
     
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "Core",
             targets: ["CasualFoundryCore"]),
@@ -20,34 +21,37 @@ let package = Package(
             targets: ["CasualFoundryEcommerce"])
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "CasualFoundryCore",
             path: "Core/Sources",
             resources: [
-            .copy("Core/Resources/usd_rates.json"),
-            ]),
-            .target(
-                name: "CasualFoundryCHWManagement",
-                dependencies:["CasualFoundryCore"], path: "CHWManagement/Sources"),
+                .copy("Core/Resources/usd_rates.json")
+            ]
+        ),
+        .target(
+            name: "CasualFoundryCHWManagement",
+            dependencies: ["CasualFoundryCore"],
+            path: "CHWManagement/Sources"
+        ),
         .target(
             name: "CasualFoundryEcommerce",
-            dependencies:["CasualFoundryCore"], path: "E_Commerce/Sources"
-            
+            dependencies: ["CasualFoundryCore"],
+            path: "E_Commerce/Sources"
         ),
-        
-            .target(
-                name: "CoreTests",
-                dependencies: ["CasualFoundryCore"],
-                path: "Core/Tests"),
+        .target(
+            name: "CoreTests",
+            dependencies: ["CasualFoundryCore"],
+            path: "Core/Tests"
+        ),
         .testTarget(
             name: "CHWManagementTests",
             dependencies: ["CasualFoundryCHWManagement"],
-            path: "CHWManagement/Tests"),
+            path: "CHWManagement/Tests"
+        ),
         .testTarget(
             name: "ECommerceTests",
             dependencies: ["CasualFoundryEcommerce"],
-            path: "E_Commerce/Tests")
+            path: "E_Commerce/Tests"
+        )
     ]
 )
