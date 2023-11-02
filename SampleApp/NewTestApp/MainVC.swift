@@ -165,8 +165,8 @@ class MainVC: UIViewController {
             .setOrderId(order_id: "testOrderId")
             .setCartId(cart_id: "testCartId")
             .setPrice(price: 900)
-            .setCurrency(currency: CurrencyCode.USD.name)
-            .setShopMode(ShopMode.pickup)
+            .setCurrency(currency: CurrencyCode.USD.rawValue)
+            .setShopMode(shopMode:ShopMode.pickup)
             .addItem(itemModel: itemModel)
             .build()
 
