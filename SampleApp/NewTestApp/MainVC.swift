@@ -151,13 +151,31 @@ class MainVC: UIViewController {
 //                   .setScheduleDeliveryAction(ScheduleDeliveryAction.schedule)
 //                   .setDeliveryDateTime("1972527600000")
 //                   .build()
+//        
+//        CfLogCartEvent()
+//            .setCartId(cartId: "testCartId")
+//            .setCartAction(CartAction.addItem.rawValue)
+//            .setItem(item: itemModel)
+//            .setCurrency(currencyCode:CurrencyCode.AED.rawValue)
+//            .setCartPrice(cartPrice: 1900)
+//            .build()
         
-        CfLogCartEvent()
-            .setCartId(cartId: "testCartId")
-            .setCartAction(CartAction.addItem.rawValue)
-            .setItem(item: itemModel)
-            .setCurrency(currencyCode:CurrencyCode.AED.rawValue)
-            .setCartPrice(cartPrice: 1900)
+        
+        CfLogCheckoutEvent()
+            .setOrderId("testOrderId")
+            .setCartId("testCartId")
+            .setPrice(900f)
+            .setCurrency(CurrencyCode.USD.name)
+            .setShopMode(ShopMode.pickup)
+            .addItem(itemModel)
+            .build()
+
+        CfLogCheckoutEvent()
+            .setOrderId("testOrderIdDelivery")
+            .setCartId("testCartId")
+            .setPrice(900f)
+            .setCurrency(CurrencyCode.USD.name)
+            .addItem(itemModel)
             .build()
         
     }

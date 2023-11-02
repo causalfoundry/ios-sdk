@@ -1,7 +1,7 @@
 import Foundation
 import CasualFoundryCore
 
-class CfLogCheckoutEvent {
+public class CfLogCheckoutEvent {
     
     /**
      * CfLogCheckoutEvent is required to log checkout event for orders. You can trigger this event
@@ -21,6 +21,11 @@ class CfLogCheckoutEvent {
      var update_immediately: Bool = CoreConstants.shared.updateImmediately
     
     private var checkoutObject: CheckoutObject?
+    
+    
+    public init() {
+        
+    }
     
     /**
      * setOrderId is required to log the orderId for the order being successful or failed
