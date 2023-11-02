@@ -10,9 +10,7 @@ import Foundation
 
 extension String {
     func isNilOREmpty() -> Bool {
-        if self == nil{
-            return true
-        }else if self == "" {
+         if self == "" {
             return true
         }else {
             return false

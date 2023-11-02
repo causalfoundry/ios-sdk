@@ -24,7 +24,7 @@ class MainVC: UIViewController {
     }
     
     @IBAction func test_EcommerceEvents(_ sender: Any) {
-        _ = testEcommerceEvents()
+        testEcommerceEvents()
     }
     func testCHW_ManagementEvents () {
         CfLogChwModuleEventBuilder().setChwModuleEvent(.enrolment)

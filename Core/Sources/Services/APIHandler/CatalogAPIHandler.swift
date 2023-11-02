@@ -84,9 +84,9 @@ public class CatalogAPIHandler {
     }
 
     func callCatalogAPI(catalogMainObject: [Any], catalogSubject: String, sdkToken: String) {
-        let data = try? JSONSerialization.data(withJSONObject: catalogMainObject)
+        _ = try? JSONSerialization.data(withJSONObject: catalogMainObject)
         try APIManager.shared.postUpdateCatelogEvents(url:APIConstants.updateCatalog , params: catalogMainObject, "POST", headers:["subject":catalogSubject], completion:{ (result) in
-            print(result)
+            print(result as Any)
         })
     }
 
