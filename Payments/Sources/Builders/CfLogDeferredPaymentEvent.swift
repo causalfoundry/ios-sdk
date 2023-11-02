@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CasualFoundryCore
 
 
 public class CfLogDeferredPaymentEvent {
@@ -59,9 +60,9 @@ public class CfLogDeferredPaymentEvent {
     }
     
     @discardableResult
-    public func setPaymentMethod(_ PaymentMethod: String) -> CfLogDeferredPaymentEvent {
-        if CoreConstants.shared.enumContains(PaymentMethod.self, name: PaymentMethod) {
-            self.paymentMethod = PaymentMethod
+    public func setPaymentMethod(_ paymentMethod: String) -> CfLogDeferredPaymentEvent {
+        if CoreConstants.shared.enumContains(PaymentMethod.self, name: paymentMethod) {
+            self.paymentMethod = paymentMethod
         } else {
             ExceptionManager.throwEnumException(eventType: PaymentsEventType.deferred_payment.rawValue, className:String(describing:PaymentMethod.self))
         }
@@ -101,7 +102,7 @@ public class CfLogDeferredPaymentEvent {
         if CoreConstants.shared.enumContains(InternalCurrencyCode.self, name: currency) {
             self.currencyValue = currency
         } else {
-            ExceptionManager.throwEnumException(eventType: PaymentsEventType.deferred_payment.rawValue,"currency"))
+            ExceptionManager.throwEnumException(eventType: PaymentsEventType.deferred_payment.rawValue,className: "currency")
         }
         return self
     }
@@ -193,72 +194,91 @@ public class CfLogDeferredPaymentEvent {
      * function and queue the events based on it's updateImmediately value and also on the
      * user's network resources.
      */
-    public  func build() {
+    public func build() {
         
-        
+        /**
+         * Will throw and exception if the orderId provided is null or no value is
+         * provided at all.
+         */
         guard let orderId = orderId else {
             ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.deferred_payment.rawValue, elementName: "order_id")
             return
         }
-        
+        /**
+         * Will throw and exception if the paymentId provided is null or no value is
+         * provided at all.
+         */
         guard let  paymentId = paymentId else {
             ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.deferred_payment.rawValue, elementName: "payment_id")
             return
         }
         
+        /**
+         * Will throw and exception if the paymentAction provided is null or no value is
+         * provided at all.
+         */
         guard let action = action else {
             ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.deferred_payment.rawValue, elementName:String(describing: PaymentAction.self))
             return
         }
-              
-        guard let paymentMethod = paymentMethod {
+        /**
+         * Will throw and exception if the payment method Type provided is null or no value is
+         * provided at all.
+         */
+        guard let paymentMethod = paymentMethod else {
             ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.deferred_payment.rawValue, elementName: String(describing: paymentMethod.self))
             return
         }
-        guard let currencyValue = currencyValue {
+        
+        /**
+         * Will throw and exception if the currency provided is null or no value is
+         * provided at all.
+         */
+        guard let currencyValue = currencyValue else {
             ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.deferred_payment.rawValue, elementName: "CurrencyCode")
             return
         }
-        
-        guard let accountBalance = accountBalance {
+        /**
+         * Will throw and exception if the account_balance provided is null or no value is
+         * provided at all.
+         */
+        guard let accountBalance = accountBalance else {
             ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.deferred_payment.rawValue, elementName: "account_balance")
             return
         }
-        guard let paymentAmount = paymentAmount {
+        /**
+         * Will throw and exception if the payment_amount provided is null or no value is
+         * provided at all.
+         */
+        guard let paymentAmount = paymentAmount else {
             ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.deferred_payment.rawValue, elementName: "payment_amount")
             return
         }
+        /**
+         * Parsing the values into an object and passing to the setup block to queue
+         * the event based on its priority.
+         */
         
-        var paymentObject = DeferredPaymentObject(
-            orderId: orderId,
-            paymentId: paymentId,
-            action: action,
-            paymentMethod: paymentMethod,
-            accountBalance: accountBalance,
-            paymentAmount: paymentAmount,
-            currencyValue: currencyValue,
-            isSuccessful: isSuccessful,
-            meta: meta,
-            updateImmediately: updateImmediately,
-            usdRate: 1.0
-        )
+        var paymentObject =   DeferredPaymentObject(paymentId: paymentId, orderId: orderId, type: paymentMethod, action: action, accountBalance: accountBalance, paymentAmount: paymentAmount, currency: currencyValue, isSuccessful: isSuccessful, usdRate: nil, meta: meta as? Encodable)
         
         if currencyValue != InternalCurrencyCode.USD.rawValue {
-            CFSetup().getUSDRate(currencyValue) { usdRate in
-                paymentObject.usdRate = usdRate
+            
+            CFSetup().getUSDRate(fromCurrency: currencyValue) { value in
+                paymentObject.usdRate = 1
                 CFSetup().track(
-                    PaymentsConstants.contentBlockName,
-                    PaymentsEventType.deferred_payment.rawValue,
-                    paymentObject,
-                    updateImmediately
+                    contentBlockName: PaymentsConstants.contentBlockName,
+                    eventType: PaymentsEventType.deferred_payment.rawValue,
+                    logObject: paymentObject,
+                    updateImmediately: updateImmediately
                 )
+                return value
             }
         } else {
             CFSetup().track(
-                PaymentsConstants.contentBlockName,
-                PaymentsEventType.deferred_payment.rawValue,
-                paymentObject,
-                updateImmediately
+                contentBlockName: PaymentsConstants.contentBlockName,
+                eventType: PaymentsEventType.deferred_payment.rawValue,
+                logObject: paymentObject,
+                updateImmediately: updateImmediately
             )
         }
     }

@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import CasualFoundryCore
 
 
-enum InternalCurrencyCode: String,EnumComposable {
+
+public enum InternalCurrencyCode: String,EnumComposable {
     case AED = "AED"  // United Arab Emirates Dirham
     case AFN = "AFN"  // Afghanistan Afghani
     case ALL = "ALL"  // Albania Lek

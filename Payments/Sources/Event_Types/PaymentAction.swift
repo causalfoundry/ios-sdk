@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import CasualFoundryCore
 
-public enum PaymentAction: String {
+public enum PaymentAction: String,EnumComposable {
     case payment_processed
 }

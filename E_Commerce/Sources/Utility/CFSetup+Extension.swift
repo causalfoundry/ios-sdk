@@ -11,11 +11,5 @@ import CasualFoundryCore
 
 extension CFSetup {
     
-    func getUSDRate(fromCurrency: String, callback: (Float) -> Float) {
-        if CoreConstants.shared.application != nil {
-             ingestApiHandler.getUSDRate(fromCurrency: fromCurrency) { value  in
-                return value
-            }
-        }
-    }
+    
 }

@@ -8,7 +8,7 @@
 import Foundation
 import CasualFoundryCore
 
-enum PaymentMethod: String ,Codable,EnumComposable{
+public enum PaymentMethod: String ,Codable,EnumComposable{
     case bank_transfer
     case cheque
     case cod
