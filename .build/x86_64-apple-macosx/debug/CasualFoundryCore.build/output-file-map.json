@@ -415,11 +415,5 @@
     "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NotificationManager/NotificationManager.swift.o",
     "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NotificationManager/NotificationManager~partial.swiftmodule",
     "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NotificationManager/NotificationManager.swiftdeps"
-  },
-  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/DerivedSources/resource_bundle_accessor.swift": {
-    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/resource_bundle_accessor.d",
-    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/resource_bundle_accessor.swift.o",
-    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/resource_bundle_accessor~partial.swiftmodule",
-    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/resource_bundle_accessor.swiftdeps"
   }
 }

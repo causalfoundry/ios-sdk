@@ -13,7 +13,7 @@ import FileProvider
 
 
 public class CFSetup:NSObject, IngestProtocol {
-   
+    
     
     public var ingestApiHandler = IngestAPIHandler()
     private var catalogAPIHandler = CatalogAPIHandler()
@@ -35,8 +35,8 @@ public class CFSetup:NSObject, IngestProtocol {
         
         userId = CoreDataHelper.shared.fetchUserID()
         if (!userId.isNilOREmpty()) {
-                scheduleBackendNudgeListener()
-            }
+            scheduleBackendNudgeListener()
+        }
     }
     
     func initalize(application:UIApplication,event: UIApplication.State, pauseSDK: Bool, autoShowInAppNudge: Bool, updateImmediately: Bool) {
@@ -61,7 +61,7 @@ public class CFSetup:NSObject, IngestProtocol {
         }
     }
     
- 
+    
     
     public func updateCatalogItem(subject: CatalogSubject, catalogObject: Any?) {
         if CoreConstants.shared.application != nil {
@@ -80,7 +80,7 @@ public class CFSetup:NSObject, IngestProtocol {
         return contents["ai.causalfoundry.iOS.sdk.APPLICATION_KEY"] ?? ""
     }
     
-   public func track(contentBlockName: String, eventType: String, logObject: Any?, updateImmediately: Bool, eventTime: Int64 = 0) {
+    public func track(contentBlockName: String, eventType: String, logObject: Any?, updateImmediately: Bool, eventTime: Int64 = 0) {
         
         if CoreConstants.shared.application != nil {
             verifyAccessToken(context:CoreConstants.shared.application!)
@@ -122,7 +122,7 @@ public class CFSetup:NSObject, IngestProtocol {
     private func scheduleBackendNudgeListener() {
         // Code Reamining
     }
-
+    
 }
 
 

@@ -88,9 +88,9 @@
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NetworkUtil/NetworkMonitor.swift.o
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NetworkUtil/Reachability.swift.o
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NotificationManager/NotificationManager.swift.o
-/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/resource_bundle_accessor.swift.o
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogCancelCheckoutEvent.swift.o
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogCartEvent.swift.o
+/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogCheckoutEvent.swift.o
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogDeliveryEvent.swift.o
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogItemEvent.swift.o
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogItemReportEvent.swift.o
@@ -118,6 +118,7 @@
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/CancelCheckoutObject.swift.o
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/CartObject.swift.o
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/DeliveryObject.swift.o
+/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/File.swift.o
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/ItemRequestObject.swift.o
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/ItemVerificationObject.swift.o
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/ScheduleDeliveryObject.swift.o
@@ -141,5 +142,6 @@
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ScanChannel.swift.o
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ScanType.swift.o
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ScheduleDeliveryAction.swift.o
+/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ShopMode.swift.o
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/catalog_types/CancelType.swift.o
 /Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/ECommerceTests.build/E_CommerceTests/E_CommerceTests.swift.o

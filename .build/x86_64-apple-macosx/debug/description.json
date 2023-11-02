@@ -6,20 +6,7 @@
     }
   ],
   "copyCommands" : {
-    "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CausalFoundry_ios_SDK_CasualFoundryCore.bundle/Model.xcdatamodeld" : {
-      "inputs" : [
-        {
-          "kind" : "directory",
-          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Database/Model.xcdatamodeld"
-        }
-      ],
-      "outputs" : [
-        {
-          "kind" : "directory",
-          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CausalFoundry_ios_SDK_CasualFoundryCore.bundle/Model.xcdatamodeld"
-        }
-      ]
-    }
+
   },
   "explicitTargetDependencyImportCheckingMode" : {
     "none" : {
@@ -558,14 +545,6 @@
         {
           "kind" : "file",
           "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NotificationManager/NotificationManager.swift"
-        },
-        {
-          "kind" : "file",
-          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/DerivedSources/resource_bundle_accessor.swift"
-        },
-        {
-          "kind" : "virtual",
-          "name" : "<CasualFoundryCore-debug.module-resources>"
         }
       ],
       "isLibrary" : true,
@@ -640,8 +619,7 @@
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/LanguageCodeList.swift.o",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NetworkUtil/NetworkMonitor.swift.o",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NetworkUtil/Reachability.swift.o",
-        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NotificationManager/NotificationManager.swift.o",
-        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/resource_bundle_accessor.swift.o"
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NotificationManager/NotificationManager.swift.o"
       ],
       "otherArguments" : [
         "-target",
@@ -963,10 +941,6 @@
         },
         {
           "kind" : "file",
-          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/resource_bundle_accessor.swift.o"
-        },
-        {
-          "kind" : "file",
           "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.swiftmodule"
         }
       ],
@@ -1039,8 +1013,7 @@
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/LanguageCodeList.swift",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NetworkUtil/NetworkMonitor.swift",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NetworkUtil/Reachability.swift",
-        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NotificationManager/NotificationManager.swift",
-        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/DerivedSources/resource_bundle_accessor.swift"
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NotificationManager/NotificationManager.swift"
       ],
       "tempsPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build",
       "wholeModuleOptimization" : false
@@ -1056,6 +1029,10 @@
         {
           "kind" : "file",
           "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogCartEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogCheckoutEvent.swift"
         },
         {
           "kind" : "file",
@@ -1167,6 +1144,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/File.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ItemRequestObject.swift"
         },
         {
@@ -1259,6 +1240,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ShopMode.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/catalog_types/CancelType.swift"
         },
         {
@@ -1272,6 +1257,7 @@
       "objects" : [
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogCancelCheckoutEvent.swift.o",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogCartEvent.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogCheckoutEvent.swift.o",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogDeliveryEvent.swift.o",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogItemEvent.swift.o",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogItemReportEvent.swift.o",
@@ -1299,6 +1285,7 @@
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/CancelCheckoutObject.swift.o",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/CartObject.swift.o",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/DeliveryObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/File.swift.o",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/ItemRequestObject.swift.o",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/ItemVerificationObject.swift.o",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/ScheduleDeliveryObject.swift.o",
@@ -1322,6 +1309,7 @@
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ScanChannel.swift.o",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ScanType.swift.o",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ScheduleDeliveryAction.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ShopMode.swift.o",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/catalog_types/CancelType.swift.o"
       ],
       "otherArguments" : [
@@ -1373,6 +1361,10 @@
         {
           "kind" : "file",
           "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogCartEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogCheckoutEvent.swift.o"
         },
         {
           "kind" : "file",
@@ -1484,6 +1476,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/File.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/ItemRequestObject.swift.o"
         },
         {
@@ -1576,6 +1572,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ShopMode.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/catalog_types/CancelType.swift.o"
         },
         {
@@ -1586,6 +1586,7 @@
       "sources" : [
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogCancelCheckoutEvent.swift",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogCartEvent.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogCheckoutEvent.swift",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogDeliveryEvent.swift",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogItemEvent.swift",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogItemReportEvent.swift",
@@ -1613,6 +1614,7 @@
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/CancelCheckoutObject.swift",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/CartObject.swift",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/DeliveryObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/File.swift",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ItemRequestObject.swift",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ItemVerificationObject.swift",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ScheduleDeliveryObject.swift",
@@ -1636,6 +1638,7 @@
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ScanChannel.swift",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ScanType.swift",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ScheduleDeliveryAction.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ShopMode.swift",
         "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/catalog_types/CancelType.swift"
       ],
       "tempsPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build",
@@ -2091,7 +2094,6 @@
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NetworkUtil/NetworkMonitor.swift",
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NetworkUtil/Reachability.swift",
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NotificationManager/NotificationManager.swift",
-      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/DerivedSources/resource_bundle_accessor.swift",
       "-I",
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug",
       "-target",
@@ -2144,6 +2146,7 @@
       "-c",
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogCancelCheckoutEvent.swift",
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogCartEvent.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogCheckoutEvent.swift",
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogDeliveryEvent.swift",
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogItemEvent.swift",
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogItemReportEvent.swift",
@@ -2171,6 +2174,7 @@
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/CancelCheckoutObject.swift",
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/CartObject.swift",
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/DeliveryObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/File.swift",
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ItemRequestObject.swift",
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ItemVerificationObject.swift",
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ScheduleDeliveryObject.swift",
@@ -2194,6 +2198,7 @@
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ScanChannel.swift",
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ScanType.swift",
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ScheduleDeliveryAction.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ShopMode.swift",
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/catalog_types/CancelType.swift",
       "-I",
       "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug",
