@@ -20,7 +20,7 @@ public class CfLogCartEvent {
     var currencyValue: String? = ""
     var meta: Any?
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
-
+    
     private var cartObject: CartObject?
     
     public init() {
@@ -31,7 +31,7 @@ public class CfLogCartEvent {
      * setCartId can be used to log the cartId the event is logged for. It is recommended to
      * include the unique cartId for the cart items so that they can be tracked.
      */
-
+    
     @discardableResult
     public func setCartId(cartId: String) -> CfLogCartEvent {
         self.cartId = cartId
@@ -43,7 +43,7 @@ public class CfLogCartEvent {
      * addItem and removeItem
      * setCartAction provides 2 approaches for logging list events, one is with enums and the
      * other is with string. Below is the @discardableResult
-    publiction to log cartAction event using enum type.
+     publiction to log cartAction event using enum type.
      */
     
     @discardableResult
@@ -52,15 +52,15 @@ public class CfLogCartEvent {
         return self
     }
     /**
-             * setCartAction is required to pass the actions for cart the logged is triggered on. By
-             * default the SDK provides 2 main list actions for e-commerce apps. Which includes
-             * addItem and removeItem.
-             * setCartAction provides 2 approaches for logging list events, one is with enums and the
-             * other is with string. Below is the @discardableResult
-    publiction to log listAction event using string type.
-             * Remember to note that with string type, you need to pass the values as provided
-             * in the enum or else the events will be discarded
-             */
+     * setCartAction is required to pass the actions for cart the logged is triggered on. By
+     * default the SDK provides 2 main list actions for e-commerce apps. Which includes
+     * addItem and removeItem.
+     * setCartAction provides 2 approaches for logging list events, one is with enums and the
+     * other is with string. Below is the @discardableResult
+     publiction to log listAction event using string type.
+     * Remember to note that with string type, you need to pass the values as provided
+     * in the enum or else the events will be discarded
+     */
     @discardableResult
     public func setCartAction(_ cartAction: String) -> CfLogCartEvent {
         if CoreConstants.shared.enumContains(CartAction.self, name: cartAction) {
@@ -113,7 +113,7 @@ public class CfLogCartEvent {
      * setItemCurrency is required to log the currency for item the events are being logged. Details
      * about the item are to be provided in the catalog for more details about the item.
      */
-//        fun setItemCurrency(currency_code: CurrencyCode) = apply { this.item_currency = currency_code.name }
+    //        fun setItemCurrency(currency_code: CurrencyCode) = apply { this.item_currency = currency_code.name }
     @discardableResult
     public func setItemCurrency(_ currencyCode: String) -> CfLogCartEvent {
         if CoreConstants.shared.enumContains(InternalCurrencyCode.self, name: currencyCode) {
@@ -157,7 +157,7 @@ public class CfLogCartEvent {
         }
         return self
     }
-
+    
     /**
      * setItemPromoId is required to log the promo Id for item the events are being
      * logged. Details about the item are to be provided in the catalog for more details about
@@ -185,7 +185,7 @@ public class CfLogCartEvent {
     /**
      * setItem can be used to pass the whole item as an object as well. You can use the POJO
      * ItemModel to parse the data int he required format and pass that to this @discardableResult
-    publiction to
+     publiction to
      * log the event.
      */
     @discardableResult
@@ -197,7 +197,7 @@ public class CfLogCartEvent {
      * setItem can be used to pass the whole item as a Json String object as well. You can use
      * the POJO ItemModel to parse the data int he required format and pass that to this
      * @discardableResult
-    publiction as a string to log the event. You can use Gson to convert the object to string
+     publiction as a string to log the event. You can use Gson to convert the object to string
      * but SDK will parse the Json string back to POJO so pass it in the log. This method
      * should be used with caution and is suitable for react native bridge.
      */
@@ -255,11 +255,11 @@ public class CfLogCartEvent {
     /**
      * build will validate all of the values provided and if passes will call the track
      * @discardableResult
-    publiction and queue the events based on it's updateImmediately value and also on the
+     publiction and queue the events based on it's updateImmediately value and also on the
      * user's network resources.
      */
     
-
+    
     public func build(){
         guard let id =  self.cartId else {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "cart_id")
@@ -294,9 +294,9 @@ public class CfLogCartEvent {
             CFSetup().getUSDRate(fromCurrency: currencyValue) { [weak self] value in
                 return value
             }
-                
-            }
+            
         }
+    }
     
     
     func getUSDRateAndLogEvent(usdRate: Float) {
