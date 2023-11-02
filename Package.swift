@@ -40,10 +40,10 @@ let package = Package(
             path: "E_Commerce/Sources"
         ),
         .target(
-                name: "CasualFoundryPayments",
-                dependencies: ["CasualFoundryCore"],
-                path: "Payments/Sources"
-            ),
+            name: "CasualFoundryPayments",
+            dependencies: ["CasualFoundryCore"],
+            path: "Payments/Sources"
+        ),
         .target(
             name: "CoreTests",
             dependencies: ["CasualFoundryCore"],
@@ -58,6 +58,11 @@ let package = Package(
             name: "ECommerceTests",
             dependencies: ["CasualFoundryEcommerce"],
             path: "E_Commerce/Tests"
+        ),
+        .testTarget(
+            name: "PaymentsTests",
+            dependencies: ["CasualFoundryPayments"],
+            path: "Payments/Tests"
         )
     ]
 )
