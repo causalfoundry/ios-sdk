@@ -26,7 +26,7 @@ let package = Package(
             name: "CasualFoundryCore",
             path: "Core/Sources",
             resources: [
-            .copy("Resources/usd_rates.json"),
+            .copy("Core/Resources/usd_rates.json"),
             ]),
             .target(
                 name: "CasualFoundryCHWManagement",
