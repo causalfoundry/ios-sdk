@@ -263,7 +263,7 @@ public class CfLogCheckoutEvent {
                                              items: item_list,
                                              meta:meta as? Encodable)
         
-       // if currency_value == InternalCurrencyCode.USD.rawValue {
+        if currency_value == InternalCurrencyCode.USD.rawValue {
             checkoutObject.usd_rate = 1.0
             CFSetup().track(
                 contentBlockName: ECommerceConstants.contentBlockName,
@@ -271,18 +271,18 @@ public class CfLogCheckoutEvent {
                 logObject: checkoutObject,
                 updateImmediately: update_immediately
             )
-//        } else {
-//            CFSetup().getUSDRate(fromCurrency: currency_value) { usdRate in
-//                checkoutObject.usd_rate = Float(usdRate)
-//                CFSetup().track(
-//                    contentBlockName: ECommerceConstants.contentBlockName,
-//                    eventType: EComEventType.checkout.rawValue,
-//                    logObject: checkoutObject,
-//                    updateImmediately: update_immediately
-//                )
-//                return checkoutObject.usd_rate!
-//            }
-//        }
+        } else {
+            CFSetup().getUSDRate(fromCurrency: currency_value) { usdRate in
+                checkoutObject.usd_rate = Float(usdRate)
+                CFSetup().track(
+                    contentBlockName: ECommerceConstants.contentBlockName,
+                    eventType: EComEventType.checkout.rawValue,
+                    logObject: checkoutObject,
+                    updateImmediately: update_immediately
+                )
+                return checkoutObject.usd_rate!
+            }
+        }
     }
 }
 
