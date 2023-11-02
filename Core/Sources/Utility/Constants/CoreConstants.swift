@@ -89,15 +89,26 @@ extension CoreConstants {
     
     public func getCurrencyFromLocalStorage(fromCurrency: String) -> Float {
         do {
-            if let sharedBundle = Bundle.module.url(forResource: "usd_rates", withExtension: "json") {
-                let data = try Data(contentsOf: URL(fileURLWithPath:sharedBundle.path))
-                    let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                    if let rate = json?[fromCurrency.lowercased()] as? Float {
-                        return 1.0 / rate
-                    }
-                    
-                
+            
+            let myBundle = Bundle.module
+
+            if let fileURL = myBundle.url(forResource: "usd_rates", withExtension: "json"),
+               let fileContents = try? String(contentsOf: fileURL) {
+                print("File contents: \(fileContents)")
+            } else {
+                print("File not found or could not be read.")
             }
+            
+//            
+//            if let sharedBundle = Bundle.module.url(forResource: "usd_rates", withExtension: "json") {
+//                let data = try Data(contentsOf: URL(fileURLWithPath:sharedBundle.path))
+//                    let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+//                    if let rate = json?[fromCurrency.lowercased()] as? Float {
+//                        return 1.0 / rate
+//                    }
+//                    
+//                
+//            }
         }
         catch {
             // Handle the error, e.g., print or log it
