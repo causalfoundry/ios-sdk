@@ -16,8 +16,8 @@ public struct DeferredPaymentObject: Codable {
     var currency: String?
     var isSuccessful: Bool?
     var usdRate: Float?
-    var meta: Any?
-
+    var meta: Encodable?
+    
     enum CodingKeys: String, CodingKey {
         case paymentId = "id"
         case orderId = "order_id"
@@ -30,8 +30,8 @@ public struct DeferredPaymentObject: Codable {
         case usdRate
         case meta
     }
-
-    public init(paymentId: String, orderId: String, type: String, action: String?, accountBalance: Float?, paymentAmount: Float?, currency: String?, isSuccessful: Bool?, usdRate: Float?, meta: Any?) {
+    
+    public init(paymentId: String, orderId: String, type: String, action: String?, accountBalance: Float?, paymentAmount: Float?, currency: String?, isSuccessful: Bool?, usdRate: Float?, meta: Encodable?) {
         self.paymentId = paymentId
         self.orderId = orderId
         self.type = type
@@ -46,7 +46,7 @@ public struct DeferredPaymentObject: Codable {
     
     // Encoding to JSON
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys)
+        var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(paymentId, forKey: .paymentId)
         try container.encode(orderId, forKey: .orderId)
         try container.encode(type, forKey: .type)
@@ -56,12 +56,15 @@ public struct DeferredPaymentObject: Codable {
         try container.encodeIfPresent(currency, forKey: .currency)
         try container.encodeIfPresent(isSuccessful, forKey: .isSuccessful)
         try container.encodeIfPresent(usdRate, forKey: .usdRate)
-        try container.encodeIfPresent(meta, forKey: .meta)
+        if let metaData = meta {
+            try container.encode(metaData, forKey: .meta)
+        }
+        
     }
-
+    
     // Decoding from JSON
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         paymentId = try container.decode(String.self, forKey: .paymentId)
         orderId = try container.decode(String.self, forKey: .orderId)
         type = try container.decode(String.self, forKey: .type)
@@ -71,6 +74,11 @@ public struct DeferredPaymentObject: Codable {
         currency = try container.decodeIfPresent(String.self, forKey: .currency)
         isSuccessful = try container.decodeIfPresent(Bool.self, forKey: .isSuccessful)
         usdRate = try container.decodeIfPresent(Float.self, forKey: .usdRate)
-        meta = try container.decodeIfPresent(Any.self, forKey: .meta)
+        if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
+            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
+        } else {
+            meta = nil
+        }
+        
     }
 }
