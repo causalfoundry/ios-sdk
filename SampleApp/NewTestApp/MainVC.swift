@@ -165,18 +165,18 @@ class MainVC: UIViewController {
             .setOrderId(order_id: "testOrderId")
             .setCartId(cart_id: "testCartId")
             .setPrice(price: 900)
-            .setCurrency(currency: CurrencyCode.USD.rawValue)
+            .setCurrency(currency: CurrencyCode.AED.rawValue)
             .setShopMode(shopMode:ShopMode.pickup)
             .addItem(itemModel: itemModel)
             .build()
 
-        CfLogCheckoutEvent()
-            .setOrderId("testOrderIdDelivery")
-            .setCartId("testCartId")
-            .setPrice(900f)
-            .setCurrency(CurrencyCode.USD.name)
-            .addItem(itemModel)
-            .build()
+//        CfLogCheckoutEvent()
+//            .setOrderId("testOrderIdDelivery")
+//            .setCartId("testCartId")
+//            .setPrice(900f)
+//            .setCurrency(CurrencyCode.USD.name)
+//            .addItem(itemModel)
+//            .build()
         
     }
 }
