@@ -92,7 +92,7 @@ extension CoreConstants {
             
             let myBundle = Bundle.module
 
-            if let fileURL = myBundle.url(forResource: "usd_rates", withExtension: "json"),
+            if let fileURL = myBundle.url(forResource: "usdRates", withExtension: "json"),
                let fileContents = try? String(contentsOf: fileURL) {
                 print("File contents: \(fileContents)")
             } else {

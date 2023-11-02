@@ -1,0 +1,2426 @@
+{
+  "builtTestProducts" : [
+    {
+      "binaryPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CausalFoundry_ios_SDKPackageTests.xctest/Contents/MacOS/CausalFoundry_ios_SDKPackageTests",
+      "productName" : "CausalFoundry_ios_SDKPackageTests"
+    }
+  ],
+  "copyCommands" : {
+    "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CausalFoundry_ios_SDK_CasualFoundryCore.bundle/Model.xcdatamodeld" : {
+      "inputs" : [
+        {
+          "kind" : "directory",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Database/Model.xcdatamodeld"
+        }
+      ],
+      "outputs" : [
+        {
+          "kind" : "directory",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CausalFoundry_ios_SDK_CasualFoundryCore.bundle/Model.xcdatamodeld"
+        }
+      ]
+    }
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.CasualFoundryCHWManagement-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "importPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Builders/CfLogInvestigationEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Builders/CfLogLifestyleEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/CHWManagement.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/CatalogModels/ChwCatalogModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/CatalogModels/ChwSiteCatalogModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/CatalogModels/PatientCatalogModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Constants/ChwConstants.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Enums/ChwMgmtEventType.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Enums/ChwModuleType.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Enums/File.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/ChwModelObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/InternalChwModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/InternalPatientModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/InternalSiteModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/InvestigationEventObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/InvestigationItem.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/LifestyleEventObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/LifestylePlanItem.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.swiftmodule"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "CasualFoundryCHWManagement",
+      "moduleOutputPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.swiftmodule",
+      "objects" : [
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Builders/CfLogInvestigationEvent.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Builders/CfLogLifestyleEvent.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/CHWManagement.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/CatalogModels/ChwCatalogModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/CatalogModels/ChwSiteCatalogModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/CatalogModels/PatientCatalogModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Constants/ChwConstants.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Enums/ChwMgmtEventType.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Enums/ChwModuleType.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Enums/File.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Models/ChwModelObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Models/InternalChwModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Models/InternalPatientModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Models/InternalSiteModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Models/InvestigationEventObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Models/InvestigationItem.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Models/LifestyleEventObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Models/LifestylePlanItem.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "x86_64-apple-macosx10.13",
+        "-swift-version",
+        "5",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-g",
+        "-j4",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-module-cache-path",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/CasualFoundryCHWManagement-Swift.h",
+        "-color-diagnostics",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC"
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Builders/CfLogInvestigationEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Builders/CfLogLifestyleEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/CHWManagement.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/CatalogModels/ChwCatalogModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/CatalogModels/ChwSiteCatalogModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/CatalogModels/PatientCatalogModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Constants/ChwConstants.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Enums/ChwMgmtEventType.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Enums/ChwModuleType.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Enums/File.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Models/ChwModelObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Models/InternalChwModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Models/InternalPatientModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Models/InternalSiteModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Models/InvestigationEventObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Models/InvestigationItem.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Models/LifestyleEventObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/Models/LifestylePlanItem.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.swiftmodule"
+        }
+      ],
+      "sources" : [
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Builders/CfLogInvestigationEvent.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Builders/CfLogLifestyleEvent.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/CHWManagement.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/CatalogModels/ChwCatalogModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/CatalogModels/ChwSiteCatalogModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/CatalogModels/PatientCatalogModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Constants/ChwConstants.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Enums/ChwMgmtEventType.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Enums/ChwModuleType.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Enums/File.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/ChwModelObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/InternalChwModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/InternalPatientModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/InternalSiteModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/InvestigationEventObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/InvestigationItem.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/LifestyleEventObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/LifestylePlanItem.swift"
+      ],
+      "tempsPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.CasualFoundryCore-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "importPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CFLogAppEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogIdentityEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogMediaEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogPageEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogRateEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogSearchEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/CFSetup.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Catalog/CfCoreCatalog.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Core.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Database/CoreDataHelper.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Database/Models/UserModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Exception/Exception.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Exception/ExceptionError.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/AppInfoObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/AppObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/Catalog/InternalUserModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/Catalog/UserCatalogModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/DeviceInfoObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/EventDataObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/IdentityObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/InternalMediaModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/MainEventBody.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/MainExceptionBody.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/MediaCatalogModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/MediaObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/PageObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/RateObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/SearchItemModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/SearchObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Protocols/IngestProtocol.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/APIHandler/AppLifecycleObserver.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/APIHandler/CatalogAPIHandler.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/APIHandler/IngestAPIHandler.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/APIInterface.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/APIConstants.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/APIManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/CHWJsonClient.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/NetworkingError.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/RequestManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Supporting/Result.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Constants/CoreConstants.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Constants/NotificationConstants.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/CountryCodesList.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/AppAction.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/CatalogSubject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/ContentBlock.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/CoreEventType.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/CountryCodes.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/CurrencyCode.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/EducationalLevel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/IdentityAction.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/MediaAction.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/MediaType.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/RateType.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/SearchItemType.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/SearchModuleType.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/TableNames.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/ExceptionManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/DateExtension.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/Dicitionary.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/Enum.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/StringExtension.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/UIApplication.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/UIDevice.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/UIviewControlletExtension.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/LanguageCodeList.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NetworkUtil/NetworkMonitor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NetworkUtil/Reachability.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NotificationManager/NotificationManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/DerivedSources/resource_bundle_accessor.swift"
+        },
+        {
+          "kind" : "virtual",
+          "name" : "<CasualFoundryCore-debug.module-resources>"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "CasualFoundryCore",
+      "moduleOutputPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.swiftmodule",
+      "objects" : [
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CFLogAppEvent.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogIdentityEvent.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogMediaEvent.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogPageEvent.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogRateEvent.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogSearchEvent.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/CFSetup.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Catalog/CfCoreCatalog.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Core.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Database/CoreDataHelper.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Database/Models/UserModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Exception/Exception.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Exception/ExceptionError.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/AppInfoObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/AppObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/Catalog/InternalUserModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/Catalog/UserCatalogModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/DeviceInfoObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/EventDataObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/IdentityObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/InternalMediaModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MainEventBody.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MainExceptionBody.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MediaCatalogModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MediaObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/PageObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/RateObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/SearchItemModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/SearchObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Protocols/IngestProtocol.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIHandler/AppLifecycleObserver.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIHandler/CatalogAPIHandler.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIHandler/IngestAPIHandler.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIInterface.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/APIConstants.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/APIManager.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/CHWJsonClient.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/NetworkingError.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/RequestManager.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Supporting/Result.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Constants/CoreConstants.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Constants/NotificationConstants.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/CountryCodesList.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/AppAction.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CatalogSubject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/ContentBlock.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CoreEventType.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CountryCodes.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CurrencyCode.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/EducationalLevel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/IdentityAction.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/MediaAction.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/MediaType.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/RateType.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/SearchItemType.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/SearchModuleType.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/TableNames.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/ExceptionManager.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/DateExtension.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/Dicitionary.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/Enum.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/StringExtension.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/UIApplication.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/UIDevice.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/UIviewControlletExtension.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/LanguageCodeList.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NetworkUtil/NetworkMonitor.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NetworkUtil/Reachability.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NotificationManager/NotificationManager.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/resource_bundle_accessor.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "x86_64-apple-macosx10.13",
+        "-swift-version",
+        "5",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-g",
+        "-j4",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-module-cache-path",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/CasualFoundryCore-Swift.h",
+        "-color-diagnostics",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC"
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CFLogAppEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogIdentityEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogMediaEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogPageEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogRateEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogSearchEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/CFSetup.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Catalog/CfCoreCatalog.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Core.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Database/CoreDataHelper.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Database/Models/UserModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Exception/Exception.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Exception/ExceptionError.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/AppInfoObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/AppObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/Catalog/InternalUserModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/Catalog/UserCatalogModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/DeviceInfoObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/EventDataObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/IdentityObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/InternalMediaModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MainEventBody.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MainExceptionBody.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MediaCatalogModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MediaObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/PageObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/RateObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/SearchItemModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/SearchObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Protocols/IngestProtocol.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIHandler/AppLifecycleObserver.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIHandler/CatalogAPIHandler.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIHandler/IngestAPIHandler.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIInterface.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/APIConstants.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/APIManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/CHWJsonClient.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/NetworkingError.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/RequestManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Supporting/Result.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Constants/CoreConstants.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Constants/NotificationConstants.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/CountryCodesList.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/AppAction.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CatalogSubject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/ContentBlock.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CoreEventType.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CountryCodes.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CurrencyCode.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/EducationalLevel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/IdentityAction.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/MediaAction.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/MediaType.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/RateType.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/SearchItemType.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/SearchModuleType.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/TableNames.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/ExceptionManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/DateExtension.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/Dicitionary.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/Enum.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/StringExtension.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/UIApplication.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/UIDevice.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/UIviewControlletExtension.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/LanguageCodeList.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NetworkUtil/NetworkMonitor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NetworkUtil/Reachability.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NotificationManager/NotificationManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/resource_bundle_accessor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.swiftmodule"
+        }
+      ],
+      "sources" : [
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CFLogAppEvent.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogIdentityEvent.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogMediaEvent.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogPageEvent.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogRateEvent.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogSearchEvent.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/CFSetup.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Catalog/CfCoreCatalog.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Core.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Database/CoreDataHelper.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Database/Models/UserModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Exception/Exception.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Exception/ExceptionError.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/AppInfoObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/AppObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/Catalog/InternalUserModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/Catalog/UserCatalogModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/DeviceInfoObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/EventDataObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/IdentityObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/InternalMediaModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/MainEventBody.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/MainExceptionBody.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/MediaCatalogModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/MediaObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/PageObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/RateObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/SearchItemModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/SearchObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Protocols/IngestProtocol.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/APIHandler/AppLifecycleObserver.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/APIHandler/CatalogAPIHandler.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/APIHandler/IngestAPIHandler.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/APIInterface.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/APIConstants.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/APIManager.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/CHWJsonClient.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/NetworkingError.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/RequestManager.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Supporting/Result.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Constants/CoreConstants.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Constants/NotificationConstants.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/CountryCodesList.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/AppAction.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/CatalogSubject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/ContentBlock.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/CoreEventType.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/CountryCodes.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/CurrencyCode.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/EducationalLevel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/IdentityAction.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/MediaAction.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/MediaType.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/RateType.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/SearchItemType.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/SearchModuleType.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/TableNames.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/ExceptionManager.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/DateExtension.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/Dicitionary.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/Enum.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/StringExtension.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/UIApplication.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/UIDevice.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/UIviewControlletExtension.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/LanguageCodeList.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NetworkUtil/NetworkMonitor.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NetworkUtil/Reachability.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NotificationManager/NotificationManager.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/DerivedSources/resource_bundle_accessor.swift"
+      ],
+      "tempsPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.CasualFoundryEcommerce-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "importPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogCancelCheckoutEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogCartEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogDeliveryEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogItemEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogItemReportEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogItemRequestEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogItemVerificationEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogScheduleDeliveryEvent.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Constants/Constants.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Enums/EComEventType.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Enums/ItemStockStatus.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Enums/ItemType.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/BloodCatalogModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/CfEComCatalog.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/DrugCatalogModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/FacilityCatalogModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/GroceryCatalogModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/InternalCurrencyCode.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/Internal_catalog_models/InternalBloodCatalogModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/Internal_catalog_models/InternalDrugModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/Internal_catalog_models/InternalFacilityCatalogModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/Internal_catalog_models/InternalGroceryCatalogModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/Internal_catalog_models/InternalMedicalEquipmentCatalogModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/Internal_catalog_models/InternalOxygenCatalogModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/MedicalEquipmentCatalogModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/OxygenCatalogModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/CancelCheckoutObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/CartObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/DeliveryObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ItemRequestObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ItemVerificationObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ScheduleDeliveryObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ViewItemObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/CurrencyMainObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/CurrencyObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/ItemInfoObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/ItemModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/ItemReportObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/ReportObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/StoreObject.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/meta_Models/BloodMetaModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/meta_Models/OxygenMetaModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Utility/CFSetup+Extension.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Utility/CoreDataHelper+Extension.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Utility/InjestAPiHandler+Extension.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/CartAction.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/DeliveryAction.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ItemAction.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ItemTypeModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ScanChannel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ScanType.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ScheduleDeliveryAction.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/catalog_types/CancelType.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.swiftmodule"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "CasualFoundryEcommerce",
+      "moduleOutputPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.swiftmodule",
+      "objects" : [
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogCancelCheckoutEvent.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogCartEvent.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogDeliveryEvent.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogItemEvent.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogItemReportEvent.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogItemRequestEvent.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogItemVerificationEvent.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogScheduleDeliveryEvent.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Constants/Constants.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Enums/EComEventType.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Enums/ItemStockStatus.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Enums/ItemType.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/BloodCatalogModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/CfEComCatalog.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/DrugCatalogModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/FacilityCatalogModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/GroceryCatalogModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/InternalCurrencyCode.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/Internal_catalog_models/InternalBloodCatalogModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/Internal_catalog_models/InternalDrugModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/Internal_catalog_models/InternalFacilityCatalogModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/Internal_catalog_models/InternalGroceryCatalogModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/Internal_catalog_models/InternalMedicalEquipmentCatalogModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/Internal_catalog_models/InternalOxygenCatalogModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/MedicalEquipmentCatalogModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/OxygenCatalogModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/CancelCheckoutObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/CartObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/DeliveryObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/ItemRequestObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/ItemVerificationObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/ScheduleDeliveryObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/ViewItemObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/item_objects/CurrencyMainObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/item_objects/CurrencyObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/item_objects/ItemInfoObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/item_objects/ItemModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/item_objects/ItemReportObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/item_objects/ReportObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/item_objects/StoreObject.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/meta_Models/BloodMetaModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/meta_Models/OxygenMetaModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Utility/CFSetup+Extension.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Utility/CoreDataHelper+Extension.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Utility/InjestAPiHandler+Extension.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/CartAction.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/DeliveryAction.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ItemAction.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ItemTypeModel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ScanChannel.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ScanType.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ScheduleDeliveryAction.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/catalog_types/CancelType.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "x86_64-apple-macosx10.13",
+        "-swift-version",
+        "5",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-g",
+        "-j4",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-module-cache-path",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/CasualFoundryEcommerce-Swift.h",
+        "-color-diagnostics",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC"
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogCancelCheckoutEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogCartEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogDeliveryEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogItemEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogItemReportEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogItemRequestEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogItemVerificationEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Builders/CfLogScheduleDeliveryEvent.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Constants/Constants.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Enums/EComEventType.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Enums/ItemStockStatus.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Enums/ItemType.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/BloodCatalogModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/CfEComCatalog.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/DrugCatalogModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/FacilityCatalogModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/GroceryCatalogModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/InternalCurrencyCode.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/Internal_catalog_models/InternalBloodCatalogModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/Internal_catalog_models/InternalDrugModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/Internal_catalog_models/InternalFacilityCatalogModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/Internal_catalog_models/InternalGroceryCatalogModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/Internal_catalog_models/InternalMedicalEquipmentCatalogModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/Internal_catalog_models/InternalOxygenCatalogModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/MedicalEquipmentCatalogModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/catalog_models/OxygenCatalogModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/CancelCheckoutObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/CartObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/DeliveryObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/ItemRequestObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/ItemVerificationObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/ScheduleDeliveryObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/event_Objetcs/ViewItemObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/item_objects/CurrencyMainObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/item_objects/CurrencyObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/item_objects/ItemInfoObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/item_objects/ItemModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/item_objects/ItemReportObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/item_objects/ReportObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/item_objects/StoreObject.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/meta_Models/BloodMetaModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Models/meta_Models/OxygenMetaModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Utility/CFSetup+Extension.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Utility/CoreDataHelper+Extension.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/Utility/InjestAPiHandler+Extension.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/CartAction.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/DeliveryAction.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ItemAction.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ItemTypeModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ScanChannel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ScanType.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/ScheduleDeliveryAction.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/event_Types/catalog_types/CancelType.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.swiftmodule"
+        }
+      ],
+      "sources" : [
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogCancelCheckoutEvent.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogCartEvent.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogDeliveryEvent.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogItemEvent.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogItemReportEvent.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogItemRequestEvent.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogItemVerificationEvent.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogScheduleDeliveryEvent.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Constants/Constants.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Enums/EComEventType.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Enums/ItemStockStatus.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Enums/ItemType.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/BloodCatalogModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/CfEComCatalog.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/DrugCatalogModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/FacilityCatalogModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/GroceryCatalogModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/InternalCurrencyCode.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/Internal_catalog_models/InternalBloodCatalogModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/Internal_catalog_models/InternalDrugModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/Internal_catalog_models/InternalFacilityCatalogModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/Internal_catalog_models/InternalGroceryCatalogModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/Internal_catalog_models/InternalMedicalEquipmentCatalogModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/Internal_catalog_models/InternalOxygenCatalogModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/MedicalEquipmentCatalogModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/OxygenCatalogModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/CancelCheckoutObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/CartObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/DeliveryObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ItemRequestObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ItemVerificationObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ScheduleDeliveryObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ViewItemObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/CurrencyMainObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/CurrencyObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/ItemInfoObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/ItemModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/ItemReportObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/ReportObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/StoreObject.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/meta_Models/BloodMetaModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/meta_Models/OxygenMetaModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Utility/CFSetup+Extension.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Utility/CoreDataHelper+Extension.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Utility/InjestAPiHandler+Extension.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/CartAction.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/DeliveryAction.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ItemAction.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ItemTypeModel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ScanChannel.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ScanType.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ScheduleDeliveryAction.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/catalog_types/CancelType.swift"
+      ],
+      "tempsPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.CHWManagementTests-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "importPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Tests/CHWManagementTests/CHWManagementTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Tests/CHWManagementTests/CfLogInvestigationEventTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Tests/CHWManagementTests/CfLogLifestyleEventTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.swiftmodule"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "CHWManagementTests",
+      "moduleOutputPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CHWManagementTests.swiftmodule",
+      "objects" : [
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CHWManagementTests.build/CHWManagementTests/CHWManagementTests.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CHWManagementTests.build/CHWManagementTests/CfLogInvestigationEventTests.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CHWManagementTests.build/CHWManagementTests/CfLogLifestyleEventTests.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "x86_64-apple-macosx13.0",
+        "-swift-version",
+        "5",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-g",
+        "-j4",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-module-cache-path",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-color-diagnostics",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC"
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CHWManagementTests.build/CHWManagementTests/CHWManagementTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CHWManagementTests.build/CHWManagementTests/CfLogInvestigationEventTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CHWManagementTests.build/CHWManagementTests/CfLogLifestyleEventTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CHWManagementTests.swiftmodule"
+        }
+      ],
+      "sources" : [
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Tests/CHWManagementTests/CHWManagementTests.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Tests/CHWManagementTests/CfLogInvestigationEventTests.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Tests/CHWManagementTests/CfLogLifestyleEventTests.swift"
+      ],
+      "tempsPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CHWManagementTests.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.CoreTests-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "importPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/CFLogAppEventTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/CfLogIdentityEventTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/CfLogMediaEventTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/CfLogPageEventTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/CfLogRateEventTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/CoreTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/MockApplication.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.swiftmodule"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "CoreTests",
+      "moduleOutputPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.swiftmodule",
+      "objects" : [
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.build/CoreTests/CFLogAppEventTests.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.build/CoreTests/CfLogIdentityEventTests.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.build/CoreTests/CfLogMediaEventTests.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.build/CoreTests/CfLogPageEventTests.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.build/CoreTests/CfLogRateEventTests.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.build/CoreTests/CoreTests.swift.o",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.build/CoreTests/MockApplication.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "x86_64-apple-macosx10.13",
+        "-swift-version",
+        "5",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-g",
+        "-j4",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-module-cache-path",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.build/CoreTests-Swift.h",
+        "-color-diagnostics",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC"
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.build/CoreTests/CFLogAppEventTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.build/CoreTests/CfLogIdentityEventTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.build/CoreTests/CfLogMediaEventTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.build/CoreTests/CfLogPageEventTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.build/CoreTests/CfLogRateEventTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.build/CoreTests/CoreTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.build/CoreTests/MockApplication.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.swiftmodule"
+        }
+      ],
+      "sources" : [
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/CFLogAppEventTests.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/CfLogIdentityEventTests.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/CfLogMediaEventTests.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/CfLogPageEventTests.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/CfLogRateEventTests.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/CoreTests.swift",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/MockApplication.swift"
+      ],
+      "tempsPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.ECommerceTests-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "importPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Tests/E_CommerceTests/E_CommerceTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.swiftmodule"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "ECommerceTests",
+      "moduleOutputPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/ECommerceTests.swiftmodule",
+      "objects" : [
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/ECommerceTests.build/E_CommerceTests/E_CommerceTests.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "x86_64-apple-macosx13.0",
+        "-swift-version",
+        "5",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-g",
+        "-j4",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-module-cache-path",
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-color-diagnostics",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC"
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/ECommerceTests.build/E_CommerceTests/E_CommerceTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/ECommerceTests.swiftmodule"
+        }
+      ],
+      "sources" : [
+        "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Tests/E_CommerceTests/E_CommerceTests.swift"
+      ],
+      "tempsPath" : "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/ECommerceTests.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "CasualFoundryCHWManagement" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CasualFoundryCHWManagement",
+      "-incremental",
+      "-c",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Builders/CfLogInvestigationEvent.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Builders/CfLogLifestyleEvent.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/CHWManagement.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/CatalogModels/ChwCatalogModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/CatalogModels/ChwSiteCatalogModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/CatalogModels/PatientCatalogModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Constants/ChwConstants.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Enums/ChwMgmtEventType.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Enums/ChwModuleType.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Enums/File.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/ChwModelObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/InternalChwModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/InternalPatientModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/InternalSiteModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/InvestigationEventObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/InvestigationItem.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/LifestyleEventObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Sources/Models/LifestylePlanItem.swift",
+      "-I",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug",
+      "-target",
+      "x86_64-apple-macosx10.13",
+      "-swift-version",
+      "5",
+      "-enable-batch-mode",
+      "-index-store-path",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-g",
+      "-j4",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-module-cache-path",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/CasualFoundryCHWManagement-Swift.h",
+      "-color-diagnostics",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "CasualFoundryCore" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CasualFoundryCore",
+      "-incremental",
+      "-c",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CFLogAppEvent.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogIdentityEvent.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogMediaEvent.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogPageEvent.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogRateEvent.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogSearchEvent.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/CFSetup.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Catalog/CfCoreCatalog.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Core.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Database/CoreDataHelper.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Database/Models/UserModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Exception/Exception.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Exception/ExceptionError.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/AppInfoObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/AppObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/Catalog/InternalUserModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/Catalog/UserCatalogModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/DeviceInfoObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/EventDataObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/IdentityObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/InternalMediaModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/MainEventBody.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/MainExceptionBody.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/MediaCatalogModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/MediaObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/PageObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/RateObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/SearchItemModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/SearchObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Protocols/IngestProtocol.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/APIHandler/AppLifecycleObserver.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/APIHandler/CatalogAPIHandler.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/APIHandler/IngestAPIHandler.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/APIInterface.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/APIConstants.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/APIManager.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/CHWJsonClient.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/NetworkingError.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/RequestManager.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Supporting/Result.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Constants/CoreConstants.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Constants/NotificationConstants.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/CountryCodesList.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/AppAction.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/CatalogSubject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/ContentBlock.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/CoreEventType.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/CountryCodes.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/CurrencyCode.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/EducationalLevel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/IdentityAction.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/MediaAction.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/MediaType.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/RateType.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/SearchItemType.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/SearchModuleType.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/TableNames.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/ExceptionManager.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/DateExtension.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/Dicitionary.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/Enum.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/StringExtension.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/UIApplication.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/UIDevice.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/UIviewControlletExtension.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/LanguageCodeList.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NetworkUtil/NetworkMonitor.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NetworkUtil/Reachability.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NotificationManager/NotificationManager.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/DerivedSources/resource_bundle_accessor.swift",
+      "-I",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug",
+      "-target",
+      "x86_64-apple-macosx10.13",
+      "-swift-version",
+      "5",
+      "-enable-batch-mode",
+      "-index-store-path",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-g",
+      "-j4",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-module-cache-path",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/CasualFoundryCore-Swift.h",
+      "-color-diagnostics",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "CasualFoundryEcommerce" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CasualFoundryEcommerce",
+      "-incremental",
+      "-c",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogCancelCheckoutEvent.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogCartEvent.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogDeliveryEvent.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogItemEvent.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogItemReportEvent.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogItemRequestEvent.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogItemVerificationEvent.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Builders/CfLogScheduleDeliveryEvent.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Constants/Constants.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Enums/EComEventType.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Enums/ItemStockStatus.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Enums/ItemType.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/BloodCatalogModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/CfEComCatalog.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/DrugCatalogModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/FacilityCatalogModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/GroceryCatalogModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/InternalCurrencyCode.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/Internal_catalog_models/InternalBloodCatalogModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/Internal_catalog_models/InternalDrugModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/Internal_catalog_models/InternalFacilityCatalogModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/Internal_catalog_models/InternalGroceryCatalogModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/Internal_catalog_models/InternalMedicalEquipmentCatalogModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/Internal_catalog_models/InternalOxygenCatalogModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/MedicalEquipmentCatalogModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/catalog_models/OxygenCatalogModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/CancelCheckoutObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/CartObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/DeliveryObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ItemRequestObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ItemVerificationObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ScheduleDeliveryObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/event_Objetcs/ViewItemObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/CurrencyMainObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/CurrencyObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/ItemInfoObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/ItemModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/ItemReportObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/ReportObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/item_objects/StoreObject.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/meta_Models/BloodMetaModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Models/meta_Models/OxygenMetaModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Utility/CFSetup+Extension.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Utility/CoreDataHelper+Extension.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/Utility/InjestAPiHandler+Extension.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/CartAction.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/DeliveryAction.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ItemAction.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ItemTypeModel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ScanChannel.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ScanType.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/ScheduleDeliveryAction.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Sources/event_Types/catalog_types/CancelType.swift",
+      "-I",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug",
+      "-target",
+      "x86_64-apple-macosx10.13",
+      "-swift-version",
+      "5",
+      "-enable-batch-mode",
+      "-index-store-path",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-g",
+      "-j4",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-module-cache-path",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/CasualFoundryEcommerce-Swift.h",
+      "-color-diagnostics",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "CHWManagementTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CHWManagementTests",
+      "-incremental",
+      "-c",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Tests/CHWManagementTests/CHWManagementTests.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Tests/CHWManagementTests/CfLogInvestigationEventTests.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/CHWManagement/Tests/CHWManagementTests/CfLogLifestyleEventTests.swift",
+      "-I",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug",
+      "-target",
+      "x86_64-apple-macosx13.0",
+      "-swift-version",
+      "5",
+      "-enable-batch-mode",
+      "-index-store-path",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-g",
+      "-j4",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-module-cache-path",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-color-diagnostics",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "CoreTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "CoreTests",
+      "-incremental",
+      "-c",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/CFLogAppEventTests.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/CfLogIdentityEventTests.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/CfLogMediaEventTests.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/CfLogPageEventTests.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/CfLogRateEventTests.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/CoreTests.swift",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Tests/CoreTests/MockApplication.swift",
+      "-I",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug",
+      "-target",
+      "x86_64-apple-macosx10.13",
+      "-swift-version",
+      "5",
+      "-enable-batch-mode",
+      "-index-store-path",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-g",
+      "-j4",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-module-cache-path",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.build/CoreTests-Swift.h",
+      "-color-diagnostics",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "ECommerceTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "ECommerceTests",
+      "-incremental",
+      "-c",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/E_Commerce/Tests/E_CommerceTests/E_CommerceTests.swift",
+      "-I",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug",
+      "-target",
+      "x86_64-apple-macosx13.0",
+      "-swift-version",
+      "5",
+      "-enable-batch-mode",
+      "-index-store-path",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-g",
+      "-j4",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-module-cache-path",
+      "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-color-diagnostics",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "CasualFoundryCHWManagement" : [
+      "CasualFoundryCore"
+    ],
+    "CasualFoundryCore" : [
+
+    ],
+    "CasualFoundryEcommerce" : [
+      "CasualFoundryCore"
+    ],
+    "CHWManagementTests" : [
+      "CasualFoundryCHWManagement",
+      "CasualFoundryCore"
+    ],
+    "CoreTests" : [
+      "CasualFoundryCore"
+    ],
+    "ECommerceTests" : [
+      "CasualFoundryEcommerce",
+      "CasualFoundryCore"
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  }
+}

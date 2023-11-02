@@ -1,4 +1,5 @@
-
+// swift-tools-version: 5.4
+// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 // swift-tools-version: 5.4
 // The swift-tools-version declares the minimum version of Swift required to build this package.
@@ -25,7 +26,7 @@ let package = Package(
             name: "CasualFoundryCore",
             path: "Core/Sources",
             resources: [
-                .copy("Core/Resources/usd_rates.json")
+                .copy("Core/Resources/usdRates.json")
             ]
         ),
         .target(
