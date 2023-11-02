@@ -247,7 +247,7 @@ public class CfLogCheckoutEvent {
      * function and queue the events based on its updateImmediately value and also on the
      * user's network resources.
      */
-    func build() {
+    public func build() {
         guard let order_id = self.order_id, let cart_id = self.cart_id,
               let price_value = self.price_value, let currency_value = self.currency_value else {
             // Required parameters are missing.

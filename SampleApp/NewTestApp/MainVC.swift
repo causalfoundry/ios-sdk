@@ -162,12 +162,12 @@ class MainVC: UIViewController {
         
         
         CfLogCheckoutEvent()
-            .setOrderId("testOrderId")
-            .setCartId("testCartId")
-            .setPrice(900f)
-            .setCurrency(CurrencyCode.USD.name)
+            .setOrderId(order_id: "testOrderId")
+            .setCartId(cart_id: "testCartId")
+            .setPrice(price: 900)
+            .setCurrency(currency: CurrencyCode.USD.name)
             .setShopMode(ShopMode.pickup)
-            .addItem(itemModel)
+            .addItem(itemModel: itemModel)
             .build()
 
         CfLogCheckoutEvent()
