@@ -165,7 +165,6 @@ public class CfLogCancelCheckoutEvent {
      * function and queue the events based on it's updateImmediately value and also on the
      * user's network resources.
      */
-    @discardableResult
     public func build() {
         
         /**

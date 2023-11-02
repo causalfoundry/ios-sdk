@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import CasualFoundryResourcePackage
+
 
 
 public class CoreConstants {

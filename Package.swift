@@ -17,11 +17,7 @@ let package = Package(
             targets: ["CasualFoundryCHWManagement"]),
         .library(
             name: "CHWEcommerce",
-            targets: ["CasualFoundryEcommerce"]),
-        .library(
-            name:"CHWResourcePackage",
-            targets: ["CasualFoundryResourcePackage"]
-        ),
+            targets: ["CasualFoundryEcommerce"])
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -33,12 +29,8 @@ let package = Package(
             name: "CasualFoundryCHWManagement",
             dependencies:["CasualFoundryCore"], path: "CHWManagement/Sources"),
         .target(
-            name: "CasualFoundryResourcePackage",
-            path: "ResourcePackage/Sources",
-            resources: [.copy("Resources/usd_rates.json")]),
-        .target(
             name: "CasualFoundryEcommerce",
-            dependencies:["CasualFoundryCore","CasualFoundryResourcePackage"], path: "E_Commerce/Sources"
+            dependencies:["CasualFoundryCore"], path: "E_Commerce/Sources"
            
         ),
        
