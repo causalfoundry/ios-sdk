@@ -36,6 +36,7 @@ public class CfLogDeferredPaymentEvent {
       * setOrderId is required to set the id for the order in log, Id should be in string
       * and must be in accordance to the catalog provided.
       */
+    @discardableResult
     public func setOrderId(_ orderId: String) -> CfLogDeferredPaymentEvent {
         self.orderId = orderId
         return self
