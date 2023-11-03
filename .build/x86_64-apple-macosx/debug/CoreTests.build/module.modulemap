@@ -1,4 +1,0 @@
-module CoreTests {
-    header "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CoreTests.build/CoreTests-Swift.h"
-    requires objc
-}

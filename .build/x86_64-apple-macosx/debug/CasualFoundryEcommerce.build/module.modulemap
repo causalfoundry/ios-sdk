@@ -1,4 +1,0 @@
-module CasualFoundryEcommerce {
-    header "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryEcommerce.build/CasualFoundryEcommerce-Swift.h"
-    requires objc
-}
