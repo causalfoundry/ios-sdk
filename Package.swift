@@ -12,25 +12,23 @@ let package = Package(
             name: "Core",
             targets: ["CasualFoundryCore"]),
         .library(
-            name: "CHWManagement",
-            targets: ["CasualFoundryCHWManagement"]),
-        .library(
-            name: "CHWEcommerce",
-            targets: ["CasualFoundryEcommerce"]),
+             name: "CHWElearning",
+             targets: ["CasualFoundryElearning"]),
         .library(
             name: "CHWEPayments",
             targets: ["CasualFoundryPayments"]),
         .library(
-            name: "CHWElearning",
-            targets: ["CasualFoundryElearning"])
+            name: "CHWManagement",
+            targets: ["CasualFoundryCHWManagement"]),
+        .library(
+            name: "CHWEcommerce",
+            targets: ["CasualFoundryEcommerce"])
+      
     ],
     targets: [
         .target(
             name: "CasualFoundryCore",
-            path: "Core/Sources",
-            resources: [
-                .copy("Resources")
-            ]
+            path: "Core/Sources"
         ),
         .target(
             name: "CasualFoundryCHWManagement",
