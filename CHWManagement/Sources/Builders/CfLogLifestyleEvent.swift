@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CfLogLifestyleEvent.swift
 //
 //
 //  Created by khushbu on 26/10/23.
