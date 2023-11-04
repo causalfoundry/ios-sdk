@@ -1,0 +1,455 @@
+{
+  "": {
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/master.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CFLogAppEvent.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CFLogAppEvent.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CFLogAppEvent.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CFLogAppEvent~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CFLogAppEvent.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogIdentityEvent.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogIdentityEvent.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogIdentityEvent.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogIdentityEvent~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogIdentityEvent.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogMediaEvent.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogMediaEvent.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogMediaEvent.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogMediaEvent~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogMediaEvent.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogPageEvent.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogPageEvent.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogPageEvent.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogPageEvent~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogPageEvent.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogRateEvent.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogRateEvent.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogRateEvent.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogRateEvent~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogRateEvent.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Builders/CfLogSearchEvent.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogSearchEvent.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogSearchEvent.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogSearchEvent~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Builders/CfLogSearchEvent.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/CFSetup.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/CFSetup.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/CFSetup.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/CFSetup~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/CFSetup.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Catalog/CfCoreCatalog.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Catalog/CfCoreCatalog.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Catalog/CfCoreCatalog.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Catalog/CfCoreCatalog~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Catalog/CfCoreCatalog.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Core.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Core.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Core.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Core~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Core.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Database/CoreDataHelper.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Database/CoreDataHelper.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Database/CoreDataHelper.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Database/CoreDataHelper~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Database/CoreDataHelper.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Database/Models/UserModel.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Database/Models/UserModel.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Database/Models/UserModel.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Database/Models/UserModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Database/Models/UserModel.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Exception/Exception.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Exception/Exception.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Exception/Exception.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Exception/Exception~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Exception/Exception.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Exception/ExceptionError.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Exception/ExceptionError.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Exception/ExceptionError.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Exception/ExceptionError~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Exception/ExceptionError.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Impression_listener/CfCoreImpressionListener.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Impression_listener/CfCoreImpressionListener.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Impression_listener/CfCoreImpressionListener.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Impression_listener/CfCoreImpressionListener~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Impression_listener/CfCoreImpressionListener.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Impression_listener/impression_Model/RecyclerImpressionModel.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Impression_listener/impression_Model/RecyclerImpressionModel.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Impression_listener/impression_Model/RecyclerImpressionModel.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Impression_listener/impression_Model/RecyclerImpressionModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Impression_listener/impression_Model/RecyclerImpressionModel.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/AppInfoObject.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/AppInfoObject.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/AppInfoObject.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/AppInfoObject~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/AppInfoObject.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/AppObject.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/AppObject.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/AppObject.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/AppObject~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/AppObject.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/Catalog/InternalCurrencyCode.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/Catalog/InternalCurrencyCode.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/Catalog/InternalCurrencyCode.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/Catalog/InternalCurrencyCode~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/Catalog/InternalCurrencyCode.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/Catalog/InternalUserModel.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/Catalog/InternalUserModel.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/Catalog/InternalUserModel.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/Catalog/InternalUserModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/Catalog/InternalUserModel.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/Catalog/UserCatalogModel.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/Catalog/UserCatalogModel.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/Catalog/UserCatalogModel.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/Catalog/UserCatalogModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/Catalog/UserCatalogModel.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/CurrencyMainObject.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/CurrencyMainObject.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/CurrencyMainObject.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/CurrencyMainObject~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/CurrencyMainObject.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/CurrencyObject.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/CurrencyObject.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/CurrencyObject.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/CurrencyObject~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/CurrencyObject.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/DeviceInfoObject.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/DeviceInfoObject.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/DeviceInfoObject.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/DeviceInfoObject~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/DeviceInfoObject.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/EventDataObject.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/EventDataObject.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/EventDataObject.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/EventDataObject~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/EventDataObject.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/IdentityObject.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/IdentityObject.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/IdentityObject.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/IdentityObject~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/IdentityObject.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/InternalMediaModel.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/InternalMediaModel.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/InternalMediaModel.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/InternalMediaModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/InternalMediaModel.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/MainEventBody.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MainEventBody.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MainEventBody.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MainEventBody~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MainEventBody.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/MainExceptionBody.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MainExceptionBody.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MainExceptionBody.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MainExceptionBody~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MainExceptionBody.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/MediaCatalogModel.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MediaCatalogModel.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MediaCatalogModel.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MediaCatalogModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MediaCatalogModel.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/MediaObject.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MediaObject.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MediaObject.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MediaObject~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/MediaObject.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/PageObject.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/PageObject.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/PageObject.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/PageObject~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/PageObject.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/RateObject.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/RateObject.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/RateObject.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/RateObject~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/RateObject.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/SearchItemModel.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/SearchItemModel.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/SearchItemModel.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/SearchItemModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/SearchItemModel.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Models/SearchObject.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/SearchObject.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/SearchObject.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/SearchObject~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Models/SearchObject.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Protocols/IngestProtocol.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Protocols/IngestProtocol.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Protocols/IngestProtocol.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Protocols/IngestProtocol~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Protocols/IngestProtocol.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/SDK/SdkManager.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/SDK/SdkManager.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/SDK/SdkManager.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/SDK/SdkManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/SDK/SdkManager.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/APIHandler/AppLifecycleObserver.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIHandler/AppLifecycleObserver.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIHandler/AppLifecycleObserver.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIHandler/AppLifecycleObserver~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIHandler/AppLifecycleObserver.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/APIHandler/CatalogAPIHandler.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIHandler/CatalogAPIHandler.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIHandler/CatalogAPIHandler.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIHandler/CatalogAPIHandler~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIHandler/CatalogAPIHandler.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/APIHandler/IngestAPIHandler.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIHandler/IngestAPIHandler.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIHandler/IngestAPIHandler.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIHandler/IngestAPIHandler~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIHandler/IngestAPIHandler.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/APIInterface.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIInterface.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIInterface.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIInterface~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/APIInterface.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/APIConstants.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/APIConstants.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/APIConstants.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/APIConstants~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/APIConstants.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/APIManager.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/APIManager.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/APIManager.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/APIManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/APIManager.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/CHWJsonClient.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/CHWJsonClient.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/CHWJsonClient.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/CHWJsonClient~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/CHWJsonClient.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/NetworkingError.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/NetworkingError.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/NetworkingError.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/NetworkingError~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/NetworkingError.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Networking/RequestManager.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/RequestManager.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/RequestManager.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/RequestManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Networking/RequestManager.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Services/Supporting/Result.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Supporting/Result.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Supporting/Result.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Supporting/Result~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Services/Supporting/Result.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Constants/CoreConstants.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Constants/CoreConstants.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Constants/CoreConstants.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Constants/CoreConstants~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Constants/CoreConstants.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Constants/NotificationConstants.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Constants/NotificationConstants.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Constants/NotificationConstants.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Constants/NotificationConstants~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Constants/NotificationConstants.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/CountryCodesList.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/CountryCodesList.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/CountryCodesList.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/CountryCodesList~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/CountryCodesList.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/AppAction.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/AppAction.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/AppAction.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/AppAction~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/AppAction.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/CatalogSubject.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CatalogSubject.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CatalogSubject.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CatalogSubject~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CatalogSubject.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/ContentBlock.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/ContentBlock.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/ContentBlock.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/ContentBlock~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/ContentBlock.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/CoreEventType.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CoreEventType.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CoreEventType.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CoreEventType~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CoreEventType.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/CountryCodes.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CountryCodes.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CountryCodes.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CountryCodes~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CountryCodes.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/CurrencyCode.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CurrencyCode.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CurrencyCode.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CurrencyCode~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/CurrencyCode.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/EducationalLevel.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/EducationalLevel.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/EducationalLevel.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/EducationalLevel~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/EducationalLevel.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/IdentityAction.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/IdentityAction.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/IdentityAction.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/IdentityAction~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/IdentityAction.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/MediaAction.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/MediaAction.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/MediaAction.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/MediaAction~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/MediaAction.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/MediaType.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/MediaType.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/MediaType.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/MediaType~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/MediaType.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/RateType.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/RateType.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/RateType.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/RateType~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/RateType.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/SearchItemType.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/SearchItemType.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/SearchItemType.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/SearchItemType~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/SearchItemType.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/SearchModuleType.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/SearchModuleType.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/SearchModuleType.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/SearchModuleType~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/SearchModuleType.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Enums/TableNames.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/TableNames.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/TableNames.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/TableNames~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Enums/TableNames.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/ExceptionManager.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/ExceptionManager.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/ExceptionManager.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/ExceptionManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/ExceptionManager.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/DateExtension.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/DateExtension.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/DateExtension.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/DateExtension~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/DateExtension.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/Dicitionary.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/Dicitionary.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/Dicitionary.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/Dicitionary~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/Dicitionary.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/Enum.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/Enum.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/Enum.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/Enum~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/Enum.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/StringExtension.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/StringExtension.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/StringExtension.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/StringExtension~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/StringExtension.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/UIApplication.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/UIApplication.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/UIApplication.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/UIApplication~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/UIApplication.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/UIDevice.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/UIDevice.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/UIDevice.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/UIDevice~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/UIDevice.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/Extensions/UIviewControlletExtension.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/UIviewControlletExtension.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/UIviewControlletExtension.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/UIviewControlletExtension~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/Extensions/UIviewControlletExtension.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/LanguageCodeList.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/LanguageCodeList.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/LanguageCodeList.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/LanguageCodeList~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/LanguageCodeList.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NetworkUtil/NetworkMonitor.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NetworkUtil/NetworkMonitor.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NetworkUtil/NetworkMonitor.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NetworkUtil/NetworkMonitor~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NetworkUtil/NetworkMonitor.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NetworkUtil/Reachability.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NetworkUtil/Reachability.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NetworkUtil/Reachability.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NetworkUtil/Reachability~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NetworkUtil/Reachability.swiftdeps"
+  },
+  "/Users/khushbu/Documents/CausalFoundry_ios_SDK/Core/Sources/Utility/NotificationManager/NotificationManager.swift": {
+    "dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NotificationManager/NotificationManager.d",
+    "object": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NotificationManager/NotificationManager.swift.o",
+    "swiftmodule": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NotificationManager/NotificationManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCore.build/Utility/NotificationManager/NotificationManager.swiftdeps"
+  }
+}
