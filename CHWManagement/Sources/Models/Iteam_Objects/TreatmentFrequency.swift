@@ -8,7 +8,7 @@
 import Foundation
 import CasualFoundryCore
 
-enum TreatmentFrequency: String, Codable,EnumComposable {
+public enum TreatmentFrequency: String, Codable,EnumComposable {
     case daily
     case days
     case weeks
