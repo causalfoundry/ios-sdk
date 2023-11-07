@@ -9,7 +9,7 @@ import Foundation
 import CasualFoundryCore
 
 
-class CfLogPrescriptionEvent {
+public class CfLogPrescriptionEvent {
     /**
      * CfLogPrescriptionEvent is required to log events related to view, add, update, or removing
      * the prescription items value for the patient in question.
@@ -20,6 +20,11 @@ class CfLogPrescriptionEvent {
     var prescriptionList: [PrescriptionItem] = []
     var meta: Any? = nil
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
+    
+    public init(){
+        
+    }
+    
     
     /**
      * setPatientId is for providing the id for the patient whose treatment plan elements

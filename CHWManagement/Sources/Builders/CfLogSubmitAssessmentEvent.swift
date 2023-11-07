@@ -8,7 +8,7 @@
 import Foundation
 import CasualFoundryCore
 
-class CfLogSubmitAssessmentEvent {
+public class CfLogSubmitAssessmentEvent {
     /**
      * CfLogSubmitAssessmentEvent is required to log events related to performing an assessment for
      * the patient in question.
@@ -22,6 +22,11 @@ class CfLogSubmitAssessmentEvent {
     var diagnosis_symptoms_list: [DiagnosisSymptomItem] = []
     var meta: Any? = nil
     var update_immediately: Bool = CoreConstants.shared.updateImmediately
+    
+    public init(){
+        
+    }
+    
     
     /**
      * setPatientId is for providing the ID for the patient whose assessment is concluded.
@@ -210,7 +215,7 @@ class CfLogSubmitAssessmentEvent {
      * build will validate all the provided values and, if they pass validation, it will call the track
      * function and queue the events based on its updateImmediately value and the user's network resources.
      */
-    func build() {
+    public func build() {
         
         /**
          * Will throw and exception if the patient_id provided is null or no action is

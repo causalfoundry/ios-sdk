@@ -24,6 +24,11 @@ public class CfLogSubmitEnrolmentEvent {
     var meta: Any? = nil
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
     
+    public init(){
+        
+    }
+    
+    
     /**
      * setPatientId is for the providing the id for the patient whose Enrollment is done.
      */

@@ -8,7 +8,7 @@
 import Foundation
 import CasualFoundryCore
 
-class CfLogTreatmentPlanEvent {
+public class CfLogTreatmentPlanEvent {
     
     /**
      * CfLogTreatmentPlanEvent is required to log events related to view, add, update, or remove
@@ -21,6 +21,11 @@ class CfLogTreatmentPlanEvent {
     var treatmentPlanList: [TreatmentPlanItem] = []
     var meta: Any?
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
+    
+    public init(){
+        
+    }
+    
     
     /**
      * setPatientId is for providing the ID for the patient whose treatment plan elements
@@ -136,7 +141,7 @@ class CfLogTreatmentPlanEvent {
      * function and queue the events based on its updateImmediately value and also on the
      * user's network resources.
      */
-    func build() {
+    public func build() {
         guard let patientId = patientId, !patientId.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.treatmentPlan.rawValue, elementName:  "patient_id")
             return

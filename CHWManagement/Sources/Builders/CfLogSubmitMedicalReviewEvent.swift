@@ -8,7 +8,7 @@
 import Foundation
 import CasualFoundryCore
 
-class CfLogSubmitMedicalReviewEvent {
+public class CfLogSubmitMedicalReviewEvent {
     
     /**
      * CfLogSubmitMedicalReviewEvent is required to log events related to update to
