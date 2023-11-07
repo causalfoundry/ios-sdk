@@ -132,7 +132,7 @@ public class CfLogPaymentMethodEvent {
      * function and queue the events based on it's updateImmediately value and also on the
      * user's network resources.
      */
-    func build() {
+    public func build() {
         /**
          * Will throw and exception if the orderId provided is null or no value is
          * provided at all.

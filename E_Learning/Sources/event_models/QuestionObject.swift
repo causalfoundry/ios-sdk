@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct QuestionObject: Codable {
+public struct QuestionObject: Codable {
     var id: String
     var exam_id: String
     var action: String
@@ -22,7 +22,7 @@ struct QuestionObject: Codable {
         case meta¯
     }
     
-    init(id: String, exam_id: String, action: String, answer_id: String? = nil, meta: Encodable? = nil) {
+    public init(id: String, exam_id: String, action: String, answer_id: String? = nil, meta: Encodable? = nil) {
         self.id = id
         self.exam_id = exam_id
         self.action = action
@@ -30,7 +30,7 @@ struct QuestionObject: Codable {
         self.meta = meta
     }
     
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         exam_id = try container.decode(String.self, forKey: .exam_id)
@@ -44,7 +44,7 @@ struct QuestionObject: Codable {
         
     }
     
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(exam_id, forKey: .exam_id)

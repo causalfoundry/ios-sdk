@@ -101,7 +101,7 @@ public class CfLogModuleEvent {
      * function and queue the events based on it's updateImmediately value and also on the
      * user's network resources.
      */
-    @discardableResult
+    
     public func build() {
         /**
          * Will throw and exception if the moduleId provided is null or no value is
