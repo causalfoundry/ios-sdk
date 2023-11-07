@@ -24,7 +24,7 @@ public class CfLogDeferredPaymentEvent {
     var currencyValue: String?
     private var isSuccessful: Bool = true
     private var meta: Any?
-    private var updateImmediately: Bool = false // Set to the desired default value
+    private var updateImmediately: Bool = CoreConstants.shared.updateImmediately
     
     private var paymentObject: DeferredPaymentObject?
     
