@@ -130,6 +130,61 @@ public class CfLogSubmitEnrolmentEvent {
         }
         return self
     }
+    
+    /**
+     * addDiagnosisResultItem is for providing one diagnosis result item at a time.
+     * The item should be based on the DiagnosisItem item object or a string that can be
+     * converted to the object with proper param names. In case the names are not correct,
+     * the SDK will throw an exception. Below is the function for providing the item as an object.
+     */
+    @discardableResult
+    public func addDiagnosisResultItem(_ diagnosisResultItem: DiagnosisItem) -> CfLogSubmitEnrolmentEvent {
+        diagnosisResultList.append(diagnosisResultItem)
+        return self
+    }
+
+    /**
+     * addDiagnosisResultItem is for providing one diagnosis result item at a time.
+     * The item should be based on the DiagnosisItem item object or a string that can be
+     * converted to the object with proper param names. In case the names are not correct,
+     * the SDK will throw an exception. Below is the function for providing the item as a string.
+     */
+    @discardableResult
+    public func addDiagnosisResultItem(_ diagnosisResultItem: String) -> CfLogSubmitEnrolmentEvent {
+        if let diagnosisItem = try? JSONDecoder().decode(DiagnosisItem.self, from: diagnosisResultItem.data(using: .utf8)!) {
+            diagnosisResultList.append(diagnosisItem)
+        }
+        return self
+    }
+
+    /**
+     * setDiagnosisResultList is for providing one diagnosis result items list.
+     * The item should be based on the DiagnosisItem item object or a string that can be
+     * converted to the object with proper param names. In case the names are not correct,
+     * the SDK will throw an exception. Below is the function for providing the item as an object.
+     */
+    @discardableResult
+    public func setDiagnosisResultList(_ diagnosisResultList: [DiagnosisItem]) -> CfLogSubmitEnrolmentEvent {
+        self.diagnosisResultList = diagnosisResultList
+        return self
+    }
+
+    /**
+     * setDiagnosisResultList is for providing one diagnosis result items list.
+     * The item should be based on the DiagnosisItem item object or a string that can be
+     * converted to the object with proper param names. In case the names are not correct,
+     * the SDK will throw an exception. Below is the function for providing the item as a string.
+     */
+    @discardableResult
+    public func setDiagnosisResultList(_ diagnosisResultList: String) -> CfLogSubmitEnrolmentEvent {
+        if let data = diagnosisResultList.data(using: .utf8),
+            let itemsList = try? JSONDecoder().decode([DiagnosisItem].self, from: data) {
+            self.diagnosisResultList = itemsList
+        }
+        return self
+    }
+
+    
     /**
      * addPatientStatusItem is for the providing one patient status item at a time.
      * The item should be based on the PatientStatusItem item object or a string that can be
