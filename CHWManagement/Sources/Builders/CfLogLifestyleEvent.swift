@@ -139,37 +139,68 @@ public class CfLogLifestyleEvent {
     }
     
     public func build() {
-        guard let patientId = patientId, !patientId.isEmpty,
-              let siteId = siteId, !siteId.isEmpty,
-              let lifestyleId = lifestyleId, !lifestyleId.isEmpty,
-              !lifestylePlanList.isEmpty else {
+        /**
+         * Will throw and exception if the patient_id provided is null or no action is
+         * provided at all.
+         */
+        guard let patientId = patientId  else {
             ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.lifestyle.rawValue, elementName:"patient_id")
             return
         }
         
-        for item in lifestylePlanList {
-            if item.name.isEmpty {
-                ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.lifestyle.rawValue, elementName: "name")
-                return
-            } else if !CoreConstants.shared.enumContains(ItemAction.self, name: item.action) {
-                ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.lifestyle.rawValue, elementName: String(describing: ItemAction.self))
-                return
-            }
+        /**
+         * Will throw and exception if the site_id provided is null or no action is
+         * provided at all.
+         */
+        guard let siteId = siteId else {
+            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.lifestyle.rawValue, elementName:"site_id")
+            return
         }
         
-        let lifestyleEventObject = LifestyleEventObject(
-            patientId: patientId,
-            siteId: siteId,
-            lifestyleId: lifestyleId,
-            lifestylePlanList: lifestylePlanList,
-            meta: meta
-        )
+        /**
+         * Will throw and exception if the action provided is null or no action is
+         * provided at all.
+         */
+        guard let  lifestyleId = lifestyleId else {
+            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.lifestyle.rawValue, elementName:"lifestyle_id")
+            return
+        }
         
-        CFSetup().track(
-            contentBlockName: ChwConstants.contentBlockName,
-            eventType: ChwMgmtEventType.lifestyle.rawValue,
-            logObject: lifestyleEventObject,
-            updateImmediately: updateImmediately
-        )
+        if lifestylePlanList.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.lifestyle.rawValue, elementName:"lifestyle_plan_list")
+            return
+        }else {
+            
+            /**
+             * Parsing the values into an object and passing to the setup block to queue
+             * the event based on its priority.
+             */
+            
+            
+            for item in lifestylePlanList {
+                if item.name.isEmpty {
+                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.lifestyle.rawValue, elementName: "name")
+                    return
+                } else if !CoreConstants.shared.enumContains(ItemAction.self, name: item.action) {
+                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.lifestyle.rawValue, elementName: String(describing: ItemAction.self))
+                    return
+                }
+            }
+            
+            let lifestyleEventObject = LifestyleEventObject(
+                patientId: patientId,
+                siteId: siteId,
+                lifestyleId: lifestyleId,
+                lifestylePlanList: lifestylePlanList,
+                meta: meta
+            )
+            
+            CFSetup().track(
+                contentBlockName: ChwConstants.contentBlockName,
+                eventType: ChwMgmtEventType.lifestyle.rawValue,
+                logObject: lifestyleEventObject,
+                updateImmediately: updateImmediately
+            )
+        }
     }
 }

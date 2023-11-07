@@ -96,6 +96,10 @@ public class CfLogChwModuleEventBuilder {
      */
     
     public func build() {
+        /**
+         * Will throw and exception if the action provided is null or no action is
+         * provided at all.
+         */
         guard let moduleType = moduleType, !moduleType.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType:ChwMgmtEventType.moduleSelection.rawValue, elementName: "ChwModuleType")
             return

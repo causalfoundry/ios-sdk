@@ -250,48 +250,51 @@ class CfLogSubmitAssessmentEvent {
         }else if diagnosis_result_list.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "patient_id")
             return
-        }
-        
-        /**
-         * Parsing the values into an object and passing to the setup block to queue
-         * the event based on its priority.
-         */
-        for item in diagnosis_values_list {
-            if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
-                ExceptionManager.throwEnumException(eventType:ChwMgmtEventType.submitAssessment.rawValue, className: String(describing:DiagnosisType.self))
-            } else if item.value.isEmpty {
-                ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "diagnosis_item value")
-            } else if item.unit.isEmpty {
-                ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "diagnosis_item unit")
-            }
-        }
-        
-        for item in diagnosis_result_list {
-            if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
-                ExceptionManager.throwEnumException(eventType:ChwMgmtEventType.submitAssessment.rawValue, className: String(describing:DiagnosisType.self))
-            } else if item.value.isEmpty {
-                ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "diagnosis_item value")
-            } else if item.unit.isEmpty {
-                ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "diagnosis_item unit")
-            }
-        }
-        
-        for item in diagnosis_symptoms_list {
-            if !CoreConstants.shared.enumContains(DiagnosisSymptomType.self, name: item.type) {
-                ExceptionManager.throwEnumException(eventType:ChwMgmtEventType.submitAssessment.rawValue, className: String(describing:DiagnosisSymptomType.self))
-            }else if item.symptoms.isEmpty {
-                ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "diagnosis symptom")
-            }
+        }else {
             
             
-            let submitAssessmentEventObject = SubmitAssessmentEventObject(
-                patientId: patient_id, siteId: site_id, medicationAdherence: medication_adherence ?? "",
-                diagnosisValuesList: diagnosis_values_list, diagnosisResultsList: diagnosis_result_list,
-                diagnosisSymptomsList: diagnosis_symptoms_list, referredForAssessment: referred_for_assessment,
-                meta: meta as? Encodable
-            )
+            /**
+             * Parsing the values into an object and passing to the setup block to queue
+             * the event based on its priority.
+             */
+            for item in diagnosis_values_list {
+                if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
+                    ExceptionManager.throwEnumException(eventType:ChwMgmtEventType.submitAssessment.rawValue, className: String(describing:DiagnosisType.self))
+                } else if item.value.isEmpty {
+                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "diagnosis_item value")
+                } else if item.unit.isEmpty {
+                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "diagnosis_item unit")
+                }
+            }
             
-            CFSetup().track(contentBlockName: ChwConstants.contentBlockName, eventType: ChwMgmtEventType.submitAssessment.rawValue, logObject: submitAssessmentEventObject, updateImmediately: update_immediately)
+            for item in diagnosis_result_list {
+                if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
+                    ExceptionManager.throwEnumException(eventType:ChwMgmtEventType.submitAssessment.rawValue, className: String(describing:DiagnosisType.self))
+                } else if item.value.isEmpty {
+                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "diagnosis_item value")
+                } else if item.unit.isEmpty {
+                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "diagnosis_item unit")
+                }
+            }
+            
+            for item in diagnosis_symptoms_list {
+                if !CoreConstants.shared.enumContains(DiagnosisSymptomType.self, name: item.type) {
+                    ExceptionManager.throwEnumException(eventType:ChwMgmtEventType.submitAssessment.rawValue, className: String(describing:DiagnosisSymptomType.self))
+                }else if item.symptoms.isEmpty {
+                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "diagnosis symptom")
+                }
+                
+                
+                let submitAssessmentEventObject = SubmitAssessmentEventObject(
+                    patientId: patient_id, siteId: site_id, medicationAdherence: medication_adherence ?? "",
+                    diagnosisValuesList: diagnosis_values_list, diagnosisResultsList: diagnosis_result_list,
+                    diagnosisSymptomsList: diagnosis_symptoms_list, referredForAssessment: referred_for_assessment,
+                    meta: meta as? Encodable
+                )
+                
+                CFSetup().track(contentBlockName: ChwConstants.contentBlockName, eventType: ChwMgmtEventType.submitAssessment.rawValue, logObject: submitAssessmentEventObject, updateImmediately: update_immediately)
+            }
+            
         }
         
     }
