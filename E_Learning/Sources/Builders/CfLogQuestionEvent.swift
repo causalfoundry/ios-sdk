@@ -22,6 +22,9 @@ public class CfLogQuestionEvent {
     private var meta: Any?
     private var updateImmediately: Bool = CoreConstants.shared.updateImmediately
     
+    public init() {
+        
+    }
     
     /**
      * setQuestionId is required to log questionId for the Question on which user has attempted.

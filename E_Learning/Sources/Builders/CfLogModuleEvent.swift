@@ -20,6 +20,9 @@ public class CfLogModuleEvent {
     private var meta: Any?
     private var updateImmediately: Bool = CoreConstants.shared.updateImmediately
     
+    public init() {
+        
+    }
     
     /**
      * setModuleId is required to log moduleId for the module being opened by the user.
