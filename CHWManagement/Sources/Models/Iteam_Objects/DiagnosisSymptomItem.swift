@@ -21,7 +21,7 @@ public struct DiagnosisSymptomItem: Codable {
         case remarks
     }
 
-    init(type: String, symptoms: [String] = [], remarks: String? = nil) {
+    public init(type: String, symptoms: [String] = [], remarks: String? = nil) {
         self.type = type
         self.symptoms = symptoms
         self.remarks = remarks

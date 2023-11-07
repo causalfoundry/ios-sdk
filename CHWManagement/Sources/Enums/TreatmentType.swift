@@ -9,7 +9,7 @@ import Foundation
 import CasualFoundryCore
 
 
-enum TreatmentType: String, Codable,EnumComposable {
+public enum TreatmentType: String, Codable,EnumComposable {
     case medical_review
     case blood_pressure
     case blood_glucose

@@ -8,7 +8,7 @@
 import Foundation
 import CasualFoundryCore
 
-enum DiagnosisSymptomType: String, Codable,EnumComposable {
+public enum DiagnosisSymptomType: String, Codable,EnumComposable {
     case diabetes
     case hypertension
 }
