@@ -28,7 +28,7 @@ public struct SurveyResponseItem: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         question = try container.decode(String.self, forKey: .question)
         response = try container.decode(String.self, forKey: .response)
@@ -36,7 +36,7 @@ public struct SurveyResponseItem: Codable {
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys)
+        var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(question, forKey: .question)
         try container.encode(response, forKey: .response)

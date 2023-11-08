@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  SurveyObject.swift
+//
 //
 //  Created by khushbu on 08/11/23.
 //
@@ -28,7 +28,7 @@ public struct SurveyObject: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         isCompleted = try container.decodeIfPresent(Bool.self, forKey: .isCompleted)
         rewardId = try container.decodeIfPresent(String.self, forKey: .rewardId)
@@ -36,7 +36,7 @@ public struct SurveyObject: Codable {
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys)
+        var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encodeIfPresent(isCompleted, forKey: .isCompleted)
         try container.encodeIfPresent(rewardId, forKey: .rewardId)
