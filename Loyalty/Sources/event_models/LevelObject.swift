@@ -11,10 +11,10 @@ struct LevelObject: Codable {
     let prevLevel: Int
     let newLevel: Int
     let moduleId: String?
-    let meta: Any?
+    let meta: Encodable?
 
     // Custom init method
-    init(prevLevel: Int, newLevel: Int, moduleId: String?, meta: Any?) {
+    init(prevLevel: Int, newLevel: Int, moduleId: String?, meta: Encodable?) {
         self.prevLevel = prevLevel
         self.newLevel = newLevel
         self.moduleId = moduleId

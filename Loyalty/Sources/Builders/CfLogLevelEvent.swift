@@ -28,6 +28,7 @@ class CfLogLevelEvent {
     @discardableResult
     public func setPreviousLevel(prevLevel: Int?) -> CfLogLevelEvent {
         self.prevLevel = prevLevel
+        return self
     }
     
     /**
@@ -37,6 +38,7 @@ class CfLogLevelEvent {
     @discardableResult
     public func setNewLevel(newLevel: Int?) -> CfLogLevelEvent {
         self.newLevel = newLevel
+        return self
     }
     
     /**
@@ -47,6 +49,7 @@ class CfLogLevelEvent {
     @discardableResult
     public func setModuleId(moduleId: String?) -> CfLogLevelEvent {
         self.moduleId = moduleId
+        return self
     }
     /**
      * You can pass any type of value in setMeta. It is for developer and partners to log
@@ -57,6 +60,7 @@ class CfLogLevelEvent {
     @discardableResult
     public func setMeta(meta: Any?) -> CfLogLevelEvent {
         self.meta = meta
+        return self
     }
     /**
      * updateImmediately is responsible for updating the values ot the backend immediately.
@@ -69,6 +73,7 @@ class CfLogLevelEvent {
     @discardableResult
     public func updateImmediately(updateImmediately: Bool) -> CfLogLevelEvent {
         self.updateImmediately = updateImmediately
+        return self
     }
     /**
      * build will validate all of the values provided and if passes will call the track
@@ -96,7 +101,7 @@ class CfLogLevelEvent {
             return
         }
         
-        let levelObject = LevelObject(prevLevel: prevLevel!, newLevel: newLevel!, moduleId: moduleId, meta: meta)
+        let levelObject = LevelObject(prevLevel: prevLevel!, newLevel: newLevel!, moduleId: moduleId, meta: meta as? Encodable)
         
         CFSetup().track(contentBlockName: LoyaltyConstants.contentBlockName, eventType:  LoyaltyEventType.level.rawValue, logObject: levelObject, updateImmediately: updateImmediately)
           

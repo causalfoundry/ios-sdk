@@ -13,7 +13,7 @@ public struct PromoObject: Codable {
     var promo_title: String
     var promo_type: String
     var promo_items_list: [PromoItemObject]
-    var meta: Any?
+    var meta: Encodable?
     
     enum CodingKeys: String, CodingKey {
         case promo_id = "id"
@@ -24,7 +24,7 @@ public struct PromoObject: Codable {
         case meta
     }
 
-    public init(promo_id: String, promo_action: String, promo_title: String, promo_type: String, promo_items_list: [PromoItemObject], meta: Any?) {
+    public init(promo_id: String, promo_action: String, promo_title: String, promo_type: String, promo_items_list: [PromoItemObject], meta: Encodable?) {
         self.promo_id = promo_id
         self.promo_action = promo_action
         self.promo_title = promo_title

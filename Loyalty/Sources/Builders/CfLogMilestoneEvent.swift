@@ -141,7 +141,7 @@ public class CfLogMilestoneEvent {
             let milestoneObject = MilestoneObject(
                 id: milestone_id,
                 action: action_value,
-                meta: meta
+                meta: meta as? Encodable
             )
             CFSetup().track(
                 contentBlockName: LoyaltyConstants.contentBlockName,

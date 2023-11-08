@@ -11,10 +11,10 @@ import Foundation
 public struct MilestoneObject: Codable {
     let id: String
     let action: String
-    let meta: Any?
+    let meta: Encodable?
     
     // Custom initializer
-    public init(id: String, action: String, meta: Any? = nil) {
+    public init(id: String, action: String, meta: Encodable? = nil) {
         self.id = id
         self.action = action
         self.meta = meta
