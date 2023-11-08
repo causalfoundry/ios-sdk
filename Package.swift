@@ -22,9 +22,10 @@ let package = Package(
             targets: ["CasualFoundryCHWManagement"]),
         .library(
             name: "CHWEcommerce",
-            targets: ["CasualFoundryEcommerce"])
-      
-    ],
+            targets: ["CasualFoundryEcommerce"]),
+        .library(
+                name: "CHWLoyalty",
+                targets: ["CasualFoundryLoyalty"])],
     targets: [
         .target(
             name: "CasualFoundryCore",
@@ -46,10 +47,16 @@ let package = Package(
             path: "Payments/Sources"
         ),
         .target(
+            name: "CasualFoundryLoyalty",
+            dependencies: ["CasualFoundryCore"],
+            path: "Loyalty/Sources"
+        ),
+        .target(
             name: "CasualFoundryElearning",
             dependencies: ["CasualFoundryCore"],
             path: "E_Learning/Sources"
         ),
+        
         .testTarget(
             name: "CoreTests",
             dependencies: ["CasualFoundryCore"],

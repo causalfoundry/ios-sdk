@@ -114,20 +114,32 @@ public class CfLogMilestoneEvent {
     
     @discardableResult
     public func build() {
+        /**
+         * Will throw and exception if the milestone_id provided is null or no value is
+         * provided at all.
+         */
         
         if milestone_id?.isEmpty {
             ExceptionManager.throwIsRequiredException(
-                LoyaltyEventType.milestone.name,
+                LoyaltyEventType.milestone.rawValue,
                 "milestone_id"
             )
             return
+            /**
+             * Will throw and exception if the action provided is null or no value is
+             * provided at all.
+             */
         }else if action_value?.isEmpty {
             ExceptionManager.throwIsRequiredException(
-                LoyaltyEventType.milestone.name,
+                LoyaltyEventType.milestone.rawValue,
                 MilestoneAction.self.simpleClassName()
             )
             return
         }else {
+            /**
+             * Parsing the values into an object and passing to the setup block to queue
+             * the event based on its priority.
+             */
             let milestoneObject = MilestoneObject(
                 milestone_id: milestone_id,
                 action_value: action_value,
@@ -135,7 +147,7 @@ public class CfLogMilestoneEvent {
             )
             CFSetup().track(
                 LoyaltyConstants.contentBlockName,
-                LoyaltyEventType.milestone.name,
+                LoyaltyEventType.milestone.rawValue,
                 milestoneObject,
                 update_immediately
             )

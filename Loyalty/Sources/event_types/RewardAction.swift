@@ -7,3 +7,9 @@
 
 import Foundation
 
+
+enum RewardAction: String {
+    case view
+    case add
+    case redeem
+}

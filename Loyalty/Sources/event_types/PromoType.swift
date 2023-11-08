@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+
+enum PromoType: String {
+    case add_to_cart
+    case coupon
+}
