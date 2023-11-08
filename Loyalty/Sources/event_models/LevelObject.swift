@@ -43,9 +43,9 @@ struct LevelObject: Codable {
     // Decoding method
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        prevLevel = try container.decodeIfPresent(Int.self, forKey: .prevLevel)
-        newLevel = try container.decodeIfPresent(Int.self, forKey: .newLevel)
-        moduleId = try container.decodeIfPresent(Int.self, forKey: .moduleId)
+        prevLevel = try container.decodeIfPresent(Int.self, forKey: .prevLevel)!
+        newLevel = try container.decodeIfPresent(Int.self, forKey: .newLevel)!
+        moduleId = try container.decodeIfPresent(String.self, forKey: .moduleId)
         if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {

@@ -42,6 +42,11 @@ public struct MilestoneObject: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         action = try container.decode(String.self, forKey: .action)
-        meta = try? container.decode(Any.self, forKey: .meta)
+        if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
+            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
+        } else {
+            meta = nil
+        }
+        
     }
 }

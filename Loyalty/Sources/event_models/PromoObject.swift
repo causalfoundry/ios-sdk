@@ -23,7 +23,7 @@ public struct PromoObject: Codable {
         case promo_items_list = "items"
         case meta
     }
-
+    
     public init(promo_id: String, promo_action: String, promo_title: String, promo_type: String, promo_items_list: [PromoItemObject], meta: Encodable?) {
         self.promo_id = promo_id
         self.promo_action = promo_action
@@ -32,26 +32,34 @@ public struct PromoObject: Codable {
         self.promo_items_list = promo_items_list
         self.meta = meta
     }
-
+    
     // Encoding
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys)
+        var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(promo_id, forKey: .promo_id)
         try container.encode(promo_action, forKey: .promo_action)
         try container.encode(promo_title, forKey: .promo_title)
         try container.encode(promo_type, forKey: .promo_type)
         try container.encode(promo_items_list, forKey: .promo_items_list)
-        try container.encodeIfPresent(meta, forKey: .meta)
+        if let metaData = meta {
+            try container.encode(metaData, forKey: .meta)
+        }
+        
     }
-
+    
     // Decoding
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         promo_id = try container.decode(String.self, forKey: .promo_id)
         promo_action = try container.decode(String.self, forKey: .promo_action)
         promo_title = try container.decode(String.self, forKey: .promo_title)
         promo_type = try container.decode(String.self, forKey: .promo_type)
         promo_items_list = try container.decode([PromoItemObject].self, forKey: .promo_items_list)
-        meta = try container.decodeIfPresent(Any.self, forKey: .meta)
+        if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
+            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
+        } else {
+            meta = nil
+        }
+        
     }
 }
