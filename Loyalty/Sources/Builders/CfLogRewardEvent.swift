@@ -172,7 +172,7 @@ public class CfLogRewardEvent {
             if redeemObject.points_withdrawn < 0 {
                 ExceptionManager.throwIsRequiredException(eventType:  LoyaltyEventType.reward.rawValue, elementName:"points_withdrawn")
                 return
-            } else if CoreConstants.shared.enumContains(RedeemType.self, name: redeem_object!.type) {
+            } else if !CoreConstants.shared.enumContains(RedeemType.self, name: redeem_object!.type) {
                 ExceptionManager.throwEnumException(eventType:  LoyaltyEventType.reward.rawValue, className:String(describing: RedeemType.self))
                 return
             } else if redeemObject.converted_value! < 0 {
@@ -185,7 +185,7 @@ public class CfLogRewardEvent {
                 if redeemObject.currency == nil {
                     ExceptionManager.throwIsRequiredException(eventType:  LoyaltyEventType.reward.rawValue, elementName:"redeem currency")
                     return
-                } else if CoreConstants.shared.enumContains(CurrencyCode.self, name: redeem_object!.currency!){
+                } else if !CoreConstants.shared.enumContains(CurrencyCode.self, name: redeem_object!.currency!){
                     ExceptionManager.throwEnumException(eventType:  LoyaltyEventType.reward.rawValue, className:String(describing: CurrencyCode.self))
                     return
                 } else {
