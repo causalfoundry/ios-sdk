@@ -22,6 +22,9 @@ public class CfLogPromoEvent {
     var promo_items_list: [PromoItemObject] = []
     private var meta: Any? = nil
     private var update_immediately: Bool = CoreConstants.shared.updateImmediately
+    public init() {
+        
+    }
     
     /**
      * setPromoId is required to set the Id of the promo

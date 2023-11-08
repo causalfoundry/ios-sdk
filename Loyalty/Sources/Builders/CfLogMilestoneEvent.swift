@@ -19,6 +19,9 @@ public class CfLogMilestoneEvent {
     private var meta: Any?
     private var update_immediately: Bool = CoreConstants.shared.updateImmediately
     
+    public init() {
+        
+    }
     
     /**
      * setMilestoneId is required for logging the milestone user achieved. The is should be in

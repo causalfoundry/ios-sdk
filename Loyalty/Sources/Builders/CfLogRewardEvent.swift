@@ -23,6 +23,10 @@ public class CfLogRewardEvent {
     var meta: Any?
     var update_immediately: Bool = CoreConstants.shared.updateImmediately
     
+    public init() {
+        
+    }
+    
     /**
      * setRewardId is for the providing Id for the reward event. Can be userId if the
      * reward is not redeemed individually.

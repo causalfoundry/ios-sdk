@@ -20,6 +20,10 @@ public class CfLogSurveyEvent {
     private var meta: Any? = nil
     private var updateImmediately: Bool = CoreConstants.shared.updateImmediately
     
+    public init() {
+        
+    }
+    
     /**
      * setAction is required to set the Action type for the Survey Action. SDK provides
      * enum classes to support available log types. 1 main is achieved.

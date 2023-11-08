@@ -21,6 +21,10 @@ class CfLogLevelEvent {
     var meta: Any?
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
     
+    
+    public init() {
+        
+    }
     /**
      * setPreviousLevel is required to set the previous score/level number for the user.
      */
