@@ -18,7 +18,7 @@ public struct MedicalReviewSummaryObject: Codable {
         case remarks
     }
 
-    init(type: String, value: [String], remarks: String? = nil) {
+    public init(type: String, value: [String], remarks: String? = nil) {
         self.type = type
         self.value = value
         self.remarks = remarks
