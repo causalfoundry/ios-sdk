@@ -9,7 +9,7 @@ import Foundation
 import CasualFoundryCore
 
 
-class CfLogLevelEvent {
+public class CfLogLevelEvent {
     /**
      * CfLogLevelEvent is to log the update of user level. It required the user level before update and
      * user level after the update. You need to pass module Id as well if the level update event is
@@ -85,7 +85,7 @@ class CfLogLevelEvent {
      * user's network resources.
      */
     
-    func build() {
+    public func build() {
         /**
          * Will throw and exception if the prev_level provided is null or no value is
          * provided at all.

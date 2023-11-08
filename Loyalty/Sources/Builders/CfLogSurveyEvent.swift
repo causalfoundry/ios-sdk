@@ -118,7 +118,7 @@ public class CfLogSurveyEvent {
      * function and queue the events based on its updateImmediately value and also on the
      * user's network resources.
      */
-    func build() {
+    public func build() {
         if actionValue == nil {
             ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.survey.rawValue, elementName:"action_value")
         } else if surveyObject == nil {

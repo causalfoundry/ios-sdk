@@ -122,7 +122,7 @@ public class CfLogRewardEvent {
      public func tion and queue the events based on it's updateImmediately value and also on the
      * user's network resources.
      */
-    public func  build() {
+    public func build() {
         /**
          * Will throw and exception if the reward_id provided is null or no value is
          * provided at all.
