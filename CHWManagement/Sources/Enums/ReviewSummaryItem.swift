@@ -8,7 +8,7 @@
 import Foundation
 import CasualFoundryCore
 
-enum ReviewSummaryItem: String,EnumComposable {
+public enum ReviewSummaryItem: String,EnumComposable {
     case chief_complaints
     case physical_examinations
 }
