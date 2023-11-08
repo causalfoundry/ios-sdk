@@ -18,7 +18,7 @@ public struct RedeemObject: Codable {
     let is_successful: Bool?
 
     // Custom init method
-    init(type: String, points_withdrawn: Float, converted_value: Float?, currency: String?,is_successful:Bool) {
+   public init(type: String, points_withdrawn: Float, converted_value: Float?, currency: String?,is_successful:Bool) {
         self.type = type
         self.points_withdrawn = points_withdrawn
         self.converted_value = converted_value
