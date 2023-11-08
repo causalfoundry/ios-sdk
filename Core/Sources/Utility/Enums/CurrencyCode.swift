@@ -1,4 +1,4 @@
-public enum CurrencyCode: String {
+public enum CurrencyCode: String,EnumComposable {
     case AED = "AED"  // United Arab Emirates Dirham
     case AFN = "AFN"  // Afghanistan Afghani
     case ALL = "ALL"  // Albania Lek

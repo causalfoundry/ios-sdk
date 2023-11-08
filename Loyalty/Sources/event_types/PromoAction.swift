@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import CasualFoundryCore
 
 
-enum PromoAction: String {
+public enum PromoAction: String,EnumComposable {
     case view
     case apply
 }

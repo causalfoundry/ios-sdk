@@ -43,7 +43,7 @@ public class CfLogPromoEvent {
     
     @discardableResult
     public func setPromoAction(promo_action: String) -> CfLogPromoEvent {
-        if CoreConstants.enumContains(promo_action, enumType: PromoAction.self) {
+        if CoreConstants.shared.enumContains(PromoAction.self , name:promo_action){
             self.promo_action = promo_action
         } else {
             ExceptionManager.throwEnumException(eventType: LoyaltyEventType.promo.rawValue, className:String(String(describing: PromoAction.self)))
@@ -69,7 +69,7 @@ public class CfLogPromoEvent {
     
     @discardableResult
     public func setPromoType(promo_type: String) -> CfLogPromoEvent {
-        if CoreConstants.enumContains(promo_type, enumType: PromoType.self) {
+        if CoreConstants.shared.enumContains(PromoType.self , name:promo_type ) {
             self.promo_type = promo_type
         } else {
             ExceptionManager.throwEnumException(eventType: LoyaltyEventType.promo.rawValue, className: String(describing: PromoType.self))
@@ -84,7 +84,7 @@ public class CfLogPromoEvent {
      */
     @discardableResult
     public func addItem(itemModel: PromoItemObject) -> CfLogPromoEvent {
-        LoyaltyConstants.isItemTypeObjectValid(itemModel, LoyaltyEventType.promo)
+        LoyaltyConstants.isItemTypeObjectValid(itemValue: itemModel, eventType: LoyaltyEventType.promo)
         self.promo_items_list.append(itemModel)
         return self
     }
@@ -98,7 +98,7 @@ public class CfLogPromoEvent {
     @discardableResult
     public func addItem(itemJsonString: String) -> CfLogPromoEvent {
         if let item = try? JSONDecoder().decode(PromoItemObject.self, from: itemJsonString.data(using: .utf8)!) {
-            LoyaltyConstants.isItemTypeObjectValid(item, LoyaltyEventType.promo)
+            LoyaltyConstants.isItemTypeObjectValid(itemValue: item, eventType: LoyaltyEventType.promo)
             self.promo_items_list.append(item)
         }
         return self
@@ -112,7 +112,7 @@ public class CfLogPromoEvent {
     @discardableResult
     public func addItemList(itemList: [PromoItemObject]) -> CfLogPromoEvent {
         for promoItem in itemList {
-            LoyaltyConstants.isItemTypeObjectValid(promoItem, LoyaltyEventType.promo)
+            LoyaltyConstants.isItemTypeObjectValid(itemValue: promoItem, eventType: LoyaltyEventType.promo)
         }
         self.promo_items_list.append(contentsOf: itemList)
         return self
@@ -129,7 +129,7 @@ public class CfLogPromoEvent {
     public func addItemList(itemListString: String) -> CfLogPromoEvent {
         if let data = itemListString.data(using: .utf8), let itemModels = try? JSONDecoder().decode([PromoItemObject].self, from: data) {
             for promoItem in itemModels {
-                LoyaltyConstants.isItemTypeObjectValid(promoItem, LoyaltyEventType.promo)
+                LoyaltyConstants.isItemTypeObjectValid(itemValue: promoItem, eventType: LoyaltyEventType.promo)
             }
             self.promo_items_list.append(contentsOf: itemModels)
         }
@@ -197,12 +197,12 @@ public class CfLogPromoEvent {
         let promoObject = PromoObject(
             promo_id: promo_id,
             promo_action: promo_action,
-            promo_title: CoreConstants.checkIfNull(promo_title),
+            promo_title: CoreConstants.shared.checkIfNull(promo_title),
             promo_type: promo_type,
-            promo_items_list: Array(Set(promo_items_list)),
-            meta: meta
+            promo_items_list:promo_items_list,
+            meta: meta as? Encodable
         )
-        CFSetup().track(LoyaltyConstants.contentBlockName, event: LoyaltyEventType.promo.rawValue, object: promoObject, updateImmediately: update_immediately)
+      CFSetup().track(contentBlockName: LoyaltyConstants.contentBlockName, eventType:  LoyaltyEventType.promo.rawValue, logObject: promoObject, updateImmediately: update_immediately)
     }
 }
 

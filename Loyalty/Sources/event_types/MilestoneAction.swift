@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import CasualFoundryCore
 
 
-enum MilestoneAction: String {
+public enum MilestoneAction: String,EnumComposable {
     case achieved
 }

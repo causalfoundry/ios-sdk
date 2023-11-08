@@ -10,15 +10,15 @@ import Foundation
 
 import Foundation
 
-struct RedeemObject: Codable {
+public struct RedeemObject: Codable {
     let type: String
     let points_withdrawn: Float
     let converted_value: Float?
-    let currency: String?
+    var currency: String?
     let is_successful: Bool?
 
     // Custom init method
-    init(type: String, points_withdrawn: Float, converted_value: String?, currency: String?,is_successful:Bool) {
+    init(type: String, points_withdrawn: Float, converted_value: Float?, currency: String?,is_successful:Bool) {
         self.type = type
         self.points_withdrawn = points_withdrawn
         self.converted_value = converted_value
@@ -26,7 +26,7 @@ struct RedeemObject: Codable {
         self.is_successful = is_successful
     }
     
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case type
         case points_withdrawn
         case converted_value
@@ -47,8 +47,8 @@ struct RedeemObject: Codable {
     // Decoding method
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        type = try container.decodeIfPresent(String.self, forKey: .type)
-        points_withdrawn = try container.decodeIfPresent(Float.self, forKey: .points_withdrawn)
+        type = try container.decodeIfPresent(String.self, forKey: .type)!
+        points_withdrawn = try container.decodeIfPresent(Float.self, forKey: .points_withdrawn)!
         converted_value = try container.decodeIfPresent(Float.self, forKey: .converted_value)
         currency = try container.decodeIfPresent(String.self, forKey: .currency)
         is_successful = try container.decodeIfPresent(Bool.self, forKey: .is_successful)

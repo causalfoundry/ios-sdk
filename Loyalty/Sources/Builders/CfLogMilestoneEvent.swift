@@ -6,9 +6,7 @@
 //
 
 import Foundation
-
-
-import Foundation
+import CasualFoundryCore
 
 public class CfLogMilestoneEvent {
     
@@ -16,10 +14,10 @@ public class CfLogMilestoneEvent {
      * CfLogMilestoneEvent is to log actions regarding milestones which can be when the user
      * achieved a milestone.
      */
-    var milestone_id: String?
-    var action_value: String?
+    var milestone_id: String = ""
+    var action_value: String = ""
     private var meta: Any?
-    private var update_immediately: Bool = CoreConstants.updateImmediately
+    private var update_immediately: Bool = CoreConstants.shared.updateImmediately
     
     
     /**
@@ -30,7 +28,7 @@ public class CfLogMilestoneEvent {
     
     @discardableResult
     public func setMilestoneId(_ milestone_id: String?) -> CfLogMilestoneEvent {
-        self.milestone_id = milestone_id
+        self.milestone_id = milestone_id!
         return self
     }
     
@@ -63,15 +61,15 @@ public class CfLogMilestoneEvent {
     @discardableResult
     public func setAction(_ action: String?) -> CfLogMilestoneEvent {
         if let action = action {
-            if CoreConstants.shared.enumContains(MilestoneAction.self, rawValue: action) {
+            if CoreConstants.shared.enumContains(MilestoneAction.self, name: action) {
                 self.action_value = action
             } else {
                 ExceptionManager.throwEnumException(
-                    LoyaltyEventType.milestone.rawValue,
-                    String(describing: MilestoneAction.self))
+                    eventType: LoyaltyEventType.milestone.rawValue,
+                    className: String(describing: MilestoneAction.self))
             }
         } else {
-            self.action_value = action
+            self.action_value = action!
         }
         
         return self
@@ -112,28 +110,28 @@ public class CfLogMilestoneEvent {
      * user's network resources.
      */
     
-    @discardableResult
+    
     public func build() {
         /**
          * Will throw and exception if the milestone_id provided is null or no value is
          * provided at all.
          */
         
-        if milestone_id?.isEmpty {
+        if milestone_id.isEmpty {
             ExceptionManager.throwIsRequiredException(
-                LoyaltyEventType.milestone.rawValue,
-                "milestone_id"
+                eventType: LoyaltyEventType.milestone.rawValue,
+                elementName: "milestone_id"
             )
             return
+           
+        }else if action_value.isEmpty {
             /**
              * Will throw and exception if the action provided is null or no value is
              * provided at all.
              */
-        }else if action_value?.isEmpty {
             ExceptionManager.throwIsRequiredException(
-                LoyaltyEventType.milestone.rawValue,
-                MilestoneAction.self.simpleClassName()
-            )
+                eventType: LoyaltyEventType.milestone.rawValue,
+                elementName: String(describing: MilestoneAction.self))
             return
         }else {
             /**
@@ -141,15 +139,15 @@ public class CfLogMilestoneEvent {
              * the event based on its priority.
              */
             let milestoneObject = MilestoneObject(
-                milestone_id: milestone_id,
-                action_value: action_value,
+                id: milestone_id,
+                action: action_value,
                 meta: meta
             )
             CFSetup().track(
-                LoyaltyConstants.contentBlockName,
-                LoyaltyEventType.milestone.rawValue,
-                milestoneObject,
-                update_immediately
+                contentBlockName: LoyaltyConstants.contentBlockName,
+                eventType: LoyaltyEventType.milestone.rawValue,
+                logObject: milestoneObject,
+                updateImmediately: update_immediately
             )
         }
     }

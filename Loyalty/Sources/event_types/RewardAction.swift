@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import CasualFoundryCore
 
 
-enum RewardAction: String {
+public enum RewardAction: String,EnumComposable{
     case view
     case add
     case redeem
