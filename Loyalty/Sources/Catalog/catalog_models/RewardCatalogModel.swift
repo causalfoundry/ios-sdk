@@ -40,7 +40,7 @@ public struct RewardCatalogModel: Codable {
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys)
+        var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
         try container.encode(description, forKey: .description)
         try container.encode(type, forKey: .type)
@@ -52,7 +52,7 @@ public struct RewardCatalogModel: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
         description = try container.decode(String.self, forKey: .description)
         type = try container.decode(String.self, forKey: .type)

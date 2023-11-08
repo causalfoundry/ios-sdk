@@ -144,7 +144,7 @@ public class CfLogSurveyEvent {
              * Parsing the values into an object and passing to the setup block to queue
              * the event based on its priority.
              */
-            let surveyEventObject = SurveyEventObject(action: actionValue!, survey: surveyObject!, response: responseList, meta: meta)
+            let surveyEventObject = SurveyEventObject(action: actionValue!, survey: surveyObject!, response: responseList, meta: meta as? Encodable)
             CFSetup().track(contentBlockName: LoyaltyConstants.contentBlockName, eventType: LoyaltyEventType.survey.rawValue, logObject: surveyEventObject,updateImmediately: updateImmediately)
         }
     }
