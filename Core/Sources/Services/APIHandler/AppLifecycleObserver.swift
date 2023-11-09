@@ -61,7 +61,7 @@ public class CausualFoundry {
                 .build()
         }
         CoreConstants.shared.isAppPaused = true
-        WorkerCaller.updateAppEvents(application: self.application!)
+        
         
        
     }
@@ -73,6 +73,7 @@ public class CausualFoundry {
         CFLogAppEventBuilder().setAppEvent(appAction: .background)
             .setStartTime(start_time:0)
             .build()
+        WorkerCaller.updateAppEvents(application: self.application!)
     }
     
     
