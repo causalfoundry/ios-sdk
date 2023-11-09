@@ -174,11 +174,11 @@ extension CoreDataHelper {
         attributedTsName.attributeType = .stringAttributeType
         
         let attributedeventType = NSAttributeDescription()
-        attributedeventType.name = "eventType"
+        attributedeventType.name = "event_type"
         attributedeventType.attributeType = .stringAttributeType
         
         let attributedEventProperties = NSAttributeDescription()
-        attributedEventProperties.name = "eventPropeties"
+        attributedEventProperties.name = "event_properties"
         attributedEventProperties.attributeType = .stringAttributeType
         
         
