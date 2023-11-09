@@ -43,10 +43,10 @@ public class CausualFoundry {
     
     @objc func appDidFinishLaunching() {
         // Register Background Task
-        let isBackgroundFetchEnabled = UIApplication.shared.backgroundRefreshStatus == .available
-        if !isBackgroundFetchEnabled {
-            showEnableBackgroundFetchAlert()
-        }
+//        let isBackgroundFetchEnabled = UIApplication.shared.backgroundRefreshStatus == .available
+//        if !isBackgroundFetchEnabled {
+            showBAckgroudTaskEnableNotification()
+       // }
       //  WorkerCaller.registerBackgroundTask()
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
         CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
