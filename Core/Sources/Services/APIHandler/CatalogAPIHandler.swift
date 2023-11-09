@@ -21,7 +21,9 @@ public class CatalogAPIHandler {
                    CoreDataHelper.shared.writeUserCatalog(userCataLogData:item )
                 }
             case .media:
-                break
+                if let item = catalogObject as? MediaCatalogModel {
+                    CoreDataHelper.shared.writeMediaCatalog(mediaCatalogData:item)
+                }
             case .chw:
                 break
             case .chwsite:

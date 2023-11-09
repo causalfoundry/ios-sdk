@@ -56,12 +56,14 @@ public class CausualFoundry {
         if CoreConstants.shared.isAppPaused {
             let currentTimeMillis = Date().timeIntervalSince1970 * 1000
             CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
+            CFLogAppEventBuilder().setAppEvent(appAction:.resume)
+                .setStartTime(start_time:0)
+                .build()
         }
         CoreConstants.shared.isAppPaused = true
+        WorkerCaller.updateAppEvents(application: self.application!)
         
-        CFLogAppEventBuilder().setAppEvent(appAction:.resume)
-            . setStartTime(start_time:0)
-            .build()
+       
     }
     
     @objc func appDidEnterBackground() {

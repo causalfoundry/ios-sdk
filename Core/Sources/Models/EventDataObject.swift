@@ -31,9 +31,6 @@ struct EventDataObject: Codable {
         self.event_properties = event_properties
     }
     
-
-        
-        
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(content_block, forKey: .content_block)

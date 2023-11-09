@@ -28,19 +28,12 @@ public class IngestAPIHandler:NSObject {
             
             reachability.stopNotifier()
             let isInternetAvailable :Bool = (reachability.connection == .wifi || reachability.connection == .cellular) ? true :  false
-//            
-//            let eventObject = EventDataObject(block:contentBlock ,
-//                                              props: trackProperties,
-//                                              type: eventType,
-//                                              ol: isInternetAvailable,
-//                                              ts:"\(timezone)")
-            
             let eventObject = EventDataObject(content_block:contentBlock , online: isInternetAvailable, ts: "\(timezone)", event_type: eventType, event_properties: (trackProperties as! Encodable))
                     
                     if(updateImmediately) {
-                        self.updateEvenrTrack(eventArray:[eventObject])
+                        self.updateEventTrack(eventArray:[eventObject])
                     }else {
-                        self.storeEventTrack ()
+                        self.storeEventTrack(eventObject:eventObject)
                     }
                 }
         }
@@ -52,7 +45,7 @@ public class IngestAPIHandler:NSObject {
             
     
     // Update Track Event
-    func updateEvenrTrack(eventArray:[EventDataObject]) {
+    func updateEventTrack(eventArray:[EventDataObject]) {
         var userID:String = CoreConstants.shared.userId
         
         if (!CoreConstants.shared.isAnonymousUserAllowed) {
@@ -85,7 +78,13 @@ public class IngestAPIHandler:NSObject {
     }
     
     
-    func storeEventTrack () {
+    func storeEventTrack (eventObject:EventDataObject) {
+        var prevEvent = CoreDataHelper.shared.readEvents()
+        prevEvent.append(eventObject)
+        CoreDataHelper.shared.writeEvents(eventsArray:prevEvent)
+    }
+    
+    func storeEventTracks(eventObjects:[EventDataObject]) {
         
     }
     

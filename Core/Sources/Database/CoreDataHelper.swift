@@ -11,7 +11,7 @@ import UIKit
 
 public class CoreDataHelper {
     
-   public static let shared = CoreDataHelper()
+    public static let shared = CoreDataHelper()
     
     public init() {
         if persistentContainer == nil {
@@ -55,147 +55,9 @@ public class CoreDataHelper {
         return persistentContainer
     }
     
-    
-    
     func createManagedObjectModel() -> NSManagedObjectModel {
-        // Create an entity description
-        let userDataEntity = NSEntityDescription()
-        userDataEntity.name = TableName.user.rawValue
-        
-        // Create attributes
-        let attributeUser = NSAttributeDescription()
-        attributeUser.name = "userID"
-        attributeUser.attributeType = .stringAttributeType
-        
-        
-        let attributeDeviceID = NSAttributeDescription()
-        attributeDeviceID.name = "deviceID"
-        attributeDeviceID.attributeType = .stringAttributeType
-        
-        // Add the attribute to the entity
-        userDataEntity.properties = [attributeUser, attributeDeviceID]
-        
-        let exceptionDataEntity = NSEntityDescription()
-        exceptionDataEntity.name = TableName.exceptionData.rawValue // Set the entity name
-        
-        
-        // Create attributes
-        
-        let attributEventTitle = NSAttributeDescription()
-        attributEventTitle.name = "title"
-        attributEventTitle.attributeType = .stringAttributeType
-        
-        let attributEventType = NSAttributeDescription()
-        attributEventType.name = "eventType"
-        attributEventType.attributeType = .stringAttributeType
-        
-        
-        let attributeExceptionType = NSAttributeDescription()
-        attributeExceptionType.name = "exceptionType"
-        attributeExceptionType.attributeType = .stringAttributeType
-        
-        let attributeExceptionSource = NSAttributeDescription()
-        attributeExceptionSource.name = "exceptionSource"
-        attributeExceptionSource.attributeType = .stringAttributeType
-        
-        let attributeDeviceTs = NSAttributeDescription()
-        attributeDeviceTs.name = "ts"
-        attributeDeviceTs.attributeType = .stringAttributeType
-        
-        let attributeStackTrace = NSAttributeDescription()
-        attributeStackTrace.name = "stackTrace"
-        attributeStackTrace.attributeType = .stringAttributeType
-        
-        // Add the attribute to the entity
-        exceptionDataEntity.properties = [attributEventTitle, attributEventType,attributeExceptionType, attributeExceptionSource,attributeDeviceTs, attributeStackTrace  ]
-        
-        
-        
-        
-        // Create a UserCatalog Table
-        let userCatalogEntity = NSEntityDescription()
-        userCatalogEntity.name = TableName.userCatalog.rawValue
-        
-        // Create attributes
-        let attributedUserName = NSAttributeDescription()
-        attributedUserName.name = "name"
-        attributedUserName.attributeType = .stringAttributeType
-        
-        let attributedCountry = NSAttributeDescription()
-        attributedCountry.name = "country"
-        attributedCountry.attributeType = .stringAttributeType
-        
-        let attributedRegion = NSAttributeDescription()
-        attributedRegion.name = "region_state"
-        attributedRegion.attributeType = .stringAttributeType
-        
-        let attributedCity = NSAttributeDescription()
-        attributedCity.name = "city"
-        attributedCity.attributeType = .stringAttributeType
-        
-        let attributedWorkPlace = NSAttributeDescription()
-        attributedWorkPlace.name = "workplace"
-        attributedWorkPlace.attributeType = .stringAttributeType
-        
-        let attributedProfession = NSAttributeDescription()
-        attributedProfession.name = "profession"
-        attributedProfession.attributeType = .stringAttributeType
-        
-        let attributedZipCode = NSAttributeDescription()
-        attributedZipCode.name = "zipcode"
-        attributedZipCode.attributeType = .stringAttributeType
-        
-        let attributedLanguage = NSAttributeDescription()
-        attributedLanguage.name = "language"
-        attributedLanguage.attributeType = .stringAttributeType
-        
-        let attributedexperience = NSAttributeDescription()
-        attributedexperience.name = "experience"
-        attributedexperience.attributeType = .stringAttributeType
-        
-        let attributeEducation = NSAttributeDescription()
-        attributeEducation.name = "education_level"
-        attributeEducation.attributeType = .stringAttributeType
-        
-        let attributeOrganizationID = NSAttributeDescription()
-        attributeOrganizationID.name = "organization_id"
-        attributeOrganizationID.attributeType = .stringAttributeType
-        
-        let attributeOrganizationName = NSAttributeDescription()
-        attributeOrganizationName.name = "organization_name"
-        attributeOrganizationName.attributeType = .stringAttributeType
-        
-        userCatalogEntity.properties = [attributedUserName,attributedCountry,attributedRegion, attributedCity, attributedWorkPlace, attributedProfession, attributedZipCode, attributedLanguage,attributedexperience,attributeEducation, attributeOrganizationID, attributeOrganizationName ]
-        
-        
-        // Create an Currency description
-        
-        let currencyDataEntity = NSEntityDescription()
-        currencyDataEntity.name = TableName.currency.rawValue
-     
-        
-        // Create attributes
-        let attributefromCurrency = NSAttributeDescription()
-        attributefromCurrency.name = "fromCurrency"
-        attributefromCurrency.attributeType = .stringAttributeType
-        
-        
-        let attributeConversionDate = NSAttributeDescription()
-        attributeConversionDate.name = "conversionDate"
-        attributeConversionDate.attributeType = .stringAttributeType
-        
-        let attributeToCurrency = NSAttributeDescription()
-        attributeToCurrency.name = "toCurrency"
-        attributeToCurrency.attributeType = .stringAttributeType
-        
-        // Add the attribute to the entity
-        currencyDataEntity.properties = [attributefromCurrency, attributeConversionDate, attributeToCurrency]
-        
-        
-        // Create a managed object model
         let managedObjectModel = NSManagedObjectModel()
-        managedObjectModel.entities = [userDataEntity,exceptionDataEntity,userCatalogEntity,currencyDataEntity]
-        
+        managedObjectModel.entities = [self.userEntity(),self.exceptionEntity(),self.userCatalogEntity(),self.currencyEntity(),self.userEventsEntity()]
         return managedObjectModel
     }
     
@@ -341,6 +203,64 @@ extension CoreDataHelper {
         return ""
     }
     
+    
+    /**
+     * To read user events from DB, default is empty list
+     */
+    func readEvents() -> [EventDataObject] {
+        var itemData:[EventDataObject]? = []
+        if let existingEntity = NSEntityDescription.entity(forEntityName:TableName.userEvents.rawValue, in: context) {
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: existingEntity.name!)
+            do {
+                let items = try context.fetch(fetchRequest)
+                if items.count > 0 {
+                    itemData =  items.map({ (data) in
+                        let entityData = EventDataObject(content_block: (data.value(forKey:"content_block") as? String ?? "" ) ,
+                                                         online:(data.value(forKey:"online") as? Bool ??  false ) ,
+                                                         ts: (data.value(forKey:"ts") as? String ?? "" ) ,
+                                                         event_type: (data.value(forKey:"event_type") as? String ?? "" ) ,
+                                                         event_properties: (data.value(forKey:"event_properties") as? String ?? "" ) )
+                        return entityData
+                    })
+                }else{
+                    itemData = items as? [EventDataObject]
+                }
+            } catch let error as NSError {
+                print("Could not fetch. \(error), \(error.userInfo)")
+                
+            }
+        }else {
+            
+            
+        }
+        return itemData!
+        
+    }
+    /**
+     * To write user events in DB
+     */
+    func writeEvents(eventsArray:[EventDataObject]) {
+        let managedContext = context
+        
+        let existingEntity = NSEntityDescription.entity(forEntityName: TableName.userEvents.rawValue, in: managedContext)
+        let managedObject = NSManagedObject(entity: existingEntity!, insertInto: managedContext)
+        for eventDataObject in eventsArray {
+            
+            // Set properties of the Core Data entity based on ExceptionDataObject properties
+            managedObject.setValue(eventDataObject.content_block, forKey: "contentBlock")
+            managedObject.setValue(eventDataObject.online, forKey: "isOnline")
+            managedObject.setValue(eventDataObject.ts, forKey: "ts")
+            managedObject.setValue(eventDataObject.event_type, forKey: "eventType")
+            managedObject.setValue(eventDataObject.event_properties, forKey: "eventPropeties")
+         // Add additional properties as needed
+        }
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
     func readUserCatalog() -> UserCatalogModel? {
         var userCataLogItem:UserCatalogModel?
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.userCatalog.rawValue)
@@ -378,22 +298,22 @@ extension CoreDataHelper {
         
         let existingEntity = NSEntityDescription.entity(forEntityName: TableName.userCatalog.rawValue, in: managedContext)
         let managedObject = NSManagedObject(entity: existingEntity!, insertInto: managedContext)
-       
-            // Set properties of the Core Data entity based on ExceptionDataObject properties
-            managedObject.setValue(userCataLogData.name, forKey: "name")
-            managedObject.setValue(userCataLogData.country, forKey: "country")
-            managedObject.setValue(userCataLogData.region_state, forKey: "region_state")
-            managedObject.setValue(userCataLogData.city, forKey: "city")
-            managedObject.setValue(userCataLogData.workplace, forKey: "workplace")
-            managedObject.setValue(userCataLogData.profession, forKey: "profession")
-            managedObject.setValue(userCataLogData.zipcode, forKey: "zipcode")
-            managedObject.setValue(userCataLogData.language, forKey: "language")
-            managedObject.setValue(userCataLogData.experience, forKey: "experience")
-            managedObject.setValue(userCataLogData.education_level, forKey: "education_level")
-            managedObject.setValue(userCataLogData.organization_id, forKey: "organization_id")
-            managedObject.setValue(userCataLogData.organization_name, forKey: "organization_name")
-            
-            // Add additional properties as needed
+        
+        // Set properties of the Core Data entity based on ExceptionDataObject properties
+        managedObject.setValue(userCataLogData.name, forKey: "name")
+        managedObject.setValue(userCataLogData.country, forKey: "country")
+        managedObject.setValue(userCataLogData.region_state, forKey: "region_state")
+        managedObject.setValue(userCataLogData.city, forKey: "city")
+        managedObject.setValue(userCataLogData.workplace, forKey: "workplace")
+        managedObject.setValue(userCataLogData.profession, forKey: "profession")
+        managedObject.setValue(userCataLogData.zipcode, forKey: "zipcode")
+        managedObject.setValue(userCataLogData.language, forKey: "language")
+        managedObject.setValue(userCataLogData.experience, forKey: "experience")
+        managedObject.setValue(userCataLogData.education_level, forKey: "education_level")
+        managedObject.setValue(userCataLogData.organization_id, forKey: "organization_id")
+        managedObject.setValue(userCataLogData.organization_name, forKey: "organization_name")
+        
+        // Add additional properties as needed
         
         do {
             try managedContext.save()
@@ -402,6 +322,23 @@ extension CoreDataHelper {
         }
     }
     
+    
+    func writeMediaCatalog(mediaCatalogData:MediaCatalogModel) {
+        let managedContext = context
+        
+        let existingEntity = NSEntityDescription.entity(forEntityName: TableName.mediaCatalog.rawValue, in: managedContext)
+        let managedObject = NSManagedObject(entity: existingEntity!, insertInto: managedContext)
+        
+        // Set properties of the Core Data entity based on ExceptionDataObject properties
+        
+        // Add additional properties as needed
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
     
     // Currency Data
     func readCurrencyObject() -> CurrencyMainObject? {
