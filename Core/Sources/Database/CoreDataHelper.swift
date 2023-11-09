@@ -247,11 +247,11 @@ extension CoreDataHelper {
         for eventDataObject in eventsArray {
             
             // Set properties of the Core Data entity based on ExceptionDataObject properties
-            managedObject.setValue(eventDataObject.content_block, forKey: "contentBlock")
-            managedObject.setValue(eventDataObject.online, forKey: "isOnline")
+            managedObject.setValue(eventDataObject.content_block, forKey: "content_block")
+            managedObject.setValue(eventDataObject.online, forKey: "online")
             managedObject.setValue(eventDataObject.ts, forKey: "ts")
-            managedObject.setValue(eventDataObject.event_type, forKey: "eventType")
-            managedObject.setValue(eventDataObject.event_properties, forKey: "eventPropeties")
+            managedObject.setValue(eventDataObject.event_type, forKey: "event_type")
+            managedObject.setValue(eventDataObject.event_properties, forKey: "event_properties")
          // Add additional properties as needed
         }
         do {

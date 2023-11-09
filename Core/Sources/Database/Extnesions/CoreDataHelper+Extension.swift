@@ -30,13 +30,7 @@ extension CoreDataHelper {
         return userDataEntity
     }
     
-    func userEventsEntity() -> NSEntityDescription {
-        
-        let exceptionDataEntity = NSEntityDescription()
-        exceptionDataEntity.name = TableName.userEvents.rawValue // Set the entity name
-        
-        return exceptionDataEntity
-    }
+    
     
     func exceptionEntity() -> NSEntityDescription {
         
@@ -160,7 +154,7 @@ extension CoreDataHelper {
         return userCatalogEntity
     }
     
-    func userEventsEntity() {
+    func userEventsEntity() -> NSEntityDescription {
         
         // Create a userEntity Table
         let userEventsEntity = NSEntityDescription()
@@ -189,6 +183,7 @@ extension CoreDataHelper {
         
         
         userEventsEntity.properties = [attributedContentBlockName,attributedisOnline,attributedTsName,attributedeventType,attributedEventProperties]
+        return userEventsEntity
     }
     
     
