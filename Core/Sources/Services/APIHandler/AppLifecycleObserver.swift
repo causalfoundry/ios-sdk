@@ -43,7 +43,10 @@ public class CausualFoundry {
     
     @objc func appDidFinishLaunching() {
         // Register Background Task
-        showBAckgroudTaskEnableNotification()
+        let isBackgroundFetchEnabled = UIApplication.shared.backgroundRefreshStatus == .available
+        if !isBackgroundFetchEnabled {
+            showEnableBackgroundFetchAlert()
+        }
       //  WorkerCaller.registerBackgroundTask()
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
         CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
@@ -64,10 +67,39 @@ public class CausualFoundry {
                 .build()
         }
         CoreConstants.shared.isAppPaused = true
-        
-        
-       
     }
+    
+    func showEnableBackgroundFetchAlert() {
+            let alert = UIAlertController(
+                title: "Enable Background Fetch",
+                message: "To get the latest updates, please enable background fetch for this app.",
+                preferredStyle: .alert
+            )
+
+            let enableAction = UIAlertAction(
+                title: "Enable",
+                style: .default,
+                handler: { _ in
+                    // Open app settings when the user taps "Enable"
+                    if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+                    }
+                }
+            )
+
+            let cancelAction = UIAlertAction(
+                title: "Cancel",
+                style: .cancel,
+                handler: nil
+            )
+
+            alert.addAction(enableAction)
+            alert.addAction(cancelAction)
+
+        if let keyWindow = UIApplication.shared.keyWindow {
+            keyWindow.rootViewController?.present(alert, animated: true, completion: nil)
+        }
+        }
     
     @objc func appDidEnterBackground() {
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
@@ -106,7 +138,7 @@ public class CausualFoundry {
 extension CausualFoundry {
     func showBAckgroudTaskEnableNotification() {
         let alert = UIAlertController(title: "Enable Background App Refresh", message: "To take full advantage of our app's features, please enable Background App Refresh in your device settings.", preferredStyle: .alert)
-
+        self.
                let settingsAction = UIAlertAction(title: "Open Settings", style: .default) { (_) in
                    if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
                        UIApplication.shared.open(settingsURL)
