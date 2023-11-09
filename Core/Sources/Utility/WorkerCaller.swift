@@ -32,6 +32,8 @@ class WorkerCaller {
     }
     
     static func handleBackgroundTask(task: BGAppRefreshTask) {
+        var events = CoreDataHelper.shared.readEvents()
+        InjestEvenstuploader.uploadEvents(events:events)
        
         task.setTaskCompleted(success: true)
     }
