@@ -43,10 +43,10 @@ public class CausualFoundry {
     
     @objc func appDidFinishLaunching() {
         // Register Background Task
-//        let isBackgroundFetchEnabled = UIApplication.shared.backgroundRefreshStatus == .available
-//        if !isBackgroundFetchEnabled {
+        let isBackgroundFetchEnabled = self.application!.backgroundRefreshStatus == .available
+        if !isBackgroundFetchEnabled {
             showBAckgroudTaskEnableNotification()
-       // }
+        }
       //  WorkerCaller.registerBackgroundTask()
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
         CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
@@ -69,37 +69,7 @@ public class CausualFoundry {
         CoreConstants.shared.isAppPaused = true
     }
     
-    func showEnableBackgroundFetchAlert() {
-            let alert = UIAlertController(
-                title: "Enable Background Fetch",
-                message: "To get the latest updates, please enable background fetch for this app.",
-                preferredStyle: .alert
-            )
-
-            let enableAction = UIAlertAction(
-                title: "Enable",
-                style: .default,
-                handler: { _ in
-                    // Open app settings when the user taps "Enable"
-                    if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
-                        UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
-                    }
-                }
-            )
-
-            let cancelAction = UIAlertAction(
-                title: "Cancel",
-                style: .cancel,
-                handler: nil
-            )
-
-            alert.addAction(enableAction)
-            alert.addAction(cancelAction)
-
-        if let keyWindow = UIApplication.shared.keyWindow {
-            keyWindow.rootViewController?.present(alert, animated: true, completion: nil)
-        }
-        }
+ 
     
     @objc func appDidEnterBackground() {
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
