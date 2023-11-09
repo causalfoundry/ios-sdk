@@ -251,7 +251,7 @@ extension CoreDataHelper {
             managedObject.setValue(eventDataObject.online, forKey: "online")
             managedObject.setValue(eventDataObject.ts, forKey: "ts")
             managedObject.setValue(eventDataObject.event_type, forKey: "event_type")
-            managedObject.setValue(eventDataObject.event_properties, forKey: "eventPropeties")
+            managedObject.setValue(eventDataObject.event_properties, forKey: "event_properties")
          // Add additional properties as needed
         }
         do {
