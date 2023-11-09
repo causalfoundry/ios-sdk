@@ -251,7 +251,7 @@ extension CoreDataHelper {
             managedObject.setValue(eventDataObject.online, forKey: "online")
             managedObject.setValue(eventDataObject.ts, forKey: "ts")
             managedObject.setValue(eventDataObject.event_type, forKey: "event_type")
-            managedObject.setValue(String(data: eventDataObject.event_properties as! Data, encoding: .utf8) , forKey: "event_properties")
+            managedObject.setValue(eventDataObject.event_properties?.toData(), forKey: "event_properties")
          // Add additional properties as needed
         }
         do {
@@ -380,4 +380,16 @@ extension CoreDataHelper {
         }
     }
     
+}
+
+
+extension Encodable {
+    func toData(using encoder: JSONEncoder = JSONEncoder()) -> Data? {
+        do {
+            return try encoder.encode(self)
+        } catch {
+            print("Error encoding data: \(error)")
+            return nil
+        }
+    }
 }
