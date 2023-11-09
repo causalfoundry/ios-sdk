@@ -138,7 +138,7 @@ public class CausualFoundry {
 extension CausualFoundry {
     func showBAckgroudTaskEnableNotification() {
         let alert = UIAlertController(title: "Enable Background App Refresh", message: "To take full advantage of our app's features, please enable Background App Refresh in your device settings.", preferredStyle: .alert)
-        self.
+    
                let settingsAction = UIAlertAction(title: "Open Settings", style: .default) { (_) in
                    if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
                        UIApplication.shared.open(settingsURL)
