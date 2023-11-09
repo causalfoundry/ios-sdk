@@ -179,7 +179,7 @@ extension CoreDataHelper {
         
         let attributedEventProperties = NSAttributeDescription()
         attributedEventProperties.name = "event_properties"
-        attributedEventProperties.attributeType = .transformableAttributeType
+        attributedEventProperties.attributeType = .binaryDataAttributeType
         
         
         userEventsEntity.properties = [attributedContentBlockName,attributedisOnline,attributedTsName,attributedeventType,attributedEventProperties]
