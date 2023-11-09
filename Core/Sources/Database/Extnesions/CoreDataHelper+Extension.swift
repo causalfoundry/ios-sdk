@@ -163,8 +163,8 @@ extension CoreDataHelper {
     func userEventsEntity() {
         
         // Create a userEntity Table
-        let userCatalogEntity = NSEntityDescription()
-        userCatalogEntity.name = TableName.userEvents.rawValue
+        let userEventsEntity = NSEntityDescription()
+        userEventsEntity.name = TableName.userEvents.rawValue
         
         
         let attributedContentBlockName = NSAttributeDescription()
@@ -186,6 +186,9 @@ extension CoreDataHelper {
         let attributedEventProperties = NSAttributeDescription()
         attributedEventProperties.name = "eventPropeties"
         attributedEventProperties.attributeType = .stringAttributeType
+        
+        
+        userEventsEntity.properties = [attributedContentBlockName,attributedisOnline,attributedTsName,attributedeventType,attributedEventProperties]
     }
     
     
