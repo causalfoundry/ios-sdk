@@ -42,6 +42,8 @@ public class CausualFoundry {
     
     
     @objc func appDidFinishLaunching() {
+        // Register Background Task
+        WorkerCaller.registerBackgroundTask()
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
         CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
         
@@ -73,7 +75,7 @@ public class CausualFoundry {
         CFLogAppEventBuilder().setAppEvent(appAction: .background)
             .setStartTime(start_time:0)
             .build()
-       // WorkerCaller.updateAppEvents(application: self.application!)
+        WorkerCaller.updateAppEvents(application: self.application!)
     }
     
     

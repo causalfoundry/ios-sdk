@@ -103,7 +103,7 @@ public class CoreDataHelper {
 
 extension CoreDataHelper {
     // GET ALL EXCEPTION LOGS
-    func getStoredExceptionsData() -> [ExceptionDataObject]{
+    func readExceptionsData() -> [ExceptionDataObject]{
         var itemData:[ExceptionDataObject]? = []
         if let existingEntity = NSEntityDescription.entity(forEntityName:TableName.exceptionData.rawValue, in: context) {
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: existingEntity.name!)

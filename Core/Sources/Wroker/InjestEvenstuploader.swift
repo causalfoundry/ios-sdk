@@ -8,11 +8,26 @@
 import Foundation
 
 class InjestEvenstuploader {
-    static func uploadEvents(events:[EventDataObject]) {
-        var injestAPIHandler  = IngestAPIHandler()
+    static func uploadEvents() {
+        let injestAPIHandler  = IngestAPIHandler()
         
-        var events = CoreDataHelper.shared.readEvents()
+        let events = CoreDataHelper.shared.readEvents()
         injestAPIHandler.updateEventTrack(eventArray: events)
         
     }
 }
+
+
+
+class ExceptionEventsUploader {
+    static func uploadEvents() {
+        let exceptionManager  = ExceptionAPIHandler()
+        
+        let events = CoreDataHelper.shared.readExceptionsData()
+        exceptionManager.updateExceptionEvents(eventArray:events)
+        
+    }
+}
+
+
+
