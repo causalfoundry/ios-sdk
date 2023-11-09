@@ -109,7 +109,7 @@ extension CausualFoundry {
 
                let settingsAction = UIAlertAction(title: "Open Settings", style: .default) { (_) in
                    if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
-                       UIApplication.shared.open(settingsURL)
+                       self.application!.open(settingsURL)
                    }
                }
 
