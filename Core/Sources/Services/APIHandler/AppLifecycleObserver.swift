@@ -80,7 +80,7 @@ public class CausualFoundry {
         CFLogAppEventBuilder().setAppEvent(appAction: .background)
             .setStartTime(start_time:0)
             .build()
-        //WorkerCaller.updateAppEvents(application: self.application!)
+        WorkerCaller.updateAppEvents(application: self.application!)
     }
     
     
