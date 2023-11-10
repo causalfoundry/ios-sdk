@@ -50,12 +50,12 @@ public class CausualFoundry {
             WorkerCaller.registerBackgroundTask()
         }
       
-        let currentTimeMillis = Date().timeIntervalSince1970 * 1000
-        CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
-        
-        CFLogAppEventBuilder().setAppEvent(appAction:.open)
-            .setStartTime(start_time: Int(CoreConstants.shared.sessionStartTime))
-            .build()
+//        let currentTimeMillis = Date().timeIntervalSince1970 * 1000
+//        CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
+//        
+//        CFLogAppEventBuilder().setAppEvent(appAction:.open)
+//            .setStartTime(start_time: Int(CoreConstants.shared.sessionStartTime))
+//            .build()
     }
     
     @objc func appWillEnterForeground() {
