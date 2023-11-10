@@ -16,7 +16,7 @@ class WorkerCaller {
         // Check if the app supports background fetch
         BGTaskScheduler.shared.register(forTaskWithIdentifier:WorkerCaller().backgroundTaskIdentifier, using: nil) { task in
             // Perform the work inside the background task
-            self.handleAppRefresh(task: task as! BGAppRefreshTask)
+            self.handleAppRefresh(task: task as! BGProcessingTask)
         }
         
     }
@@ -41,7 +41,7 @@ class WorkerCaller {
         }
     }
     
-    static func handleAppRefresh(task: BGAppRefreshTask) {
+    static func handleAppRefresh(task: BGProcessingTask) {
         // Schedule the next background refresh
         self.scheduleNextAppRefresh()
         
