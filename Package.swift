@@ -52,22 +52,46 @@ let package = Package(
         .target(
             name: "CasualFoundryEcommerce",
             dependencies: ["CasualFoundryCore"],
-            path: "E_Commerce/Sources"
+            path: "E_Commerce/Sources",
+            exclude: [
+                "CHWManagement",
+                "E_Learning",
+                "Loyalty",
+                "Payments",
+                "SampleApp"]
         ),
         .target(
             name: "CasualFoundryPayments",
             dependencies: ["CasualFoundryCore"],
-            path: "Payments/Sources"
+            path: "Payments/Sources",
+            exclude: [
+                "CHWManagement",
+                "E_Commerce",
+                "E_Learning",
+                "Loyalty",
+                "SampleApp"]
         ),
         .target(
             name: "CasualFoundryLoyalty",
             dependencies: ["CasualFoundryCore"],
-            path: "Loyalty/Sources"
+            path: "Loyalty/Sources",
+            exclude: [
+                "CHWManagement",
+                "E_Commerce",
+                "E_Learning",
+                "Payments",
+                "SampleApp"]
         ),
         .target(
             name: "CasualFoundryElearning",
             dependencies: ["CasualFoundryCore"],
-            path: "E_Learning/Sources"
+            path: "E_Learning/Sources",
+            exclude: [
+                "CHWManagement",
+                "E_Commerce",
+                "Loyalty",
+                "Payments",
+                "SampleApp"]
         ),
         
         .testTarget(
