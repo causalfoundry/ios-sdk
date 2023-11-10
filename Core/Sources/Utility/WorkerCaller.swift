@@ -67,7 +67,7 @@ class WorkerCaller {
         let nextRefreshTime = Calendar.current.date(byAdding: .minute, value: 15, to: Date())
         
         // Create a new background task request
-        let request = BGAppRefreshTaskRequest(identifier: "com.example.MyApp.backgroundTask")
+        let request = BGAppRefreshTaskRequest(identifier: "com.causalFoundry.updateAppEvents")
         request.earliestBeginDate = nextRefreshTime
         
         // Submit the task request to the system
