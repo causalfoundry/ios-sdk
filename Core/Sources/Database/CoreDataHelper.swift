@@ -57,7 +57,7 @@ public class CoreDataHelper {
     
     func createManagedObjectModel() -> NSManagedObjectModel {
         let managedObjectModel = NSManagedObjectModel()
-        managedObjectModel.entities = [self.userEntity(),self.exceptionEntity(),self.userCatalogEntity(),self.currencyEntity(),self.userEventsEntity()]
+        managedObjectModel.entities = [self.userEntity(),self.exceptionEntity(),self.userCatalogEntity(),self.currencyEntity(),self.userEventsEntity(),self.catalogEntity()]
         return managedObjectModel
     }
     

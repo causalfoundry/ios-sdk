@@ -11,6 +11,7 @@ let package = Package(
         .library(
             name: "Core",
             targets: ["CasualFoundryCore"]),
+            
         .library(
              name: "CHWElearning",
              targets: ["CasualFoundryElearning"]),
