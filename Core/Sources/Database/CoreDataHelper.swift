@@ -252,7 +252,7 @@ extension CoreDataHelper {
             managedObject.setValue(eventDataObject.ts, forKey: "ts")
             managedObject.setValue(eventDataObject.event_type, forKey: "event_type")
             managedObject.setValue(eventDataObject.event_properties?.toData(), forKey: "event_properties")
-         // Add additional properties as needed
+            // Add additional properties as needed
         }
         do {
             try managedContext.save()
@@ -378,6 +378,41 @@ extension CoreDataHelper {
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
+    }
+    
+    func writeCatalogData(subject:String,data:Any) {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.catalogEvents.rawValue)
+        let filterPredicate = NSPredicate(format: "subject == %@", subject)
+        fetchRequest.predicate = filterPredicate
+        do {
+            let fetchedObjects = try context.fetch(fetchRequest)
+            
+            fetchedObjects.first?.setValue(data, forKey:"catalog")
+            
+            // 3. Save the managed object context to persist the changes
+            try context.save()
+            
+            
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            
+        }
+    }
+    
+    func readCataLogData(subject:String) -> Any? {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.catalogEvents.rawValue)
+        let filterPredicate = NSPredicate(format: "subject == %@", subject)
+        fetchRequest.predicate = filterPredicate
+        do {
+            let resultData = try context.fetch(fetchRequest)
+            return resultData.first?.value(forKey: "catalog")
+            
+            
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            
+        }
+        return  nil
     }
     
 }

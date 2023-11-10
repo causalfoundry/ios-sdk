@@ -187,4 +187,20 @@ extension CoreDataHelper {
     }
     
     
+    func catalogEntity() -> NSEntityDescription {
+        let catalogEntity = NSEntityDescription()
+        catalogEntity.name = TableName.catalogEvents.rawValue
+        
+        let attributedSubject = NSAttributeDescription()
+        attributedSubject.name = "subject"
+        attributedSubject.attributeType = .stringAttributeType
+        
+        let attributedCatalog = NSAttributeDescription()
+        attributedCatalog.name = "catalog"
+        attributedCatalog.attributeType = .binaryDataAttributeType
+        
+        catalogEntity.properties = [attributedSubject,attributedCatalog ]
+        return catalogEntity
+    }
+    
 }

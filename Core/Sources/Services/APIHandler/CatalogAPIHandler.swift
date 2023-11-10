@@ -12,77 +12,14 @@ import UIKit
 public class CatalogAPIHandler {
 
     func updateCatalogItem(subject: CatalogSubject, catalogObject: Any?) {
-        if let catalogObject = catalogObject {
-            switch subject {
-            case .blood:
-                break
-            case .user:
-                if let item = catalogObject as? UserCatalogModel {
-                   CoreDataHelper.shared.writeUserCatalog(userCataLogData:item )
-                }
-            case .media:
-                if let item = catalogObject as? MediaCatalogModel {
-                    CoreDataHelper.shared.writeMediaCatalog(mediaCatalogData:item)
-                }
-            case .chw:
-                break
-            case .chwsite:
-                break
-            case .patient:
-                break
-            case .drug:
-                break
-            case .grocery:
-                break
-            case .oxygen:
-                break
-            case .medical_equipment:
-                break
-            case .facility:
-                break
-            case .survey:
-                break
-            case .reward:
-                break
-            }
-        }
+        guard let prevCatalog = CoreDataHelper.shared.readCataLogData(subject:subject.rawValue) else { return }
+        CoreDataHelper.shared.writeCatalogData(subject: subject.rawValue, data: catalogObject as Any)
     }
+        
+    
 
     private func updateCatalogArray(subject: CatalogSubject, catalogArray: [Any]) {
-//      switch subject {
-//            case .blood:
-//                break
-//            case .user:
-//                var prevUserCatalog = CoreDataHelper.shared.readUserCatalog()
-//                if let items = catalogArray as? [UserCatalogModel] {
-//                    for item in items {
-//                        prevUserCatalog.append(item)
-//                    }
-//                    CoreDataHelper.shared.writeUserCatalog(catalogArray:prevUserCatalog )
-//                }
-//            case .media:
-//                break
-//            case .chw:
-//                break
-//            case .chwsite:
-//                break
-//            case .patient:
-//                break
-//            case .drug:
-//                break
-//            case .grocery:
-//                break
-//            case .oxygen:
-//                break
-//            case .medical_equipment:
-//                break
-//            case .facility:
-//                break
-//            case .survey:
-//                break
-//            case .reward:
-//                break
-//            }
+        
     }
 
     func callCatalogAPI(catalogMainObject: [Any], catalogSubject: String, sdkToken: String) {
@@ -92,5 +29,5 @@ public class CatalogAPIHandler {
         })
     }
 
-}
 
+}

@@ -16,5 +16,6 @@ public enum TableName:String{
     case currency = "currency"
     case mediaCatalog = "MediaCatalog"
     case userEvents = "userEvents"
+    case catalogEvents = "catalogEvents"
     
 }
