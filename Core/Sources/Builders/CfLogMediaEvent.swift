@@ -309,7 +309,7 @@ public class  CfLogMediaEventBuilder {
         if let language = mediaModelValue.language, !language.isEmpty {
             
             if !CoreConstants.shared.enumContains(LanguageCode.self, name: language) {
-                ExceptionManager.throwEnumException(eventType: CoreEventType.media.rawValue, className:String(describing:"CfLogMediaEvent"))
+                ExceptionManager.throwEnumException(eventType: CoreEventType.media.rawValue, className:String(describing:LanguageCode))
                 return
             }
             self.mediaModel_value?.language = LanguageCode(rawValue: language)?.languageISO2Code

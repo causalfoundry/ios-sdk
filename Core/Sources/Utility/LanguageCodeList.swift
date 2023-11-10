@@ -1323,7 +1323,7 @@ public enum LanguageCode: String,EnumComposable {
     }
     
     // Custom initializer
-    init?(languageISO3Code: String, languageISO2Code: String, languageFullName: String) {
+    public init?(languageISO3Code: String, languageISO2Code: String, languageFullName: String) {
         switch (languageISO3Code, languageISO2Code, languageFullName) {
         case ("AAR", "AA", "Afar"): self = .Afar
         case ("ABK", "AB", "Abkhaz"): self = .Abkhaz
