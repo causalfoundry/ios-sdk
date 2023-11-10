@@ -18,7 +18,7 @@ class WorkerCaller {
             // Perform the work inside the background task
             self.handleAppRefresh(task: task as! BGAppRefreshTask)
         }
-        print("Failed to register background task.")
+        
     }
     
     
