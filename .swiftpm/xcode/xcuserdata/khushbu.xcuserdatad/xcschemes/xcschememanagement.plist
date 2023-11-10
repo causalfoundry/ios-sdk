@@ -22,12 +22,12 @@
 		<key>CHWLoyalty.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>4</integer>
 		</dict>
 		<key>CHWManagement.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>8</integer>
 		</dict>
 		<key>CHWResourcePackage.xcscheme_^#shared#^_</key>
 		<dict>
@@ -47,12 +47,12 @@
 		<key>CausalFoundry-Package.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>7</integer>
 		</dict>
 		<key>CausalFoundry_ios_SDK-Package.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>5</integer>
 		</dict>
 		<key>CausalFoundry_ios_SDK.xcscheme_^#shared#^_</key>
 		<dict>
@@ -83,6 +83,11 @@
 			<true/>
 		</dict>
 		<key>CHWElearning</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CHWLoyalty</key>
 		<dict>
 			<key>primary</key>
 			<true/>

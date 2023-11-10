@@ -29,7 +29,14 @@ let package = Package(
     targets: [
         .target(
             name: "CasualFoundryCore",
-            path: "Core/Sources"
+            path: "Core/Sources",
+            exclude: [
+                "CHWManagement",
+                "E_Commerce",
+                "E_Learning",
+                "Loyalty",
+                "Payments",
+                "SampleApp"]
         ),
         .target(
             name: "CasualFoundryCHWManagement",
