@@ -23,22 +23,23 @@ class WorkerCaller {
     
     
     static func updateAppEvents(application:UIApplication) {
+////        
+////        BGTaskScheduler.shared.register(forTaskWithIdentifier: WorkerCaller().backgroundTaskIdentifier, using: nil) { task in
+////            // Perform the work inside the background task
+////            self.handleAppRefresh(task: task as! BGAppRefreshTask)
+////        }
 //        
-//        BGTaskScheduler.shared.register(forTaskWithIdentifier: WorkerCaller().backgroundTaskIdentifier, using: nil) { task in
-//            // Perform the work inside the background task
-//            self.handleAppRefresh(task: task as! BGAppRefreshTask)
+//        // Create a background task request
+//        let request = BGAppRefreshTaskRequest(identifier: WorkerCaller().backgroundTaskIdentifier)
+//        request.earliestBeginDate = Date()
+//        
+//        // Schedule the background task
+//        do {
+//            try BGTaskScheduler.shared.submit(request)
+//        } catch {
+//            // Handle any errors when scheduling the task
 //        }
         
-        // Create a background task request
-        let request = BGAppRefreshTaskRequest(identifier: WorkerCaller().backgroundTaskIdentifier)
-        request.earliestBeginDate = Date()
-        
-        // Schedule the background task
-        do {
-            try BGTaskScheduler.shared.submit(request)
-        } catch {
-            // Handle any errors when scheduling the task
-        }
     }
     
     static func handleAppRefresh(task: BGProcessingTask) {
