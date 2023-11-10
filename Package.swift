@@ -41,7 +41,13 @@ let package = Package(
         .target(
             name: "CasualFoundryCHWManagement",
             dependencies: ["CasualFoundryCore"],
-            path: "CHWManagement/Sources"
+            path: "CHWManagement/Sources",
+            exclude: [
+                "E_Commerce",
+                "E_Learning",
+                "Loyalty",
+                "Payments",
+                "SampleApp"]
         ),
         .target(
             name: "CasualFoundryEcommerce",
