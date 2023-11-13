@@ -8,7 +8,7 @@
 import BackgroundTasks
 import UIKit
 
-class WorkerCaller {
+public class WorkerCaller {
     // Method to update events at session end
     var backgroundTaskIdentifier = "com.causalFoundry.updateAppEvents"
     
