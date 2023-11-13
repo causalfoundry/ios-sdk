@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public enum LanguageCode:,EnumComposable {
+public enum LanguageCode: String,EnumComposable {
     case Afar = "AAR"
     case Abkhaz = "ABK"
     case Avestan = "AVE"
