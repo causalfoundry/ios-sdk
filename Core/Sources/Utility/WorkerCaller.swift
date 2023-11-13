@@ -12,19 +12,19 @@ public class WorkerCaller {
     // Method to update events at session end
     var backgroundTaskIdentifier = "com.causalFoundry.updateAppEvents"
     
-    static func registerBackgroundTask() {
+    public static func registerBackgroundTask() {
         
         BGTaskScheduler.shared.register(forTaskWithIdentifier:WorkerCaller().backgroundTaskIdentifier, using: nil) { task in
            self.handleBackgroundTask(task: task as! BGProcessingTask)
         }
     }
 
-    static func handleBackgroundTask(task: BGProcessingTask) {
+    public static func handleBackgroundTask(task: BGProcessingTask) {
         self.performAPICalls()
         task.setTaskCompleted(success: true)
     }
     
-    static  func performAPICalls() {
+    public static  func performAPICalls() {
         Task {
             do {
                let result1: () = try await InjestEvenstuploader.uploadEvents()
