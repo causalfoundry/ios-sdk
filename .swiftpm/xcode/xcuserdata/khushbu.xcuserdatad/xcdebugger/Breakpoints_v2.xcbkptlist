@@ -335,7 +335,7 @@
             startingLineNumber = "62"
             endingLineNumber = "62"
             landmarkName = "appWillEnterForeground()"
-            landmarkType = "7">
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -351,7 +351,7 @@
             startingLineNumber = "77"
             endingLineNumber = "77"
             landmarkName = "appDidEnterBackground()"
-            landmarkType = "7">
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
