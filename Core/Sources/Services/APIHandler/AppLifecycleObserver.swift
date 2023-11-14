@@ -51,34 +51,25 @@ public class CausualFoundry {
             WorkerCaller.registerBackgroundTask()
         }
       
-//        let currentTimeMillis = Date().timeIntervalSince1970 * 1000
-//        CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
-//        
-//        CFLogAppEventBuilder().setAppEvent(appAction:.open)
-//            .setStartTime(start_time: Int(CoreConstants.shared.sessionStartTime))
-//            .build()
+        let currentTimeMillis = Date().timeIntervalSince1970 * 1000
+        CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
+        
+        CFLogAppEventBuilder().setAppEvent(appAction:.open)
+            .setStartTime(start_time: Int(CoreConstants.shared.sessionStartTime))
+            .build()
     }
     
     @objc func appWillEnterForeground() {
+        CoreConstants.shared.isAppOpen = true
         
-        let pendingRequests = BGTaskScheduler.shared.getPendingTaskRequests { (requests) in
-            for request in requests {
-                if request.identifier == WorkerCaller().backgroundTaskIdentifier {
-                    print("Task \(request.identifier) is registered.")
-                    // You can perform additional checks or actions here if needed.
-                }
-            }
+        if CoreConstants.shared.isAppPaused {
+            let currentTimeMillis = Date().timeIntervalSince1970 * 1000
+            CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
+            CFLogAppEventBuilder().setAppEvent(appAction:.resume)
+                .setStartTime(start_time:0)
+                .build()
         }
-//        CoreConstants.shared.isAppOpen = true
-//        
-//        if CoreConstants.shared.isAppPaused {
-//            let currentTimeMillis = Date().timeIntervalSince1970 * 1000
-//            CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
-//            CFLogAppEventBuilder().setAppEvent(appAction:.resume)
-//                .setStartTime(start_time:0)
-//                .build()
-//        }
-//        CoreConstants.shared.isAppPaused = true
+        CoreConstants.shared.isAppPaused = true
     }
     
  
@@ -90,6 +81,16 @@ public class CausualFoundry {
         CFLogAppEventBuilder().setAppEvent(appAction: .background)
             .setStartTime(start_time:0)
             .build()
+        
+        let pendingRequests = BGTaskScheduler.shared.getPendingTaskRequests { (requests) in
+            for request in requests {
+                if request.identifier == WorkerCaller().backgroundTaskIdentifier {
+                    print("Task \(request.identifier) is registered.")
+                    // You can perform additional checks or actions here if needed.
+                }
+            }
+        }
+        
       //  WorkerCaller.updateAppEvents(application: self.application!)
     }
     

@@ -12,28 +12,28 @@ public class WorkerCaller {
     // Method to update events at session end
    public var backgroundTaskIdentifier = "com.causalFoundry.updateAppEvents"
     
-    public static func registerBackgroundTask() {
-        
-        BGTaskScheduler.shared.register(forTaskWithIdentifier:WorkerCaller().backgroundTaskIdentifier, using: nil) { task in
-           self.handleBackgroundTask(task: task as! BGProcessingTask)
-        }
-        
-        let request = BGProcessingTaskRequest(identifier: WorkerCaller().backgroundTaskIdentifier)
-        request.requiresNetworkConnectivity = true // Set as needed
-        request.requiresExternalPower = false // Set as needed
-        if #available(iOS 15, *) {
-            request.earliestBeginDate = .now
-        } else {
-            // Fallback on earlier versions
+    
+    func scheduleBackgroundTask() {
+            // Register the background task
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: WorkerCaller().backgroundTaskIdentifier, using: nil) { task in
+                // Perform the upload task
+            WorkerCaller.handleBackgroundTask(task: task as! BGProcessingTask)
         }
 
-        do {
-            try BGTaskScheduler.shared.submit(request)
-        } catch {
-            print("Unable to schedule background task: \(error)")
-        }
-    }
+            // Create and schedule the background task request
+            let request = BGProcessingTaskRequest(identifier: WorkerCaller().backgroundTaskIdentifier)
+            request.requiresNetworkConnectivity = true // Set as needed
+            request.requiresExternalPower = false // Set as needed
 
+            do {
+                try BGTaskScheduler.shared.submit(request)
+            } catch {
+                print("Unable to schedule background task: \(error)")
+            }
+        }
+    
+    
+   
     public static func handleBackgroundTask(task: BGProcessingTask) {
         self.performAPICalls()
         task.setTaskCompleted(success: true)
