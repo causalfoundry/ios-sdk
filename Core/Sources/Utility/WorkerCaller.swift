@@ -21,6 +21,11 @@ public class WorkerCaller {
         let request = BGProcessingTaskRequest(identifier: WorkerCaller().backgroundTaskIdentifier)
         request.requiresNetworkConnectivity = true // Set as needed
         request.requiresExternalPower = false // Set as needed
+        if #available(iOS 15, *) {
+            request.earliestBeginDate = .now
+        } else {
+            // Fallback on earlier versions
+        }
 
         do {
             try BGTaskScheduler.shared.submit(request)
