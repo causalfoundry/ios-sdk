@@ -386,9 +386,23 @@ extension CoreDataHelper {
         fetchRequest.predicate = filterPredicate
         do {
             let fetchedObjects = try context.fetch(fetchRequest)
+            if fetchedObjects.count > 0 {
+               
+                fetchedObjects.first?.setValue(data, forKey:"catalog")
+            }else {
+                let managedContext = context
+
+                let entity = NSEntityDescription.entity(forEntityName: TableName.catalogEvents.rawValue, in: managedContext)!
+                let managedObject = NSManagedObject(entity: entity, insertInto: managedContext)
+                
+                // Set properties of the Core Data entity based on ExceptionDataObject properties
+                
+                managedObject.setValue(subject, forKey: "subject")
+                managedObject.setValue(data, forKey:"catalog")
+                
+            }
             
-            fetchedObjects.first?.setValue(subject, forKey:"subject")
-            fetchedObjects.first?.setValue(data, forKey:"catalog")
+            
             
             // 3. Save the managed object context to persist the changes
             try context.save()
