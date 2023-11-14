@@ -17,6 +17,16 @@ public class WorkerCaller {
         BGTaskScheduler.shared.register(forTaskWithIdentifier:WorkerCaller().backgroundTaskIdentifier, using: nil) { task in
            self.handleBackgroundTask(task: task as! BGProcessingTask)
         }
+        
+        let request = BGProcessingTaskRequest(identifier: WorkerCaller().backgroundTaskIdentifier)
+        request.requiresNetworkConnectivity = true // Set as needed
+        request.requiresExternalPower = false // Set as needed
+
+        do {
+            try BGTaskScheduler.shared.submit(request)
+        } catch {
+            print("Unable to schedule background task: \(error)")
+        }
     }
 
     public static func handleBackgroundTask(task: BGProcessingTask) {
