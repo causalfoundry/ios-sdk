@@ -15,7 +15,7 @@ struct MediaObject:Codable {
     var time:String?
     var meta:Encodable?
     
-    init(id: String, type: String? = nil, action: String? = nil, time: String? = nil, meta: Encodable? = nil) {
+    init(id: String? = nil, type: String? = nil, action: String? = nil, time: String? = nil, meta: Encodable? = nil) {
         self.id = id
         self.type = type
         self.action = action
