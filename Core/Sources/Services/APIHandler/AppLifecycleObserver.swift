@@ -48,7 +48,7 @@ public class CausualFoundry {
         if !isBackgroundFetchEnabled {
             showBAckgroudTaskEnableNotification()
         }else {
-            WorkerCaller.registerBackgroundTask()
+            WorkerCaller().scheduleBackgroundTask()
         }
       
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
