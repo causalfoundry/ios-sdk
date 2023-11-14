@@ -54,7 +54,7 @@ struct ExceptionDataObject : Codable {
 class ExceptionAPIHandler {
     func exceptionTrackAPI(exceptionObject: ExceptionDataObject, updateImmediately: Bool) {
         if !CoreConstants.shared.pauseSDK {
-            if updateImmediately  == false {
+            if updateImmediately  == true {
                 self.updateExceptionEvents(eventArray: [exceptionObject])
             } else {
                 storeEventTrack(event: exceptionObject)
