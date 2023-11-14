@@ -63,7 +63,7 @@ public class CFSetup:NSObject, IngestProtocol {
     
     
     
-    public func updateCatalogItem(subject: CatalogSubject, catalogObject: Any?) {
+    public func updateCatalogItem(subject: CatalogSubject, catalogObject: Encodable) {
         if CoreConstants.shared.application != nil {
             catalogAPIHandler.updateCatalogItem(subject: subject, catalogObject: catalogObject)
         }
