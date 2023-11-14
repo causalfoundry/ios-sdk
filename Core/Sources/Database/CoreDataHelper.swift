@@ -395,16 +395,11 @@ extension CoreDataHelper {
                 let entity = NSEntityDescription.entity(forEntityName: TableName.catalogEvents.rawValue, in: managedContext)!
                 let managedObject = NSManagedObject(entity: entity, insertInto: managedContext)
                 
-                // Set properties of the Core Data entity based on ExceptionDataObject properties
                 
                 managedObject.setValue(subject, forKey: "subject")
                 managedObject.setValue(data, forKey:"catalog")
                 
             }
-            
-            
-            
-            // 3. Save the managed object context to persist the changes
             try context.save()
             
             
