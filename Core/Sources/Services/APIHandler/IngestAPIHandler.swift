@@ -40,7 +40,9 @@ public class IngestAPIHandler:NSObject {
             let eventObject = EventDataObject(content_block:contentBlock , online: isInternetAvailable, ts: "\(timezone)", event_type: eventType, event_properties: (trackProperties as! Encodable))
                     
                     if(updateImmediately) {
-                        self.updateEventTrack(eventArray:[eventObject])
+                        self.updateEventTrack(eventArray:[eventObject] ) { result in
+                            print(result)
+                        }
                     }else {
                         self.storeEventTrack(eventObject:eventObject)
                     }
@@ -54,7 +56,7 @@ public class IngestAPIHandler:NSObject {
             
     
     // Update Track Event
-    func updateEventTrack(eventArray:[EventDataObject], completion: @escaping CompletionHandler<Bool>) {
+    func updateEventTrack(eventArray:[EventDataObject], callback: @escaping (Bool) -> Void) {
         var userID:String = CoreConstants.shared.userId
         
         if (!CoreConstants.shared.isAnonymousUserAllowed) {
@@ -74,11 +76,11 @@ public class IngestAPIHandler:NSObject {
             }
             do {
                 try APIManager.shared.getAPIDetails(url:APIConstants.trackEvent , params: mainBody.dictionary, "POST", headers:nil, completion:{ (result) in
-                        completion(.success(true))
+                       callback(true)
                     
                 })
             }catch(let error){
-                completion(.success(false))
+                    callback(false)
             }
             
         }

@@ -415,6 +415,27 @@ extension CoreDataHelper {
         return  nil
     }
     
+    
+    func deleteDataEventLogs(){
+    // Create a fetch request to get all records from the entity
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.userEvents.rawValue)
+
+        do {
+            // Fetch all records
+            let records = try context.fetch(fetchRequest)
+
+            // Delete each record
+            for record in records {
+                context.delete(record)
+            }
+
+            // Save the changes
+            try context.save()
+        } catch {
+            print("Error deleting all records: \(error)")
+        }
+    }
+    
 }
 
 

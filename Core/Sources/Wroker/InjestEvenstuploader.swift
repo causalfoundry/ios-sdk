@@ -13,7 +13,9 @@ class InjestEvenstuploader {
         
         let events = CoreDataHelper.shared.readEvents()
         if events.count > 0  {
-            injestAPIHandler.updateEventTrack(eventArray: events)
+            injestAPIHandler.updateEventTrack(eventArray: events) { success in
+                CoreDataHelper.shared.deleteDataEventLogs()
+            }
         }else {
             print("No More Injest events")
         }
