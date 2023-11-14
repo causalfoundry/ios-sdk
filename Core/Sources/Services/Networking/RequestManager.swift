@@ -35,7 +35,7 @@ class RequestManager {
     }()
     
     
-    public func getDataFromServer(_ strParams : Any,_ strUrl :String, _ strMethod :String ,completionHandler:@escaping (_ success:Bool, _ data: NSDictionary?) -> Void){
+    public func getDataFromServer(_ strParams : Any,_ strUrl :String, _ strMethod :String ,completionHandler:@escaping (_ success:Bool, _ data: NSDictionary?,_ response:HTTPURLResponse) -> Void){
         
         let url = URL(string: strUrl)
         var request = URLRequest(url: url!,cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,timeoutInterval: 3.0 * 1000)
@@ -69,7 +69,7 @@ class RequestManager {
                             DispatchQueue.main.async {
                                // Show Error
                                 self.task.cancel()
-                                completionHandler(false, nil)
+                                completionHandler(false, nil, httpResponse)
                             }
                         }else{
                             guard let data = data else {
@@ -86,15 +86,15 @@ class RequestManager {
                                         print("Conversion failed")
                                         return
                                     }
-                                    completionHandler(true, dict)
+                                    completionHandler(true, dict,httpResponse)
                                 }
-                                completionHandler(false, nil)
+                                completionHandler(false, nil,httpResponse)
                             }else {
                                 guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary else {
                                     print("Conversion failed")
                                     return
                                 }
-                                completionHandler(true, json)
+                                completionHandler(true, json,httpResponse)
                             }
                         }
                     }
@@ -106,7 +106,7 @@ class RequestManager {
 //            }
             catch let error as NSError {
                 print(error.debugDescription)
-                completionHandler(false, nil)
+                completionHandler(false, nil,response as! HTTPURLResponse)
             }
         });
         task.resume()

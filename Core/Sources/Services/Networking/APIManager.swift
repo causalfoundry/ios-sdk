@@ -17,12 +17,15 @@ final class APIManager:NSObject {
         
         let headersData = ["Authorization":CoreConstants.shared.sdkKey]
         
-        RequestManager.sharedManager.getDataFromServer(params, url, "POST") { success, data in
-            var data = [String:Any]()
+        RequestManager.sharedManager.getDataFromServer(params, url, "POST") { success, data, response in
             
-            completion(data)
-            
-        }
+            if success {
+                completion(data as! [String : Any])
+            }else {
+                ExceptionManager.throwAPIFailException(apiName:url, response: response, responseBody: nil)
+                completion(nil)
+            }
+          }
     }
     
     

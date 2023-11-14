@@ -12,6 +12,15 @@ import UIKit
 
 public class IngestAPIHandler:NSObject {
     
+    enum Result<T, E: Error> {
+        case success(T)
+        case failure(E)
+    }
+    
+    
+    
+    typealias CompletionHandler<T> = (Result<T, Error>) -> Void
+    
     static let shared = IngestAPIHandler()
     let reachability = try! Reachability()
     
@@ -45,7 +54,7 @@ public class IngestAPIHandler:NSObject {
             
     
     // Update Track Event
-    func updateEventTrack(eventArray:[EventDataObject]) {
+    func updateEventTrack(eventArray:[EventDataObject], completion: @escaping CompletionHandler<Bool>) {
         var userID:String = CoreConstants.shared.userId
         
         if (!CoreConstants.shared.isAnonymousUserAllowed) {
@@ -65,11 +74,11 @@ public class IngestAPIHandler:NSObject {
             }
             do {
                 try APIManager.shared.getAPIDetails(url:APIConstants.trackEvent , params: mainBody.dictionary, "POST", headers:nil, completion:{ (result) in
-                   
+                        completion(.success(true))
                     
                 })
-            } catch {
-                
+            }catch(let error){
+                completion(.success(false))
             }
             
         }
