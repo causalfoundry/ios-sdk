@@ -400,7 +400,7 @@ extension CoreDataHelper {
     }
     
     func readCataLogData(subject:String) -> Data? {
-        var data:Data?
+        var data:Data = Data()
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.catalogEvents.rawValue)
         let filterPredicate = NSPredicate(format: "subject == %@", subject)
         fetchRequest.predicate = filterPredicate
@@ -408,15 +408,12 @@ extension CoreDataHelper {
             let resultData = try context.fetch(fetchRequest)
             if resultData.count > 0 {
                 if let castedData = resultData.first!.value(forKey: "catalog") as? Data {
-                   
-                    data = castedData
+                   data = castedData
                 } else {
-                    data = nil
+                   
                 }
-                
-                
-            }else {
-                data = nil
+                }else {
+               
             }
             } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
