@@ -10,7 +10,7 @@ import UIKit
 
 public class WorkerCaller {
     // Method to update events at session end
-    var backgroundTaskIdentifier = "com.causalFoundry.updateAppEvents"
+   public var backgroundTaskIdentifier = "com.causalFoundry.updateAppEvents"
     
     public static func registerBackgroundTask() {
         

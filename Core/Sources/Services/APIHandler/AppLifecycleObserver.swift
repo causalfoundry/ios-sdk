@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import BackgroundTasks
 
 
 
@@ -59,16 +60,25 @@ public class CausualFoundry {
     }
     
     @objc func appWillEnterForeground() {
-        CoreConstants.shared.isAppOpen = true
         
-        if CoreConstants.shared.isAppPaused {
-            let currentTimeMillis = Date().timeIntervalSince1970 * 1000
-            CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
-            CFLogAppEventBuilder().setAppEvent(appAction:.resume)
-                .setStartTime(start_time:0)
-                .build()
+        let pendingRequests = BGTaskScheduler.shared.getPendingTaskRequests { (requests) in
+            for request in requests {
+                if request.identifier == WorkerCaller().backgroundTaskIdentifier {
+                    print("Task \(request.identifier) is registered.")
+                    // You can perform additional checks or actions here if needed.
+                }
+            }
         }
-        CoreConstants.shared.isAppPaused = true
+//        CoreConstants.shared.isAppOpen = true
+//        
+//        if CoreConstants.shared.isAppPaused {
+//            let currentTimeMillis = Date().timeIntervalSince1970 * 1000
+//            CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
+//            CFLogAppEventBuilder().setAppEvent(appAction:.resume)
+//                .setStartTime(start_time:0)
+//                .build()
+//        }
+//        CoreConstants.shared.isAppPaused = true
     }
     
  
