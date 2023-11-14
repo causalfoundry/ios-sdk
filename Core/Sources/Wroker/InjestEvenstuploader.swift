@@ -12,7 +12,12 @@ class InjestEvenstuploader {
         let injestAPIHandler  = IngestAPIHandler()
         
         let events = CoreDataHelper.shared.readEvents()
-        injestAPIHandler.updateEventTrack(eventArray: events)
+        if events.count > 0  {
+            injestAPIHandler.updateEventTrack(eventArray: events)
+        }else {
+            print("No More Injest events")
+        }
+       
         
     }
 }
@@ -24,7 +29,12 @@ class ExceptionEventsUploader {
         let exceptionManager  = ExceptionAPIHandler()
         
         let events = CoreDataHelper.shared.readExceptionsData()
-        exceptionManager.updateExceptionEvents(eventArray:events)
+        if events.count > 0 {
+            exceptionManager.updateExceptionEvents(eventArray:events)
+        }else {
+            print("No More Exception events")
+        }
+        
         
     }
 }

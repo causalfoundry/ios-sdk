@@ -335,7 +335,7 @@
             startingLineNumber = "62"
             endingLineNumber = "62"
             landmarkName = "appWillEnterForeground()"
-            landmarkType = "9">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -351,7 +351,7 @@
             startingLineNumber = "77"
             endingLineNumber = "77"
             landmarkName = "appDidEnterBackground()"
-            landmarkType = "9">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -399,22 +399,6 @@
             startingLineNumber = "84"
             endingLineNumber = "84"
             landmarkName = "storeEventTrack(eventObject:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "431187DD-D4EF-4C6F-988A-26A92E153A3C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Core/Sources/Wroker/InjestEvenstuploader.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
-            landmarkName = "uploadEvents()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -591,6 +575,22 @@
             startingLineNumber = "41"
             endingLineNumber = "41"
             landmarkName = "handleBackgroundTask(task:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A02544EF-3934-4B83-A728-399CC41E2F3F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Core/Sources/Utility/ExceptionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "exceptionTrackAPI(exceptionObject:updateImmediately:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
