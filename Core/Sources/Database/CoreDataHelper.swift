@@ -399,20 +399,30 @@ extension CoreDataHelper {
         }
     }
     
-    func readCataLogData(subject:String) -> Any? {
+    func readCataLogData(subject:String) -> Data? {
+        var data:Data?
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.catalogEvents.rawValue)
         let filterPredicate = NSPredicate(format: "subject == %@", subject)
         fetchRequest.predicate = filterPredicate
         do {
             let resultData = try context.fetch(fetchRequest)
-            return resultData.first?.value(forKey: "catalog")
-            
-            
-        } catch let error as NSError {
+            if resultData.count > 0 {
+                if let castedData = resultData.first!.value(forKey: "catalog") as? Data {
+                   
+                    data = castedData
+                } else {
+                    data = nil
+                }
+                
+                
+            }else {
+                data = nil
+            }
+            } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
             
         }
-        return  nil
+        return data
     }
     
     
