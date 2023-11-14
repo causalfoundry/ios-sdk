@@ -245,7 +245,7 @@ public class  CfLogMediaEventBuilder {
          * Will throw and exception if the mediaId provided is null or no value is
          * provided at all.
          */
-        if  self.media_id!.isNilOREmpty() {
+        if  self.media_id?.isNilOREmpty() == true {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_id")
         }
         /**
