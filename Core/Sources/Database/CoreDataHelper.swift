@@ -387,6 +387,7 @@ extension CoreDataHelper {
         do {
             let fetchedObjects = try context.fetch(fetchRequest)
             
+            fetchedObjects.first?.setValue(subject, forKey:"subject")
             fetchedObjects.first?.setValue(data, forKey:"catalog")
             
             // 3. Save the managed object context to persist the changes
