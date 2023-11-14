@@ -48,7 +48,7 @@ public class CausualFoundry {
         if !isBackgroundFetchEnabled {
             showBAckgroudTaskEnableNotification()
         }else {
-           
+            WorkerCaller().scheduleBackgroundTask()
         }
       
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
@@ -75,7 +75,6 @@ public class CausualFoundry {
  
     
     @objc func appDidEnterBackground() {
-        WorkerCaller().scheduleBackgroundTask()
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
         CoreConstants.shared.sessionEndTime = Int64(currentTimeMillis)
         

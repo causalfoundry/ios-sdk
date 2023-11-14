@@ -17,6 +17,7 @@ public class WorkerCaller {
             // Register the background task
         BGTaskScheduler.shared.register(forTaskWithIdentifier: WorkerCaller().backgroundTaskIdentifier, using: nil) { task in
                 // Perform the upload task
+            print("Background task handler called...")
             WorkerCaller.handleBackgroundTask(task: task as! BGProcessingTask)
         }
 
@@ -35,6 +36,7 @@ public class WorkerCaller {
     
    
     public static func handleBackgroundTask(task: BGProcessingTask) {
+        print("Handling background task...")
         self.performAPICalls()
         task.setTaskCompleted(success: true)
     }
