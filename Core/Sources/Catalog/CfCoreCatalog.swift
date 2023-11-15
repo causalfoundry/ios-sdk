@@ -71,7 +71,7 @@ public class CfCoreCatalog {
                 )
 
                 CoreDataHelper.shared.writeUserCatalog(userCataLogData:userCatalogModel)
-                CFSetup().updateCatalogItem(subject: CatalogSubject.user, catalogObject: internalUserModel.toData()!)
+                CFSetup().updateCatalogItem(subject: CatalogSubject.user, catalogObject: [internalUserModel].toData()!)
             }
         }
     }

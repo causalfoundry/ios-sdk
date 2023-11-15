@@ -388,8 +388,8 @@ extension CoreDataHelper {
         do {
             let fetchedObjects = try context.fetch(fetchRequest)
             if fetchedObjects.count > 0 {
-               
-                fetchedObjects.first?.setValue(data, forKey:"catalog")
+                var oldData = fetchedObjects.first?.value(forKey: "catalog")
+               // fetchedObjects.first?.setValue(data, forKey:"catalog")
             }else {
                 let entity = NSEntityDescription.entity(forEntityName: TableName.catalogEvents.rawValue, in: managedContext)!
                 let managedObject = NSManagedObject(entity: entity, insertInto: managedContext)

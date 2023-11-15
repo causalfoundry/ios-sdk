@@ -203,4 +203,18 @@ extension CoreDataHelper {
         return catalogEntity
     }
     
+    func getcatalogTypeData(data:Any,subject:CatalogSubject) {
+        do {
+//            let decoder = JSONDecoder()
+//            let person = try decoder.decode([].self, from: data)
+            
+            // Now 'person' is an instance of the 'Person' struct with values from the data
+//            print(person.name) // John Doe
+//            print(person.age)  // 30
+        } catch {
+            print("Error decoding data into Person: \(error)")
+        }
+        
+    }
+    
 }
