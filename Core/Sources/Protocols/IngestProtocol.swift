@@ -20,7 +20,7 @@ protocol IngestProtocol {
     func updateUserId(appUserId: String)
     
     func updateCatalogItem(subject: CatalogSubject,
-                           catalogObject: Encodable)
+                           catalogObject: Any)
     
     func track(contentBlockName: String,
                 eventType: String,

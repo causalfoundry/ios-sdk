@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct OxygenCatalogModel: Codable {
+public struct OxygenCatalogModel: Codable {
     var marketId: String?
     var packaging: String?
     var packagingSize: Float?
     var packagingUnits: String?
     var supplierId: String?
     var supplierName: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case marketId = "market_id"
         case packaging
@@ -24,17 +24,27 @@ struct OxygenCatalogModel: Codable {
         case supplierName = "supplier_name"
     }
     
-    // Encoding method
-    func encode() throws -> Data {
-        let encoder = JSONEncoder()
-        encoder.keyEncodingStrategy = .convertToSnakeCase
-        return try encoder.encode(self)
+    // MARK: - Codable methods
+    
+    // Custom encoding
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(marketId, forKey: .marketId)
+        try container.encodeIfPresent(packaging, forKey: .packaging)
+        try container.encodeIfPresent(packagingSize, forKey: .packagingSize)
+        try container.encodeIfPresent(packagingUnits, forKey: .packagingUnits)
+        try container.encodeIfPresent(supplierId, forKey: .supplierId)
+        try container.encodeIfPresent(supplierName, forKey: .supplierName)
     }
     
-    // Decoding method
-    static func decode(from data: Data) throws -> OxygenCatalogModel {
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        return try decoder.decode(OxygenCatalogModel.self, from: data)
+    // Custom decoding
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        marketId = try container.decodeIfPresent(String.self, forKey: .marketId)
+        packaging = try container.decodeIfPresent(String.self, forKey: .packaging)
+        packagingSize = try container.decodeIfPresent(Float.self, forKey: .packagingSize)
+        packagingUnits = try container.decodeIfPresent(String.self, forKey: .packagingUnits)
+        supplierId = try container.decodeIfPresent(String.self, forKey: .supplierId)
+        supplierName = try container.decodeIfPresent(String.self, forKey: .supplierName)
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MedicalEquipmentCatalogModel: Codable {
+public struct MedicalEquipmentCatalogModel: Codable {
     var name: String?
     var description: String?
     var marketId: String?
@@ -18,7 +18,7 @@ struct MedicalEquipmentCatalogModel: Codable {
     var packagingSize: Float?
     var packagingUnits: String?
     var category: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case name
         case description
@@ -32,17 +32,32 @@ struct MedicalEquipmentCatalogModel: Codable {
         case category
     }
     
-    // Encoding method
-    func encode() throws -> Data {
-        let encoder = JSONEncoder()
-        encoder.keyEncodingStrategy = .convertToSnakeCase
-        return try encoder.encode(self)
+   public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(description, forKey: .description)
+        try container.encodeIfPresent(marketId, forKey: .marketId)
+        try container.encodeIfPresent(supplierId, forKey: .supplierId)
+        try container.encodeIfPresent(supplierName, forKey: .supplierName)
+        try container.encodeIfPresent(producer, forKey: .producer)
+        try container.encodeIfPresent(packaging, forKey: .packaging)
+        try container.encodeIfPresent(packagingSize, forKey: .packagingSize)
+        try container.encodeIfPresent(packagingUnits, forKey: .packagingUnits)
+        try container.encodeIfPresent(category, forKey: .category)
     }
     
-    // Decoding method
-    static func decode(from data: Data) throws -> MedicalEquipmentCatalogModel {
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        return try decoder.decode(MedicalEquipmentCatalogModel.self, from: data)
+    // Custom decoding
+   public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decodeIfPresent(String.self, forKey: .name)
+        description = try container.decodeIfPresent(String.self, forKey: .description)
+        marketId = try container.decodeIfPresent(String.self, forKey: .marketId)
+        supplierId = try container.decodeIfPresent(String.self, forKey: .supplierId)
+        supplierName = try container.decodeIfPresent(String.self, forKey: .supplierName)
+        producer = try container.decodeIfPresent(String.self, forKey: .producer)
+        packaging = try container.decodeIfPresent(String.self, forKey: .packaging)
+        packagingSize = try container.decodeIfPresent(Float.self, forKey: .packagingSize)
+        packagingUnits = try container.decodeIfPresent(String.self, forKey: .packagingUnits)
+        category = try container.decodeIfPresent(String.self, forKey: .category)
     }
 }

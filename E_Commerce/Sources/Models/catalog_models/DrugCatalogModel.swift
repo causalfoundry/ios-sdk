@@ -37,7 +37,7 @@ public struct DrugCatalogModel: Codable {
         self.atcAnatomicalGroup = atcAnatomicalGroup
         self.otcOrEthical = otcOrEthical
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case name
         case marketId = "market_id"
@@ -53,17 +53,36 @@ public struct DrugCatalogModel: Codable {
         case otcOrEthical = "OTC_or_ethical"
     }
     
-    // Encoding method
-    public func encode() throws -> Data {
-        let encoder = JSONEncoder()
-        encoder.keyEncodingStrategy = .convertToSnakeCase
-        return try encoder.encode(self)
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(marketId, forKey: .marketId)
+        try container.encodeIfPresent(description, forKey: .description)
+        try container.encodeIfPresent(supplierId, forKey: .supplierId)
+        try container.encodeIfPresent(supplierName, forKey: .supplierName)
+        try container.encodeIfPresent(producer, forKey: .producer)
+        try container.encodeIfPresent(packaging, forKey: .packaging)
+        try container.encodeIfPresent(activeIngredients, forKey: .activeIngredients)
+        try container.encodeIfPresent(drugForm, forKey: .drugForm)
+        try container.encodeIfPresent(drugStrength, forKey: .drugStrength)
+        try container.encodeIfPresent(atcAnatomicalGroup, forKey: .atcAnatomicalGroup)
+        try container.encodeIfPresent(otcOrEthical, forKey: .otcOrEthical)
     }
     
-    // Decoding method
-    public func decode(from data: Data) throws -> DrugCatalogModel {
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        return try decoder.decode(DrugCatalogModel.self, from: data)
+    // Custom decoding
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decodeIfPresent(String.self, forKey: .name)
+        marketId = try container.decodeIfPresent(String.self, forKey: .marketId)
+        description = try container.decodeIfPresent(String.self, forKey: .description)
+        supplierId = try container.decodeIfPresent(String.self, forKey: .supplierId)
+        supplierName = try container.decodeIfPresent(String.self, forKey: .supplierName)
+        producer = try container.decodeIfPresent(String.self, forKey: .producer)
+        packaging = try container.decodeIfPresent(String.self, forKey: .packaging)
+        activeIngredients = try container.decodeIfPresent([String].self, forKey: .activeIngredients)
+        drugForm = try container.decodeIfPresent(String.self, forKey: .drugForm)
+        drugStrength = try container.decodeIfPresent(String.self, forKey: .drugStrength)
+        atcAnatomicalGroup = try container.decodeIfPresent(String.self, forKey: .atcAnatomicalGroup)
+        otcOrEthical = try container.decodeIfPresent(String.self, forKey: .otcOrEthical)
     }
 }
