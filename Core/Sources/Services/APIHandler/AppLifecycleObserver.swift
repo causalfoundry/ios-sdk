@@ -81,17 +81,9 @@ public class CausualFoundry {
         CFLogAppEventBuilder().setAppEvent(appAction: .background)
             .setStartTime(start_time:0)
             .build()
-        
-        let pendingRequests = BGTaskScheduler.shared.getPendingTaskRequests { (requests) in
-            for request in requests {
-                if request.identifier == WorkerCaller().backgroundTaskIdentifier {
-                    print("Task \(request.identifier) is registered.")
-                    // You can perform additional checks or actions here if needed.
-                }
-            }
-        }
-        
-      //  WorkerCaller.updateAppEvents(application: self.application!)
+        WorkerCaller.performAPICalls()
+      
+       
     }
     
     

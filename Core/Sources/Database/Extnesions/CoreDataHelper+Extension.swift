@@ -203,7 +203,7 @@ extension CoreDataHelper {
         return catalogEntity
     }
     
-   public func getcatalogTypeData(newData:Data,oldData:Data,subject:CatalogSubject)-> Data?{
+   public func getcatalogTypeData(newData:Data,oldData:Data,subject:CatalogSubject)-> Data? {
         var newUpdatedData:Data?
         do {
             let decoder = JSONDecoder()
