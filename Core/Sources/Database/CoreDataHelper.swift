@@ -396,7 +396,7 @@ extension CoreDataHelper {
                 let managedObject = NSManagedObject(entity: entity, insertInto: managedContext)
                 
                 
-                managedObject.setValue(subject, forKey: "subject")
+                managedObject.setValue(subject.rawValue, forKey: "subject")
                 managedObject.setValue(data, forKey:"catalog")
                 
             }
