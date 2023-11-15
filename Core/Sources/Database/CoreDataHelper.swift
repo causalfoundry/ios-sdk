@@ -380,7 +380,7 @@ extension CoreDataHelper {
         }
     }
     
-    func writeCatalogData(subject:String,data:Any) {
+    func writeCatalogData(subject:String,data:Data?) {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.catalogEvents.rawValue)
         let filterPredicate = NSPredicate(format: "subject == %@", subject)
         fetchRequest.predicate = filterPredicate
@@ -453,11 +453,12 @@ extension CoreDataHelper {
         }
     }
     
+   
 }
 
 
 extension Encodable {
-    func toData(using encoder: JSONEncoder = JSONEncoder()) -> Data? {
+    public func toData(using encoder: JSONEncoder = JSONEncoder()) -> Data? {
         do {
             return try encoder.encode(self)
         } catch {

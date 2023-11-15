@@ -51,7 +51,7 @@ class CfEComCatalog {
         
         func updateDrugCatalog(drugId: String, drugCatalogModel: DrugCatalogModel) {
             let drugInternalCatalog = ECommerceConstants.verifyCatalogForDrug(drugId: drugId, drugCatalogModel: drugCatalogModel)
-            CFSetup().updateCatalogItem(subject: .drug, catalogObject: drugInternalCatalog)
+            CFSetup().updateCatalogItem(subject: .drug, catalogObject: drugInternalCatalog.toData()!)
         }
         
         // Grocery Catalog
@@ -63,7 +63,7 @@ class CfEComCatalog {
         
         func updateGroceryCatalog(itemId: String, groceryCatalogModel: GroceryCatalogModel) {
             let groceryInternalCatalog = ECommerceConstants.verifyCatalogForGrocery(itemId: itemId, groceryCatalogModel: groceryCatalogModel)
-            CFSetup().updateCatalogItem(subject: .grocery, catalogObject: groceryInternalCatalog)
+            CFSetup().updateCatalogItem(subject: .grocery, catalogObject: groceryInternalCatalog.toData()!)
         }
         
         // Blood Catalog
@@ -75,7 +75,7 @@ class CfEComCatalog {
         
         func updateBloodCatalog(itemId: String, bloodCatalogModel: BloodCatalogModel) {
             let bloodInternalCatalog = ECommerceConstants.verifyCatalogForBlood(itemId: itemId, bloodCatalogModel: bloodCatalogModel)
-            CFSetup().updateCatalogItem(subject: .blood, catalogObject: bloodInternalCatalog)
+            CFSetup().updateCatalogItem(subject: .blood, catalogObject: bloodInternalCatalog.toData()!)
         }
         
         // Oxygen Catalog
@@ -86,8 +86,8 @@ class CfEComCatalog {
         }
         
         func updateOxygenCatalog(itemId: String, oxygenCatalogModel: OxygenCatalogModel) {
-            let oxygenInternalCatalog = ECommerceConstants.verifyCatalogForOxygen
-            CFSetup().updateCatalogItem(subject: .oxygen, catalogObject: oxygenInternalCatalog)
+            let oxygenInternalCatalog = ECommerceConstants.verifyCatalogForOxygen(itemId: itemId, oxygenCatalogModel: oxygenCatalogModel)
+            CFSetup().updateCatalogItem(subject: .oxygen, catalogObject: oxygenInternalCatalog.toData()!)
         }
         
         // Medical Equipment Catalog
@@ -99,7 +99,7 @@ class CfEComCatalog {
         
         func updateMedicalEquipmentCatalog(itemId: String, medicalEquipmentCatalogModel: MedicalEquipmentCatalogModel) {
             let medicalInternalCatalog = ECommerceConstants.verifyCatalogForMedicalEquipment(itemId: itemId, medicalEquipmentCatalogModel: medicalEquipmentCatalogModel)
-            CFSetup().updateCatalogItem(subject: .medical_equipment, catalogObject: medicalInternalCatalog)
+            CFSetup().updateCatalogItem(subject: .medical_equipment, catalogObject: medicalInternalCatalog.toData()!)
         }
         
         // Facility Catalogd
@@ -111,7 +111,7 @@ class CfEComCatalog {
         
         func updateFacilityCatalog(facilityId: String, facilityCatalogModel: FacilityCatalogModel) {
             let facilityInternalCatalog = ECommerceConstants.verifyCatalogForFacility(facilityId: facilityId, facilityCatalogModel: facilityCatalogModel)
-            CFSetup().updateCatalogItem(subject: .facility, catalogObject: facilityInternalCatalog)
+            CFSetup().updateCatalogItem(subject: .facility, catalogObject: facilityInternalCatalog.toData()!)
         }
         
         
