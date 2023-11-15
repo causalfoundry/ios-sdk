@@ -381,6 +381,7 @@ extension CoreDataHelper {
     }
     
     func writeCatalogData(subject:String,data:Data?) {
+        let managedContext = context
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.catalogEvents.rawValue)
         let filterPredicate = NSPredicate(format: "subject == %@", subject)
         fetchRequest.predicate = filterPredicate
@@ -390,8 +391,6 @@ extension CoreDataHelper {
                
                 fetchedObjects.first?.setValue(data, forKey:"catalog")
             }else {
-                let managedContext = context
-
                 let entity = NSEntityDescription.entity(forEntityName: TableName.catalogEvents.rawValue, in: managedContext)!
                 let managedObject = NSManagedObject(entity: entity, insertInto: managedContext)
                 
@@ -400,7 +399,7 @@ extension CoreDataHelper {
                 managedObject.setValue(data, forKey:"catalog")
                 
             }
-            try context.save()
+            try managedContext.save()
             
             
         } catch let error as NSError {
