@@ -368,7 +368,7 @@ extension CoreDataHelper {
         let filterPredicate = NSPredicate(format: "subject == %@", subject.rawValue)
         fetchRequest.predicate = filterPredicate
         do {
-            let fetchedObjects = try context.fetch(fetchRequest)
+            let fetchedObjects = try managedContext.fetch(fetchRequest)
             if fetchedObjects.count > 0 {
                 var oldData = fetchedObjects.first?.value(forKey: "catalog")
                 var newData = self.getcatalogTypeData(newData:data, oldData: oldData as! Data, subject:subject)
