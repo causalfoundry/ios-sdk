@@ -380,16 +380,17 @@ extension CoreDataHelper {
         }
     }
     
-    func writeCatalogData(subject:String,data:Data?) {
+    func writeCatalogData(subject:CatalogSubject,data:Data) {
         let managedContext = context
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.catalogEvents.rawValue)
-        let filterPredicate = NSPredicate(format: "subject == %@", subject)
+        let filterPredicate = NSPredicate(format: "subject == %@", subject.rawValue)
         fetchRequest.predicate = filterPredicate
         do {
             let fetchedObjects = try context.fetch(fetchRequest)
             if fetchedObjects.count > 0 {
                 var oldData = fetchedObjects.first?.value(forKey: "catalog")
-               // fetchedObjects.first?.setValue(data, forKey:"catalog")
+                var newData = self.getcatalogTypeData(newData:data, oldData: oldData as! Data, subject:subject)
+                fetchedObjects.first?.setValue(newData, forKey:"catalog")
             }else {
                 let entity = NSEntityDescription.entity(forEntityName: TableName.catalogEvents.rawValue, in: managedContext)!
                 let managedObject = NSManagedObject(entity: entity, insertInto: managedContext)

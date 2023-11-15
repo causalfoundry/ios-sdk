@@ -203,18 +203,48 @@ extension CoreDataHelper {
         return catalogEntity
     }
     
-    func getcatalogTypeData(data:Any,subject:CatalogSubject) {
+   public func getcatalogTypeData(newData:Data,oldData:Data,subject:CatalogSubject)-> Data?{
+        var newUpdatedData:Data?
         do {
-//            let decoder = JSONDecoder()
-//            let person = try decoder.decode([].self, from: data)
-            
-            // Now 'person' is an instance of the 'Person' struct with values from the data
-//            print(person.name) // John Doe
-//            print(person.age)  // 30
+            let decoder = JSONDecoder()
+            switch subject {
+              
+            case .user:
+                break
+            case .media:
+                var catalogTableData = try decoder.decode([MediaCatalogModel].self, from:oldData)
+                var catalogNewData = try decoder.decode(MediaCatalogModel.self, from:newData)
+                catalogTableData.removeAll(where: {$0.name == catalogNewData.name})
+                catalogTableData.append(catalogNewData)
+                newUpdatedData = catalogTableData.toData()
+            case .chw:
+                break
+            case .chwsite:
+                break
+            case .patient:
+                break
+            case .drug:
+                break
+            case .grocery:
+                break
+            case .blood:
+                break
+            case .oxygen:
+                break
+            case .medical_equipment:
+                break
+            case .facility:
+                break
+            case .survey:
+                break
+            case .reward:
+                break
+            }
+        
         } catch {
             print("Error decoding data into Person: \(error)")
         }
-        
+        return newUpdatedData
     }
     
 }
