@@ -18,8 +18,8 @@ public struct MediaCatalogModel:Codable,Equatable {
     
     
     enum CodingKeys: String, CodingKey {
-        case name
-        case description
+        case name = "media_name"
+        case description = "media_description"
         case length
         case resolution
         case language

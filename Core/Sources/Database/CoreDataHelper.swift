@@ -322,25 +322,7 @@ extension CoreDataHelper {
         }
     }
     
-    
-    func writeMediaCatalog(mediaCatalogData:MediaCatalogModel) {
-        let managedContext = context
-        
-        let existingEntity = NSEntityDescription.entity(forEntityName: TableName.mediaCatalog.rawValue, in: managedContext)
-        let managedObject = NSManagedObject(entity: existingEntity!, insertInto: managedContext)
-        
-        // Set properties of the Core Data entity based on ExceptionDataObject properties
-        
-        // Add additional properties as needed
-        
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
-    
-    // Currency Data
+// Currency Data
     func readCurrencyObject() -> CurrencyMainObject? {
         var currencyObject:CurrencyMainObject?
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.currency.rawValue)
