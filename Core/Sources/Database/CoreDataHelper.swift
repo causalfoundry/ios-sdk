@@ -372,15 +372,14 @@ extension CoreDataHelper {
             if fetchedObjects.count > 0 {
                 var oldData = fetchedObjects.first?.value(forKey: "catalog")
                 var newData = self.getcatalogTypeData(newData:data, oldData: oldData as! Data, subject:subject)
-                fetchedObjects.first?.setValue(newData, forKey:"catalog")
+                var managedObejct = fetchedObjects[0]
+                managedObejct.setValue(subject.rawValue, forKey:"subject")
+                managedObejct.setValue(newData, forKey:"catalog")
             }else {
                 let entity = NSEntityDescription.entity(forEntityName: TableName.catalogEvents.rawValue, in: managedContext)!
                 let managedObject = NSManagedObject(entity: entity, insertInto: managedContext)
-                
-                
                 managedObject.setValue(subject.rawValue, forKey: "subject")
                 managedObject.setValue(data, forKey:"catalog")
-                
             }
             try managedContext.save()
             
