@@ -332,10 +332,10 @@
             filePath = "Core/Sources/Utility/WorkerCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "WorkerCaller"
-            landmarkType = "3">
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "handleBackgroundTask(task:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -428,8 +428,8 @@
             filePath = "Core/Sources/Utility/WorkerCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "performAPICalls()"
             landmarkType = "7">
          </BreakpointContent>
@@ -444,8 +444,8 @@
             filePath = "Core/Sources/Utility/WorkerCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "performAPICalls()"
             landmarkType = "7">
          </BreakpointContent>
@@ -460,9 +460,9 @@
             filePath = "Core/Sources/Utility/WorkerCaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "performAPICalls()"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "handleBackgroundTask(task:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -559,6 +559,22 @@
             startingLineNumber = "87"
             endingLineNumber = "87"
             landmarkName = "updateExceptionEvents(eventArray:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "02D157F3-91F4-45AE-8132-3AAAD6407DBC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Core/Sources/Utility/WorkerCaller.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "scheduleBackgroundTask()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
