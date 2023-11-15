@@ -213,9 +213,9 @@ extension CoreDataHelper {
                 break
             case .media:
                 var catalogTableData = try decoder.decode([MediaCatalogModel].self, from:oldData)
-                var catalogNewData = try decoder.decode(MediaCatalogModel.self, from:newData)
-                catalogTableData.removeAll(where: {$0.name == catalogNewData.name})
-                catalogTableData.append(catalogNewData)
+                var catalogNewData = try decoder.decode([MediaCatalogModel].self, from:newData)
+                catalogTableData.removeAll(where: {$0.name == catalogNewData.first?.name})
+                catalogTableData.append(catalogNewData.first!)
                 newUpdatedData = catalogTableData.toData()
             case .chw:
                 break
