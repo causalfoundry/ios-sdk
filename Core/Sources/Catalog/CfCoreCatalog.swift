@@ -70,8 +70,7 @@ public class CfCoreCatalog {
                     organization_name: userCatalogModel.organization_name
                 )
 
-                CoreDataHelper.shared.writeUserCatalog(userCataLogData:userCatalogModel)
-                CFSetup().updateCatalogItem(subject: CatalogSubject.user, catalogObject: [internalUserModel].toData()!)
+               CFSetup().updateCoreCatalogItem(subject: CatalogSubject.user, catalogObject: [internalUserModel].toData()!)
             }
         }
     }

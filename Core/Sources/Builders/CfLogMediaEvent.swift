@@ -322,7 +322,7 @@ public class  CfLogMediaEventBuilder {
                                                     length: self.mediaModel_value?.length,
                                                     resolution: self.mediaModel_value?.resolution,
                                                     language:self.mediaModel_value?.language)
-        CFSetup().updateCatalogItem(subject: .media, catalogObject: [internalMediaModel].toData()!)
+        CFSetup().updateCoreCatalogItem(subject: .media, catalogObject: [internalMediaModel].toData()!)
     }
     
 }

@@ -54,7 +54,7 @@ enum ChwConstants {
         )
     }
 
-    static func verifySiteCatalog(_ siteId: String, _ chwSiteCatalogModel: ChwSiteCatalogModel) throws -> InternalSiteModel? {
+    static func verifySiteCatalog(_ siteId: String, _ chwSiteCatalogModel: ChwSiteCatalogModel) -> InternalSiteModel? {
         let catalogName = CatalogSubject.chwsite.rawValue + " catalog"
         
         guard !siteId.isEmpty else {
@@ -90,7 +90,7 @@ enum ChwConstants {
         
     }
 
-    static func verifyPatientCatalog(_ patientId: String, _ patientCatalogModel: PatientCatalogModel) throws -> InternalPatientModel? {
+    static func verifyPatientCatalog(_ patientId: String, _ patientCatalogModel: PatientCatalogModel)  -> InternalPatientModel? {
         let catalogName = CatalogSubject.patient.rawValue + " catalog"
 
         guard !patientId.isEmpty else {

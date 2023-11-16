@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 
 
+
 extension CoreDataHelper {
     
     func userEntity() -> NSEntityDescription {
@@ -96,63 +97,6 @@ extension CoreDataHelper {
         return currencyDataEntity
         
     }
-    func userCatalogEntity() -> NSEntityDescription{
-        // Create a UserCatalog Table
-        let userCatalogEntity = NSEntityDescription()
-        userCatalogEntity.name = TableName.userCatalog.rawValue
-        
-        // Create attributes
-        let attributedUserName = NSAttributeDescription()
-        attributedUserName.name = "name"
-        attributedUserName.attributeType = .stringAttributeType
-        
-        let attributedCountry = NSAttributeDescription()
-        attributedCountry.name = "country"
-        attributedCountry.attributeType = .stringAttributeType
-        
-        let attributedRegion = NSAttributeDescription()
-        attributedRegion.name = "region_state"
-        attributedRegion.attributeType = .stringAttributeType
-        
-        let attributedCity = NSAttributeDescription()
-        attributedCity.name = "city"
-        attributedCity.attributeType = .stringAttributeType
-        
-        let attributedWorkPlace = NSAttributeDescription()
-        attributedWorkPlace.name = "workplace"
-        attributedWorkPlace.attributeType = .stringAttributeType
-        
-        let attributedProfession = NSAttributeDescription()
-        attributedProfession.name = "profession"
-        attributedProfession.attributeType = .stringAttributeType
-        
-        let attributedZipCode = NSAttributeDescription()
-        attributedZipCode.name = "zipcode"
-        attributedZipCode.attributeType = .stringAttributeType
-        
-        let attributedLanguage = NSAttributeDescription()
-        attributedLanguage.name = "language"
-        attributedLanguage.attributeType = .stringAttributeType
-        
-        let attributedexperience = NSAttributeDescription()
-        attributedexperience.name = "experience"
-        attributedexperience.attributeType = .stringAttributeType
-        
-        let attributeEducation = NSAttributeDescription()
-        attributeEducation.name = "education_level"
-        attributeEducation.attributeType = .stringAttributeType
-        
-        let attributeOrganizationID = NSAttributeDescription()
-        attributeOrganizationID.name = "organization_id"
-        attributeOrganizationID.attributeType = .stringAttributeType
-        
-        let attributeOrganizationName = NSAttributeDescription()
-        attributeOrganizationName.name = "organization_name"
-        attributeOrganizationName.attributeType = .stringAttributeType
-        
-        userCatalogEntity.properties = [attributedUserName,attributedCountry,attributedRegion, attributedCity, attributedWorkPlace, attributedProfession, attributedZipCode, attributedLanguage,attributedexperience,attributeEducation, attributeOrganizationID, attributeOrganizationName ]
-        return userCatalogEntity
-    }
     
     func userEventsEntity() -> NSEntityDescription {
         
@@ -203,48 +147,22 @@ extension CoreDataHelper {
         return catalogEntity
     }
     
-   public func getcatalogTypeData(newData:Data,oldData:Data,subject:CatalogSubject)-> Data? {
+   public func getCorecatalogTypeData(newData:Data,oldData:Data,subject:CatalogSubject)-> Data? {
         var newUpdatedData:Data?
         do {
             let decoder = JSONDecoder()
-            switch subject {
-              
-            case .user:
-                break
-            case .media:
+            if subject == .user {
+                
+            }else if subject == .media {
                 var catalogTableData = try decoder.decode([MediaCatalogModel].self, from:oldData)
-                var catalogNewData = try decoder.decode([MediaCatalogModel].self, from:newData)
+                let catalogNewData = try decoder.decode([MediaCatalogModel].self, from:newData)
                 catalogTableData.removeAll(where: {$0.name == catalogNewData.first?.name})
                 catalogTableData.append(catalogNewData.first!)
                 newUpdatedData = catalogTableData.toData()
-            case .chw:
-                break
-            case .chwsite:
-                break
-            case .patient:
-                break
-            case .drug:
-                break
-            case .grocery:
-                break
-            case .blood:
-                break
-            case .oxygen:
-                break
-            case .medical_equipment:
-                break
-            case .facility:
-                break
-            case .survey:
-                break
-            case .reward:
-                break
             }
-        
         } catch {
             print("Error decoding data into Person: \(error)")
         }
         return newUpdatedData
     }
-    
 }

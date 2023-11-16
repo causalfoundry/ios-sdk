@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  PatientCatalogModel.swift
+//
 //
 //  Created by khushbu on 26/10/23.
 //
@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct PatientCatalogModel: Codable {
+public struct PatientCatalogModel: Codable {
     var country: String
     var regionState: String
     var city: String

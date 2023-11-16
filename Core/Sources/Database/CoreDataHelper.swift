@@ -57,7 +57,7 @@ public class CoreDataHelper {
     
     func createManagedObjectModel() -> NSManagedObjectModel {
         let managedObjectModel = NSManagedObjectModel()
-        managedObjectModel.entities = [self.userEntity(),self.exceptionEntity(),self.userCatalogEntity(),self.currencyEntity(),self.userEventsEntity(),self.catalogEntity()]
+        managedObjectModel.entities = [self.userEntity(),self.exceptionEntity(),self.currencyEntity(),self.userEventsEntity(),self.catalogEntity()]
         return managedObjectModel
     }
     
@@ -362,17 +362,17 @@ extension CoreDataHelper {
         }
     }
     
-    func writeCatalogData(subject:CatalogSubject,data:Data) {
+    func writeCoreCatalogData(subject:CatalogSubject,data:Data) {
         let managedContext = context
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.catalogEvents.rawValue)
         let filterPredicate = NSPredicate(format: "subject == %@", subject.rawValue)
         fetchRequest.predicate = filterPredicate
         do {
-            let fetchedObjects = try managedContext.fetch(fetchRequest)
+            let fetchedObjects = try context.fetch(fetchRequest)
             if fetchedObjects.count > 0 {
-                var oldData = fetchedObjects.first?.value(forKey: "catalog")
-                var newData = self.getcatalogTypeData(newData:data, oldData: oldData as! Data, subject:subject)
-                var managedObejct = fetchedObjects[0]
+                let oldData = fetchedObjects.first?.value(forKey: "catalog")
+                let newData = self.getCorecatalogTypeData(newData:data, oldData: oldData as! Data, subject:subject)
+                let managedObejct = fetchedObjects[0]
                 managedObejct.setValue(subject.rawValue, forKey:"subject")
                 managedObejct.setValue(newData, forKey:"catalog")
             }else {
@@ -380,7 +380,7 @@ extension CoreDataHelper {
                 let managedObject = NSManagedObject(entity: entity, insertInto: managedContext)
                 managedObject.setValue(subject.rawValue, forKey: "subject")
                 managedObject.setValue(data, forKey:"catalog")
-            }
+                }
             try managedContext.save()
             
             
@@ -390,7 +390,7 @@ extension CoreDataHelper {
         }
     }
     
-    func readCataLogData(subject:String) -> Data? {
+   public func readCataLogData(subject:String) -> Data? {
         var data:Data = Data()
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.catalogEvents.rawValue)
         let filterPredicate = NSPredicate(format: "subject == %@", subject)

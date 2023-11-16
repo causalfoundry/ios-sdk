@@ -11,18 +11,16 @@ import UIKit
 
 public class CatalogAPIHandler {
 
-    func updateCatalogItem(subject: CatalogSubject, catalogObject: Data) {
+   public  func updateCoreCatalogItem(subject: CatalogSubject, catalogObject: Data) {
         guard let prevCatalog = CoreDataHelper.shared.readCataLogData(subject:subject.rawValue) else { return }
-        CoreDataHelper.shared.writeCatalogData(subject: subject, data: catalogObject)
+        CoreDataHelper.shared.writeCoreCatalogData(subject: subject, data: catalogObject)
     }
-        
     
-
     private func updateCatalogArray(subject: CatalogSubject, catalogArray: [Any]) {
         
     }
 
-    func callCatalogAPI(catalogMainObject: [Any], catalogSubject: String, sdkToken: String) {
+    public func callCatalogAPI(catalogMainObject: [Any], catalogSubject: String, sdkToken: String) {
         _ = try? JSONSerialization.data(withJSONObject: catalogMainObject)
         try APIManager.shared.postUpdateCatelogEvents(url:APIConstants.updateCatalog , params: catalogMainObject, "POST", headers:["subject":catalogSubject], completion:{ (result) in
             print(result as Any)

@@ -13,8 +13,10 @@ import FileProvider
 
 
 public class CFSetup:NSObject, IngestProtocol {
+   
+    
     public var ingestApiHandler = IngestAPIHandler()
-    private var catalogAPIHandler = CatalogAPIHandler()
+    public var catalogAPIHandler = CatalogAPIHandler()
     private var userId: String = ""
     
     
@@ -59,14 +61,15 @@ public class CFSetup:NSObject, IngestProtocol {
         }
     }
     
-    
-    
-    public func updateCatalogItem(subject: CatalogSubject, catalogObject: Data) {
-        if CoreConstants.shared.application != nil {
-            catalogAPIHandler.updateCatalogItem(subject: subject, catalogObject: catalogObject)
-        }
+    public func updateCoreCatalogItem(subject: CatalogSubject, catalogObject: Data) {
+       if CoreConstants.shared.application != nil {
+           catalogAPIHandler.updateCoreCatalogItem(subject: subject, catalogObject: catalogObject)
+       }
+        
     }
     
+    
+   
     @discardableResult
     func getSDKAccessKey() -> String? {
         guard let fileURL = URL(string: "Info.plist", relativeTo: nil) else {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChwSiteCatalogModel: Codable {
+public struct ChwSiteCatalogModel: Codable {
     var name: String
     var country: String
     var regionState: String

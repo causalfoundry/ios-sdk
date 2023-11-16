@@ -7,9 +7,7 @@
 
 import Foundation
 
-
-
-struct ChwCatalogModel: Codable {
+public struct ChwCatalogModel: Codable {
     var name: String
     var role: String
     var isVolunteer: Bool
