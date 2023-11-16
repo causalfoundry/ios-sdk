@@ -21,4 +21,21 @@ public struct ChwSiteCatalogModel: Codable {
     var latitude: Float
     var longitude: Float
     var culture: String
+    
+    
+    init(name: String, country: String, regionState: String, city: String, zipcode: String, level: String, category: String, isActive: Bool, address: String, addressType: String, latitude: Float, longitude: Float, culture: String) {
+        self.name = name
+        self.country = country
+        self.regionState = regionState
+        self.city = city
+        self.zipcode = zipcode
+        self.level = level
+        self.category = category
+        self.isActive = isActive
+        self.address = address
+        self.addressType = addressType
+        self.latitude = latitude
+        self.longitude = longitude
+        self.culture = culture
+    }
 }
