@@ -23,7 +23,7 @@ public struct PatientCatalogModel: Codable {
     var phoneNumberCategory: String
     var programId: String
     
-    init(country: String, regionState: String, city: String, profession: String, educationLevel: String, siteIdsList: [String], nationalId: String, insuranceId: String, insuranceType: String, insuranceStatus: Bool, landmark: String, phoneNumberCategory: String, programId: String) {
+   public init(country: String, regionState: String, city: String, profession: String, educationLevel: String, siteIdsList: [String], nationalId: String, insuranceId: String, insuranceType: String, insuranceStatus: Bool, landmark: String, phoneNumberCategory: String, programId: String) {
         self.country = country
         self.regionState = regionState
         self.city = city
