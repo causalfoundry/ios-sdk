@@ -211,11 +211,15 @@ extension CoreDataHelper {
         do {
             let decoder = JSONDecoder()
             if subject == .user {
-                
+                var catalogTableData = try decoder.decode([InternalUserModel].self, from:oldData)
+                let catalogNewData = try decoder.decode([InternalUserModel].self, from:newData)
+                catalogTableData.removeAll(where: {$0.id == catalogNewData.first?.id})
+                catalogTableData.append(catalogNewData.first!)
+                newUpdatedData = catalogTableData.toData()
             }else if subject == .media {
-                var catalogTableData = try decoder.decode([MediaCatalogModel].self, from:oldData)
-                let catalogNewData = try decoder.decode([MediaCatalogModel].self, from:newData)
-                catalogTableData.removeAll(where: {$0.name == catalogNewData.first?.name})
+                var catalogTableData = try decoder.decode([InternalMediaModel].self, from:oldData)
+                let catalogNewData = try decoder.decode([InternalMediaModel].self, from:newData)
+                catalogTableData.removeAll(where: {$0.media_id == catalogNewData.first?.media_id})
                 catalogTableData.append(catalogNewData.first!)
                 newUpdatedData = catalogTableData.toData()
             }
