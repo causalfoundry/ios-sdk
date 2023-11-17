@@ -298,20 +298,52 @@ extension CoreDataHelper {
         
         let existingEntity = NSEntityDescription.entity(forEntityName: TableName.userCatalog.rawValue, in: managedContext)
         let managedObject = NSManagedObject(entity: existingEntity!, insertInto: managedContext)
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.userCatalog.rawValue)
+        let filterPredicate = NSPredicate(format: "name == %@", userCataLogData.name)
+        fetchRequest.predicate = filterPredicate
+        do {
+            let fetchedObjects = try context.fetch(fetchRequest)
+            if fetchedObjects.count > 0 {
+                let managedObejct = fetchedObjects[0]
+                managedObject.setValue(userCataLogData.name, forKey: "name")
+                managedObject.setValue(userCataLogData.country, forKey: "country")
+                managedObject.setValue(userCataLogData.region_state, forKey: "region_state")
+                managedObject.setValue(userCataLogData.city, forKey: "city")
+                managedObject.setValue(userCataLogData.workplace, forKey: "workplace")
+                managedObject.setValue(userCataLogData.profession, forKey: "profession")
+                managedObject.setValue(userCataLogData.zipcode, forKey: "zipcode")
+                managedObject.setValue(userCataLogData.language, forKey: "language")
+                managedObject.setValue(userCataLogData.experience, forKey: "experience")
+                managedObject.setValue(userCataLogData.education_level, forKey: "education_level")
+                managedObject.setValue(userCataLogData.organization_id, forKey: "organization_id")
+                managedObject.setValue(userCataLogData.organization_name, forKey: "organization_name")
+            }else {
+                managedObject.setValue(userCataLogData.name, forKey: "name")
+                managedObject.setValue(userCataLogData.country, forKey: "country")
+                managedObject.setValue(userCataLogData.region_state, forKey: "region_state")
+                managedObject.setValue(userCataLogData.city, forKey: "city")
+                managedObject.setValue(userCataLogData.workplace, forKey: "workplace")
+                managedObject.setValue(userCataLogData.profession, forKey: "profession")
+                managedObject.setValue(userCataLogData.zipcode, forKey: "zipcode")
+                managedObject.setValue(userCataLogData.language, forKey: "language")
+                managedObject.setValue(userCataLogData.experience, forKey: "experience")
+                managedObject.setValue(userCataLogData.education_level, forKey: "education_level")
+                managedObject.setValue(userCataLogData.organization_id, forKey: "organization_id")
+                managedObject.setValue(userCataLogData.organization_name, forKey: "organization_name")
+                }
+            try managedContext.save()
+            
+            
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            
+        }
+        
+        
+        
         
         // Set properties of the Core Data entity based on ExceptionDataObject properties
-        managedObject.setValue(userCataLogData.name, forKey: "name")
-        managedObject.setValue(userCataLogData.country, forKey: "country")
-        managedObject.setValue(userCataLogData.region_state, forKey: "region_state")
-        managedObject.setValue(userCataLogData.city, forKey: "city")
-        managedObject.setValue(userCataLogData.workplace, forKey: "workplace")
-        managedObject.setValue(userCataLogData.profession, forKey: "profession")
-        managedObject.setValue(userCataLogData.zipcode, forKey: "zipcode")
-        managedObject.setValue(userCataLogData.language, forKey: "language")
-        managedObject.setValue(userCataLogData.experience, forKey: "experience")
-        managedObject.setValue(userCataLogData.education_level, forKey: "education_level")
-        managedObject.setValue(userCataLogData.organization_id, forKey: "organization_id")
-        managedObject.setValue(userCataLogData.organization_name, forKey: "organization_name")
+       
         
         // Add additional properties as needed
         
