@@ -42,13 +42,13 @@ extension CoreDataHelper {
             }else if subject == .medical_equipment {
                 var catalogTableData = try decoder.decode([InternalMedicalEquipmentCatalogModel].self, from:oldData)
                 var catalogNewData = try decoder.decode([InternalMedicalEquipmentCatalogModel].self, from:newData)
-                catalogTableData.removeAll(where: {$0.name == catalogNewData.first?.name})
+                catalogTableData.removeAll(where: {$0.id == catalogNewData.first?.id})
                 catalogTableData.append(catalogNewData.first!)
                 newUpdatedData = catalogTableData.toData()
             }else if subject == .facility {
                 var catalogTableData = try decoder.decode([InternalFacilityCatalogModel].self, from:oldData)
                 var catalogNewData = try decoder.decode([InternalFacilityCatalogModel].self, from:newData)
-                catalogTableData.removeAll(where: {$0.name == catalogNewData.first?.name})
+                catalogTableData.removeAll(where: {$0.id == catalogNewData.first?.id})
                 catalogTableData.append(catalogNewData.first!)
                 newUpdatedData = catalogTableData.toData()
             }
