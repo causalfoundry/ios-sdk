@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BloodCatalogModel: Codable {
+public struct BloodCatalogModel: Codable {
     var marketId: String?
     var bloodComponent: String?
     var bloodGroup: String?
