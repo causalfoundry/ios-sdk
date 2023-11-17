@@ -297,14 +297,14 @@ extension CoreDataHelper {
         let managedContext = context
         
         let existingEntity = NSEntityDescription.entity(forEntityName: TableName.userCatalog.rawValue, in: managedContext)
-        let managedObject = NSManagedObject(entity: existingEntity!, insertInto: managedContext)
+       
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.userCatalog.rawValue)
         let filterPredicate = NSPredicate(format: "name == %@", userCataLogData.name)
         fetchRequest.predicate = filterPredicate
         do {
             let fetchedObjects = try context.fetch(fetchRequest)
             if fetchedObjects.count > 0 {
-                let managedObejct = fetchedObjects[0]
+                var managedObject = fetchedObjects[0]
                 managedObject.setValue(userCataLogData.name, forKey: "name")
                 managedObject.setValue(userCataLogData.country, forKey: "country")
                 managedObject.setValue(userCataLogData.region_state, forKey: "region_state")
@@ -318,6 +318,7 @@ extension CoreDataHelper {
                 managedObject.setValue(userCataLogData.organization_id, forKey: "organization_id")
                 managedObject.setValue(userCataLogData.organization_name, forKey: "organization_name")
             }else {
+                let managedObject = NSManagedObject(entity: existingEntity!, insertInto: managedContext)
                 managedObject.setValue(userCataLogData.name, forKey: "name")
                 managedObject.setValue(userCataLogData.country, forKey: "country")
                 managedObject.setValue(userCataLogData.region_state, forKey: "region_state")
