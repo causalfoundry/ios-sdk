@@ -12,8 +12,7 @@ import UIKit
 public class CatalogAPIHandler {
 
    public  func updateCoreCatalogItem(subject: CatalogSubject, catalogObject: Data) {
-        guard let prevCatalog = CoreDataHelper.shared.readCataLogData(subject:subject.rawValue) else { return }
-        CoreDataHelper.shared.writeCoreCatalogData(subject: subject, data: catalogObject)
+       CoreDataHelper.shared.writeCoreCatalogData(subject: subject, data: catalogObject)
     }
     
     private func updateCatalogArray(subject: CatalogSubject, catalogArray: [Any]) {

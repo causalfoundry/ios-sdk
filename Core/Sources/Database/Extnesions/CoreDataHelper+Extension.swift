@@ -33,6 +33,65 @@ extension CoreDataHelper {
     
     
     
+    func userCatalogEntity() -> NSEntityDescription {
+        let userCatalogDataEntity = NSEntityDescription()
+        userCatalogDataEntity.name = TableName.userCatalog.rawValue // Set the entity name
+        
+        // Create attributes
+        
+        let attributeName = NSAttributeDescription()
+        attributeName.name = "name"
+        attributeName.attributeType = .stringAttributeType
+        
+        let attributeCountry = NSAttributeDescription()
+        attributeCountry.name = "country"
+        attributeCountry.attributeType = .stringAttributeType
+        
+        let attributeRegion = NSAttributeDescription()
+        attributeRegion.name = "region_state"
+        attributeRegion.attributeType = .stringAttributeType
+        
+        let attributeCity = NSAttributeDescription()
+        attributeCity.name = "city"
+        attributeCity.attributeType = .stringAttributeType
+        
+        let attribuetWorkplace = NSAttributeDescription()
+        attribuetWorkplace.name = "workplace"
+        attribuetWorkplace.attributeType = .stringAttributeType
+        
+        let attributeProfession = NSAttributeDescription()
+        attributeProfession.name = "profession"
+        attributeProfession.attributeType = .stringAttributeType
+        
+        let attributeZipCode = NSAttributeDescription()
+        attributeZipCode.name = "zipcode"
+        attributeZipCode.attributeType = .stringAttributeType
+        
+        let attributeLanguage = NSAttributeDescription()
+        attributeLanguage.name = "language"
+        attributeLanguage.attributeType = .stringAttributeType
+        
+        let attributEventExperience = NSAttributeDescription()
+        attributEventExperience.name = "experience"
+        attributEventExperience.attributeType = .stringAttributeType
+        
+        let attributEventEducationLevel = NSAttributeDescription()
+        attributEventEducationLevel.name = "education_level"
+        attributEventEducationLevel.attributeType = .stringAttributeType
+        
+        let attributEventOrganizationID = NSAttributeDescription()
+        attributEventOrganizationID.name = "organization_id"
+        attributEventOrganizationID.attributeType = .stringAttributeType
+        
+        let attributeOrganizationName = NSAttributeDescription()
+        attributeOrganizationName.name = "organization_name"
+        attributeOrganizationName.attributeType = .stringAttributeType
+        
+        userCatalogDataEntity.properties = [attributeName, attributeCountry,attributeRegion, attributeCity, attribuetWorkplace, attributeProfession, attributeZipCode, attributeLanguage,attributEventExperience,attributEventEducationLevel,attributEventOrganizationID,attributeOrganizationName]
+        return userCatalogDataEntity
+    }
+    
+    
     func exceptionEntity() -> NSEntityDescription {
         
         let exceptionDataEntity = NSEntityDescription()
@@ -147,7 +206,7 @@ extension CoreDataHelper {
         return catalogEntity
     }
     
-   public func getCorecatalogTypeData(newData:Data,oldData:Data,subject:CatalogSubject)-> Data? {
+    public func getCorecatalogTypeData(newData:Data,oldData:Data,subject:CatalogSubject)-> Data? {
         var newUpdatedData:Data?
         do {
             let decoder = JSONDecoder()
