@@ -16,7 +16,7 @@ public class CfEComCatalog {
         switch itemType {
         case ItemType.drug.rawValue:
             if let drugCatalogModel = catalogModel as? DrugCatalogModel {
-                CfEComCatalog().updateDrugCatalog(drugId: itemId, drugCatalogModel: drugCatalogModel)
+                CfEComCatalog.updateDrugCatalog(drugId: itemId, drugCatalogModel: drugCatalogModel)
             }
         case ItemType.blood.rawValue:
             if let bloodCatalogModel = catalogModel as? BloodCatalogModel {
@@ -44,13 +44,13 @@ public class CfEComCatalog {
         
     }
         // Drug Catalog
-        public func updateDrugCatalog(drugId: String, drugCatalogModel: String) {
+        public static func updateDrugCatalog(drugId: String, drugCatalogModel: String) {
             if let drugCatalogModel = try? JSONDecoder().decode(DrugCatalogModel.self, from: Data(drugCatalogModel.utf8)) {
                 updateDrugCatalog(drugId: drugId, drugCatalogModel: drugCatalogModel)
             }
         }
         
-        public func updateDrugCatalog(drugId: String, drugCatalogModel: DrugCatalogModel) {
+        public static func updateDrugCatalog(drugId: String, drugCatalogModel: DrugCatalogModel) {
             let drugInternalCatalog = ECommerceConstants.verifyCatalogForDrug(drugId: drugId, drugCatalogModel: drugCatalogModel)
             CFSetup().updateEcommerceCatalogItem(subject: .drug, catalogObject: [drugInternalCatalog].toData()!)
         }
@@ -114,9 +114,6 @@ public class CfEComCatalog {
             let facilityInternalCatalog = ECommerceConstants.verifyCatalogForFacility(facilityId: facilityId, facilityCatalogModel: facilityCatalogModel)
             CFSetup().updateEcommerceCatalogItem(subject: .facility, catalogObject: [facilityInternalCatalog].toData()!)
         }
-        
-        
-        
 }
     
 
