@@ -19,7 +19,7 @@ public class CfLoyaltyCatalog {
 
     public static func updateSurveyCatalog(surveyId: String, surveyCatalogModel: SurveyCatalogModel) {
         let surveyCatalogObject = LoyaltyConstants.verifyCatalogForSurvey(surveyId: surveyId, surveyCatalogModel: surveyCatalogModel)
-        CFSetup().updateLoyaltyCatalogItem(subject:.survey, catalogObject: surveyCatalogObject.toData()!)
+        CFSetup().updateLoyaltyCatalogItem(subject:.survey, catalogObject: [surveyCatalogObject].toData()!)
     }
 
     // MARK: - Reward Catalog
@@ -30,6 +30,6 @@ public class CfLoyaltyCatalog {
 
     public static func updateRewardCatalog(rewardId: String, rewardCatalogModel: RewardCatalogModel) {
         let rewardCatalogObject = LoyaltyConstants.verifyCatalogForReward(rewardId: rewardId, rewardCatalogModel: rewardCatalogModel)
-        CFSetup().updateLoyaltyCatalogItem(subject: .reward, catalogObject: rewardCatalogObject.toData()!)
+        CFSetup().updateLoyaltyCatalogItem(subject: .reward, catalogObject:[rewardCatalogObject].toData()!)
     }
 }

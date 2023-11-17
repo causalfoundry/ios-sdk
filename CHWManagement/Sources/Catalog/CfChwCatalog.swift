@@ -18,7 +18,7 @@ public class CfChwCatalog {
 
     public static func updateChwCatalog(chwId: String, chwCatalogModel: ChwCatalogModel) {
         let internalCatalog = ChwConstants.verifyChwCatalog(chwId, chwCatalogModel)
-        CFSetup().updateCHWMamnagementCatalogItem(subject: .chw, catalogObject: internalCatalog.toData()!)
+        CFSetup().updateCHWMamnagementCatalogItem(subject: .chw, catalogObject: [internalCatalog].toData()!)
     }
 
     // MARK: - CHW Site Catalog
@@ -29,7 +29,7 @@ public class CfChwCatalog {
 
     public static func updateChwSiteCatalog(siteId: String, chwSiteCatalogModel: ChwSiteCatalogModel) {
         let internalCatalog = ChwConstants.verifySiteCatalog(siteId, chwSiteCatalogModel)
-        CFSetup().updateCHWMamnagementCatalogItem(subject: .chwsite, catalogObject:internalCatalog.toData()!)
+        CFSetup().updateCHWMamnagementCatalogItem(subject: .chwsite, catalogObject:[internalCatalog].toData()!)
     }
 
     // MARK: - Patient Catalog
@@ -40,7 +40,7 @@ public class CfChwCatalog {
 
     public static func updatePatientCatalog(patientId: String, patientCatalogModel: PatientCatalogModel) {
         let internalCatalog = ChwConstants.verifyPatientCatalog(patientId, patientCatalogModel)
-        CFSetup().updateCHWMamnagementCatalogItem(subject: .patient, catalogObject: internalCatalog.toData()!)
+        CFSetup().updateCHWMamnagementCatalogItem(subject: .patient, catalogObject: [internalCatalog].toData()!)
     }
 }
 
