@@ -32,6 +32,18 @@ public struct MedicalEquipmentCatalogModel: Codable {
         case category
     }
     
+    public init(name: String? = nil, description: String? = nil, marketId: String? = nil, supplierId: String? = nil, supplierName: String? = nil, producer: String? = nil, packaging: String? = nil, packagingSize: Float? = nil, packagingUnits: String? = nil, category: String? = nil) {
+        self.name = name
+        self.description = description
+        self.marketId = marketId
+        self.supplierId = supplierId
+        self.supplierName = supplierName
+        self.producer = producer
+        self.packaging = packaging
+        self.packagingSize = packagingSize
+        self.packagingUnits = packagingUnits
+        self.category = category
+    }
    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(name, forKey: .name)
@@ -47,17 +59,17 @@ public struct MedicalEquipmentCatalogModel: Codable {
     }
     
     // Custom decoding
-   public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        name = try container.decodeIfPresent(String.self, forKey: .name)
-        description = try container.decodeIfPresent(String.self, forKey: .description)
-        marketId = try container.decodeIfPresent(String.self, forKey: .marketId)
-        supplierId = try container.decodeIfPresent(String.self, forKey: .supplierId)
-        supplierName = try container.decodeIfPresent(String.self, forKey: .supplierName)
-        producer = try container.decodeIfPresent(String.self, forKey: .producer)
-        packaging = try container.decodeIfPresent(String.self, forKey: .packaging)
-        packagingSize = try container.decodeIfPresent(Float.self, forKey: .packagingSize)
-        packagingUnits = try container.decodeIfPresent(String.self, forKey: .packagingUnits)
-        category = try container.decodeIfPresent(String.self, forKey: .category)
-    }
+//   public init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        name = try container.decodeIfPresent(String.self, forKey: .name)
+//        description = try container.decodeIfPresent(String.self, forKey: .description)
+//        marketId = try container.decodeIfPresent(String.self, forKey: .marketId)
+//        supplierId = try container.decodeIfPresent(String.self, forKey: .supplierId)
+//        supplierName = try container.decodeIfPresent(String.self, forKey: .supplierName)
+//        producer = try container.decodeIfPresent(String.self, forKey: .producer)
+//        packaging = try container.decodeIfPresent(String.self, forKey: .packaging)
+//        packagingSize = try container.decodeIfPresent(Float.self, forKey: .packagingSize)
+//        packagingUnits = try container.decodeIfPresent(String.self, forKey: .packagingUnits)
+//        category = try container.decodeIfPresent(String.self, forKey: .category)
+//    }
 }

@@ -24,6 +24,16 @@ public struct OxygenCatalogModel: Codable {
         case supplierName = "supplier_name"
     }
     
+    public init(marketId: String? = nil, packaging: String? = nil, packagingSize: Float? = nil, packagingUnits: String? = nil, supplierId: String? = nil, supplierName: String? = nil) {
+        self.marketId = marketId
+        self.packaging = packaging
+        self.packagingSize = packagingSize
+        self.packagingUnits = packagingUnits
+        self.supplierId = supplierId
+        self.supplierName = supplierName
+    }
+    
+    
     // MARK: - Codable methods
     
     // Custom encoding
