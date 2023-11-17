@@ -9,8 +9,8 @@ import Foundation
 import CasualFoundryCore
 
 
-class CfEComCatalog {
-    static func callCatalogAPI(itemId: String, itemType: String, catalogModel: Any) {
+public class CfEComCatalog {
+    public static func callCatalogAPI(itemId: String, itemType: String, catalogModel: Any) {
         let catalogName = "item catalog"
         
         switch itemType {

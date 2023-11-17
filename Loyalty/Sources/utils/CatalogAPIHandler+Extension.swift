@@ -15,3 +15,4 @@ extension CatalogAPIHandler {
         CoreDataHelper.shared.writeLoyaltyCatalogData(subject: subject, data: catalogObject)
     }
 }
+
