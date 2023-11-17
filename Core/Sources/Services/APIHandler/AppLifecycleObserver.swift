@@ -97,7 +97,6 @@ public class CausualFoundry {
             backgroundTask = UIBackgroundTaskIdentifier.invalid
     }
     
-    
     @objc func appDidBecomeActive() {
         
     }
@@ -106,8 +105,6 @@ public class CausualFoundry {
         
         
     }
-    
-    
     
     @objc func appWillTerminate() {
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
