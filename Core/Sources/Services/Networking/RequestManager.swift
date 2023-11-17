@@ -24,7 +24,7 @@ class RequestManager {
     var task:URLSessionDataTask!
     
     private var session: URLSession = {
-        let configuration = URLSessionConfiguration.default
+        let configuration = URLSessionConfiguration.background(withIdentifier: "com.causalFoundry.updateAppEvents")
         configuration.allowsCellularAccess = true
         configuration.httpShouldSetCookies = true
         configuration.httpShouldUsePipelining = true

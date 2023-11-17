@@ -12,6 +12,8 @@ import BackgroundTasks
 
 
 public class CausualFoundry {
+    var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
+
     
     var startTime:Int64?
     var previousStartTime:Int64?
@@ -81,9 +83,18 @@ public class CausualFoundry {
         CFLogAppEventBuilder().setAppEvent(appAction: .background)
             .setStartTime(start_time:0)
             .build()
-       
-      
-       
+        
+        backgroundTask = self.application!.beginBackgroundTask { [weak self] in
+            guard let self =  self else {return }
+            self.application!.endBackgroundTask(self.backgroundTask )
+            self.backgroundTask = UIBackgroundTaskIdentifier.invalid
+        }
+
+            WorkerCaller.performAPICalls()
+
+            // Ensure to end the background task when your work is done
+            self.application!.endBackgroundTask(backgroundTask)
+            backgroundTask = UIBackgroundTaskIdentifier.invalid
     }
     
     
