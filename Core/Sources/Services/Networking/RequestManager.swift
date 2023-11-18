@@ -123,7 +123,15 @@ class RequestManager:NSObject,URLSessionDelegate {
         //        task.suspend()
     }
     
-    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        
-    }
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+           // Notify the delegate about received data
+           delegate?.requestManager(self, didReceiveData: data)
+       }
+
+       func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+           // Notify the delegate about task completion or failure
+           if let error = error {
+               delegate?.requestManager(self, didFailWithError: error)
+           }
+       }
 }
