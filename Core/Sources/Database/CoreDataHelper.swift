@@ -219,7 +219,7 @@ extension CoreDataHelper {
                                                          online:(data.value(forKey:"online") as? Bool ??  false ) ,
                                                          ts: (data.value(forKey:"ts") as? String ?? "" ) ,
                                                          event_type: (data.value(forKey:"event_type") as? String ?? "" ) ,
-                                                         event_properties: (data.value(forKey:"event_properties") as? String ?? "" ) )
+                                                         event_properties: (data.value(forKey:"event_properties") as? Data ) )
                         return entityData
                     })
                 }else{
