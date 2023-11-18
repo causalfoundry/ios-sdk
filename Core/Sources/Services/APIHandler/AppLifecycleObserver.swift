@@ -31,6 +31,7 @@ public class CausualFoundry {
         NotificationCenter.default.addObserver(self, selector: #selector(appWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
     }
     
     public func configure(application:UIApplication) {
@@ -63,6 +64,7 @@ public class CausualFoundry {
     
     @objc func appWillEnterForeground() {
         CoreConstants.shared.isAppOpen = true
+        
         
         if CoreConstants.shared.isAppPaused {
             let currentTimeMillis = Date().timeIntervalSince1970 * 1000
