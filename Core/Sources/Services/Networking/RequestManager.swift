@@ -18,7 +18,7 @@ public class MyURLSessionDelegate: NSObject, URLSessionDelegate {
 class RequestManager {
     
     
-    weak var delegate: MyURLSessionDelegate?
+     var delegate: MyURLSessionDelegate?
     
     // Singleton instance
     static let shared = RequestManager()
