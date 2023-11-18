@@ -15,7 +15,7 @@ public class MyURLSessionDelegate: NSObject, URLSessionDelegate {
 
 
 
-class RequestManager {
+class RequestManager:NSObject,URLSessionDelegate{
     
     
      var delegate: MyURLSessionDelegate?
@@ -23,7 +23,7 @@ class RequestManager {
     // Singleton instance
     static let shared = RequestManager()
     
-    public init() {
+    public override init() {
        
     }
     
@@ -48,7 +48,7 @@ class RequestManager {
        
        
         //  configuration.urlCache = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
-        session = URLSession(configuration: configuration,delegate:delegate,delegateQueue:nil)
+        session = URLSession(configuration: configuration,delegate:self,delegateQueue:nil)
         
         
         let url = URL(string: strUrl)
@@ -126,15 +126,15 @@ class RequestManager {
         //        task.suspend()
     }
     
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-           // Notify the delegate about received data
-           //delegate?.requestManager(self, didReceiveData: data)
-       }
+    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+            // This method is called when all tasks have been completed for the background session.
+            // Perform any necessary cleanup or UI updates.
+            print("All tasks in the background session are complete.")
+        }
 
-       func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-           // Notify the delegate about task completion or failure
-           if let error = error {
-              // delegate?.requestManager(self, didFailWithError: error)
-           }
-       }
+        func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+            // This method is called when a task completes (both successfully or with an error).
+            // Handle task completion here.
+            print("Task completed with error: \(error?.localizedDescription ?? "No error")")
+        }
 }
