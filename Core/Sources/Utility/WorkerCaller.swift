@@ -47,16 +47,8 @@ public class WorkerCaller {
     public static  func performAPICalls() {
         Task {
             do {
-               let result1: () = try await InjestEvenstuploader.uploadEvents()
-             //  let result2: () = try await ExceptionEventsUploader.uploadEvents()
-                
-                
-                // Process the API responses
-                print("API Response 1: \(result1)")
-                //print("API Response 2: \(result2)")
-                
-                // Continue with any further processing...
-            } catch {
+              InjestEvenstuploader.uploadEvents()
+          } catch {
                 // Handle errors
                 print("Error: \(error)")
             }
