@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by khushbu on 09/10/23.
 //
@@ -37,15 +37,13 @@ struct MediaObject:Codable {
         type = try values.decodeIfPresent(String.self, forKey: .type)
         action = try values.decodeIfPresent(String.self, forKey: .action)
         time = try values.decodeIfPresent(String.self, forKey: .time)
-        
-        if let decodeMetaInt =  try values.decodeIfPresent(Int.self, forKey: .meta) {
-            meta = decodeMetaInt
-        }else if let decodeMetaString = try values.decodeIfPresent(String.self, forKey: .meta) {
-            meta = decodeMetaString
-        }else {
+        if let metaData = try values.decodeIfPresent(Data.self, forKey: .meta) {
+            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
+        } else {
             meta = nil
         }
-       
+        
+        
         
         
     }
@@ -58,17 +56,10 @@ struct MediaObject:Codable {
         try baseContainer.encode(self.type, forKey: .type)
         try baseContainer.encode(self.action, forKey: .action)
         try baseContainer.encode(self.time, forKey: .time)
-        
-        let dataEncoder = baseContainer.superEncoder(forKey: .meta)
-        
-        // Use the Encoder directly:
-        if let metaAsInt = self.meta as? Int {
-            try (metaAsInt).encode(to: dataEncoder)
-        }else if let metaAsString = self.meta as? String {
-            try (metaAsString).encode(to: dataEncoder)
-        }else if let metaAsDouble = self.meta as? Double {
-            try (metaAsDouble).encode(to: dataEncoder)
+        if let metaData = meta {
+            try baseContainer.encode(metaData, forKey: .meta)
         }
+        
         
     }
 }
