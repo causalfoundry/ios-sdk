@@ -9,22 +9,21 @@ import Foundation
 import UIKit
 
 
-protocol RequestManagerDelegate: AnyObject {
-    func requestManager(_ requestManager: RequestManager, didReceiveData data: Data)
-    func requestManager(_ requestManager: RequestManager, didFailWithError error: Error)
+class MyURLSessionDelegate: NSObject, URLSessionDelegate {
+    // Implement URLSessionDelegate methods as needed
 }
 
-class RequestManager:NSObject,URLSessionDelegate {
+
+
+class RequestManager {
     
     
-    weak var delegate: URLSessionDelegate?
+    weak var delegate: MyURLSessionDelegate?
     
     // Singleton instance
     static let shared = RequestManager()
     
-    private override init() {
-        super.init()
-       
+    public init() {
     }
     
     let POSTMETHOD = "POST"
@@ -45,10 +44,10 @@ class RequestManager:NSObject,URLSessionDelegate {
         configuration.httpShouldUsePipelining = true
         configuration.requestCachePolicy = .useProtocolCachePolicy
         configuration.timeoutIntervalForRequest = 60.0
-        RequestManager.shared.delegate = self
+     
        
         //  configuration.urlCache = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
-        session = URLSession(configuration: configuration,delegate:self,delegateQueue:nil)
+        session = URLSession(configuration: configuration,delegate:delegate,delegateQueue:nil)
         
         
         let url = URL(string: strUrl)
