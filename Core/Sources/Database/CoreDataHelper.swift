@@ -204,7 +204,21 @@ extension CoreDataHelper {
     }
     
     
-    /**
+    
+    func convertDataIntoEncodeable(contentBlock:String,resultData:Data) -> Encodable {
+        var convertedData:Encodable?
+        let decoder = JSONDecoder()
+        do {
+            if contentBlock == "core" {
+                convertedData =  try decoder.decode(IdentifyObject.self, from: resultData)
+            }
+        }catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            
+        }
+        return convertedData!
+    }
+/**
      * To read user events from DB, default is empty list
      */
     func readEvents() -> [EventDataObject] {
@@ -219,7 +233,7 @@ extension CoreDataHelper {
                                                          online:(data.value(forKey:"online") as? Bool ??  false ) ,
                                                          ts: (data.value(forKey:"ts") as? String ?? "" ) ,
                                                          event_type: (data.value(forKey:"event_type") as? String ?? "" ) ,
-                                                         event_properties: (String(data: data.value(forKey:"event_properties") as! Data, encoding: .utf8)! as NSString) as? Encodable)
+                                                         event_properties: self.convertDataIntoEncodeable(contentBlock: (data.value(forKey:"content_block") as? String ?? "" ), resultData:data.value(forKey:"event_properties") as! Data))
                         return entityData
                     })
                 }else{
