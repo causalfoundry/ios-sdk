@@ -17,7 +17,7 @@ final class APIManager:NSObject {
         
         let headersData = ["Authorization":CoreConstants.shared.sdkKey]
         
-        RequestManager.sharedManager.getDataFromServer(params, url, "POST") { success, data, response in
+        RequestManager.shared.getDataFromServer(params, url, "POST") { success, data, response in
             
             if success {
                 completion(data as! [String : Any])
@@ -35,7 +35,7 @@ final class APIManager:NSObject {
         if headers != nil {
             headersData.updateValue(headers!.values.first!, forKey: headers!.keys.first!)
         }
-        RequestManager.sharedManager.getDataFromServer(params, url, "POST") { success, data, response  in
+        RequestManager.shared.getDataFromServer(params, url, "POST") { success, data, response  in
             completion(data as! [String : Any])
             
         }
