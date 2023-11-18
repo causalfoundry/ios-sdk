@@ -30,7 +30,7 @@ class RequestManager:NSObject,URLSessionDelegate {
         configuration.httpShouldUsePipelining = true
         configuration.requestCachePolicy = .useProtocolCachePolicy
         configuration.timeoutIntervalForRequest = 60.0
-        configuration.urlCache = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
+      //  configuration.urlCache = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
         return  URLSession(configuration: configuration,delegate:RequestManager(),delegateQueue: nil)
     }()
     
