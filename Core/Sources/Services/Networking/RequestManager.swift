@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by khushbu on 03/10/23.
 //
@@ -8,34 +8,45 @@
 import Foundation
 import UIKit
 
+
+protocol RequestManagerDelegate: AnyObject {
+    func requestManager(_ requestManager: RequestManager, didReceiveData data: Data)
+    func requestManager(_ requestManager: RequestManager, didFailWithError error: Error)
+}
+
 class RequestManager:NSObject,URLSessionDelegate {
     
-    open class var sharedManager: RequestManager {
-        struct Static {
-            static let instance: RequestManager = RequestManager()
-        }
-        return Static.instance
-    }
     
+    weak var delegate: RequestManagerDelegate?
+    
+    // Singleton instance
+    static let shared = RequestManager()
+    
+    private override init() {
+        super.init()
+    }
     
     let POSTMETHOD = "POST"
     let GETMETHOD = "GET"
     
     var task:URLSessionDataTask!
+  
     
-    private var session: URLSession = {
+    private var session: URLSession?
+
+    
+    
+    public func getDataFromServer(_ strParams : Any,_ strUrl :String, _ strMethod :String ,completionHandler:@escaping (_ success:Bool, _ data: NSDictionary?,_ response:HTTPURLResponse) -> Void){
+        
         let configuration = URLSessionConfiguration.background(withIdentifier: "com.causalFoundry.updateAppEvents")
         configuration.allowsCellularAccess = true
         configuration.httpShouldSetCookies = true
         configuration.httpShouldUsePipelining = true
         configuration.requestCachePolicy = .useProtocolCachePolicy
         configuration.timeoutIntervalForRequest = 60.0
-      //  configuration.urlCache = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
-        return  URLSession(configuration: configuration)
-    }()
-    
-    
-    public func getDataFromServer(_ strParams : Any,_ strUrl :String, _ strMethod :String ,completionHandler:@escaping (_ success:Bool, _ data: NSDictionary?,_ response:HTTPURLResponse) -> Void){
+        //  configuration.urlCache = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
+        session = URLSession(configuration: configuration,delegate:self,delegateQueue:nil)
+        
         
         let url = URL(string: strUrl)
         var request = URLRequest(url: url!,cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,timeoutInterval: 3.0 * 1000)
@@ -46,7 +57,7 @@ class RequestManager:NSObject,URLSessionDelegate {
         
         if (strParams as AnyObject).count > 0 {
             guard let httpBody = try? JSONSerialization.data(withJSONObject: strParams, options: .prettyPrinted) else {
-               return
+                return
             }
             
             if strMethod == POSTMETHOD {
@@ -54,65 +65,65 @@ class RequestManager:NSObject,URLSessionDelegate {
             }
             //            request.httpBody = strParams.data(using: String.Encoding.utf8.rawValue);
         }
-        task = session.dataTask(with: request)
+        task = session!.dataTask(with: request)
         print(request);
-//        task = session.dataTask(with: request, completionHandler: {data, response, error in
-//            do {
-//                if error != nil {
-//                    if let dic  = error?.localizedDescription {
-//                        print(dic)
-//                       //  Show Error
-//                    }
-//                }else{
-//                    // Chnages related to Http response suggested by Shekhar due to unhandle 500 error form backend side
-//                    if let httpResponse = response as? HTTPURLResponse {
-//                        if httpResponse.statusCode != 200 {
-//                            DispatchQueue.main.async {
-//                               // Show Error
-//                                self.task.cancel()
-//                                completionHandler(false, nil, httpResponse)
-//                            }
-//                        }else{
-//                            guard let data = data else {
-//                                print(strParams)
-//                                print(request)
-//                                return
-//                            }
-//                            print("response", response as Any);
-//                            if let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as? NSArray {
-//                                for dictData in jsonResult {
-//                                    guard let dict = dictData as? NSDictionary else {
-//                                        print("Conversion failed")
-//                                        return
-//                                    }
-//                                    completionHandler(true, dict,httpResponse)
-//                                }
-//                                completionHandler(false, nil,httpResponse)
-//                            }else {
-//                                guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary else {
-//                                    print("Conversion failed")
-//                                    return
-//                                }
-//                                completionHandler(true, json,httpResponse)
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-////            catch let error as JSONError {
-////                print(error.rawValue)
-////                completionHandler(false, nil)
-////            }
-//            catch let error as NSError {
-//                print(error.debugDescription)
-//                completionHandler(false, nil,response as! HTTPURLResponse)
-//            }
-//        });
+        //        task = session.dataTask(with: request, completionHandler: {data, response, error in
+        //            do {
+        //                if error != nil {
+        //                    if let dic  = error?.localizedDescription {
+        //                        print(dic)
+        //                       //  Show Error
+        //                    }
+        //                }else{
+        //                    // Chnages related to Http response suggested by Shekhar due to unhandle 500 error form backend side
+        //                    if let httpResponse = response as? HTTPURLResponse {
+        //                        if httpResponse.statusCode != 200 {
+        //                            DispatchQueue.main.async {
+        //                               // Show Error
+        //                                self.task.cancel()
+        //                                completionHandler(false, nil, httpResponse)
+        //                            }
+        //                        }else{
+        //                            guard let data = data else {
+        //                                print(strParams)
+        //                                print(request)
+        //                                return
+        //                            }
+        //                            print("response", response as Any);
+        //                            if let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as? NSArray {
+        //                                for dictData in jsonResult {
+        //                                    guard let dict = dictData as? NSDictionary else {
+        //                                        print("Conversion failed")
+        //                                        return
+        //                                    }
+        //                                    completionHandler(true, dict,httpResponse)
+        //                                }
+        //                                completionHandler(false, nil,httpResponse)
+        //                            }else {
+        //                                guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary else {
+        //                                    print("Conversion failed")
+        //                                    return
+        //                                }
+        //                                completionHandler(true, json,httpResponse)
+        //                            }
+        //                        }
+        //                    }
+        //                }
+        //            }
+        ////            catch let error as JSONError {
+        ////                print(error.rawValue)
+        ////                completionHandler(false, nil)
+        ////            }
+        //            catch let error as NSError {
+        //                print(error.debugDescription)
+        //                completionHandler(false, nil,response as! HTTPURLResponse)
+        //            }
+        //        });
         task.resume()
         //        task.suspend()
     }
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-           
+        
     }
 }
