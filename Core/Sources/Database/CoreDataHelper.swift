@@ -203,14 +203,24 @@ extension CoreDataHelper {
         return ""
     }
     
-    
-    
-    func convertDataIntoEncodeable(contentBlock:String,resultData:Data) -> Encodable {
+    func convertDataIntoEncodeable(contentBlock:String,eventType:String,resultData:Data) -> Encodable {
         var convertedData:Encodable?
         let decoder = JSONDecoder()
         do {
             if contentBlock == "core" {
-                convertedData =  try decoder.decode(IdentifyObject.self, from: resultData)
+                if eventType == "identity" {
+                    convertedData =  try decoder.decode(IdentifyObject.self, from: resultData)
+                }else if eventType == "app" {
+                    convertedData =  try decoder.decode(AppObject.self, from: resultData)
+                }else if eventType == "media" {
+                    convertedData =  try decoder.decode(MediaObject.self, from: resultData)
+                }else if eventType == "page" {
+                    convertedData =  try decoder.decode(PageObject.self, from: resultData)
+                }else if eventType == "rate" {
+                    convertedData =  try decoder.decode(RateObject.self, from: resultData)
+                }else if eventType == "search" {
+                    convertedData =  try decoder.decode(SearchObject.self, from: resultData)
+                }
             }
         }catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")

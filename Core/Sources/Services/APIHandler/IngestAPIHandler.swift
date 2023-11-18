@@ -17,8 +17,6 @@ public class IngestAPIHandler:NSObject {
         case failure(E)
     }
     
-    
-    
     typealias CompletionHandler<T> = (Result<T, Error>) -> Void
     
     static let shared = IngestAPIHandler()

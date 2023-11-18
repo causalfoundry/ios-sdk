@@ -19,8 +19,6 @@ class InjestEvenstuploader {
         }else {
             print("No More Injest events")
         }
-       
-        
     }
 }
 
