@@ -24,6 +24,7 @@ class RequestManager:NSObject,URLSessionDelegate {
     
     private override init() {
         super.init()
+        RequestManager.shared.delegate = self
     }
     
     let POSTMETHOD = "POST"
@@ -44,6 +45,7 @@ class RequestManager:NSObject,URLSessionDelegate {
         configuration.httpShouldUsePipelining = true
         configuration.requestCachePolicy = .useProtocolCachePolicy
         configuration.timeoutIntervalForRequest = 60.0
+       
         //  configuration.urlCache = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
         session = URLSession(configuration: configuration,delegate:self,delegateQueue:nil)
         
