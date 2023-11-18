@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class MyURLSessionDelegate: NSObject, URLSessionDelegate {
+public class MyURLSessionDelegate: NSObject, URLSessionDelegate {
     // Implement URLSessionDelegate methods as needed
 }
 
@@ -24,6 +24,7 @@ class RequestManager {
     static let shared = RequestManager()
     
     public init() {
+       
     }
     
     let POSTMETHOD = "POST"
@@ -44,7 +45,7 @@ class RequestManager {
         configuration.httpShouldUsePipelining = true
         configuration.requestCachePolicy = .useProtocolCachePolicy
         configuration.timeoutIntervalForRequest = 60.0
-     
+       
        
         //  configuration.urlCache = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
         session = URLSession(configuration: configuration,delegate:delegate,delegateQueue:nil)

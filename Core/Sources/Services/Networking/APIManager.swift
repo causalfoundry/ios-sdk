@@ -16,7 +16,7 @@ final class APIManager:NSObject {
         // Check Internet is available or not
         
         let headersData = ["Authorization":CoreConstants.shared.sdkKey]
-        
+        RequestManager.shared.delegate = MyURLSessionDelegate()
         RequestManager.shared.getDataFromServer(params, url, "POST") { success, data, response in
             
             if success {
