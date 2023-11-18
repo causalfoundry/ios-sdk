@@ -243,7 +243,7 @@ extension CoreDataHelper {
                                                          online:(data.value(forKey:"online") as? Bool ??  false ) ,
                                                          ts: (data.value(forKey:"ts") as? String ?? "" ) ,
                                                          event_type: (data.value(forKey:"event_type") as? String ?? "" ) ,
-                                                         event_properties: self.convertDataIntoEncodeable(contentBlock: (data.value(forKey:"content_block") as? String ?? "" ), resultData:data.value(forKey:"event_properties") as! Data))
+                                                         event_properties: self.convertDataIntoEncodeable(contentBlock: (data.value(forKey:"content_block") as? String ?? "" ), eventType: (data.value(forKey:"event_type") as? String ?? "" ), resultData:data.value(forKey:"event_properties") as! Data))
                         return entityData
                     })
                 }else{
