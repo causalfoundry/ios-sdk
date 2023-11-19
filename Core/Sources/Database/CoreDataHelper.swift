@@ -203,7 +203,7 @@ extension CoreDataHelper {
         return ""
     }
     
-    func convertDataIntoEncodeable(contentBlock:String,eventType:String,resultData:Data) -> Encodable {
+    func convertDataIntoEncodeable(contentBlock:String,eventType:String,resultData:Data) -> Encodable? {
         var convertedData:Encodable?
         let decoder = JSONDecoder()
         do {
@@ -226,7 +226,7 @@ extension CoreDataHelper {
             print("Could not fetch. \(error), \(error.userInfo)")
             
         }
-        return convertedData!
+        return convertedData
     }
 /**
      * To read user events from DB, default is empty list
