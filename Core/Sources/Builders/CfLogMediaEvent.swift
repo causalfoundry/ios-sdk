@@ -290,7 +290,7 @@ public class  CfLogMediaEventBuilder {
         }else {
             
             
-            let mediaObject = MediaObject(id: self.media_id,type:media_type, action: self.media_action,time:"\(duration_value ?? 0)")
+            let mediaObject = MediaObject(id: self.media_id,type:media_type, action: self.media_action,time:"\(duration_value ?? 0)",meta: meta as? Encodable ?? "")
             
             if self.mediaModel_value != nil {
                 self.callCatalogAPI()

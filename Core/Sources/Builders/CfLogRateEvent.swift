@@ -160,7 +160,7 @@ public class CfLogRateEventBuilder {
             return
         }
         
-        let rateObject = RateObject(rate_value: rateValue, type: type, subject_id: subjectId, meta: meta as? Encodable)
+        let rateObject = RateObject(rate_value: rateValue, type: type, subject_id: subjectId, meta: meta as? Encodable ?? "")
         CFSetup().track(contentBlockName: contentBlock!, eventType: CoreEventType.rate.rawValue, logObject: rateObject,updateImmediately: updateImmediately)
     }
 }
