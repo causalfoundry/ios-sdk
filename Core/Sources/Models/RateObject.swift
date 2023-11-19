@@ -20,7 +20,7 @@ struct RateObject: Codable {
         case meta
     }
     
-    init(rate_value: Float, type: String, subject_id: String, meta: Encodable?) {
+    init(rate_value: Float, type: String, subject_id: String, meta: Encodable? = nil) {
         self.rate_value = rate_value
         self.type = type
         self.subject_id = subject_id
