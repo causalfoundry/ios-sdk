@@ -13,7 +13,7 @@ import BackgroundTasks
 
 public class CausualFoundry {
     var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
-
+    
     
     var startTime:Int64?
     var previousStartTime:Int64?
@@ -32,6 +32,8 @@ public class CausualFoundry {
         NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: UIViewController.showDetailTargetDidChangeNotification, object: nil)
+        
     }
     
     public func configure(application:UIApplication) {
@@ -48,12 +50,12 @@ public class CausualFoundry {
     @objc func appDidFinishLaunching() {
         // Register Background Task
         let isBackgroundFetchEnabled = self.application!.backgroundRefreshStatus == .available
-//        if !isBackgroundFetchEnabled {
-//            showBAckgroudTaskEnableNotification()
-//        }else {
-//            WorkerCaller().scheduleBackgroundTask()
-//        }
-      
+        //        if !isBackgroundFetchEnabled {
+        //            showBAckgroudTaskEnableNotification()
+        //        }else {
+        //            WorkerCaller().scheduleBackgroundTask()
+        //        }
+        
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
         CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
         
@@ -76,7 +78,7 @@ public class CausualFoundry {
         CoreConstants.shared.isAppPaused = true
     }
     
- 
+    
     
     @objc func appDidEnterBackground() {
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
@@ -91,12 +93,12 @@ public class CausualFoundry {
             self.application!.endBackgroundTask(self.backgroundTask )
             self.backgroundTask = UIBackgroundTaskIdentifier.invalid
         }
-
-            WorkerCaller.performAPICalls()
-
-            // Ensure to end the background task when your work is done
-            self.application!.endBackgroundTask(backgroundTask)
-            backgroundTask = UIBackgroundTaskIdentifier.invalid
+        
+        WorkerCaller.performAPICalls()
+        
+        // Ensure to end the background task when your work is done
+        self.application!.endBackgroundTask(backgroundTask)
+        backgroundTask = UIBackgroundTaskIdentifier.invalid
     }
     
     @objc func appDidBecomeActive() {
@@ -108,6 +110,7 @@ public class CausualFoundry {
         
     }
     
+    
     @objc func appWillTerminate() {
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
         CoreConstants.shared.sessionEndTime = Int64(currentTimeMillis)
@@ -116,9 +119,11 @@ public class CausualFoundry {
             .setStartTime(start_time:0)
             .build()
     }
+    
+    
+    
+    
 }
-
-
 
 extension CausualFoundry {
     func showBAckgroudTaskEnableNotification() {
@@ -139,4 +144,41 @@ extension CausualFoundry {
                    topViewController.present(alert, animated: true, completion: nil)
                }
     }
+    
+    
+    
+    static func swizzleViewDidDisappear() {
+        if self != UIViewController.self {
+            return
+        }
+        let _: () = {
+            let originalSelector = #selector(UIViewController.viewDidDisappear(_:))
+            let swizzledSelector = #selector(UIViewController.viewDidDisappearOverride(_:))
+            guard let originalMethod = class_getInstanceMethod(self, originalSelector),
+                  let swizzledMethod = class_getInstanceMethod(self, swizzledSelector) else { return }
+            method_exchangeImplementations(originalMethod, swizzledMethod)
+        }()
+    }
 }
+
+
+
+
+
+
+
+extension UIViewController {
+        /// View Controller Swizzle Method
+        @objc func viewDidDisappearOverride(_ animated: Bool) {
+
+        }
+        
+        @objc func viewDidAppearOverride(_ animated: Bool) {
+
+        }
+    
+    
+    }
+   
+    
+    
