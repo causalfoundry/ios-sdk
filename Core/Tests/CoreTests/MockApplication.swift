@@ -8,8 +8,7 @@
 import Foundation
 import UIKit
 
-class MockApplication: UIApplication {
-    
-    
-    
+class TestableUIApplication: UIApplication {
+    // Implement any custom behavior needed for testing
+    // ...
 }

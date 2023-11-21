@@ -11,8 +11,6 @@ public class CFLog {
     var updateImmediately :Bool = true
     var pauseSDK : Bool =  false
     
-    
-    
     init(application:UIApplication,applicationState: UIApplication.State? = nil, showInAppBudge: Bool, updateImmediately: Bool, pauseSDK: Bool) {
         self.application = application
         self.applicationState = applicationState

@@ -4,19 +4,16 @@ import UIKit
 @testable import CasualFoundryCore // Replace with your actual module name
 
 final class CFLogTests: XCTestCase {
-    var application: UIApplication?
-    
+   
     override func setUp() {
         super.setUp()
         // Initialize your application object if needed
-        application = MockApplication()
-        
-        
-}
-    
+       
+      
+
+    }
     override func tearDown() {
         // Clean up after each test
-        application = nil
         super.tearDown()
     }
     

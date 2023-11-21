@@ -13,17 +13,13 @@ import BackgroundTasks
 
 public class CausualFoundry {
     var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
-    
-    
     var startTime:Int64?
     var previousStartTime:Int64?
     var pageCreateTime:Int64? = 0
     var pageRenderTime:Int64? = 0
     var oldPageRenderTime:Int64 = 0
-    
-    
-    public static let shared = CausualFoundry()
-    var application:UIApplication?
+ 
+   
     public init() {
         NotificationCenter.default.addObserver(self, selector: #selector(appDidFinishLaunching), name: UIApplication.didFinishLaunchingNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -36,8 +32,9 @@ public class CausualFoundry {
         
     }
     
-    public func configure(application:UIApplication) {
-        self.application = application
+    public func configure() {
+        
+        
     }
     
     deinit {
@@ -82,16 +79,16 @@ public class CausualFoundry {
             .setStartTime(start_time:0)
             .build()
         
-        backgroundTask = self.application!.beginBackgroundTask { [weak self] in
+        backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
             guard let self =  self else {return }
-            self.application!.endBackgroundTask(self.backgroundTask )
+            UIApplication.shared.endBackgroundTask(self.backgroundTask )
             self.backgroundTask = UIBackgroundTaskIdentifier.invalid
         }
         
         WorkerCaller.performAPICalls()
         
         // Ensure to end the background task when your work is done
-        self.application!.endBackgroundTask(backgroundTask)
+        UIApplication.shared.endBackgroundTask(backgroundTask)
         backgroundTask = UIBackgroundTaskIdentifier.invalid
     }
     
