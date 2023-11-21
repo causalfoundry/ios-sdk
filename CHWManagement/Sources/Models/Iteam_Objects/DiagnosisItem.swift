@@ -9,9 +9,9 @@ import Foundation
 
 
 public struct DiagnosisItem: Codable {
-    var type: String
-    var value: String
-    var unit: String
+    var type: String?
+    var value: String?
+    var unit: String?
     var remarks: String?
 
     enum CodingKeys: String, CodingKey {

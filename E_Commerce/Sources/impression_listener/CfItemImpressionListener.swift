@@ -32,35 +32,35 @@ public class CfItemImpressionListener {
     
     class private func callCoreImpressionListenerTrackRecyclerView() {
 
-        let recyclerImpressionArray:[RecyclerImpressionModel] = currentDataProviderValue.map { itemImpression in
-            return RecyclerImpressionModel(
-                element_id: itemImpression.item_properties.id!,
-                content_block: ECommerceConstants.contentBlockName,
-                event_name: EComEventType.item.rawValue,
-                catalog_subject: itemImpression.item_properties.type!,
-                item_properties: ViewItemObject(
-                    action: ItemAction.impression.rawValue,
-                    item: itemImpression.item_properties,
-                    search_id: searchIdValue,
-                    usd_rate: usdRateValue,
-                    meta: nil
-                ),
-                catalog_properties: prepareCatalogObject(
-                    itemImpression.item_properties.id!,
-                    itemImpression.item_properties.type!,
-                    itemImpression.catalog_properties
-                )
-            )
-        }
+//        let recyclerImpressionArray:[RecyclerImpressionModel]? = currentDataProviderValue.map { itemImpression in
+//            return RecyclerImpressionModel(
+//                element_id: itemImpression.item_properties.id!,
+//                content_block: ECommerceConstants.contentBlockName,
+//                event_name: EComEventType.item.rawValue,
+//                catalog_subject: itemImpression.item_properties.type!,
+//                item_properties: ViewItemObject(
+//                    action: ItemAction.impression.rawValue,
+//                    item: itemImpression.item_properties,
+//                    search_id: searchIdValue,
+//                    usd_rate: usdRateValue,
+//                    meta: nil
+//                ),
+//                catalog_properties: prepareCatalogObject(
+//                    itemImpression.item_properties.id!,
+//                    itemImpression.item_properties.type!,
+//                    itemImpression.catalog_properties
+//                )
+//            )
+//        }
         
-                CfCoreImpressionListener.trackRecyclerView(
-                                    recyclerView: recyclerViewValue,
-                                    currentDataProvider: {
-                                        return recyclerImpressionModels
-                                    },
-                                    searchId: searchIdValue,
-                                    userData: nil
-                                )
+//                CfCoreImpressionListener.trackRecyclerView(
+//                                    recyclerView: recyclerViewValue,
+//                                    currentDataProvider: {
+//                                        return recyclerImpressionModels
+//                                    },
+//                                    searchId: searchIdValue,
+//                                    userData: nil
+//                                )
     }
     
     
@@ -160,26 +160,26 @@ public class CfItemImpressionListener {
     }
     
     class private func callCoreCollectionUpdated() {
-        let recyclerImpressionArray:[RecyclerImpressionModel]? = currentDataProviderValue.map { itemImpression in
-            return RecyclerImpressionModel(
-                element_id: itemImpression.item_properties.id!,
-                content_block: ECommerceConstants.contentBlockName,
-                event_name: EComEventType.item.rawValue,
-                catalog_subject: itemImpression.item_properties.type!,
-                item_properties: ViewItemObject(
-                    action: ItemAction.impression.rawValue,
-                    item: itemImpression.item_properties,
-                    search_id: searchIdValue,
-                    usd_rate: usdRateValue,
-                    meta: nil
-                ),
-                catalog_properties: prepareCatalogObject(
-                    itemImpression.item_properties.id!,
-                    itemImpression.item_properties.type!,
-                    itemImpression.catalog_properties
-                )
-            )
-        }
-        CfCoreImpressionListener.onCollectionUpdated(collectionView: nil, collectionViewKey: collectionViewId, searchId: searchIdValue, currentDataProvider: recyclerImpressionModels, userData: nil)
+//        let recyclerImpressionArray:[RecyclerImpressionModel]? = currentDataProviderValue.map { itemImpression in
+//            return RecyclerImpressionModel(
+//                element_id: itemImpression.item_properties.id!,
+//                content_block: ECommerceConstants.contentBlockName,
+//                event_name: EComEventType.item.rawValue,
+//                catalog_subject: itemImpression.item_properties.type!,
+//                item_properties: ViewItemObject(
+//                    action: ItemAction.impression.rawValue,
+//                    item: itemImpression.item_properties,
+//                    search_id: searchIdValue,
+//                    usd_rate: usdRateValue,
+//                    meta: nil
+//                ),
+//                catalog_properties: prepareCatalogObject(
+//                    itemImpression.item_properties.id!,
+//                    itemImpression.item_properties.type!,
+//                    itemImpression.catalog_properties
+//                )
+//            )
+//        }
+//        CfCoreImpressionListener.onCollectionUpdated(collectionView: nil, collectionViewKey: collectionViewId, searchId: searchIdValue, currentDataProvider: recyclerImpressionModels, userData: nil)
     }
 }

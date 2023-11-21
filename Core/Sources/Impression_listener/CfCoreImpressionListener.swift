@@ -52,22 +52,6 @@ struct CfCoreImpressionListener {
 //    // Implement other methods as needed
 //}
 //
-//// Example of using the SDK in Swift
-//class MyViewController: UIViewController {
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//        // Initialize the SDK
-//        CfCoreImpressionListener.initialize(application: UIApplication.shared)
-//        
-//        // Track a UITableView
-//        let tableView = UITableView()
-//        CfCoreImpressionListener.trackTableView(tableView: tableView, currentDataProvider: { () in
-//            return [] // Return your data provider here
-//        }, searchId: "12345")
-//    }
-//    
-//    // Other methods and properties of your view controller
 }
 
 

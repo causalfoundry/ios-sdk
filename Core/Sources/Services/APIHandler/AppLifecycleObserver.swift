@@ -49,13 +49,7 @@ public class CausualFoundry {
     
     @objc func appDidFinishLaunching() {
         // Register Background Task
-        let isBackgroundFetchEnabled = self.application!.backgroundRefreshStatus == .available
-        //        if !isBackgroundFetchEnabled {
-        //            showBAckgroudTaskEnableNotification()
-        //        }else {
-        //            WorkerCaller().scheduleBackgroundTask()
-        //        }
-        
+        UIViewController.swizzleViewDidAppear()
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
         CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
         
@@ -128,57 +122,27 @@ public class CausualFoundry {
 extension CausualFoundry {
     func showBAckgroudTaskEnableNotification() {
         let alert = UIAlertController(title: "Enable Background App Refresh", message: "To take full advantage of our app's features, please enable Background App Refresh in your device settings.", preferredStyle: .alert)
-    
-               let settingsAction = UIAlertAction(title: "Open Settings", style: .default) { (_) in
-                   if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
-                       UIApplication.shared.open(settingsURL)
-                   }
-               }
-
-               let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
-               alert.addAction(settingsAction)
-               alert.addAction(cancelAction)
-
-               if let topViewController = UIApplication.shared.keyWindow?.rootViewController {
-                   topViewController.present(alert, animated: true, completion: nil)
-               }
-    }
-    
-    
-    
-    static func swizzleViewDidDisappear() {
-        if self != UIViewController.self {
-            return
+        
+        let settingsAction = UIAlertAction(title: "Open Settings", style: .default) { (_) in
+            if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(settingsURL)
+            }
         }
-        let _: () = {
-            let originalSelector = #selector(UIViewController.viewDidDisappear(_:))
-            let swizzledSelector = #selector(UIViewController.viewDidDisappearOverride(_:))
-            guard let originalMethod = class_getInstanceMethod(self, originalSelector),
-                  let swizzledMethod = class_getInstanceMethod(self, swizzledSelector) else { return }
-            method_exchangeImplementations(originalMethod, swizzledMethod)
-        }()
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(settingsAction)
+        alert.addAction(cancelAction)
+        
+        if let topViewController = UIApplication.shared.keyWindow?.rootViewController {
+            topViewController.present(alert, animated: true, completion: nil)
+        }
     }
+    
 }
 
 
 
 
+// Call this in your AppDelegate or somewhere early in your app lifecycle
 
-
-
-extension UIViewController {
-        /// View Controller Swizzle Method
-        @objc func viewDidDisappearOverride(_ animated: Bool) {
-
-        }
-        
-        @objc func viewDidAppearOverride(_ animated: Bool) {
-
-        }
-    
-    
-    }
-   
-    
-    

@@ -13,6 +13,7 @@ public enum ChwMgmtEventType: String,CaseIterable {
     case lifestyle
     case investigation
     case treatmentPlan
+    case counseling
     case prescription
     case medicalReview
     case submitScreening
