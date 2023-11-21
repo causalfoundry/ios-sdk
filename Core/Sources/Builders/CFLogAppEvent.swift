@@ -121,7 +121,7 @@ public class CFLogAppEventBuilder {
             fatalError("action not found")
         }
         
-        let appObject = AppObject(action:self.action!, startTime:"\(self.startTimeValue)", meta:(meta as? String) ?? "" )
+        let appObject = AppObject(action:self.action!, startTime:(self.startTimeValue), meta:(meta as? String) ?? "" )
         
         if CoreConstants.shared.application != nil {
             IngestAPIHandler.shared.ingestTrackAPI(contentBlock: CoreConstants.shared.contentBlockName,eventType: CoreEventType.app.rawValue, trackProperties:appObject, updateImmediately: update_immediately,eventTime: eventTimeValue)
