@@ -13,13 +13,17 @@ import BackgroundTasks
 
 public class CausualFoundry {
     var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
+    
+    
     var startTime:Int64?
     var previousStartTime:Int64?
     var pageCreateTime:Int64? = 0
     var pageRenderTime:Int64? = 0
     var oldPageRenderTime:Int64 = 0
- 
-   
+    
+    
+    public static let shared = CausualFoundry()
+    var application:UIApplication?
     public init() {
         NotificationCenter.default.addObserver(self, selector: #selector(appDidFinishLaunching), name: UIApplication.didFinishLaunchingNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -32,9 +36,8 @@ public class CausualFoundry {
         
     }
     
-    public static  func configure() {
-        
-        
+    public func configure(application:UIApplication) {
+        self.application = application
     }
     
     deinit {
@@ -47,6 +50,13 @@ public class CausualFoundry {
     @objc func appDidFinishLaunching() {
         // Register Background Task
         UIViewController.swizzleViewDidAppear()
+        let isBackgroundFetchEnabled = self.application!.backgroundRefreshStatus == .available
+        //        if !isBackgroundFetchEnabled {
+        //            showBAckgroudTaskEnableNotification()
+        //        }else {
+        //            WorkerCaller().scheduleBackgroundTask()
+        //        }
+        
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
         CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
         
@@ -79,16 +89,16 @@ public class CausualFoundry {
             .setStartTime(start_time:0)
             .build()
         
-        backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
+        backgroundTask = self.application!.beginBackgroundTask { [weak self] in
             guard let self =  self else {return }
-            UIApplication.shared.endBackgroundTask(self.backgroundTask )
+            self.application!.endBackgroundTask(self.backgroundTask )
             self.backgroundTask = UIBackgroundTaskIdentifier.invalid
         }
         
         WorkerCaller.performAPICalls()
         
         // Ensure to end the background task when your work is done
-        UIApplication.shared.endBackgroundTask(backgroundTask)
+        self.application!.endBackgroundTask(backgroundTask)
         backgroundTask = UIBackgroundTaskIdentifier.invalid
     }
     
