@@ -11,7 +11,7 @@ class InjestEvenstuploader {
     static func uploadEvents() {
         let injestAPIHandler  = IngestAPIHandler()
         
-        let events = CoreDataHelper.shared.readEvents()
+        let events = CoreDataHelper.shared.readInjectEvents()
         if events.count > 0  {
             injestAPIHandler.updateEventTrack(eventArray: events) { success in
                 CoreDataHelper.shared.deleteDataEventLogs()
@@ -40,4 +40,12 @@ class ExceptionEventsUploader {
 }
 
 
-
+public class catalogEventsUploader {
+    public static func uploadEvents() {
+        let catalogAPIHandler  = CatalogAPIHandler()
+        for value in  CatalogSubject.allCases {
+            guard let eventData =  CoreDataHelper().readCataLogData(subject: value.rawValue) else { return }
+            catalogAPIHandler.callCatalogAPI(catalogMainObject: eventData, catalogSubject: value.rawValue)
+        }
+    }
+}

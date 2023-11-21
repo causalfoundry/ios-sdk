@@ -231,7 +231,7 @@ extension CoreDataHelper {
 /**
      * To read user events from DB, default is empty list
      */
-    func readEvents() -> [EventDataObject] {
+    func readInjectEvents() -> [EventDataObject] {
         var itemData:[EventDataObject]? = []
         if let existingEntity = NSEntityDescription.entity(forEntityName:TableName.userEvents.rawValue, in: context) {
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: existingEntity.name!)
@@ -447,15 +447,15 @@ extension CoreDataHelper {
         }
     }
     
-   public func readCataLogData(subject:String) -> Data? {
-        var data:Data = Data()
+   public func readCataLogData(subject:String) -> [Any]? {
+        var data:[Any]?
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.catalogEvents.rawValue)
         let filterPredicate = NSPredicate(format: "subject == %@", subject)
         fetchRequest.predicate = filterPredicate
         do {
             let resultData = try context.fetch(fetchRequest)
             if resultData.count > 0 {
-                if let castedData = resultData.first!.value(forKey: "catalog") as? Data {
+                if let castedData = resultData.first!.value(forKey: "catalog") as? [Any] {
                    data = castedData
                 } else {
                    

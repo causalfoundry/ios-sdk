@@ -15,11 +15,8 @@ public class CatalogAPIHandler {
        CoreDataHelper.shared.writeCoreCatalogData(subject: subject, data: catalogObject)
     }
     
-    private func updateCatalogArray(subject: CatalogSubject, catalogArray: [Any]) {
-        
-    }
-
-    public func callCatalogAPI(catalogMainObject: [Any], catalogSubject: String, sdkToken: String) {
+   
+    public func callCatalogAPI(catalogMainObject: [Any], catalogSubject: String) {
         _ = try? JSONSerialization.data(withJSONObject: catalogMainObject)
         try APIManager.shared.postUpdateCatelogEvents(url:APIConstants.updateCatalog , params: catalogMainObject, "POST", headers:["subject":catalogSubject], completion:{ (result) in
             print(result as Any)
