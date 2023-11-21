@@ -452,22 +452,27 @@ extension CoreDataHelper {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.catalogEvents.rawValue)
         let filterPredicate = NSPredicate(format: "subject == %@", subject)
         fetchRequest.predicate = filterPredicate
-        do {
-            let resultData = try context.fetch(fetchRequest)
-            if resultData.count > 0 {
-                if let castedData = resultData.first!.value(forKey: "catalog") as? [Any] {
-                   data = castedData
-                } else {
-                   
-                }
-                }else {
-               
-            }
-            } catch let error as NSError {
+       do {
+           let resultData = try context.fetch(fetchRequest)
+           if resultData.count > 0 {
+               data = try convertDataToAnyArray(data: resultData.first!.value(forKey: "catalog") as! Data)
+        }
+       }catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
             
         }
         return data
+    }
+    
+    
+    
+    func convertDataToAnyArray(data: Data) throws -> [Any] {
+        // Deserialize JSON data
+        if let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as? [Any] {
+            return jsonArray
+        } else {
+            throw NSError(domain: "Invalid JSON", code: 0, userInfo: nil)
+        }
     }
     
     
@@ -490,6 +495,18 @@ extension CoreDataHelper {
             print("Error deleting all records: \(error)")
         }
     }
+    
+    
+    func convertDataToAnyArray(data: Data) throws -> [Any] {
+        // Deserialize JSON data
+        if let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as? [Any] {
+            return jsonArray
+        } else {
+            throw NSError(domain: "Invalid JSON", code: 0, userInfo: nil)
+        }
+    }
+
+    
     
    
 }
