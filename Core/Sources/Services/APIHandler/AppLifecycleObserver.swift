@@ -32,7 +32,7 @@ public class CausualFoundry {
         
     }
     
-    public func configure() {
+    public static  func configure() {
         
         
     }
