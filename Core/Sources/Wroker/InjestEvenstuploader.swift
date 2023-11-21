@@ -44,7 +44,7 @@ public class catalogEventsUploader {
     public static func uploadEvents() {
         let catalogAPIHandler  = CatalogAPIHandler()
         for value in  CatalogSubject.allCases {
-            guard let eventData =  CoreDataHelper().readCataLogData(subject: value.rawValue) else { return }
+            guard let eventData =  CoreDataHelper().readCataLogData(subject: value.rawValue) else { continue }
             catalogAPIHandler.callCatalogAPI(catalogMainObject: eventData, catalogSubject: value.rawValue)
         }
     }
