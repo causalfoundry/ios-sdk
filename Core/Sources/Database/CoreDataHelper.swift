@@ -465,17 +465,6 @@ extension CoreDataHelper {
     }
     
     
-    
-    func convertDataToAnyArray(data: Data) throws -> [Any] {
-        // Deserialize JSON data
-        if let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as? [Any] {
-            return jsonArray
-        } else {
-            throw NSError(domain: "Invalid JSON", code: 0, userInfo: nil)
-        }
-    }
-    
-    
     func deleteDataEventLogs(){
     // Create a fetch request to get all records from the entity
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.userEvents.rawValue)
