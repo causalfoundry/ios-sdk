@@ -88,7 +88,7 @@ public class IngestAPIHandler:NSObject {
     
     
     func storeEventTrack (eventObject:EventDataObject) {
-        var prevEvent = CoreDataHelper.shared.readEvents()
+        var prevEvent = CoreDataHelper.shared.readInjectEvents()
         prevEvent.append(eventObject)
         CoreDataHelper.shared.writeEvents(eventsArray:prevEvent)
     }
