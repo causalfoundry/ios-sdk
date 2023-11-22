@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s2w-7x-qXA">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login-->
+        <scene sceneID="LgR-39-31G">
+            <objects>
+                <viewController id="Prs-Mv-0E2" customClass="Login" customModule="Test" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bXp-Ja-4kP">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aST-lj-b3L">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0yR-P3-9Wd">
+                                        <rect key="frame" x="0.0" y="70" width="393" height="359.66666666666669"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter User Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m0W-63-ldb">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dze-zE-cVD">
+                                                <rect key="frame" x="0.0" y="54" width="393" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98Q-GR-AAc">
+                                                <rect key="frame" x="0.0" y="108" width="393" height="34.333333333333343"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Register"/>
+                                                <connections>
+                                                    <action selector="actionRegister:" destination="Prs-Mv-0E2" eventType="touchUpInside" id="nlr-pX-hog"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d75-dG-f5S">
+                                                <rect key="frame" x="0.0" y="162.33333333333331" width="393" height="34.333333333333343"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Logout"/>
+                                                <connections>
+                                                    <action selector="action_Logout:" destination="Prs-Mv-0E2" eventType="touchUpInside" id="ddd-Dt-O8W"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hcd-lv-gJJ">
+                                                <rect key="frame" x="0.0" y="216.66666666666669" width="393" height="34.333333333333343"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="LOGIN"/>
+                                                <connections>
+                                                    <action selector="action_Login:" destination="Prs-Mv-0E2" eventType="touchUpInside" id="Elv-gA-Ike"/>
+                                                    <segue destination="gbd-Tp-KOD" kind="push" id="XCD-Af-Pac"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vwe-nA-Wh3">
+                                                <rect key="frame" x="0.0" y="271" width="393" height="34.333333333333314"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Media"/>
+                                                <connections>
+                                                    <action selector="action_Media:" destination="Prs-Mv-0E2" eventType="touchUpInside" id="x02-vU-q8W"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MqR-PF-s0x">
+                                                <rect key="frame" x="0.0" y="325.33333333333331" width="393" height="34.333333333333314"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Rate"/>
+                                                <connections>
+                                                    <action selector="rateAction:" destination="Prs-Mv-0E2" eventType="touchUpInside" id="Jd2-ks-10x"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="0yR-P3-9Wd" firstAttribute="top" secondItem="aST-lj-b3L" secondAttribute="top" constant="70" id="FaZ-NC-rbM"/>
+                                    <constraint firstAttribute="trailing" secondItem="0yR-P3-9Wd" secondAttribute="trailing" id="d4x-af-IrK"/>
+                                    <constraint firstItem="0yR-P3-9Wd" firstAttribute="leading" secondItem="aST-lj-b3L" secondAttribute="leading" id="q35-T6-x94"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RlD-Kt-hcF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="RlD-Kt-hcF" firstAttribute="bottom" secondItem="aST-lj-b3L" secondAttribute="bottom" id="Fds-0q-jzz"/>
+                            <constraint firstItem="RlD-Kt-hcF" firstAttribute="trailing" secondItem="aST-lj-b3L" secondAttribute="trailing" id="ZMH-3N-fR0"/>
+                            <constraint firstItem="aST-lj-b3L" firstAttribute="top" secondItem="RlD-Kt-hcF" secondAttribute="top" id="cnk-Il-MxO"/>
+                            <constraint firstItem="aST-lj-b3L" firstAttribute="leading" secondItem="RlD-Kt-hcF" secondAttribute="leading" id="ngy-FE-tEO"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="3BV-4N-qfy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QAF-Xe-B3u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="956.48854961832058" y="3.5211267605633805"/>
+        </scene>
+        <!--MainVC-->
+        <scene sceneID="kLN-ET-gck">
+            <objects>
+                <viewController storyboardIdentifier="MainVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gbd-Tp-KOD" customClass="MainVC" customModule="Test" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QKM-0b-CTE">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="EUu-Gr-we0">
+                                <rect key="frame" x="0.0" y="143" width="393" height="200"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IwT-yK-phc">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="P1x-Vk-90i"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Test_CHWManagementEvents"/>
+                                        <connections>
+                                            <action selector="action_CHW_Managements_Events:" destination="gbd-Tp-KOD" eventType="touchUpInside" id="KGW-z5-osC"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4YR-oX-zke">
+                                        <rect key="frame" x="0.0" y="40" width="393" height="40"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Test_EcommerceEvents"/>
+                                        <connections>
+                                            <action selector="test_EcommerceEvents:" destination="gbd-Tp-KOD" eventType="touchUpInside" id="Nru-Dp-wrq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8O-aN-Ffu">
+                                        <rect key="frame" x="0.0" y="80" width="393" height="40"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Test_PaymentsEvents"/>
+                                        <connections>
+                                            <action selector="testPaymentsEwvents:" destination="gbd-Tp-KOD" eventType="touchUpInside" id="i2K-hz-kKv"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7W-P9-bKS">
+                                        <rect key="frame" x="0.0" y="120" width="393" height="40"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Test_eLearningevents"/>
+                                        <connections>
+                                            <action selector="testElearningEvents:" destination="gbd-Tp-KOD" eventType="touchUpInside" id="w6r-T8-XKT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U2b-xm-zR9">
+                                        <rect key="frame" x="0.0" y="160" width="393" height="40"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Test_LoyaltyEvents"/>
+                                        <connections>
+                                            <action selector="testLoyaltyEvents:" destination="gbd-Tp-KOD" eventType="touchUpInside" id="qLF-lI-adF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Ra-Or-1rI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="EUu-Gr-we0" firstAttribute="leading" secondItem="6Ra-Or-1rI" secondAttribute="leading" id="8pY-Cr-6G8"/>
+                            <constraint firstItem="6Ra-Or-1rI" firstAttribute="trailing" secondItem="EUu-Gr-we0" secondAttribute="trailing" id="Ed6-fu-LEq"/>
+                            <constraint firstItem="EUu-Gr-we0" firstAttribute="top" secondItem="6Ra-Or-1rI" secondAttribute="top" constant="40" id="aZA-3g-SUO"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="qx0-JZ-LTf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Iyl-ud-DB8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1710.6870229007634" y="3.5211267605633805"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7ed-Ia-KK9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s2w-7x-qXA" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nga-8t-4sR">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Prs-Mv-0E2" kind="relationship" relationship="rootViewController" id="REo-UZ-iyC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YhT-Y5-W4N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="29.770992366412212" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

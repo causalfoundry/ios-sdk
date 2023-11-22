@@ -24,10 +24,10 @@ class Login: UIViewController {
     
 
     @IBAction func action_Login(_ sender: Any) {
-        CfLogIdnetityBuilder().setAppUserId(app_user_id:"sdkTestUserId")
+        CfLogIdnetityBuilder().setAppUserId(app_user_id:"sdkTestUserId1")
                               .setIdentifyAction(identity_action: .login)
-                              .build()
-        let userCatalog = UserCatalogModel(name: "sdkTestUserId",
+                               .build()
+        let userCatalog = UserCatalogModel(name: "sdkTestUserId1",
                                            country: CountryCode.Andorra.rawValue,
                                            region_state: "Barcelona",
                                            city: "Barcelona",
@@ -63,14 +63,16 @@ class Login: UIViewController {
     
     
     @IBAction func action_Media(_ sender: Any) {
-        let mediaDetail = MediaCatalogModel(name: "TestVideo", description: "Testing video player", length: "6.8", resolution: "50", language: "Afar")
+        let mediaDetail = MediaCatalogModel(name: "TestVideo2", description: "Testing video palsdsuduhsud", length: "6.9", resolution: "50", language: "AAR")
         CfLogMediaEventBuilder()
+            .updateImmediately(update_immediately: false)
             .setMediaId(media_id: "374784738")
             .setMediaType(media_type: MediaType.video) //Required - MediaType
             .setMediaModel(mediaModelValue: mediaDetail)
             .setMediaAction(media_action: MediaAction.pause) // Required - MediaAction
             .setCurrentDuration(duration: 1234556) // Required - Int
             .setContentBlock(content_block: ContentBlock.core) // Optional - ContentBlock > default is core
+            .setMeta(meta: "34343")
             .build()
     }
     
@@ -84,16 +86,11 @@ class Login: UIViewController {
        // testCoreEvents()
     }
     
-    
-    
-    
     func testCoreEvents() {
-        
         let resultItems: [SearchItemModel] = [
             SearchItemModel(item_id:"item ID 1" , item_type: SearchItemType.patientRecord.rawValue, facility_id: "112123"),
             SearchItemModel(item_id:"item ID 2" , item_type: SearchItemType.patientRecord.rawValue, facility_id: "112125")
-            
-        ]
+    ]
 
     
         let filtersDictionaryData: [String: String] = ["FirstName": "Hello"]
@@ -106,12 +103,6 @@ class Login: UIViewController {
             .setIsNewSearch(isNewSearch: true)
             .setPage(page: 1)
             .build()
-            
-
-        
+        }
     }
-    
-    
-    
-}
 
