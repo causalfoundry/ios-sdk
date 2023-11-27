@@ -9,11 +9,9 @@ import Foundation
 import UIKit
 import BackgroundTasks
 
-
-
 public class CausualFoundry {
-    var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
     
+    var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
     
     var startTime:Int64?
     var previousStartTime:Int64?
@@ -21,20 +19,13 @@ public class CausualFoundry {
     var pageRenderTime:Int64? = 0
     var oldPageRenderTime:Int64 = 0
     
+    var application: UIApplication? {
+        didSet { setupNotifications() }
+    }
     
     public static let shared = CausualFoundry()
-    var application:UIApplication?
-    public init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(appDidFinishLaunching), name: UIApplication.didFinishLaunchingNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(appWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: UIViewController.showDetailTargetDidChangeNotification, object: nil)
-        
-    }
+    
+    public init() { }
     
     public func configure(application:UIApplication) {
         self.application = application
@@ -42,7 +33,7 @@ public class CausualFoundry {
     
     deinit {
         // Unregister for notifications when the instance is deallocated
-        NotificationCenter.default.removeObserver(self)
+        removeNotifiations()
     }
     
     
@@ -123,7 +114,23 @@ public class CausualFoundry {
     
     
     
+    private func setupNotifications() {
+        guard application != nil else {
+            NotificationCenter.default.removeObserver(self)
+            return
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidFinishLaunching), name: UIApplication.didFinishLaunchingNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: UIViewController.showDetailTargetDidChangeNotification, object: nil)
+    }
     
+    private func removeNotifiations() {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 extension CausualFoundry {
@@ -140,8 +147,8 @@ extension CausualFoundry {
         
         alert.addAction(settingsAction)
         alert.addAction(cancelAction)
-        
-        if let topViewController = UIApplication.shared.keyWindow?.rootViewController {
+
+        if let topViewController = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first?.rootViewController {
             topViewController.present(alert, animated: true, completion: nil)
         }
     }
