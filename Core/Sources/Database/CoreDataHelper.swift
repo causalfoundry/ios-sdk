@@ -475,7 +475,7 @@ extension CoreDataHelper {
 
             // Delete each record
             for record in records {
-                context.delete(record)
+                record.managedObjectContext?.delete(record)
             }
 
             // Save the changes
