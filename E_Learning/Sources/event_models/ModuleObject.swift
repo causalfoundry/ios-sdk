@@ -43,7 +43,7 @@ public struct ModuleObject: Codable {
         id = try container.decode(String.self, forKey: .id)
         progress = try container.decodeIfPresent(Int.self, forKey: .progress)
         action = try container.decode(String.self, forKey: .action)
-        if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
+        if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {
             meta = nil

@@ -53,7 +53,7 @@ public struct ExamObject: Codable {
         duration = try container.decodeIfPresent(Int.self, forKey: .duration)
         score = try container.decodeIfPresent(Float.self, forKey: .score)
         isPassed = try container.decodeIfPresent(Bool.self, forKey: .isPassed)
-        if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
+        if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {
             meta = nil

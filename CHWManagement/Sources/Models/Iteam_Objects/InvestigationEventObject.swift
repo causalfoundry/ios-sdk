@@ -36,17 +36,17 @@ public struct InvestigationEventObject: Codable {
         siteId = try container.decode(String.self, forKey: .siteId)
         investigationId = try container.decode(String.self, forKey: .investigationId)
         prescribedTestsList = try container.decode([InvestigationItem].self, forKey: .prescribedTestsList)
-        if let intValue = try? container.decode(Int.self, forKey: .meta) {
+        if let intValue = try? container.decodeIfPresent(Int.self, forKey: .meta) {
             meta = intValue
-        } else if let doubleValue = try? container.decode(Double.self, forKey: .meta) {
+        } else if let doubleValue = try? container.decodeIfPresent(Double.self, forKey: .meta) {
             meta = doubleValue
-        } else if let stringValue = try? container.decode(String.self, forKey: .meta) {
+        } else if let stringValue = try? container.decodeIfPresent(String.self, forKey: .meta) {
             meta = stringValue
         }
-        else if let boolValue = try? container.decode(Bool.self, forKey: .meta) {
+        else if let boolValue = try? container.decodeIfPresent(Bool.self, forKey: .meta) {
             meta = boolValue
         }
-        else if let dateValue = try? container.decode(Date.self, forKey: .meta) {
+        else if let dateValue = try? container.decodeIfPresent(Date.self, forKey: .meta) {
             meta = dateValue
         }
     }
