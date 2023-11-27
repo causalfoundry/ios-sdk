@@ -60,29 +60,25 @@ public class IngestAPIHandler:NSObject {
         if !CoreConstants.shared.isAnonymousUserAllowed {
             userID = ""
         }
-        if userID != "" {
-            let mainBody = MainBody(sID: "\(userID)_\(CoreConstants.shared.sessionStartTime)_\(CoreConstants.shared.sessionEndTime)", uID: userID, appInfo:CoreConstants.shared.appInfoObject! , dInfo: CoreConstants.shared.deviceObject!, dn: Int(NetworkMonitor.shared.downloadSpeed), sdk:  CoreConstants.shared.SDKVersion, up: Int(NetworkMonitor.shared.uploadSpeed), data: eventArray)
-            
-            
-            print(mainBody.dictionary)
-            // Show notification if tasks takes more then 10 seconds to complete and if allowed
-            
-            DispatchQueue.main.async {
-                if (NotificationConstants.shared.INGEST_NOTIFICATION_ENABLED) {
-                    self.ShowNotification(application: CoreConstants.shared.application!)
-                }
-            }
-            APIManager.shared.getAPIDetails(url:APIConstants.trackEvent , params: mainBody.dictionary, "POST", headers:nil, completion:{ (result) in
-                if result == nil {
-                    callback(false)
-                } else {
-                    callback(true)
-                }
-            })
-            
+        guard !userID.isEmpty else {
+            callback(true)
+            return
         }
         
+        let mainBody = MainBody(sID: "\(userID)_\(CoreConstants.shared.sessionStartTime)_\(CoreConstants.shared.sessionEndTime)", uID: userID, appInfo:CoreConstants.shared.appInfoObject! , dInfo: CoreConstants.shared.deviceObject!, dn: Int(NetworkMonitor.shared.downloadSpeed), sdk:  CoreConstants.shared.SDKVersion, up: Int(NetworkMonitor.shared.uploadSpeed), data: eventArray)
         
+        
+        print(mainBody.dictionary)
+        // Show notification if tasks takes more then 10 seconds to complete and if allowed
+        
+        DispatchQueue.main.async {
+            if (NotificationConstants.shared.INGEST_NOTIFICATION_ENABLED) {
+                self.ShowNotification(application: CoreConstants.shared.application!)
+            }
+        }
+        APIManager.shared.getAPIDetails(url:APIConstants.trackEvent , params: mainBody.dictionary, "POST", headers:nil, completion:{ (result) in
+            callback(result)
+        })
     }
     
     

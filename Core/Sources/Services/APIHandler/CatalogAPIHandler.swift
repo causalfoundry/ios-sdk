@@ -16,9 +16,9 @@ public class CatalogAPIHandler {
     }
     
    
-    public func callCatalogAPI(catalogMainObject: [Any], catalogSubject: String) {
+    public func callCatalogAPI(catalogMainObject: [Any], catalogSubject: String, completion: @escaping (_ success: Bool) -> Void) {
         APIManager.shared.postUpdateCatelogEvents(url:"\(CoreConstants.shared.devUrl)ingest/catalog/\(catalogSubject)" , params: catalogMainObject, "POST", headers:["subject":catalogSubject], completion:{ (result) in
-            print(result as Any)
+            completion(result)
         })
     }
 

@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .setSdkKey(sdkKey:"cfkey4dxUm8RIJmWmxgY4uakWFXqd1KmNk4Y14uHb0ogvqPpkJiGwEaKge4iGXAg")
             .disableAutoPageTrack()
             .build()
-        //WorkerCaller.registerBackgroundTask()
         
         return true
     }

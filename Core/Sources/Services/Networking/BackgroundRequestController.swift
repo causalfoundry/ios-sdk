@@ -8,50 +8,42 @@
 import Foundation
 import UIKit
 
-class RequestManager:NSObject,URLSessionDelegate{
+class BackgroundRequestController:NSObject,URLSessionDelegate{
     
-    // Singleton instance
-    static let shared = RequestManager()
+    typealias Completion = (_ error: Error?, _ response: URLResponse?) -> Void
     
-    public override init() {
-       
-    }
+    private var completion: Completion?
     
-    let POSTMETHOD = "POST"
-    let GETMETHOD = "GET"
+    public override init() {  }
     
-    private lazy var session: URLSession = {
-        let configuration = URLSessionConfiguration.background(withIdentifier: "com.causalFoundry.updateAppEvents")
+    public func request(_ strParams: Any, _ strUrl: String, _ strMethod: String, completionHandler: @escaping Completion) {
+        
+        completion = completionHandler
+        
+        let url = URL(string: strUrl)
+        var urlRequest = URLRequest(url: url!,cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,timeoutInterval: 3.0 * 1000)
+        
+        urlRequest.httpMethod = strMethod
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue(CoreConstants.shared.sdkKey, forHTTPHeaderField: "Authorization")
+        
+        if strMethod == "POST",
+           (strParams as AnyObject).count > 0,
+           let httpBody = try? JSONSerialization.data(withJSONObject: strParams, options: .prettyPrinted) {
+            urlRequest.httpBody = httpBody
+        }
+        
+        let configuration = URLSessionConfiguration.background(withIdentifier: WorkerCaller.backgroundTaskIdentifier)
         configuration.allowsCellularAccess = true
         configuration.httpShouldSetCookies = true
         configuration.httpShouldUsePipelining = true
         configuration.requestCachePolicy = .useProtocolCachePolicy
         configuration.timeoutIntervalForRequest = 60.0
         //  configuration.urlCache = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
-        return URLSession(configuration: configuration,delegate:self,delegateQueue:nil)
-    }()
-    
-    public func request(_ strParams : Any,_ strUrl :String, _ strMethod :String ,completionHandler:@escaping (_ success:Bool, _ data: NSDictionary?,_ response:HTTPURLResponse) -> Void){        
+        let session = URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
         
-        let url = URL(string: strUrl)
-        var request = URLRequest(url: url!,cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,timeoutInterval: 3.0 * 1000)
-        
-        request.httpMethod = strMethod
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(CoreConstants.shared.sdkKey, forHTTPHeaderField: "Authorization")
-        
-        if (strParams as AnyObject).count > 0 {
-            guard let httpBody = try? JSONSerialization.data(withJSONObject: strParams, options: .prettyPrinted) else {
-                return
-            }
-            
-            if strMethod == POSTMETHOD {
-                request.httpBody = httpBody
-            }
-            //            request.httpBody = strParams.data(using: String.Encoding.utf8.rawValue);
-        }
-        let task = session.dataTask(with: request)
-        print(request);
+        let task = session.downloadTask(with: urlRequest)
+        print(urlRequest);
         //        task = session.dataTask(with: request, completionHandler: {data, response, error in
         //            do {
         //                if error != nil {
@@ -108,15 +100,21 @@ class RequestManager:NSObject,URLSessionDelegate{
         //        task.suspend()
     }
     
+    func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
+        print("Task with error: \(error?.localizedDescription ?? "No error")")
+        completion?(error, nil)
+    }
+    
     func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
-            // This method is called when all tasks have been completed for the background session.
-            // Perform any necessary cleanup or UI updates.
-            print("All tasks in the background session are complete.")
-        }
+        // This method is called when all tasks have been completed for the background session.
+        // Perform any necessary cleanup or UI updates.
+        print("All tasks in the background session are complete.")
+    }
 
-        func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-            // This method is called when a task completes (both successfully or with an error).
-            // Handle task completion here.
-            print("Task completed with error: \(error?.localizedDescription ?? "No error")")
-        }
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        // This method is called when a task completes (both successfully or with an error).
+        // Handle task completion here.
+        print("Task completed with error: \(error?.localizedDescription ?? "No error")")
+        completion?(error, task.response)
+    }
 }

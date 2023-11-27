@@ -8,16 +8,22 @@
 import Foundation
 
 class InjestEvenstuploader {
-    static func uploadEvents() {
+    static func uploadEvents() async throws {
         let injestAPIHandler  = IngestAPIHandler()
-        
         let events = CoreDataHelper.shared.readInjectEvents()
-        if events.count > 0  {
-            injestAPIHandler.updateEventTrack(eventArray: events) { success in
-                CoreDataHelper.shared.deleteDataEventLogs()
-            }
-        }else {
+        guard events.count > 0 else {
             print("No More Injest events")
+            return
+        }
+        try await withCheckedThrowingContinuation { continuation in
+            injestAPIHandler.updateEventTrack(eventArray: events) { success in
+                if success {
+                    CoreDataHelper.shared.deleteDataEventLogs()
+                    continuation.resume(with: .success(()))
+                } else {
+                    continuation.resume(with: .failure(NSError(domain: "InjestEvenstuploader.uploadEvents", code: 0)))
+                }
+            }
         }
     }
 }
@@ -25,27 +31,45 @@ class InjestEvenstuploader {
 
 
 class ExceptionEventsUploader {
-    static func uploadEvents() {
+    static func uploadEvents() async throws {
         let exceptionManager  = ExceptionAPIHandler()
-        
         let events = CoreDataHelper.shared.readExceptionsData()
-        if events.count > 0 {
-            exceptionManager.updateExceptionEvents(eventArray:events)
-        }else {
+        guard events.count > 0 else {
             print("No More Exception events")
+            return
         }
-        
-        
+        try await withCheckedThrowingContinuation { continuation in
+            exceptionManager.updateExceptionEvents(eventArray:events) { success in
+                if success {
+                    continuation.resume(with: .success(()))
+                } else {
+                    continuation.resume(with: .failure(NSError(domain: "ExceptionEventsUploader.uploadEvents", code: 0)))
+                }
+            }
+        }
     }
 }
 
 
 public class CatalogEventsUploader {
-    public static func uploadEvents() {
+    public static func uploadEvents() async throws {
         let catalogAPIHandler  = CatalogAPIHandler()
-        for value in  CatalogSubject.allCases {
-            guard let eventData =  CoreDataHelper().readCataLogData(subject: value.rawValue) else { continue }
-            catalogAPIHandler.callCatalogAPI(catalogMainObject: eventData, catalogSubject: value.rawValue)
+        await withThrowingTaskGroup(of: Void.self) { group in
+            for value in  CatalogSubject.allCases {
+                guard let eventData =  CoreDataHelper().readCataLogData(subject: value.rawValue) else { continue }
+                group.addTask {
+                    #warning("SWIFT TASK CONTINUATION MISUSE: uploadEvents() leaked its continuation!")
+                    try await withCheckedThrowingContinuation { continuation in
+                        catalogAPIHandler.callCatalogAPI(catalogMainObject: eventData, catalogSubject: value.rawValue) { success in
+                            if success {
+                                continuation.resume(with: .success(()))
+                            } else {
+                                continuation.resume(with: .failure(NSError(domain: "CatalogEventsUploader.uploadEvents", code: 0)))
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -55,14 +55,14 @@ class ExceptionAPIHandler {
     func exceptionTrackAPI(exceptionObject: ExceptionDataObject, updateImmediately: Bool) {
         if !CoreConstants.shared.pauseSDK {
             if updateImmediately  == true {
-                self.updateExceptionEvents(eventArray: [exceptionObject])
+                self.updateExceptionEvents(eventArray: [exceptionObject], completion: { _ in })
             } else {
                 storeEventTrack(event: exceptionObject)
             }
         }
     }
     
-    func updateExceptionEvents(eventArray:[ExceptionDataObject]) {
+    func updateExceptionEvents(eventArray:[ExceptionDataObject], completion: @escaping (_ success: Bool) -> Void) {
         var mainExceptionBody:MainExceptionBody?
        // guard CoreConstants.shared.application!.delegate != nil else { return }
         var userId :String = CoreDataHelper.shared.fetchUserID()
@@ -84,7 +84,7 @@ class ExceptionAPIHandler {
         }
         
         APIManager.shared.getAPIDetails(url:APIConstants.ingestExceptionEvent , params: mainExceptionBody!.dictionary, "POST", headers:nil, completion:{ (result) in
-            print(result as Any)
+            completion(result)
         })
     }
     
