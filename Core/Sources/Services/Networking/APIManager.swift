@@ -15,8 +15,7 @@ final class APIManager:NSObject {
     func getAPIDetails(url:String,params:[String:Any],_ strMethod :String,headers:[String:Any]? , completion: @escaping (_ success: Bool) -> Void) {
         // Check Internet is available or not
         
-        let request = BackgroundRequestController()
-        request.request(params, url, "POST") { error, response in
+        BackgroundRequestController.shared.request(params, url, "POST") { error, response in
             if error != nil {
                 ExceptionManager.throwAPIFailException(apiName:url, response: response as? HTTPURLResponse, responseBody: nil)
             }
@@ -26,8 +25,7 @@ final class APIManager:NSObject {
     
     
     func postUpdateCatelogEvents(url:String,params:Any,_ strMethod :String,headers:[String:Any]? , completion: @escaping (_ success: Bool) -> Void) {
-        let request = BackgroundRequestController()
-        request.request(params, url, "POST") { error, response  in
+        BackgroundRequestController.shared.request(params, url, "POST") { error, response  in
             completion(error != nil)
         }
     }
