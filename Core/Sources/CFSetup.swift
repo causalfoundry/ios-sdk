@@ -28,8 +28,8 @@ public class CFSetup:NSObject, IngestProtocol {
         
         //Change implementation
         
-        CoreConstants.shared.sessionStartTime = Int64(Date().timeIntervalSince1970)
-        CoreConstants.shared.sessionEndTime = Int64(Date().timeIntervalSince1970)
+        CoreConstants.shared.sessionStartTime = Int64(Date().timeIntervalSince1970 * 1000)
+        CoreConstants.shared.sessionEndTime = Int64(Date().timeIntervalSince1970 * 1000)
         
         
         userId = CoreDataHelper.shared.fetchUserID()
