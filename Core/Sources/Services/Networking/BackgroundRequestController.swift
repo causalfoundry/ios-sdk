@@ -34,8 +34,9 @@ class BackgroundRequestController: NSObject {
         configuration.httpShouldUsePipelining = true
         configuration.requestCachePolicy = .useProtocolCachePolicy
         configuration.timeoutIntervalForRequest = 60.0
+        configuration.sharedContainerIdentifier = "BackgroundRequestController.sharedContainer"
         //  configuration.urlCache = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
-        return URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
+        return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
     }()
     
     public override init() { }
@@ -120,7 +121,7 @@ class BackgroundRequestController: NSObject {
     }    
 }
 
-extension BackgroundRequestController: URLSessionDelegate {
+extension BackgroundRequestController: URLSessionDelegate, URLSessionDownloadDelegate {
     
     func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
         print("Session didBecomeInvalidWithError: \(error?.localizedDescription ?? "No error")")
@@ -131,6 +132,9 @@ extension BackgroundRequestController: URLSessionDelegate {
         // Perform any necessary cleanup or UI updates.
         print("All tasks in the background session are complete.")
         backgroundRequestsQueue.async(flags: .barrier) {
+            self.backgroundRequests.forEach { request in
+                request.completion(nil, request.task.response)
+            }
             self.backgroundRequests.removeAll()
         }
     }
@@ -141,8 +145,14 @@ extension BackgroundRequestController: URLSessionDelegate {
         print("Task completed with error: \(error?.localizedDescription ?? "No error")")
         backgroundRequestsQueue.async(flags: .barrier) {
             if let index = self.backgroundRequests.firstIndex(where: { $0.task.taskIdentifier == task.taskIdentifier }) {
+                let request = self.backgroundRequests[index]
+                request.completion(error, request.task.response)
                 self.backgroundRequests.remove(at: index)
             }
         }
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        print("Session didFinishDownloadingTo: \(location.absoluteString)")
     }
 }
