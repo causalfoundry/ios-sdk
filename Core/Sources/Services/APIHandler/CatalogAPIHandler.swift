@@ -17,8 +17,7 @@ public class CatalogAPIHandler {
     
    
     public func callCatalogAPI(catalogMainObject: [Any], catalogSubject: String) {
-        _ = try? JSONSerialization.data(withJSONObject: catalogMainObject)
-        try APIManager.shared.postUpdateCatelogEvents(url:"\(CoreConstants.shared.devUrl)ingest/catalog/\(catalogSubject)" , params: catalogMainObject, "POST", headers:["subject":catalogSubject], completion:{ (result) in
+        APIManager.shared.postUpdateCatelogEvents(url:"\(CoreConstants.shared.devUrl)ingest/catalog/\(catalogSubject)" , params: catalogMainObject, "POST", headers:["subject":catalogSubject], completion:{ (result) in
             print(result as Any)
         })
     }

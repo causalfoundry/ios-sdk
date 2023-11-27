@@ -8,17 +8,7 @@
 import Foundation
 import UIKit
 
-
-public class MyURLSessionDelegate: NSObject, URLSessionDelegate {
-    // Implement URLSessionDelegate methods as needed
-}
-
-
-
 class RequestManager:NSObject,URLSessionDelegate{
-    
-    
-     var delegate: MyURLSessionDelegate?
     
     // Singleton instance
     static let shared = RequestManager()
@@ -30,26 +20,18 @@ class RequestManager:NSObject,URLSessionDelegate{
     let POSTMETHOD = "POST"
     let GETMETHOD = "GET"
     
-    var task:URLSessionDataTask!
-  
-    
-    private var session: URLSession?
-
-    
-    
-    public func getDataFromServer(_ strParams : Any,_ strUrl :String, _ strMethod :String ,completionHandler:@escaping (_ success:Bool, _ data: NSDictionary?,_ response:HTTPURLResponse) -> Void){
-        
+    private lazy var session: URLSession = {
         let configuration = URLSessionConfiguration.background(withIdentifier: "com.causalFoundry.updateAppEvents")
         configuration.allowsCellularAccess = true
         configuration.httpShouldSetCookies = true
         configuration.httpShouldUsePipelining = true
         configuration.requestCachePolicy = .useProtocolCachePolicy
         configuration.timeoutIntervalForRequest = 60.0
-       
-       
         //  configuration.urlCache = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
-        session = URLSession(configuration: configuration,delegate:self,delegateQueue:nil)
-        
+        return URLSession(configuration: configuration,delegate:self,delegateQueue:nil)
+    }()
+    
+    public func request(_ strParams : Any,_ strUrl :String, _ strMethod :String ,completionHandler:@escaping (_ success:Bool, _ data: NSDictionary?,_ response:HTTPURLResponse) -> Void){        
         
         let url = URL(string: strUrl)
         var request = URLRequest(url: url!,cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,timeoutInterval: 3.0 * 1000)
@@ -68,7 +50,7 @@ class RequestManager:NSObject,URLSessionDelegate{
             }
             //            request.httpBody = strParams.data(using: String.Encoding.utf8.rawValue);
         }
-        task = session!.dataTask(with: request)
+        let task = session.dataTask(with: request)
         print(request);
         //        task = session.dataTask(with: request, completionHandler: {data, response, error in
         //            do {

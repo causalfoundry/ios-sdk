@@ -45,17 +45,9 @@ public class WorkerCaller {
     }
     
     public static  func performAPICalls() {
-        Task {
-            do {
-//                InjestEvenstuploader.uploadEvents()
-//                ExceptionEventsUploader.uploadEvents()
-                catalogEventsUploader.uploadEvents()
-                
-            } catch(let error) {
-                // Handle errors
-                print("Error: \(error)")
-            }
-        }
+        InjestEvenstuploader.uploadEvents()
+        ExceptionEventsUploader.uploadEvents()
+        CatalogEventsUploader.uploadEvents()
     }
     
     

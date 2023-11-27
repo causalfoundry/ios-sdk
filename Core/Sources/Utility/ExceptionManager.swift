@@ -83,14 +83,9 @@ class ExceptionAPIHandler {
             }
         }
         
-        do {
-            try APIManager.shared.getAPIDetails(url:APIConstants.ingestExceptionEvent , params: mainExceptionBody!.dictionary, "POST", headers:nil, completion:{ (result) in
-               
-                
-            })
-    } catch {
-            
-        }
+        APIManager.shared.getAPIDetails(url:APIConstants.ingestExceptionEvent , params: mainExceptionBody!.dictionary, "POST", headers:nil, completion:{ (result) in
+            print(result as Any)
+        })
     }
     
    private func storeEventTrack(event:ExceptionDataObject) {

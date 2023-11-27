@@ -40,7 +40,7 @@ class ExceptionEventsUploader {
 }
 
 
-public class catalogEventsUploader {
+public class CatalogEventsUploader {
     public static func uploadEvents() {
         let catalogAPIHandler  = CatalogAPIHandler()
         for value in  CatalogSubject.allCases {

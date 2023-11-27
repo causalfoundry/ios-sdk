@@ -57,7 +57,7 @@ public class IngestAPIHandler:NSObject {
     func updateEventTrack(eventArray:[EventDataObject], callback: @escaping (Bool) -> Void) {
         var userID:String = CoreConstants.shared.userId
         
-        if (!CoreConstants.shared.isAnonymousUserAllowed) {
+        if !CoreConstants.shared.isAnonymousUserAllowed {
             userID = ""
         }
         if userID != "" {
@@ -72,14 +72,13 @@ public class IngestAPIHandler:NSObject {
                     self.ShowNotification(application: CoreConstants.shared.application!)
                 }
             }
-            do {
-                try APIManager.shared.getAPIDetails(url:APIConstants.trackEvent , params: mainBody.dictionary, "POST", headers:nil, completion:{ (result) in
-                       callback(true)
-                    
-                })
-            }catch(let error){
+            APIManager.shared.getAPIDetails(url:APIConstants.trackEvent , params: mainBody.dictionary, "POST", headers:nil, completion:{ (result) in
+                if result == nil {
                     callback(false)
-            }
+                } else {
+                    callback(true)
+                }
+            })
             
         }
         
