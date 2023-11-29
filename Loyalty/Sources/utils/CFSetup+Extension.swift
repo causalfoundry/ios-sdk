@@ -12,9 +12,7 @@ import CasualFoundryCore
 extension CFSetup {
     
     public func updateLoyaltyCatalogItem(subject: CatalogSubject, catalogObject: Data) {
-        if CoreConstants.shared.application != nil {
-            catalogAPIHandler.updateLoyaltyCatalogItem(subject: subject, catalogObject: catalogObject)
-        }
+        catalogAPIHandler.updateLoyaltyCatalogItem(subject: subject, catalogObject: catalogObject)
     }
     
     

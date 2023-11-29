@@ -270,7 +270,7 @@ public class CfLogDeferredPaymentEvent {
                     contentBlockName: PaymentsConstants.contentBlockName,
                     eventType: PaymentsEventType.deferred_payment.rawValue,
                     logObject: paymentObject,
-                    updateImmediately: updateImmediately
+                    updateImmediately: self.updateImmediately
                 )
                 return value
             }
@@ -279,7 +279,7 @@ public class CfLogDeferredPaymentEvent {
                 contentBlockName: PaymentsConstants.contentBlockName,
                 eventType: PaymentsEventType.deferred_payment.rawValue,
                 logObject: paymentObject,
-                updateImmediately: updateImmediately
+                updateImmediately: self.updateImmediately
             )
         }
     }

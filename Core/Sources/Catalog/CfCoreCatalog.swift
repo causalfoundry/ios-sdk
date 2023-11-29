@@ -50,28 +50,26 @@ public class CfCoreCatalog {
             ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing:CfCoreCatalog.self))
         }
 
-        if CoreConstants.shared.application != nil {
-            let userCatalogModelItem: UserCatalogModel? = CoreDataHelper.shared.readUserCatalog()
-            if userCatalogModel != userCatalogModelItem {
-                let internalUserModel = InternalUserModel(
-                    id: appUserId,
-                    name: userCatalogModel.name,
-                    country: userCatalogModel.country,
-                    region_state: userCatalogModel.region_state,
-                    city: userCatalogModel.city,
-                    workplace: userCatalogModel.workplace,
-                    profession: userCatalogModel.profession,
-                    zipcode: userCatalogModel.zipcode,
-                    language: userCatalogModel.language,
-                    experience: userCatalogModel.experience,
-                    education_level: userCatalogModel.education_level,
-                    timezone: CoreConstants.shared.getUserTimeZone(),
-                    organization_id: userCatalogModel.organization_id,
-                    organization_name: userCatalogModel.organization_name
-                )
-                CoreDataHelper.shared.writeUserCatalog(userCataLogData:userCatalogModel )
-               CFSetup().updateCoreCatalogItem(subject: CatalogSubject.user, catalogObject: [internalUserModel].toData()!)
-            }
+        let userCatalogModelItem: UserCatalogModel? = CoreDataHelper.shared.readUserCatalog()
+        if userCatalogModel != userCatalogModelItem {
+            let internalUserModel = InternalUserModel(
+                id: appUserId,
+                name: userCatalogModel.name,
+                country: userCatalogModel.country,
+                region_state: userCatalogModel.region_state,
+                city: userCatalogModel.city,
+                workplace: userCatalogModel.workplace,
+                profession: userCatalogModel.profession,
+                zipcode: userCatalogModel.zipcode,
+                language: userCatalogModel.language,
+                experience: userCatalogModel.experience,
+                education_level: userCatalogModel.education_level,
+                timezone: CoreConstants.shared.getUserTimeZone(),
+                organization_id: userCatalogModel.organization_id,
+                organization_name: userCatalogModel.organization_name
+            )
+            CoreDataHelper.shared.writeUserCatalog(userCataLogData:userCatalogModel )
+           CFSetup().updateCoreCatalogItem(subject: CatalogSubject.user, catalogObject: [internalUserModel].toData()!)
         }
     }
 }

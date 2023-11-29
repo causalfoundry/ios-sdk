@@ -25,9 +25,7 @@ public enum WorkerCaller {
     private static func executeBackgroundTask(task: BGTask) {
         Task {
             do {
-                try await InjestEvenstuploader.uploadEvents()
-                try await ExceptionEventsUploader.uploadEvents()
-                try await CatalogEventsUploader.uploadEvents()
+                try await performUpload()
                 print("Background task \(task.identifier) completed")
                 task.setTaskCompleted(success: true)
             } catch {
@@ -51,4 +49,12 @@ public enum WorkerCaller {
             print("Unable to schedule background task: \(error)")
         }
     }
+    
+    #if DEBUG
+    public static func performUpload() async throws {
+        try await InjestEvenstuploader.uploadEvents()
+        try await ExceptionEventsUploader.uploadEvents()
+        try await CatalogEventsUploader.uploadEvents()
+    }
+    #endif
 }

@@ -17,16 +17,12 @@ public class CausualFoundry {
     var pageRenderTime:Int64? = 0
     var oldPageRenderTime:Int64 = 0
     
-    var application: UIApplication? {
-        didSet { setupNotifications() }
-    }
-    
     public static let shared = CausualFoundry()
     
     public init() { }
     
-    public func configure(application:UIApplication) {
-        self.application = application
+    public func configure() {
+        setupNotifications()
     }
     
     deinit {
@@ -39,7 +35,7 @@ public class CausualFoundry {
     @objc func appDidFinishLaunching() {
         // Register Background Task
         UIViewController.swizzleViewDidAppear()
-        let isBackgroundFetchEnabled = self.application!.backgroundRefreshStatus == .available
+        let isBackgroundFetchEnabled = UIApplication.shared.backgroundRefreshStatus == .available
         if !isBackgroundFetchEnabled {
             showBAckgroudTaskEnableNotification()
         } else {
@@ -103,10 +99,6 @@ public class CausualFoundry {
     
     
     private func setupNotifications() {
-        guard application != nil else {
-            NotificationCenter.default.removeObserver(self)
-            return
-        }
         NotificationCenter.default.addObserver(self, selector: #selector(appDidFinishLaunching), name: UIApplication.didFinishLaunchingNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)

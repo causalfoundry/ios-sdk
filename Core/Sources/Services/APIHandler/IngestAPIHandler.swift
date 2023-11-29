@@ -29,7 +29,6 @@ public class IngestAPIHandler:NSObject {
                         eventTime: Int64 = 0) {
         
         if (!CoreConstants.shared.pauseSDK) {
-            _ =  CoreConstants.shared.application
             
             let timezone = Date().convertMillisToTimeString()
             
@@ -73,7 +72,7 @@ public class IngestAPIHandler:NSObject {
         
         DispatchQueue.main.async {
             if (NotificationConstants.shared.INGEST_NOTIFICATION_ENABLED) {
-                self.ShowNotification(application: CoreConstants.shared.application!)
+                self.showNotification()
             }
         }
         APIManager.shared.getAPIDetails(url:APIConstants.trackEvent , params: mainBody.dictionary, "POST", headers:nil, completion:{ (result) in
@@ -123,7 +122,7 @@ public class IngestAPIHandler:NSObject {
             }
         }
 extension IngestAPIHandler:UNUserNotificationCenterDelegate {
-    private func ShowNotification (application:UIApplication) {
+    private func showNotification() {
         
         
     }

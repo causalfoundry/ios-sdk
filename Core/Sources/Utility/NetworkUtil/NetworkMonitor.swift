@@ -117,6 +117,7 @@ final class NetworkMonitor {
         }
         
         // Replace with your upload URL
+        #warning("set upload url")
         guard let uploadURL = URL(string: "YOUR_UPLOAD_URL_HERE") else {
             print("Invalid upload URL")
             completionHandler(nil)

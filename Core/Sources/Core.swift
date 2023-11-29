@@ -5,14 +5,13 @@ import Foundation
 import UIKit
 
 public class CFLog {
-    var application:UIApplication?
+
     var applicationState: UIApplication.State?
     var showInAppBudge:Bool = true
     var updateImmediately :Bool = true
     var pauseSDK : Bool =  false
     
-    init(application:UIApplication,applicationState: UIApplication.State? = nil, showInAppBudge: Bool, updateImmediately: Bool, pauseSDK: Bool) {
-        self.application = application
+    init(applicationState: UIApplication.State? = nil, showInAppBudge: Bool, updateImmediately: Bool, pauseSDK: Bool) {
         self.applicationState = applicationState
         self.showInAppBudge = showInAppBudge
         self.updateImmediately = updateImmediately
@@ -22,19 +21,13 @@ public class CFLog {
 }
 
 public class CFLogBuilder {
-    var application: UIApplication?
+    
     var applicationState: UIApplication.State?
     var showInAppBudge:Bool = true
     var updateImmediately :Bool = true
     var pauseSDK : Bool =  false
     
-    
-    public init(application:UIApplication) {
-        self.application = application
-        
-    }
-    
-    
+    public init() { }
     /**
      * Passing the lifecycle event variable to SDK to log app open and resume events
      * automatically and manage app lifecycle components required by SDK to operate
@@ -218,16 +211,7 @@ public class CFLogBuilder {
      * Using this will validate the endpoints provided and initialise the SDK
      */
     public func build() {
-        switch true {
-        case self.application == nil :
-            ExceptionManager.throwInitException(eventType: "CFLog")
-        case self.applicationState == nil :
-            ExceptionManager.throwInitException(eventType: "CFLog")
-        default:
-            CFSetup().initalize(application: self.application!, event: self.applicationState!, pauseSDK: pauseSDK, autoShowInAppNudge: showInAppBudge, updateImmediately: updateImmediately)
-            
-        }
-        
+        CFSetup().initalize(event: self.applicationState!, pauseSDK: pauseSDK, autoShowInAppNudge: showInAppBudge, updateImmediately: updateImmediately)
     }
 }
 

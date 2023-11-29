@@ -11,7 +11,7 @@ import UIKit
 
 protocol IngestProtocol {
     
-    func initalize(application:UIApplication,event: UIApplication.State,
+    func initalize(event: UIApplication.State,
                    pauseSDK:Bool,
                    autoShowInAppNudge:Bool,
                    updateImmediately:Bool)
@@ -20,7 +20,7 @@ protocol IngestProtocol {
     func updateUserId(appUserId: String)
     
     func updateCoreCatalogItem(subject: CatalogSubject,
-                           catalogObject: Data)
+                               catalogObject: Data)
     
    
     

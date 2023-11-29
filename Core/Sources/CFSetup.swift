@@ -19,11 +19,11 @@ public class CFSetup:NSObject, IngestProtocol {
     private var userId: String = ""
     
     
-    private func setup(context:UIApplication)   {
-        verifyAccessToken(context:context)
+    private func setup()   {
+        verifyAccessToken()
         CoreConstants.shared.deviceObject = DInfo(brand:"Apple" , id: UIDevice.current.identifierForVendor!.uuidString, model: UIDevice.modelName, os: "iOS", osVer:"\(UIDevice.current.systemVersion)")
         
-        CoreConstants.shared.appInfoObject = self.getApplicationInfo(application: CoreConstants.shared.application!)
+        CoreConstants.shared.appInfoObject = getApplicationInfo()
         
         
         //Change implementation
@@ -38,21 +38,17 @@ public class CFSetup:NSObject, IngestProtocol {
         }
     }
     
-    func initalize(application:UIApplication,event: UIApplication.State, pauseSDK: Bool, autoShowInAppNudge: Bool, updateImmediately: Bool) {
-        CoreConstants.shared.application = application
+    func initalize(event: UIApplication.State, pauseSDK: Bool, autoShowInAppNudge: Bool, updateImmediately: Bool) {
         CoreConstants.shared.isAppDebuggable = true
         CoreConstants.shared.updateImmediately = updateImmediately
         CoreConstants.shared.pauseSDK = pauseSDK
         CoreConstants.shared.autoShowInAppNudge = autoShowInAppNudge
-        if let application = CoreConstants.shared.application {
-            self.setup(context:application)
-        }
-        
+        setup()
     }
     
     
     func updateUserId(appUserId: String) {
-        if appUserId != "" && CoreConstants.shared.application != nil {
+        if appUserId != "" {
             CoreConstants.shared.userId = appUserId
             CoreDataHelper.shared.writeUser(user: CoreConstants.shared.userId, deviceID: CoreConstants.shared.deviceObject?.id)
             userId = appUserId
@@ -61,10 +57,7 @@ public class CFSetup:NSObject, IngestProtocol {
     }
     
     public func updateCoreCatalogItem(subject: CatalogSubject, catalogObject: Data) {
-       if CoreConstants.shared.application != nil {
-           catalogAPIHandler.updateCoreCatalogItem(subject: subject, catalogObject: catalogObject)
-       }
-        
+        catalogAPIHandler.updateCoreCatalogItem(subject: subject, catalogObject: catalogObject)
     }
     
     
@@ -82,9 +75,8 @@ public class CFSetup:NSObject, IngestProtocol {
     
     public func track(contentBlockName: String, eventType: String, logObject: Any?, updateImmediately: Bool, eventTime: Int64 = 0) {
         
-        if CoreConstants.shared.application != nil {
-            verifyAccessToken(context:CoreConstants.shared.application!)
-        }
+        verifyAccessToken()
+        
         var cBlockName = contentBlockName
         if (cBlockName == ContentBlock.e_commerce.rawValue) {
             cBlockName = "e-commerce"
@@ -97,7 +89,7 @@ public class CFSetup:NSObject, IngestProtocol {
     
     
     
-    private func verifyAccessToken(context:UIApplication) {
+    private func verifyAccessToken() {
         if CoreConstants.shared.sdkKey == "" {
             if getSDKAccessKey() == "" {
                 fatalError("Access key not found")
@@ -109,7 +101,8 @@ public class CFSetup:NSObject, IngestProtocol {
     
     // Get Application Info Of app
     
-    private func getApplicationInfo(application:UIApplication) -> AppInfo {
+    private func getApplicationInfo() -> AppInfo {
+        let application = UIApplication.shared
         return AppInfo(id:application.bundleIdentifier(),
                        minSDKVersion: application.minimumVersion(),
                        targetSDKVersion: application.targetVersion(),
@@ -123,12 +116,8 @@ public class CFSetup:NSObject, IngestProtocol {
         // Code Reamining
     }
     
-    public func getUSDRate(fromCurrency: String, callback: (Float) -> Float) {
-        if CoreConstants.shared.application != nil {
-             ingestApiHandler.getUSDRate(fromCurrency: fromCurrency) { value  in
-                return value
-            }
-        }
+    public func getUSDRate(fromCurrency: String, callback: @escaping (Float) -> Float) {
+        ingestApiHandler.getUSDRate(fromCurrency: fromCurrency, callback: callback)
     }
 }
 

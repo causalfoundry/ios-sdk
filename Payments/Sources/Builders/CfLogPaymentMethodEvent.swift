@@ -194,11 +194,11 @@ public class CfLogPaymentMethodEvent {
             )
         } else {
             CFSetup().getUSDRate(fromCurrency: currency_value) { value in
-                paymentMethodObject?.usd_rate = 1
+                self.paymentMethodObject?.usd_rate = 1
                 CFSetup().track(
                     contentBlockName: PaymentsConstants.contentBlockName,
                     eventType: PaymentsEventType.deferred_payment.rawValue,
-                    logObject: paymentMethodObject,
+                    logObject: self.paymentMethodObject,
                     updateImmediately: self.update_immediately
                 )
                 return value
@@ -207,11 +207,11 @@ public class CfLogPaymentMethodEvent {
     }
     
     private func getUSDRateAndLogEvent(usdRate: Float) {
-        paymentMethodObject?.usd_rate = usdRate
+        self.paymentMethodObject?.usd_rate = usdRate
         CFSetup().track(
             contentBlockName: PaymentsConstants.contentBlockName,
             eventType: PaymentsEventType.payment_method.rawValue,
-            logObject: paymentMethodObject,
+            logObject: self.paymentMethodObject,
             updateImmediately: update_immediately
         )
     }

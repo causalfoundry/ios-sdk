@@ -79,7 +79,7 @@ class ExceptionAPIHandler {
 
         DispatchQueue.main.asyncAfter(deadline: delayTime) {
             if NotificationConstants.shared.EXCEPTION_NOTIFICATION_ENABLED {
-                self.showExceptionNotification(context: CoreConstants.shared.application!)
+                self.showExceptionNotification()
             }
         }
         
@@ -103,7 +103,7 @@ class ExceptionAPIHandler {
     }
     
     
-    private func showExceptionNotification(context:UIApplication) {
+    private func showExceptionNotification() {
         // need to implement code to show Notification
     }
 }
@@ -197,12 +197,10 @@ public class ExceptionManager {
             ts: Date().convertMillisToTimeString()
         )
         
-        if let application = CoreConstants.shared.application {
-            ExceptionAPIHandler().exceptionTrackAPI(
-                exceptionObject: exceptionDataObject,
-                updateImmediately: false
-            )
-        }
+        ExceptionAPIHandler().exceptionTrackAPI(
+            exceptionObject: exceptionDataObject,
+            updateImmediately: false
+        )
     }
     
     public  static func throwInvalidNetworkException(message: String, speed: Int) {
@@ -217,12 +215,10 @@ public class ExceptionManager {
             ts: Date().convertMillisToTimeString()
         )
         
-        if CoreConstants.shared.application != nil {
-            ExceptionAPIHandler().exceptionTrackAPI(
-                exceptionObject: exceptionDataObject,
-                updateImmediately: false
-            )
-        }
+        ExceptionAPIHandler().exceptionTrackAPI(
+            exceptionObject: exceptionDataObject,
+            updateImmediately: false
+        )
     }
     
     public static func throwInternalCrashException(eventType: String, message: String, exception: Error) {
@@ -235,12 +231,10 @@ public class ExceptionManager {
             ts: Date().convertMillisToTimeString()
         )
         
-        if CoreConstants.shared.application != nil {
-            ExceptionAPIHandler().exceptionTrackAPI(
-                exceptionObject: exceptionDataObject,
-                updateImmediately: false
-            )
-        }
+        ExceptionAPIHandler().exceptionTrackAPI(
+            exceptionObject: exceptionDataObject,
+            updateImmediately: false
+        )
     }
     
     // Other exception throwing functions...
@@ -253,16 +247,14 @@ public class ExceptionManager {
     ) {
         let exceptionDataObject = ExceptionDataObject(
             title: title ,
-            eventType: (eventType as? String)!,
-            exceptionType: (exceptionType as? String)!,
+            eventType: eventType,
+            exceptionType: exceptionType,
             exceptionSource: "SDK",
-            stackTrace: (stackTrace.localizedDescription as? String)!,
+            stackTrace: stackTrace.localizedDescription,
             ts: Date().convertMillisToTimeString()
         )
         
-        if CoreConstants.shared.application != nil {
-            ExceptionAPIHandler().exceptionTrackAPI(exceptionObject: exceptionDataObject, updateImmediately: false)
-        }
+        ExceptionAPIHandler().exceptionTrackAPI(exceptionObject: exceptionDataObject, updateImmediately: false)
         
         if CoreConstants.shared.isDebugMode && CoreConstants.shared.isAppDebuggable {
             // Handle debug mode throwing exception

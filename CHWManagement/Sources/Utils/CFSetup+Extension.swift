@@ -11,9 +11,7 @@ import CasualFoundryCore
 extension CFSetup {
     
     public func updateCHWMamnagementCatalogItem(subject: CatalogSubject, catalogObject: Data) {
-        if CoreConstants.shared.application != nil {
-            catalogAPIHandler.updateCHWCatalogItem(subject: subject, catalogObject: catalogObject)
-        }
+        catalogAPIHandler.updateCHWCatalogItem(subject: subject, catalogObject: catalogObject)
     }
     
 }

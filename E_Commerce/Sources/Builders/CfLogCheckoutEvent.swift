@@ -278,7 +278,7 @@ public class CfLogCheckoutEvent {
                     contentBlockName: ECommerceConstants.contentBlockName,
                     eventType: EComEventType.checkout.rawValue,
                     logObject: checkoutObject,
-                    updateImmediately: update_immediately
+                    updateImmediately: self.update_immediately
                 )
                 return checkoutObject.usd_rate!
             }
