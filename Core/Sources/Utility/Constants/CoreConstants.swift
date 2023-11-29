@@ -32,7 +32,6 @@ public class CoreConstants {
     
     public var pauseSDK: Bool = false
     public var autoShowInAppNudge: Bool = true
-    //public  var application: UIApplication? = nil
     var sessionStartTime: Int64 = 0
     var sessionEndTime: Int64 = 0
     

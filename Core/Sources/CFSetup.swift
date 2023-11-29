@@ -8,16 +8,11 @@
 import Foundation
 import UIKit
 
-import FileProvider
-
-
-public class CFSetup:NSObject, IngestProtocol {
-   
+public class CFSetup: NSObject, IngestProtocol {
     
     public var ingestApiHandler = IngestAPIHandler()
     public var catalogAPIHandler = CatalogAPIHandler()
     private var userId: String = ""
-    
     
     private func setup()   {
         verifyAccessToken()
@@ -31,11 +26,9 @@ public class CFSetup:NSObject, IngestProtocol {
         CoreConstants.shared.sessionStartTime = Int64(Date().timeIntervalSince1970 * 1000)
         CoreConstants.shared.sessionEndTime = Int64(Date().timeIntervalSince1970 * 1000)
         
-        
         userId = CoreDataHelper.shared.fetchUserID()
-        if (!userId.isNilOREmpty()) {
-            scheduleBackendNudgeListener()
-        }
+        
+        CFNudgeListener.shared.beginListening(userID: userId)
     }
     
     func initalize(event: UIApplication.State, pauseSDK: Bool, autoShowInAppNudge: Bool, updateImmediately: Bool) {
@@ -48,11 +41,11 @@ public class CFSetup:NSObject, IngestProtocol {
     
     
     func updateUserId(appUserId: String) {
-        if appUserId != "" {
+        if !appUserId.isEmpty {
             CoreConstants.shared.userId = appUserId
             CoreDataHelper.shared.writeUser(user: CoreConstants.shared.userId, deviceID: CoreConstants.shared.deviceObject?.id)
             userId = appUserId
-            scheduleBackendNudgeListener()
+            CFNudgeListener.shared.beginListening(userID: appUserId)
         }
     }
     
@@ -111,14 +104,7 @@ public class CFSetup:NSObject, IngestProtocol {
                        versionName: application.build())
     }
     
-    
-    private func scheduleBackendNudgeListener() {
-        // Code Reamining
-    }
-    
     public func getUSDRate(fromCurrency: String, callback: @escaping (Float) -> Float) {
         ingestApiHandler.getUSDRate(fromCurrency: fromCurrency, callback: callback)
     }
 }
-
-
