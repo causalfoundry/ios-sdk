@@ -38,7 +38,7 @@ class CFNudgeListener {
     private func requestNudges(userID: String) {
         guard !userID.isEmpty else { return }
         let session = URLSession.shared
-        var request = URLRequest(url: URL(string: "\(CoreConstants.shared.devUrl)ingest/catalog/\(userID)")!)
+        var request = URLRequest(url: URL(string: "\(CoreConstants.shared.devUrl)nudge/sdk/\(userID)")!)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(CoreConstants.shared.sdkKey, forHTTPHeaderField: "Authorization")
         let task = session.dataTask(with: request) { [weak self] data, response, error in
@@ -62,8 +62,10 @@ class CFNudgeListener {
     private func displayNudges(data: Data) {
         do {
             let decoder = JSONDecoder()
-            let object = try decoder.decode(BackendNudgeMainObject.self, from: data)
-            CFNotificationController.shared.triggerNudgeNotification(object: object)
+            let objects = try decoder.decode([BackendNudgeMainObject].self, from: data)
+            objects.forEach { object in
+                CFNotificationController.shared.triggerNudgeNotification(object: object)
+            }
         } catch {
             let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel))

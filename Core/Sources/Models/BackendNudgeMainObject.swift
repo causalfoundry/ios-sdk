@@ -9,9 +9,9 @@ import Foundation
 
 // MARK: - BackendNudgeMainObject
 struct BackendNudgeMainObject: Codable {
-    let ref: String?
-    let time: Date?
-    let nd: Nd?
+    let ref: String
+    let time: Date
+    let nd: Nd
     let extra: Extra?
     
     // MARK: - Extra

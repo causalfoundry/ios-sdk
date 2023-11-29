@@ -23,8 +23,8 @@ public final class CFNotificationController: NSObject {
     internal func triggerNudgeNotification(object: BackendNudgeMainObject) {
         let identifier = UUID().uuidString
         let content = UNMutableNotificationContent()
-        content.title = object.nd?.message?.title ?? ""
-        content.body = object.nd?.message?.body ?? ""
+        content.title = object.nd.message?.title ?? "Missing title"
+        content.body = object.nd.message?.body ?? "Missing message"
         content.categoryIdentifier = "Nudge"
         //content.userInfo = ["customData": "fizzbuzz"]
         content.sound = UNNotificationSound.default
