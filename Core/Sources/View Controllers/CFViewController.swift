@@ -33,7 +33,7 @@ open class CFViewController: UIViewController {
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         durationBeginTime = CFAbsoluteTimeGetCurrent()
-        if renderEndTime != nil {
+        if renderEndTime == nil {
             // only set once. user can return to preview view in stack
             renderEndTime = CFAbsoluteTimeGetCurrent()
         }
