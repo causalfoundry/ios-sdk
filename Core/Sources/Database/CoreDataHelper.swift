@@ -313,7 +313,7 @@ extension CoreDataHelper {
             print("Could not fetch. \(error), \(error.userInfo)")
             
         }
-        return  nil
+        return userCataLogItem
     }
     
     

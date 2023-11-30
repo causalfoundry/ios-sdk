@@ -10,7 +10,7 @@ import Foundation
 
 public enum AppAction:String, RawRepresentable,CaseIterable {
    
-    case open = "ope"
+    case open = "open"
     case close = "close"
     case background = "background"
     case resume = "resume"

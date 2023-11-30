@@ -26,7 +26,7 @@ public class CoreConstants {
     
     
     //private var SDKString: String = "/0.2.2"
-    var SDKVersion: String = "ios\(0.2)"
+    var SDKVersion: String = "ios/\(0.2)"
     
     public var updateImmediately: Bool = false
     

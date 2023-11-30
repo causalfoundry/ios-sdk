@@ -23,8 +23,8 @@ open class CFViewController: UIViewController {
             .setContentBlock(content_block: .core)
             .setTitle(title: self.className)
             .setPath(path: self.path)
-            .setDuration(duration: 300)
-            .setRenderTime(render_time: 1000)
+            .setDuration(duration: 30)
+            .setRenderTime(render_time: 300)
             .build()
     }
     
