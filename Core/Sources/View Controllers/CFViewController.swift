@@ -20,7 +20,7 @@ open class CFViewController: UIViewController {
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         CfLogPageBuilder()
-            .setContentBlock(content_block: .core)
+            .setContentBlock(content_block: CoreConstants.shared.contentBlock)
             .setTitle(title: self.className)
             .setPath(path: self.path)
             .setDuration(duration: 30)

@@ -22,8 +22,10 @@ public class CoreConstants {
     var isDebugMode: Bool = true
     var allowAutoPageTrack:Bool = true
     var isAnonymousUserAllowed:Bool = false
-    var contentBlockName:String = ""
-    
+    var contentBlock: ContentBlock = .core
+    var contentBlockName: String {
+        return contentBlock.rawValue
+    }
     
     //private var SDKString: String = "/0.2.2"
     var SDKVersion: String = "ios/\(0.2)"

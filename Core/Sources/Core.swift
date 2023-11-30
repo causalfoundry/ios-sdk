@@ -107,7 +107,7 @@ public class CFLogBuilder {
      */
     @discardableResult
     public func setAppLevelContentBlock(contentBlock: ContentBlock) -> CFLogBuilder {
-        CoreConstants.shared.contentBlockName = contentBlock.rawValue
+        CoreConstants.shared.contentBlock = contentBlock
         return self
     }
     /**

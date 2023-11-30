@@ -31,7 +31,7 @@ public class CfLogIdentityEvent  {
 }
 
 
-public class CfLogIdnetityBuilder {
+public class CfLogIdentityBuilder {
     private var identity_action:String?
     private var app_user_id:String?
     private var meta:Any?
@@ -50,7 +50,7 @@ public class CfLogIdnetityBuilder {
      * function provided for the enum based usage.
      *
      */
-   public func setIdentifyAction(identity_action: IdentityAction) -> CfLogIdnetityBuilder {
+   public func setIdentifyAction(identity_action: IdentityAction) -> CfLogIdentityBuilder {
         self.identity_action = identity_action.rawValue
         return self
     }
@@ -65,7 +65,7 @@ public class CfLogIdnetityBuilder {
      * function provided for the string based usage. Remember to use the same strings as
      * provided in the enums or else the event will be discarded.
      */
-   public func setIdentifyAction(identity_action: String) -> CfLogIdnetityBuilder {
+   public func setIdentifyAction(identity_action: String) -> CfLogIdentityBuilder {
         if (IdentityAction.allCases.filter({$0.rawValue == identity_action }).first != nil) {
             self.identity_action = identity_action
         }else {
@@ -82,7 +82,7 @@ public class CfLogIdnetityBuilder {
      * action will remove any data stored by the SDK including the userID but only after
      * successfully uploading the existing data to the backend.
      */
-    public func setAppUserId(app_user_id: String) -> CfLogIdnetityBuilder{
+    public func setAppUserId(app_user_id: String) -> CfLogIdentityBuilder{
         self.app_user_id = app_user_id
         return self
     }
@@ -92,7 +92,7 @@ public class CfLogIdnetityBuilder {
      * additional information with the log that they find would be helpful for logging and
      * providing more context to the log. Default value for the meta is null.
      */
-    public  func setMeta(meta: Any?) -> CfLogIdnetityBuilder{
+    public  func setMeta(meta: Any?) -> CfLogIdentityBuilder{
         self.meta = meta
         return self
     }
@@ -104,12 +104,12 @@ public class CfLogIdnetityBuilder {
      * the SDK will log the content instantly and if false it will wait till the end of user
      * session which is whenever the app goes into background.
      */
-    public func updateImmediately(update_immediately: Bool)  -> CfLogIdnetityBuilder{
+    public func updateImmediately(update_immediately: Bool)  -> CfLogIdentityBuilder{
         self.update_immediately = update_immediately
         return self
     }
     
-    public func setCountry(country:String?) ->  CfLogIdnetityBuilder {
+    public func setCountry(country:String?) ->  CfLogIdentityBuilder {
         if country != nil {
             if !CoreConstants.shared.enumContains(CountryCode.self, name: country!) {
                 ExceptionManager.throwEnumException(eventType: CoreEventType.identify.rawValue, className:String(describing:"CfLogIdentityEvent"))

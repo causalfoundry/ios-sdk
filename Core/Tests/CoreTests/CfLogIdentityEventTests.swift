@@ -21,7 +21,7 @@ class CfLogIdentityEventTests: XCTestCase {
 class CfLogIdnetityBuilderTests: XCTestCase {
 
     func testCfLogIdnetityBuilder() {
-        _ = CfLogIdnetityBuilder()
+        _ = CfLogIdentityBuilder()
             .setIdentifyAction(identity_action: "login")
             .setAppUserId(app_user_id: "test_user")
             .setMeta(meta: nil)
