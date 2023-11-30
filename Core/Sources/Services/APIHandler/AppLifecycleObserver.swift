@@ -29,12 +29,9 @@ public class CausualFoundry {
         // Unregister for notifications when the instance is deallocated
         removeNotifiations()
     }
-    
-    
-    
+        
     @objc func appDidFinishLaunching() {
         // Register Background Task
-        UIViewController.swizzleViewDidAppear()
         let isBackgroundFetchEnabled = UIApplication.shared.backgroundRefreshStatus == .available
         if !isBackgroundFetchEnabled {
             showBAckgroudTaskEnableNotification()
