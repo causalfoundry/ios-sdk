@@ -11,6 +11,9 @@ struct MainBody: Codable {
     let sdk: String
     let up: Int
     let data: [EventDataObject]
+    
+    static let encoder = JSONEncoder()
+    
 
     enum CodingKeys: String, CodingKey {
         case sID = "s_id"
@@ -45,7 +48,7 @@ extension MainBody {
             return dictionary[key]
         }
         var dictionary: [String: Any] {
-            return (try? JSONSerialization.jsonObject(with: JSONEncoder().encode(self))) as? [String: Any] ?? [:]
+            return (try? JSONSerialization.jsonObject(with: MainBody.encoder.encode(self))) as? [String: Any] ?? [:]
         }
     
     func with(
@@ -109,10 +112,10 @@ extension Props {
     }
 
     func with(
-        action: String? = nil,
-        duration: Double? = nil,
-        path: String? = nil,
-        title: String? = nil
+        action: String?? = nil,
+        duration: Double?? = nil,
+        path: String?? = nil,
+        title: String?? = nil
     ) -> Props {
         return Props(
             action: action ?? self.action,

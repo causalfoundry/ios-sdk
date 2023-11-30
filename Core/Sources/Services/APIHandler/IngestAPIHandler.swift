@@ -30,9 +30,11 @@ public class IngestAPIHandler:NSObject {
         
         if (!CoreConstants.shared.pauseSDK) {
             
+            let timezone = Date().convertMillisToTimeString()
+            
             reachability.stopNotifier()
             let isInternetAvailable :Bool = (reachability.connection == .wifi || reachability.connection == .cellular) ? true :  false
-            let eventObject = EventDataObject(content_block:contentBlock , online: isInternetAvailable, ts: Date(), event_type: eventType, event_properties: (trackProperties as! Encodable))
+            let eventObject = EventDataObject(content_block:contentBlock , online: isInternetAvailable, ts: "\(timezone)", event_type: eventType, event_properties: (trackProperties as! Encodable))
                     
                     if(updateImmediately) {
                         self.updateEventTrack(eventArray:[eventObject] ) { result in

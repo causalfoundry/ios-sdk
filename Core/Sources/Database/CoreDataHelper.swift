@@ -241,7 +241,7 @@ extension CoreDataHelper {
                     itemData =  items.map({ (data) in
                         let entityData = EventDataObject(content_block: (data.value(forKey:"content_block") as? String ?? "" ) ,
                                                          online:(data.value(forKey:"online") as? Bool ??  false ) ,
-                                                         ts: (data.value(forKey:"ts") as? Date ?? Date() ) ,
+                                                         ts: (data.value(forKey:"ts") as? String ?? "" ) ,
                                                          event_type: (data.value(forKey:"event_type") as? String ?? "" ) ,
                                                          event_properties: self.convertDataIntoEncodeable(contentBlock: (data.value(forKey:"content_block") as? String ?? "" ), eventType: (data.value(forKey:"event_type") as? String ?? "" ), resultData:data.value(forKey:"event_properties") as! Data))
                         return entityData
