@@ -52,6 +52,7 @@ fileprivate extension BackendNudgeMainObject {
         let country = extra?.traits?["data.ct_user.country"] ?? ""
         extra?.traits?.forEach { key, value in
             body = body.replacingOccurrences(of: "{{ \(key) }}", with: value)
+            body = body.replacingOccurrences(of: "{{\(key)}}", with: value)
         }
         return body
     }
