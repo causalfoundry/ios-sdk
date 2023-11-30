@@ -16,7 +16,7 @@ struct BackendNudgeMainObject: Codable {
     
     // MARK: - Extra
     struct Extra: Codable {
-        let traits: Traits?
+        let traits: [String: String]?
         let itemPair: ItemPair?
 
         enum CodingKeys: String, CodingKey {
@@ -28,15 +28,6 @@ struct BackendNudgeMainObject: Codable {
     // MARK: - ItemPair
     struct ItemPair: Codable {
         let ids, names: [String]?
-    }
-
-    // MARK: - Traits
-    struct Traits: Codable {
-        let dataCTUserCountry: String?
-
-        enum CodingKeys: String, CodingKey {
-            case dataCTUserCountry = "data.ct_user.country"
-        }
     }
 
     // MARK: - Nd

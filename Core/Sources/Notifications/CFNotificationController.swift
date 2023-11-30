@@ -23,8 +23,8 @@ public final class CFNotificationController: NSObject {
     internal func triggerNudgeNotification(object: BackendNudgeMainObject) {
         let identifier = UUID().uuidString
         let content = UNMutableNotificationContent()
-        content.title = object.nd.message?.title ?? "Missing title"
-        content.body = object.nd.message?.body ?? "Missing message"
+        content.title = object.nd.message?.title ?? ""
+        content.body = object.formattedBody ?? ""
         content.categoryIdentifier = "Nudge"
         //content.userInfo = ["customData": "fizzbuzz"]
         content.sound = UNNotificationSound.default
@@ -34,7 +34,6 @@ public final class CFNotificationController: NSObject {
     }
 }
 
-
 extension CFNotificationController: UNUserNotificationCenterDelegate {
     
     public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
@@ -43,5 +42,17 @@ extension CFNotificationController: UNUserNotificationCenterDelegate {
     
     public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         completionHandler()
+    }
+}
+
+fileprivate extension BackendNudgeMainObject {
+    
+    var formattedBody: String? {
+        guard var body = nd.message?.body, !body.isEmpty else { return nil }
+        let country = extra?.traits?["data.ct_user.country"] ?? ""
+        extra?.traits?.forEach { key, value in
+            body = body.replacingOccurrences(of: "{{ \(key) }}", with: value)
+        }
+        return body
     }
 }
