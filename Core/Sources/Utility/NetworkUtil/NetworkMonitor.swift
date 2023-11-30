@@ -81,32 +81,51 @@ final class NetworkMonitor {
     }
     
    func measureDownloadSpeed(completionHandler: @escaping (Double?) -> Void) {
-        guard let url = URL(string: "https://cdn.cocoacasts.com/cc00ceb0c6bff0d536f25454d50223875d5c79f1/above-the-clouds.jpg") else {
-            print("Invalid URL")
-            completionHandler(nil)
-            return
-        }
-        
-        let downloadTask = URLSession.shared.dataTask(with: url) { (_, response, error) in
-            if let error = error {
-                print("Download failed with error: \(error.localizedDescription)")
-                completionHandler(nil)
-                return
-            }
-            
-            guard let httpResponse = response as? HTTPURLResponse else {
-                print("Invalid HTTP response")
-                completionHandler(nil)
-                return
-            }
-            
-            let fileSizeInBytes = Double(httpResponse.expectedContentLength)
-            let downloadTimeInSeconds = convertHTTPDateToTimeInterval(httpDate: httpResponse.allHeaderFields["Date"] as! String)
-            let downloadSpeedMbps = (fileSizeInBytes / downloadTimeInSeconds!) * 8 / 1024.0
-            completionHandler(downloadSpeedMbps)
-        }
-        
-        downloadTask.resume()
+       guard let url = URL(string: "https://cdn.cocoacasts.com/cc00ceb0c6bff0d536f25454d50223875d5c79f1/above-the-clouds.jpg") else {
+           print("Invalid URL")
+           completionHandler(nil)
+           return
+       }
+       
+       let configuration = URLSessionConfiguration.ephemeral
+       configuration.timeoutIntervalForResource = 10
+       let session = URLSession(configuration: configuration)
+       
+       let startTime = CFAbsoluteTimeGetCurrent()
+      
+       let downloadTask = session.dataTask(with: url) { ( data, response, error) in
+           
+           if let error = error {
+               print("Download failed with error: \(error.localizedDescription)")
+               completionHandler(nil)
+               return
+           }
+           
+           guard let data = data else {
+               print("No data received")
+               completionHandler(nil)
+               return
+           }
+           
+           guard let httpResponse = response as? HTTPURLResponse else {
+               print("Invalid HTTP response")
+               completionHandler(nil)
+               return
+           }
+           
+           let elapsed = CFAbsoluteTimeGetCurrent() - startTime
+           guard elapsed != 0 else {
+               print("Invalid elapsed time")
+               completionHandler(nil)
+               return
+           }
+           
+           let speed = (Double(data.count) / elapsed) / 1024.0 / 1024.0
+           completionHandler(speed)
+       }
+       
+       downloadTask.resume()
+       
     }
 
     func measureUploadSpeed(fileURL: URL, completionHandler: @escaping (Double?) -> Void) {
@@ -117,7 +136,8 @@ final class NetworkMonitor {
         }
         
         // Replace with your upload URL
-        #warning("set upload url")
+        #warning("set upload url and use kbps as in download speed!")
+        
         guard let uploadURL = URL(string: "YOUR_UPLOAD_URL_HERE") else {
             print("Invalid upload URL")
             completionHandler(nil)
@@ -137,7 +157,7 @@ final class NetworkMonitor {
             // Calculate the upload speed in Mbps
             let fileSizeInBytes = Double(data.count)
             let uploadTimeInSeconds = Date().timeIntervalSinceNow * -1
-            let uploadSpeedMbps = (fileSizeInBytes / uploadTimeInSeconds) * 8 / 1_000_000
+            let uploadSpeedMbps = (fileSizeInBytes / uploadTimeInSeconds) / 1_000_000
             completionHandler(uploadSpeedMbps)
         }
         
