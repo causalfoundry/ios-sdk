@@ -17,25 +17,33 @@ import Foundation
 
 
 public class CfLogIdentityEvent  {
+    
     var identity_action:String = ""
     var app_user_id:String = ""
     var meta:Any?
     var update_immediately:Bool = CoreConstants.shared.updateImmediately
+    var blocked_reason: String?
+    var blocked_remarks: String?
     
-  init(identity_action: String, app_user_id: String, meta: Any? = nil, update_immediately: Bool) {
+    init(identity_action: String, app_user_id: String, meta: Any? = nil, update_immediately: Bool, blocked_reason: String?, blocked_remarks: String?) {
         self.identity_action = identity_action
         self.app_user_id = app_user_id
         self.meta = meta
         self.update_immediately = update_immediately
-    }
+        self.blocked_reason = blocked_reason
+        self.blocked_remarks = blocked_remarks
+      }
 }
 
 
 public class CfLogIdentityBuilder {
+    
     private var identity_action:String?
     private var app_user_id:String?
     private var meta:Any?
     private var update_immediately:Bool = CoreConstants.shared.updateImmediately
+    private var blocked_reason: String?
+    private var blocked_remarks: String?
     
     public init() {
         
@@ -120,6 +128,16 @@ public class CfLogIdentityBuilder {
         return self
     }
     
+    public func setBlockedReason(blocked_reason: String)  -> CfLogIdentityBuilder {
+        self.blocked_reason = blocked_reason
+        return self
+    }
+    
+    public func setBlockedRemarks(blocked_remarks: String)  -> CfLogIdentityBuilder {
+        self.blocked_remarks = blocked_remarks
+        return self
+    }
+    
     /**
      * build will validate all of the values provided and if passes will call the track
      * function and queue the events based on it's updateImmediately value and also on the
@@ -151,7 +169,15 @@ public class CfLogIdentityBuilder {
         } else {
             CFSetup().updateUserId(appUserId: self.app_user_id!)
         }
-        let indetityObject = IdentifyObject(action: self.identity_action)
+        
+        var action = self.identity_action
+        var blocked: IdentifyObject.Blocked?
+        if let reason = blocked_reason {
+            action = IdentityAction.blocked.rawValue
+            blocked = IdentifyObject.Blocked(reason: reason, remarks: blocked_remarks)
+        }
+        
+        let indetityObject = IdentifyObject(action: action, blocked: blocked)
         
         CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.identify.rawValue, logObject: indetityObject, updateImmediately: update_immediately, eventTime:0)
     }

@@ -9,9 +9,13 @@ import Foundation
 
 
 struct IdentifyObject:Codable {
-    var action:String?
     
-    init(action: String? = nil) {
-        self.action = action
+    struct Blocked: Codable {
+        let reason: String
+        let remarks: String?
     }
+    
+    let action: String?
+    let blocked: Blocked?
+    
 }
