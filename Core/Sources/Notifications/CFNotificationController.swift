@@ -24,8 +24,8 @@ public final class CFNotificationController: NSObject {
         let identifier = UUID().uuidString
         let content = UNMutableNotificationContent()
         content.title = object.nd.message?.title ?? ""
-        content.body = object.formattedBody ?? ""
-        content.categoryIdentifier = "Nudge"
+        content.body = NudgeUtils.getBodyTextBasedOnTemplate(nudgeObject: object)
+        content.categoryIdentifier = "BackendNudgeMainObject"
         //content.userInfo = ["customData": "fizzbuzz"]
         content.sound = UNNotificationSound.default
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
@@ -42,17 +42,5 @@ extension CFNotificationController: UNUserNotificationCenterDelegate {
     
     public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         completionHandler()
-    }
-}
-
-fileprivate extension BackendNudgeMainObject {
-    
-    var formattedBody: String? {
-        guard var body = nd.message?.body, !body.isEmpty else { return nil }
-        extra?.traits?.forEach { key, value in
-            body = body.replacingOccurrences(of: "{{ \(key) }}", with: value)
-            body = body.replacingOccurrences(of: "{{\(key)}}", with: value)
-        }
-        return body
     }
 }

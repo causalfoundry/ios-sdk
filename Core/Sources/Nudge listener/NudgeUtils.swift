@@ -5,222 +5,143 @@
 //  Created by Causal Foundry on 30.11.23.
 //
 
-/*
+
 import Foundation
 
-final class NudgeUtils {
-
-    /*
-    internal func getBodyTextBasedOnTemplate(
-        nudgeObjectString: String
-    ): String {
+class NudgeUtils {
+    
+    static func getBodyTextBasedOnTemplate(nudgeObjectString: String) -> String {
         return getBodyTextBasedOnTemplate(
-            Gson().fromJson(
-                nudgeObjectString,
-                BackendNudgeMainObject::class.java
-            )
+            nudgeObject: try! JSONDecoder().decode(BackendNudgeMainObject.self, from: nudgeObjectString.data(using: .utf8)!)
         )
     }
-    */
-
-    internal func getBodyTextBasedOnTemplate(
-        nudgeObject: BackendNudgeMainObject
-    ) -> String {
-        if (nudgeObject.nd?.message?.template_config == null) {
-            // simple push notification
-            return checkBodyForTemplatePlaceholders(nudgeObject)
-        } else {
-            if (nudgeObject.nd?.message?.template_config?.template_type) {
-                "" -> { // simple push notification
-                    return checkBodyForTemplatePlaceholders(nudgeObject)
-                }
-
-                else {
-                    var templateTypes =
-                        nudgeObject.definition.message.template_config!!.template_type.split(",")
-                            .toTypedArray()
-                    var bodyText = nudgeObject.definition.message.body
-                    for (tmplType in templateTypes) {
-                        if (tmplType.trim() == NudgeTemplateType.item_pair.name) { // item pair notification
-                            bodyText = validateAndProvideItemPairString(bodyText, nudgeObject)
-                        } else if (tmplType.trim() == NudgeTemplateType.traits.name) { // traits notification
-                            bodyText = validateAndProvideTraitsString(bodyText, nudgeObject)
-                        } else {
-                            ExceptionManager.throwInvalidNudgeException(
-                                "Invalid tmpl_cfg.tmpl_type provided",
-                                nudgeObject
-                            )
-                            bodyText = ""
-                        }
-                    }
-                    return bodyText
-                }
-            }
-        }
-
-    }
-
-    private func checkBodyForTemplatePlaceholders(nudgeObject: BackendNudgeMainObject) -> String {
-        var regex = "\\{\\{\\s*(.*?)\\s*\\}\\}".toRegex()
-        if (regex.find(nudgeObject.nd?.message?.body) != null) {
-            ExceptionManager.throwInvalidNudgeException(
-                "Empty Template Type but body contains placeholders",
-                nudgeObject
-            )
-            return ""
-        }
-        return nudgeObject.nd?.message?.body
-    }
-
-    private func validateAndProvideTraitsString(
-        inputString: String,
-        nudgeObject: BackendNudgeMainObject
-    ) -> String {
-
-        if (nudgeObject.definition.message.template_config!!.traits_cfg.isNullOrEmpty()) {
-            ExceptionManager.throwInvalidNudgeException(
-                "Invalid tmpl_cfg.traits provided",
-                nudgeObject
-            )
-            return ""
-        } else if (nudgeObject.extra_values == null) {
-            ExceptionManager.throwInvalidNudgeException(
-                "Invalid extra provided",
-                nudgeObject
-            )
-            return ""
-        } else if (nudgeObject.extra_values!!.traits_extra_object == null) {
-            ExceptionManager.throwInvalidNudgeException(
-                "Invalid extra.traits provided",
-                nudgeObject
-            )
-            return ""
-        } else if (nudgeObject.extra_values!!.traits_extra_object.toString().isEmpty()) {
-            ExceptionManager.throwInvalidNudgeException(
-                "Empty extra.traits provided",
-                nudgeObject
-            )
-            return ""
-        } else {
-            var traitsMap: Map<String, Any> = HashMap()
-            traitsMap = Gson().fromJson(
-                nudgeObject.extra_values!!.traits_extra_object.toString(),
-                traitsMap.javaClass
-            )
-            return if (nudgeObject.definition.message.template_config!!.traits_cfg!!.size != traitsMap.size) {
-                ExceptionManager.throwInvalidNudgeException(
-                    "extra.traits and tmpl_cfg.traits size mismatch",
-                    nudgeObject
-                )
-                ""
-            } else if (!nudgeObject.definition.message.template_config!!.traits_cfg!!.all {
-                    traitsMap.containsKey(it)
-                }) {
-                ExceptionManager.throwInvalidNudgeException(
-                    "extra.traits and tmpl_cfg.traits values mismatch",
-                    nudgeObject
-                )
-                ""
-            } else {
-                var nudgeObjectBody = inputString
-                for ((key, value) in traitsMap) {
-                    nudgeObjectBody = nudgeObjectBody.replace("{{$key}}", value.toString())
-                    nudgeObjectBody = nudgeObjectBody.replace("{{ $key }}", value.toString())
-                }
-                nudgeObjectBody
-            }
-        }
-
-    }
-
-    private func validateAndProvideItemPairString(
-        inputString: String,
-        nudgeObject: BackendNudgeMainObject
-    ) -> String {
-
-        if (nudgeObject.definition.message.template_config!!.item_pair_cfg == null) {
-            ExceptionManager.throwInvalidNudgeException(
-                "Invalid tmpl_cfg.item_pair_cfg provided",
-                nudgeObject
-            )
-            return ""
-        } else if (nudgeObject.definition.message.template_config!!.item_pair_cfg!!.item_type.isNullOrEmpty()) {
-            ExceptionManager.throwInvalidNudgeException(
-                "Invalid tmpl_cfg.item_pair_cfg.item_type provided",
-                nudgeObject
-            )
-            return ""
-        } else if (nudgeObject.extra_values == null) {
-            ExceptionManager.throwInvalidNudgeException(
-                "Invalid extra provided",
-                nudgeObject
-            )
-            return ""
-        } else if (nudgeObject.extra_values!!.item_pair_extra_object == null) {
-            ExceptionManager.throwInvalidNudgeException(
-                "Invalid extra.item_pair provided",
-                nudgeObject
-            )
-            return ""
-        } else if (nudgeObject.extra_values!!.item_pair_extra_object!!.names.size != 2) {
-            ExceptionManager.throwInvalidNudgeException(
-                "Invalid extra.item_pair.names values provided",
-                nudgeObject
-            )
-            return ""
-        } else if (nudgeObject.extra_values!!.item_pair_extra_object!!.ids.size != 2) {
-            ExceptionManager.throwInvalidNudgeException(
-                "Invalid extra.item_pair.ids values provided",
-                nudgeObject
-            )
-            return ""
-        } else {
-            return inputString
-                .replace(
-                    "{{ primary }}",
-                    nudgeObject.extra_values!!.item_pair_extra_object!!.names[0]
-                )
-                .replace(
-                    "{{primary}}",
-                    nudgeObject.extra_values!!.item_pair_extra_object!!.names[0]
-                )
-                .replace(
-                    "{{ secondary }}",
-                    nudgeObject.extra_values!!.item_pair_extra_object!!.names[1]
-                )
-                .replace(
-                    "{{secondary}}",
-                    nudgeObject.extra_values!!.item_pair_extra_object!!.names[1]
-                )
-        }
-    }
-
-    /*
-    internal func getBitmapFromURL(strURL: String?): Bitmap? {
-        return try {
-            var url = URL(string: strURL)
-            var connection: HttpURLConnection = url.openConnection() as HttpURLConnection
-            connection.doInput = true
-            connection.connect()
-            var input: InputStream = connection.inputStream
-            BitmapFactory.decodeStream(input)
-        } catch (e: IOException) {
-            e.printStackTrace()
-            null
-        }
-    }
-
     
-    internal func vectorToBitmap(context: Context, drawableId: Int): Bitmap? {
-        var drawable = context.getDrawable(drawableId) ?: return null
-        var bitmap = Bitmap.createBitmap(
-            drawable.intrinsicWidth, drawable.intrinsicHeight, Bitmap.Config.ARGB_8888
-        ) ?: return null
-        var canvas = Canvas(bitmap)
-        drawable.setBounds(0, 0, canvas.width, canvas.height)
-        drawable.draw(canvas)
-        return bitmap
+    static func getBodyTextBasedOnTemplate(nudgeObject: BackendNudgeMainObject) -> String {
+        if nudgeObject.nd.message?.tmplCFG == nil {
+            // simple push notification
+            return checkBodyForTemplatePlaceholders(nudgeObject: nudgeObject)
+        } else {
+            switch nudgeObject.nd.message?.tmplCFG!.tmplType {
+            case "":
+                // simple push notification
+                return checkBodyForTemplatePlaceholders(nudgeObject: nudgeObject)
+            default:
+                let templateTypes = nudgeObject.nd.message?.tmplCFG!.tmplType?.split(separator: ",").map { String($0) } ?? []
+                var bodyText = nudgeObject.nd.message?.body ?? ""
+                for tmplType in templateTypes {
+                    if tmplType.trimmingCharacters(in: .whitespaces) == BackendNudgeMainObject.Extra.CodingKeys.itemPair.rawValue {
+                        // item pair notification
+                        bodyText = validateAndProvideItemPairString(inputString: bodyText, nudgeObject: nudgeObject)
+                    } else if tmplType.trimmingCharacters(in: .whitespaces) == BackendNudgeMainObject.Extra.CodingKeys.traits.rawValue {
+                        // traits notification
+                        bodyText = validateAndProvideTraitsString(inputString: bodyText, nudgeObject: nudgeObject)
+                    } else {
+                        ExceptionManager.throwInvalidNudgeException(message: "Invalid tmpl_cfg.tmpl_type provided", nudgeObject: nudgeObject.toString())
+                        bodyText = ""
+                    }
+                }
+                return bodyText
+            }
+        }
     }
-*/
+    
+    private static func checkBodyForTemplatePlaceholders(nudgeObject: BackendNudgeMainObject) -> String {
+        let body = nudgeObject.nd.message?.body ?? ""
+        let regex = try! NSRegularExpression(pattern: "\\{\\{\\s*(.*?)\\s*\\}\\}")
+        if regex.firstMatch(in: body, range: NSRange(body.startIndex..., in: body)) != nil {
+            ExceptionManager.throwInvalidNudgeException(message: "Empty Template Type but body contains placeholders", nudgeObject: nudgeObject.toString())
+            return ""
+        }
+        return body
+    }
+    
+    private static func validateAndProvideTraitsString(inputString: String, nudgeObject: BackendNudgeMainObject) -> String {
+        guard let traitsCfg = nudgeObject.nd.message?.tmplCFG?.traits else {
+            ExceptionManager.throwInvalidNudgeException(message: "Invalid tmpl_cfg.traits provided", nudgeObject: nudgeObject.toString())
+            return ""
+        }
+        guard let extra = nudgeObject.extra else {
+            ExceptionManager.throwInvalidNudgeException(message: "Invalid extra provided", nudgeObject: nudgeObject.toString())
+            return ""
+        }
+        guard let traitsExtraObject = extra.traits else {
+            ExceptionManager.throwInvalidNudgeException(message: "Invalid extra.traits provided", nudgeObject: nudgeObject.toString())
+            return ""
+        }
+        guard !traitsExtraObject.isEmpty else {
+            ExceptionManager.throwInvalidNudgeException(message: "Empty extra.traits provided", nudgeObject: nudgeObject.toString())
+            return ""
+        }
+        
+        var traitsMap: [String: Any] = [:]
+        if let jsonData = traitsExtraObject.toData() {
+            do {
+                traitsMap = try JSONSerialization.jsonObject(with: jsonData) as! [String: Any]
+            } catch {
+                ExceptionManager.throwInvalidNudgeException(message: "Failed to parse extra.traits JSON", nudgeObject: nudgeObject.toString())
+                return ""
+            }
+        }
+        
+        if traitsCfg.count != traitsMap.count {
+            ExceptionManager.throwInvalidNudgeException(message: "extra.traits and tmpl_cfg.traits size mismatch", nudgeObject: nudgeObject.toString())
+            return ""
+        }
+        
+        for trait in traitsCfg {
+            if !traitsMap.keys.contains(trait) {
+                ExceptionManager.throwInvalidNudgeException(message: "extra.traits and tmpl_cfg.traits values mismatch", nudgeObject: nudgeObject.toString())
+                return ""
+            }
+        }
+        
+        var nudgeObjectBody = inputString
+        for (key, value) in traitsMap {
+            nudgeObjectBody = nudgeObjectBody.replacingOccurrences(of: "{{\(key)}}", with: "\(value)")
+            nudgeObjectBody = nudgeObjectBody.replacingOccurrences(of: "{{ \(key) }}", with: "\(value)")
+        }
+        return nudgeObjectBody
+    }
+    
+    private static func validateAndProvideItemPairString(inputString: String, nudgeObject: BackendNudgeMainObject) -> String {
+        guard let itemPairCfg = nudgeObject.nd.message?.tmplCFG?.itemPairCFG else {
+            ExceptionManager.throwInvalidNudgeException(message: "Invalid tmpl_cfg.item_pair_cfg provided", nudgeObject: nudgeObject.toString())
+            return ""
+        }
+        guard let extra = nudgeObject.extra else {
+            ExceptionManager.throwInvalidNudgeException(message: "Invalid extra provided", nudgeObject: nudgeObject.toString())
+            return ""
+        }
+        guard let itemPairExtraObject = extra.itemPair else {
+            ExceptionManager.throwInvalidNudgeException(message: "Invalid extra.item_pair provided", nudgeObject: nudgeObject.toString())
+            return ""
+        }
+        guard itemPairExtraObject.names?.count == 2 else {
+            ExceptionManager.throwInvalidNudgeException(message: "Invalid extra.item_pair.names values provided", nudgeObject: nudgeObject.toString())
+            return ""
+        }
+        guard itemPairExtraObject.ids?.count == 2 else {
+            ExceptionManager.throwInvalidNudgeException(message: "Invalid extra.item_pair.ids values provided", nudgeObject: nudgeObject.toString())
+            return ""
+        }
+        
+        var nudgeObjectBody = inputString
+        nudgeObjectBody = nudgeObjectBody.replacingOccurrences(of: "{{ primary }}", with: "\(itemPairExtraObject.names![0])")
+        nudgeObjectBody = nudgeObjectBody.replacingOccurrences(of: "{{primary}}", with: "\(itemPairExtraObject.names![0])")
+        nudgeObjectBody = nudgeObjectBody.replacingOccurrences(of: "{{ secondary }}", with: "\(itemPairExtraObject.names![1])")
+        nudgeObjectBody = nudgeObjectBody.replacingOccurrences(of: "{{secondary}}", with: "\(itemPairExtraObject.names![1])")
+        
+        return nudgeObjectBody
+    }
 }
-*/
+
+fileprivate extension BackendNudgeMainObject {
+    
+    func toString() -> String {
+        let encoder = JSONEncoder()
+        guard let data = try? encoder.encode(self) else {
+            return ""
+        }
+        return String(data: data, encoding: .utf8) ?? ""
+    }
+}
