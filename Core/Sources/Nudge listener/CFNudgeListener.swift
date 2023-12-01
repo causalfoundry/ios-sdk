@@ -11,14 +11,31 @@ class CFNudgeListener {
     
     static let shared = CFNudgeListener()
     
+    private var nudgeTimer: Timer?
+    private var nudgeTask: URLSessionDataTask?
     private var userID: String?
+    
+    let timeInterval: TimeInterval = 20 * 3600
 
     func endListening() {
         userID = nil
+        endTimer()
+        NotificationCenter.default.removeObserver(self)
     }
     
     func beginListening(userID: String) {
+        endListening()
+        guard !userID.isEmpty else { return }
         self.userID = userID
+        startTimer()
+        fetchAndDisplayNudges()
+        NotificationCenter.default.addObserver(forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: .main) { [weak self] _ in
+            self?.endTimer()
+        }
+        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: .main) { [weak self] _ in
+            self?.startTimer()
+            self?.fetchAndDisplayNudges()
+        }
     }
     
     func fetchNudges() async throws -> [BackendNudgeMainObject] {
@@ -37,6 +54,27 @@ class CFNudgeListener {
                         continuation.resume(with: .failure(error))
                     }
                 }
+            }
+        }
+    }
+    
+    private func startTimer() {
+        nudgeTimer?.invalidate()
+        nudgeTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) { [weak self] timer in
+            self?.fetchAndDisplayNudges()
+        }
+    }
+    
+    private func endTimer() {
+        nudgeTimer?.invalidate()
+        nudgeTimer = nil
+    }
+    
+    private func fetchAndDisplayNudges() {
+        Task {
+            let objects = try await fetchNudges()
+            for object in objects {
+                CFNotificationController.shared.triggerNudgeNotification(object: object)
             }
         }
     }

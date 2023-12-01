@@ -76,7 +76,7 @@ public enum WorkerCaller {
         }
     }
     
-    private static func scheduleNudgeDownloadTask(earliestBeginDate: Date = Date(timeIntervalSinceNow: 20 * 60)) {
+    private static func scheduleNudgeDownloadTask(earliestBeginDate: Date = Date(timeIntervalSinceNow: CFNudgeListener.shared.timeInterval)) {
         let request = BGProcessingTaskRequest(identifier: WorkerCaller.nudgeDownloadTaskIdentifier)
         request.requiresNetworkConnectivity = true // Set as needed
         request.requiresExternalPower = false // Set as needed
