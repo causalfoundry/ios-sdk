@@ -13,6 +13,7 @@ public final class CFNotificationController: NSObject {
     
     private let center = UNUserNotificationCenter.current()
     
+    private let userInfoKey = "object"
     private let options: UNNotificationPresentationOptions = [.alert, .badge, .sound]
     
     public func request(completionHandler: @escaping (Bool, Error?) -> Void) {
@@ -42,7 +43,7 @@ public final class CFNotificationController: NSObject {
             content.body = NudgeUtils.getBodyTextBasedOnTemplate(nudgeObject: object)
             content.categoryIdentifier = "BackendNudgeMainObject"
             if let data = object.toData() {
-                content.userInfo = ["object": data]
+                content.userInfo = [userInfoKey: data]
             }
             content.sound = UNNotificationSound.default
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
@@ -67,7 +68,7 @@ extension CFNotificationController: UNUserNotificationCenterDelegate {
     
     public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // notification is presented
-        if let data = notification.request.content.userInfo["object"] as? Data, let object = data.toObject() {
+        if let data = notification.request.content.userInfo[userInfoKey] as? Data, let object = data.toObject() {
             track(object: object, response: .shown)
         }
         completionHandler(options)
@@ -75,7 +76,7 @@ extension CFNotificationController: UNUserNotificationCenterDelegate {
     
     public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         // user tapped on notification
-        if let data = response.notification.request.content.userInfo["object"] as? Data, let object = data.toObject() {
+        if let data = response.notification.request.content.userInfo[userInfoKey] as? Data, let object = data.toObject() {
             track(object: object, response: .open)
         }
         completionHandler()
