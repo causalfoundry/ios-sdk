@@ -49,7 +49,6 @@ fileprivate extension BackendNudgeMainObject {
     
     var formattedBody: String? {
         guard var body = nd.message?.body, !body.isEmpty else { return nil }
-        let country = extra?.traits?["data.ct_user.country"] ?? ""
         extra?.traits?.forEach { key, value in
             body = body.replacingOccurrences(of: "{{ \(key) }}", with: value)
             body = body.replacingOccurrences(of: "{{\(key)}}", with: value)

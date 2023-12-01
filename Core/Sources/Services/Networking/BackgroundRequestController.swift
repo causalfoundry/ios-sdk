@@ -10,10 +10,11 @@ import UIKit
 
 fileprivate final class BackgroundRequest {
     
-    let task: URLSessionDataTask
+    let task: URLSessionTask
+    var data: Data?
     let completion: BackgroundRequestController.Completion
     
-    init(task: URLSessionDataTask, completion: @escaping BackgroundRequestController.Completion) {
+    init(task: URLSessionTask, completion: @escaping BackgroundRequestController.Completion) {
         self.task = task
         self.completion = completion
     }
@@ -21,14 +22,14 @@ fileprivate final class BackgroundRequest {
 
 class BackgroundRequestController: NSObject {
     
-    typealias Completion = (_ error: Error?, _ response: URLResponse?) -> Void
+    typealias Completion = (_ error: Error?, _ response: URLResponse?, _ data: Data?) -> Void
         
     public static let shared = BackgroundRequestController()
     
     private let backgroundRequestsQueue = DispatchQueue(label: "thread-safe-obj", attributes: .concurrent)
     private var backgroundRequests = [BackgroundRequest]()
     private lazy var session: URLSession = {
-        let configuration = URLSessionConfiguration.background(withIdentifier: WorkerCaller.backgroundTaskIdentifier)
+        let configuration = URLSessionConfiguration.background(withIdentifier: "BackgroundRequestController.configuration")
         configuration.allowsCellularAccess = true
         configuration.httpShouldSetCookies = true
         configuration.httpShouldUsePipelining = true
@@ -40,88 +41,30 @@ class BackgroundRequestController: NSObject {
     }()
     
     public override init() { }
-    
-    public func request(_ strParams: Any, _ strUrl: String, _ strMethod: String, completionHandler: @escaping Completion) {
         
-        let url = URL(string: strUrl)
-        var urlRequest = URLRequest(url: url!,cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,timeoutInterval: 3.0 * 1000)
-        
-        urlRequest.httpMethod = strMethod
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue(CoreConstants.shared.sdkKey, forHTTPHeaderField: "Authorization")
-        
-        if strMethod == "POST",
-           (strParams as AnyObject).count > 0,
-           let httpBody = try? JSONSerialization.data(withJSONObject: strParams, options: .prettyPrinted) {
-            urlRequest.httpBody = httpBody
-        }
-        
+    public func request(url: URL, httpMethod: String, params: Any?, completionHandler: @escaping Completion) {
+        let urlRequest = urlRequest(url: url, httpMethod: httpMethod, params: params)
         let task = session.dataTask(with: urlRequest)
-        
         backgroundRequestsQueue.async(flags: .barrier) {
             let request = BackgroundRequest(task: task, completion: completionHandler)
             self.backgroundRequests.append(request)
         }
-        
-        print(urlRequest);
-        //        task = session.dataTask(with: request, completionHandler: {data, response, error in
-        //            do {
-        //                if error != nil {
-        //                    if let dic  = error?.localizedDescription {
-        //                        print(dic)
-        //                       //  Show Error
-        //                    }
-        //                }else{
-        //                    // Chnages related to Http response suggested by Shekhar due to unhandle 500 error form backend side
-        //                    if let httpResponse = response as? HTTPURLResponse {
-        //                        if httpResponse.statusCode != 200 {
-        //                            DispatchQueue.main.async {
-        //                               // Show Error
-        //                                self.task.cancel()
-        //                                completionHandler(false, nil, httpResponse)
-        //                            }
-        //                        }else{
-        //                            guard let data = data else {
-        //                                print(strParams)
-        //                                print(request)
-        //                                return
-        //                            }
-        //                            print("response", response as Any);
-        //                            if let jsonResult = try JSONSerialization.jsonObject(with: data, options: []) as? NSArray {
-        //                                for dictData in jsonResult {
-        //                                    guard let dict = dictData as? NSDictionary else {
-        //                                        print("Conversion failed")
-        //                                        return
-        //                                    }
-        //                                    completionHandler(true, dict,httpResponse)
-        //                                }
-        //                                completionHandler(false, nil,httpResponse)
-        //                            }else {
-        //                                guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary else {
-        //                                    print("Conversion failed")
-        //                                    return
-        //                                }
-        //                                completionHandler(true, json,httpResponse)
-        //                            }
-        //                        }
-        //                    }
-        //                }
-        //            }
-        ////            catch let error as JSONError {
-        ////                print(error.rawValue)
-        ////                completionHandler(false, nil)
-        ////            }
-        //            catch let error as NSError {
-        //                print(error.debugDescription)
-        //                completionHandler(false, nil,response as! HTTPURLResponse)
-        //            }
-        //        });
         task.resume()
-        //        task.suspend()
-    }    
+    }
+    
+    private func urlRequest(url: URL, httpMethod: String, params: Any?) -> URLRequest {
+        var urlRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,timeoutInterval: 3.0 * 1000)
+        urlRequest.httpMethod = httpMethod
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue(CoreConstants.shared.sdkKey, forHTTPHeaderField: "Authorization")
+        if let params = params, let httpBody = try? JSONSerialization.data(withJSONObject: params, options: .prettyPrinted) {
+            urlRequest.httpBody = httpBody
+        }
+        return urlRequest
+    }
 }
 
-extension BackgroundRequestController: URLSessionDelegate, URLSessionDownloadDelegate {
+extension BackgroundRequestController: URLSessionDelegate {
     
     func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
         print("Session didBecomeInvalidWithError: \(error?.localizedDescription ?? "No error")")
@@ -133,7 +76,7 @@ extension BackgroundRequestController: URLSessionDelegate, URLSessionDownloadDel
         print("All tasks in the background session are complete.")
         backgroundRequestsQueue.async(flags: .barrier) {
             self.backgroundRequests.forEach { request in
-                request.completion(nil, request.task.response)
+                request.completion(nil, request.task.response, nil)
             }
             self.backgroundRequests.removeAll()
         }
@@ -142,17 +85,29 @@ extension BackgroundRequestController: URLSessionDelegate, URLSessionDownloadDel
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         // This method is called when a task completes (both successfully or with an error).
         // Handle task completion here.
-        print("Task completed with error: \(error?.localizedDescription ?? "No error")")
+        print("Task \(task.originalRequest?.url?.absoluteString ?? "-") completed with error: \(error?.localizedDescription ?? "No error")")
         backgroundRequestsQueue.async(flags: .barrier) {
             if let index = self.backgroundRequests.firstIndex(where: { $0.task.taskIdentifier == task.taskIdentifier }) {
                 let request = self.backgroundRequests[index]
-                request.completion(error, request.task.response)
+                request.completion(error, request.task.response, request.data)
                 self.backgroundRequests.remove(at: index)
             }
         }
     }
+}
+
+extension BackgroundRequestController: URLSessionDataDelegate {
     
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        print("Session didFinishDownloadingTo: \(location.absoluteString)")
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+        print("Task \(dataTask.originalRequest?.url?.absoluteString ?? "-") didReceive data: \(String(data: data, encoding: .utf8) ?? "-")")
+        backgroundRequestsQueue.async(flags: .barrier) {
+            if let index = self.backgroundRequests.firstIndex(where: { $0.task.taskIdentifier == dataTask.taskIdentifier }) {
+                if self.backgroundRequests[index].data == nil {
+                    self.backgroundRequests[index].data = data
+                } else {
+                    self.backgroundRequests[index].data! += data
+                }
+            }
+        }
     }
 }

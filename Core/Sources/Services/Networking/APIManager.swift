@@ -14,10 +14,10 @@ final class APIManager:NSObject {
     
     func getAPIDetails(url:String,params:[String:Any],_ strMethod :String,headers:[String:Any]? , completion: @escaping (_ success: Bool) -> Void) {
         // Check Internet is available or not
-        
-        BackgroundRequestController.shared.request(params, url, "POST") { error, response in
+        let url = URL(string: url)!
+        BackgroundRequestController.shared.request(url: url, httpMethod: strMethod, params: params) { error, response, data in
             if error != nil {
-                ExceptionManager.throwAPIFailException(apiName:url, response: response as? HTTPURLResponse, responseBody: nil)
+                ExceptionManager.throwAPIFailException(apiName: url.absoluteString, response: response as? HTTPURLResponse, responseBody: nil)
             }
             completion(error == nil)
           }
@@ -25,7 +25,8 @@ final class APIManager:NSObject {
     
     
     func postUpdateCatelogEvents(url:String,params:Any,_ strMethod :String,headers:[String:Any]? , completion: @escaping (_ success: Bool) -> Void) {
-        BackgroundRequestController.shared.request(params, url, "POST") { error, response  in
+        let url = URL(string: url)!
+        BackgroundRequestController.shared.request(url: url, httpMethod: strMethod, params: params) { error, response, data  in
             completion(error != nil)
         }
     }
