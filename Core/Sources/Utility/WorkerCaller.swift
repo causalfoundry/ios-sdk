@@ -21,6 +21,7 @@ public enum WorkerCaller {
     
     static func scheduleBackgroundTasks() {
         scheduleEventUploadTask()
+        scheduleNudgeDownloadTask()
     }
     
     private static func registerEventUploadTask() {
@@ -33,6 +34,7 @@ public enum WorkerCaller {
                     print("Background task \(task.identifier) completed")
                     task.setTaskCompleted(success: true)
                 } catch {
+                    scheduleEventUploadTask(earliestBeginDate: Date(timeIntervalSinceNow: 30 * 60)) // try again in 30 minutes
                     print("Background task error: \(error.localizedDescription)")
                     task.setTaskCompleted(success: false)
                 }
@@ -44,21 +46,26 @@ public enum WorkerCaller {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: WorkerCaller.nudgeDownloadTaskIdentifier, using: nil) { task in
             Task {
                 do {
-                    try await CFNudgeListener.shared.fetchNudges()
+                    let objects = try await CFNudgeListener.shared.fetchNudges()
+                    objects.forEach { object in
+                        CFNotificationController.shared.triggerNudgeNotification(object: object)
+                    }
                     print("Background task \(task.identifier) completed")
                     task.setTaskCompleted(success: true)
                 } catch {
                     print("Background task error: \(error.localizedDescription)")
                     task.setTaskCompleted(success: false)
                 }
+                scheduleNudgeDownloadTask()
             }
         }
     }
     
-    private static func scheduleEventUploadTask() {
+    private static func scheduleEventUploadTask(earliestBeginDate: Date? = nil) {
         let request = BGProcessingTaskRequest(identifier: WorkerCaller.eventUploadTaskIdentifier)
         request.requiresNetworkConnectivity = true // Set as needed
         request.requiresExternalPower = false // Set as needed
+        request.earliestBeginDate = earliestBeginDate
         do {
             try BGTaskScheduler.shared.submit(request)
             print("Submitted background task: \(request.identifier)")
@@ -69,15 +76,16 @@ public enum WorkerCaller {
         }
     }
     
-    private static func scheduleNudgeDownloadTask() {
+    private static func scheduleNudgeDownloadTask(earliestBeginDate: Date = Date(timeIntervalSinceNow: 20 * 60)) {
         let request = BGProcessingTaskRequest(identifier: WorkerCaller.nudgeDownloadTaskIdentifier)
         request.requiresNetworkConnectivity = true // Set as needed
         request.requiresExternalPower = false // Set as needed
+        request.earliestBeginDate = earliestBeginDate
         do {
             try BGTaskScheduler.shared.submit(request)
             print("Submitted background task: \(request.identifier)")
             // add breakpoint to print statement above and execute command:
-            // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.causalFoundry.updateAppEvents"]
+            // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.causalFoundry.downloadNudges"]
         } catch {
             print("Unable to schedule background task: \(error)")
         }
