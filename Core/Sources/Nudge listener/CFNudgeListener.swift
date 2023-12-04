@@ -47,11 +47,13 @@ class CFNudgeListener {
                     continuation.resume(with: .failure(error))
                 } else {
                     do {
+                        /*
                         #if DEBUG
                         let debugObjects = try self.debugObjects()
                         continuation.resume(with: .success(debugObjects))
                         return
                         #endif
+                         */
                         let decoder = JSONDecoder()
                         let objects = try decoder.decode([BackendNudgeMainObject].self, from: data ?? Data())
                         continuation.resume(with: .success(objects))
