@@ -25,6 +25,7 @@ public enum WorkerCaller {
     }
     
     private static func registerEventUploadTask() {
+        print("Register background task: \(WorkerCaller.eventUploadTaskIdentifier)")
         BGTaskScheduler.shared.register(forTaskWithIdentifier: WorkerCaller.eventUploadTaskIdentifier, using: nil) { task in
             Task {
                 do {
@@ -43,6 +44,7 @@ public enum WorkerCaller {
     }
     
     private static func registerNudgeDownloadTask() {
+        print("Register background task: \(WorkerCaller.nudgeDownloadTaskIdentifier)")
         BGTaskScheduler.shared.register(forTaskWithIdentifier: WorkerCaller.nudgeDownloadTaskIdentifier, using: nil) { task in
             Task {
                 do {
