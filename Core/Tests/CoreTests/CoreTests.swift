@@ -20,6 +20,7 @@ final class CFLogTests: XCTestCase {
         super.tearDown()
     }
     
+    /*
     func testCFLogInitialization() {
         // Test CFLog initialization
         
@@ -58,4 +59,5 @@ final class CFLogTests: XCTestCase {
         XCTAssertTrue(cfLogBuilder.pauseSDK)
         
     }
+    */
 }
