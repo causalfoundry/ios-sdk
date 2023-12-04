@@ -67,7 +67,7 @@ class ExceptionAPIHandler {
        // guard CoreConstants.shared.application!.delegate != nil else { return }
         var userId :String = CoreDataHelper.shared.fetchUserID()
         if CoreConstants.shared.isAnonymousUserAllowed {
-            userId = CoreDataHelper.shared.fetchUserID(deviceID: CoreConstants.shared.deviceObject?.id ?? "")
+            userId = CoreDataHelper.shared.fetchUserID()
         }
         
         if userId != ""{

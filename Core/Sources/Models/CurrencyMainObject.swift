@@ -8,7 +8,7 @@
 import Foundation
 
 
-public struct CurrencyMainObject {
+public struct CurrencyMainObject: Codable {
     var fromCurrency: String?
     var toCurrencyObject: CurrencyObject?
     

@@ -7,7 +7,6 @@
 
 import Foundation
 import CasualFoundryCore
-import CoreData
 
 extension CoreDataHelper {
     public func getLoyaltyCatalogTypeData(newData:Data,oldData:Data,subject:CatalogSubject)-> Data? {
@@ -34,31 +33,9 @@ extension CoreDataHelper {
     }
     
     public func writeLoyaltyCatalogData(subject:CatalogSubject,data:Data) {
-        let managedContext = context
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName:TableName.catalogEvents.rawValue)
-        let filterPredicate = NSPredicate(format: "subject == %@", subject.rawValue)
-        fetchRequest.predicate = filterPredicate
-        do {
-            let fetchedObjects = try managedContext.fetch(fetchRequest)
-            if fetchedObjects.count > 0 {
-                var oldData = fetchedObjects.first?.value(forKey: "catalog")
-                var newData = self.getLoyaltyCatalogTypeData(newData:data, oldData: oldData as! Data, subject:subject)
-                var managedObejct = fetchedObjects[0]
-                managedObejct.setValue(subject.rawValue, forKey:"subject")
-                managedObejct.setValue(newData, forKey:"catalog")
-            }else {
-                let entity = NSEntityDescription.entity(forEntityName: TableName.catalogEvents.rawValue, in: managedContext)!
-                let managedObject = NSManagedObject(entity: entity, insertInto: managedContext)
-                managedObject.setValue(subject.rawValue, forKey: "subject")
-                managedObject.setValue(data, forKey:"catalog")
-            }
-            try managedContext.save()
-            
-            
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-            
-        }
+        let oldData = readCatalogData(subject: subject) ?? Data()
+        let newData = getLoyaltyCatalogTypeData(newData: data, oldData: oldData, subject: subject)
+        writeCatalogData(subject: subject, data: newData ?? data)
     }
 }
 

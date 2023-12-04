@@ -56,11 +56,12 @@ public class CatalogEventsUploader {
         let catalogAPIHandler  = CatalogAPIHandler()
         await withThrowingTaskGroup(of: Void.self) { group in
             for value in  CatalogSubject.allCases {
-                guard let eventData =  CoreDataHelper().readCataLogData(subject: value.rawValue) else { continue }
+                guard let eventData =  CoreDataHelper().readCatalogData(subject: value) else { continue }
                 group.addTask {
                     #warning("SWIFT TASK CONTINUATION MISUSE: uploadEvents() leaked its continuation!")
+                    let catalogMainObject = try? JSONSerialization.jsonObject(with: eventData, options: []) as? [Any]
                     try await withCheckedThrowingContinuation { continuation in
-                        catalogAPIHandler.callCatalogAPI(catalogMainObject: eventData, catalogSubject: value.rawValue) { success in
+                        catalogAPIHandler.callCatalogAPI(catalogMainObject: catalogMainObject ?? [], catalogSubject: value.rawValue) { success in
                             if success {
                                 continuation.resume(with: .success(()))
                             } else {

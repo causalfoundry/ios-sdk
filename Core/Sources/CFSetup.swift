@@ -43,7 +43,7 @@ public class CFSetup: NSObject, IngestProtocol {
     func updateUserId(appUserId: String) {
         if !appUserId.isEmpty {
             CoreConstants.shared.userId = appUserId
-            CoreDataHelper.shared.writeUser(user: CoreConstants.shared.userId, deviceID: CoreConstants.shared.deviceObject?.id)
+            CoreDataHelper.shared.writeUser(user: CoreConstants.shared.userId)
             userId = appUserId
             CFNudgeListener.shared.beginListening(userID: appUserId)
         }

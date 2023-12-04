@@ -12,7 +12,7 @@ import UIKit
 public class CatalogAPIHandler {
 
    public  func updateCoreCatalogItem(subject: CatalogSubject, catalogObject: Data) {
-       CoreDataHelper.shared.writeCoreCatalogData(subject: subject, data: catalogObject)
+       CoreDataHelper.shared.writeCatalogData(subject: subject, data: catalogObject)
     }
     
    
