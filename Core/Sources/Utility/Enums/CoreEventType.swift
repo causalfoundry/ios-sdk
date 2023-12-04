@@ -25,7 +25,7 @@ enum  CoreEventType:CaseIterable {
            case .app: return "app"
            case .search: return "search"
            case .media: return "media"
-           case .nudge_response: return "nudge response"
+           case .nudge_response: return "nudge_response"
            case .rate: return "rate"
            case .track: return "track"
                
