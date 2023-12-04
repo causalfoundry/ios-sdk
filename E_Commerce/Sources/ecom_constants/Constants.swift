@@ -23,9 +23,11 @@ public class ECommerceConstants {
     static func isItemValueObjectValid(itemValue: ItemModel, eventType: EComEventType) {
         let eventName = eventType.rawValue
         
+        print(itemValue)
+        
         if itemValue.id == "" {
             ExceptionManager.throwIsRequiredException(eventType:eventName, elementName: "item_id")
-        } else if itemValue.quantity! < 0 {
+        } else if itemValue.quantity < 0 {
             ExceptionManager.throwItemQuantityException(eventType: eventName)
         } else if itemValue.price == nil {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_price")
@@ -33,11 +35,11 @@ public class ECommerceConstants {
             ExceptionManager.throwIsRequiredException(eventType:eventName, elementName: "item_price")
         } else if itemValue.currency == "" {
             ExceptionManager.throwIsRequiredException(eventType:eventName , elementName: "item_currency")
-        } else if !CoreConstants.shared.enumContains(InternalCurrencyCode.self, name:itemValue.currency!) {
+        } else if !CoreConstants.shared.enumContains(InternalCurrencyCode.self, name:itemValue.currency) {
             ExceptionManager.throwEnumException(eventType: eventName, className:"CurrencyCode")
         } else if itemValue.type == "" {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName:"item_type")
-        } else if !CoreConstants.shared.enumContains(ItemType.self, name:itemValue.type!) {
+        } else if !CoreConstants.shared.enumContains(ItemType.self, name:itemValue.type) {
             ExceptionManager.throwEnumException(eventType: eventName, className: "ItemType")
         } else if eventType == .checkout && itemValue.type == ItemType.blood.rawValue {
             if itemValue.meta == nil {
