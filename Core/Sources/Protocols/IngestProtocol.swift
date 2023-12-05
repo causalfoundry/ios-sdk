@@ -24,9 +24,9 @@ protocol IngestProtocol {
     
    
     
-    func track(contentBlockName: String,
+    func track<T: Codable>(contentBlockName: String,
                 eventType: String,
-                logObject: Any?,
+                logObject: T?,
                 updateImmediately: Bool,
                 eventTime: Int64)
     

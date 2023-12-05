@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NudgeRepsonseObject: Encodable {
+struct NudgeRepsonseObject: Codable {
     
     enum NudgeRepsonse: String, Encodable {
         case open // When the user taps on the nudge to open it.

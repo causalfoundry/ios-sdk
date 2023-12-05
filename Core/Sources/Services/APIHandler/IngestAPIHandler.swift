@@ -22,9 +22,9 @@ public class IngestAPIHandler:NSObject {
     static let shared = IngestAPIHandler()
     let reachability = try! Reachability()
     
-    func ingestTrackAPI(contentBlock: String,
+    func ingestTrackAPI<T: Codable>(contentBlock: String,
                         eventType: String,
-                        trackProperties: Any,
+                        trackProperties: T,
                         updateImmediately: Bool,
                         eventTime: Int64 = 0) {
         
@@ -34,7 +34,8 @@ public class IngestAPIHandler:NSObject {
             
             reachability.stopNotifier()
             let isInternetAvailable :Bool = (reachability.connection == .wifi || reachability.connection == .cellular) ? true :  false
-            let eventObject = EventDataObject(content_block:contentBlock , online: isInternetAvailable, ts: "\(timezone)", event_type: eventType, event_properties: (trackProperties as! Encodable))
+            let data = try? JSONEncoder().encode(trackProperties)
+            let eventObject = EventDataObject(content_block:contentBlock , online: isInternetAvailable, ts: "\(timezone)", event_type: eventType, event_properties: data)
                     
                     if(updateImmediately) {
                         self.updateEventTrack(eventArray:[eventObject] ) { result in
