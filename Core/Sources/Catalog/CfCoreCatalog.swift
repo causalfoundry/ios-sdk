@@ -50,7 +50,7 @@ public class CfCoreCatalog {
             ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: CfCoreCatalog.self))
         }
 
-        let userCatalogModelItem: UserCatalogModel? = CoreDataHelper.shared.readUserCatalog()
+        let userCatalogModelItem: UserCatalogModel? = MMKVHelper.shared.readUserCatalog()
         if userCatalogModel != userCatalogModelItem {
             let internalUserModel = InternalUserModel(
                 id: appUserId,
@@ -68,7 +68,7 @@ public class CfCoreCatalog {
                 organization_id: userCatalogModel.organization_id,
                 organization_name: userCatalogModel.organization_name
             )
-            CoreDataHelper.shared.writeUserCatalog(userCataLogData: userCatalogModel)
+            MMKVHelper.shared.writeUserCatalog(userCataLogData: userCatalogModel)
             CFSetup().updateCoreCatalogItem(subject: CatalogSubject.user, catalogObject: [internalUserModel].toData()!)
         }
     }

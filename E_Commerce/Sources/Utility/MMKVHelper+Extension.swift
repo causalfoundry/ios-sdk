@@ -1,5 +1,5 @@
 //
-//  CoreDataHelper+Extension.swift
+//  MMKVHelper+Extension.swift
 //
 //
 //  Created by khushbu on 29/10/23.
@@ -8,7 +8,7 @@
 import CasualFoundryCore
 import Foundation
 
-public extension CoreDataHelper {
+public extension MMKVHelper {
     func getEcommerceCatalogTypeData(newData: Data, oldData: Data, subject: CatalogSubject) -> Data? {
         var newUpdatedData: Data?
         do {

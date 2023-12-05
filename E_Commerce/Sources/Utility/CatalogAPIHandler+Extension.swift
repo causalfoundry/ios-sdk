@@ -10,6 +10,6 @@ import Foundation
 
 public extension CatalogAPIHandler {
     func updateEcommerceCatalogItem(subject: CatalogSubject, catalogObject: Data) {
-        CoreDataHelper.shared.writeEcommerceCatalogData(subject: subject, data: catalogObject)
+        MMKVHelper.shared.writeEcommerceCatalogData(subject: subject, data: catalogObject)
     }
 }

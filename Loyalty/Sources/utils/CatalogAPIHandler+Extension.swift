@@ -10,7 +10,7 @@ import Foundation
 
 public extension CatalogAPIHandler {
     func updateLoyaltyCatalogItem(subject: CatalogSubject, catalogObject: Data) {
-//        guard let prevCatalog = CoreDataHelper.shared.readCataLogData(subject:subject.rawValue) else { return }
-        CoreDataHelper.shared.writeLoyaltyCatalogData(subject: subject, data: catalogObject)
+//        guard let prevCatalog = MMKVHelper.shared.readCataLogData(subject:subject.rawValue) else { return }
+        MMKVHelper.shared.writeLoyaltyCatalogData(subject: subject, data: catalogObject)
     }
 }

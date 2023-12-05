@@ -1,5 +1,5 @@
 //
-//  CoreDataHelper.swift
+//  MMKVHelper.swift
 //
 //
 //  Created by khushbu on 10/10/23.
@@ -9,7 +9,7 @@ import Foundation
 import MMKV
 import UIKit
 
-public class CoreDataHelper {
+public class MMKVHelper {
     private enum Key: String {
         case user
         case userCatalog
@@ -23,7 +23,7 @@ public class CoreDataHelper {
         let data: Data
     }
 
-    public static let shared = CoreDataHelper()
+    public static let shared = MMKVHelper()
 
     private let mmkv: MMKV
 
@@ -33,7 +33,7 @@ public class CoreDataHelper {
     }
 }
 
-extension CoreDataHelper {
+extension MMKVHelper {
     func readExceptionsData() -> [ExceptionDataObject] {
         let object: [ExceptionDataObject]? = read(for: Key.exceptionData.rawValue)
         return object ?? []

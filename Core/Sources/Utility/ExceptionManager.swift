@@ -50,9 +50,9 @@ class ExceptionAPIHandler {
     func updateExceptionEvents(eventArray: [ExceptionDataObject], completion: @escaping (_ success: Bool) -> Void) {
         var mainExceptionBody: MainExceptionBody?
         // guard CoreConstants.shared.application!.delegate != nil else { return }
-        var userId: String = CoreDataHelper.shared.fetchUserID()
+        var userId: String = MMKVHelper.shared.fetchUserID()
         if CoreConstants.shared.isAnonymousUserAllowed {
-            userId = CoreDataHelper.shared.fetchUserID()
+            userId = MMKVHelper.shared.fetchUserID()
         }
 
         if userId != "" {
@@ -82,17 +82,17 @@ class ExceptionAPIHandler {
     }
 
     private func storeEventTrack(event: ExceptionDataObject) {
-        var previousExceptions = CoreDataHelper.shared.readExceptionsData()
+        var previousExceptions = MMKVHelper.shared.readExceptionsData()
         previousExceptions.append(event)
-        CoreDataHelper.shared.writeExceptionEvents(eventArray: previousExceptions)
+        MMKVHelper.shared.writeExceptionEvents(eventArray: previousExceptions)
     }
 
     private func storeEventTrack(events: [ExceptionDataObject]) {
-        var previousExceptions = CoreDataHelper.shared.readExceptionsData()
+        var previousExceptions = MMKVHelper.shared.readExceptionsData()
         for data in events {
             previousExceptions.append(data)
         }
-        CoreDataHelper.shared.writeExceptionEvents(eventArray: previousExceptions)
+        MMKVHelper.shared.writeExceptionEvents(eventArray: previousExceptions)
     }
 
     private func showExceptionNotification() {

@@ -84,13 +84,13 @@ public class IngestAPIHandler: NSObject {
     }
 
     func storeEventTrack(eventObject: EventDataObject) {
-        var prevEvent = CoreDataHelper.shared.readInjectEvents()
+        var prevEvent = MMKVHelper.shared.readInjectEvents()
         prevEvent.append(eventObject)
-        CoreDataHelper.shared.writeEvents(eventsArray: prevEvent)
+        MMKVHelper.shared.writeEvents(eventsArray: prevEvent)
     }
 
     public func getUSDRate(fromCurrency: String, callback: @escaping (Float) -> Float) {
-        let currencyObject: CurrencyMainObject? = CoreDataHelper.shared.readCurrencyObject()
+        let currencyObject: CurrencyMainObject? = MMKVHelper.shared.readCurrencyObject()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
 

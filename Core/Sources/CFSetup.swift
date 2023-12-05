@@ -24,7 +24,7 @@ public class CFSetup: NSObject, IngestProtocol {
         CoreConstants.shared.sessionStartTime = Int64(Date().timeIntervalSince1970 * 1000)
         CoreConstants.shared.sessionEndTime = Int64(Date().timeIntervalSince1970 * 1000)
 
-        userId = CoreDataHelper.shared.fetchUserID()
+        userId = MMKVHelper.shared.fetchUserID()
 
         CFNudgeListener.shared.beginListening(userID: userId)
     }
@@ -40,7 +40,7 @@ public class CFSetup: NSObject, IngestProtocol {
     func updateUserId(appUserId: String) {
         if !appUserId.isEmpty {
             CoreConstants.shared.userId = appUserId
-            CoreDataHelper.shared.writeUser(user: CoreConstants.shared.userId)
+            MMKVHelper.shared.writeUser(user: CoreConstants.shared.userId)
             userId = appUserId
             CFNudgeListener.shared.beginListening(userID: appUserId)
         }
