@@ -23,8 +23,6 @@ public class ECommerceConstants {
     static func isItemValueObjectValid(itemValue: ItemModel, eventType: EComEventType) {
         let eventName = eventType.rawValue
         
-        print(itemValue)
-        
         if itemValue.id == "" {
             ExceptionManager.throwIsRequiredException(eventType:eventName, elementName: "item_id")
         } else if itemValue.quantity < 0 {
