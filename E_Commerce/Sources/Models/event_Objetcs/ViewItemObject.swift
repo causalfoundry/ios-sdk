@@ -21,7 +21,7 @@ public struct ViewItemObject: Codable {
     }
     
     
-    init(action: String, item: ItemModel, search_id: String? = "", meta: Encodable? = nil) {
+    init(action: String, item: ItemModel, search_id: String = "", meta: Encodable? = nil) {
         self.action = action
         self.item = item
         self.search_id = search_id
