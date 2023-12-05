@@ -14,8 +14,14 @@ public class CatalogAPIHandler {
     }
 
     public func callCatalogAPI(catalogMainObject: [Any], catalogSubject: String, completion: @escaping (_ success: Bool) -> Void) {
-        APIManager.shared.postUpdateCatelogEvents(url: "\(CoreConstants.shared.devUrl)ingest/catalog/\(catalogSubject)", params: catalogMainObject, "POST", headers: ["subject": catalogSubject], completion: { result in
-            completion(result)
-        })
+        let url = URL(string: "\(CoreConstants.shared.devUrl)ingest/catalog/\(catalogSubject)")!
+        BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: catalogMainObject) { result in
+            switch result {
+            case .success:
+                completion(true)
+            case .failure:
+                completion(false)
+            }
+        }
     }
 }

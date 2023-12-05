@@ -41,10 +41,9 @@ class CFNudgeListener {
         guard let userID = userID, !userID.isEmpty else { return [] }
         return try await withCheckedThrowingContinuation { continuation in
             let url = URL(string: "\(CoreConstants.shared.devUrl)nudge/sdk/\(userID)")!
-            BackgroundRequestController.shared.request(url: url, httpMethod: "GET", params: nil) { error, _, data in
-                if let error = error {
-                    continuation.resume(with: .failure(error))
-                } else {
+            BackgroundRequestController.shared.request(url: url, httpMethod: .get, params: nil) { result in
+                switch result {
+                case .success(let data):
                     do {
                         /*
                          #if DEBUG
@@ -59,6 +58,8 @@ class CFNudgeListener {
                     } catch {
                         continuation.resume(with: .failure(error))
                     }
+                case .failure(let error):
+                    continuation.resume(with: .failure(error))
                 }
             }
         }

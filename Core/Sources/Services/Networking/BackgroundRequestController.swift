@@ -20,8 +20,14 @@ private final class BackgroundRequest {
 }
 
 class BackgroundRequestController: NSObject {
-    typealias Completion = (_ error: Error?, _ response: URLResponse?, _ data: Data?) -> Void
+    
+    typealias Completion = (Result<Data?, Error>) -> Void
 
+    public enum HTTPMethod: String {
+        case get = "GET"
+        case post = "POST"
+    }
+    
     public static let shared = BackgroundRequestController()
 
     private let backgroundRequestsQueue = DispatchQueue(label: "thread-safe-obj", attributes: .concurrent)
@@ -40,7 +46,7 @@ class BackgroundRequestController: NSObject {
 
     override public init() {}
 
-    public func request(url: URL, httpMethod: String, params: Any?, completionHandler: @escaping Completion) {
+    public func request(url: URL, httpMethod: HTTPMethod, params: Any?, completionHandler: @escaping Completion) {
         let urlRequest = urlRequest(url: url, httpMethod: httpMethod, params: params)
         let task = session.dataTask(with: urlRequest)
         backgroundRequestsQueue.async(flags: .barrier) {
@@ -50,9 +56,9 @@ class BackgroundRequestController: NSObject {
         task.resume()
     }
 
-    private func urlRequest(url: URL, httpMethod: String, params: Any?) -> URLRequest {
+    private func urlRequest(url: URL, httpMethod: HTTPMethod, params: Any?) -> URLRequest {
         var urlRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 3.0 * 1000)
-        urlRequest.httpMethod = httpMethod
+        urlRequest.httpMethod = httpMethod.rawValue
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.setValue(CoreConstants.shared.sdkKey, forHTTPHeaderField: "Authorization")
         if let params = params, let httpBody = try? JSONSerialization.data(withJSONObject: params, options: .prettyPrinted) {
@@ -73,7 +79,7 @@ extension BackgroundRequestController: URLSessionDelegate {
         print("All tasks in the background session are complete.")
         backgroundRequestsQueue.async(flags: .barrier) {
             self.backgroundRequests.forEach { request in
-                request.completion(nil, request.task.response, nil)
+                request.completion(.success(nil))
             }
             self.backgroundRequests.removeAll()
         }
@@ -86,7 +92,12 @@ extension BackgroundRequestController: URLSessionDelegate {
         backgroundRequestsQueue.async(flags: .barrier) {
             if let index = self.backgroundRequests.firstIndex(where: { $0.task.taskIdentifier == task.taskIdentifier }) {
                 let request = self.backgroundRequests[index]
-                request.completion(error, request.task.response, request.data)
+                if let error = error {
+                    ExceptionManager.throwAPIFailException(apiName: task.originalRequest?.url?.absoluteString ?? "", response: task.response as? HTTPURLResponse, responseBody: nil)
+                    request.completion(.failure(error))
+                } else {
+                    request.completion(.success(request.data))
+                }
                 self.backgroundRequests.remove(at: index)
             }
         }

@@ -70,9 +70,15 @@ class ExceptionAPIHandler {
 
         let dictionary = mainExceptionBody?.dictionary ?? [:]
 
-        APIManager.shared.getAPIDetails(url: APIConstants.ingestExceptionEvent, params: dictionary, "POST", headers: nil, completion: { result in
-            completion(result)
-        })
+        let url = URL(string: APIConstants.ingestExceptionEvent)!
+        BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: dictionary) { result in
+            switch result {
+            case .success:
+                completion(true)
+            case .failure:
+                completion(false)
+            }
+        }
     }
 
     private func storeEventTrack(event: ExceptionDataObject) {

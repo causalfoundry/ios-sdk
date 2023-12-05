@@ -10,14 +10,9 @@ import Foundation
 import UIKit
 
 public class IngestAPIHandler: NSObject {
-    enum Result<T, E: Error> {
-        case success(T)
-        case failure(E)
-    }
-
-    typealias CompletionHandler<T> = (Result<T, Error>) -> Void
 
     static let shared = IngestAPIHandler()
+    
     let reachability = try! Reachability()
 
     func ingestTrackAPI<T: Codable>(contentBlock: String,
@@ -74,10 +69,16 @@ public class IngestAPIHandler: NSObject {
                 self.showNotification()
             }
         }
-
-        APIManager.shared.getAPIDetails(url: APIConstants.trackEvent, params: dictionary, "POST", headers: nil, completion: { result in
-            callback(result)
-        })
+        
+        let url = URL(string: APIConstants.trackEvent)!
+        BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: dictionary) { result in
+            switch result {
+            case .success:
+                callback(true)
+            case .failure:
+                callback(false)
+            }
+        }
     }
 
     func storeEventTrack(eventObject: EventDataObject) {
