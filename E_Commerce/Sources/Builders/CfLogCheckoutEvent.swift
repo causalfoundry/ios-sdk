@@ -150,13 +150,13 @@ public class CfLogCheckoutEvent {
    @discardableResult
     public func addItem(itemJsonString: String) -> CfLogCheckoutEvent {
         if let data = itemJsonString.data(using: .utf8),
-           var item = try? JSONDecoder().decode(ItemModel.self, from: data) {
+           var item = try? JSONDecoder.new.decode(ItemModel.self, from: data) {
             self.item_list.append(item)
             if item.type == ItemType.blood.rawValue {
-                let bloodMetaModel = try? JSONDecoder().decode(BloodMetaModel.self, from: data)
+                let bloodMetaModel = try? JSONDecoder.new.decode(BloodMetaModel.self, from: data)
                 item.meta = bloodMetaModel
             } else if item.type == ItemType.oxygen.rawValue {
-                let oxygenMetaModel = try? JSONDecoder().decode(OxygenMetaModel.self, from: data)
+                let oxygenMetaModel = try? JSONDecoder.new.decode(OxygenMetaModel.self, from: data)
                 item.meta = oxygenMetaModel
             }
             ECommerceConstants.isItemValueObjectValid(itemValue: item, eventType: EComEventType.checkout)
@@ -198,15 +198,15 @@ public class CfLogCheckoutEvent {
    @discardableResult
     public func addItemList(itemListString: String) -> CfLogCheckoutEvent {
         if let data = itemListString.data(using: .utf8),
-           let itemModels = try? JSONDecoder().decode([ItemModel].self, from: data) {
+           let itemModels = try? JSONDecoder.new.decode([ItemModel].self, from: data) {
             var itemList = itemModels
             for item in itemList {
                 var dataItem  = item
                 if item.type == ItemType.blood.rawValue {
-                    let bloodMetaModel = try? JSONDecoder().decode(BloodMetaModel.self, from: data)
+                    let bloodMetaModel = try? JSONDecoder.new.decode(BloodMetaModel.self, from: data)
                     dataItem.meta = bloodMetaModel
                 } else if item.type == ItemType.oxygen.rawValue {
-                    let oxygenMetaModel = try? JSONDecoder().decode(OxygenMetaModel.self, from: data)
+                    let oxygenMetaModel = try? JSONDecoder.new.decode(OxygenMetaModel.self, from: data)
                     dataItem.meta = oxygenMetaModel
                 }
                 ECommerceConstants.isItemValueObjectValid(itemValue: dataItem, eventType: EComEventType.checkout)

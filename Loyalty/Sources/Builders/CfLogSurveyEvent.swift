@@ -61,7 +61,7 @@ public class CfLogSurveyEvent {
     @discardableResult
     public func setSurveyObject(surveyObject: String) -> CfLogSurveyEvent {
     if let surveuyData = surveyObject.data(using: .utf8),
-           let surveyObject = try? JSONDecoder().decode(SurveyObject.self, from: surveuyData) {
+           let surveyObject = try? JSONDecoder.new.decode(SurveyObject.self, from: surveuyData) {
             self.surveyObject = surveyObject
         }
         return self
@@ -83,7 +83,7 @@ public class CfLogSurveyEvent {
     @discardableResult
     public func setResponseList(responseList: String) -> CfLogSurveyEvent {
         self.responseList.removeAll()
-        if let item = try? JSONDecoder().decode([SurveyResponseItem].self, from: Data(responseList.utf8)) {
+        if let item = try? JSONDecoder.new.decode([SurveyResponseItem].self, from: Data(responseList.utf8)) {
             self.responseList.append(contentsOf: item)
         }
         return self

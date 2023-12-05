@@ -197,7 +197,7 @@ public class  CfLogMediaEventBuilder {
             if let jsonData = mediaModelValue!.data(using: .utf8) {
                 // Decode the JSON data into a MediaCatalogModel instance
                 do {
-                    let mediaModel = try JSONDecoder().decode(MediaCatalogModel.self, from: jsonData)
+                    let mediaModel = try JSONDecoder.new.decode(MediaCatalogModel.self, from: jsonData)
                     // Use the mediaModel instance as needed
                     print("Decoded mediaModel: \(mediaModel)")
                 } catch {

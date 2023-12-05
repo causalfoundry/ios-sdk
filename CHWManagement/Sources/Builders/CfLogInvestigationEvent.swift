@@ -80,7 +80,7 @@ public class  CfLogInvestigationEvent {
     @discardableResult
     public func addInvestigationItem(_ investigationItem: String) -> CfLogInvestigationEvent {
         
-        if let item = try? JSONDecoder().decode(InvestigationItem.self, from: Data(investigationItem.utf8)) {
+        if let item = try? JSONDecoder.new.decode(InvestigationItem.self, from: Data(investigationItem.utf8)) {
             self.prescribedTestsList.append(item)
         }
         return self
@@ -107,7 +107,7 @@ public class  CfLogInvestigationEvent {
     @discardableResult
     public func setInvestigationList(_ prescribedTestsList: String) -> CfLogInvestigationEvent {
         if let data = prescribedTestsList.data(using: .utf8),
-           let itemsList = try? JSONDecoder().decode([InvestigationItem].self, from: data) {
+           let itemsList = try? JSONDecoder.new.decode([InvestigationItem].self, from: data) {
             self.prescribedTestsList = itemsList
         }
         return self

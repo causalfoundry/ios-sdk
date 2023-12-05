@@ -48,14 +48,14 @@ struct InternalMediaModel: Codable {
     
     
     public func encode() throws -> Data {
-        let encoder = JSONEncoder()
+        let encoder = JSONEncoder.new
         encoder.outputFormatting = .prettyPrinted
         return try encoder.encode(self)
     }
 
     // Decoding method
     public func decode(from data: Data) throws -> InternalMediaModel {
-        let decoder = JSONDecoder()
+        let decoder = JSONDecoder.new
         return try decoder.decode(InternalMediaModel.self, from: data)
     }
 }

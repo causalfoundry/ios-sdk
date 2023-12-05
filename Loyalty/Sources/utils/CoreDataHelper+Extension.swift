@@ -12,7 +12,7 @@ extension CoreDataHelper {
     public func getLoyaltyCatalogTypeData(newData:Data,oldData:Data,subject:CatalogSubject)-> Data? {
         var newUpdatedData:Data?
         do {
-            let decoder = JSONDecoder()
+            let decoder = JSONDecoder.new
             if subject == .survey {
                 var catalogTableData = try decoder.decode([InternalSurveyModel].self, from:oldData)
                 var catalogNewData = try decoder.decode([InternalSurveyModel].self, from:newData)

@@ -98,7 +98,7 @@ public class CfLogSubmitEnrolmentEvent {
     
     @discardableResult
     public func addDiagnosisValueItem(_ diagnosisValueItem: String) -> CfLogSubmitEnrolmentEvent {
-        if let item = try? JSONDecoder().decode(DiagnosisItem.self, from: Data(diagnosisValueItem.utf8)) {
+        if let item = try? JSONDecoder.new.decode(DiagnosisItem.self, from: Data(diagnosisValueItem.utf8)) {
             self.diagnosisValuesList.append(item)
         }
         return self
@@ -125,7 +125,7 @@ public class CfLogSubmitEnrolmentEvent {
     @discardableResult
     public func setDiagnosisValueList(_ diagnosisValuesList: String) -> CfLogSubmitEnrolmentEvent  {
         if let data = diagnosisValuesList.data(using: .utf8),
-           let items = try? JSONDecoder().decode([DiagnosisItem].self, from: data) {
+           let items = try? JSONDecoder.new.decode([DiagnosisItem].self, from: data) {
             self.diagnosisValuesList = items
         }
         return self
@@ -151,7 +151,7 @@ public class CfLogSubmitEnrolmentEvent {
      */
     @discardableResult
     public func addDiagnosisResultItem(_ diagnosisResultItem: String) -> CfLogSubmitEnrolmentEvent {
-        if let diagnosisItem = try? JSONDecoder().decode(DiagnosisItem.self, from: diagnosisResultItem.data(using: .utf8)!) {
+        if let diagnosisItem = try? JSONDecoder.new.decode(DiagnosisItem.self, from: diagnosisResultItem.data(using: .utf8)!) {
             diagnosisResultList.append(diagnosisItem)
         }
         return self
@@ -178,7 +178,7 @@ public class CfLogSubmitEnrolmentEvent {
     @discardableResult
     public func setDiagnosisResultList(_ diagnosisResultList: String) -> CfLogSubmitEnrolmentEvent {
         if let data = diagnosisResultList.data(using: .utf8),
-            let itemsList = try? JSONDecoder().decode([DiagnosisItem].self, from: data) {
+            let itemsList = try? JSONDecoder.new.decode([DiagnosisItem].self, from: data) {
             self.diagnosisResultList = itemsList
         }
         return self
@@ -206,7 +206,7 @@ public class CfLogSubmitEnrolmentEvent {
      */
     @discardableResult
     public func addPatientStatusItem(patient_status_item: String) -> CfLogSubmitEnrolmentEvent {
-        if let item = try? JSONDecoder().decode(PatientStatusItem.self, from: Data(patient_status_item.utf8)) {
+        if let item = try? JSONDecoder.new.decode(PatientStatusItem.self, from: Data(patient_status_item.utf8)) {
             self.patientStatusList.append(item)
         }
         return self
@@ -227,7 +227,7 @@ public class CfLogSubmitEnrolmentEvent {
     @discardableResult
     public func setPatientStatusList(patient_status_list: String) -> CfLogSubmitEnrolmentEvent {
         if let data = patient_status_list.data(using: .utf8),
-           let items = try? JSONDecoder().decode([PatientStatusItem].self, from: data) {
+           let items = try? JSONDecoder.new.decode([PatientStatusItem].self, from: data) {
             self.patientStatusList = items
         }
         return self
@@ -254,7 +254,7 @@ public class CfLogSubmitEnrolmentEvent {
     
     @discardableResult
     public func addTreatmentPlanItem(treatment_plan_item: String) -> CfLogSubmitEnrolmentEvent {
-        if let item = try? JSONDecoder().decode(TreatmentPlanItem.self, from: Data(treatment_plan_item.utf8)) {
+        if let item = try? JSONDecoder.new.decode(TreatmentPlanItem.self, from: Data(treatment_plan_item.utf8)) {
             self.treatmentPlanList.append(item)
         }
         return self
@@ -282,7 +282,7 @@ public class CfLogSubmitEnrolmentEvent {
     @discardableResult
     public func setTreatmentPlanList(treatment_plan_list: String) -> CfLogSubmitEnrolmentEvent {
         if let data = treatment_plan_list.data(using: .utf8),
-           let items = try? JSONDecoder().decode([TreatmentPlanItem].self, from: data) {
+           let items = try? JSONDecoder.new.decode([TreatmentPlanItem].self, from: data) {
             self.treatmentPlanList = items
         }
         return self

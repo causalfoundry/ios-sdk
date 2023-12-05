@@ -54,7 +54,7 @@ class CFNudgeListener {
                         return
                         #endif
                          */
-                        let decoder = JSONDecoder()
+                        let decoder = JSONDecoder.new
                         let objects = try decoder.decode([BackendNudgeMainObject].self, from: data ?? Data())
                         continuation.resume(with: .success(objects))
                     } catch {
@@ -165,7 +165,7 @@ class CFNudgeListener {
         ]
         """
         let data = json.data(using: .utf8)!
-        let decoder = JSONDecoder()
+        let decoder = JSONDecoder.new
         let objects = try decoder.decode([BackendNudgeMainObject].self, from: data)
         return objects
     }

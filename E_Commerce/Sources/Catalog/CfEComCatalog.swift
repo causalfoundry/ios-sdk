@@ -45,7 +45,7 @@ public class CfEComCatalog {
     }
         // Drug Catalog
         public static func updateDrugCatalog(drugId: String, drugCatalogModel: String) {
-            if let drugCatalogModel = try? JSONDecoder().decode(DrugCatalogModel.self, from: Data(drugCatalogModel.utf8)) {
+            if let drugCatalogModel = try? JSONDecoder.new.decode(DrugCatalogModel.self, from: Data(drugCatalogModel.utf8)) {
                 updateDrugCatalog(drugId: drugId, drugCatalogModel: drugCatalogModel)
             }
         }
@@ -57,7 +57,7 @@ public class CfEComCatalog {
         
         // Grocery Catalog
         public static func updateGroceryCatalog(itemId: String, groceryCatalogModel: String) {
-            if let groceryCatalogModel = try? JSONDecoder().decode(GroceryCatalogModel.self, from: Data(groceryCatalogModel.utf8)) {
+            if let groceryCatalogModel = try? JSONDecoder.new.decode(GroceryCatalogModel.self, from: Data(groceryCatalogModel.utf8)) {
                 updateGroceryCatalog(itemId: itemId, groceryCatalogModel: groceryCatalogModel)
             }
         }
@@ -69,7 +69,7 @@ public class CfEComCatalog {
         
         // Blood Catalog
         public static func updateBloodCatalog(itemId: String, bloodCatalogModel: String) {
-            if let bloodCatalogModel = try? JSONDecoder().decode(BloodCatalogModel.self, from: Data(bloodCatalogModel.utf8)) {
+            if let bloodCatalogModel = try? JSONDecoder.new.decode(BloodCatalogModel.self, from: Data(bloodCatalogModel.utf8)) {
                 updateBloodCatalog(itemId: itemId, bloodCatalogModel: bloodCatalogModel)
             }
         }
@@ -81,7 +81,7 @@ public class CfEComCatalog {
         
         // Oxygen Catalog
         public static  func updateOxygenCatalog(itemId: String, oxygenCatalogModel: String) {
-            if let oxygenCatalogModel = try? JSONDecoder().decode(OxygenCatalogModel.self, from: Data(oxygenCatalogModel.utf8)) {
+            if let oxygenCatalogModel = try? JSONDecoder.new.decode(OxygenCatalogModel.self, from: Data(oxygenCatalogModel.utf8)) {
                 updateOxygenCatalog(itemId: itemId, oxygenCatalogModel: oxygenCatalogModel)
             }
         }
@@ -93,7 +93,7 @@ public class CfEComCatalog {
         
         // Medical Equipment Catalog
         public static func updateMedicalEquipmentCatalog(itemId: String, medicalEquipmentCatalogModel: String) {
-            if let medicalEquipmentCatalogModel = try? JSONDecoder().decode(MedicalEquipmentCatalogModel.self, from: Data(medicalEquipmentCatalogModel.utf8)) {
+            if let medicalEquipmentCatalogModel = try? JSONDecoder.new.decode(MedicalEquipmentCatalogModel.self, from: Data(medicalEquipmentCatalogModel.utf8)) {
                 updateMedicalEquipmentCatalog(itemId: itemId, medicalEquipmentCatalogModel: medicalEquipmentCatalogModel)
             }
         }
@@ -105,7 +105,7 @@ public class CfEComCatalog {
         
         // Facility Catalogd
         public static func updateFacilityCatalog(facilityId: String, facilityCatalogModel: String) {
-            if let facilityCatalogModel = try? JSONDecoder().decode(FacilityCatalogModel.self, from: Data(facilityCatalogModel.utf8)) {
+            if let facilityCatalogModel = try? JSONDecoder.new.decode(FacilityCatalogModel.self, from: Data(facilityCatalogModel.utf8)) {
                 updateFacilityCatalog(facilityId: facilityId, facilityCatalogModel: facilityCatalogModel)
             }
         }

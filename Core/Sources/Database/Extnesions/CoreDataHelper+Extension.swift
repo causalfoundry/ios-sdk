@@ -12,7 +12,7 @@ extension CoreDataHelper {
     public func getCorecatalogTypeData(newData:Data,oldData:Data,subject:CatalogSubject)-> Data? {
         var newUpdatedData:Data?
         do {
-            let decoder = JSONDecoder()
+            let decoder = JSONDecoder.new
             if subject == .user {
                 var catalogTableData = try decoder.decode([InternalUserModel].self, from:oldData)
                 let catalogNewData = try decoder.decode([InternalUserModel].self, from:newData)

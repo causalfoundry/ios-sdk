@@ -100,7 +100,7 @@ public class CfLogPromoEvent {
      */
     @discardableResult
     public func addItem(itemJsonString: String) -> CfLogPromoEvent {
-        if let item = try? JSONDecoder().decode(PromoItemObject.self, from: itemJsonString.data(using: .utf8)!) {
+        if let item = try? JSONDecoder.new.decode(PromoItemObject.self, from: itemJsonString.data(using: .utf8)!) {
             LoyaltyConstants.isItemTypeObjectValid(itemValue: item, eventType: LoyaltyEventType.promo)
             self.promo_items_list.append(item)
         }
@@ -130,7 +130,7 @@ public class CfLogPromoEvent {
      */
     @discardableResult
     public func addItemList(itemListString: String) -> CfLogPromoEvent {
-        if let data = itemListString.data(using: .utf8), let itemModels = try? JSONDecoder().decode([PromoItemObject].self, from: data) {
+        if let data = itemListString.data(using: .utf8), let itemModels = try? JSONDecoder.new.decode([PromoItemObject].self, from: data) {
             for promoItem in itemModels {
                 LoyaltyConstants.isItemTypeObjectValid(itemValue: promoItem, eventType: LoyaltyEventType.promo)
             }

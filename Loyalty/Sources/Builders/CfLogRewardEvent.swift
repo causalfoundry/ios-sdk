@@ -85,7 +85,7 @@ public class CfLogRewardEvent {
     @discardableResult
     public func  setRedeemObject(_ redeem_object: String) -> CfLogRewardEvent {
         if let redeemData = redeem_object.data(using: .utf8),
-           let redeemObject = try? JSONDecoder().decode(RedeemObject.self, from: redeemData) {
+           let redeemObject = try? JSONDecoder.new.decode(RedeemObject.self, from: redeemData) {
             self.redeem_object = redeemObject
         }
         return self

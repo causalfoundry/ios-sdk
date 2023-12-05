@@ -30,12 +30,10 @@ public class IngestAPIHandler:NSObject {
         
         if (!CoreConstants.shared.pauseSDK) {
             
-            let timezone = Date().convertMillisToTimeString()
-            
             reachability.stopNotifier()
+            
             let isInternetAvailable :Bool = (reachability.connection == .wifi || reachability.connection == .cellular) ? true :  false
-            let data = try? JSONEncoder().encode(trackProperties)
-            let eventObject = EventDataObject(content_block:contentBlock , online: isInternetAvailable, ts: "\(timezone)", event_type: eventType, event_properties: data)
+            let eventObject = EventDataObject(block: contentBlock, ol: isInternetAvailable, ts: Date(), type: eventType, props: trackProperties)
                     
                     if(updateImmediately) {
                         self.updateEventTrack(eventArray:[eventObject] ) { result in
@@ -65,10 +63,17 @@ public class IngestAPIHandler:NSObject {
             return
         }
         
-        let mainBody = MainBody(sID: "\(userID)_\(CoreConstants.shared.sessionStartTime)_\(CoreConstants.shared.sessionEndTime)", uID: userID, appInfo:CoreConstants.shared.appInfoObject! , dInfo: CoreConstants.shared.deviceObject!, dn: Int(NetworkMonitor.shared.downloadSpeed), sdk:  CoreConstants.shared.SDKVersion, up: Int(NetworkMonitor.shared.uploadSpeed), data: eventArray)
+        let mainBody = MainBody(sID: "\(userID)_\(CoreConstants.shared.sessionStartTime)_\(CoreConstants.shared.sessionEndTime)", 
+                                uID: userID, appInfo:CoreConstants.shared.appInfoObject!,
+                                dInfo: CoreConstants.shared.deviceObject!,
+                                dn: Int(NetworkMonitor.shared.downloadSpeed),
+                                sdk: CoreConstants.shared.SDKVersion,
+                                up: Int(NetworkMonitor.shared.uploadSpeed),
+                                data: eventArray)
         
+        let dictionary = mainBody.dictionary ?? [:]
         
-        print(mainBody.dictionary)
+        print(dictionary.prettyJSON)
         // Show notification if tasks takes more then 10 seconds to complete and if allowed
         
         DispatchQueue.main.async {
@@ -76,20 +81,17 @@ public class IngestAPIHandler:NSObject {
                 self.showNotification()
             }
         }
-        APIManager.shared.getAPIDetails(url:APIConstants.trackEvent , params: mainBody.dictionary, "POST", headers:nil, completion:{ (result) in
+        
+        APIManager.shared.getAPIDetails(url:APIConstants.trackEvent , params: dictionary, "POST", headers:nil, completion:{ (result) in
             callback(result)
         })
     }
     
     
-    func storeEventTrack (eventObject:EventDataObject) {
+    func storeEventTrack(eventObject: EventDataObject) {
         var prevEvent = CoreDataHelper.shared.readInjectEvents()
         prevEvent.append(eventObject)
         CoreDataHelper.shared.writeEvents(eventsArray:prevEvent)
-    }
-    
-    func storeEventTracks(eventObjects:[EventDataObject]) {
-        
     }
     
     public func getUSDRate(fromCurrency: String, callback: @escaping (Float) -> Float) {

@@ -12,7 +12,7 @@ extension CoreDataHelper {
     public func getCHWManagementcatalogTypeData(newData:Data,oldData:Data,subject:CatalogSubject)-> Data? {
          var newUpdatedData:Data?
          do {
-             let decoder = JSONDecoder()
+             let decoder = JSONDecoder.new
             if subject  == .chw {
                  var catalogTableData = try decoder.decode([InternalChwModel].self, from:oldData)
                  var catalogNewData = try decoder.decode([InternalChwModel].self, from:newData)

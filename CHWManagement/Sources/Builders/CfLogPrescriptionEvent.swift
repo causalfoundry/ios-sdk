@@ -78,7 +78,7 @@ public class CfLogPrescriptionEvent {
      */
     @discardableResult
     public func addPrescriptionItem(_ prescriptionItem: String) -> CfLogPrescriptionEvent {
-        if let item = try? JSONDecoder().decode(PrescriptionItem.self, from: Data(prescriptionItem.utf8)) {
+        if let item = try? JSONDecoder.new.decode(PrescriptionItem.self, from: Data(prescriptionItem.utf8)) {
             self.prescriptionList.append(item)
         }
         return self
@@ -107,7 +107,7 @@ public class CfLogPrescriptionEvent {
         if !prescriptionList.isEmpty {
             
             if let data = prescriptionList.data(using: .utf8),
-               let items = try? JSONDecoder().decode([PrescriptionItem].self, from: data) {
+               let items = try? JSONDecoder.new.decode([PrescriptionItem].self, from: data) {
                 self.prescriptionList = items
             }
             

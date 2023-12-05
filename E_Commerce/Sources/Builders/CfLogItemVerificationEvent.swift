@@ -107,7 +107,7 @@ public class CfLogItemVerificationEvent {
     
     @discardableResult
     public func setItemInfo(_ itemInfo: String) -> CfLogItemVerificationEvent {
-        if let item = try? JSONDecoder().decode(ItemInfoObject.self, from: Data(itemInfo.utf8)) {
+        if let item = try? JSONDecoder.new.decode(ItemInfoObject.self, from: Data(itemInfo.utf8)) {
             self.item_info = item
         }
         return self

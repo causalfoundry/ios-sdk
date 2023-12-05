@@ -8,22 +8,15 @@
 import Foundation
 
 struct AppObject:Codable{
-    var action:String?
-    var start_time:Int?
-    var meta:String?
+    
+    var action: String?
+    var start_time: Int?
+    var meta: String?
     
     
     init(action:String, startTime: Int, meta: String) {
         self.action = action
         self.start_time = startTime
         self.meta = meta
-    }
-    
-    func jsonData() throws -> Data {
-        return try newJSONEncoder().encode(self)
-    }
-
-    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
-        return String(data: try self.jsonData(), encoding: encoding)
     }
 }

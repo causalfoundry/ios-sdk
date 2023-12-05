@@ -101,7 +101,7 @@ extension CFNotificationController: UNUserNotificationCenterDelegate {
 fileprivate extension Data {
     
     func toObject() -> BackendNudgeMainObject? {
-        let decoder = JSONDecoder()
+        let decoder = JSONDecoder.new
         return try? decoder.decode(BackendNudgeMainObject.self, from: self)
     }
 }

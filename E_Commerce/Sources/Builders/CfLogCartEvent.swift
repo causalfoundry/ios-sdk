@@ -204,7 +204,7 @@ public class CfLogCartEvent {
     
     @discardableResult
     public func setItem(itemJsonString: String) -> CfLogCartEvent {
-        let item = try? JSONDecoder().decode(ItemModel.self, from: Data(itemJsonString.utf8))
+        let item = try? JSONDecoder.new.decode(ItemModel.self, from: Data(itemJsonString.utf8))
         self.itemValue = item!
         return self
     }

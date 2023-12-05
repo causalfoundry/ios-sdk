@@ -14,7 +14,7 @@ public class CfLoyaltyCatalog {
     // MARK: - Survey Catalog
 
     public static func updateSurveyCatalog(surveyId: String, surveyCatalogModel: String) {
-        updateSurveyCatalog(surveyId: surveyId, surveyCatalogModel: try! JSONDecoder().decode(SurveyCatalogModel.self, from: surveyCatalogModel.data(using: .utf8)!))
+        updateSurveyCatalog(surveyId: surveyId, surveyCatalogModel: try! JSONDecoder.new.decode(SurveyCatalogModel.self, from: surveyCatalogModel.data(using: .utf8)!))
     }
 
     public static func updateSurveyCatalog(surveyId: String, surveyCatalogModel: SurveyCatalogModel) {
@@ -25,7 +25,7 @@ public class CfLoyaltyCatalog {
     // MARK: - Reward Catalog
 
     public static func updateRewardCatalog(rewardId: String, rewardCatalogModel: String) {
-        updateRewardCatalog(rewardId: rewardId, rewardCatalogModel: try! JSONDecoder().decode(RewardCatalogModel.self, from: rewardCatalogModel.data(using: .utf8)!))
+        updateRewardCatalog(rewardId: rewardId, rewardCatalogModel: try! JSONDecoder.new.decode(RewardCatalogModel.self, from: rewardCatalogModel.data(using: .utf8)!))
     }
 
     public static func updateRewardCatalog(rewardId: String, rewardCatalogModel: RewardCatalogModel) {

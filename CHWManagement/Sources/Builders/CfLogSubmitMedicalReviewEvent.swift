@@ -67,7 +67,7 @@ public class CfLogSubmitMedicalReviewEvent {
     @discardableResult
     public func setMedicalReviewObject(_ medicalReviewObject: String) -> CfLogSubmitMedicalReviewEvent {
         if let data = medicalReviewObject.data(using: .utf8),
-           let obj = try? JSONDecoder().decode(MedicalReviewObject.self, from: data) {
+           let obj = try? JSONDecoder.new.decode(MedicalReviewObject.self, from: data) {
             self.medicalReviewObject = obj
         }
         return self

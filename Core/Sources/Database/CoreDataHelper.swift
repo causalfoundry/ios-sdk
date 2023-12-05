@@ -41,13 +41,13 @@ extension CoreDataHelper {
         guard let data = mmkv.data(forKey: Key.exceptionData.rawValue) else {
             return []
         }
-        let decoder = JSONDecoder()
+        let decoder = JSONDecoder.new
         let result = try? decoder.decode([ExceptionDataObject].self, from: data)
         return result ?? []
     }
     
     func writeExceptionEvents(eventArray: [ExceptionDataObject]) {
-        let encoder = JSONEncoder()
+        let encoder = JSONEncoder.new
         guard let data = try? encoder.encode(eventArray) else {
             return
         }
@@ -75,7 +75,7 @@ extension CoreDataHelper {
         guard let data = mmkv.data(forKey: Key.eventData.rawValue) else {
             return []
         }
-        let decoder = JSONDecoder()
+        let decoder = JSONDecoder.new
         let result = try? decoder.decode([EventDataObject].self, from: data)
         return result ?? []
         
@@ -84,7 +84,7 @@ extension CoreDataHelper {
      * To write user events in DB
      */
     func writeEvents(eventsArray: [EventDataObject]) {
-        let encoder = JSONEncoder()
+        let encoder = JSONEncoder.new
         guard let data = try? encoder.encode(eventsArray) else {
             return
         }
@@ -95,13 +95,13 @@ extension CoreDataHelper {
         guard let data = mmkv.data(forKey: Key.userCatalog.rawValue) else {
             return nil
         }
-        let decoder = JSONDecoder()
+        let decoder = JSONDecoder.new
         let result = try? decoder.decode(UserCatalogModel.self, from: data)
         return result
     }
     
     func writeUserCatalog(userCataLogData: UserCatalogModel)  {
-        let encoder = JSONEncoder()
+        let encoder = JSONEncoder.new
         guard let data = try? encoder.encode(userCataLogData) else {
             return
         }
@@ -113,14 +113,14 @@ extension CoreDataHelper {
         guard let data = mmkv.data(forKey: Key.currency.rawValue) else {
             return nil
         }
-        let decoder = JSONDecoder()
+        let decoder = JSONDecoder.new
         let result = try? decoder.decode(CurrencyMainObject.self, from: data)
         return result
     }
     
     
     func writeCurrencyObject(currency: CurrencyMainObject) {
-        let encoder = JSONEncoder()
+        let encoder = JSONEncoder.new
         guard let data = try? encoder.encode(currency) else {
             return
         }
@@ -129,7 +129,7 @@ extension CoreDataHelper {
     
     public func writeCatalogData(subject: CatalogSubject, data: Data) {
         let object = CatalogHelper(subject: subject, data: data)
-        let encoder = JSONEncoder()
+        let encoder = JSONEncoder.new
         guard let data = try? encoder.encode(object) else {
             return
         }
@@ -140,7 +140,7 @@ extension CoreDataHelper {
        guard let data = mmkv.data(forKey: subject.rawValue) else {
            return nil
        }
-       let decoder = JSONDecoder()
+       let decoder = JSONDecoder.new
        let result = try? decoder.decode(CatalogHelper.self, from: data)
        return result?.data
     }
@@ -153,7 +153,7 @@ extension CoreDataHelper {
 
 
 extension Encodable {
-    public func toData(using encoder: JSONEncoder = JSONEncoder()) -> Data? {
+    public func toData(using encoder: JSONEncoder = JSONEncoder.new) -> Data? {
         do {
             return try encoder.encode(self)
         } catch {

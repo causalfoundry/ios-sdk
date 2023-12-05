@@ -9,7 +9,8 @@ import Foundation
 import Network
 import UIKit
 
-struct ExceptionDataObject : Codable {
+struct ExceptionDataObject: Codable {
+    
     let title: String?
     let eventType: String?
     let exceptionType: String?
@@ -17,10 +18,6 @@ struct ExceptionDataObject : Codable {
     let stackTrace: String?
     let ts: String?
     
-    
-    static let encoder = JSONEncoder()
-    
-
     enum CodingKeys: String, CodingKey {
         case title = "title"
         case eventType = "event_type"
@@ -39,19 +36,10 @@ struct ExceptionDataObject : Codable {
         self.stackTrace = stackTrace
         self.ts = ts
     }
-    
-    func jsonData() throws -> Data {
-        return try newJSONEncoder().encode(self)
-    }
-
-    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
-        return String(data: try self.jsonData(), encoding: encoding)
-    }
-    
-    
 }
 
 class ExceptionAPIHandler {
+    
     func exceptionTrackAPI(exceptionObject: ExceptionDataObject, updateImmediately: Bool) {
         if !CoreConstants.shared.pauseSDK {
             if updateImmediately  == true {
@@ -70,7 +58,7 @@ class ExceptionAPIHandler {
             userId = CoreDataHelper.shared.fetchUserID()
         }
         
-        if userId != ""{
+        if userId != "" {
             mainExceptionBody = MainExceptionBody(user_id: userId,device_info:CoreConstants.shared.deviceObject, app_info: CoreConstants.shared.appInfoObject,sdk_version: CoreConstants.shared.SDKVersion,data: eventArray)
         }
         
@@ -83,7 +71,9 @@ class ExceptionAPIHandler {
             }
         }
         
-        APIManager.shared.getAPIDetails(url:APIConstants.ingestExceptionEvent , params: mainExceptionBody!.dictionary, "POST", headers:nil, completion:{ (result) in
+        let dictionary = mainExceptionBody?.dictionary ?? [:]
+        
+        APIManager.shared.getAPIDetails(url:APIConstants.ingestExceptionEvent, params: dictionary, "POST", headers:nil, completion:{ (result) in
             completion(result)
         })
     }
@@ -108,8 +98,8 @@ class ExceptionAPIHandler {
     }
 }
 
-
 public class ExceptionManager {
+    
     public static func throwEnumException(eventType: String, className: String) {
         let msg = "Invalid \(className) provided"
         let exception = IllegalArgumentException(msg)
@@ -161,8 +151,7 @@ public class ExceptionManager {
     }
     
     public static func throwIllegalStateException(eventType: String, message: String,className:String) {
-        let lineNumber = #line
-        
+        // let lineNumber = #line
         let exception = IllegalStateException(message)
         ExceptionManager.callExceptionAPI(title: message, eventType: eventType, exceptionType: "IllegalStateException", stackTrace: exception)
     }

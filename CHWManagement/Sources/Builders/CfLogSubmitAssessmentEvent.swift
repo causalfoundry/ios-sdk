@@ -70,7 +70,7 @@ public class CfLogSubmitAssessmentEvent {
      */
     @discardableResult
     public func addDiagnosisValueItem(_ diagnosis_value_item: String) -> CfLogSubmitAssessmentEvent {
-        if let item = try? JSONDecoder().decode(DiagnosisItem.self, from: Data(diagnosis_value_item.utf8)) {
+        if let item = try? JSONDecoder.new.decode(DiagnosisItem.self, from: Data(diagnosis_value_item.utf8)) {
             self.diagnosis_values_list.append(item)
         }
         return self
@@ -91,7 +91,7 @@ public class CfLogSubmitAssessmentEvent {
     @discardableResult
     public func setDiagnosisValueList(_ diagnosis_values_list: String) -> CfLogSubmitAssessmentEvent {
         if let data = diagnosis_values_list.data(using: .utf8),
-           let items = try? JSONDecoder().decode([DiagnosisItem].self, from: data) {
+           let items = try? JSONDecoder.new.decode([DiagnosisItem].self, from: data) {
             self.diagnosis_values_list = items
         }
         return self
@@ -111,7 +111,7 @@ public class CfLogSubmitAssessmentEvent {
      */
     @discardableResult
     public func addDiagnosisResultItem(_ diagnosis_result_item: String)-> CfLogSubmitAssessmentEvent  {
-        if let item = try? JSONDecoder().decode(DiagnosisItem.self, from: Data(diagnosis_result_item.utf8)) {
+        if let item = try? JSONDecoder.new.decode(DiagnosisItem.self, from: Data(diagnosis_result_item.utf8)) {
             self.diagnosis_result_list.append(item)
         }
         return self
@@ -132,7 +132,7 @@ public class CfLogSubmitAssessmentEvent {
     @discardableResult
     public func setDiagnosisResultList(_ diagnosis_result_list: String)-> CfLogSubmitAssessmentEvent  {
         if let data = diagnosis_result_list.data(using: .utf8),
-           let items = try? JSONDecoder().decode([DiagnosisItem].self, from: data) {
+           let items = try? JSONDecoder.new.decode([DiagnosisItem].self, from: data) {
             self.diagnosis_result_list = items
         }
         return self
@@ -152,7 +152,7 @@ public class CfLogSubmitAssessmentEvent {
      */
     @discardableResult
     public func addDiagnosisSymptomItem(_ diagnosis_symptom_item: String) -> CfLogSubmitAssessmentEvent {
-        if let item = try? JSONDecoder().decode(DiagnosisSymptomItem.self, from: Data(diagnosis_symptom_item.utf8)) {
+        if let item = try? JSONDecoder.new.decode(DiagnosisSymptomItem.self, from: Data(diagnosis_symptom_item.utf8)) {
             self.diagnosis_symptoms_list.append(item)
         }
         return self
@@ -173,7 +173,7 @@ public class CfLogSubmitAssessmentEvent {
     @discardableResult
     public func setDiagnosisSymptomList(_ diagnosis_symptoms_list: String) -> CfLogSubmitAssessmentEvent {
         if let data = diagnosis_symptoms_list.data(using: .utf8),
-           let items = try? JSONDecoder().decode([DiagnosisSymptomItem].self, from: data) {
+           let items = try? JSONDecoder.new.decode([DiagnosisSymptomItem].self, from: data) {
             self.diagnosis_symptoms_list = items
         }
         return self

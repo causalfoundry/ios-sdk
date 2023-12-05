@@ -154,7 +154,7 @@ public class CfLogSearchEventBuilder {
     public func setResultItemsList(resultsList: String)  ->CfLogSearchEventBuilder {
         self.resultsList.removeAll()
         if !resultsList.isEmpty {
-            if let itemModels = try? JSONDecoder().decode([SearchItemModel].self, from: resultsList.data(using: .utf8)!) {
+            if let itemModels = try? JSONDecoder.new.decode([SearchItemModel].self, from: resultsList.data(using: .utf8)!) {
                 for item in itemModels {
                     CoreConstants.shared.isSearchItemModelObjectValid(itemValue: item, eventType: CoreEventType.search)
                 }
@@ -167,7 +167,7 @@ public class CfLogSearchEventBuilder {
     public func setResultItemsList(resultListItemType: String, resultsIdsList: String, resultsFacilityId: String = "")  -> CfLogSearchEventBuilder  {
         self.resultsList.removeAll()
         if !resultsIdsList.isEmpty {
-            if let itemIds = try? JSONDecoder().decode([String].self, from: resultsIdsList.data(using: .utf8)!) {
+            if let itemIds = try? JSONDecoder.new.decode([String].self, from: resultsIdsList.data(using: .utf8)!) {
                 for item in itemIds {
                     let searchItemObject = SearchItemModel(item_id: item, item_type: resultListItemType, facility_id: resultsFacilityId)
                     CoreConstants.shared.isSearchItemModelObjectValid(itemValue: searchItemObject, eventType: CoreEventType.search)

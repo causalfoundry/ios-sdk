@@ -79,7 +79,7 @@ public class CfLogTreatmentPlanEvent {
      */
     @discardableResult
     public func addTreatmentPlanItem(_ treatmentPlanItem: String) ->  CfLogTreatmentPlanEvent {
-        if let item = try? JSONDecoder().decode(TreatmentPlanItem.self, from: Data(treatmentPlanItem.utf8)) {
+        if let item = try? JSONDecoder.new.decode(TreatmentPlanItem.self, from: Data(treatmentPlanItem.utf8)) {
             self.treatmentPlanList.append(item)
         }
         return self
@@ -106,7 +106,7 @@ public class CfLogTreatmentPlanEvent {
     @discardableResult
     public func setTreatmentPlanList(_ treatmentPlanListString: String) ->  CfLogTreatmentPlanEvent  {
         if let data = treatmentPlanListString.data(using: .utf8),
-           let itemsList = try? JSONDecoder().decode([TreatmentPlanItem].self, from: data) {
+           let itemsList = try? JSONDecoder.new.decode([TreatmentPlanItem].self, from: data) {
             self.treatmentPlanList = itemsList
         }
         return self

@@ -145,7 +145,7 @@ public class CfLogSubmitScreeningEvent {
     
     @discardableResult
     public func addDiagnosisValueItem(diagnosisValueItem: String) -> CfLogSubmitScreeningEvent {
-        if let item = try? JSONDecoder().decode(DiagnosisItem.self, from: Data(diagnosisValueItem.utf8)) {
+        if let item = try? JSONDecoder.new.decode(DiagnosisItem.self, from: Data(diagnosisValueItem.utf8)) {
             self.diagnosisValuesList.append(item)
         }
         
@@ -175,7 +175,7 @@ public class CfLogSubmitScreeningEvent {
     @discardableResult
     public func setDiagnosisValueList(diagnosisValuesList: String) -> CfLogSubmitScreeningEvent {
         self.diagnosisValuesList.removeAll()
-        if let item = try? JSONDecoder().decode(DiagnosisItem.self, from: Data(diagnosisValuesList.utf8)) {
+        if let item = try? JSONDecoder.new.decode(DiagnosisItem.self, from: Data(diagnosisValuesList.utf8)) {
             self.diagnosisValuesList.append(item)
         }
         return self
@@ -201,7 +201,7 @@ public class CfLogSubmitScreeningEvent {
      */
     @discardableResult
     public func addDiagnosisResultItem(diagnosisResultItem: String) -> CfLogSubmitScreeningEvent {
-        if let item = try? JSONDecoder().decode(DiagnosisItem.self, from: Data(diagnosisResultItem.utf8)) {
+        if let item = try? JSONDecoder.new.decode(DiagnosisItem.self, from: Data(diagnosisResultItem.utf8)) {
             self.diagnosisResultList.append(item)
         }
         return self
@@ -229,7 +229,7 @@ public class CfLogSubmitScreeningEvent {
     @discardableResult
     public func setDiagnosisResultList(diagnosisResultList: String) -> CfLogSubmitScreeningEvent {
         self.diagnosisResultList.removeAll()
-        if let item = try? JSONDecoder().decode(DiagnosisItem.self, from: Data(diagnosisResultList.utf8)) {
+        if let item = try? JSONDecoder.new.decode(DiagnosisItem.self, from: Data(diagnosisResultList.utf8)) {
             self.diagnosisResultList.append(item)
         }
         return self

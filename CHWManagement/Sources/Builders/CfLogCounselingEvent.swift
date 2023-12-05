@@ -90,7 +90,7 @@ public class CfLogCounselingEvent {
      */
     @discardableResult
     public func addCounselingPlanItem(_ counselingPlanItem: String) -> CfLogCounselingEvent {
-        if let diagnosisItem = try? JSONDecoder().decode(CounselingPlanItem.self, from: counselingPlanItem.data(using: .utf8)!) {
+        if let diagnosisItem = try? JSONDecoder.new.decode(CounselingPlanItem.self, from: counselingPlanItem.data(using: .utf8)!) {
             counselingPlanList.append(diagnosisItem)
         }
         return self
@@ -119,7 +119,7 @@ public class CfLogCounselingEvent {
         if !counselingPlanList.isEmpty {
             
             if let data = counselingPlanList.data(using: .utf8),
-               let itemsList = try? JSONDecoder().decode([CounselingPlanItem].self, from: data) {
+               let itemsList = try? JSONDecoder.new.decode([CounselingPlanItem].self, from: data) {
                 self.counselingPlanList = itemsList
             }
         }

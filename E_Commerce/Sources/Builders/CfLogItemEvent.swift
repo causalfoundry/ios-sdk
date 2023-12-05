@@ -206,7 +206,7 @@ public class CfLogItemEvent {
     @discardableResult
     public func setItem(_ itemJsonString: String) -> CfLogItemEvent {
         if let data = itemJsonString.data(using: .utf8),
-           let item = try? JSONDecoder().decode(ItemModel.self, from: data) {
+           let item = try? JSONDecoder.new.decode(ItemModel.self, from: data) {
             self.itemValue = item
         }
         return self

@@ -16,7 +16,7 @@ public class CfCoreCatalog {
     public static func updateUserCatalog(appUserId: String, userCatalogModel: String) {
         if let jsonData = userCatalogModel.data(using: .utf8) {
             do {
-                let jsonModel = try JSONDecoder().decode(UserCatalogModel.self, from: jsonData)
+                let jsonModel = try JSONDecoder.new.decode(UserCatalogModel.self, from: jsonData)
                 CfCoreCatalog.updateUserCatalogData(appUserId: appUserId, userCatalogModel:jsonModel )
             } catch {
                 print("Error decoding JSON: \(error)")

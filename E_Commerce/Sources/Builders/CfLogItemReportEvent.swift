@@ -49,7 +49,7 @@ public class CfLogItemReportEvent {
      */
     @discardableResult
     public func setItem(item_object: String) -> CfLogItemReportEvent  {
-        if let item = try? JSONDecoder().decode(ItemTypeModel.self, from: item_object.data(using: .utf8)!) {
+        if let item = try? JSONDecoder.new.decode(ItemTypeModel.self, from: item_object.data(using: .utf8)!) {
             setItem(item_object: item)
         }
         return self
@@ -69,7 +69,7 @@ public class CfLogItemReportEvent {
     // Set store object using JSON string
     @discardableResult
     public func setStoreObject(store_object: String)-> CfLogItemReportEvent {
-        if let store = try? JSONDecoder().decode(StoreObject.self, from: store_object.data(using: .utf8)!) {
+        if let store = try? JSONDecoder.new.decode(StoreObject.self, from: store_object.data(using: .utf8)!) {
             setStoreObject(store_object: store)
         }
         return self
@@ -89,7 +89,7 @@ public class CfLogItemReportEvent {
     // Set report object using JSON string
     @discardableResult
     public func setReportObject(report_object: String) -> CfLogItemReportEvent {
-        if let report = try? JSONDecoder().decode(ReportObject.self, from: report_object.data(using: .utf8)!) {
+        if let report = try? JSONDecoder.new.decode(ReportObject.self, from: report_object.data(using: .utf8)!) {
             setReportObject(report_object: report)
         }
         return self

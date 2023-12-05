@@ -112,7 +112,7 @@ public class CfItemImpressionListener {
     
     class func onCollectionUpdatedRN(collectionViewKey: String, searchId: String, currentDataProvider: String) {
         let data = currentDataProvider.data(using: .utf8)!
-        let itemModels = try! JSONDecoder().decode([ItemImpressionModel].self, from: data)
+        let itemModels = try! JSONDecoder.new.decode([ItemImpressionModel].self, from: data)
         var itemList = itemModels.map { item in
             var mutableItem = item
             do {

@@ -404,7 +404,7 @@ extension CoreConstants {
             guard let data = json.data(using: .utf8) else {
                 throw NSError(domain: "usd_rates", code: 0, userInfo: ["reason": "JSON data corrupt"])
             }
-            let decoder = JSONDecoder()
+            let decoder = JSONDecoder.new
             return try decoder.decode([String: Float].self, from: data)
         } catch {
             fatalError(error.localizedDescription)
