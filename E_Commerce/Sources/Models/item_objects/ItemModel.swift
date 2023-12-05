@@ -34,7 +34,7 @@ public struct ItemModel: Codable {
         case meta
     }
     
-    public init(id: String, type: String, quantity: Int, price: Float, currency: String,  stockStatus: String? = "", promoId: String? = "", discount: Float? = 0, facilityId: String? = "", subscription: SubscriptionObject? = nil, meta: Encodable? = nil) {
+    public init(id: String, type: String, quantity: Int, price: Float, currency: String,  stockStatus: String? = "", promoId: String? = "", discount: Float? = 0, facilityId: String = "", subscription: SubscriptionObject? = nil, meta: Encodable? = nil) {
         self.id = id
         self.type = type
         self.quantity = quantity
