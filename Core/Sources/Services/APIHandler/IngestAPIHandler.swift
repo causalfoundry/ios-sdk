@@ -28,8 +28,10 @@ public class IngestAPIHandler: NSObject {
             let eventObject = EventDataObject(block: contentBlock, ol: isInternetAvailable, ts: Date(), type: eventType, props: trackProperties)
 
             if updateImmediately {
-                updateEventTrack(eventArray: [eventObject]) { result in
-                    print(result)
+                updateEventTrack(eventArray: [eventObject]) { [weak self] success in
+                    if !success {
+                        self?.storeEventTrack(eventObject: eventObject)
+                    }
                 }
             } else {
                 storeEventTrack(eventObject: eventObject)
