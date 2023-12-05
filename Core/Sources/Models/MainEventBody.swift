@@ -76,10 +76,6 @@ extension MainBody {
     func jsonData() throws -> Data {
         return try newJSONEncoder().encode(self)
     }
-
-    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
-        return String(data: try self.jsonData(), encoding: encoding)
-    }
 }
 
 
@@ -127,10 +123,6 @@ extension Props {
 
     func jsonData() throws -> Data {
         return try newJSONEncoder().encode(self)
-    }
-
-    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
-        return String(data: try self.jsonData(), encoding: encoding)
     }
 }
 
