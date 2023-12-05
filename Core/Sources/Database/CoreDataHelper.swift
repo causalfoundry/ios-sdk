@@ -34,116 +34,84 @@ public class CoreDataHelper {
 }
 
 extension CoreDataHelper {
-    // GET ALL EXCEPTION LOGS
     func readExceptionsData() -> [ExceptionDataObject] {
-        guard let data = mmkv.data(forKey: Key.exceptionData.rawValue) else {
-            return []
-        }
-        let decoder = JSONDecoder.new
-        let result = try? decoder.decode([ExceptionDataObject].self, from: data)
-        return result ?? []
+        let object: [ExceptionDataObject]? = read(for: Key.exceptionData.rawValue)
+        return object ?? []
     }
 
     func writeExceptionEvents(eventArray: [ExceptionDataObject]) {
-        let encoder = JSONEncoder.new
-        guard let data = try? encoder.encode(eventArray) else {
-            return
-        }
-        mmkv.set(data, forKey: Key.exceptionData.rawValue)
+        write(eventArray, for: Key.exceptionData.rawValue)
     }
 
     func writeUser(user: String?) {
-        if let user = user {
-            mmkv.set(user, forKey: Key.user.rawValue)
-        } else {
-            mmkv.removeValue(forKey: Key.user.rawValue)
-        }
+        write(user, for: Key.user.rawValue)
     }
-
-    // MARK: - Fetch User ID
 
     func fetchUserID() -> String {
-        return mmkv.string(forKey: Key.user.rawValue) ?? ""
+        let object: String? = read(for: Key.user.rawValue)
+        return object ?? ""
     }
-
-    /**
-     * To read user events from DB, default is empty list
-     */
+    
     func readInjectEvents() -> [EventDataObject] {
-        guard let data = mmkv.data(forKey: Key.eventData.rawValue) else {
-            return []
-        }
-        let decoder = JSONDecoder.new
-        let result = try? decoder.decode([EventDataObject].self, from: data)
-        return result ?? []
+        let object: [EventDataObject]? = read(for: Key.eventData.rawValue)
+        return object ?? []
     }
-
-    /**
-     * To write user events in DB
-     */
+    
     func writeEvents(eventsArray: [EventDataObject]) {
-        let encoder = JSONEncoder.new
-        guard let data = try? encoder.encode(eventsArray) else {
-            return
-        }
-        mmkv.set(data, forKey: Key.eventData.rawValue)
+        write(eventsArray, for: Key.eventData.rawValue)
     }
 
     func readUserCatalog() -> UserCatalogModel? {
-        guard let data = mmkv.data(forKey: Key.userCatalog.rawValue) else {
-            return nil
-        }
-        let decoder = JSONDecoder.new
-        let result = try? decoder.decode(UserCatalogModel.self, from: data)
-        return result
+        let object: UserCatalogModel? = read(for: Key.userCatalog.rawValue)
+        return object
     }
 
     func writeUserCatalog(userCataLogData: UserCatalogModel) {
-        let encoder = JSONEncoder.new
-        guard let data = try? encoder.encode(userCataLogData) else {
-            return
-        }
-        mmkv.set(data, forKey: Key.userCatalog.rawValue)
+        write(userCataLogData, for: Key.userCatalog.rawValue)
     }
 
-    // Currency Data
     func readCurrencyObject() -> CurrencyMainObject? {
-        guard let data = mmkv.data(forKey: Key.currency.rawValue) else {
-            return nil
-        }
-        let decoder = JSONDecoder.new
-        let result = try? decoder.decode(CurrencyMainObject.self, from: data)
-        return result
+        let object: CurrencyMainObject? = read(for: Key.currency.rawValue)
+        return object
     }
 
     func writeCurrencyObject(currency: CurrencyMainObject) {
-        let encoder = JSONEncoder.new
-        guard let data = try? encoder.encode(currency) else {
-            return
-        }
-        mmkv.set(data, forKey: Key.currency.rawValue)
+        write(currency, for: Key.currency.rawValue)
     }
 
     public func writeCatalogData(subject: CatalogSubject, data: Data) {
         let object = CatalogHelper(subject: subject, data: data)
-        let encoder = JSONEncoder.new
-        guard let data = try? encoder.encode(object) else {
-            return
-        }
-        mmkv.set(data, forKey: subject.rawValue)
+        write(object, for: subject.rawValue)
     }
 
     public func readCatalogData(subject: CatalogSubject) -> Data? {
-        guard let data = mmkv.data(forKey: subject.rawValue) else {
-            return nil
-        }
-        let decoder = JSONDecoder.new
-        let result = try? decoder.decode(CatalogHelper.self, from: data)
-        return result?.data
+        let object: CatalogHelper? = read(for: subject.rawValue)
+        return object?.data
     }
 
     func deleteDataEventLogs() {
-        mmkv.removeValue(forKey: Key.eventData.rawValue)
+        delete(for: Key.eventData.rawValue)
+    }
+    
+    private func write<T: Codable>(_ object: T?, for key: String) {
+        let encoder = JSONEncoder.new
+        guard let data = try? encoder.encode(object) else {
+            mmkv.removeValue(forKey: key)
+            return
+        }
+        mmkv.set(data, forKey: key)
+    }
+    
+    private func read<T: Codable>(for key: String) -> T? {
+        guard let data = mmkv.data(forKey: key) else {
+            return nil
+        }
+        let decoder = JSONDecoder.new
+        return try? decoder.decode(T.self, from: data)
+    }
+    
+    private func delete(for key: String) {
+        mmkv.removeValue(forKey: key)
     }
 }
 
