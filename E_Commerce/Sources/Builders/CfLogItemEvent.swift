@@ -14,11 +14,11 @@ public class CfLogItemEvent {
      * and when an item's detail is viewed.
      */
 
-    var itemActionValue: String?
+    var itemActionValue: String = ""
     var itemValue: ItemModel = ItemModel(id: "", type: "", quantity: 1, price: -1.0, currency: "")
-    var searchId: String?
-    var catalogModel: Any?
-    var meta: Any?
+    var searchId: String = ""
+    var catalogModel: Any? = nil
+    var meta: Any? = nil
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
     public init() {}
@@ -89,7 +89,7 @@ public class CfLogItemEvent {
      * the app.
      */
     @discardableResult
-    public func setSearchId(_ searchId: String?) -> CfLogItemEvent {
+    public func setSearchId(_ searchId: String) -> CfLogItemEvent {
         self.searchId = searchId
         return self
     }
@@ -137,12 +137,12 @@ public class CfLogItemEvent {
     }
 
     public func build() {
-        if itemActionValue?.isEmpty ?? true {
+        if itemActionValue.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.item.rawValue, elementName: String(describing: ItemAction.self))
         } else {
             ECommerceConstants.isItemValueObjectValid(itemValue: itemValue, eventType: EComEventType.item)
             
-            let itemObject = ViewItemObject(action:itemActionValue!, item: itemValue)
+            let itemObject = ViewItemObject(action:itemActionValue, item: itemValue)
             
             CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: itemObject, updateImmediately: updateImmediately)
             

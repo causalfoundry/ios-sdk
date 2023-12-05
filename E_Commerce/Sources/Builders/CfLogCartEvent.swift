@@ -12,12 +12,12 @@ public class CfLogCartEvent {
      * CfLogCartEvent is used to log the events related to cart. You can use this event to log
      * when an item was added or removed form the cart.
      */
-    var cartId: String? = ""
-    var cartAction: String? =  ""
+    var cartId: String = ""
+    var cartAction: String =  ""
     var itemValue: ItemModel = ItemModel(id: "", type: "", quantity: 1, price: -1.0, currency: "",  stockStatus: "", promoId: "", facilityId: nil)
-    var cartPrice: Float?
-    var currencyValue: String? = ""
-    var meta: Any?
+    var cartPrice: Float = 0
+    var currencyValue: String = ""
+    var meta: Any? = nil
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
     private var cartObject: CartObject?
@@ -67,119 +67,6 @@ public class CfLogCartEvent {
         } else {
             ExceptionManager.throwEnumException(eventType: EComEventType.cart.rawValue, className: String(describing: CartAction.self))
         }
-        return self
-    }
-
-    /**
-     * setItemId is required to log the Id for item the events are being logged. Details
-     * about the item are to be provided in the catalog for more details about the item.
-     */
-
-    @discardableResult
-    public func setItemId(itemId: String) -> CfLogCartEvent {
-        itemValue.id = itemId
-        return self
-    }
-
-    /**
-     * setItemQuantity is required to log the quantity for item the events are being logged. Details
-     * about the item are to be provided in the catalog for more details about the item.
-     */
-    @discardableResult
-    public func setItemQuantity(itemQuantity: Int) -> CfLogCartEvent {
-        itemValue.quantity = itemQuantity
-        return self
-    }
-
-    /**
-     * setItemPrice is required to log the price for item the events are being logged. Details
-     * about the item are to be provided in the catalog for more details about the item.
-     */
-    @discardableResult
-    public func setItemPrice(itemPrice: Float) -> CfLogCartEvent {
-        itemValue.price = (itemPrice * 100).rounded() / 100
-        return self
-    }
-
-    /**
-     * setItemCurrency is required to log the currency for item the events are being logged. Details
-     * about the item are to be provided in the catalog for more details about the item.
-     */
-    @discardableResult
-    public func setItemCurrency(currencyCode: String) -> CfLogCartEvent {
-        itemValue.currency = currencyCode
-        return self
-    }
-
-    /**
-     * setItemCurrency is required to log the currency for item the events are being logged. Details
-     * about the item are to be provided in the catalog for more details about the item.
-     */
-    //        fun setItemCurrency(currency_code: CurrencyCode) = apply { this.item_currency = currency_code.name }
-    @discardableResult
-    public func setItemCurrency(_ currencyCode: String) -> CfLogCartEvent {
-        if CoreConstants.shared.enumContains(InternalCurrencyCode.self, name: currencyCode) {
-            itemValue.currency = currencyCode
-        } else {
-            ExceptionManager.throwEnumException(eventType: EComEventType.cart.rawValue, className: String(describing: InternalCurrencyCode.self))
-        }
-        return self
-    }
-
-    /**
-     * setItemType is required to log the type for item the events are being
-     * logged. Details about the item are to be provided in the catalog for more details about
-     * the item.
-     */
-
-    @discardableResult
-    public func setItemType(itemType: ItemType) -> CfLogCartEvent {
-        itemValue.type = itemType.rawValue
-        return self
-    }
-
-    /**
-     * setItemStockStatus is required to log the stock status for item the events are being
-     * logged. Details about the item are to be provided in the catalog for more details about
-     * the item.
-     */
-
-    @discardableResult
-    public func setItemStockStatus(stockStatus: ItemStockStatus) -> CfLogCartEvent {
-        itemValue.stockStatus = stockStatus.rawValue
-        return self
-    }
-
-    @discardableResult
-    public func setItemStockStatus(_ stockStatus: String) -> CfLogCartEvent {
-        if CoreConstants.shared.enumContains(ItemStockStatus.self, name: stockStatus) {
-            itemValue.stockStatus = stockStatus
-        } else {
-            ExceptionManager.throwEnumException(eventType: EComEventType.cart.rawValue, className: String(describing: ItemStockStatus.self))
-        }
-        return self
-    }
-
-    /**
-     * setItemPromoId is required to log the promo Id for item the events are being
-     * logged. Details about the item are to be provided in the catalog for more details about
-     * the item. If there is not promo associated with the product, you do not need to pass it.
-     */
-
-    @discardableResult
-    public func setItemPromoId(promoId: String) -> CfLogCartEvent {
-        itemValue.promoId = promoId
-        return self
-    } /**
-     * setItemFacilityId is required to log the facility Id for item the events are being
-     * logged. Details about the item are to be provided in the facility catalog for more
-     * details about the item. If there is no facility associated with the product,
-     * you do not need to pass it. Facility here refers to the hospital, clinic, pharmacy, etc.
-     */
-
-    @discardableResult
-    public func setItemFacilityId(facilityId: String) -> CfLogCartEvent {
-        itemValue.facilityId = facilityId
         return self
     }
 
@@ -262,19 +149,16 @@ public class CfLogCartEvent {
      */
 
     public func build() {
-        guard let id = cartId else {
+        if cartId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "cart_id")
             return
-        }
-        guard let action = cartAction else {
+        }else if cartAction.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: String(describing: CartAction.self))
             return
-        }
-        guard let price = cartPrice else {
+        }else if cartPrice < 0 {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "cart_price")
             return
-        }
-        guard let currencyValue = currencyValue else {
+        }else if currencyValue.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: String(describing: InternalCurrencyCode.self))
             return
         }
@@ -285,26 +169,9 @@ public class CfLogCartEvent {
             ExceptionManager.throwCurrencyNotSameException(eventType: EComEventType.cart.rawValue, valueName: "cart")
         }
 
-        cartObject = CartObject(cartId: id, action: action, item: itemValue, cartPrice: price, currency: currencyValue, meta: meta as? Encodable)
+        cartObject = CartObject(cartId: cartId, action: cartAction, item: itemValue, cartPrice: cartPrice, currency: currencyValue, meta: meta as? Encodable)
 
-        if self.currencyValue == InternalCurrencyCode.USD.rawValue {
-            cartObject?.usdRate = 1.0
-
-            CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.cart.rawValue, logObject: cartObject, updateImmediately: updateImmediately)
-        } else {
-            CFSetup().getUSDRate(fromCurrency: currencyValue) { [weak self] value in
-                value
-            }
-        }
+        CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.cart.rawValue, logObject: cartObject, updateImmediately: updateImmediately)
     }
 
-    func getUSDRateAndLogEvent(usdRate: Float) {
-        cartObject!.usdRate = usdRate
-        CFSetup().track(
-            contentBlockName: ECommerceConstants.contentBlockName,
-            eventType: EComEventType.cart.rawValue,
-            logObject: cartObject!,
-            updateImmediately: updateImmediately
-        )
-    }
 }
