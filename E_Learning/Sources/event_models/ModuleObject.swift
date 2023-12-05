@@ -11,21 +11,21 @@ public struct ModuleObject: Codable {
     var progress: Int?
     var action: String
     var meta: Encodable?
-    
+
     enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case progress = "progress"
-        case action = "action"
-        case meta = "meta"
+        case id
+        case progress
+        case action
+        case meta
     }
-    
+
     public init(id: String, progress: Int? = nil, action: String, meta: Encodable? = nil) {
         self.id = id
         self.progress = progress
         self.action = action
         self.meta = meta
     }
-    
+
     // Encoding method
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -36,9 +36,9 @@ public struct ModuleObject: Codable {
             try container.encode(metaData, forKey: .meta)
         }
     }
-    
+
     //    // Decoding method
-    public  init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         progress = try container.decodeIfPresent(Int.self, forKey: .progress)

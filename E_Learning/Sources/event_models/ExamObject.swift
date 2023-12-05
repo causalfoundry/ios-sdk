@@ -13,16 +13,16 @@ public struct ExamObject: Codable {
     var score: Float?
     var isPassed: Bool?
     var meta: Encodable?
-    
+
     enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case action = "action"
-        case duration = "duration"
-        case score = "score"
+        case id
+        case action
+        case duration
+        case score
         case isPassed = "is_passed"
-        case meta = "meta"
+        case meta
     }
-    
+
     init(id: String, action: String, duration: Int? = nil, score: Float? = nil, isPassed: Bool? = nil, meta: Encodable? = nil) {
         self.id = id
         self.action = action
@@ -31,6 +31,7 @@ public struct ExamObject: Codable {
         self.isPassed = isPassed
         self.meta = meta
     }
+
     // Encoding method
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -42,9 +43,8 @@ public struct ExamObject: Codable {
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
-        
     }
-    
+
     // Decoding method
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -60,4 +60,3 @@ public struct ExamObject: Codable {
         }
     }
 }
-

@@ -13,7 +13,7 @@ public struct ScheduleDeliveryObject: Codable {
     let action: String
     let deliveryTimestamp: String
     let meta: Encodable?
-    
+
     enum CodingKeys: String, CodingKey {
         case orderId = "order_id"
         case isUrgent = "is_urgent"
@@ -21,7 +21,7 @@ public struct ScheduleDeliveryObject: Codable {
         case deliveryTimestamp = "delivery_ts"
         case meta
     }
-    
+
     public init(orderId: String, isUrgent: Bool, action: String, deliveryTimestamp: String, meta: Encodable? = nil) {
         self.orderId = orderId
         self.isUrgent = isUrgent
@@ -29,7 +29,7 @@ public struct ScheduleDeliveryObject: Codable {
         self.deliveryTimestamp = deliveryTimestamp
         self.meta = meta
     }
-    
+
     // Encoding method to encode all keys
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -41,7 +41,7 @@ public struct ScheduleDeliveryObject: Codable {
             try container.encode(metaData, forKey: .meta)
         }
     }
-    
+
     // Decoding method to decode all keys
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -56,5 +56,3 @@ public struct ScheduleDeliveryObject: Codable {
         }
     }
 }
-
-

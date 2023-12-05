@@ -1,14 +1,14 @@
 //
-//  File.swift
-//  
+//  ItemAction.swift
+//
 //
 //  Created by khushbu on 26/10/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
-public enum ItemAction: String, Codable,EnumComposable {
+public enum ItemAction: String, Codable, EnumComposable {
     case view
     case add
     case update

@@ -20,7 +20,7 @@ public struct BloodMetaModel: Codable {
         case reason
     }
 
-   public init(cross_matching: Bool = false, temperature_strips: Bool = false, extra_tests: Bool = false, reason: String = "") {
+    public init(cross_matching: Bool = false, temperature_strips: Bool = false, extra_tests: Bool = false, reason: String = "") {
         self.cross_matching = cross_matching
         self.temperature_strips = temperature_strips
         self.extra_tests = extra_tests
@@ -43,4 +43,3 @@ public struct BloodMetaModel: Codable {
         try container.encode(reason, forKey: .reason)
     }
 }
-

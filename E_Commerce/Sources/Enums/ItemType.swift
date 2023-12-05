@@ -5,19 +5,18 @@
 //  Created by khushbu on 27/10/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
-
-public enum ItemType: String,EnumComposable {
-    case blood = "blood"
-    case oxygen = "oxygen"
-    case drug = "drug"
+public enum ItemType: String, EnumComposable {
+    case blood
+    case oxygen
+    case drug
     case medicalEquipment = "medical_equipment"
-    case grocery = "grocery"
-    case facility = "facility"
-    case electronics = "electronics"
-    case clothing = "clothing"
-    case book = "book"
-    case misc = "misc"
+    case grocery
+    case facility
+    case electronics
+    case clothing
+    case book
+    case misc
 }

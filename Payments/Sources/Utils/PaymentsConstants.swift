@@ -7,7 +7,6 @@
 
 import Foundation
 
-
-struct PaymentsConstants {
+enum PaymentsConstants {
     static let contentBlockName: String = "payment"
 }

@@ -8,8 +8,4 @@
 import Foundation
 import UIKit
 
-class MockApplication: UIApplication {
-    
-    
-    
-}
+class MockApplication: UIApplication {}

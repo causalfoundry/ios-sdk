@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  CfCoreCatalog.swift
+//
 //
 //  Created by khushbu on 25/10/23.
 //
@@ -8,7 +8,6 @@
 import Foundation
 
 public class CfCoreCatalog {
-
     //////////////////////////////////////////////////////
     // User Catalog
     //////////////////////////////////////////////////////
@@ -17,15 +16,13 @@ public class CfCoreCatalog {
         if let jsonData = userCatalogModel.data(using: .utf8) {
             do {
                 let jsonModel = try JSONDecoder.new.decode(UserCatalogModel.self, from: jsonData)
-                CfCoreCatalog.updateUserCatalogData(appUserId: appUserId, userCatalogModel:jsonModel )
+                CfCoreCatalog.updateUserCatalogData(appUserId: appUserId, userCatalogModel: jsonModel)
             } catch {
                 print("Error decoding JSON: \(error)")
             }
         } else {
             print("Failed to convert JSON string to Data")
         }
-
-        
     }
 
     public static func updateUserCatalogData(appUserId: String, userCatalogModel: UserCatalogModel) {
@@ -35,19 +32,22 @@ public class CfCoreCatalog {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "User Id")
         }
 
-        if !userCatalogModel.country.isEmpty &&
-            !CoreConstants.shared.enumContains(CountryCode.self , name: userCatalogModel.country) {
-            ExceptionManager.throwEnumException(eventType: catalogName, className:  String(describing:CfCoreCatalog.self))
+        if !userCatalogModel.country.isEmpty,
+           !CoreConstants.shared.enumContains(CountryCode.self, name: userCatalogModel.country)
+        {
+            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: CfCoreCatalog.self))
         }
 
-        if !userCatalogModel.language.isEmpty &&
-            !CoreConstants.shared.enumContains(LanguageCode.self , name:userCatalogModel.language ) {
-            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing:CfCoreCatalog.self))
+        if !userCatalogModel.language.isEmpty,
+           !CoreConstants.shared.enumContains(LanguageCode.self, name: userCatalogModel.language)
+        {
+            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: CfCoreCatalog.self))
         }
 
-        if !userCatalogModel.education_level.isEmpty &&
-            !CoreConstants.shared.enumContains(EducationalLevel.self , name: userCatalogModel.education_level) {
-            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing:CfCoreCatalog.self))
+        if !userCatalogModel.education_level.isEmpty,
+           !CoreConstants.shared.enumContains(EducationalLevel.self, name: userCatalogModel.education_level)
+        {
+            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: CfCoreCatalog.self))
         }
 
         let userCatalogModelItem: UserCatalogModel? = CoreDataHelper.shared.readUserCatalog()
@@ -68,8 +68,8 @@ public class CfCoreCatalog {
                 organization_id: userCatalogModel.organization_id,
                 organization_name: userCatalogModel.organization_name
             )
-            CoreDataHelper.shared.writeUserCatalog(userCataLogData:userCatalogModel )
-           CFSetup().updateCoreCatalogItem(subject: CatalogSubject.user, catalogObject: [internalUserModel].toData()!)
+            CoreDataHelper.shared.writeUserCatalog(userCataLogData: userCatalogModel)
+            CFSetup().updateCoreCatalogItem(subject: CatalogSubject.user, catalogObject: [internalUserModel].toData()!)
         }
     }
 }

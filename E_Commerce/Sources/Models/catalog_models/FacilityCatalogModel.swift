@@ -1,12 +1,11 @@
 //
-//  File.swift
-//  
+//  FacilityCatalogModel.swift
+//
 //
 //  Created by khushbu on 30/10/23.
 //
 
 import Foundation
-
 
 public struct FacilityCatalogModel: Codable {
     var name: String?
@@ -29,7 +28,7 @@ public struct FacilityCatalogModel: Codable {
         case is_sponsored
     }
 
-  public init(name: String? = nil, type: String? = nil, country: String? = nil, region_state: String? = nil, city: String? = nil, is_active: Bool? = nil, has_delivery: Bool? = nil, is_sponsored: Bool? = nil) {
+    public init(name: String? = nil, type: String? = nil, country: String? = nil, region_state: String? = nil, city: String? = nil, is_active: Bool? = nil, has_delivery: Bool? = nil, is_sponsored: Bool? = nil) {
         self.name = name
         self.type = type
         self.country = country

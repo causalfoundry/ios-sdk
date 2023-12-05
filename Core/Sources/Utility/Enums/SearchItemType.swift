@@ -7,21 +7,19 @@
 
 import Foundation
 
-public enum SearchItemType: String,EnumComposable {
+public enum SearchItemType: String, EnumComposable {
     case blood,
-     oxygen,
-     drug,
-     grocery,
-     facility,
-     medicalEquipment,
-     electronics,
-     clothing,
-     book,
-     patientRecord,
-     lifestylePlanItem,
-     investigationTestItem,
-     treatmentPlanItem,
-     other
+         oxygen,
+         drug,
+         grocery,
+         facility,
+         medicalEquipment,
+         electronics,
+         clothing,
+         book,
+         patientRecord,
+         lifestylePlanItem,
+         investigationTestItem,
+         treatmentPlanItem,
+         other
 }
-
-

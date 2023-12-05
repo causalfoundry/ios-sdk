@@ -15,7 +15,7 @@ struct InternalMediaModel: Codable {
     var length: String?
     var resolution: String?
     var language: String?
-    
+
     // Custom CodingKeys enum
     private enum CodingKeys: String, CodingKey {
         case media_id
@@ -26,7 +26,7 @@ struct InternalMediaModel: Codable {
         case resolution
         case language
     }
-    
+
     // Custom initializer
     init(
         media_id: String? = nil,
@@ -45,8 +45,7 @@ struct InternalMediaModel: Codable {
         self.resolution = resolution
         self.language = language
     }
-    
-    
+
     public func encode() throws -> Data {
         let encoder = JSONEncoder.new
         encoder.outputFormatting = .prettyPrinted
@@ -59,6 +58,3 @@ struct InternalMediaModel: Codable {
         return try decoder.decode(InternalMediaModel.self, from: data)
     }
 }
-
-    
-

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CheckoutObject.swift
 //
 //
 //  Created by khushbu on 02/11/23.
@@ -17,7 +17,7 @@ public struct CheckoutObject: Codable {
     var items: [ItemModel]
     var usd_rate: Float?
     var meta: Encodable?
-    
+
     enum CodingKeys: String, CodingKey {
         case order_id = "id"
         case cart_id
@@ -29,8 +29,8 @@ public struct CheckoutObject: Codable {
         case usd_rate
         case meta
     }
-    
-   public init(order_id: String, cart_id: String, is_successful: Bool, cart_price: Float? = nil, currency: String? = nil, shopMode: String? = nil, items: [ItemModel], usd_rate: Float? = nil, meta: Encodable? = nil) {
+
+    public init(order_id: String, cart_id: String, is_successful: Bool, cart_price: Float? = nil, currency: String? = nil, shopMode: String? = nil, items: [ItemModel], usd_rate: Float? = nil, meta: Encodable? = nil) {
         self.order_id = order_id
         self.cart_id = cart_id
         self.is_successful = is_successful
@@ -41,24 +41,24 @@ public struct CheckoutObject: Codable {
         self.usd_rate = usd_rate
         self.meta = meta
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.order_id = try container.decode(String.self, forKey: .order_id)
-        self.cart_id = try container.decode(String.self, forKey: .cart_id)
-        self.is_successful = try container.decode(Bool.self, forKey: .is_successful)
-        self.cart_price = try container.decodeIfPresent(Float.self, forKey: .cart_price)
-        self.currency = try container.decodeIfPresent(String.self, forKey: .currency)
-        self.shopMode = try container.decodeIfPresent(String.self, forKey: .shopMode)
-        self.items = try container.decode([ItemModel].self, forKey: .items)
-        self.usd_rate = try container.decodeIfPresent(Float.self, forKey: .usd_rate)
+        order_id = try container.decode(String.self, forKey: .order_id)
+        cart_id = try container.decode(String.self, forKey: .cart_id)
+        is_successful = try container.decode(Bool.self, forKey: .is_successful)
+        cart_price = try container.decodeIfPresent(Float.self, forKey: .cart_price)
+        currency = try container.decodeIfPresent(String.self, forKey: .currency)
+        shopMode = try container.decodeIfPresent(String.self, forKey: .shopMode)
+        items = try container.decode([ItemModel].self, forKey: .items)
+        usd_rate = try container.decodeIfPresent(Float.self, forKey: .usd_rate)
         if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {
             meta = nil
         }
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(order_id, forKey: .order_id)
@@ -72,7 +72,5 @@ public struct CheckoutObject: Codable {
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
-        
     }
 }
-

@@ -5,10 +5,10 @@
 //  Created by khushbu on 03/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
-public enum PrescriptionItemFrequency: String, Codable,EnumComposable {
+public enum PrescriptionItemFrequency: String, Codable, EnumComposable {
     case AM
     case PM
     case OD
@@ -23,4 +23,3 @@ public enum PrescriptionItemFrequency: String, Codable,EnumComposable {
     case PRN
     case other
 }
-

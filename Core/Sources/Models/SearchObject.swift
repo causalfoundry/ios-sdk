@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  SearchObject.swift
+//
 //
 //  Created by khushbu on 16/10/23.
 //
@@ -22,7 +22,8 @@ struct SearchObject: Codable {
          results_list: Any? = nil,
          filter: Any? = nil,
          page: Int = 1,
-         meta: Any? = nil) {
+         meta: Any? = nil)
+    {
         self.search_id = search_id
         self.query = query
         self.search_module = search_module
@@ -34,83 +35,81 @@ struct SearchObject: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case search_id = "id"
-        case query = "query"
+        case query
         case search_module = "module"
-        case results_list = "results_list"
-        case filter = "filter"
-        case page = "page"
-        case meta = "meta"
+        case results_list
+        case filter
+        case page
+        case meta
     }
-    
+
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         search_id = try values.decodeIfPresent(String.self, forKey: .search_id)!
         search_module = try values.decodeIfPresent(String.self, forKey: .search_module)!
         query = try values.decodeIfPresent(String.self, forKey: .query)!
         page = try values.decodeIfPresent(Int.self, forKey: .page)!
-       
-        if let decodeMetaInt =  try values.decodeIfPresent(Int.self, forKey: .meta) {
+
+        if let decodeMetaInt = try values.decodeIfPresent(Int.self, forKey: .meta) {
             meta = decodeMetaInt
-        }else if let decodeMetaString = try values.decodeIfPresent(String.self, forKey: .meta) {
+        } else if let decodeMetaString = try values.decodeIfPresent(String.self, forKey: .meta) {
             meta = decodeMetaString
-        }else {
+        } else {
             meta = nil
         }
-        
-        if let decodeMetaInt =  try values.decodeIfPresent(String.self, forKey: .results_list) {
+
+        if let decodeMetaInt = try values.decodeIfPresent(String.self, forKey: .results_list) {
             results_list = decodeMetaInt
-        }else {
+        } else {
             results_list = nil
         }
-        
-        if let decodeMetaInt =  try values.decodeIfPresent([String:String].self, forKey: .filter) {
+
+        if let decodeMetaInt = try values.decodeIfPresent([String: String].self, forKey: .filter) {
             filter = decodeMetaInt
-        }else if let decodeMetaString = try values.decodeIfPresent(String.self, forKey: .filter) {
+        } else if let decodeMetaString = try values.decodeIfPresent(String.self, forKey: .filter) {
             filter = decodeMetaString
-        }else {
+        } else {
             filter = nil
         }
-        
     }
-    
+
     // MARK: Encodable
+
     func encode(to encoder: Encoder) throws {
         var baseContainer = encoder.container(keyedBy: CodingKeys.self)
-        try baseContainer.encode(self.search_id, forKey: .search_id)
-        
-        try baseContainer.encode(self.query, forKey: .query)
-        try baseContainer.encode(self.search_module, forKey: .search_module)
-        try baseContainer.encode(self.page, forKey: .page)
-       
+        try baseContainer.encode(search_id, forKey: .search_id)
+
+        try baseContainer.encode(query, forKey: .query)
+        try baseContainer.encode(search_module, forKey: .search_module)
+        try baseContainer.encode(page, forKey: .page)
+
         let dataEncoder = baseContainer.superEncoder(forKey: .meta)
-        
+
         // Use the Encoder directly:
-        if let metaAsInt = self.meta as? Int {
+        if let metaAsInt = meta as? Int {
             try (metaAsInt).encode(to: dataEncoder)
-        }else if let metaAsString = self.meta as? String {
+        } else if let metaAsString = meta as? String {
             try (metaAsString).encode(to: dataEncoder)
-        }else if let metaAsDouble = self.meta as? Double {
+        } else if let metaAsDouble = meta as? Double {
             try (metaAsDouble).encode(to: dataEncoder)
         }
-        
+
         let dataEncoderResult = baseContainer.superEncoder(forKey: .results_list)
-        
-        if let resultTypeDictionary = self.results_list as? [SearchItemModel] {
+
+        if let resultTypeDictionary = results_list as? [SearchItemModel] {
             try (resultTypeDictionary).encode(to: dataEncoderResult)
-        }else if let metaAsString = self.results_list as? String {
+        } else if let metaAsString = results_list as? String {
             try (metaAsString).encode(to: dataEncoderResult)
-        }else if let metaAsDouble = self.results_list as? Double {
+        } else if let metaAsDouble = results_list as? Double {
             try (metaAsDouble).encode(to: dataEncoderResult)
         }
-        
-        
+
         let dataEncoderFilter = baseContainer.superEncoder(forKey: .filter)
-        if let resultTypeDictionary = self.filter as? [String:String] {
+        if let resultTypeDictionary = filter as? [String: String] {
             try (resultTypeDictionary).encode(to: dataEncoderFilter)
         }
     }
 }
-
 
 func serializeToJSON(data: Any) -> Data? {
     do {

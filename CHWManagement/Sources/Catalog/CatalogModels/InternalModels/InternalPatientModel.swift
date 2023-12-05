@@ -1,12 +1,11 @@
 //
-//  File.swift
-//  
+//  InternalPatientModel.swift
+//
 //
 //  Created by khushbu on 25/10/23.
 //
 
 import Foundation
-
 
 struct InternalPatientModel: Codable {
     var id: String = ""
@@ -23,8 +22,7 @@ struct InternalPatientModel: Codable {
     var landmark: String = ""
     var phoneNumberCategory: String = ""
     var programId: String = ""
-    
-    
+
     init(id: String, country: String, regionState: String, city: String, profession: String, educationLevel: String, siteIdsList: [String], nationalId: String, insuranceId: String, insuranceType: String, insuranceStatus: Bool, landmark: String, phoneNumberCategory: String, programId: String) {
         self.id = id
         self.country = country

@@ -20,9 +20,7 @@ public struct DrugCatalogModel: Codable {
     var drugStrength: String?
     var atcAnatomicalGroup: String?
     var otcOrEthical: String?
-    
-    
-    
+
     public init(name: String? = nil, marketId: String? = nil, description: String? = nil, supplierId: String? = nil, supplierName: String? = nil, producer: String? = nil, packaging: String? = nil, activeIngredients: [String]? = nil, drugForm: String? = nil, drugStrength: String? = nil, atcAnatomicalGroup: String? = nil, otcOrEthical: String? = nil) {
         self.name = name
         self.marketId = marketId
@@ -37,7 +35,7 @@ public struct DrugCatalogModel: Codable {
         self.atcAnatomicalGroup = atcAnatomicalGroup
         self.otcOrEthical = otcOrEthical
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case name
         case marketId = "market_id"
@@ -52,7 +50,7 @@ public struct DrugCatalogModel: Codable {
         case atcAnatomicalGroup = "ATC_anatomical_group"
         case otcOrEthical = "OTC_or_ethical"
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(name, forKey: .name)
@@ -68,7 +66,7 @@ public struct DrugCatalogModel: Codable {
         try container.encodeIfPresent(atcAnatomicalGroup, forKey: .atcAnatomicalGroup)
         try container.encodeIfPresent(otcOrEthical, forKey: .otcOrEthical)
     }
-    
+
     // Custom decoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

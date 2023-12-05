@@ -5,13 +5,10 @@
 //  Created by khushbu on 01/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
-
-public enum ScanType: String, Codable,EnumComposable {
+public enum ScanType: String, Codable, EnumComposable {
     case pin
     case qr_code
 }
-
-

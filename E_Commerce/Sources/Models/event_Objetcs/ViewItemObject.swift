@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ViewItemObject.swift
 //
 //
 //  Created by khushbu on 30/10/23.
@@ -13,16 +13,15 @@ public struct ViewItemObject: Codable {
     var search_id: String?
     var usd_rate: Float?
     var meta: Encodable?
-    
+
     private enum CodingKeys: String, CodingKey {
         case action
         case item
-        case search_id = "search_id"
-        case usd_rate = "usd_rate"
+        case search_id
+        case usd_rate
         case meta
     }
-    
-    
+
     init(action: String, item: ItemModel, search_id: String? = nil, usd_rate: Float? = nil, meta: Encodable? = nil) {
         self.action = action
         self.item = item
@@ -30,8 +29,8 @@ public struct ViewItemObject: Codable {
         self.usd_rate = usd_rate
         self.meta = meta
     }
-    
-   public init(from decoder: Decoder) throws {
+
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         action = try container.decode(String.self, forKey: .action)
         item = try container.decode(ItemModel.self, forKey: .item)
@@ -42,9 +41,8 @@ public struct ViewItemObject: Codable {
         } else {
             meta = nil
         }
-        
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(action, forKey: .action)
@@ -55,6 +53,4 @@ public struct ViewItemObject: Codable {
             try container.encode(metaData, forKey: .meta)
         }
     }
-    
 }
-

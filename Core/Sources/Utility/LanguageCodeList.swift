@@ -1,5 +1,5 @@
 //
-//  LanguageCode.swift
+//  LanguageCodeList.swift
 //
 //
 //  Created by khushbu on 09/10/23.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public enum LanguageCode: String,EnumComposable {
+public enum LanguageCode: String, EnumComposable {
     case Afar = "AAR"
     case Abkhaz = "ABK"
     case Avestan = "AVE"
@@ -195,13 +195,13 @@ public enum LanguageCode: String,EnumComposable {
     case Zhuang = "ZHA"
     case Chinese = "ZHO"
     case Zulu = "ZUL"
-    
+
     // Custom properties with default valuesx
     var languageISO3Code: String? {
         switch self {
         case .Afar: return "AAR"
         case .Abkhaz: return "ABK"
-        case .Avestan:return "AVE"
+        case .Avestan: return "AVE"
         case .Afrikaans:
             return "AFR"
         case .Akan:
@@ -570,7 +570,7 @@ public enum LanguageCode: String,EnumComposable {
             return "ZUL"
         }
     }
-    
+
     var languageISO2Code: String? {
         switch self {
         case .Afar: return "AA"
@@ -578,760 +578,757 @@ public enum LanguageCode: String,EnumComposable {
         case .Avestan:
             return "AE"
         case .Afrikaans:
-           return "AF"
+            return "AF"
         case .Akan:
-           return "AK"
+            return "AK"
         case .Amharic:
-           return "AM"
+            return "AM"
         case .Aragonese:
-           return "AN"
+            return "AN"
         case .Arabic:
-           return "AR"
+            return "AR"
         case .Avaric:
-           return "AV"
+            return "AV"
         case .Aymara:
-           return "AY"
+            return "AY"
         case .Azerbaijani:
-           return "AZ"
+            return "AZ"
         case .Bashkir:
-           return "BA"
+            return "BA"
         case .Belarusian:
-           return "BE"
+            return "BE"
         case .Bulgarian:
-           return "BG"
+            return "BG"
         case .Bihari:
-           return "BH"
+            return "BH"
         case .Bislama:
-           return "BI"
+            return "BI"
         case .Bambara:
-           return "BM"
+            return "BM"
         case .Bengali:
-           return "BN"
+            return "BN"
         case .Tibetan:
-           return "BO"
+            return "BO"
         case .Breton:
-           return "BR"
+            return "BR"
         case .Bosnian:
-           return "BS"
+            return "BS"
         case .Catalan:
-           return "CA"
+            return "CA"
         case .Chechen:
-           return "CE"
+            return "CE"
         case .Chamorro:
-           return "CH"
+            return "CH"
         case .Corsican:
-           return "CO"
+            return "CO"
         case .Cree:
-           return "CR"
+            return "CR"
         case .Czech:
-           return "CS"
+            return "CS"
         case .Slavonic:
-           return "CU"
+            return "CU"
         case .Chuvash:
-           return "CV"
+            return "CV"
         case .Welsh:
-           return "CY"
+            return "CY"
         case .Danish:
-           return "DA"
+            return "DA"
         case .German:
-           return "DE"
+            return "DE"
         case .Maldivian:
-           return "DV"
+            return "DV"
         case .Dzongkha:
-           return "DZ"
+            return "DZ"
         case .Ewe:
-           return "EE"
+            return "EE"
         case .Greek:
-           return "EL"
+            return "EL"
         case .English:
-           return "EN"
+            return "EN"
         case .Esperanto:
-           return "EO"
+            return "EO"
         case .Spanish:
-           return "ES"
+            return "ES"
         case .Estonian:
-           return "ET"
+            return "ET"
         case .Basque:
-           return "EU"
+            return "EU"
         case .Persian:
-           return "FA"
+            return "FA"
         case .Fulah:
-           return "FF"
+            return "FF"
         case .Finnish:
-           return "FI"
+            return "FI"
         case .Fijian:
-           return "FI"
+            return "FI"
         case .Faroese:
-           return "FO"
+            return "FO"
         case .French:
-           return "FR"
+            return "FR"
         case .WesternFrisian:
-           return "FY"
+            return "FY"
         case .Irish:
-           return "GA"
+            return "GA"
         case .Gaelic:
-           return "GD"
+            return "GD"
         case .Galician:
-           return "GL"
+            return "GL"
         case .Guarani:
-           return "GN"
+            return "GN"
         case .Gujarati:
-           return "GU"
+            return "GU"
         case .Manx:
-           return "GV"
+            return "GV"
         case .Hausa:
-           return "HA"
+            return "HA"
         case .Hebrew:
-           return "HE"
+            return "HE"
         case .Hindi:
-           return "HI"
+            return "HI"
         case .HiriMotu:
-           return "HO"
+            return "HO"
         case .Croatian:
-           return "HR"
+            return "HR"
         case .Haitian:
-           return "HT"
+            return "HT"
         case .Hungarian:
-           return "HU"
+            return "HU"
         case .Armenian:
-           return "HY"
+            return "HY"
         case .Herero:
-           return "HZ"
+            return "HZ"
         case .Interlingua:
-           return "IA"
+            return "IA"
         case .Indonesian:
-           return "ID"
+            return "ID"
         case .Occidental:
-           return "IE"
+            return "IE"
         case .Igbo:
-           return "IG"
+            return "IG"
         case .Nuosu:
-           return "II"
+            return "II"
         case .Inupiaq:
-           return "IK"
+            return "IK"
         case .Ido:
-           return "IO"
+            return "IO"
         case .Icelandic:
-           return "IS"
+            return "IS"
         case .Italian:
-           return "IT"
+            return "IT"
         case .Inuktitut:
-           return "IU"
+            return "IU"
         case .Japanese:
-           return "JA"
+            return "JA"
         case .Javanese:
-           return "JV"
+            return "JV"
         case .Georgian:
-           return "KA"
+            return "KA"
         case .Kongo:
-           return "KG"
+            return "KG"
         case .Kikuyu:
-           return "KI"
+            return "KI"
         case .Kuanyama:
-           return "KJ"
+            return "KJ"
         case .Kazakh:
-           return "KJ"
+            return "KJ"
         case .Greenlandic:
-           return "KL"
+            return "KL"
         case .CentralKhmer:
-           return "KM"
+            return "KM"
         case .Kannada:
-           return "KN"
+            return "KN"
         case .Korean:
-           return "KO"
+            return "KO"
         case .Kanuri:
-           return "KR"
+            return "KR"
         case .Kashmiri:
-           return "KS"
+            return "KS"
         case .Kurdish:
-           return "KU"
+            return "KU"
         case .Komi:
-           return "KV"
+            return "KV"
         case .Cornish:
-           return "KW"
+            return "KW"
         case .Kirghiz:
-           return "KY"
+            return "KY"
         case .Latin:
-           return "LA"
+            return "LA"
         case .Luxembourgish:
-           return "LB"
+            return "LB"
         case .Ganda:
-           return "LG"
+            return "LG"
         case .Limburgish:
-           return "LI"
+            return "LI"
         case .Lingala:
-           return "LN"
+            return "LN"
         case .Lao:
-           return "LO"
+            return "LO"
         case .Lithuanian:
-           return "LT"
+            return "LT"
         case .LubaKatanga:
-           return "LU"
+            return "LU"
         case .Latvian:
-           return "LV"
+            return "LV"
         case .Malagasy:
-           return "MG"
+            return "MG"
         case .Marshallese:
-           return "MH"
+            return "MH"
         case .Maori:
-           return "MI"
+            return "MI"
         case .Macedonian:
-           return "MK"
+            return "MK"
         case .Malayalam:
-           return "ML"
+            return "ML"
         case .Mongolian:
-           return "MN"
+            return "MN"
         case .Moldavian:
-           return "MO"
+            return "MO"
         case .Marathi:
-           return "MR"
+            return "MR"
         case .Malay:
-           return "MS"
+            return "MS"
         case .Maltese:
-           return "MT"
+            return "MT"
         case .Burmese:
-           return "MY"
+            return "MY"
         case .Nauruan:
-           return "NA"
+            return "NA"
         case .NorwegianBokmal:
-           return "NB"
+            return "NB"
         case .NorthNdebele:
-           return "ND"
+            return "ND"
         case .Nepali:
-           return "NE"
+            return "NE"
         case .Ndonga:
-           return "NG"
+            return "NG"
         case .Dutch:
-           return "NL"
+            return "NL"
         case .NorwegianNynorsk:
-           return "NN"
+            return "NN"
         case .Norwegian:
-           return "NO"
+            return "NO"
         case .SouthNdebele:
-           return "NR"
+            return "NR"
         case .Navajo:
-           return "NV"
+            return "NV"
         case .Nyanja:
-           return "Ny"
+            return "Ny"
         case .Occitan:
-           return "OC"
+            return "OC"
         case .Ojibwa:
-           return "OJ"
+            return "OJ"
         case .Oromo:
-           return "OM"
+            return "OM"
         case .Oriya:
-           return "OR"
+            return "OR"
         case .Ossetian:
-           return "OS"
+            return "OS"
         case .Punjabi:
-           return "PA"
+            return "PA"
         case .Pali:
-           return "PI"
+            return "PI"
         case .Polish:
-           return "PL"
+            return "PL"
         case .Pushto:
-           return "PS"
+            return "PS"
         case .Portuguese:
-           return "PT"
+            return "PT"
         case .Quechua:
-           return "QU"
+            return "QU"
         case .Reunionese:
-           return "RC"
+            return "RC"
         case .Romansh:
-           return "RM"
+            return "RM"
         case .Rundi:
-           return "RN"
+            return "RN"
         case .Romanian:
-           return "RO"
+            return "RO"
         case .Russian:
-           return "RU"
+            return "RU"
         case .Kinyarwanda:
-           return "RW"
+            return "RW"
         case .Sanskrit:
-           return "SA"
+            return "SA"
         case .Sardinian:
-           return "SC"
+            return "SC"
         case .Sindhi:
-           return "SD"
+            return "SD"
         case .NorthernSami:
-           return "SE"
+            return "SE"
         case .Sango:
-           return "SG"
+            return "SG"
         case .Slavic:
-           return "SH"
+            return "SH"
         case .Sinhalese:
-           return "SI"
+            return "SI"
         case .Slovak:
-           return "SK"
+            return "SK"
         case .Slovenian:
-           return "SL"
+            return "SL"
         case .Samoan:
-           return "SM"
+            return "SM"
         case .Shona:
-           return "SN"
+            return "SN"
         case .Somali:
-           return "SO"
+            return "SO"
         case .Albanian:
-           return "SQ"
+            return "SQ"
         case .Serbian:
-           return "SR"
+            return "SR"
         case .Swati:
-           return "SS"
+            return "SS"
         case .SouthernSotho:
-           return "ST"
+            return "ST"
         case .Sundanese:
-           return "SU"
+            return "SU"
         case .Swedish:
-           return "SV"
+            return "SV"
         case .Swahili:
-           return "SW"
+            return "SW"
         case .Tamil:
-           return "TA"
+            return "TA"
         case .Telugu:
-           return "TE"
+            return "TE"
         case .Tajik:
-           return "TG"
+            return "TG"
         case .Thai:
-           return "TH"
+            return "TH"
         case .Tigrinya:
-           return "TI"
+            return "TI"
         case .Turkmen:
-           return "TK"
+            return "TK"
         case .Tagalog:
-           return "TL"
+            return "TL"
         case .Tswana:
-           return "TN"
+            return "TN"
         case .Tongan:
-           return "TO"
+            return "TO"
         case .Turkish:
-           return "TR"
+            return "TR"
         case .Tsonga:
-           return "TS"
+            return "TS"
         case .Tatar:
-           return "TT"
+            return "TT"
         case .Twi:
-           return "TW"
+            return "TW"
         case .Tahitian:
-           return "TY"
+            return "TY"
         case .Uighur:
-           return "UG"
+            return "UG"
         case .Ukrainian:
-           return "UK"
+            return "UK"
         case .Urdu:
-           return "UR"
+            return "UR"
         case .Uzbek:
-           return "UZ"
+            return "UZ"
         case .Venda:
-           return "VE"
+            return "VE"
         case .Vietnamese:
-           return "VI"
+            return "VI"
         case .Volapuk:
-           return "VO"
+            return "VO"
         case .Walloon:
-           return "WA"
+            return "WA"
         case .Wolof:
-           return "WO"
+            return "WO"
         case .Xhosa:
-           return "XH"
+            return "XH"
         case .Yiddish:
-           return "YI"
+            return "YI"
         case .Yoruba:
-           return "YO"
+            return "YO"
         case .Zhuang:
-           return "ZA"
+            return "ZA"
         case .Chinese:
-           return "ZH"
+            return "ZH"
         case .Zulu:
-           return "ZU"
+            return "ZU"
         }
     }
-    
+
     var languageFullName: String? {
         switch self {
         case .Afar: return "Afar"
         case .Abkhaz: return "Abkhaz"
-            // ... (all the other cases)
+        // ... (all the other cases)
         case .Avestan:
             return ""
         case .Afrikaans:
-           return ""
+            return ""
         case .Akan:
-           return ""
+            return ""
         case .Amharic:
-           return ""
+            return ""
         case .Aragonese:
-           return ""
+            return ""
         case .Arabic:
-           return ""
+            return ""
         case .Avaric:
-           return ""
+            return ""
         case .Aymara:
-           return ""
+            return ""
         case .Azerbaijani:
-           return ""
+            return ""
         case .Bashkir:
-           return ""
+            return ""
         case .Belarusian:
-           return ""
+            return ""
         case .Bulgarian:
-           return ""
+            return ""
         case .Bihari:
-           return ""
+            return ""
         case .Bislama:
-           return ""
+            return ""
         case .Bambara:
-           return ""
+            return ""
         case .Bengali:
-           return ""
+            return ""
         case .Tibetan:
-           return ""
+            return ""
         case .Breton:
-           return ""
+            return ""
         case .Bosnian:
-           return ""
+            return ""
         case .Catalan:
-           return ""
+            return ""
         case .Chechen:
-           return ""
+            return ""
         case .Chamorro:
-           return ""
+            return ""
         case .Corsican:
-           return ""
+            return ""
         case .Cree:
-           return ""
+            return ""
         case .Czech:
-           return ""
+            return ""
         case .Slavonic:
-           return ""
+            return ""
         case .Chuvash:
-           return ""
+            return ""
         case .Welsh:
-           return ""
+            return ""
         case .Danish:
-           return ""
+            return ""
         case .German:
-           return ""
+            return ""
         case .Maldivian:
-           return ""
+            return ""
         case .Dzongkha:
-           return ""
+            return ""
         case .Ewe:
-           return ""
+            return ""
         case .Greek:
-           return ""
+            return ""
         case .English:
-           return ""
+            return ""
         case .Esperanto:
-           return ""
+            return ""
         case .Spanish:
-           return ""
+            return ""
         case .Estonian:
-           return ""
+            return ""
         case .Basque:
-           return ""
+            return ""
         case .Persian:
-           return ""
+            return ""
         case .Fulah:
-           return ""
+            return ""
         case .Finnish:
-           return ""
+            return ""
         case .Fijian:
-           return ""
+            return ""
         case .Faroese:
-           return ""
+            return ""
         case .French:
-           return ""
+            return ""
         case .WesternFrisian:
-           return ""
+            return ""
         case .Irish:
-           return ""
+            return ""
         case .Gaelic:
-           return ""
+            return ""
         case .Galician:
-           return ""
+            return ""
         case .Guarani:
-           return ""
+            return ""
         case .Gujarati:
-           return ""
+            return ""
         case .Manx:
-           return ""
+            return ""
         case .Hausa:
-           return ""
+            return ""
         case .Hebrew:
-           return ""
+            return ""
         case .Hindi:
-           return ""
+            return ""
         case .HiriMotu:
-           return ""
+            return ""
         case .Croatian:
-           return ""
+            return ""
         case .Haitian:
-           return ""
+            return ""
         case .Hungarian:
-           return ""
+            return ""
         case .Armenian:
-           return ""
+            return ""
         case .Herero:
-           return ""
+            return ""
         case .Interlingua:
-           return ""
+            return ""
         case .Indonesian:
-           return ""
+            return ""
         case .Occidental:
-           return ""
+            return ""
         case .Igbo:
-           return ""
+            return ""
         case .Nuosu:
-           return ""
+            return ""
         case .Inupiaq:
-           return ""
+            return ""
         case .Ido:
-           return ""
+            return ""
         case .Icelandic:
-           return ""
+            return ""
         case .Italian:
-           return ""
+            return ""
         case .Inuktitut:
-           return ""
+            return ""
         case .Japanese:
-           return ""
+            return ""
         case .Javanese:
-           return ""
+            return ""
         case .Georgian:
-           return ""
+            return ""
         case .Kongo:
-           return ""
+            return ""
         case .Kikuyu:
-           return ""
+            return ""
         case .Kuanyama:
-           return ""
+            return ""
         case .Kazakh:
-           return ""
+            return ""
         case .Greenlandic:
-           return ""
+            return ""
         case .CentralKhmer:
-           return ""
+            return ""
         case .Kannada:
-           return ""
+            return ""
         case .Korean:
-           return ""
+            return ""
         case .Kanuri:
-           return ""
+            return ""
         case .Kashmiri:
-           return ""
+            return ""
         case .Kurdish:
-           return ""
+            return ""
         case .Komi:
-           return ""
+            return ""
         case .Cornish:
-           return ""
+            return ""
         case .Kirghiz:
-           return ""
+            return ""
         case .Latin:
-           return ""
+            return ""
         case .Luxembourgish:
-           return ""
+            return ""
         case .Ganda:
-           return ""
+            return ""
         case .Limburgish:
-           return ""
+            return ""
         case .Lingala:
-           return ""
+            return ""
         case .Lao:
-           return ""
+            return ""
         case .Lithuanian:
-           return ""
+            return ""
         case .LubaKatanga:
-           return ""
+            return ""
         case .Latvian:
-           return ""
+            return ""
         case .Malagasy:
-           return ""
+            return ""
         case .Marshallese:
-           return ""
+            return ""
         case .Maori:
-           return ""
+            return ""
         case .Macedonian:
-           return ""
+            return ""
         case .Malayalam:
-           return ""
+            return ""
         case .Mongolian:
-           return ""
+            return ""
         case .Moldavian:
-           return ""
+            return ""
         case .Marathi:
-           return ""
+            return ""
         case .Malay:
-           return ""
+            return ""
         case .Maltese:
-           return ""
+            return ""
         case .Burmese:
-           return ""
+            return ""
         case .Nauruan:
-           return ""
+            return ""
         case .NorwegianBokmal:
-           return ""
+            return ""
         case .NorthNdebele:
-           return ""
+            return ""
         case .Nepali:
-           return ""
+            return ""
         case .Ndonga:
-           return ""
+            return ""
         case .Dutch:
-           return ""
+            return ""
         case .NorwegianNynorsk:
-           return ""
+            return ""
         case .Norwegian:
-           return ""
+            return ""
         case .SouthNdebele:
-           return ""
+            return ""
         case .Navajo:
-           return ""
+            return ""
         case .Nyanja:
-           return ""
+            return ""
         case .Occitan:
-           return ""
+            return ""
         case .Ojibwa:
-           return ""
+            return ""
         case .Oromo:
-           return ""
+            return ""
         case .Oriya:
-           return ""
+            return ""
         case .Ossetian:
-           return ""
+            return ""
         case .Punjabi:
-           return ""
+            return ""
         case .Pali:
-           return ""
+            return ""
         case .Polish:
-           return ""
+            return ""
         case .Pushto:
-           return ""
+            return ""
         case .Portuguese:
-           return ""
+            return ""
         case .Quechua:
-           return ""
+            return ""
         case .Reunionese:
-           return ""
+            return ""
         case .Romansh:
-           return ""
+            return ""
         case .Rundi:
-           return ""
+            return ""
         case .Romanian:
-           return ""
+            return ""
         case .Russian:
-           return ""
+            return ""
         case .Kinyarwanda:
-           return ""
+            return ""
         case .Sanskrit:
-           return ""
+            return ""
         case .Sardinian:
-           return ""
+            return ""
         case .Sindhi:
-           return ""
+            return ""
         case .NorthernSami:
-           return ""
+            return ""
         case .Sango:
-           return ""
+            return ""
         case .Slavic:
-           return ""
+            return ""
         case .Sinhalese:
-           return ""
+            return ""
         case .Slovak:
-           return ""
+            return ""
         case .Slovenian:
-           return ""
+            return ""
         case .Samoan:
-           return ""
+            return ""
         case .Shona:
-           return ""
+            return ""
         case .Somali:
-           return ""
+            return ""
         case .Albanian:
-           return ""
+            return ""
         case .Serbian:
-           return ""
+            return ""
         case .Swati:
-           return ""
+            return ""
         case .SouthernSotho:
-           return ""
+            return ""
         case .Sundanese:
-           return ""
+            return ""
         case .Swedish:
-           return ""
+            return ""
         case .Swahili:
-           return ""
+            return ""
         case .Tamil:
-           return ""
+            return ""
         case .Telugu:
-           return ""
+            return ""
         case .Tajik:
-           return ""
+            return ""
         case .Thai:
-           return ""
+            return ""
         case .Tigrinya:
-           return ""
+            return ""
         case .Turkmen:
-           return ""
+            return ""
         case .Tagalog:
-           return ""
+            return ""
         case .Tswana:
-           return ""
+            return ""
         case .Tongan:
-           return ""
+            return ""
         case .Turkish:
-           return ""
+            return ""
         case .Tsonga:
-           return ""
+            return ""
         case .Tatar:
-           return ""
+            return ""
         case .Twi:
-           return ""
+            return ""
         case .Tahitian:
-           return ""
+            return ""
         case .Uighur:
-           return ""
+            return ""
         case .Ukrainian:
-           return ""
+            return ""
         case .Urdu:
-           return ""
+            return ""
         case .Uzbek:
-           return ""
+            return ""
         case .Venda:
-           return ""
+            return ""
         case .Vietnamese:
-           return ""
+            return ""
         case .Volapuk:
-           return ""
+            return ""
         case .Walloon:
-           return ""
+            return ""
         case .Wolof:
-           return ""
+            return ""
         case .Xhosa:
-           return ""
+            return ""
         case .Yiddish:
-           return ""
+            return ""
         case .Yoruba:
-           return ""
+            return ""
         case .Zhuang:
-           return ""
+            return ""
         case .Chinese:
-           return ""
+            return ""
         case .Zulu:
-           return ""
+            return ""
         }
     }
-    
+
     // Custom initializer
     public init?(languageISO3Code: String, languageISO2Code: String, languageFullName: String) {
         switch (languageISO3Code, languageISO2Code, languageFullName) {
         case ("AAR", "AA", "Afar"): self = .Afar
         case ("ABK", "AB", "Abkhaz"): self = .Abkhaz
-            // ... (all the other cases)
+        // ... (all the other cases)
         default: return nil
         }
     }
-    
 }
-
-

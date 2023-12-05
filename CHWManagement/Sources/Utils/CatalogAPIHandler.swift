@@ -1,20 +1,15 @@
 //
-//  File.swift
-//  
+//  CatalogAPIHandler.swift
+//
 //
 //  Created by khushbu on 16/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
-
-extension CatalogAPIHandler {
-    public func updateCHWCatalogItem(subject: CatalogSubject, catalogObject: Data) {
+public extension CatalogAPIHandler {
+    func updateCHWCatalogItem(subject: CatalogSubject, catalogObject: Data) {
         CoreDataHelper.shared.writeCHWManagemntCatalogData(subject: subject, data: catalogObject)
     }
 }
-
-
-
-

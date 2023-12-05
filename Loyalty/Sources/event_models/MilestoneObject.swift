@@ -7,26 +7,25 @@
 
 import Foundation
 
-
 public struct MilestoneObject: Codable {
     let id: String
     let action: String
     let meta: Encodable?
-    
+
     // Custom initializer
     public init(id: String, action: String, meta: Encodable? = nil) {
         self.id = id
         self.action = action
         self.meta = meta
     }
-    
+
     // CodingKeys for encoding and decoding
     private enum CodingKeys: String, CodingKey {
         case id
         case action
         case meta
     }
-    
+
     // Encode the object to JSON
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -36,7 +35,7 @@ public struct MilestoneObject: Codable {
             try container.encode(meta, forKey: .meta)
         }
     }
-    
+
     // Decode the object from JSON
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -47,6 +46,5 @@ public struct MilestoneObject: Codable {
         } else {
             meta = nil
         }
-        
     }
 }

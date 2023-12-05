@@ -1,12 +1,11 @@
 //
-//  File.swift
-//  
+//  InternalSiteModel.swift
+//
 //
 //  Created by khushbu on 26/10/23.
 //
 
 import Foundation
-
 
 struct InternalSiteModel: Codable {
     var id: String

@@ -1,14 +1,13 @@
 //
-//  File.swift
-//  
+//  UserCatalogModel.swift
+//
 //
 //  Created by khushbu on 19/10/23.
 //
 
 import Foundation
 
-
-public struct UserCatalogModel:Codable,Equatable {
+public struct UserCatalogModel: Codable, Equatable {
     var name: String
     var country: String
     var region_state: String
@@ -21,7 +20,7 @@ public struct UserCatalogModel:Codable,Equatable {
     var education_level: String
     var organization_id: String
     var organization_name: String
-    
+
     public init(name: String, country: String, region_state: String, city: String, workplace: String, profession: String, zipcode: String, language: String, experience: String, education_level: String, organization_id: String, organization_name: String) {
         self.name = name
         self.country = country

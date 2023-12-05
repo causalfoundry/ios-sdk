@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 enum PaymentsEventType: String {
     case deferred_payment
     case payment_method

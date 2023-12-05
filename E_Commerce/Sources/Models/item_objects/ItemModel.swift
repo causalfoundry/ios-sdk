@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ItemModel.swift
 //
 //
 //  Created by khushbu on 27/10/23.
@@ -17,7 +17,7 @@ public struct ItemModel: Codable {
     var promoId: String?
     var facilityId: String?
     var meta: Encodable?
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case quantity
@@ -29,7 +29,7 @@ public struct ItemModel: Codable {
         case facilityId = "facility_id"
         case meta
     }
-    
+
     public init(id: String?, quantity: Int, price: Float, currency: String?, type: String?, stockStatus: String?, promoId: String?, facilityId: String?, meta: Encodable? = nil) {
         self.id = id
         self.quantity = quantity
@@ -41,7 +41,7 @@ public struct ItemModel: Codable {
         self.facilityId = facilityId
         self.meta = meta
     }
-    
+
     // Custom encoding method
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -57,7 +57,7 @@ public struct ItemModel: Codable {
             try container.encode(metaData, forKey: .meta)
         }
     }
-    
+
     // Custom decoding method
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

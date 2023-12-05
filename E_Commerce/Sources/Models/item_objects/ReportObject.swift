@@ -11,9 +11,7 @@ public struct ReportObject {
     var id: String
     var short_desc: String
     var remarks: String
-    
-    
-    
+
     public init(id: String, short_desc: String, remarks: String) {
         self.id = id
         self.short_desc = short_desc
@@ -22,7 +20,7 @@ public struct ReportObject {
 }
 
 extension ReportObject: Encodable {
-    public  func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(short_desc, forKey: .short_desc)

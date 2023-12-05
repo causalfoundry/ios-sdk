@@ -5,29 +5,25 @@
 //  Created by khushbu on 02/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
 public class CfLogExamEvent {
-    
     /**
      * CfLogExamEvent is required to log actions related to e-learning module exams. which
      * includes the related to starting, retaking, reviewing and submit the exam. BsLogExamEvent
      * also updates the user level if they achieved a milestone.
      */
-    var examId: String? = nil
-    var action: String? = nil
-    var durationValue: Int? = nil
-    var scoreValue: Float? = nil
-    var isPassed: Bool? = nil
-    private var meta: Any? = nil
+    var examId: String?
+    var action: String?
+    var durationValue: Int?
+    var scoreValue: Float?
+    var isPassed: Bool?
+    private var meta: Any?
     private var updateImmediately: Bool = CoreConstants.shared.updateImmediately
-    
-    
-    
-    public init() {
-        
-    }
+
+    public init() {}
+
     /**
      * setExamId is required to log examId for the Exam on which user is performing actions.
      * Exam Id should be in a string format and must be in accordance to the catalog
@@ -38,19 +34,20 @@ public class CfLogExamEvent {
         self.examId = examId
         return self
     }
+
     /**
      * setExamAction is required to set the Action type for the Exam event. SDK provides
      * enum classes to support available log types. 3 main are start, submit and result.
      * SDK provides 2 approaches to log this event, one being enum type and the other is
      * string type. Below is the function to log type using enum.
      */
-    
+
     @discardableResult
     public func setExamAction(_ action: ExamAction) -> CfLogExamEvent {
         self.action = action.rawValue
         return self
     }
-    
+
     /**
      * setExamAction is required to set the Action type for the Exam event. SDK provides
      * enum classes to support available log types. 3 main are start, submit and result.
@@ -71,37 +68,39 @@ public class CfLogExamEvent {
         }
         return self
     }
-    
+
     /**
      * setDuration is required to log the duration (time elapsed) by the user to complete the
      * exam. Duration should be in Seconds. This is required in case of examAction been submit.
      */
-    
+
     @discardableResult
     public func setDuration(_ duration: Int?) -> CfLogExamEvent {
-        self.durationValue = duration
+        durationValue = duration
         return self
     }
+
     /**
      * setScore is required if there is some score provided ot the user in result of the
      * exam submitted. This is required in case of examAction been result.
      */
     @discardableResult
     public func setScore(_ score: Float?) -> CfLogExamEvent {
-        self.scoreValue = score
+        scoreValue = score
         return self
     }
+
     /**
      * isPassed is required if the user passed or failed the exam. This log is required only
      * in case when examAction is result
      */
-    
+
     @discardableResult
     public func isPassed(_ isPassed: Bool?) -> CfLogExamEvent {
         self.isPassed = isPassed
         return self
     }
-    
+
     /**
      * You can pass any type of value in setMeta. It is for developer and partners to log
      * additional information with the log that they find would be helpful for logging and
@@ -112,6 +111,7 @@ public class CfLogExamEvent {
         self.meta = meta
         return self
     }
+
     /**
      * updateImmediately is responsible for updating the values ot the backend immediately.
      * By default this is set to false or whatever the developer has set in the SDK
@@ -124,13 +124,13 @@ public class CfLogExamEvent {
         self.updateImmediately = updateImmediately
         return self
     }
-    
+
     /**
      * build will validate all of the values provided and if passes will call the track
      * function and queue the events based on it's updateImmediately value and also on the
      * user's network resources.
      */
-    
+
     public func build() {
         /**
          * Will throw and exception if the examId provided is null or no value is
@@ -148,11 +148,11 @@ public class CfLogExamEvent {
             ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.exam.rawValue, elementName: String(describing: ExamAction.self))
             return
         }
-        
-        if action == ExamAction.submit.rawValue && durationValue == nil {
+
+        if action == ExamAction.submit.rawValue, durationValue == nil {
             ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.exam.rawValue, elementName: "duration_value")
             return
-        } else if action == ExamAction.result.rawValue && (scoreValue == nil || isPassed == nil) {
+        } else if action == ExamAction.result.rawValue, scoreValue == nil || isPassed == nil {
             ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.exam.rawValue, elementName: "score")
             return
         } else {
@@ -169,6 +169,4 @@ public class CfLogExamEvent {
             )
         }
     }
-    
 }
-

@@ -1,6 +1,6 @@
 //
 //  AppInfoObject.swift
-//  
+//
 //
 //  Created by khushbu on 22/09/23.
 //
@@ -8,7 +8,6 @@
 import Foundation
 
 struct AppInfo: Codable {
-    
     let id: String
     let minSDKVersion, targetSDKVersion: Int
     let version: String

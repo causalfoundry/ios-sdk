@@ -1,6 +1,6 @@
 //
 //  BackendNudgeMainObject.swift
-//  
+//
 //
 //  Created by Causal Foundry on 29.11.23.
 //
@@ -8,13 +8,15 @@
 import Foundation
 
 // MARK: - BackendNudgeMainObject
+
 struct BackendNudgeMainObject: Codable {
     let ref: String
     let time: String
     let nd: Nd
     let extra: Extra?
-    
+
     // MARK: - Extra
+
     struct Extra: Codable {
         let traits: [String: String]?
         let itemPair: ItemPair?
@@ -26,11 +28,13 @@ struct BackendNudgeMainObject: Codable {
     }
 
     // MARK: - ItemPair
+
     struct ItemPair: Codable {
         let ids, names: [String]?
     }
 
     // MARK: - Nd
+
     struct Nd: Codable {
         let type: String?
         let message: Message?
@@ -44,6 +48,7 @@ struct BackendNudgeMainObject: Codable {
     }
 
     // MARK: - Message
+
     struct Message: Codable {
         let title: String?
         let tmplCFG: TmplCFG?
@@ -58,6 +63,7 @@ struct BackendNudgeMainObject: Codable {
     }
 
     // MARK: - TmplCFG
+
     struct TmplCFG: Codable {
         let tmplType: String?
         let itemPairCFG: ItemPairCFG?
@@ -71,6 +77,7 @@ struct BackendNudgeMainObject: Codable {
     }
 
     // MARK: - ItemPairCFG
+
     struct ItemPairCFG: Codable {
         let itemType, pairRankType: String?
 
@@ -79,6 +86,4 @@ struct BackendNudgeMainObject: Codable {
             case pairRankType = "pair_rank_type"
         }
     }
-
 }
-

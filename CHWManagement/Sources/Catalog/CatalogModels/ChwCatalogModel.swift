@@ -14,7 +14,7 @@ public struct ChwCatalogModel: Codable {
     var rolePermissions: [String]
     var siteIdsList: [String]
     var servicesList: [String]
-    
+
     public enum CodingKeys: String, CodingKey {
         case name
         case role
@@ -23,7 +23,7 @@ public struct ChwCatalogModel: Codable {
         case siteIdsList = "site_ids_list"
         case servicesList = "services_list"
     }
-    
+
     public init(name: String, role: String, isVolunteer: Bool, rolePermissions: [String], siteIdsList: [String], servicesList: [String]) {
         self.name = name
         self.role = role
@@ -32,6 +32,4 @@ public struct ChwCatalogModel: Codable {
         self.siteIdsList = siteIdsList
         self.servicesList = servicesList
     }
-    
 }
-

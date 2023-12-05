@@ -10,7 +10,7 @@ public struct ItemInfoObject: Codable {
     var productionDate: Int64
     var expiryDate: Int64
     var meta: Encodable?
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -22,7 +22,7 @@ public struct ItemInfoObject: Codable {
         case expiryDate = "expiry_date"
         case meta
     }
-    
+
     public init(
         id: String,
         type: String,
@@ -44,7 +44,7 @@ public struct ItemInfoObject: Codable {
         self.expiryDate = expiryDate
         self.meta = meta
     }
-    
+
     // Encoding method
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -59,11 +59,10 @@ public struct ItemInfoObject: Codable {
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
-        
     }
-    
+
     // Decoding method
-    public  init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(String.self, forKey: .type)
@@ -80,5 +79,3 @@ public struct ItemInfoObject: Codable {
         }
     }
 }
-
-

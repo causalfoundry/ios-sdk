@@ -7,14 +7,13 @@
 
 import Foundation
 
-
 public struct PrescriptionEventObject: Codable {
     var patientId: String
     var siteId: String
     var prescriptionId: String
     var prescriptionList: [PrescriptionItem]
     var meta: Encodable?
-    
+
     private enum CodingKeys: String, CodingKey {
         case patientId = "patient_id"
         case siteId = "site_id"
@@ -22,7 +21,7 @@ public struct PrescriptionEventObject: Codable {
         case prescriptionList = "prescription_list"
         case meta
     }
-    
+
     init(patientId: String, siteId: String, prescriptionId: String, prescriptionList: [PrescriptionItem], meta: Encodable? = nil) {
         self.patientId = patientId
         self.siteId = siteId
@@ -30,7 +29,7 @@ public struct PrescriptionEventObject: Codable {
         self.prescriptionList = prescriptionList
         self.meta = meta
     }
-    
+
     // Encode the struct to JSON data
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -42,7 +41,7 @@ public struct PrescriptionEventObject: Codable {
             try container.encode(metaData, forKey: .meta)
         }
     }
-    
+
     // Initialize a struct instance from decoded JSON data
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -55,7 +54,5 @@ public struct PrescriptionEventObject: Codable {
         } else {
             meta = nil
         }
-        
     }
 }
-

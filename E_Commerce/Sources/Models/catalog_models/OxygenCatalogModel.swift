@@ -14,7 +14,7 @@ public struct OxygenCatalogModel: Codable {
     var packagingUnits: String?
     var supplierId: String?
     var supplierName: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case marketId = "market_id"
         case packaging
@@ -23,7 +23,7 @@ public struct OxygenCatalogModel: Codable {
         case supplierId = "supplier_id"
         case supplierName = "supplier_name"
     }
-    
+
     public init(marketId: String? = nil, packaging: String? = nil, packagingSize: Float? = nil, packagingUnits: String? = nil, supplierId: String? = nil, supplierName: String? = nil) {
         self.marketId = marketId
         self.packaging = packaging
@@ -32,10 +32,9 @@ public struct OxygenCatalogModel: Codable {
         self.supplierId = supplierId
         self.supplierName = supplierName
     }
-    
-    
+
     // MARK: - Codable methods
-    
+
     // Custom encoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -46,7 +45,7 @@ public struct OxygenCatalogModel: Codable {
         try container.encodeIfPresent(supplierId, forKey: .supplierId)
         try container.encodeIfPresent(supplierName, forKey: .supplierName)
     }
-    
+
     // Custom decoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

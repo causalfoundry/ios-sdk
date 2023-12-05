@@ -1,21 +1,19 @@
 //
-//  File.swift
-//  
+//  NudgeUtils.swift
+//
 //
 //  Created by Causal Foundry on 30.11.23.
 //
 
-
 import Foundation
 
-class NudgeUtils {
-    
+enum NudgeUtils {
     static func getBodyTextBasedOnTemplate(nudgeObjectString: String) -> String {
         return getBodyTextBasedOnTemplate(
             nudgeObject: try! JSONDecoder.new.decode(BackendNudgeMainObject.self, from: nudgeObjectString.data(using: .utf8)!)
         )
     }
-    
+
     static func getBodyTextBasedOnTemplate(nudgeObject: BackendNudgeMainObject) -> String {
         if nudgeObject.nd.message?.tmplCFG == nil {
             // simple push notification
@@ -44,7 +42,7 @@ class NudgeUtils {
             }
         }
     }
-    
+
     private static func checkBodyForTemplatePlaceholders(nudgeObject: BackendNudgeMainObject) -> String {
         let body = nudgeObject.nd.message?.body ?? ""
         let regex = try! NSRegularExpression(pattern: "\\{\\{\\s*(.*?)\\s*\\}\\}")
@@ -54,7 +52,7 @@ class NudgeUtils {
         }
         return body
     }
-    
+
     private static func validateAndProvideTraitsString(inputString: String, nudgeObject: BackendNudgeMainObject) -> String {
         guard let traitsCfg = nudgeObject.nd.message?.tmplCFG?.traits else {
             ExceptionManager.throwInvalidNudgeException(message: "Invalid tmpl_cfg.traits provided", nudgeObject: nudgeObject.prettyJSON)
@@ -72,7 +70,7 @@ class NudgeUtils {
             ExceptionManager.throwInvalidNudgeException(message: "Empty extra.traits provided", nudgeObject: nudgeObject.prettyJSON)
             return ""
         }
-        
+
         var traitsMap: [String: Any] = [:]
         if let jsonData = traitsExtraObject.toData() {
             do {
@@ -82,19 +80,19 @@ class NudgeUtils {
                 return ""
             }
         }
-        
+
         if traitsCfg.count != traitsMap.count {
             ExceptionManager.throwInvalidNudgeException(message: "extra.traits and tmpl_cfg.traits size mismatch", nudgeObject: nudgeObject.prettyJSON)
             return ""
         }
-        
+
         for trait in traitsCfg {
             if !traitsMap.keys.contains(trait) {
                 ExceptionManager.throwInvalidNudgeException(message: "extra.traits and tmpl_cfg.traits values mismatch", nudgeObject: nudgeObject.prettyJSON)
                 return ""
             }
         }
-        
+
         var nudgeObjectBody = inputString
         for (key, value) in traitsMap {
             nudgeObjectBody = nudgeObjectBody.replacingOccurrences(of: "{{\(key)}}", with: "\(value)")
@@ -102,7 +100,7 @@ class NudgeUtils {
         }
         return nudgeObjectBody
     }
-    
+
     private static func validateAndProvideItemPairString(inputString: String, nudgeObject: BackendNudgeMainObject) -> String {
         guard let itemPairCfg = nudgeObject.nd.message?.tmplCFG?.itemPairCFG else {
             ExceptionManager.throwInvalidNudgeException(message: "Invalid tmpl_cfg.item_pair_cfg provided", nudgeObject: nudgeObject.prettyJSON)
@@ -124,13 +122,13 @@ class NudgeUtils {
             ExceptionManager.throwInvalidNudgeException(message: "Invalid extra.item_pair.ids values provided", nudgeObject: nudgeObject.prettyJSON)
             return ""
         }
-        
+
         var nudgeObjectBody = inputString
         nudgeObjectBody = nudgeObjectBody.replacingOccurrences(of: "{{ primary }}", with: "\(itemPairExtraObject.names![0])")
         nudgeObjectBody = nudgeObjectBody.replacingOccurrences(of: "{{primary}}", with: "\(itemPairExtraObject.names![0])")
         nudgeObjectBody = nudgeObjectBody.replacingOccurrences(of: "{{ secondary }}", with: "\(itemPairExtraObject.names![1])")
         nudgeObjectBody = nudgeObjectBody.replacingOccurrences(of: "{{secondary}}", with: "\(itemPairExtraObject.names![1])")
-        
+
         return nudgeObjectBody
     }
 }

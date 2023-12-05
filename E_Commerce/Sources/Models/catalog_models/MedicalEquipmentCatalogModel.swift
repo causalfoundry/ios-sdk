@@ -18,7 +18,7 @@ public struct MedicalEquipmentCatalogModel: Codable {
     var packagingSize: Float?
     var packagingUnits: String?
     var category: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case name
         case description
@@ -31,7 +31,7 @@ public struct MedicalEquipmentCatalogModel: Codable {
         case packagingUnits = "packaging_units"
         case category
     }
-    
+
     public init(name: String? = nil, description: String? = nil, marketId: String? = nil, supplierId: String? = nil, supplierName: String? = nil, producer: String? = nil, packaging: String? = nil, packagingSize: Float? = nil, packagingUnits: String? = nil, category: String? = nil) {
         self.name = name
         self.description = description
@@ -44,7 +44,8 @@ public struct MedicalEquipmentCatalogModel: Codable {
         self.packagingUnits = packagingUnits
         self.category = category
     }
-   public func encode(to encoder: Encoder) throws {
+
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(description, forKey: .description)
@@ -57,9 +58,9 @@ public struct MedicalEquipmentCatalogModel: Codable {
         try container.encodeIfPresent(packagingUnits, forKey: .packagingUnits)
         try container.encodeIfPresent(category, forKey: .category)
     }
-    
+
     // Custom decoding
-//   public init(from decoder: Decoder) throws {
+    //   public init(from decoder: Decoder) throws {
 //        let container = try decoder.container(keyedBy: CodingKeys.self)
 //        name = try container.decodeIfPresent(String.self, forKey: .name)
 //        description = try container.decodeIfPresent(String.self, forKey: .description)

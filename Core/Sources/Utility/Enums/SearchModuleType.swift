@@ -7,8 +7,7 @@
 
 import Foundation
 
-
-public enum SearchModuleType: String,EnumComposable {
+public enum SearchModuleType: String, EnumComposable {
     case core,
          screening,
          assessment,
@@ -21,4 +20,4 @@ public enum SearchModuleType: String,EnumComposable {
          treatment_plan,
          transfers,
          other
-    }
+}

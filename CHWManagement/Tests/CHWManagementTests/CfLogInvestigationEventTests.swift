@@ -1,6 +1,6 @@
 //
 //  CfLogInvestigationEventTests.swift
-//  
+//
 //
 //  Created by khushbu on 26/10/23.
 //
@@ -39,15 +39,15 @@ class CfLogInvestigationEventTests: XCTestCase {
     }
 
     func testAddInvestigationItem() {
-        let item = InvestigationItem(name: "Test1", testValue: "Mg", testUnit: "testsd", orderedDate: 12232323, testedDate: 343434343, action: "add", remarks: "Test")
+        let item = InvestigationItem(name: "Test1", testValue: "Mg", testUnit: "testsd", orderedDate: 12_232_323, testedDate: 343_434_343, action: "add", remarks: "Test")
         logEvent.addInvestigationItem(item)
         XCTAssertEqual(logEvent.prescribedTestsList.count, 1)
         XCTAssertEqual(logEvent.prescribedTestsList.first, item)
     }
 
     func testSetInvestigationList() {
-        let item1 = InvestigationItem(name: "Test1", testValue: "Mg", testUnit: "testsd", orderedDate: 12232323, testedDate: 343434343, action: "add", remarks: "Test")
-        let item2 = InvestigationItem(name: "Test2", testValue: "Mg", testUnit: "testsd", orderedDate: 12232323, testedDate: 343434343, action: "add", remarks: "Test")
+        let item1 = InvestigationItem(name: "Test1", testValue: "Mg", testUnit: "testsd", orderedDate: 12_232_323, testedDate: 343_434_343, action: "add", remarks: "Test")
+        let item2 = InvestigationItem(name: "Test2", testValue: "Mg", testUnit: "testsd", orderedDate: 12_232_323, testedDate: 343_434_343, action: "add", remarks: "Test")
         let itemList = [item1, item2]
         logEvent.setInvestigationList(itemList)
         XCTAssertEqual(logEvent.prescribedTestsList, itemList)
@@ -79,7 +79,7 @@ class CfLogInvestigationEventTests: XCTestCase {
         logEvent.setPatientId("12345")
         logEvent.setSiteId("SiteA")
         logEvent.setInvestigationId("Investigation123")
-        let item = InvestigationItem(name: "Test1", testValue: "Mg", testUnit: "testsd", orderedDate: 12232323, testedDate: 343434343, action: "add", remarks: "Test")
+        let item = InvestigationItem(name: "Test1", testValue: "Mg", testUnit: "testsd", orderedDate: 12_232_323, testedDate: 343_434_343, action: "add", remarks: "Test")
         logEvent.addInvestigationItem(item)
 
         XCTAssertNoThrow(logEvent.build())

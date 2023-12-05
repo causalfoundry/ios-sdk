@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct TreatmentPlanItem: Codable {
     var type: String
     var value: Int
@@ -15,7 +14,7 @@ public struct TreatmentPlanItem: Codable {
     var action: String
     var isApproved: Bool?
     var remarks: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case type
         case value

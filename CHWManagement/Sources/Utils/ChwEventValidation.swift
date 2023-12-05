@@ -5,10 +5,10 @@
 //  Created by khushbu on 10/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
-class ChwEventValidation {
+enum ChwEventValidation {
     static func verifyCounselingPlanList(eventType: ChwMgmtEventType, counselingPlanList: [CounselingPlanItem]) -> Bool {
         for item in counselingPlanList {
             if item.name.isEmpty {
@@ -21,5 +21,4 @@ class ChwEventValidation {
         }
         return true
     }
-
 }

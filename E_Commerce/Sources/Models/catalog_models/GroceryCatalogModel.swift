@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 import Foundation
 
 public struct GroceryCatalogModel: Codable {

@@ -1,15 +1,14 @@
 //
 //  ChwModuleType.swift
-//  
+//
 //
 //  Created by khushbu on 26/10/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
-
-public enum ChwModuleType: String,EnumComposable {
+public enum ChwModuleType: String, EnumComposable {
     case screening
     case assessment
     case enrolment
@@ -22,4 +21,3 @@ public enum ChwModuleType: String,EnumComposable {
     case treatmentPlan = "treatment_plan"
     case other
 }
-

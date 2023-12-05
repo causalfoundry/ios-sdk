@@ -1,12 +1,11 @@
 //
-//  File.swift
+//  PaymentMethodObject.swift
 //
 //
 //  Created by khushbu on 02/11/23.
 //
 
 import Foundation
-
 
 public struct PaymentMethodObject: Codable {
     var order_id: String?
@@ -15,7 +14,7 @@ public struct PaymentMethodObject: Codable {
     var currency: String?
     var usd_rate: Float?
     var meta: Encodable?
-    
+
     enum CodingKeys: String, CodingKey {
         case order_id
         case type
@@ -24,7 +23,7 @@ public struct PaymentMethodObject: Codable {
         case usd_rate
         case meta
     }
-    
+
     init(order_id: String, type: String, payment_amount: Float, currency: String? = nil, usd_rate: Float? = nil, meta: Encodable? = nil) {
         self.order_id = order_id
         self.type = type
@@ -33,6 +32,7 @@ public struct PaymentMethodObject: Codable {
         self.usd_rate = usd_rate
         self.meta = meta
     }
+
     // Encoding method
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -44,9 +44,8 @@ public struct PaymentMethodObject: Codable {
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
-        
     }
-    
+
     // Decoding method
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -60,6 +59,5 @@ public struct PaymentMethodObject: Codable {
         } else {
             meta = nil
         }
-        
     }
 }

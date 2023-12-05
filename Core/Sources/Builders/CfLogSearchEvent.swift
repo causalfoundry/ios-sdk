@@ -13,13 +13,12 @@ public class CfLogSearchEvent {
     var resultsList: [SearchItemModel] = []
     var filterValue: Any?
     var searchModule: String = SearchModuleType.core.rawValue
-    var contentBlock:String = CoreConstants.shared.contentBlockName
+    var contentBlock: String = CoreConstants.shared.contentBlockName
     var pageValue: Int = 1
     var isNewSearch: Bool = true
     var meta: Any?
-    var updateImmediately:Bool = CoreConstants.shared.updateImmediately
+    var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 }
-
 
 /**
  * CfLogSearchEvent is used to log search related events. It supports all the module
@@ -31,34 +30,31 @@ public class CfLogSearchEvent {
  */
 
 // MARK: - Builder
+
 public class CfLogSearchEventBuilder {
-    
     var searchId: String = UUID().uuidString
     var queryText: String?
     var resultsList: [SearchItemModel] = []
     var filterValue: Any?
     var searchModule: String = SearchModuleType.core.rawValue
-    var contentBlock:String = CoreConstants.shared.contentBlockName
+    var contentBlock: String = CoreConstants.shared.contentBlockName
     var pageValue: Int = 1
     var isNewSearch: Bool = true
     var meta: Any?
-    var updateImmediately:Bool = CoreConstants.shared.updateImmediately
-    
-    
-    public  init() {
-        
-    }
+    var updateImmediately: Bool = CoreConstants.shared.updateImmediately
+
+    public init() {}
+
     /**
      * setQuery is required to log the actual search query by the user for which the
      * results are obtained.
      */
-    
-    public  func setQuery(query: String) -> CfLogSearchEventBuilder  {
-        self.queryText = query
+
+    public func setQuery(query: String) -> CfLogSearchEventBuilder {
+        queryText = query
         return self
     }
-    
-    
+
     /**
      * setContentBlock is used to specify the type of module the search is applied to.
      * Search can be used for multiple modules i.e. core, e-commerce, e-learning, ...
@@ -66,11 +62,11 @@ public class CfLogSearchEventBuilder {
      * well in order to log the content block type. Below is the function for the usage of enum
      * type function.
      */
-    public func setContentBlock(contentBlock: ContentBlock) -> CfLogSearchEventBuilder  {
+    public func setContentBlock(contentBlock: ContentBlock) -> CfLogSearchEventBuilder {
         self.contentBlock = contentBlock.rawValue
         return self
     }
-    
+
     /**
      * setContentBlock is used to specify the type of module the search is applied to.
      * Search can be used for multiple modules i.e. core, e-commerce, e-learning, ...
@@ -79,57 +75,55 @@ public class CfLogSearchEventBuilder {
      * content block type function. Remember to note that you need to use the same enum types
      * as provided by the enums or else the events will be discarded.
      */
-    
+
     public func setContentBlock(content_block: String) -> CfLogSearchEventBuilder {
-        if (ContentBlock.allCases.filter({$0.rawValue == content_block}).first != nil) {
-            self.contentBlock = content_block
+        if ContentBlock.allCases.filter({ $0.rawValue == content_block }).first != nil {
+            contentBlock = content_block
         } else {
             ExceptionManager.throwEnumException(eventType: CoreEventType.search.rawValue, className: "ContentBlock")
         }
-        
-        
+
         return self
     }
-    
+
     /**
      * setChwModuleEvent is for the providing the current module selected by the
      * user in the chw mgmt section on the main screen. You can use the default enum
      * provided in the SDK and can also use the string. Below is the function with
      * an enum as param.
      */
-    
-    public func setSearchModule(searchModule: SearchModuleType) ->CfLogSearchEventBuilder {
+
+    public func setSearchModule(searchModule: SearchModuleType) -> CfLogSearchEventBuilder {
         self.searchModule = searchModule.rawValue
         return self
     }
-    
-    
+
     /**
      * setChwModuleEvent is for the providing the current module selected by the
      * user in the chw mgmt section on the main screen. You can use the default enum
      * provided in the SDK and can also use the string. Below is the function with
      * an string as param.
      */
-    
-    public func setSearchModule(searchModule: String) -> CfLogSearchEventBuilder  {
-        if (ContentBlock.allCases.filter({$0.rawValue == searchModule}).first != nil) {
+
+    public func setSearchModule(searchModule: String) -> CfLogSearchEventBuilder {
+        if ContentBlock.allCases.filter({ $0.rawValue == searchModule }).first != nil {
             self.searchModule = searchModule
         } else {
             ExceptionManager.throwEnumException(eventType: CoreEventType.search.rawValue, className: "SearchModuleType")
         }
         return self
     }
+
     /**
      * addResultItem is used to log the result ids returned by the search. Below is the
      * function for the Search Item Object type values with SearchItemModel(itemId, itemType).
      */
-    
-    
-    public func addResultItem(resultsObject: SearchItemModel) ->CfLogSearchEventBuilder  {
-        self.resultsList.append(resultsObject)
+
+    public func addResultItem(resultsObject: SearchItemModel) -> CfLogSearchEventBuilder {
+        resultsList.append(resultsObject)
         return self
     }
-    
+
     /**
      * setResultItemsList is used to log the result ids returned by the search. It can be empty
      * in case of no results returned but should not be null in any case. This function
@@ -137,11 +131,12 @@ public class CfLogSearchEventBuilder {
      * List or Array List or to pass in React Native specified format as well. Below is the
      * function for the ArrayList type values with SearchItemModel(itemId, itemType).
      */
-    
-    public func setResultItemsList(resultsList: [SearchItemModel])  ->CfLogSearchEventBuilder  {
+
+    public func setResultItemsList(resultsList: [SearchItemModel]) -> CfLogSearchEventBuilder {
         self.resultsList = resultsList
         return self
     }
+
     /**
      * setResultItemsList is used to log the result ids returned by the search. It can be empty
      * in case of no results returned but should not be null in any case. This function
@@ -150,8 +145,8 @@ public class CfLogSearchEventBuilder {
      * function for the Any type values which represents Object type in Java specifically
      * available for ReactNative Bridge.
      */
-    
-    public func setResultItemsList(resultsList: String)  ->CfLogSearchEventBuilder {
+
+    public func setResultItemsList(resultsList: String) -> CfLogSearchEventBuilder {
         self.resultsList.removeAll()
         if !resultsList.isEmpty {
             if let itemModels = try? JSONDecoder.new.decode([SearchItemModel].self, from: resultsList.data(using: .utf8)!) {
@@ -163,81 +158,81 @@ public class CfLogSearchEventBuilder {
         }
         return self
     }
-    
-    public func setResultItemsList(resultListItemType: String, resultsIdsList: String, resultsFacilityId: String = "")  -> CfLogSearchEventBuilder  {
-        self.resultsList.removeAll()
+
+    public func setResultItemsList(resultListItemType: String, resultsIdsList: String, resultsFacilityId: String = "") -> CfLogSearchEventBuilder {
+        resultsList.removeAll()
         if !resultsIdsList.isEmpty {
             if let itemIds = try? JSONDecoder.new.decode([String].self, from: resultsIdsList.data(using: .utf8)!) {
                 for item in itemIds {
                     let searchItemObject = SearchItemModel(item_id: item, item_type: resultListItemType, facility_id: resultsFacilityId)
                     CoreConstants.shared.isSearchItemModelObjectValid(itemValue: searchItemObject, eventType: CoreEventType.search)
-                    self.resultsList.append(searchItemObject)
+                    resultsList.append(searchItemObject)
                 }
             }
         }
         return self
     }
-    
-    public func setResultItemsList(resultListItemType: String, resultsIdsList: [String]) ->CfLogSearchEventBuilder {
-        self.resultsList.removeAll()
+
+    public func setResultItemsList(resultListItemType: String, resultsIdsList: [String]) -> CfLogSearchEventBuilder {
+        resultsList.removeAll()
         if !resultsIdsList.isEmpty {
             for item in resultsIdsList {
                 let searchItemObject = SearchItemModel(item_id: item, item_type: resultListItemType)
                 CoreConstants.shared.isSearchItemModelObjectValid(itemValue: searchItemObject, eventType: CoreEventType.search)
-                self.resultsList.append(searchItemObject)
+                resultsList.append(searchItemObject)
             }
         }
         return self
     }
-    
+
     /**
      * setFilter is required to log the filters applied by the user when the search is
      * performed. It needs to be a HashMap format of <String, String> to log. if no filters
      * are applied can be set to null.
      */
-    
-    public func setFilter(filter: Any?) ->CfLogSearchEventBuilder   {
-        self.filterValue = filter
+
+    public func setFilter(filter: Any?) -> CfLogSearchEventBuilder {
+        filterValue = filter
         return self
     }
+
     /**
      * isNewSearch can be used to distinguish if the search is happening as a new search or
      * just to update the page number and result ids. If `true` then a new search id will be
      * generated and returned in the [getSearchId]
      */
-    
-    
-    public func setIsNewSearch(isNewSearch: Bool)  ->CfLogSearchEventBuilder  {
+
+    public func setIsNewSearch(isNewSearch: Bool) -> CfLogSearchEventBuilder {
         self.isNewSearch = isNewSearch
         return self
     }
-    
+
     /**
      * setPage is required to log the the current page of the search result. Pages can start
      * from page 1 and move to the number of results that search is returning. Default page
      * number is 1.
      */
-    
-    public func setPage(page: Int) ->CfLogSearchEventBuilder   {
+
+    public func setPage(page: Int) -> CfLogSearchEventBuilder {
         if page < 1 {
             ExceptionManager.throwPageNumberException(eventType: CoreEventType.search.rawValue)
         } else {
-            self.pageValue = page
+            pageValue = page
         }
         return self
     }
+
     /**
      * You can pass any type of value in setMeta. It is for developer and partners to log
      * additional information with the log that they find would be helpful for logging and
      * providing more context to the log. Default value for the meta is null.
      */
-    
-    
-    public func setMeta(meta: Any?) ->CfLogSearchEventBuilder   {
+
+    public func setMeta(meta: Any?) -> CfLogSearchEventBuilder {
         self.meta = meta
         return self
     }
-    
+
     /**
      * updateImmediately is responsible for updating the values ot the backend immediately.
      * By default this is set to false or whatever the developer has set in the SDK
@@ -245,67 +240,65 @@ public class CfLogSearchEventBuilder {
      * the SDK will log the content instantly and if false it will wait till the end of user
      * session which is whenever the app goes into background.
      */
-    
-    public func setUpdateImmediately(updateImmediately: Bool) ->CfLogSearchEventBuilder   {
+
+    public func setUpdateImmediately(updateImmediately: Bool) -> CfLogSearchEventBuilder {
         self.updateImmediately = updateImmediately
         return self
     }
-    
+
     public func getSearchId() -> String {
         if isNewSearch {
             CoreConstants.shared.previousSearchId = searchId
         }
         return CoreConstants.shared.previousSearchId!
     }
-    
+
     /**
      * build will validate all of the values provided and if passes will call the track
      * function and queue the events based on it's updateImmediately value and also on the
      * user's network resources.
      */
-    
+
     public func build() {
         switch true {
-            
             /**
              * Will throw and exception if the query provided is null or no value is
              * provided at all.
              */
-            
+
         case queryText == nil:
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.search.rawValue, elementName: "queryText")
-            
+
             /**
              * Will throw and exception if the query provided is null or no value is
              * provided at all.
              */
-            
+
         case searchModule.isEmpty:
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.search.rawValue, elementName: "SearchModuleType")
-            
+
             /**
              * Will throw and exception if the result_ids_list provided is null though it
              * accepts empty lists.
              */
             // results_list.isNullOrEmpty() -> { // not checking for empty list as results can be an empty list
-            //ExceptionManager.throwIsRequiredException("results_list")
-                            
+            // ExceptionManager.throwIsRequiredException("results_list")
+
         default:
             for item in resultsList {
                 if item.id!.isEmpty {
                     ExceptionManager.throwIsRequiredException(eventType: CoreEventType.search.rawValue, elementName: "search result_item_id")
-                    
+
                     // need to uncommnted code - Temporary
 //                } else if !(SearchItemType.allValues.filter({$0.rawValue == searchModule}).first != nil) {
 //                    ExceptionManager.throwEnumException(eventType: CoreEventType.search.rawValue, className: "SearchItemType")
                 }
             }
-            
-         let searchObject = SearchObject(search_id: searchId, query: queryText!, search_module: searchModule, results_list: resultsList, filter: filterValue, page: pageValue, meta: meta)
-            
+
+            let searchObject = SearchObject(search_id: searchId, query: queryText!, search_module: searchModule, results_list: resultsList, filter: filterValue, page: pageValue, meta: meta)
+
             CoreConstants.shared.impressionItemsList.removeAll()
             CFSetup().track(contentBlockName: contentBlock, eventType: CoreEventType.search.rawValue, logObject: searchObject, updateImmediately: updateImmediately)
         }
     }
 }
-

@@ -7,8 +7,7 @@
 
 import Foundation
 
-
-public enum ChwMgmtEventType: String,CaseIterable {
+public enum ChwMgmtEventType: String, CaseIterable {
     case moduleSelection
     case lifestyle
     case investigation

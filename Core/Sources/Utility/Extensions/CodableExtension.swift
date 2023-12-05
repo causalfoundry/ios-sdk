@@ -16,22 +16,23 @@ struct JSONCodingKeys: CodingKey {
     init?(stringValue: String) {
         self.stringValue = stringValue
     }
-    
+
     init?(intValue: Int) {
         self.init(stringValue: "\(intValue)")
         self.intValue = intValue
     }
 }
 
-//MARK:- Decoding Extensions
+// MARK: - Decoding Extensions
+
 extension KeyedDecodingContainer {
     func decode(_ type: [String: Any].Type, forKey key: K) throws -> [String: Any] {
-        let container = try self.nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
+        let container = try nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
         return try container.decode(type)
     }
 
-    func decode(_ type: [[String: Any]].Type, forKey key: K) throws -> [[String: Any]] {
-        var container = try self.nestedUnkeyedContainer(forKey: key)
+    func decode(_: [[String: Any]].Type, forKey key: K) throws -> [[String: Any]] {
+        var container = try nestedUnkeyedContainer(forKey: key)
         if let decodedData = try container.decode([Any].self) as? [[String: Any]] {
             return decodedData
         } else {
@@ -50,7 +51,7 @@ extension KeyedDecodingContainer {
     }
 
     func decode(_ type: [Any].Type, forKey key: K) throws -> [Any] {
-        var container = try self.nestedUnkeyedContainer(forKey: key)
+        var container = try nestedUnkeyedContainer(forKey: key)
         return try container.decode(type)
     }
 
@@ -64,7 +65,7 @@ extension KeyedDecodingContainer {
         return try decode(type, forKey: key)
     }
 
-    func decode(_ type: [String: Any].Type) throws -> [String: Any] {
+    func decode(_: [String: Any].Type) throws -> [String: Any] {
         var dictionary = [String: Any]()
         for key in allKeys {
             if let boolValue = try? decode(Bool.self, forKey: key) {
@@ -75,9 +76,9 @@ extension KeyedDecodingContainer {
                 dictionary[key.stringValue] = intValue
             } else if let doubleValue = try? decode(Double.self, forKey: key) {
                 dictionary[key.stringValue] = doubleValue
-            } else if let nestedDictionary = try? decode(Dictionary<String, Any>.self, forKey: key) {
+            } else if let nestedDictionary = try? decode([String: Any].self, forKey: key) {
                 dictionary[key.stringValue] = nestedDictionary
-            } else if let nestedArray = try? decode(Array<Any>.self, forKey: key) {
+            } else if let nestedArray = try? decode([Any].self, forKey: key) {
                 dictionary[key.stringValue] = nestedArray
             }
         }
@@ -86,7 +87,7 @@ extension KeyedDecodingContainer {
 }
 
 extension UnkeyedDecodingContainer {
-    mutating func decode(_ type: [Any].Type) throws -> [Any] {
+    mutating func decode(_: [Any].Type) throws -> [Any] {
         var array: [Any] = []
         while isAtEnd == false {
             // See if the current value in the JSON array is `null` first and prevent infite recursion with nested arrays.
@@ -98,9 +99,9 @@ extension UnkeyedDecodingContainer {
                 array.append(value)
             } else if let value = try? decode(String.self) {
                 array.append(value)
-            } else if let nestedDictionary = try? decode(Dictionary<String, Any>.self) {
+            } else if let nestedDictionary = try? decode([String: Any].self) {
                 array.append(nestedDictionary)
-            } else if let nestedArray = try? decode(Array<Any>.self) {
+            } else if let nestedArray = try? decode([Any].self) {
                 array.append(nestedArray)
             }
         }
@@ -113,13 +114,14 @@ extension UnkeyedDecodingContainer {
     }
 }
 
-//MARK:- Encoding Extensions
+// MARK: - Encoding Extensions
+
 extension KeyedEncodingContainer {
     mutating func encodeIfPresent(_ value: [String: Any]?, forKey key: KeyedEncodingContainer<K>.Key) throws {
         guard let safeValue = value, !safeValue.isEmpty else {
             return
         }
-        var container = self.nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
+        var container = nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
         for item in safeValue {
             if let val = item.value as? Int {
                 try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
@@ -138,23 +140,23 @@ extension KeyedEncodingContainer {
             }
         }
     }
-    
+
     mutating func encodeIfPresent(_ value: [Any]?, forKey key: KeyedEncodingContainer<K>.Key) throws {
         guard let safeValue = value else {
             return
         }
         if let val = safeValue as? [Int] {
-            try self.encodeIfPresent(val, forKey: key)
+            try encodeIfPresent(val, forKey: key)
         } else if let val = safeValue as? [String] {
-            try self.encodeIfPresent(val, forKey: key)
+            try encodeIfPresent(val, forKey: key)
         } else if let val = safeValue as? [Double] {
-            try self.encodeIfPresent(val, forKey: key)
+            try encodeIfPresent(val, forKey: key)
         } else if let val = safeValue as? [Float] {
-            try self.encodeIfPresent(val, forKey: key)
+            try encodeIfPresent(val, forKey: key)
         } else if let val = safeValue as? [Bool] {
-            try self.encodeIfPresent(val, forKey: key)
+            try encodeIfPresent(val, forKey: key)
         } else if let val = value as? [[String: Any]] {
-            var container = self.nestedUnkeyedContainer(forKey: key)
+            var container = nestedUnkeyedContainer(forKey: key)
             try container.encode(contentsOf: val)
         }
     }
@@ -163,12 +165,12 @@ extension KeyedEncodingContainer {
 extension UnkeyedEncodingContainer {
     mutating func encode(contentsOf sequence: [[String: Any]]) throws {
         for dict in sequence {
-            try self.encodeIfPresent(dict)
+            try encodeIfPresent(dict)
         }
     }
-    
+
     mutating func encodeIfPresent(_ value: [String: Any]) throws {
-        var container = self.nestedContainer(keyedBy: JSONCodingKeys.self)
+        var container = nestedContainer(keyedBy: JSONCodingKeys.self)
         for item in value {
             if let val = item.value as? Int {
                 try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
@@ -189,7 +191,8 @@ extension UnkeyedEncodingContainer {
     }
 }
 
-//MARK:- Extra extensions for managing data easily
+// MARK: - Extra extensions for managing data easily
+
 extension Decodable {
     init?(dictionary: [String: Any]) {
         do {
@@ -211,7 +214,7 @@ extension Encodable {
         guard let data = try? encoder.encode(self) else { return nil }
         return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
     }
-    
+
     var prettyJSON: String {
         dictionary?.prettyJSON ?? "{}"
     }
@@ -233,21 +236,20 @@ extension Dictionary {
     }
 }
 
-class Utility {
-    
-    static func decode<T>(_ decodable: T.Type, from data: Data) -> T? where T: Decodable {
+enum Utility {
+    static func decode<T>(_: T.Type, from data: Data) -> T? where T: Decodable {
         var decodedData: T?
         do {
             decodedData = try JSONDecoder.new.decode(T.self, from: data)
-        } catch DecodingError.dataCorrupted(let context) {
+        } catch let DecodingError.dataCorrupted(context) {
             print(context)
-        } catch DecodingError.keyNotFound(let key, let context) {
+        } catch let DecodingError.keyNotFound(key, context) {
             print("Key '\(key)' not found:", context.debugDescription)
             print("codingPath:", context.codingPath)
-        } catch DecodingError.valueNotFound(let value, let context) {
+        } catch let DecodingError.valueNotFound(value, context) {
             print("Value '\(value)' not found:", context.debugDescription)
             print("codingPath:", context.codingPath)
-        } catch DecodingError.typeMismatch(let type, let context) {
+        } catch let DecodingError.typeMismatch(type, context) {
             print("Type '\(type)' mismatch:", context.debugDescription)
             print("codingPath:", context.codingPath)
         } catch {

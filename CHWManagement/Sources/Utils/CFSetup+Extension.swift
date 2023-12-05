@@ -5,13 +5,11 @@
 //  Created by khushbu on 16/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
-extension CFSetup {
-    
-    public func updateCHWMamnagementCatalogItem(subject: CatalogSubject, catalogObject: Data) {
+public extension CFSetup {
+    func updateCHWMamnagementCatalogItem(subject: CatalogSubject, catalogObject: Data) {
         catalogAPIHandler.updateCHWCatalogItem(subject: subject, catalogObject: catalogObject)
     }
-    
 }

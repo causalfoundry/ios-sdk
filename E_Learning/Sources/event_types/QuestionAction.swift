@@ -5,11 +5,10 @@
 //  Created by khushbu on 02/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
-
-public enum QuestionAction: String,EnumComposable {
+public enum QuestionAction: String, EnumComposable {
     case answer
     case skip
 }

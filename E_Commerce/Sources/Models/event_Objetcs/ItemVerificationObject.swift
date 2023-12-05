@@ -7,14 +7,13 @@
 
 import Foundation
 
-
 public struct ItemVerificationObject: Codable {
     let scan_channel: String
     let scan_type: String
     let is_successful: Bool
     let item_info: ItemInfoObject?
     let meta: Encodable?
-    
+
     enum CodingKeys: String, CodingKey {
         case scan_channel
         case scan_type
@@ -22,7 +21,7 @@ public struct ItemVerificationObject: Codable {
         case item_info
         case meta
     }
-    
+
     public init(scan_channel: String, scan_type: String, is_successful: Bool, item_info: ItemInfoObject? = nil, meta: Encodable? = nil) {
         self.scan_channel = scan_channel
         self.scan_type = scan_type
@@ -30,7 +29,7 @@ public struct ItemVerificationObject: Codable {
         self.item_info = item_info
         self.meta = meta
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         scan_channel = try container.decode(String.self, forKey: .scan_channel)
@@ -43,7 +42,7 @@ public struct ItemVerificationObject: Codable {
             meta = nil
         }
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(scan_channel, forKey: .scan_channel)
@@ -53,6 +52,5 @@ public struct ItemVerificationObject: Codable {
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
-        
     }
 }

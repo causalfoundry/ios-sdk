@@ -1,19 +1,15 @@
 //
-//  File.swift
-//  
+//  CFSetup+Extension.swift
+//
 //
 //  Created by khushbu on 16/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
-
-extension CFSetup {
-    
-    public func updateLoyaltyCatalogItem(subject: CatalogSubject, catalogObject: Data) {
+public extension CFSetup {
+    func updateLoyaltyCatalogItem(subject: CatalogSubject, catalogObject: Data) {
         catalogAPIHandler.updateLoyaltyCatalogItem(subject: subject, catalogObject: catalogObject)
     }
-    
-    
 }

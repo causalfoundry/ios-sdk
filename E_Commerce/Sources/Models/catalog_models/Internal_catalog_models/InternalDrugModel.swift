@@ -20,7 +20,7 @@ struct InternalDrugModel: Codable {
     var drug_strength: String?
     var atc_anatomical_group: String?
     var otc_or_ethical: String?
-    
+
     // Define CodingKeys to specify custom key mappings
     enum CodingKeys: String, CodingKey {
         case id
@@ -37,7 +37,7 @@ struct InternalDrugModel: Codable {
         case atc_anatomical_group
         case otc_or_ethical
     }
-    
+
     init(id: String? = nil, name: String? = nil, market_id: String? = nil, description: String? = nil, supplier_id: String? = nil, supplier_name: String? = nil, producer: String? = nil, packaging: String? = nil, active_ingredients: [String]? = nil, drug_form: String? = nil, drug_strength: String? = nil, atc_anatomical_group: String? = nil, otc_or_ethical: String? = nil) {
         self.id = id
         self.name = name
@@ -53,8 +53,7 @@ struct InternalDrugModel: Codable {
         self.atc_anatomical_group = atc_anatomical_group
         self.otc_or_ethical = otc_or_ethical
     }
-    
-    
+
     // Encoding method to customize the encoding process
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -72,7 +71,7 @@ struct InternalDrugModel: Codable {
         try container.encodeIfPresent(atc_anatomical_group, forKey: .atc_anatomical_group)
         try container.encodeIfPresent(otc_or_ethical, forKey: .otc_or_ethical)
     }
-    
+
     // Decoding method to customize the decoding process
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

@@ -5,11 +5,10 @@
 //  Created by khushbu on 03/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
-
-public enum DiagnosisType: String, Codable,EnumComposable {
+public enum DiagnosisType: String, Codable, EnumComposable {
     case bloodPressure = "blood_pressure"
     case bloodGlucose = "blood_glucose"
     case bmi

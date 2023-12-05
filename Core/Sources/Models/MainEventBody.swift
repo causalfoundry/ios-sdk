@@ -3,8 +3,8 @@
 import Foundation
 
 // MARK: - MainBody
+
 struct MainBody: Codable {
-    
     let sID, uID: String
     let appInfo: AppInfo
     let dInfo: DInfo
@@ -19,13 +19,13 @@ struct MainBody: Codable {
         case appInfo = "app_info"
         case dInfo = "d_info"
         case dn, sdk, up
-        case data  = "data"
+        case data
     }
 }
 
 // MARK: - Props
+
 struct Props: Codable {
-    
     let action: String?
     let duration: Double?
     let path, title: String?
@@ -34,7 +34,6 @@ struct Props: Codable {
 // MARK: - Helper functions for creating encoders and decoders
 
 public extension JSONEncoder {
-    
     static var new: JSONEncoder = {
         let encoder = JSONEncoder()
         if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
@@ -45,7 +44,6 @@ public extension JSONEncoder {
 }
 
 public extension JSONDecoder {
-    
     static var new: JSONDecoder = {
         let decoder = JSONDecoder()
         if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {

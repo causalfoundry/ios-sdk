@@ -5,11 +5,10 @@
 //  Created by khushbu on 16/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
-public class CfChwCatalog {
-
+public enum CfChwCatalog {
     // MARK: - CHW Catalog
 
     public static func updateChwCatalog(chwId: String, chwCatalogModel: String) {
@@ -29,7 +28,7 @@ public class CfChwCatalog {
 
     public static func updateChwSiteCatalog(siteId: String, chwSiteCatalogModel: ChwSiteCatalogModel) {
         let internalCatalog = ChwConstants.verifySiteCatalog(siteId, chwSiteCatalogModel)
-        CFSetup().updateCHWMamnagementCatalogItem(subject: .chwsite, catalogObject:[internalCatalog].toData()!)
+        CFSetup().updateCHWMamnagementCatalogItem(subject: .chwsite, catalogObject: [internalCatalog].toData()!)
     }
 
     // MARK: - Patient Catalog
@@ -43,4 +42,3 @@ public class CfChwCatalog {
         CFSetup().updateCHWMamnagementCatalogItem(subject: .patient, catalogObject: [internalCatalog].toData()!)
     }
 }
-

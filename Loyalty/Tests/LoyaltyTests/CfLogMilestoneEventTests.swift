@@ -1,7 +1,6 @@
 import XCTest
 
 class CfLogMilestoneEventTests: XCTestCase {
-
     func testSetMilestoneId() {
         let cfLogMilestoneEvent = CfLogMilestoneEvent()
         let result = cfLogMilestoneEvent.setMilestoneId("123")
@@ -63,6 +62,4 @@ class CfLogMilestoneEventTests: XCTestCase {
     }
 
     // Add more test cases as needed
-
 }
-

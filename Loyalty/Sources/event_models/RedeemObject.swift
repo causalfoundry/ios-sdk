@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 import Foundation
 
 public struct RedeemObject: Codable {
@@ -18,14 +17,14 @@ public struct RedeemObject: Codable {
     let is_successful: Bool?
 
     // Custom init method
-   public init(type: String, points_withdrawn: Float, converted_value: Float?, currency: String?,is_successful:Bool) {
+    public init(type: String, points_withdrawn: Float, converted_value: Float?, currency: String?, is_successful: Bool) {
         self.type = type
         self.points_withdrawn = points_withdrawn
         self.converted_value = converted_value
         self.currency = currency
         self.is_successful = is_successful
     }
-    
+
     public enum CodingKeys: String, CodingKey {
         case type
         case points_withdrawn
@@ -33,7 +32,7 @@ public struct RedeemObject: Codable {
         case currency
         case is_successful
     }
-    
+
     // Encoding method
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -43,7 +42,7 @@ public struct RedeemObject: Codable {
         try container.encode(currency, forKey: .currency)
         try container.encode(is_successful, forKey: .is_successful)
     }
-    
+
     // Decoding method
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -52,6 +51,5 @@ public struct RedeemObject: Codable {
         converted_value = try container.decodeIfPresent(Float.self, forKey: .converted_value)
         currency = try container.decodeIfPresent(String.self, forKey: .currency)
         is_successful = try container.decodeIfPresent(Bool.self, forKey: .is_successful)
-        
     }
 }

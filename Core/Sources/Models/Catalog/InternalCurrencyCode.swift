@@ -7,169 +7,167 @@
 
 import Foundation
 
-
-
-public enum InternalCurrencyCode: String,EnumComposable {
-    case AED = "AED"  // United Arab Emirates Dirham
-    case AFN = "AFN"  // Afghanistan Afghani
-    case ALL = "ALL"  // Albania Lek
-    case AMD = "AMD"  // Armenia Dram
-    case ANG = "ANG"  // Netherlands Antilles Guilder
-    case AOA = "AOA"  // Angola Kwanza
-    case ARS = "ARS"  // Argentina Peso
-    case AUD = "AUD"  // Australia Dollar
-    case AWG = "AWG"  // Aruba Guilder
-    case AZN = "AZN"  // Azerbaijan New Manat
-    case BAM = "BAM"  // Bosnia and Herzegovina Convertible Marka
-    case BBD = "BBD"  // Barbados Dollar
-    case BDT = "BDT"  // Bangladesh Taka
-    case BGN = "BGN"  // Bulgaria Lev
-    case BHD = "BHD"  // Bahrain Dinar
-    case BIF = "BIF"  // Burundi Franc
-    case BMD = "BMD"  // Bermuda Dollar
-    case BND = "BND"  // Brunei Darussalam Dollar
-    case BOB = "BOB"  // Bolivia Bolíviano
-    case BRL = "BRL"  // Brazil Real
-    case BSD = "BSD"  // Bahamas Dollar
-    case BTN = "BTN"  // Bhutan Ngultrum
-    case BWP = "BWP"  // Botswana Pula
-    case BYR = "BYR"  // Belarus Ruble
-    case BZD = "BZD"  // Belize Dollar
-    case CAD = "CAD"  // Canada Dollar
-    case CDF = "CDF"  // Congo/Kinshasa Franc
-    case CHF = "CHF"  // Switzerland Franc
-    case CLP = "CLP"  // Chile Peso
-    case CNY = "CNY"  // China Yuan Renminbi
-    case COP = "COP"  // Colombia Peso
-    case CRC = "CRC"  // Costa Rica Colon
-    case CUC = "CUC"  // Cuba Convertible Peso
-    case CUP = "CUP"  // Cuba Peso
-    case CVE = "CVE"  // Cape Verde Escudo
-    case CZK = "CZK"  // Czech Republic Koruna
-    case DJF = "DJF"  // Djibouti Franc
-    case DKK = "DKK"  // Denmark Krone
-    case DOP = "DOP"  // Dominican Republic Peso
-    case DZD = "DZD"  // Algeria Dinar
-    case EGP = "EGP"  // Egypt Pound
-    case ERN = "ERN"  // Eritrea Nakfa
-    case ETB = "ETB"  // Ethiopia Birr
-    case EUR = "EUR"  // Euro Member Countries
-    case FJD = "FJD"  // Fiji Dollar
-    case FKP = "FKP"  // Falkland Islands (Malvinas) Pound
-    case GBP = "GBP"  // United Kingdom Pound
-    case GEL = "GEL"  // Georgia Lari
-    case GGP = "GGP"  // Guernsey Pound
-    case GHS = "GHS"  // Ghana Cedi
-    case GIP = "GIP"  // Gibraltar Pound
-    case GMD = "GMD"  // Gambia Dalasi
-    case GNF = "GNF"  // Guinea Franc
-    case GTQ = "GTQ"  // Guatemala Quetzal
-    case GYD = "GYD"  // Guyana Dollar
-    case HKD = "HKD"  // Hong Kong Dollar
-    case HNL = "HNL"  // Honduras Lempira
-    case HRK = "HRK"  // Croatia Kuna
-    case HTG = "HTG"  // Haiti Gourde
-    case HUF = "HUF"  // Hungary Forint
-    case IDR = "IDR"  // Indonesia Rupiah
-    case ILS = "ILS"  // Israel Shekel
-    case IMP = "IMP"  // Isle of Man Pound
-    case INR = "INR"  // India Rupee
-    case IQD = "IQD"  // Iraq Dinar
-    case IRR = "IRR"  // Iran Rial
-    case ISK = "ISK"  // Iceland Krona
-    case JEP = "JEP"  // Jersey Pound
-    case JMD = "JMD"  // Jamaica Dollar
-    case JOD = "JOD"  // Jordan Dinar
-    case JPY = "JPY"  // Japan Yen
-    case KES = "KES"  // Kenya Shilling
-    case KGS = "KGS"  // Kyrgyzstan Som
-    case KHR = "KHR"  // Cambodia Riel
-    case KMF = "KMF"  // Comoros Franc
-    case KPW = "KPW"  // Korea (North) Won
-    case KRW = "KRW"  // Korea (South) Won
-    case KWD = "KWD"  // Kuwait Dinar
-    case KYD = "KYD"  // Cayman Islands Dollar
-    case KZT = "KZT"  // Kazakhstan Tenge
-    case LAK = "LAK"  // Laos Kip
-    case LBP = "LBP"  // Lebanon Pound
-    case LKR = "LKR"  // Sri Lanka Rupee
-    case LRD = "LRD"  // Liberia Dollar
-    case LSL = "LSL"  // Lesotho Loti
-    case LYD = "LYD"  // Libya Dinar
-    case MAD = "MAD"  // Morocco Dirham
-    case MDL = "MDL"  // Moldova Leu
-    case MGA = "MGA"  // Madagascar Ariary
-    case MKD = "MKD"  // Macedonia Denar
-    case MMK = "MMK"  // Myanmar (Burma) Kyat
-    case MNT = "MNT"  // Mongolia Tughrik
-    case MOP = "MOP"  // Macau Pataca
-    case MRO = "MRO"  // Mauritania Ouguiya
-    case MUR = "MUR"  // Mauritius Rupee
-    case MVR = "MVR"  // Maldives (Maldive Islands) Rufiyaa
-    case MWK = "MWK"  // Malawi Kwacha
-    case MXN = "MXN"  // Mexico Peso
-    case MYR = "MYR"  // Malaysia Ringgit
-    case MZN = "MZN"  // Mozambique Metical
-    case NAD = "NAD"  // Namibia Dollar
-    case NGN = "NGN"  // Nigeria Naira
-    case NIO = "NIO"  // Nicaragua Cordoba
-    case NOK = "NOK"  // Norway Krone
-    case NPR = "NPR"  // Nepal Rupee
-    case NZD = "NZD"  // New Zealand Dollar
-    case OMR = "OMR"  // Oman Rial
-    case PAB = "PAB"  // Panama Balboa
-    case PEN = "PEN"  // Peru Sol
-    case PGK = "PGK"  // Papua New Guinea Kina
-    case PHP = "PHP"  // Philippines Peso
-    case PKR = "PKR"  // Pakistan Rupee
-    case PLN = "PLN"  // Poland Zloty
-    case PYG = "PYG"  // Paraguay Guarani
-    case QAR = "QAR"  // Qatar Riyal
-    case RON = "RON"  // Romania New Leu
-    case RSD = "RSD"  // Serbia Dinar
-    case RUB = "RUB"  // Russia Ruble
-    case RWF = "RWF"  // Rwanda Franc
-    case SAR = "SAR"  // Saudi Arabia Riyal
-    case SBD = "SBD"  // Solomon Islands Dollar
-    case SCR = "SCR"  // Seychelles Rupee
-    case SDG = "SDG"  // Sudan Pound
-    case SEK = "SEK"  // Sweden Krona
-    case SGD = "SGD"  // Singapore Dollar
-    case SHP = "SHP"  // Saint Helena Pound
-    case SLL = "SLL"  // Sierra Leone Leone
-    case SOS = "SOS"  // Somalia Shilling
-    case SPL = "SPL"  // Seborga Luigino
-    case SRD = "SRD"  // Suriname Dollar
-    case STD = "STD"  // São Tomé and Príncipe Dobra
-    case SVC = "SVC"  // El Salvador Colon
-    case SYP = "SYP"  // Syria Pound
-    case SZL = "SZL"  // Swaziland Lilangeni
-    case THB = "THB"  // Thailand Baht
-    case TJS = "TJS"  // Tajikistan Somoni
-    case TMT = "TMT"  // Turkmenistan Manat
-    case TND = "TND"  // Tunisia Dinar
-    case TOP = "TOP"  // Tonga Pa'anga
-    case TRY = "TRY"  // Turkey Lira
-    case TTD = "TTD"  // Trinidad and Tobago Dollar
-    case TVD = "TVD"  // Tuvalu Dollar
-    case TWD = "TWD"  // Taiwan New Dollar
-    case TZS = "TZS"  // Tanzania Shilling
-    case UAH = "UAH"  // Ukraine Hryvnia
-    case UGX = "UGX"  // Uganda Shilling
-    case USD = "USD"  // United States Dollar
-    case UYU = "UYU"  // Uruguay Peso
-    case UZS = "UZS"  // Uzbekistan Som
-    case VEF = "VEF"  // Venezuela Bolivar
-    case VND = "VND"  // Viet Nam Dong
-    case VUV = "VUV"  // Vanuatu Vatu
-    case WST = "WST"  // Samoa Tala
-    case XAF = "XAF"  // Communauté Financière Africaine (BEAC) CFA Franc BEAC
-    case XCD = "XCD"  // East Caribbean Dollar
-    case XDR = "XDR"  // International Monetary Fund (IMF) Special Drawing Rights
-    case XOF = "XOF"  // Communauté Financière Africaine (BCEAO) Franc
-    case XPF = "XPF"  // Comptoirs Français du Pacifique (CFP) Franc
-    case YER = "YER"  // Yemen Rial
-    case ZAR = "ZAR"  // South Africa Rand
-    case ZMW = "ZMW"  // Zambia Kwacha
-    case ZWD = "ZWD"  // Zimbabwe Dollar
+public enum InternalCurrencyCode: String, EnumComposable {
+    case AED // United Arab Emirates Dirham
+    case AFN // Afghanistan Afghani
+    case ALL // Albania Lek
+    case AMD // Armenia Dram
+    case ANG // Netherlands Antilles Guilder
+    case AOA // Angola Kwanza
+    case ARS // Argentina Peso
+    case AUD // Australia Dollar
+    case AWG // Aruba Guilder
+    case AZN // Azerbaijan New Manat
+    case BAM // Bosnia and Herzegovina Convertible Marka
+    case BBD // Barbados Dollar
+    case BDT // Bangladesh Taka
+    case BGN // Bulgaria Lev
+    case BHD // Bahrain Dinar
+    case BIF // Burundi Franc
+    case BMD // Bermuda Dollar
+    case BND // Brunei Darussalam Dollar
+    case BOB // Bolivia Bolíviano
+    case BRL // Brazil Real
+    case BSD // Bahamas Dollar
+    case BTN // Bhutan Ngultrum
+    case BWP // Botswana Pula
+    case BYR // Belarus Ruble
+    case BZD // Belize Dollar
+    case CAD // Canada Dollar
+    case CDF // Congo/Kinshasa Franc
+    case CHF // Switzerland Franc
+    case CLP // Chile Peso
+    case CNY // China Yuan Renminbi
+    case COP // Colombia Peso
+    case CRC // Costa Rica Colon
+    case CUC // Cuba Convertible Peso
+    case CUP // Cuba Peso
+    case CVE // Cape Verde Escudo
+    case CZK // Czech Republic Koruna
+    case DJF // Djibouti Franc
+    case DKK // Denmark Krone
+    case DOP // Dominican Republic Peso
+    case DZD // Algeria Dinar
+    case EGP // Egypt Pound
+    case ERN // Eritrea Nakfa
+    case ETB // Ethiopia Birr
+    case EUR // Euro Member Countries
+    case FJD // Fiji Dollar
+    case FKP // Falkland Islands (Malvinas) Pound
+    case GBP // United Kingdom Pound
+    case GEL // Georgia Lari
+    case GGP // Guernsey Pound
+    case GHS // Ghana Cedi
+    case GIP // Gibraltar Pound
+    case GMD // Gambia Dalasi
+    case GNF // Guinea Franc
+    case GTQ // Guatemala Quetzal
+    case GYD // Guyana Dollar
+    case HKD // Hong Kong Dollar
+    case HNL // Honduras Lempira
+    case HRK // Croatia Kuna
+    case HTG // Haiti Gourde
+    case HUF // Hungary Forint
+    case IDR // Indonesia Rupiah
+    case ILS // Israel Shekel
+    case IMP // Isle of Man Pound
+    case INR // India Rupee
+    case IQD // Iraq Dinar
+    case IRR // Iran Rial
+    case ISK // Iceland Krona
+    case JEP // Jersey Pound
+    case JMD // Jamaica Dollar
+    case JOD // Jordan Dinar
+    case JPY // Japan Yen
+    case KES // Kenya Shilling
+    case KGS // Kyrgyzstan Som
+    case KHR // Cambodia Riel
+    case KMF // Comoros Franc
+    case KPW // Korea (North) Won
+    case KRW // Korea (South) Won
+    case KWD // Kuwait Dinar
+    case KYD // Cayman Islands Dollar
+    case KZT // Kazakhstan Tenge
+    case LAK // Laos Kip
+    case LBP // Lebanon Pound
+    case LKR // Sri Lanka Rupee
+    case LRD // Liberia Dollar
+    case LSL // Lesotho Loti
+    case LYD // Libya Dinar
+    case MAD // Morocco Dirham
+    case MDL // Moldova Leu
+    case MGA // Madagascar Ariary
+    case MKD // Macedonia Denar
+    case MMK // Myanmar (Burma) Kyat
+    case MNT // Mongolia Tughrik
+    case MOP // Macau Pataca
+    case MRO // Mauritania Ouguiya
+    case MUR // Mauritius Rupee
+    case MVR // Maldives (Maldive Islands) Rufiyaa
+    case MWK // Malawi Kwacha
+    case MXN // Mexico Peso
+    case MYR // Malaysia Ringgit
+    case MZN // Mozambique Metical
+    case NAD // Namibia Dollar
+    case NGN // Nigeria Naira
+    case NIO // Nicaragua Cordoba
+    case NOK // Norway Krone
+    case NPR // Nepal Rupee
+    case NZD // New Zealand Dollar
+    case OMR // Oman Rial
+    case PAB // Panama Balboa
+    case PEN // Peru Sol
+    case PGK // Papua New Guinea Kina
+    case PHP // Philippines Peso
+    case PKR // Pakistan Rupee
+    case PLN // Poland Zloty
+    case PYG // Paraguay Guarani
+    case QAR // Qatar Riyal
+    case RON // Romania New Leu
+    case RSD // Serbia Dinar
+    case RUB // Russia Ruble
+    case RWF // Rwanda Franc
+    case SAR // Saudi Arabia Riyal
+    case SBD // Solomon Islands Dollar
+    case SCR // Seychelles Rupee
+    case SDG // Sudan Pound
+    case SEK // Sweden Krona
+    case SGD // Singapore Dollar
+    case SHP // Saint Helena Pound
+    case SLL // Sierra Leone Leone
+    case SOS // Somalia Shilling
+    case SPL // Seborga Luigino
+    case SRD // Suriname Dollar
+    case STD // São Tomé and Príncipe Dobra
+    case SVC // El Salvador Colon
+    case SYP // Syria Pound
+    case SZL // Swaziland Lilangeni
+    case THB // Thailand Baht
+    case TJS // Tajikistan Somoni
+    case TMT // Turkmenistan Manat
+    case TND // Tunisia Dinar
+    case TOP // Tonga Pa'anga
+    case TRY // Turkey Lira
+    case TTD // Trinidad and Tobago Dollar
+    case TVD // Tuvalu Dollar
+    case TWD // Taiwan New Dollar
+    case TZS // Tanzania Shilling
+    case UAH // Ukraine Hryvnia
+    case UGX // Uganda Shilling
+    case USD // United States Dollar
+    case UYU // Uruguay Peso
+    case UZS // Uzbekistan Som
+    case VEF // Venezuela Bolivar
+    case VND // Viet Nam Dong
+    case VUV // Vanuatu Vatu
+    case WST // Samoa Tala
+    case XAF // Communauté Financière Africaine (BEAC) CFA Franc BEAC
+    case XCD // East Caribbean Dollar
+    case XDR // International Monetary Fund (IMF) Special Drawing Rights
+    case XOF // Communauté Financière Africaine (BCEAO) Franc
+    case XPF // Comptoirs Français du Pacifique (CFP) Franc
+    case YER // Yemen Rial
+    case ZAR // South Africa Rand
+    case ZMW // Zambia Kwacha
+    case ZWD // Zimbabwe Dollar
 }

@@ -4,46 +4,41 @@
 //
 //  Created by khushbu on 03/11/23.
 //
-import Foundation
 import CasualFoundryCore
+import Foundation
 
 public class CfLogSubmitScreeningEvent {
-    
-    
     /**
      * CfLogSubmitScreeningEvent is required to log events related to performing screening for
      * the patient in question.
      */
-    
-    
+
     var eventTimeValue: Int64 = 0
-    var patientId: String? = nil
-    var siteId: String? = nil
-    var category: String? = nil
-    var type: String? = nil
-    var referredForAssessment: Bool? = nil
+    var patientId: String?
+    var siteId: String?
+    var category: String?
+    var type: String?
+    var referredForAssessment: Bool?
     var diagnosisValuesList: [DiagnosisItem] = []
     var diagnosisResultList: [DiagnosisItem] = []
-    private var meta: Any? = nil
+    private var meta: Any?
     private var updateImmediately: Bool = CoreConstants.shared.updateImmediately
-    
-    public init() {
-        
-    }
-    
+
+    public init() {}
+
     /**
      * setEventTime is for the providing the time in millis for the event to be used in case
      * of submit screening event is triggered offline and any parameter such as patient id
      * is not available.
      */
-    
+
     @discardableResult
     public func setEventTime(eventTimeValue: Int64) -> CfLogSubmitScreeningEvent {
         var builder = self
         builder.eventTimeValue = eventTimeValue
         return builder
     }
-    
+
     /**
      * setPatientId is for the providing the id for the patient whose screening
      * are in question.
@@ -54,7 +49,7 @@ public class CfLogSubmitScreeningEvent {
         builder.patientId = patientId
         return builder
     }
-    
+
     /**
      * setSiteId is for the providing the id for the screening site where the patient is
      * being screened. This should be the same as selected on the initial screen.
@@ -65,13 +60,14 @@ public class CfLogSubmitScreeningEvent {
         builder.siteId = siteId
         return builder
     }
+
     /**
      * setSiteCategory is for the providing the category for the screening site where the
      * patient is being screened. This should be the same as selected on the initial screen.
      * Below is the function with string as the param. Value should match with the
      * enum provided.
      */
-    
+
     @discardableResult
     public func setSiteCategory(category: String) -> CfLogSubmitScreeningEvent {
         if !CoreConstants.shared.enumContains(ChwSiteType.self, name: category) {
@@ -81,8 +77,7 @@ public class CfLogSubmitScreeningEvent {
         }
         return self
     }
-    
-    
+
     /**
      * setSiteCategory is for the providing the category for the screening site where the
      * patient is being screened. This should be the same as selected on the initial screen.
@@ -94,13 +89,14 @@ public class CfLogSubmitScreeningEvent {
         self.category = category.rawValue
         return self
     }
+
     /**
      * setScreeningType is for the providing the type for the screening as for which the
      * patient is being screened. This should be the same as selected on the initial screen.
      * Below is the function with string as the param. Value should match with the
      * enum provided.
      */
-    
+
     @discardableResult
     public func setScreeningType(type: String) -> CfLogSubmitScreeningEvent {
         if !CoreConstants.shared.enumContains(ScreeningType.self, name: type) {
@@ -110,7 +106,7 @@ public class CfLogSubmitScreeningEvent {
         }
         return self
     }
-    
+
     /**
      * setScreeningType is for the providing the type for the screening as for which the
      * patient is being screened. This should be the same as selected on the initial screen.
@@ -118,60 +114,63 @@ public class CfLogSubmitScreeningEvent {
      * Below is the function with enum as the param. Value should match with the
      * enum provided.
      */
-    
+
     @discardableResult
     public func setScreeningType(type: ScreeningType) -> CfLogSubmitScreeningEvent {
         self.type = type.rawValue
         return self
     }
+
     /**
      * addDiagnosisValueItem is for the providing one diagnosis value item at a time.
      * The item should be based on the DiagnosisItem item object or a string that can be
      * converted to the object with proper param names. in-case the names are not correct
      * the SDK will throw an exception. Below is the function for providing item as an object.
      */
-    
+
     @discardableResult
     public func addDiagnosisValueItem(diagnosisValueItem: DiagnosisItem) -> CfLogSubmitScreeningEvent {
-        self.diagnosisValuesList.append(diagnosisValueItem)
+        diagnosisValuesList.append(diagnosisValueItem)
         return self
     }
+
     /**
      * addDiagnosisValueItem is for the providing one diagnosis value item at a time.
      * The item should be based on the DiagnosisItem item object or a string that can be
      * converted to the object with proper param names. in-case the names are not correct
      * the SDK will throw an exception. Below is the function for providing item as a string.
      */
-    
+
     @discardableResult
     public func addDiagnosisValueItem(diagnosisValueItem: String) -> CfLogSubmitScreeningEvent {
         if let item = try? JSONDecoder.new.decode(DiagnosisItem.self, from: Data(diagnosisValueItem.utf8)) {
-            self.diagnosisValuesList.append(item)
+            diagnosisValuesList.append(item)
         }
-        
+
         return self
     }
-    
+
     /**
      * setDiagnosisValueList is for the providing one diagnosis value items list.
      * The item should be based on the DiagnosisItem item object or a string that can be
      * converted to the object with proper param names. in-case the names are not correct
      * the SDK will throw an exception. Below is the function for providing item as an object.
      */
-    
+
     @discardableResult
     public func setDiagnosisValueList(diagnosisValuesList: [DiagnosisItem]) -> CfLogSubmitScreeningEvent {
         var builder = self
         builder.diagnosisValuesList = diagnosisValuesList
         return builder
     }
+
     /**
      * setDiagnosisValueList is for the providing one diagnosis value items list.
      * The item should be based on the DiagnosisItem item object or a string that can be
      * converted to the object with proper param names. in-case the names are not correct
      * the SDK will throw an exception. Below is the function for providing item as a string.
      */
-    
+
     @discardableResult
     public func setDiagnosisValueList(diagnosisValuesList: String) -> CfLogSubmitScreeningEvent {
         self.diagnosisValuesList.removeAll()
@@ -180,6 +179,7 @@ public class CfLogSubmitScreeningEvent {
         }
         return self
     }
+
     /**
      * addDiagnosisResultItem is for the providing one diagnosis result item at a time.
      * The item should be based on the DiagnosisItem item object or a string that can be
@@ -188,11 +188,10 @@ public class CfLogSubmitScreeningEvent {
      */
     @discardableResult
     public func addDiagnosisResultItem(diagnosisResultItem: DiagnosisItem) -> CfLogSubmitScreeningEvent {
-        self.diagnosisResultList.append(diagnosisResultItem)
+        diagnosisResultList.append(diagnosisResultItem)
         return self
     }
-    
-    
+
     /**
      * addDiagnosisResultItem is for the providing one diagnosis result item at a time.
      * The item should be based on the DiagnosisItem item object or a string that can be
@@ -202,24 +201,24 @@ public class CfLogSubmitScreeningEvent {
     @discardableResult
     public func addDiagnosisResultItem(diagnosisResultItem: String) -> CfLogSubmitScreeningEvent {
         if let item = try? JSONDecoder.new.decode(DiagnosisItem.self, from: Data(diagnosisResultItem.utf8)) {
-            self.diagnosisResultList.append(item)
+            diagnosisResultList.append(item)
         }
         return self
     }
+
     /**
      * setDiagnosisResultList is for the providing one diagnosis result items list.
      * The item should be based on the DiagnosisItem item object or a string that can be
      * converted to the object with proper param names. in-case the names are not correct
      * the SDK will throw an exception. Below is the function for providing item as an object.
      */
-    
+
     @discardableResult
     public func setDiagnosisResultList(diagnosisResultList: [DiagnosisItem]) -> CfLogSubmitScreeningEvent {
         self.diagnosisResultList = diagnosisResultList
         return self
     }
-    
-    
+
     /**
      * setDiagnosisResultList is for the providing one diagnosis result items list.
      * The item should be based on the DiagnosisItem item object or a string that can be
@@ -234,28 +233,30 @@ public class CfLogSubmitScreeningEvent {
         }
         return self
     }
+
     /**
      * isReferredForAssessment is for the providing the boolean for the check if the
      * patient is further referred for assessment.
      */
-    
+
     @discardableResult
     public func isReferredForAssessment(referredForAssessment: Bool) -> CfLogSubmitScreeningEvent {
         self.referredForAssessment = referredForAssessment
         return self
     }
+
     /**
      * You can pass any type of value in setMeta. It is for developer and partners to log
      * additional information with the log that they find would be helpful for logging and
      * providing more context to the log. Default value for the meta is null.
      */
-    
+
     @discardableResult
     public func setMeta(meta: Any?) -> CfLogSubmitScreeningEvent {
         self.meta = meta
         return self
     }
-    
+
     /**
      * updateImmediately is responsible for updating the values ot the backend immediately.
      * By default this is set to false or whatever the developer has set in the SDK
@@ -268,57 +269,53 @@ public class CfLogSubmitScreeningEvent {
         self.updateImmediately = updateImmediately
         return self
     }
-    
-    
+
     /**
      * build will validate all of the values provided and if passes will call the track
      * function and queue the events based on it's updateImmediately value and also on the
      * user's network resources.
      */
-    public func build()  {
+    public func build() {
         /**
          * Will throw and exception if the action provided is null or no action is
          * provided at all.
          */
         if patientId == nil || patientId!.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType:  ChwMgmtEventType.submitScreening.rawValue, elementName: "patient_id")
+            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "patient_id")
             return
         }
         /**
          * Will throw and exception if the action provided is null or no action is
          * provided at all.
          */
-        
+
         if siteId == nil || siteId!.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "site_id")
             return
-            
         }
         /**
          * Will throw and exception if the action provided is null or no action is
          * provided at all.
          */
-        
+
         if category == nil || category!.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "category")
             return
-            
         }
         /**
          * Will throw and exception if the action provided is null or no action is
          * provided at all.
          */
-        
+
         if type == nil || type!.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "type")
             return
-            
         }
         /**
          * Will throw and exception if the action provided is null or no action is
          * provided at all.
          */
-        
+
         if referredForAssessment == nil {
             ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "referred_for_assessment")
             return
@@ -327,42 +324,41 @@ public class CfLogSubmitScreeningEvent {
          * Will throw and exception if the diagnosis_values_list provided is null or
          * no diagnosis_values_list is provided at all.
          */
-        
+
         if diagnosisValuesList.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "diagnosis_values_list")
             return
         }
-        
+
         /**
          * Will throw and exception if the diagnosis_result_list provided is null
          * or no diagnosis_result_list is provided at all.
          */
         if diagnosisResultList.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: "diagnosis_values_list", elementName:  "diagnosis_result_list")
+            ExceptionManager.throwIsRequiredException(eventType: "diagnosis_values_list", elementName: "diagnosis_result_list")
             return
-        }else {
-            
+        } else {
             for item in diagnosisValuesList {
                 if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
                     ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.submitScreening.rawValue, className: String(describing: DiagnosisType.self))
                 } else if item.value.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType:ChwMgmtEventType.submitScreening.rawValue, elementName: "diagnosis_item value")
+                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "diagnosis_item value")
                 } else if item.unit.isEmpty {
                     ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "diagnosis_item unit")
                 }
             }
-            
+
             for item in diagnosisResultList {
                 if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
                     ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.submitScreening.rawValue, className: String(describing: DiagnosisType.self))
                 } else if item.value.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType:  ChwMgmtEventType.submitScreening.rawValue, elementName: "diagnosis_item value")
-                    
+                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "diagnosis_item value")
+
                 } else if item.unit.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType:ChwMgmtEventType.submitScreening.rawValue , elementName: "diagnosis_item unit")
+                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "diagnosis_item unit")
                 }
             }
-            
+
             let submitScreeningEventObject = SubmitScreeningEventObject(
                 patientId: patientId!,
                 siteId: siteId!,
@@ -373,16 +369,12 @@ public class CfLogSubmitScreeningEvent {
                 referredForAssessment: referredForAssessment!,
                 meta: meta as? Encodable
             )
-            
+
             CFSetup().track(
                 contentBlockName: ChwConstants.contentBlockName, eventType: ChwMgmtEventType.submitScreening.rawValue, logObject: submitScreeningEventObject,
                 updateImmediately: updateImmediately,
                 eventTime: eventTimeValue
             )
-            
         }
-        
     }
-    
 }
-

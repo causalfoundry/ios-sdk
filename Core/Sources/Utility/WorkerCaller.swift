@@ -10,20 +10,20 @@ import UIKit
 
 public enum WorkerCaller {
     // Method to update events at session end
-    
+
     private static var eventUploadTaskIdentifier = "com.causalFoundry.updateAppEvents"
     private static var nudgeDownloadTaskIdentifier = "com.causalFoundry.downloadNudges"
-    
+
     static func registerBackgroundTask() {
         registerEventUploadTask()
         registerNudgeDownloadTask()
     }
-    
+
     static func scheduleBackgroundTasks() {
         scheduleEventUploadTask()
         scheduleNudgeDownloadTask()
     }
-    
+
     private static func registerEventUploadTask() {
         print("Register background task: \(WorkerCaller.eventUploadTaskIdentifier)")
         BGTaskScheduler.shared.register(forTaskWithIdentifier: WorkerCaller.eventUploadTaskIdentifier, using: nil) { task in
@@ -42,7 +42,7 @@ public enum WorkerCaller {
             }
         }
     }
-    
+
     private static func registerNudgeDownloadTask() {
         print("Register background task: \(WorkerCaller.nudgeDownloadTaskIdentifier)")
         BGTaskScheduler.shared.register(forTaskWithIdentifier: WorkerCaller.nudgeDownloadTaskIdentifier, using: nil) { task in
@@ -62,7 +62,7 @@ public enum WorkerCaller {
             }
         }
     }
-    
+
     private static func scheduleEventUploadTask(earliestBeginDate: Date? = nil) {
         let request = BGProcessingTaskRequest(identifier: WorkerCaller.eventUploadTaskIdentifier)
         request.requiresNetworkConnectivity = true // Set as needed
@@ -77,7 +77,7 @@ public enum WorkerCaller {
             print("Unable to schedule background task: \(error)")
         }
     }
-    
+
     private static func scheduleNudgeDownloadTask(earliestBeginDate: Date = Date(timeIntervalSinceNow: CFNudgeListener.shared.timeInterval)) {
         let request = BGAppRefreshTaskRequest(identifier: WorkerCaller.nudgeDownloadTaskIdentifier)
         request.earliestBeginDate = earliestBeginDate
@@ -90,12 +90,12 @@ public enum WorkerCaller {
             print("Unable to schedule background task: \(error)")
         }
     }
-    
+
     #if DEBUG
-    public static func performUpload() async throws {
-        try await InjestEvenstuploader.uploadEvents()
-        try await ExceptionEventsUploader.uploadEvents()
-        try await CatalogEventsUploader.uploadEvents()
-    }
+        public static func performUpload() async throws {
+            try await InjestEvenstuploader.uploadEvents()
+            try await ExceptionEventsUploader.uploadEvents()
+            try await CatalogEventsUploader.uploadEvents()
+        }
     #endif
 }

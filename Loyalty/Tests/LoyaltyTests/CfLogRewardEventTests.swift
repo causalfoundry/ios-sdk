@@ -1,7 +1,6 @@
 import XCTest
 
 class CfLogRewardEventTests: XCTestCase {
-
     func testSetRewardId() {
         let cfLogRewardEvent = CfLogRewardEvent()
         let result = cfLogRewardEvent.setRewardId("reward123")
@@ -136,4 +135,3 @@ class CfLogRewardEventTests: XCTestCase {
         cfLogRewardEvent.callEventTrack(rewardEventObject)
     }
 }
-

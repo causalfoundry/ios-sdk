@@ -12,8 +12,8 @@ public struct ItemReportObject {
     var store_info: StoreObject
     var report_info: ReportObject
     var meta: Encodable?
-    
-    public  init(item: ItemTypeModel, store_info: StoreObject, report_info: ReportObject, meta: Encodable? = nil) {
+
+    public init(item: ItemTypeModel, store_info: StoreObject, report_info: ReportObject, meta: Encodable? = nil) {
         self.item = item
         self.store_info = store_info
         self.report_info = report_info
@@ -31,7 +31,7 @@ extension ItemReportObject: Encodable {
             try container.encode(metaData, forKey: .meta)
         }
     }
-    
+
     private enum CodingKeys: String, CodingKey {
         case item
         case store_info
