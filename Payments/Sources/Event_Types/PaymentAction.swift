@@ -5,9 +5,9 @@
 //  Created by khushbu on 02/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
-public enum PaymentAction: String,EnumComposable {
+public enum PaymentAction: String, EnumComposable {
     case payment_processed
 }

@@ -1,5 +1,5 @@
 //
-//  Evenstuploader.swift
+//  InjestEvenstuploader.swift
 //
 //
 //  Created by khushbu on 08/11/23.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-class InjestEvenstuploader {
+enum InjestEvenstuploader {
     static func uploadEvents() async throws {
-        let injestAPIHandler  = IngestAPIHandler()
-        let events = CoreDataHelper.shared.readInjectEvents()
+        let injestAPIHandler = IngestAPIHandler()
+        let events = MMKVHelper.shared.readInjectEvents()
         guard events.count > 0 else {
             print("No More Injest events")
             return
@@ -18,7 +18,7 @@ class InjestEvenstuploader {
         try await withCheckedThrowingContinuation { continuation in
             injestAPIHandler.updateEventTrack(eventArray: events) { success in
                 if success {
-                    CoreDataHelper.shared.deleteDataEventLogs()
+                    MMKVHelper.shared.deleteDataEventLogs()
                     continuation.resume(with: .success(()))
                 } else {
                     continuation.resume(with: .failure(NSError(domain: "InjestEvenstuploader.uploadEvents", code: 0)))
@@ -28,18 +28,16 @@ class InjestEvenstuploader {
     }
 }
 
-
-
-class ExceptionEventsUploader {
+enum ExceptionEventsUploader {
     static func uploadEvents() async throws {
-        let exceptionManager  = ExceptionAPIHandler()
-        let events = CoreDataHelper.shared.readExceptionsData()
+        let exceptionManager = ExceptionAPIHandler()
+        let events = MMKVHelper.shared.readExceptionsData()
         guard events.count > 0 else {
             print("No More Exception events")
             return
         }
         try await withCheckedThrowingContinuation { continuation in
-            exceptionManager.updateExceptionEvents(eventArray:events) { success in
+            exceptionManager.updateExceptionEvents(eventArray: events) { success in
                 if success {
                     continuation.resume(with: .success(()))
                 } else {
@@ -50,13 +48,12 @@ class ExceptionEventsUploader {
     }
 }
 
-
-public class CatalogEventsUploader {
+public enum CatalogEventsUploader {
     public static func uploadEvents() async throws {
-        let catalogAPIHandler  = CatalogAPIHandler()
+        let catalogAPIHandler = CatalogAPIHandler()
         await withThrowingTaskGroup(of: Void.self) { group in
-            for value in  CatalogSubject.allCases {
-                guard let eventData =  CoreDataHelper().readCatalogData(subject: value) else { continue }
+            for value in CatalogSubject.allCases {
+                guard let eventData = MMKVHelper.shared.readCatalogData(subject: value) else { continue }
                 group.addTask {
                     #warning("SWIFT TASK CONTINUATION MISUSE: uploadEvents() leaked its continuation!")
                     let catalogMainObject = try? JSONSerialization.jsonObject(with: eventData, options: []) as? [Any]

@@ -1,17 +1,14 @@
 //
-//  File.swift
+//  CfLogCounselingEvent.swift
 //
 //
 //  Created by khushbu on 21/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
-
+import Foundation
 
 public class CfLogCounselingEvent {
-    
-    
     /**
      * CfLogCounselingEvent is required to log events related to view, add, update or removing
      * the counseling value for the patient in question.
@@ -23,7 +20,7 @@ public class CfLogCounselingEvent {
     var counselingPlanList: [CounselingPlanItem] = []
     var meta: Any?
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
-    
+
     /**
      * setPatientId is for the providing the id for the patient whose counseling
      * review is shown on screen.
@@ -33,7 +30,7 @@ public class CfLogCounselingEvent {
         self.patientId = patientId
         return self
     }
-    
+
     /**
      * setSiteId is for the providing the id for the site where counseling
      * review is being done.
@@ -43,17 +40,19 @@ public class CfLogCounselingEvent {
         self.siteId = siteId
         return self
     }
+
     /**
      * setCounselingId is for the providing the id for the counseling if there is more then
      * one values in the app database. In case of there is nothing available for
      * counseling id, you can use the following id as the counseling id: Counseling_<patient_id>
      */
-    
+
     @discardableResult
     public func setCounselingId(_ counselingId: String) -> CfLogCounselingEvent {
         self.counselingId = counselingId
         return self
     }
+
     /**
      * setCounselingType is for the providing the type for the counseling.
      * The item should be based on the CounselingType item object or a string that can be
@@ -62,14 +61,14 @@ public class CfLogCounselingEvent {
      */
     @discardableResult
     public func setCounselingType(_ counselingType: String) -> CfLogCounselingEvent {
-        if !CoreConstants.shared.enumContains(CounselingType.self, name:counselingType ) {
-            ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.counseling.rawValue, className:String(describing:counselingType) )
+        if !CoreConstants.shared.enumContains(CounselingType.self, name: counselingType) {
+            ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.counseling.rawValue, className: String(describing: counselingType))
         } else {
             self.counselingType = counselingType
         }
         return self
     }
-    
+
     /**
      * addCounselingPlanItem is for the providing pne counseling plan item at a time.
      * The item should be based on the counseling item object or a string that can be
@@ -78,10 +77,10 @@ public class CfLogCounselingEvent {
      */
     @discardableResult
     public func addCounselingPlanItem(_ counselingPlanItem: CounselingPlanItem) -> CfLogCounselingEvent {
-        self.counselingPlanList.append(counselingPlanItem)
+        counselingPlanList.append(counselingPlanItem)
         return self
     }
-    
+
     /**
      * addCounselingPlanItem is for the providing pne counseling plan item at a time.
      * The item should be based on the counseling item object or a string that can be
@@ -90,12 +89,12 @@ public class CfLogCounselingEvent {
      */
     @discardableResult
     public func addCounselingPlanItem(_ counselingPlanItem: String) -> CfLogCounselingEvent {
-        if let diagnosisItem = try? JSONDecoder().decode(CounselingPlanItem.self, from: counselingPlanItem.data(using: .utf8)!) {
+        if let diagnosisItem = try? JSONDecoder.new.decode(CounselingPlanItem.self, from: counselingPlanItem.data(using: .utf8)!) {
             counselingPlanList.append(diagnosisItem)
         }
         return self
     }
-    
+
     /**
      * setCounselingPlanList is for the providing pne counseling plan items as a list.
      * The item should be based on the counseling item object or a string that can be
@@ -107,7 +106,7 @@ public class CfLogCounselingEvent {
         self.counselingPlanList = counselingPlanList
         return self
     }
-    
+
     /**
      * setCounselingPlanList is for the providing pne counseling plan items as a list in a string.
      * The item should be based on the counseling item object or a string that can be
@@ -117,15 +116,15 @@ public class CfLogCounselingEvent {
     @discardableResult
     public func setCounselingPlanList(_ counselingPlanList: String) -> CfLogCounselingEvent {
         if !counselingPlanList.isEmpty {
-            
             if let data = counselingPlanList.data(using: .utf8),
-               let itemsList = try? JSONDecoder().decode([CounselingPlanItem].self, from: data) {
+               let itemsList = try? JSONDecoder.new.decode([CounselingPlanItem].self, from: data)
+            {
                 self.counselingPlanList = itemsList
             }
         }
         return self
     }
-    
+
     /**
      * You can pass any type of value in setMeta. It is for developer and partners to log
      * additional information with the log that they find would be helpful for logging and
@@ -136,7 +135,7 @@ public class CfLogCounselingEvent {
         self.meta = meta
         return self
     }
-    
+
     /**
      * updateImmediately is responsible for updating the values ot the backend immediately.
      * By default this is set to false or whatever the developer has set in the SDK
@@ -144,20 +143,20 @@ public class CfLogCounselingEvent {
      * the SDK will log the content instantly and if false it will wait till the end of user
      * session which is whenever the app goes into background.
      */
-    
+
     @discardableResult
     public func updateImmediately(_ updateImmediately: Bool) -> CfLogCounselingEvent {
         self.updateImmediately = updateImmediately
         return self
     }
+
     /**
      * build will validate all of the values provided and if passes will call the track
      * function and queue the events based on it's updateImmediately value and also on the
      * user's network resources.
      */
-    
+
     func build() {
-        
         /**
          * Will throw and exception if the patient_id provided is null or no action is
          * provided at all.
@@ -170,7 +169,7 @@ public class CfLogCounselingEvent {
             ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.counseling.rawValue, elementName: "site_id")
             return
         }
-        
+
         guard let counselingID = counselingId else {
             ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.counseling.rawValue, elementName: "counseling_id")
             return
@@ -182,8 +181,7 @@ public class CfLogCounselingEvent {
         if counselingPlanList.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.counseling.rawValue, elementName: "counseling_plan_list")
             return
-        }else {
-            
+        } else {
             if ChwEventValidation.verifyCounselingPlanList(eventType: ChwMgmtEventType.counseling, counselingPlanList: counselingPlanList) {
                 let counselingEventObject = CounselingEventObject(
                     patientId: patientID,
@@ -202,6 +200,4 @@ public class CfLogCounselingEvent {
             }
         }
     }
-    
 }
-

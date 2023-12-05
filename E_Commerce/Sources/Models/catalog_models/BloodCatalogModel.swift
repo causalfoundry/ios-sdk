@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  BloodCatalogModel.swift
+//
 //
 //  Created by khushbu on 27/10/23.
 //
@@ -16,7 +16,7 @@ public struct BloodCatalogModel: Codable {
     var packagingUnits: String?
     var supplierId: String?
     var supplierName: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case marketId = "market_id"
         case bloodComponent = "blood_component"
@@ -27,7 +27,7 @@ public struct BloodCatalogModel: Codable {
         case supplierId = "supplier_id"
         case supplierName = "supplier_name"
     }
-    
+
     public init(marketId: String?, bloodComponent: String?, bloodGroup: String?, packaging: String?, packagingSize: Float?, packagingUnits: String?, supplierId: String?, supplierName: String?) {
         self.marketId = marketId
         self.bloodComponent = bloodComponent
@@ -38,9 +38,9 @@ public struct BloodCatalogModel: Codable {
         self.supplierId = supplierId
         self.supplierName = supplierName
     }
-    
+
     // MARK: - Codable methods
-    
+
     // Custom encoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -53,9 +53,9 @@ public struct BloodCatalogModel: Codable {
         try container.encodeIfPresent(supplierId, forKey: .supplierId)
         try container.encodeIfPresent(supplierName, forKey: .supplierName)
     }
-    
+
     // Custom decoding
-    public  init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         marketId = try container.decodeIfPresent(String.self, forKey: .marketId)
         bloodComponent = try container.decodeIfPresent(String.self, forKey: .bloodComponent)

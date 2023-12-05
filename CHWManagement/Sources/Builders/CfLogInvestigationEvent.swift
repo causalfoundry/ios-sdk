@@ -5,26 +5,24 @@
 //  Created by khushbu on 26/10/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
 /**
  * CfLogInvestigationEvent is required to log events related to view, add, update, or removing
  * the Prescribed Tests value for the patient in question.
  */
 
-public class  CfLogInvestigationEvent {
+public class CfLogInvestigationEvent {
     var patientId: String?
     var siteId: String?
     var investigationId: String?
     var prescribedTestsList: [InvestigationItem] = []
     var meta: Any?
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
-    
-    
-    public init() {
-        
-    }
+
+    public init() {}
+
     /**
      * setPatientId is for providing the ID for the patient whose Investigation tests
      * are in question.
@@ -35,7 +33,7 @@ public class  CfLogInvestigationEvent {
         self.patientId = patientId
         return self
     }
-    
+
     /**
      * setSiteId is for providing the ID for the site where Investigation tests
      * are being done.
@@ -45,7 +43,7 @@ public class  CfLogInvestigationEvent {
         self.siteId = siteId
         return self
     }
-    
+
     /**
      * setInvestigationId is for providing the ID for the investigation if there
      * is more than one value in the app database. In case there is nothing available for
@@ -54,11 +52,10 @@ public class  CfLogInvestigationEvent {
      */
     @discardableResult
     public func setInvestigationId(_ investigationId: String) -> CfLogInvestigationEvent {
-        
         self.investigationId = investigationId
         return self
     }
-    
+
     /**
      * addInvestigationItem is for providing one investigation test item at a time.
      * The item should be based on the investigation item object or a string that can be
@@ -67,10 +64,10 @@ public class  CfLogInvestigationEvent {
      */
     @discardableResult
     public func addInvestigationItem(_ investigationItem: InvestigationItem) -> CfLogInvestigationEvent {
-        self.prescribedTestsList.append(investigationItem)
+        prescribedTestsList.append(investigationItem)
         return self
     }
-    
+
     /**
      * addInvestigationItem is for providing one investigation test item at a time.
      * The item should be based on the investigation item object or a string that can be
@@ -79,13 +76,12 @@ public class  CfLogInvestigationEvent {
      */
     @discardableResult
     public func addInvestigationItem(_ investigationItem: String) -> CfLogInvestigationEvent {
-        
-        if let item = try? JSONDecoder().decode(InvestigationItem.self, from: Data(investigationItem.utf8)) {
-            self.prescribedTestsList.append(item)
+        if let item = try? JSONDecoder.new.decode(InvestigationItem.self, from: Data(investigationItem.utf8)) {
+            prescribedTestsList.append(item)
         }
         return self
     }
-    
+
     /**
      * setInvestigationList is for providing one investigation test items as a list.
      * The item should be based on the investigation item object or a string that can be
@@ -97,7 +93,7 @@ public class  CfLogInvestigationEvent {
         self.prescribedTestsList = prescribedTestsList
         return self
     }
-    
+
     /**
      * setInvestigationList is for providing one investigation test items as a list
      * in a string. The item should be based on the investigation item object or a string that
@@ -107,12 +103,13 @@ public class  CfLogInvestigationEvent {
     @discardableResult
     public func setInvestigationList(_ prescribedTestsList: String) -> CfLogInvestigationEvent {
         if let data = prescribedTestsList.data(using: .utf8),
-           let itemsList = try? JSONDecoder().decode([InvestigationItem].self, from: data) {
+           let itemsList = try? JSONDecoder.new.decode([InvestigationItem].self, from: data)
+        {
             self.prescribedTestsList = itemsList
         }
         return self
     }
-    
+
     /**
      * You can pass any type of value in setMeta. It is for developers and partners to log
      * additional information with the log that they find would be helpful for logging and
@@ -123,7 +120,7 @@ public class  CfLogInvestigationEvent {
         self.meta = meta
         return self
     }
-    
+
     /**
      * updateImmediately is responsible for updating the values to the backend immediately.
      * By default, this is set to false or whatever the developer has set in the SDK
@@ -136,18 +133,18 @@ public class  CfLogInvestigationEvent {
         self.updateImmediately = updateImmediately
         return self
     }
-    
+
     /**
      * build will validate all the values provided and, if successful, will call the track
      * function and queue the events based on its updateImmediately value and also on the
      * user's network resources.
      */
-    public  func build() {
+    public func build() {
         /**
          * Will throw and exception if the patient_id provided is null or no action is
          * provided at all.
          */
-        guard let patientId = patientId, !patientId.isEmpty else{
+        guard let patientId = patientId, !patientId.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.investigation.rawValue, elementName: "patient_id")
             return
         }
@@ -156,16 +153,16 @@ public class  CfLogInvestigationEvent {
          * provided at all.
          */
         guard let siteId = siteId, !siteId.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType:  ChwMgmtEventType.investigation.rawValue, elementName: "site_id")
+            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.investigation.rawValue, elementName: "site_id")
             return
         }
-        
+
         /**
          * Will throw and exception if the action provided is null or no action is
          * provided at all.
          */
         guard let investigationId = investigationId, !investigationId.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.investigation.rawValue, elementName:"investigation_id")
+            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.investigation.rawValue, elementName: "investigation_id")
             return
         }
         /**
@@ -173,10 +170,10 @@ public class  CfLogInvestigationEvent {
          * provided at all.
          */
         guard !prescribedTestsList.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType:  ChwMgmtEventType.investigation.rawValue, elementName: "prescribed_tests_list")
+            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.investigation.rawValue, elementName: "prescribed_tests_list")
             return
         }
-        
+
         /**
          * Parsing the values into an object and passing to the setup block to queue
          * the event based on its priority.
@@ -185,11 +182,11 @@ public class  CfLogInvestigationEvent {
             if item.name.isEmpty {
                 ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.investigation.rawValue, elementName: "name")
                 return
-            } else if !CoreConstants.shared.enumContains(ItemAction.self, name:item.action){
-                ExceptionManager.throwIsRequiredException(eventType:ChwMgmtEventType.investigation.rawValue , elementName: String(describing: ItemAction.self))
+            } else if !CoreConstants.shared.enumContains(ItemAction.self, name: item.action) {
+                ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.investigation.rawValue, elementName: String(describing: ItemAction.self))
             }
         }
-        
+
         let investigationEventObject = InvestigationEventObject(
             patientId: patientId,
             siteId: siteId,
@@ -197,7 +194,7 @@ public class  CfLogInvestigationEvent {
             prescribedTestsList: prescribedTestsList,
             meta: meta
         )
-        
+
         CFSetup().track(
             contentBlockName: ChwConstants.contentBlockName,
             eventType: ChwMgmtEventType.investigation.rawValue,
@@ -206,6 +203,3 @@ public class  CfLogInvestigationEvent {
         )
     }
 }
-
-
-

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ItemModel.swift
 //
 //
 //  Created by khushbu on 27/10/23.
@@ -19,7 +19,7 @@ public struct ItemModel: Codable {
     var facilityId: String?
     var subscription: SubscriptionObject?
     var meta: Encodable?
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -33,7 +33,6 @@ public struct ItemModel: Codable {
         case subscription
         case meta
     }
-    
     public init(id: String, type: String, quantity: Int, price: Float, currency: String,  stockStatus: String? = "", promoId: String? = "", discount: Float? = 0, facilityId: String? = "", subscription: SubscriptionObject? = nil, meta: Encodable? = nil) {
         self.id = id
         self.type = type
@@ -47,7 +46,7 @@ public struct ItemModel: Codable {
         self.subscription = subscription
         self.meta = meta
     }
-    
+
     // Custom encoding method
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -68,7 +67,7 @@ public struct ItemModel: Codable {
         }
         
     }
-    
+
     // Custom decoding method
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

@@ -7,14 +7,13 @@
 
 import Foundation
 
-
 public struct LifestyleEventObject: Codable {
     var patientId: String
     var siteId: String
     var lifestyleId: String
     var lifestylePlanList: [LifestylePlanItem]
     var meta: Any?
-    
+
     public init(patientId: String, siteId: String, lifestyleId: String, lifestylePlanList: [LifestylePlanItem], meta: Any? = nil) {
         self.patientId = patientId
         self.siteId = siteId
@@ -22,7 +21,7 @@ public struct LifestyleEventObject: Codable {
         self.lifestylePlanList = lifestylePlanList
         self.meta = meta
     }
-    
+
     private enum CodingKeys: String, CodingKey {
         case patientId = "patient_id"
         case siteId = "site_id"
@@ -30,8 +29,8 @@ public struct LifestyleEventObject: Codable {
         case lifestylePlanList = "lifestyle_plan_list"
         case meta
     }
-    
-    public  func encode(to encoder: Encoder) throws {
+
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(patientId, forKey: .patientId)
         try container.encode(siteId, forKey: .siteId)
@@ -44,15 +43,14 @@ public struct LifestyleEventObject: Codable {
                 try container.encode(doubleValue, forKey: .meta)
             } else if let stringValue = meta as? String {
                 try container.encode(stringValue, forKey: .meta)
-            }else if let boolValue = meta as? Bool {
+            } else if let boolValue = meta as? Bool {
                 try container.encode(boolValue, forKey: .meta)
-            }else if let dateValue = meta as? Date {
+            } else if let dateValue = meta as? Date {
                 try container.encode(dateValue, forKey: .meta)
             }
-            
         }
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         patientId = try container.decode(String.self, forKey: .patientId)
@@ -65,11 +63,9 @@ public struct LifestyleEventObject: Codable {
             meta = doubleValue
         } else if let stringValue = try? container.decode(String.self, forKey: .meta) {
             meta = stringValue
-        }
-        else if let boolValue = try? container.decode(Bool.self, forKey: .meta) {
+        } else if let boolValue = try? container.decode(Bool.self, forKey: .meta) {
             meta = boolValue
-        }
-        else if let dateValue = try? container.decode(Date.self, forKey: .meta) {
+        } else if let dateValue = try? container.decode(Date.self, forKey: .meta) {
             meta = dateValue
         }
     }

@@ -5,26 +5,23 @@
 //  Created by khushbu on 03/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
 public class CfLogSubmitMedicalReviewEvent {
-    
     /**
      * CfLogSubmitMedicalReviewEvent is required to log events related to update to
      * medical review of the patient
      */
-    
+
     var patientId: String?
     var siteId: String?
-    var medicalReviewObject: MedicalReviewObject? = nil
+    var medicalReviewObject: MedicalReviewObject?
     var meta: Any?
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
-    
-    
-    public init() {
-        
-    }
+
+    public init() {}
+
     /**
      * setPatientId is for the providing the id for the patient whose medical review
      * is in question.
@@ -34,18 +31,18 @@ public class CfLogSubmitMedicalReviewEvent {
         self.patientId = patientId
         return self
     }
-    
+
     /**
      * setSiteId is for the providing the id for the site where  medical review
      * is concluded.
      */
-    
+
     @discardableResult
     public func setSiteId(_ siteId: String) -> CfLogSubmitMedicalReviewEvent {
         self.siteId = siteId
         return self
     }
-    
+
     /**
      * setMedicalReviewObject is for the providing one medical review element.
      * The item should be based on the medical review object or a string that can be
@@ -57,7 +54,7 @@ public class CfLogSubmitMedicalReviewEvent {
         self.medicalReviewObject = medicalReviewObject
         return self
     }
-    
+
     /**
      * setMedicalReviewObject is for the providing one medical review element.
      * The item should be based on the medical review object or a string that can be
@@ -67,22 +64,25 @@ public class CfLogSubmitMedicalReviewEvent {
     @discardableResult
     public func setMedicalReviewObject(_ medicalReviewObject: String) -> CfLogSubmitMedicalReviewEvent {
         if let data = medicalReviewObject.data(using: .utf8),
-           let obj = try? JSONDecoder().decode(MedicalReviewObject.self, from: data) {
+           let obj = try? JSONDecoder.new.decode(MedicalReviewObject.self, from: data)
+        {
             self.medicalReviewObject = obj
         }
         return self
     }
+
     /**
      * You can pass any type of value in setMeta. It is for developer and partners to log
      * additional information with the log that they find would be helpful for logging and
      * providing more context to the log. Default value for the meta is null.
      */
-    
+
     @discardableResult
     public func setMeta(_ meta: Any?) -> CfLogSubmitMedicalReviewEvent {
         self.meta = meta
         return self
     }
+
     /**
      * updateImmediately is responsible for updating the values ot the backend immediately.
      * By default this is set to false or whatever the developer has set in the SDK
@@ -90,72 +90,72 @@ public class CfLogSubmitMedicalReviewEvent {
      * the SDK will log the content instantly and if false it will wait till the end of user
      * session which is whenever the app goes into background.
      */
-    
+
     @discardableResult
     public func updateImmediately(_ updateImmediately: Bool) -> CfLogSubmitMedicalReviewEvent {
         self.updateImmediately = updateImmediately
         return self
     }
+
     /**
      * build will validate all of the values provided and if passes will call the track
      * function and queue the events based on it's updateImmediately value and also on the
      * user's network resources.
      */
-    
+
     public func build() {
         /**
          * setPatientId is for the providing the id for the patient whose medical review
          * is in question.
          */
-        guard let patientId = self.patientId else {
+        guard let patientId = patientId else {
             ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.medicalReview.rawValue, elementName: "patient_id")
             return
         }
-        
+
         /**
          * setSiteId is for the providing the id for the site where  medical review
          * is concluded.
          */
-        guard let siteId = self.siteId  else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.medicalReview.rawValue, elementName:"site_id")
+        guard let siteId = siteId else {
+            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.medicalReview.rawValue, elementName: "site_id")
             return
         }
         /**
          * Will throw and exception if the action provided is null or no action is
          * provided at all.
          */
-        if self.medicalReviewObject == nil {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.medicalReview.rawValue, elementName:"medical review object")
+        if medicalReviewObject == nil {
+            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.medicalReview.rawValue, elementName: "medical review object")
             return
         }
         /**
          * Parsing the values into an object and passing to the setup block to queue
          * the event based on its priority.
          */
-        
-        if (medicalReviewObject?.id == nil) {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.medicalReview.rawValue, elementName:  "medical review id")
+
+        if medicalReviewObject?.id == nil {
+            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.medicalReview.rawValue, elementName: "medical review id")
             return
-        }else {
-            
-            if let medicalReviewSummaries =  medicalReviewObject?.reviewSummaryList {
+        } else {
+            if let medicalReviewSummaries = medicalReviewObject?.reviewSummaryList {
                 for item in medicalReviewSummaries {
                     if !CoreConstants.shared.enumContains(ReviewSummaryItem.self, name: item.type) {
-                        ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.medicalReview.rawValue, className: String(describing:ReviewSummaryItem.self))
+                        ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.medicalReview.rawValue, className: String(describing: ReviewSummaryItem.self))
                     } else if item.value.isEmpty {
                         ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.medicalReview.rawValue, elementName: "\(item.type) values")
                         return
                     }
                 }
             }
-            
+
             let submitMedicalReviewObject = SubmitMedicalReviewObject(
                 patientId: patientId,
                 siteId: siteId,
                 medicalReview: medicalReviewObject!,
                 meta: meta as? Encodable
             )
-            
+
             CFSetup().track(
                 contentBlockName: ChwConstants.contentBlockName,
                 eventType: ChwMgmtEventType.medicalReview.rawValue,
@@ -165,4 +165,3 @@ public class CfLogSubmitMedicalReviewEvent {
         }
     }
 }
-

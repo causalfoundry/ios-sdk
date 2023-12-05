@@ -1,6 +1,6 @@
 //
 //  File 2.swift
-//  
+//
 //
 //  Created by khushbu on 07/11/23.
 //
@@ -21,7 +21,7 @@ public struct MedicalReviewObject: Codable {
         self.reviewSummaryList = reviewSummaryList
     }
 
-    public  init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         reviewSummaryList = try container.decode([MedicalReviewSummaryObject].self, forKey: .reviewSummaryList)

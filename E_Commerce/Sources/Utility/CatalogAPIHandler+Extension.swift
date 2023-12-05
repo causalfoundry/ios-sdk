@@ -1,15 +1,15 @@
 //
-//  CatalogAPIHandler.swift
+//  CatalogAPIHandler+Extension.swift
 //
 //
 //  Created by khushbu on 16/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
-extension CatalogAPIHandler {
-    public func updateEcommerceCatalogItem(subject: CatalogSubject, catalogObject: Data) {
-        CoreDataHelper.shared.writeEcommerceCatalogData(subject: subject, data: catalogObject)
+public extension CatalogAPIHandler {
+    func updateEcommerceCatalogItem(subject: CatalogSubject, catalogObject: Data) {
+        MMKVHelper.shared.writeEcommerceCatalogData(subject: subject, data: catalogObject)
     }
 }

@@ -18,13 +18,13 @@ public struct ItemTypeModel: Codable {
         case facility_id
     }
 
-   public  init(item_id: String, item_type: String, facility_id: String = "") {
+    public init(item_id: String, item_type: String, facility_id: String = "") {
         self.item_id = item_id
         self.item_type = item_type
         self.facility_id = facility_id
     }
 
-   public  init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         item_id = try container.decode(String.self, forKey: .item_id)
         item_type = try container.decode(String.self, forKey: .item_type)

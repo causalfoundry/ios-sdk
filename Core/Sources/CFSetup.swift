@@ -9,101 +9,93 @@ import Foundation
 import UIKit
 
 public class CFSetup: NSObject, IngestProtocol {
-    
     public var ingestApiHandler = IngestAPIHandler()
     public var catalogAPIHandler = CatalogAPIHandler()
     private var userId: String = ""
-    
-    private func setup()   {
+
+    private func setup() {
         verifyAccessToken()
-        CoreConstants.shared.deviceObject = DInfo(brand:"Apple" , id: UIDevice.current.identifierForVendor!.uuidString, model: UIDevice.modelName, os: "iOS", osVer:"\(UIDevice.current.systemVersion)")
-        
+        CoreConstants.shared.deviceObject = DInfo(brand: "Apple", id: UIDevice.current.identifierForVendor!.uuidString, model: UIDevice.modelName, os: "iOS", osVer: "\(UIDevice.current.systemVersion)")
+
         CoreConstants.shared.appInfoObject = getApplicationInfo()
-        
-        
-        //Change implementation
-        
+
+        // Change implementation
+
         CoreConstants.shared.sessionStartTime = Int64(Date().timeIntervalSince1970 * 1000)
         CoreConstants.shared.sessionEndTime = Int64(Date().timeIntervalSince1970 * 1000)
-        
-        userId = CoreDataHelper.shared.fetchUserID()
-        
+
+        userId = MMKVHelper.shared.fetchUserID()
+
         CFNudgeListener.shared.beginListening(userID: userId)
     }
-    
-    func initalize(event: UIApplication.State, pauseSDK: Bool, autoShowInAppNudge: Bool, updateImmediately: Bool) {
+
+    func initalize(event _: UIApplication.State, pauseSDK: Bool, autoShowInAppNudge: Bool, updateImmediately: Bool) {
         CoreConstants.shared.isAppDebuggable = true
         CoreConstants.shared.updateImmediately = updateImmediately
         CoreConstants.shared.pauseSDK = pauseSDK
         CoreConstants.shared.autoShowInAppNudge = autoShowInAppNudge
         setup()
     }
-    
-    
+
     func updateUserId(appUserId: String) {
         if !appUserId.isEmpty {
             CoreConstants.shared.userId = appUserId
-            CoreDataHelper.shared.writeUser(user: CoreConstants.shared.userId)
+            MMKVHelper.shared.writeUser(user: CoreConstants.shared.userId)
             userId = appUserId
             CFNudgeListener.shared.beginListening(userID: appUserId)
         }
     }
-    
+
     public func updateCoreCatalogItem(subject: CatalogSubject, catalogObject: Data) {
         catalogAPIHandler.updateCoreCatalogItem(subject: subject, catalogObject: catalogObject)
     }
-    
-    
-   
+
     @discardableResult
     func getSDKAccessKey() -> String? {
         guard let fileURL = URL(string: "Info.plist", relativeTo: nil) else {
             fatalError("Can't find Info.plist")
         }
-        
+
         let contents = NSDictionary(contentsOf: fileURL) as? [String: String] ?? [:]
-        
+
         return contents["ai.causalfoundry.iOS.sdk.APPLICATION_KEY"] ?? ""
     }
-    
-    public func track(contentBlockName: String, eventType: String, logObject: Any?, updateImmediately: Bool, eventTime: Int64 = 0) {
-        
+
+    public func track<T: Codable>(contentBlockName: String, eventType: String, logObject: T?, updateImmediately: Bool, eventTime: Int64 = 0) {
         verifyAccessToken()
-        
+
         var cBlockName = contentBlockName
-        if (cBlockName == ContentBlock.e_commerce.rawValue) {
+        if cBlockName == ContentBlock.e_commerce.rawValue {
             cBlockName = "e-commerce"
-        }else if (contentBlockName == ContentBlock.e_learning.rawValue) {
+        } else if contentBlockName == ContentBlock.e_learning.rawValue {
             cBlockName = "e-learning"
         }
-        
-        ingestApiHandler.ingestTrackAPI(contentBlock: cBlockName, eventType: eventType, trackProperties: logObject!, updateImmediately: updateImmediately,eventTime: eventTime)
+
+        ingestApiHandler.ingestTrackAPI(contentBlock: cBlockName, eventType: eventType, trackProperties: logObject!, updateImmediately: updateImmediately, eventTime: eventTime)
     }
-    
-    
-    
+
     private func verifyAccessToken() {
         if CoreConstants.shared.sdkKey == "" {
             if getSDKAccessKey() == "" {
                 fatalError("Access key not found")
-            }else {
-                CoreConstants.shared.sdkKey = "Bearer \(getSDKAccessKey()! )"
+            } else {
+                CoreConstants.shared.sdkKey = "Bearer \(getSDKAccessKey()!)"
             }
         }
     }
-    
+
     // Get Application Info Of app
-    
+
     private func getApplicationInfo() -> AppInfo {
         let application = UIApplication.shared
-        return AppInfo(id:application.bundleIdentifier(),
+        return AppInfo(id: application.bundleIdentifier(),
                        minSDKVersion: application.minimumVersion(),
                        targetSDKVersion: application.targetVersion(),
-                       version:application.versionBuild(),
-                       versionCode:application.appVersion() ,
+                       version: application.versionBuild(),
+                       versionCode: application.appVersion(),
                        versionName: application.build())
     }
-    
+
     public func getUSDRate(fromCurrency: String, callback: @escaping (Float) -> Float) {
         ingestApiHandler.getUSDRate(fromCurrency: fromCurrency, callback: callback)
     }

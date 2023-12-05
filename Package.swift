@@ -9,28 +9,34 @@ let package = Package(
     products: [
         .library(
             name: "Core",
-            targets: ["CasualFoundryCore"]),
+            targets: ["CasualFoundryCore"]
+        ),
         .library(
-             name: "CHWElearning",
-             targets: ["CasualFoundryElearning"]),
+            name: "CHWElearning",
+            targets: ["CasualFoundryElearning"]
+        ),
         .library(
             name: "CHWEPayments",
-            targets: ["CasualFoundryPayments"]),
+            targets: ["CasualFoundryPayments"]
+        ),
         .library(
             name: "CHWManagement",
-            targets: ["CasualFoundryCHWManagement"]),
+            targets: ["CasualFoundryCHWManagement"]
+        ),
         .library(
             name: "CHWEcommerce",
-            targets: ["CasualFoundryEcommerce"]),
+            targets: ["CasualFoundryEcommerce"]
+        ),
         .library(
             name: "CHWLoyalty",
-            targets: ["CasualFoundryLoyalty"])
+            targets: ["CasualFoundryLoyalty"]
+        ),
     ],
     /*
-    dependencies: [
-        .package(url: "https://github.com/Tencent/MMKV.git", exact: Version(1, 3, 2)),
-    ],
-    */
+        dependencies: [
+            .package(url: "https://github.com/Tencent/MMKV.git", exact: Version(1, 3, 2)),
+        ],
+        */
     targets: [
         .target(
             name: "CasualFoundryCore",
@@ -41,7 +47,8 @@ let package = Package(
                 "E_Commerce",
                 "E_Learning",
                 "Loyalty",
-                "Payments"]
+                "Payments",
+            ]
         ),
         .target(
             name: "CasualFoundryCHWManagement",
@@ -51,7 +58,8 @@ let package = Package(
                 "E_Commerce",
                 "E_Learning",
                 "Loyalty",
-                "Payments"]
+                "Payments",
+            ]
         ),
         .target(
             name: "CasualFoundryEcommerce",
@@ -61,7 +69,8 @@ let package = Package(
                 "CHWManagement",
                 "E_Learning",
                 "Loyalty",
-                "Payments"]
+                "Payments",
+            ]
         ),
         .target(
             name: "CasualFoundryPayments",
@@ -71,7 +80,8 @@ let package = Package(
                 "CHWManagement",
                 "E_Commerce",
                 "E_Learning",
-                "Loyalty"]
+                "Loyalty",
+            ]
         ),
         .target(
             name: "CasualFoundryLoyalty",
@@ -81,7 +91,8 @@ let package = Package(
                 "CHWManagement",
                 "E_Commerce",
                 "E_Learning",
-                "Payments"]
+                "Payments",
+            ]
         ),
         .target(
             name: "CasualFoundryElearning",
@@ -91,7 +102,8 @@ let package = Package(
                 "CHWManagement",
                 "E_Commerce",
                 "Loyalty",
-                "Payments"]
+                "Payments",
+            ]
         ),
         .binaryTarget(
             name: "MMKV",
@@ -116,7 +128,6 @@ let package = Package(
             name: "PaymentsTests",
             dependencies: ["CasualFoundryPayments"],
             path: "Payments/Tests"
-        )
+        ),
     ]
 )
-

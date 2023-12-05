@@ -9,6 +9,6 @@ import Foundation
 
 extension RawRepresentable where RawValue: CaseIterable {
     static var allRawValues: [RawValue] {
-        return RawValue.allCases as! [Self.RawValue]
+        return RawValue.allCases as! [RawValue]
     }
 }

@@ -77,4 +77,3 @@ struct InternalMedicalEquipmentCatalogModel: Codable {
         try container.encode(category, forKey: .category)
     }
 }
-

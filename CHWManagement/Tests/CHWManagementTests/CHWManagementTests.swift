@@ -1,15 +1,14 @@
 //
-//  CfLogChwModuleEventTests.swift
-//  
+//  CHWManagementTests.swift
+//
 //
 //  Created by khushbu on 26/10/23.
 //
 
-import XCTest
 import CasualFoundryCHWManagement
+import XCTest
 
 final class CfLogChwModuleEventBuilderTests: XCTestCase {
-
     func testSetChwModuleEventWithEnum() {
         // Create a builder instance
         let builder = CfLogChwModuleEventBuilder()
@@ -75,6 +74,5 @@ final class CfLogChwModuleEventBuilderTests: XCTestCase {
 
         // Build and track the event
         builder.build()
-
     }
 }

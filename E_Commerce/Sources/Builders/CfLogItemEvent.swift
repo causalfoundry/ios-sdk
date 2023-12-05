@@ -9,23 +9,20 @@ import CasualFoundryCore
 import Foundation
 
 public class CfLogItemEvent {
-    
     /**
      * CfLogItemEvent is required to log item related events which included when an item is viewed
      * and when an item's detail is viewed.
      */
-    
+
     var itemActionValue: String?
     var itemValue: ItemModel = ItemModel(id: "", type: "", quantity: 1, price: -1.0, currency: "")
     var searchId: String?
     var catalogModel: Any?
     var meta: Any?
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
-    
-    public init() {
-        
-    }
-    
+
+    public init() {}
+
     /**
      * setItemAction is required to set Type for the type of log in this case, if a user is viewing
      * an item or it's details. setType log is used to define if the log is about the item
@@ -35,10 +32,10 @@ public class CfLogItemEvent {
      */
     @discardableResult
     public func setItemAction(_ itemAction: ItemAction) -> CfLogItemEvent {
-        self.itemActionValue = itemAction.rawValue
+        itemActionValue = itemAction.rawValue
         return self
     }
-    
+
     /**
      * setItemAction is required to set Type for the type of log in this case, if a user is viewing
      * an item or it's details. setType log is used to define if the log is about the item
@@ -53,11 +50,11 @@ public class CfLogItemEvent {
         if CoreConstants.shared.enumContains(ItemAction.self, name: itemActionValue) {
             self.itemActionValue = itemActionValue
         } else {
-            ExceptionManager.throwEnumException(eventType: EComEventType.item.rawValue, className:String(describing: ItemAction.self))
+            ExceptionManager.throwEnumException(eventType: EComEventType.item.rawValue, className: String(describing: ItemAction.self))
         }
         return self
     }
-    
+
     /**
      * setItem can be used to pass the whole item as an object as well. You can use the POJO
      * ItemModel to parse the data int he required format and pass that to this function to
@@ -65,10 +62,10 @@ public class CfLogItemEvent {
      */
     @discardableResult
     public func setItem(_ item: ItemModel) -> CfLogItemEvent {
-        self.itemValue = item
+        itemValue = item
         return self
     }
-    
+
     /**
      * setItem can be used to pass the whole item as a JSON String object as well. You can use
      * the POJO ItemModel to parse the data in the required format and pass that to this
@@ -79,12 +76,13 @@ public class CfLogItemEvent {
     @discardableResult
     public func setItem(_ itemJsonString: String) -> CfLogItemEvent {
         if let data = itemJsonString.data(using: .utf8),
-           let item = try? JSONDecoder().decode(ItemModel.self, from: data) {
-            self.itemValue = item
+           let item = try? JSONDecoder.new.decode(ItemModel.self, from: data)
+        {
+            itemValue = item
         }
         return self
     }
-    
+
     /**
      * setSearchId is used to associate the search id with the item being viewed by the user.
      * It is required to track if the item is a result of some search performed by the user in
@@ -95,7 +93,7 @@ public class CfLogItemEvent {
         self.searchId = searchId
         return self
     }
-    
+
     /**
      * You can pass any type of value in setMeta. It is for developers and partners to log
      * additional information with the log that they find would be helpful for logging and
@@ -106,7 +104,7 @@ public class CfLogItemEvent {
         self.meta = meta
         return self
     }
-    
+
     /**
      * updateImmediately is responsible for updating the values ot the backend immediately.
      * By default this is set to false or whatever the developer has set in the SDK
@@ -119,31 +117,29 @@ public class CfLogItemEvent {
         self.updateImmediately = updateImmediately
         return self
     }
-    
+
     @discardableResult
     public func setCatalogProperties(_ catalogProperties: Any?) -> CfLogItemEvent {
         if catalogProperties != nil {
             if let catalogData = catalogProperties as? DrugCatalogModel {
-                    self.catalogModel = catalogData
+                catalogModel = catalogData
             } else if let bloodCatalogData = catalogProperties as? BloodCatalogModel {
-                self.catalogModel = bloodCatalogData
-            }else if let oxygenCatalogModelData =  catalogProperties as? OxygenCatalogModel {
-                self.catalogModel = oxygenCatalogModelData
-            }else if let medicalEquipmentCatalogData =  catalogProperties as? MedicalEquipmentCatalogModel {
-                self.catalogModel = medicalEquipmentCatalogData
-            }else {
-                ExceptionManager.throwIllegalStateException(eventType:EComEventType.item.rawValue, message: "Please use correct catalog properties with the provided item type", className:String(String(describing: CfLogItemEvent.self)))
+                catalogModel = bloodCatalogData
+            } else if let oxygenCatalogModelData = catalogProperties as? OxygenCatalogModel {
+                catalogModel = oxygenCatalogModelData
+            } else if let medicalEquipmentCatalogData = catalogProperties as? MedicalEquipmentCatalogModel {
+                catalogModel = medicalEquipmentCatalogData
+            } else {
+                ExceptionManager.throwIllegalStateException(eventType: EComEventType.item.rawValue, message: "Please use correct catalog properties with the provided item type", className: String(String(describing: CfLogItemEvent.self)))
             }
         }
         return self
-
-          
     }
-    
-    public func build()   {
+
+    public func build() {
         if itemActionValue?.isEmpty ?? true {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.item.rawValue, elementName: String(describing:ItemAction.self))
-        }else {
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.item.rawValue, elementName: String(describing: ItemAction.self))
+        } else {
             ECommerceConstants.isItemValueObjectValid(itemValue: itemValue, eventType: EComEventType.item)
             
             let itemObject = ViewItemObject(action:itemActionValue!, item: itemValue)

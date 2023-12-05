@@ -5,10 +5,9 @@
 //  Created by khushbu on 07/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
-
-public enum MilestoneAction: String,EnumComposable {
+public enum MilestoneAction: String, EnumComposable {
     case achieved
 }

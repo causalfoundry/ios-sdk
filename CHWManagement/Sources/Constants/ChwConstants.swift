@@ -5,9 +5,8 @@
 //  Created by khushbu on 25/10/23.
 //
 
-import Foundation
 import CasualFoundryCore
-
+import Foundation
 
 enum ChwConstants {
     static var contentBlockName: String = ContentBlock.chw_mgmt.rawValue
@@ -29,17 +28,15 @@ enum ChwConstants {
 
         for item in chwCatalogModel.siteIdsList {
             guard !item.isEmpty else {
-                 ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid site_id_list provided")
+                ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid site_id_list provided")
                 return nil
-                
             }
         }
 
         for item in chwCatalogModel.servicesList {
             guard !item.isEmpty else {
-                 ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid services provided")
+                ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid services provided")
                 return nil
-                
             }
         }
 
@@ -50,27 +47,25 @@ enum ChwConstants {
             role: chwCatalogModel.role,
             rolePermissions: chwCatalogModel.rolePermissions,
             siteIdsList: chwCatalogModel.siteIdsList,
-            servicesList:chwCatalogModel.servicesList
+            servicesList: chwCatalogModel.servicesList
         )
     }
 
     static func verifySiteCatalog(_ siteId: String, _ chwSiteCatalogModel: ChwSiteCatalogModel) -> InternalSiteModel? {
         let catalogName = CatalogSubject.chwsite.rawValue + " catalog"
-        
+
         guard !siteId.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Site Id")
             return nil
-            
         }
-        
+
         if !chwSiteCatalogModel.country.isEmpty {
             guard let countryCode = CountryCode(rawValue: chwSiteCatalogModel.country) else {
                 ExceptionManager.throwEnumException(eventType: catalogName, className: "CountryCode")
                 return nil
-                
             }
         }
-        
+
         return InternalSiteModel(
             id: siteId,
             name: chwSiteCatalogModel.name,
@@ -87,39 +82,34 @@ enum ChwConstants {
             longitude: chwSiteCatalogModel.longitude,
             culture: chwSiteCatalogModel.culture
         )
-        
     }
 
-    static func verifyPatientCatalog(_ patientId: String, _ patientCatalogModel: PatientCatalogModel)  -> InternalPatientModel? {
+    static func verifyPatientCatalog(_ patientId: String, _ patientCatalogModel: PatientCatalogModel) -> InternalPatientModel? {
         let catalogName = CatalogSubject.patient.rawValue + " catalog"
 
         guard !patientId.isEmpty else {
-             ExceptionManager.throwIsRequiredException(eventType:catalogName , elementName: "Patient Id")
+            ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Patient Id")
             return nil
-            
         }
 
         if !patientCatalogModel.country.isEmpty {
             guard let countryCode = CountryCode(rawValue: patientCatalogModel.country) else {
-                 ExceptionManager.throwEnumException(eventType:catalogName , className:"CountryCode")
+                ExceptionManager.throwEnumException(eventType: catalogName, className: "CountryCode")
                 return nil
-                
             }
         }
 
         if !patientCatalogModel.educationLevel.isEmpty {
             guard let educationalLevel = EducationalLevel(rawValue: patientCatalogModel.educationLevel) else {
-                 ExceptionManager.throwEnumException(eventType:catalogName , className: "EducationalLevel")
+                ExceptionManager.throwEnumException(eventType: catalogName, className: "EducationalLevel")
                 return nil
-                
             }
         }
 
         for item in patientCatalogModel.siteIdsList {
             guard !item.isEmpty else {
-                 ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid site_ids_list provided")
+                ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid site_ids_list provided")
                 return nil
-                
             }
         }
 

@@ -14,7 +14,7 @@ public struct PromoObject: Codable {
     var promo_type: String
     var promo_items_list: [PromoItemObject]
     var meta: Encodable?
-    
+
     enum CodingKeys: String, CodingKey {
         case promo_id = "id"
         case promo_action = "action"
@@ -23,7 +23,7 @@ public struct PromoObject: Codable {
         case promo_items_list = "items"
         case meta
     }
-    
+
     public init(promo_id: String, promo_action: String, promo_title: String, promo_type: String, promo_items_list: [PromoItemObject], meta: Encodable?) {
         self.promo_id = promo_id
         self.promo_action = promo_action
@@ -32,7 +32,7 @@ public struct PromoObject: Codable {
         self.promo_items_list = promo_items_list
         self.meta = meta
     }
-    
+
     // Encoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -44,9 +44,8 @@ public struct PromoObject: Codable {
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
-        
     }
-    
+
     // Decoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -60,6 +59,5 @@ public struct PromoObject: Codable {
         } else {
             meta = nil
         }
-        
     }
 }

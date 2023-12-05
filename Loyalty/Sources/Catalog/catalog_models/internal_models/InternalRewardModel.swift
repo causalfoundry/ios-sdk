@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct InternalRewardModel: Codable {
     let id: String
     let name: String

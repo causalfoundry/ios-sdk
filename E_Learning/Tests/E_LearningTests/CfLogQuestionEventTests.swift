@@ -1,9 +1,8 @@
 
-import XCTest
 @testable import CasualFoundryCore
+import XCTest
 
 class CfLogQuestionEventTests: XCTestCase {
-
     var logQuestionEvent: CfLogQuestionEvent!
 
     override func setUp() {

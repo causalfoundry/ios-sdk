@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  MediaCatalogModel.swift
 //
 //
 //  Created by khushbu on 09/10/23.
@@ -7,16 +7,13 @@
 
 import Foundation
 
+public struct MediaCatalogModel: Codable, Equatable {
+    let name: String?
+    let description: String?
+    let length: String?
+    let resolution: String?
+    var language: String?
 
-public struct MediaCatalogModel:Codable,Equatable {
-    
-    let name:String?
-    let description:String?
-    let length:String?
-    let resolution:String?
-    var language:String?
-    
-    
     enum CodingKeys: String, CodingKey {
         case name = "media_name"
         case description = "media_description"
@@ -24,8 +21,7 @@ public struct MediaCatalogModel:Codable,Equatable {
         case resolution
         case language
     }
-    
-    
+
     public init(name: String? = nil, description: String? = nil, length: String? = nil, resolution: String? = nil, language: String? = nil) {
         self.name = name
         self.description = description
@@ -33,7 +29,7 @@ public struct MediaCatalogModel:Codable,Equatable {
         self.resolution = resolution
         self.language = language
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decodeIfPresent(String.self, forKey: .name)
@@ -42,8 +38,7 @@ public struct MediaCatalogModel:Codable,Equatable {
         resolution = try container.decodeIfPresent(String.self, forKey: .resolution)
         language = try container.decodeIfPresent(String.self, forKey: .language)
     }
-    
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(name, forKey: .name)

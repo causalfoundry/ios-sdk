@@ -7,14 +7,13 @@
 
 import Foundation
 
-
 public struct PatientStatusItem: Codable {
     var type: String
     var value: String
     var diagnosisYear: String
     var diagnosisType: String
     var remarks: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case type
         case value
@@ -23,7 +22,7 @@ public struct PatientStatusItem: Codable {
         case remarks
     }
 
-     public init(type: String, value: String, diagnosisYear: String = "", diagnosisType: String = "", remarks: String? = nil) {
+    public init(type: String, value: String, diagnosisYear: String = "", diagnosisType: String = "", remarks: String? = nil) {
         self.type = type
         self.value = value
         self.diagnosisYear = diagnosisYear

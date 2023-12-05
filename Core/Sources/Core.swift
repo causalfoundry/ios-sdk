@@ -5,51 +5,47 @@ import Foundation
 import UIKit
 
 public class CFLog {
-
     var applicationState: UIApplication.State?
-    var showInAppBudge:Bool = true
-    var updateImmediately :Bool = true
-    var pauseSDK : Bool =  false
-    
+    var showInAppBudge: Bool = true
+    var updateImmediately: Bool = true
+    var pauseSDK: Bool = false
+
     init(applicationState: UIApplication.State? = nil, showInAppBudge: Bool, updateImmediately: Bool, pauseSDK: Bool) {
         self.applicationState = applicationState
         self.showInAppBudge = showInAppBudge
         self.updateImmediately = updateImmediately
         self.pauseSDK = pauseSDK
     }
-    
 }
 
 public class CFLogBuilder {
-    
     var applicationState: UIApplication.State?
-    var showInAppBudge:Bool = true
-    var updateImmediately :Bool = true
-    var pauseSDK : Bool =  false
-    
-    public init() { }
+    var showInAppBudge: Bool = true
+    var updateImmediately: Bool = true
+    var pauseSDK: Bool = false
+
+    public init() {}
     /**
      * Passing the lifecycle event variable to SDK to log app open and resume events
      * automatically and manage app lifecycle components required by SDK to operate
      */
     @discardableResult
     public func setLifecycleEvent(event: UIApplication.State) -> CFLogBuilder {
-        self.applicationState = event
+        applicationState = event
         return self
-        
     }
-    
+
     /**
      * Using this will set the SDK on pause that it will not log any event and will not listen
      * for the nudges but FCM based nudges will still work base on the device token status.
      * DEFAULT value is FALSE
      */
     @discardableResult
-    public func setPauseSDK(pauseSDK: Bool)-> CFLogBuilder {
+    public func setPauseSDK(pauseSDK: Bool) -> CFLogBuilder {
         self.pauseSDK = pauseSDK
         return self
     }
-    
+
     /**
      * Using this will set the SDK key for the successful initialisation. You can either set
      * the API key from info.plist or using this endpoint. SDK key can be obtained from
@@ -60,20 +56,20 @@ public class CFLogBuilder {
         CoreConstants.shared.sdkKey = "Bearer \(sdkKey)"
         return self
     }
-    
+
     /**
      * Using this will disable the SDK debug mode. Using this will stop the SDK from throwing
      * any exception which can result in app crash. By default it is recommended to not use
      * this as then you can validate all the values are correct or not. Debug mode is enabled
      * by default.
      */
-    
+
     @discardableResult
     public func disableDebugMode() -> CFLogBuilder {
         CoreConstants.shared.isDebugMode = false
         return self
     }
-    
+
     /**
      * Using this will disable the SDK Auto Page track and you have to include the page
      * event at your own based on your navigation graph pr page/activity change logic.
@@ -84,6 +80,7 @@ public class CFLogBuilder {
         CoreConstants.shared.allowAutoPageTrack = false
         return self
     }
+
     /**
      * SDK will not log events until the user is logged in, and once logged in, it will
      * associate those events to the logged in user id. Default is set to false. enabling
@@ -91,11 +88,11 @@ public class CFLogBuilder {
      * In such cases, the device Id will be used as the userId
      */
     @discardableResult
-    public func allowAnonymousUsers()-> CFLogBuilder  {
+    public func allowAnonymousUsers() -> CFLogBuilder {
         CoreConstants.shared.isAnonymousUserAllowed = true
         return self
     }
-    
+
     /**
      * setAppLevelContentBlock is used to specify the type of module the app is used for.
      * content block can be in any modules i.e. core, e-commerce, e-learning, ...
@@ -110,6 +107,7 @@ public class CFLogBuilder {
         CoreConstants.shared.contentBlock = contentBlock
         return self
     }
+
     /**
      * setAppLevelContentBlock is used to specify the type of module the app is used for.
      * content block can be in any modules i.e. core, e-commerce, e-learning, ...
@@ -128,11 +126,11 @@ public class CFLogBuilder {
     //                    }
     //                }
     @discardableResult
-    public func setAutoShowInAppNudge(showInAppNudge: Bool) -> CFLogBuilder  {
-        self.showInAppBudge = showInAppNudge
+    public func setAutoShowInAppNudge(showInAppNudge: Bool) -> CFLogBuilder {
+        showInAppBudge = showInAppNudge
         return self
     }
-    
+
     /**
      * Using this will set the update immediately level for all of the events to be either
      * fired immediately ot after the end of the session. You can also set the
@@ -144,7 +142,7 @@ public class CFLogBuilder {
         self.updateImmediately = updateImmediately
         return self
     }
-    
+
     /**
      * Set the properties for the notification elements, for push notifications for
      * ingest workflow. By default the SDK will show the notification if the API call
@@ -155,21 +153,21 @@ public class CFLogBuilder {
      * notification, by default SDK shows `Backing up events` in LOCALE EN
      */
     @discardableResult
-    public func setIngestNotificationTitle(notificationTitle: String) -> CFLogBuilder  { NotificationConstants.shared.INGEST_NOTIFICATION_TITLE = notificationTitle
+    public func setIngestNotificationTitle(notificationTitle: String) -> CFLogBuilder { NotificationConstants.shared.INGEST_NOTIFICATION_TITLE = notificationTitle
         return self
     }
-    
+
     /**
      * `setIngestNotificationDescription` is for setting your own custom description for the
      * notification, by default SDK shows `Please wait while we are backing
      * up events.` in LOCALE EN
      */
     @discardableResult
-    public  func setIngestNotificationDescription(notificationDescription: String)-> CFLogBuilder {
+    public func setIngestNotificationDescription(notificationDescription: String) -> CFLogBuilder {
         NotificationConstants.shared.INGEST_NOTIFICATION_DESCRIPTION = notificationDescription
         return self
     }
-    
+
     /**
      * `setIngestNotificationEnabled` is for setting the preference to show ingest
      * notification, if you want to show the notification or not. By default the SDK
@@ -182,7 +180,7 @@ public class CFLogBuilder {
         NotificationConstants.shared.INGEST_NOTIFICATION_ENABLED = isNotificationEnabled
         return self
     }
-    
+
     /**
      * `updateIngestNotificationShowInterval` is for setting the time interval the SDK
      * will wait for the API to complete. By default this is set to 10 seconds as
@@ -190,11 +188,11 @@ public class CFLogBuilder {
      * However it is not recommended to do so.
      */
     @discardableResult
-    public func updateIngestNotificationShowInterval(notificationShowInterval: Int64)-> CFLogBuilder {
+    public func updateIngestNotificationShowInterval(notificationShowInterval: Int64) -> CFLogBuilder {
         NotificationConstants.shared.INGEST_NOTIFICATION_INTERVAL_TIME = notificationShowInterval
         return self
     }
-    
+
     /**
      * `updateInAppMessageInitialDelay` is for setting the time interval the SDK
      * will wait before showing the In App message after the app is opened. By default,
@@ -206,12 +204,11 @@ public class CFLogBuilder {
         NotificationConstants.shared.IN_APP_MESSAGE_INITIAL_DELAY_IN_MILLIS = initialDelayInMillis
         return self
     }
-    
+
     /**
      * Using this will validate the endpoints provided and initialise the SDK
      */
     public func build() {
-        CFSetup().initalize(event: self.applicationState!, pauseSDK: pauseSDK, autoShowInAppNudge: showInAppBudge, updateImmediately: updateImmediately)
+        CFSetup().initalize(event: applicationState!, pauseSDK: pauseSDK, autoShowInAppNudge: showInAppBudge, updateImmediately: updateImmediately)
     }
 }
-

@@ -1,8 +1,8 @@
 import Foundation
 
-public enum CountryCode: String,EnumComposable,CaseIterable{
+public enum CountryCode: String, EnumComposable, CaseIterable {
     static var allValues: [CountryCode] = CountryCode.allValues
-    
+
     case Ascension_Island = "ASC"
     case Andorra = "AND"
     case United_Arab_Emirates = "ARE"
@@ -17,7 +17,7 @@ public enum CountryCode: String,EnumComposable,CaseIterable{
             return "AD"
         // ... (add cases similarly)
         case .United_Arab_Emirates:
-            return  "ARE"
+            return "ARE"
         }
     }
 
@@ -29,7 +29,7 @@ public enum CountryCode: String,EnumComposable,CaseIterable{
             return "Andorra"
         case .United_Arab_Emirates:
             return "AE"
-        // ... (add cases similarly)
+            // ... (add cases similarly)
         }
     }
 
@@ -41,25 +41,23 @@ public enum CountryCode: String,EnumComposable,CaseIterable{
             return "Andorra"
         case .United_Arab_Emirates:
             return "United Arab Emirates"
-        // ... (add cases similarly)
+            // ... (add cases similarly)
         }
     }
 
     // Custom initializer
-    init?(countryISO3Code: String, countryISO2Code: String, countryFullName: String) {
+    init?(countryISO3Code: String, countryISO2Code _: String, countryFullName _: String) {
         switch countryISO3Code {
         case "ASC":
             self = .Ascension_Island
         case "AND":
             self = .Andorra
         case "ARE":
-            self = . United_Arab_Emirates
+            self = .United_Arab_Emirates
         // ... (add cases similarly)
 
         default:
             return nil
         }
-
     }
 }
-

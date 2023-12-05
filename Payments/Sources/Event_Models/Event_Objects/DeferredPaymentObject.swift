@@ -17,7 +17,7 @@ public struct DeferredPaymentObject: Codable {
     var isSuccessful: Bool?
     var usdRate: Float?
     var meta: Encodable?
-    
+
     enum CodingKeys: String, CodingKey {
         case paymentId = "id"
         case orderId = "order_id"
@@ -30,7 +30,7 @@ public struct DeferredPaymentObject: Codable {
         case usdRate
         case meta
     }
-    
+
     public init(paymentId: String, orderId: String, type: String, action: String?, accountBalance: Float?, paymentAmount: Float?, currency: String?, isSuccessful: Bool?, usdRate: Float?, meta: Encodable?) {
         self.paymentId = paymentId
         self.orderId = orderId
@@ -43,7 +43,7 @@ public struct DeferredPaymentObject: Codable {
         self.usdRate = usdRate
         self.meta = meta
     }
-    
+
     // Encoding to JSON
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -59,9 +59,8 @@ public struct DeferredPaymentObject: Codable {
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
-        
     }
-    
+
     // Decoding from JSON
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -79,6 +78,5 @@ public struct DeferredPaymentObject: Codable {
         } else {
             meta = nil
         }
-        
     }
 }

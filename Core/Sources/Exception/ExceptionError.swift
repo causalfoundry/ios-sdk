@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  ExceptionError.swift
+//
 //
 //  Created by khushbu on 09/10/23.
 //
@@ -22,4 +22,4 @@ public typealias NoSuchElementException = Error
 
 public typealias ConcurrentModificationException = Error
 
-//public typealias Comparator<T> = Foundation.Comparator<T>
+// public typealias Comparator<T> = Foundation.Comparator<T>

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public class CfLogMediaEvent {
     var media_id: String?
     var media_type: String?
@@ -17,8 +16,7 @@ public class CfLogMediaEvent {
     var mediaModel_value: MediaCatalogModel?
     var meta: Any?
     var update_immediately: Bool = CoreConstants.shared.updateImmediately
-    
-    
+
     init(media_id: String? = nil, media_type: String? = nil, media_action: String? = nil, duration_value: Int? = nil, content_block: String, mediaModel_value: MediaCatalogModel? = nil, meta: Any? = nil, update_immediately: Bool) {
         self.media_id = media_id
         self.media_type = media_type
@@ -31,32 +29,29 @@ public class CfLogMediaEvent {
     }
 }
 
-
-public class  CfLogMediaEventBuilder {
+public class CfLogMediaEventBuilder {
     var media_id: String?
     var media_type: String?
     var media_action: String?
     var duration_value: Int?
     var content_block: String = CoreConstants.shared.contentBlockName
-    var mediaModel_value: MediaCatalogModel? = nil
+    var mediaModel_value: MediaCatalogModel?
     var meta: Any?
     var update_immediately: Bool = CoreConstants.shared.updateImmediately
-    
-    public init() {
-        
-    }
+
+    public init() {}
+
     /**
      * setMediaId is required to log the mediaId for the media element the log is used for.
      * It needs to be the same that is used inside the app and should be matched with
      * the catalog traits.
      */
     @discardableResult
-    public func setMediaId(media_id: String)-> CfLogMediaEventBuilder{
+    public func setMediaId(media_id: String) -> CfLogMediaEventBuilder {
         self.media_id = media_id
         return self
     }
-    
-    
+
     /**
      * setMediaType is required to define the type of media being interacted with.
      * It is required to define if the media interacted with is an audio, is a video or an
@@ -69,7 +64,7 @@ public class  CfLogMediaEventBuilder {
         self.media_type = media_type.rawValue
         return self
     }
-    
+
     /**
      * setMediaType is required to define the type of media being interacted with.
      * It is required to define if the media interacted with is an audio, is a video or an
@@ -80,14 +75,14 @@ public class  CfLogMediaEventBuilder {
      */
     @discardableResult
     public func setMediaType(media_type: String) -> CfLogMediaEventBuilder {
-        if (MediaType.allCases.filter({$0.rawValue == media_type }).first != nil) {
+        if MediaType.allCases.filter({ $0.rawValue == media_type }).first != nil {
             self.media_type = media_type
-        }else {
+        } else {
             ExceptionManager.throwEnumException(eventType: CoreEventType.media.rawValue, className: String(describing: CfLogMediaEvent.self))
         }
         return self
     }
-    
+
     /**
      * setMediaAction is required to log the interaction action with the media. SDK provides
      * enums to support mediaActions and are defined in 4 different actions.
@@ -99,12 +94,11 @@ public class  CfLogMediaEventBuilder {
      * can also use string as well.
      */
     @discardableResult
-    public  func setMediaAction(media_action: MediaAction) -> CfLogMediaEventBuilder {
+    public func setMediaAction(media_action: MediaAction) -> CfLogMediaEventBuilder {
         self.media_action = media_action.rawValue
         return self
     }
-    
-    
+
     /**
      * setMediaAction is required to log the interaction action with the media. SDK provides
      * enums to support mediaActions and are defined in 4 different actions.
@@ -117,40 +111,37 @@ public class  CfLogMediaEventBuilder {
      * the event will be discarded.
      */
     @discardableResult
-    public func setMediaAction(media_action: String)  -> CfLogMediaEventBuilder  {
-        if (MediaAction.allCases.filter({$0.rawValue == media_action }).first != nil) {
+    public func setMediaAction(media_action: String) -> CfLogMediaEventBuilder {
+        if MediaAction.allCases.filter({ $0.rawValue == media_action }).first != nil {
             self.media_action = media_action
-        }else {
+        } else {
             ExceptionManager.throwEnumException(eventType: CoreEventType.media.rawValue, className: String(describing: CfLogMediaEvent.self))
         }
         return self
-        
     }
-    
-    
+
     /**
      * setCurrentDuration is required to log the current timeframe of the media being interacted with
      * when the action is being performed. It is the timeframe in milliseconds for the
      * audio or when it is played or paused or the final timeframe when it is seek.
      */
     @discardableResult
-    public func setCurrentDuration(duration: Float) -> CfLogMediaEventBuilder{
-        self.duration_value = Int(duration)
+    public func setCurrentDuration(duration: Float) -> CfLogMediaEventBuilder {
+        duration_value = Int(duration)
         return self
     }
-    
+
     public func setCurrentDuration(duration: Int?) -> CfLogMediaEventBuilder {
-        self.duration_value = duration
+        duration_value = duration
         return self
-        
     }
-    
+
     @discardableResult
-    public func setCurrentDuration(duration: Double) -> CfLogMediaEventBuilder{
-        self.duration_value = Int(duration)
+    public func setCurrentDuration(duration: Double) -> CfLogMediaEventBuilder {
+        duration_value = Int(duration)
         return self
     }
-    
+
     /**
      * setContentBlock is used to specify the type of module the media is in.
      * media can be in any multiple modules i.e. core, e-commerce, e-learning, ...
@@ -159,11 +150,11 @@ public class  CfLogMediaEventBuilder {
      * function.
      */
     @discardableResult
-    public func setContentBlock(content_block: ContentBlock) -> CfLogMediaEventBuilder{
+    public func setContentBlock(content_block: ContentBlock) -> CfLogMediaEventBuilder {
         self.content_block = content_block.rawValue
         return self
     }
-    
+
     /**
      * setContentBlock is used to specify the type of module the media is in.
      * media can be in any multiple modules i.e. core, e-commerce, e-learning, ...
@@ -174,7 +165,7 @@ public class  CfLogMediaEventBuilder {
      */
     @discardableResult
     public func setContentBlock(content_block: String) -> CfLogMediaEventBuilder {
-        if (ContentBlock.allCases.filter({$0.rawValue == content_block}).first != nil) {
+        if ContentBlock.allCases.filter({ $0.rawValue == content_block }).first != nil {
             self.content_block = content_block
         } else {
             ExceptionManager.throwEnumException(
@@ -184,20 +175,20 @@ public class  CfLogMediaEventBuilder {
         }
         return self
     }
-    
+
     @discardableResult
     public func setMediaModel(mediaModelValue: MediaCatalogModel) -> CfLogMediaEventBuilder {
-        self.mediaModel_value = mediaModelValue
+        mediaModel_value = mediaModelValue
         return self
     }
-    
+
     @discardableResult
     public func setMediaModel(mediaModelValue: String?) -> CfLogMediaEventBuilder {
-        if (mediaModelValue != nil) {
+        if mediaModelValue != nil {
             if let jsonData = mediaModelValue!.data(using: .utf8) {
                 // Decode the JSON data into a MediaCatalogModel instance
                 do {
-                    let mediaModel = try JSONDecoder().decode(MediaCatalogModel.self, from: jsonData)
+                    let mediaModel = try JSONDecoder.new.decode(MediaCatalogModel.self, from: jsonData)
                     // Use the mediaModel instance as needed
                     print("Decoded mediaModel: \(mediaModel)")
                 } catch {
@@ -207,18 +198,18 @@ public class  CfLogMediaEventBuilder {
         }
         return self
     }
+
     /**
      * You can pass any type of value in setMeta. It is for developer and partners to log
      * additional information with the log that they find would be helpful for logging and
      * providing more context to the log. Default value for the meta is null.
      */
     @discardableResult
-    public func setMeta(meta: Any?)  -> CfLogMediaEventBuilder  {
+    public func setMeta(meta: Any?) -> CfLogMediaEventBuilder {
         self.meta = meta
         return self
     }
-    
-    
+
     /**
      * updateImmediately is responsible for updating the values ot the backend immediately.
      * By default this is set to false or whatever the developer has set in the SDK
@@ -231,101 +222,87 @@ public class  CfLogMediaEventBuilder {
         self.update_immediately = update_immediately
         return self
     }
-    
-    
+
     /**
      * build will validate all of the values provided and if passes will call the track
      * function and queue the events based on it's updateImmediately value and also on the
      * user's network resources.
      */
     public func build() {
-        
-        
         /**
          * Will throw and exception if the mediaId provided is null or no value is
          * provided at all.
          */
-        if  self.media_id?.isNilOREmpty() == true {
+        if media_id?.isNilOREmpty() == true {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_id")
         }
         /**
          * Will throw and exception if the appUserId provided is null or no value is
          * provided at all.
          */
-        else if self.mediaModel_value == nil  {
+        else if mediaModel_value == nil {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "mediaModel_value")
-            
         }
         /**
          * Will throw and exception if the mediaType provided is null or no type is
          * provided at all.
          */
-        
-        
-        else if self.media_type?.isNilOREmpty() == true {
+
+        else if media_type?.isNilOREmpty() == true {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_type")
-            
-            
-            if self.media_type != MediaType.image.rawValue {
-                if ((self.media_action?.isNilOREmpty()) == true) {
+
+            if media_type != MediaType.image.rawValue {
+                if (media_action?.isNilOREmpty()) == true {
                     ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_type")
                 }
-                
+
                 /**
                  * Will throw and exception if the time provided is null or no value is
                  * provided at all in case of type is audio or video.
                  */
-                
-                if self.duration_value == nil {
+
+                if duration_value == nil {
                     ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "Current Seek Time")
                 }
-            }else {
+            } else {
                 /**
                  * Will override the values for time to current time and mediaAction to
                  * play in case of type is an image.
                  */
-                self.media_action = MediaAction.play.rawValue
-                self.duration_value = 0
+                media_action = MediaAction.play.rawValue
+                duration_value = 0
             }
-        }else {
-            
-            
-            let mediaObject = MediaObject(id: self.media_id,type:media_type, action: self.media_action,time:"\(duration_value ?? 0)",meta: meta as? Encodable)
-            
-            if self.mediaModel_value != nil {
-                self.callCatalogAPI()
+        } else {
+            let mediaObject = MediaObject(id: media_id, type: media_type, action: media_action, time: "\(duration_value ?? 0)", meta: meta as? Encodable)
+
+            if mediaModel_value != nil {
+                callCatalogAPI()
             }
-            CFSetup().track(contentBlockName: self.content_block, eventType:CoreEventType.media.rawValue, logObject: mediaObject, updateImmediately: self.update_immediately)
-            
+            CFSetup().track(contentBlockName: content_block, eventType: CoreEventType.media.rawValue, logObject: mediaObject, updateImmediately: update_immediately)
         }
     }
-    
+
     private func callCatalogAPI() {
-        guard let mediaModelValue = self.mediaModel_value else {
+        guard let mediaModelValue = mediaModel_value else {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_total_duration")
             return
         }
-        
+
         if let language = mediaModelValue.language, !language.isEmpty {
-            
             if !CoreConstants.shared.enumContains(LanguageCode.self, name: language) {
-                ExceptionManager.throwEnumException(eventType: CoreEventType.media.rawValue, className:String(describing:LanguageCode.self))
+                ExceptionManager.throwEnumException(eventType: CoreEventType.media.rawValue, className: String(describing: LanguageCode.self))
                 return
             }
-            self.mediaModel_value?.language = LanguageCode(rawValue: language)?.languageISO2Code
+            mediaModel_value?.language = LanguageCode(rawValue: language)?.languageISO2Code
         }
-        
-        let internalMediaModel = InternalMediaModel(media_id: self.media_id,
-                                                    media_name: self.mediaModel_value?.name,
-                                                    media_description: self.mediaModel_value?.description,
-                                                    type: self.media_type,
-                                                    length: self.mediaModel_value?.length,
-                                                    resolution: self.mediaModel_value?.resolution,
-                                                    language:self.mediaModel_value?.language)
+
+        let internalMediaModel = InternalMediaModel(media_id: media_id,
+                                                    media_name: mediaModel_value?.name,
+                                                    media_description: mediaModel_value?.description,
+                                                    type: media_type,
+                                                    length: mediaModel_value?.length,
+                                                    resolution: mediaModel_value?.resolution,
+                                                    language: mediaModel_value?.language)
         CFSetup().updateCoreCatalogItem(subject: .media, catalogObject: [internalMediaModel].toData()!)
     }
-    
 }
-
-
-

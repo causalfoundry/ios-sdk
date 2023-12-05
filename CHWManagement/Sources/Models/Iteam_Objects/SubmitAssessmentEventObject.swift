@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 import Foundation
 
 struct SubmitAssessmentEventObject: Codable {
@@ -19,7 +18,7 @@ struct SubmitAssessmentEventObject: Codable {
     var diagnosisSymptomsList: [DiagnosisSymptomItem]
     let referredForAssessment: Bool
     let meta: Encodable?
-    
+
     enum CodingKeys: String, CodingKey {
         case patientId = "patient_id"
         case siteId = "site_id"
@@ -30,8 +29,7 @@ struct SubmitAssessmentEventObject: Codable {
         case referredForAssessment = "referred_for_assessment"
         case meta
     }
-    
-    
+
     init(patientId: String, siteId: String, medicationAdherence: String, diagnosisValuesList: [DiagnosisItem], diagnosisResultsList: [DiagnosisItem], diagnosisSymptomsList: [DiagnosisSymptomItem], referredForAssessment: Bool, meta: Encodable?) {
         self.patientId = patientId
         self.siteId = siteId
@@ -42,7 +40,7 @@ struct SubmitAssessmentEventObject: Codable {
         self.referredForAssessment = referredForAssessment
         self.meta = meta
     }
-    
+
     // Encoding to JSON
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -57,7 +55,7 @@ struct SubmitAssessmentEventObject: Codable {
             try container.encode(metaData, forKey: .meta)
         }
     }
-    
+
     // Decoding from JSON
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -73,6 +71,5 @@ struct SubmitAssessmentEventObject: Codable {
         } else {
             meta = nil
         }
-        
     }
 }

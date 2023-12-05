@@ -7,11 +7,9 @@
 
 import Foundation
 
-public enum  IdentityAction:String,CaseIterable {
-    
-    case register = "register"
-    case login = "login"
-    case logout = "logout"
-    case blocked = "blocked"
-   
+public enum IdentityAction: String, CaseIterable {
+    case register
+    case login
+    case logout
+    case blocked
 }

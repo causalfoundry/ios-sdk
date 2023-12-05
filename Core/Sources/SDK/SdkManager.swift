@@ -8,7 +8,7 @@
 import Foundation
 
 //
-//class SdkManager {
+// class SdkManager {
 //    // Define properties and methods related to SdkManager
 //    private var sdkState: SdkState = .notConfigured
 //    private let configurableKoinComponent: ConfigurableKoinComponent
@@ -64,26 +64,26 @@ import Foundation
 //        configurableKoinComponent.shutdown()
 //        sdkState = .shutdown
 //    }
-//}
+// }
 //
 //// Define an enum for SdkState
-//enum SdkState {
+// enum SdkState {
 //    case notConfigured
 //    case ready(sdk: CfRecyclerInterface)
 //    case shutdown
-//}
+// }
 //
 //// Create a protocol for Application
-//protocol Application {
+// protocol Application {
 //    // Define properties and methods related to Application
-//}
+// }
 //
 //// Create a protocol for CfRecyclerInterface
-//protocol CfRecyclerInterface {
+// protocol CfRecyclerInterface {
 //    // Define properties and methods related to CfRecyclerInterface
-//}
+// }
 //
 //// Create a class for NoOpSdk
-//class NoOpSdk: CfRecyclerInterface {
+// class NoOpSdk: CfRecyclerInterface {
 //    // Implement properties and methods related to NoOpSdk
-//}
+// }

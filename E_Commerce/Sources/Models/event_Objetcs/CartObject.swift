@@ -15,7 +15,7 @@ public struct CartObject: Codable {
     var currency: String
     var usdRate: Float?
     var meta: Encodable?
-    
+
     enum CodingKeys: String, CodingKey {
         case cartId = "id"
         case action
@@ -25,7 +25,7 @@ public struct CartObject: Codable {
         case usdRate = "_usd_rate"
         case meta
     }
-    
+
     public init(cartId: String? = nil, action: String? = nil, item: ItemModel, cartPrice: Float, currency: String, usdRate: Float? = nil, meta: Encodable? = nil) {
         self.cartId = cartId
         self.action = action
@@ -35,10 +35,10 @@ public struct CartObject: Codable {
         self.usdRate = usdRate
         self.meta = meta
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        
+
         cartId = try container.decodeIfPresent(String.self, forKey: .cartId)
         action = try container.decodeIfPresent(String.self, forKey: .action)
         item = try container.decode(ItemModel.self, forKey: .item)
@@ -51,10 +51,10 @@ public struct CartObject: Codable {
             meta = nil
         }
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
+
         try container.encode(cartId, forKey: .cartId)
         try container.encode(action, forKey: .action)
         try container.encode(item, forKey: .item)
@@ -66,4 +66,3 @@ public struct CartObject: Codable {
         }
     }
 }
-

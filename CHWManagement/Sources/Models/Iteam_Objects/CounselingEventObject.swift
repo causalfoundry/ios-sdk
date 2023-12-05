@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CounselingEventObject.swift
 //
 //
 //  Created by khushbu on 21/11/23.
@@ -7,16 +7,14 @@
 
 import Foundation
 
-
 public struct CounselingEventObject: Codable {
-    
     var patientId: String
     var siteId: String
     var counselingId: String
     var counselingType: String
     var counselingPlanList: [CounselingPlanItem]
     var meta: Encodable?
-    
+
     enum CodingKeys: String, CodingKey {
         case patientId = "patient_id"
         case siteId = "site_id"
@@ -25,7 +23,7 @@ public struct CounselingEventObject: Codable {
         case counselingPlanList = "counseling_plan_list"
         case meta
     }
-    
+
     init(patientId: String, siteId: String, counselingId: String, counselingType: String, counselingPlanList: [CounselingPlanItem], meta: Encodable? = nil) {
         self.patientId = patientId
         self.siteId = siteId
@@ -34,7 +32,7 @@ public struct CounselingEventObject: Codable {
         self.counselingPlanList = counselingPlanList
         self.meta = meta
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         patientId = try container.decode(String.self, forKey: .patientId)
@@ -47,9 +45,8 @@ public struct CounselingEventObject: Codable {
         } else {
             meta = nil
         }
-        
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(patientId, forKey: .patientId)
@@ -60,8 +57,5 @@ public struct CounselingEventObject: Codable {
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
-        
     }
 }
-
-

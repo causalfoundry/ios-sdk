@@ -7,12 +7,11 @@
 
 import Foundation
 
-
 public struct CurrencyMainObject: Codable {
     var fromCurrency: String?
     var toCurrencyObject: CurrencyObject?
-    
-   public  init(fromCurrency: String? = nil, toCurrencyObject: CurrencyObject? = nil) {
+
+    public init(fromCurrency: String? = nil, toCurrencyObject: CurrencyObject? = nil) {
         self.fromCurrency = fromCurrency
         self.toCurrencyObject = toCurrencyObject
     }

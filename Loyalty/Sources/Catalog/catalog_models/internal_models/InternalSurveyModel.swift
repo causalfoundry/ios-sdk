@@ -34,7 +34,7 @@ public struct InternalSurveyModel: Codable {
         case organization_name
     }
 
-    public  init(
+    public init(
         id: String? = nil,
         name: String = "",
         duration: Int = 0,

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ELearningConstants {
+enum ELearningConstants {
     // Static property for content block name
     static let contentBlockName = "e-learning"
 }

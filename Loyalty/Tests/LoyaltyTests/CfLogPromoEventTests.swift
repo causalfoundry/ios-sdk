@@ -1,7 +1,6 @@
 import XCTest
 
 class CfLogPromoEventTests: XCTestCase {
-
     func testSetPromoId() {
         let cfLogPromoEvent = CfLogPromoEvent()
         let result = cfLogPromoEvent.setPromoId(promo_id: "promo123")
@@ -112,5 +111,6 @@ class CfLogPromoEventTests: XCTestCase {
         cfLogPromoEvent.setPromoId(promo_id: "promo123")
         cfLogPromoEvent.setPromoTitle(promo_title: "Special Promo")
         cfLogPromoEvent.setPromoType(promo_type: "discount")
-        cfLogPromoEvent.addItem(itemModel: PromoItemObject(itemID: "item123", type:
-
+        cfLogPromoEvent.addItem(itemModel: PromoItemObject(itemID: "item123", type: "typeA"))
+    }
+}

@@ -5,10 +5,10 @@
 //  Created by khushbu on 07/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
-public enum ChwSiteType: String,EnumComposable {
+public enum ChwSiteType: String, EnumComposable {
     case facility
     case community
 }

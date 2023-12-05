@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  SurveyCatalogModel.swift
+//
 //
 //  Created by khushbu on 07/11/23.
 //
@@ -56,7 +56,7 @@ public struct SurveyCatalogModel: Codable {
         self.organization_name = organization_name
     }
 
-   public  init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
         duration = try container.decode(Int.self, forKey: .duration)

@@ -5,8 +5,8 @@
 //  Created by khushbu on 02/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
 public class CfLogModuleEvent {
     /**
@@ -19,22 +19,21 @@ public class CfLogModuleEvent {
     var action: String?
     private var meta: Any?
     private var updateImmediately: Bool = CoreConstants.shared.updateImmediately
-    
-    public init() {
-        
-    }
-    
+
+    public init() {}
+
     /**
      * setModuleId is required to log moduleId for the module being opened by the user.
      * module Id should be in a string format and must be in accordance to the catalog
      * provided.
      */
-    
+
     @discardableResult
     public func setModuleId(_ moduleId: String) -> CfLogModuleEvent {
         self.moduleId = moduleId
         return self
     }
+
     /**
      * setModuleProgress is required to pass current progress of the module which the user is
      * viewing. Progress value is the percentage complete for the module that needs to passed
@@ -44,18 +43,19 @@ public class CfLogModuleEvent {
     public func setModuleProgress(_ progress: Int?) -> CfLogModuleEvent {
         self.progress = progress
         return self
-    }/**
-      * setModuleAction is required to set the Action type for the module event. SDK provides
-      * enum classes to support available log types. 1 main is view.
-      * SDK provides 2 approaches to log this event, one being enum type and the other is
-      * string type. Below is the function to log type using enum.
-      */
-    
+    } /**
+     * setModuleAction is required to set the Action type for the module event. SDK provides
+     * enum classes to support available log types. 1 main is view.
+     * SDK provides 2 approaches to log this event, one being enum type and the other is
+     * string type. Below is the function to log type using enum.
+     */
+
     @discardableResult
     public func setModuleAction(_ action: ModuleLogAction) -> CfLogModuleEvent {
         self.action = action.rawValue
         return self
     }
+
     /**
      * setModuleAction is required to set the Action type for the module event. SDK provides
      * enum classes to support available log types. 1 main is view.
@@ -70,13 +70,14 @@ public class CfLogModuleEvent {
             if CoreConstants.shared.enumContains(ModuleLogAction.self, name: action) {
                 self.action = action
             } else {
-                ExceptionManager.throwEnumException(eventType:  ELearnEventType.module.rawValue, className:String(describing:ModuleLogAction.self))
+                ExceptionManager.throwEnumException(eventType: ELearnEventType.module.rawValue, className: String(describing: ModuleLogAction.self))
             }
         } else {
             self.action = action
         }
         return self
     }
+
     /**
      * You can pass any type of value in setMeta. It is for developer and partners to log
      * additional information with the log that they find would be helpful for logging and
@@ -87,6 +88,7 @@ public class CfLogModuleEvent {
         self.meta = meta
         return self
     }
+
     /**
      * updateImmediately is responsible for updating the values ot the backend immediately.
      * By default this is set to false or whatever the developer has set in the SDK
@@ -99,12 +101,13 @@ public class CfLogModuleEvent {
         self.updateImmediately = updateImmediately
         return self
     }
+
     /**
      * build will validate all of the values provided and if passes will call the track
      * function and queue the events based on it's updateImmediately value and also on the
      * user's network resources.
      */
-    
+
     public func build() {
         /**
          * Will throw and exception if the moduleId provided is null or no value is
@@ -118,9 +121,9 @@ public class CfLogModuleEvent {
          * Will throw and exception if the action provided is null or no value is
          * provided at all.
          */
-        
+
         guard let action = action else {
-            ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.module.rawValue, elementName:String(String(describing: ModuleLogAction.self)))
+            ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.module.rawValue, elementName: String(String(describing: ModuleLogAction.self)))
             return
         }
         /**
@@ -136,4 +139,3 @@ public class CfLogModuleEvent {
         )
     }
 }
-

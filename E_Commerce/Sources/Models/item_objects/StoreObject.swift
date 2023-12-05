@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct StoreObject: Codable {
     var id: String
     var lat: Float
@@ -20,13 +19,12 @@ public struct StoreObject: Codable {
         case lon = "longitude"
     }
 
-    
-    public  init(id: String, lat: Float, lon: Float) {
+    public init(id: String, lat: Float, lon: Float) {
         self.id = id
         self.lat = lat
         self.lon = lon
     }
-    
+
     // Encoding method
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -36,7 +34,7 @@ public struct StoreObject: Codable {
     }
 
 //    // Decoding method
-    public  init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         lat = try container.decode(Float.self, forKey: .lat)

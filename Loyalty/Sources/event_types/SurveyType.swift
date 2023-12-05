@@ -5,13 +5,12 @@
 //  Created by khushbu on 08/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
-
+import Foundation
 
 import Foundation
 
-public enum SurveyType: String, Codable,EnumComposable {
+public enum SurveyType: String, Codable, EnumComposable {
     case openEnded = "open_ended"
     case closedEnded = "closed_ended"
     case nominal

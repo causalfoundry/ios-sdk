@@ -15,7 +15,7 @@ public struct RewardEventObject: Codable {
     var redeem: RedeemObject?
     var usdRate: Float?
     var meta: Encodable?
-    
+
     enum CodingKeys: String, CodingKey {
         case rewardId = "id"
         case action
@@ -25,7 +25,7 @@ public struct RewardEventObject: Codable {
         case usdRate = "usd_rate"
         case meta
     }
-    
+
     public init(rewardId: String, action: String, accPoints: Float? = 0.0, totalPoints: Float = 0.0, redeem: RedeemObject? = nil, usdRate: Float? = nil, meta: Encodable? = nil) {
         self.rewardId = rewardId
         self.action = action
@@ -35,7 +35,7 @@ public struct RewardEventObject: Codable {
         self.usdRate = usdRate
         self.meta = meta
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         rewardId = try container.decode(String.self, forKey: .rewardId)
@@ -49,9 +49,8 @@ public struct RewardEventObject: Codable {
         } else {
             meta = nil
         }
-        
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(rewardId, forKey: .rewardId)
@@ -63,7 +62,5 @@ public struct RewardEventObject: Codable {
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
-        
-        
     }
 }

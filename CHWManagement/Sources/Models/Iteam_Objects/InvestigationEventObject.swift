@@ -19,10 +19,10 @@ public struct InvestigationEventObject: Codable {
         case siteId = "site_id"
         case investigationId = "id"
         case prescribedTestsList = "prescribed_tests_list"
-        case meta = "meta"
+        case meta
     }
 
-   public init(patientId: String, siteId: String, investigationId: String, prescribedTestsList: [InvestigationItem], meta: Any? = nil) {
+    public init(patientId: String, siteId: String, investigationId: String, prescribedTestsList: [InvestigationItem], meta: Any? = nil) {
         self.patientId = patientId
         self.siteId = siteId
         self.investigationId = investigationId
@@ -30,7 +30,7 @@ public struct InvestigationEventObject: Codable {
         self.meta = meta
     }
 
-    public  init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         patientId = try container.decode(String.self, forKey: .patientId)
         siteId = try container.decode(String.self, forKey: .siteId)
@@ -42,11 +42,9 @@ public struct InvestigationEventObject: Codable {
             meta = doubleValue
         } else if let stringValue = try? container.decodeIfPresent(String.self, forKey: .meta) {
             meta = stringValue
-        }
-        else if let boolValue = try? container.decodeIfPresent(Bool.self, forKey: .meta) {
+        } else if let boolValue = try? container.decodeIfPresent(Bool.self, forKey: .meta) {
             meta = boolValue
-        }
-        else if let dateValue = try? container.decodeIfPresent(Date.self, forKey: .meta) {
+        } else if let dateValue = try? container.decodeIfPresent(Date.self, forKey: .meta) {
             meta = dateValue
         }
     }
@@ -64,13 +62,11 @@ public struct InvestigationEventObject: Codable {
                 try container.encode(doubleValue, forKey: .meta)
             } else if let stringValue = meta as? String {
                 try container.encode(stringValue, forKey: .meta)
-            }else if let boolValue = meta as? Bool {
+            } else if let boolValue = meta as? Bool {
                 try container.encode(boolValue, forKey: .meta)
-            }else if let dateValue = meta as? Date {
+            } else if let dateValue = meta as? Date {
                 try container.encode(dateValue, forKey: .meta)
             }
-            
         }
-
     }
 }

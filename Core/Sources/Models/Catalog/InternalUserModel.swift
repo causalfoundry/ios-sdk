@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct InternalUserModel: Codable {
     var id: String
     var name: String
@@ -23,7 +22,7 @@ struct InternalUserModel: Codable {
     var timezone: String
     var organization_id: String
     var organization_name: String
-    
+
     init(id: String, name: String, country: String, region_state: String, city: String, workplace: String, profession: String, zipcode: String, language: String, experience: String, education_level: String, timezone: String, organization_id: String, organization_name: String) {
         self.id = id
         self.name = name

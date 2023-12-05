@@ -1,11 +1,9 @@
 import Foundation
 
-
-import XCTest
 @testable import CasualFoundryCore
+import XCTest
 
 class CfLogIdentityEventTests: XCTestCase {
-
     func testCfLogIdentityEventInitialization() {
         let identityEvent = CfLogIdentityEvent(identity_action: "login", app_user_id: "123", meta: nil, update_immediately: true, blocked_reason: "Blocked reason", blocked_remarks: "Blocked remarks")
 
@@ -21,7 +19,6 @@ class CfLogIdentityEventTests: XCTestCase {
 }
 
 class CfLogIdnetityBuilderTests: XCTestCase {
-
     func testCfLogIdnetityBuilder() {
         _ = CfLogIdentityBuilder()
             .setIdentifyAction(identity_action: "login")

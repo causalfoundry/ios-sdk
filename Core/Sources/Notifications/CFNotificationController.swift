@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  CFNotificationController.swift
+//
 //
 //  Created by Causal Foundry on 29.11.23.
 //
@@ -8,39 +8,37 @@
 import UIKit
 
 public protocol CFNotificationControllerDelegate: AnyObject {
-    
     func openedNudge(cta: String, itemType: String, itemID: String)
 }
 
 public final class CFNotificationController: NSObject {
-    
     public static let shared = CFNotificationController()
-    
+
     private let center = UNUserNotificationCenter.current()
-    
+
     private let userInfoKey = "object"
     private let options: UNNotificationPresentationOptions = [.alert, .badge, .sound]
     private weak var delegate: CFNotificationControllerDelegate?
-    
+
     public func request(completionHandler: @escaping (Bool, Error?) -> Void) {
         center.requestAuthorization(options: [.alert, .badge, .sound], completionHandler: completionHandler)
         center.delegate = self
     }
-    
+
     /*
-    public func handle(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
-        guard let notification = launchOptions?[UIApplication.LaunchOptionsKey.localNotification] as? UILocalNotification,
-              let data = notification.userInfo?["object"] as? Data,
-              let object = data.toObject() else { return }
-        track(object: object, response: .shown)
-    }
-    */
-    
+     public func handle(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+         guard let notification = launchOptions?[UIApplication.LaunchOptionsKey.localNotification] as? UILocalNotification,
+               let data = notification.userInfo?["object"] as? Data,
+               let object = data.toObject() else { return }
+         track(object: object, response: .shown)
+     }
+     */
+
     public func setDelegate(_ delegate: CFNotificationControllerDelegate?) {
         self.delegate = delegate
     }
-    
-    internal func triggerNudgeNotification(object: BackendNudgeMainObject) {
+
+    func triggerNudgeNotification(object: BackendNudgeMainObject) {
         Task {
             let settings = await center.notificationSettings()
             guard settings.authorizationStatus == .authorized else {
@@ -61,7 +59,7 @@ public final class CFNotificationController: NSObject {
             try await center.add(request)
         }
     }
-    
+
     private func track(object: BackendNudgeMainObject, response: NudgeRepsonseObject.NudgeRepsonse) {
         let nudgeResponse = NudgeRepsonseObject(object: object,
                                                 response: response)
@@ -75,22 +73,22 @@ public final class CFNotificationController: NSObject {
 }
 
 extension CFNotificationController: UNUserNotificationCenterDelegate {
-    
-    public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    public func userNotificationCenter(_: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // notification is presented
         if let data = notification.request.content.userInfo[userInfoKey] as? Data, let object = data.toObject() {
             track(object: object, response: .shown)
         }
         completionHandler(options)
     }
-    
-    public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+
+    public func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         // user tapped on notification
         if let data = response.notification.request.content.userInfo[userInfoKey] as? Data, let object = data.toObject() {
             track(object: object, response: .open)
-            if let cta = object.nd.cta, (cta == "redirect" || cta == "add_to_cart"),
+            if let cta = object.nd.cta, cta == "redirect" || cta == "add_to_cart",
                let itemType = object.nd.message?.tmplCFG?.itemPairCFG?.itemType, !itemType.isEmpty,
-               let itemID = object.extra?.itemPair?.ids?.first {
+               let itemID = object.extra?.itemPair?.ids?.first
+            {
                 delegate?.openedNudge(cta: cta, itemType: itemType, itemID: itemID)
             }
         }
@@ -98,10 +96,9 @@ extension CFNotificationController: UNUserNotificationCenterDelegate {
     }
 }
 
-fileprivate extension Data {
-    
+private extension Data {
     func toObject() -> BackendNudgeMainObject? {
-        let decoder = JSONDecoder()
+        let decoder = JSONDecoder.new
         return try? decoder.decode(BackendNudgeMainObject.self, from: self)
     }
 }

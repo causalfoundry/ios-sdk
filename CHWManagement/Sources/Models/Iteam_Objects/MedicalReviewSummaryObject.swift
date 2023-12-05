@@ -39,7 +39,6 @@ public struct MedicalReviewSummaryObject: Codable {
     }
 }
 
-
 extension MedicalReviewSummaryObject: Sequence {
     public func makeIterator() -> IndexingIterator<[String]> {
         return value.makeIterator()

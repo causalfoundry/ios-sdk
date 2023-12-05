@@ -1,14 +1,14 @@
 //
-//  File.swift
-//  
+//  InvestigationItem.swift
+//
 //
 //  Created by khushbu on 26/10/23.
 //
 
 import Foundation
 
-public struct InvestigationItem: Codable,Equatable {
-   public var name: String
+public struct InvestigationItem: Codable, Equatable {
+    public var name: String
     public var testValue: String
     public var testUnit: String
     public var orderedDate: Int64
@@ -26,7 +26,7 @@ public struct InvestigationItem: Codable,Equatable {
         case remarks
     }
 
-   public init(name: String, testValue: String, testUnit: String, orderedDate: Int64, testedDate: Int64, action: String, remarks: String?) {
+    public init(name: String, testValue: String, testUnit: String, orderedDate: Int64, testedDate: Int64, action: String, remarks: String?) {
         self.name = name
         self.testValue = testValue
         self.testUnit = testUnit

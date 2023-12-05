@@ -13,7 +13,7 @@ struct TreatmentPlanEventObject: Codable {
     var treatmentPlanId: String
     var treatmentPlanList: [TreatmentPlanItem]
     var meta: Encodable?
-    
+
     // CodingKeys to specify custom keys if needed
     enum CodingKeys: String, CodingKey {
         case patientId = "patient_id"
@@ -22,7 +22,7 @@ struct TreatmentPlanEventObject: Codable {
         case treatmentPlanList = "treatment_plan_list"
         case meta
     }
-    
+
     // Initializer for decoding
     init(
         patientId: String,
@@ -37,7 +37,7 @@ struct TreatmentPlanEventObject: Codable {
         self.treatmentPlanList = treatmentPlanList
         self.meta = meta
     }
-    
+
     // Encoding function
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -48,9 +48,8 @@ struct TreatmentPlanEventObject: Codable {
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
-        
     }
-    
+
     // Decoding initializer
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -63,6 +62,5 @@ struct TreatmentPlanEventObject: Codable {
         } else {
             meta = nil
         }
-        
     }
 }

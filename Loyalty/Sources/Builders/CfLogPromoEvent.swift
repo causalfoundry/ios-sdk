@@ -1,40 +1,37 @@
 //
-//  PromoEventBuilder.swift
+//  CfLogPromoEvent.swift
 //
 //
 //  Created by khushbu on 07/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
-
+import Foundation
 
 public class CfLogPromoEvent {
-    
     /**
      * CfLogPromoEvent is to log the events associated of the promo lists and promo items and when they are clicked on.
      */
-    
-    var promo_id: String? = nil
-    var promo_action: String? = nil
-    var promo_title: String? = nil
-    var promo_type: String? = nil
+
+    var promo_id: String?
+    var promo_action: String?
+    var promo_title: String?
+    var promo_type: String?
     var promo_items_list: [PromoItemObject] = []
-    private var meta: Any? = nil
+    private var meta: Any?
     private var update_immediately: Bool = CoreConstants.shared.updateImmediately
-    public init() {
-        
-    }
-    
+    public init() {}
+
     /**
      * setPromoId is required to set the Id of the promo
      */
-    
+
     @discardableResult
     public func setPromoId(promo_id: String?) -> CfLogPromoEvent {
         self.promo_id = promo_id
         return self
     }
+
     /**
      * setPromoAction is required to set the action for the promo
      */
@@ -43,16 +40,17 @@ public class CfLogPromoEvent {
         self.promo_action = promo_action.rawValue
         return self
     }
-    
+
     @discardableResult
     public func setPromoAction(promo_action: String) -> CfLogPromoEvent {
-        if CoreConstants.shared.enumContains(PromoAction.self , name:promo_action){
+        if CoreConstants.shared.enumContains(PromoAction.self, name: promo_action) {
             self.promo_action = promo_action
         } else {
-            ExceptionManager.throwEnumException(eventType: LoyaltyEventType.promo.rawValue, className:String(String(describing: PromoAction.self)))
+            ExceptionManager.throwEnumException(eventType: LoyaltyEventType.promo.rawValue, className: String(String(describing: PromoAction.self)))
         }
         return self
     }
+
     /**
      * setPromoTitle is required to set the title of the promo (if any)
      */
@@ -61,6 +59,7 @@ public class CfLogPromoEvent {
         self.promo_title = promo_title
         return self
     }
+
     /**
      * setPromoType is required to set the type of the promo
      */
@@ -69,16 +68,17 @@ public class CfLogPromoEvent {
         self.promo_type = promo_type.rawValue
         return self
     }
-    
+
     @discardableResult
     public func setPromoType(promo_type: String) -> CfLogPromoEvent {
-        if CoreConstants.shared.enumContains(PromoType.self , name:promo_type ) {
+        if CoreConstants.shared.enumContains(PromoType.self, name: promo_type) {
             self.promo_type = promo_type
         } else {
             ExceptionManager.throwEnumException(eventType: LoyaltyEventType.promo.rawValue, className: String(describing: PromoType.self))
         }
         return self
     }
+
     /**
      * addItem can be used to add the item promo is being applied to. This log can
      * be used to add one item to the log at a time. Promo item should be in a valid format.
@@ -88,9 +88,10 @@ public class CfLogPromoEvent {
     @discardableResult
     public func addItem(itemModel: PromoItemObject) -> CfLogPromoEvent {
         LoyaltyConstants.isItemTypeObjectValid(itemValue: itemModel, eventType: LoyaltyEventType.promo)
-        self.promo_items_list.append(itemModel)
+        promo_items_list.append(itemModel)
         return self
     }
+
     /**
      * setItem can be used to pass the whole item as a Json String object as well. You can use
      * the POJO ItemModel to parse the data int he required format and pass that to this
@@ -100,12 +101,13 @@ public class CfLogPromoEvent {
      */
     @discardableResult
     public func addItem(itemJsonString: String) -> CfLogPromoEvent {
-        if let item = try? JSONDecoder().decode(PromoItemObject.self, from: itemJsonString.data(using: .utf8)!) {
+        if let item = try? JSONDecoder.new.decode(PromoItemObject.self, from: itemJsonString.data(using: .utf8)!) {
             LoyaltyConstants.isItemTypeObjectValid(itemValue: item, eventType: LoyaltyEventType.promo)
-            self.promo_items_list.append(item)
+            promo_items_list.append(item)
         }
         return self
     }
+
     /**
      * addItemList can be used to add the whole list to the log at once, the format should be
      * ArrayList<PromoItemObject> to log the event successfully. Order item should be in a
@@ -117,9 +119,10 @@ public class CfLogPromoEvent {
         for promoItem in itemList {
             LoyaltyConstants.isItemTypeObjectValid(itemValue: promoItem, eventType: LoyaltyEventType.promo)
         }
-        self.promo_items_list.append(contentsOf: itemList)
+        promo_items_list.append(contentsOf: itemList)
         return self
     }
+
     /**
      * addItemList can be used to add the whole list to the log at once, the format should be
      * ArrayList<PromoItemObject> to log the event successfully. But the input param is of type
@@ -130,14 +133,15 @@ public class CfLogPromoEvent {
      */
     @discardableResult
     public func addItemList(itemListString: String) -> CfLogPromoEvent {
-        if let data = itemListString.data(using: .utf8), let itemModels = try? JSONDecoder().decode([PromoItemObject].self, from: data) {
+        if let data = itemListString.data(using: .utf8), let itemModels = try? JSONDecoder.new.decode([PromoItemObject].self, from: data) {
             for promoItem in itemModels {
                 LoyaltyConstants.isItemTypeObjectValid(itemValue: promoItem, eventType: LoyaltyEventType.promo)
             }
-            self.promo_items_list.append(contentsOf: itemModels)
+            promo_items_list.append(contentsOf: itemModels)
         }
         return self
     }
+
     /**
      * You can pass any type of value in setMeta. It is for developer and partners to log
      * additional information with the log that they find would be helpful for logging and
@@ -148,7 +152,7 @@ public class CfLogPromoEvent {
         self.meta = meta
         return self
     }
-    
+
     /**
      * updateImmediately is responsible for updating the values ot the backend immediately.
      * By default this is set to false or whatever the developer has set in the SDK
@@ -161,6 +165,7 @@ public class CfLogPromoEvent {
         self.update_immediately = update_immediately
         return self
     }
+
     /**
      * build will validate all of the values provided and if passes will call the track
      * function and queue the events based on it's updateImmediately value and also on the
@@ -172,7 +177,7 @@ public class CfLogPromoEvent {
          * provided at all.
          */
         guard let promo_id = promo_id, !promo_id.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.promo.rawValue, elementName:"promo_id")
+            ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.promo.rawValue, elementName: "promo_id")
             return
         }
         /**
@@ -187,12 +192,12 @@ public class CfLogPromoEvent {
          * Will throw and exception if the promo_type provided is null or no value is
          * provided at all.
          */
-        
+
         guard let promo_type = promo_type, !promo_type.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: String(describing: LoyaltyEventType.promo.rawValue), elementName: "promo_type")
             return
         }
-        
+
         /**
          * Parsing the values into an object and passing to the setup block to queue
          * the event based on its priority.
@@ -202,10 +207,9 @@ public class CfLogPromoEvent {
             promo_action: promo_action,
             promo_title: CoreConstants.shared.checkIfNull(promo_title),
             promo_type: promo_type,
-            promo_items_list:promo_items_list,
+            promo_items_list: promo_items_list,
             meta: meta as? Encodable
         )
-      CFSetup().track(contentBlockName: LoyaltyConstants.contentBlockName, eventType:  LoyaltyEventType.promo.rawValue, logObject: promoObject, updateImmediately: update_immediately)
+        CFSetup().track(contentBlockName: LoyaltyConstants.contentBlockName, eventType: LoyaltyEventType.promo.rawValue, logObject: promoObject, updateImmediately: update_immediately)
     }
 }
-

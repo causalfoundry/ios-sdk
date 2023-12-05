@@ -6,7 +6,7 @@
 //
 import Foundation
 
-internal struct SubmitEnrolmentEventObject: Codable {
+struct SubmitEnrolmentEventObject: Codable {
     var patientId: String
     var siteId: String
     var action: String
@@ -15,7 +15,7 @@ internal struct SubmitEnrolmentEventObject: Codable {
     var diagnosisResultsList: [DiagnosisItem]
     var treatmentPlanList: [TreatmentPlanItem]
     var meta: Encodable?
-    
+
     enum CodingKeys: String, CodingKey {
         case patientId = "patient_id"
         case siteId = "site_id"
@@ -26,8 +26,7 @@ internal struct SubmitEnrolmentEventObject: Codable {
         case treatmentPlanList = "treatment_plan_list"
         case meta
     }
-    
-    
+
     init(patientId: String, siteId: String, action: String, patientStatusList: [PatientStatusItem], diagnosisValuesList: [DiagnosisItem], diagnosisResultsList: [DiagnosisItem], treatmentPlanList: [TreatmentPlanItem], meta: Encodable? = nil) {
         self.patientId = patientId
         self.siteId = siteId
@@ -38,6 +37,7 @@ internal struct SubmitEnrolmentEventObject: Codable {
         self.treatmentPlanList = treatmentPlanList
         self.meta = meta
     }
+
     // Encoding to JSON
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -51,9 +51,8 @@ internal struct SubmitEnrolmentEventObject: Codable {
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
-        
     }
-    
+
 //    // Decoding from JSON
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

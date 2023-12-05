@@ -5,8 +5,8 @@
 //  Created by khushbu on 01/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
+import Foundation
 
 public class CfLogItemReportEvent {
     /**
@@ -17,11 +17,9 @@ public class CfLogItemReportEvent {
     var report_object: ReportObject?
     var meta: Any?
     var update_immediately: Bool = CoreConstants.shared.updateImmediately
-    
-    
-    public init() {
-        
-    }
+
+    public init() {}
+
     /**
      * setItem is for the providing item Id and type for the item in question.
      * The object should be based on the ItemTypeModel or a string that can be
@@ -41,6 +39,7 @@ public class CfLogItemReportEvent {
         }
         return self
     }
+
     /**
      * setItem is for the providing item Id and type for the item in question.
      * The object should be based on the ItemTypeModel or a string that can be
@@ -48,12 +47,13 @@ public class CfLogItemReportEvent {
      * the SDK will throw an exception. Below is the function for providing item as a string.
      */
     @discardableResult
-    public func setItem(item_object: String) -> CfLogItemReportEvent  {
-        if let item = try? JSONDecoder().decode(ItemTypeModel.self, from: item_object.data(using: .utf8)!) {
+    public func setItem(item_object: String) -> CfLogItemReportEvent {
+        if let item = try? JSONDecoder.new.decode(ItemTypeModel.self, from: item_object.data(using: .utf8)!) {
             setItem(item_object: item)
         }
         return self
     }
+
     /**
      * setStoreObject is for the providing store object details for the item report if any.
      * The object should be based on the StoreObject or a string that can be
@@ -65,15 +65,16 @@ public class CfLogItemReportEvent {
         self.store_object = store_object
         return self
     }
-    
+
     // Set store object using JSON string
     @discardableResult
-    public func setStoreObject(store_object: String)-> CfLogItemReportEvent {
-        if let store = try? JSONDecoder().decode(StoreObject.self, from: store_object.data(using: .utf8)!) {
+    public func setStoreObject(store_object: String) -> CfLogItemReportEvent {
+        if let store = try? JSONDecoder.new.decode(StoreObject.self, from: store_object.data(using: .utf8)!) {
             setStoreObject(store_object: store)
         }
         return self
     }
+
     /**
      * setReportObject is for the providing report object details for the item report if any.
      * The object should be based on the ReportObject or a string that can be
@@ -81,19 +82,20 @@ public class CfLogItemReportEvent {
      * the SDK will throw an exception. Below is the function for providing item as a string.
      */
     @discardableResult
-    public func setReportObject(report_object: ReportObject)-> CfLogItemReportEvent {
+    public func setReportObject(report_object: ReportObject) -> CfLogItemReportEvent {
         self.report_object = report_object
         return self
     }
-    
+
     // Set report object using JSON string
     @discardableResult
     public func setReportObject(report_object: String) -> CfLogItemReportEvent {
-        if let report = try? JSONDecoder().decode(ReportObject.self, from: report_object.data(using: .utf8)!) {
+        if let report = try? JSONDecoder.new.decode(ReportObject.self, from: report_object.data(using: .utf8)!) {
             setReportObject(report_object: report)
         }
         return self
     }
+
     /**
      * You can pass any type of value in setMeta. It is for developer and partners to log
      * additional information with the log that they find would be helpful for logging and
@@ -104,6 +106,7 @@ public class CfLogItemReportEvent {
         self.meta = meta
         return self
     }
+
     /**
      * updateImmediately is responsible for updating the values ot the backend immediately.
      * By default this is set to false or whatever the developer has set in the SDK
@@ -112,11 +115,11 @@ public class CfLogItemReportEvent {
      * session which is whenever the app goes into background.
      */
     @discardableResult
-    public func updateImmediately(update_immediately: Bool)-> CfLogItemReportEvent  {
+    public func updateImmediately(update_immediately: Bool) -> CfLogItemReportEvent {
         self.update_immediately = update_immediately
         return self
     }
-    
+
     /**
      * build will validate all of the values provided and if passes will call the track
      * function and queue the events based on it's updateImmediately value and also on the
@@ -130,7 +133,7 @@ public class CfLogItemReportEvent {
             )
             return
         }
-        
+
         guard let store_object = store_object else {
             ExceptionManager.throwIsRequiredException(
                 eventType: EComEventType.itemReport.rawValue,
@@ -145,7 +148,7 @@ public class CfLogItemReportEvent {
             )
             return
         }
-        
+
         guard !store_object.id.isEmpty else {
             ExceptionManager.throwIsRequiredException(
                 eventType: EComEventType.itemReport.rawValue,
@@ -153,7 +156,7 @@ public class CfLogItemReportEvent {
             )
             return
         }
-        
+
         guard !report_object.id.isEmpty, !report_object.short_desc.isEmpty else {
             ExceptionManager.throwIsRequiredException(
                 eventType: EComEventType.itemReport.rawValue,
@@ -161,14 +164,14 @@ public class CfLogItemReportEvent {
             )
             return
         }
-        
+
         let itemReportObject = ItemReportObject(
             item: item_object,
             store_info: store_object,
             report_info: report_object,
             meta: meta as? Encodable
         )
-        
+
         CFSetup().track(
             contentBlockName: ECommerceConstants.contentBlockName,
             eventType: EComEventType.itemReport.rawValue,
@@ -177,5 +180,3 @@ public class CfLogItemReportEvent {
         )
     }
 }
-
-

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct InternalBloodCatalogModel: Codable {
     var id: String?
     var market_id: String?
@@ -69,4 +68,3 @@ struct InternalBloodCatalogModel: Codable {
         try container.encode(supplier_name, forKey: .supplier_name)
     }
 }
-

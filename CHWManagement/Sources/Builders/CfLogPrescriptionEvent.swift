@@ -5,27 +5,23 @@
 //  Created by khushbu on 03/11/23.
 //
 
-import Foundation
 import CasualFoundryCore
-
+import Foundation
 
 public class CfLogPrescriptionEvent {
     /**
      * CfLogPrescriptionEvent is required to log events related to view, add, update, or removing
      * the prescription items value for the patient in question.
      */
-    var patientId: String? = nil
-    var siteId: String? = nil
-    var prescriptionId: String? = nil
+    var patientId: String?
+    var siteId: String?
+    var prescriptionId: String?
     var prescriptionList: [PrescriptionItem] = []
-    var meta: Any? = nil
+    var meta: Any?
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
-    
-    public init(){
-        
-    }
-    
-    
+
+    public init() {}
+
     /**
      * setPatientId is for providing the id for the patient whose treatment plan elements
      * are in question.
@@ -35,7 +31,7 @@ public class CfLogPrescriptionEvent {
         self.patientId = patientId
         return self
     }
-    
+
     /**
      * setSiteId is for providing the id for the site where treatment plan elements
      * are concluded.
@@ -45,7 +41,7 @@ public class CfLogPrescriptionEvent {
         self.siteId = siteId
         return self
     }
-    
+
     /**
      * setPrescriptionId is for providing the id for the prescription if there
      * is more than one values in the app database. In case there is nothing available for
@@ -57,7 +53,7 @@ public class CfLogPrescriptionEvent {
         self.prescriptionId = prescriptionId
         return self
     }
-    
+
     /**
      * addPrescriptionItem is for providing one prescription item at a time.
      * The item should be based on the prescription item object or a string that can be
@@ -66,10 +62,10 @@ public class CfLogPrescriptionEvent {
      */
     @discardableResult
     public func addPrescriptionItem(_ prescriptionItem: PrescriptionItem) -> CfLogPrescriptionEvent {
-        self.prescriptionList.append(prescriptionItem)
+        prescriptionList.append(prescriptionItem)
         return self
     }
-    
+
     /**
      * addPrescriptionItem is for providing one prescription item at a time.
      * The item should be based on the prescription item object or a string that can be
@@ -78,12 +74,12 @@ public class CfLogPrescriptionEvent {
      */
     @discardableResult
     public func addPrescriptionItem(_ prescriptionItem: String) -> CfLogPrescriptionEvent {
-        if let item = try? JSONDecoder().decode(PrescriptionItem.self, from: Data(prescriptionItem.utf8)) {
-            self.prescriptionList.append(item)
+        if let item = try? JSONDecoder.new.decode(PrescriptionItem.self, from: Data(prescriptionItem.utf8)) {
+            prescriptionList.append(item)
         }
         return self
     }
-    
+
     /**
      * setPrescriptionList is for providing prescription items as a list.
      * The items should be based on the prescription item object or a string that can be
@@ -95,7 +91,7 @@ public class CfLogPrescriptionEvent {
         self.prescriptionList = prescriptionList
         return self
     }
-    
+
     /**
      * setPrescriptionList is for providing prescription items as a list in a string.
      * The items should be based on the prescription object or a string that can
@@ -105,16 +101,15 @@ public class CfLogPrescriptionEvent {
     @discardableResult
     public func setPrescriptionList(_ prescriptionList: String) -> CfLogPrescriptionEvent {
         if !prescriptionList.isEmpty {
-            
             if let data = prescriptionList.data(using: .utf8),
-               let items = try? JSONDecoder().decode([PrescriptionItem].self, from: data) {
+               let items = try? JSONDecoder.new.decode([PrescriptionItem].self, from: data)
+            {
                 self.prescriptionList = items
             }
-            
         }
         return self
     }
-    
+
     /**
      * You can pass any type of value in setMeta. It is for developers and partners to log
      * additional information with the log that they find would be helpful for logging and
@@ -125,7 +120,7 @@ public class CfLogPrescriptionEvent {
         self.meta = meta
         return self
     }
-    
+
     /**
      * updateImmediately is responsible for updating the values of the backend immediately.
      * By default, this is set to false or whatever the developer has set in the SDK
@@ -138,7 +133,7 @@ public class CfLogPrescriptionEvent {
         self.updateImmediately = updateImmediately
         return self
     }
-    
+
     /**
      * build will validate all the values provided and, if they pass, will call the track
      * function and queue the events based on its updateImmediately value and also on the
@@ -149,63 +144,61 @@ public class CfLogPrescriptionEvent {
          * Will throw and exception if the patient_id provided is null or no action is
          * provided at all.
          */
-        guard let patiendID =  patientId else {
-            ExceptionManager.throwIsRequiredException(eventType:ChwMgmtEventType.prescription.rawValue, elementName:"patient_id")
+        guard let patiendID = patientId else {
+            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName: "patient_id")
             return
-            
         }
         /**
          * Will throw and exception if the site_id provided is null or no action is
          * provided at all.
          */
-        guard let siteID =  siteId else  {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName:  "site_id")
+        guard let siteID = siteId else {
+            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName: "site_id")
             return
         }
         /**
          * Will throw and exception if the action provided is null or no action is
          * provided at all.
          */
-        guard let presciptionID =  prescriptionId else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName:  "prescription_id")
+        guard let presciptionID = prescriptionId else {
+            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName: "prescription_id")
             return
         }
-        
-        
+
         /**
          * Will throw and exception if the action provided is null or no action is
          * provided at all.
          */
-        
-        if  prescriptionList.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType:ChwMgmtEventType.prescription.rawValue, elementName: "prescription_list")
-        }else {
+
+        if prescriptionList.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName: "prescription_list")
+        } else {
             /**
              * Parsing the values into an object and passing to the setup block to queue
              * the event based on its priority.
              */
-            
+
             for item in prescriptionList {
                 if item.drugId.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType:  ChwMgmtEventType.prescription.rawValue, elementName:  "drug_id")
-                    
+                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName: "drug_id")
+
                 } else if item.name.isEmpty {
                     ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName: "name")
                 } else if !CoreConstants.shared.enumContains(PrescriptionItemType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.prescription.rawValue, className:  String(describing: PrescriptionItemType.self))
+                    ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.prescription.rawValue, className: String(describing: PrescriptionItemType.self))
                 } else if !CoreConstants.shared.enumContains(PrescriptionItemFrequency.self, name: item.frequency) {
-                    ExceptionManager.throwEnumException(eventType:  ChwMgmtEventType.prescription.rawValue, className: String(describing:PrescriptionItemFrequency.self))
+                    ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.prescription.rawValue, className: String(describing: PrescriptionItemFrequency.self))
                 } else if !CoreConstants.shared.enumContains(ItemAction.self, name: item.action) {
-                    ExceptionManager.throwEnumException(eventType:  ChwMgmtEventType.prescription.rawValue, className: String(describing: ItemAction.self))
+                    ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.prescription.rawValue, className: String(describing: ItemAction.self))
                 } else if item.dosageValue < 0.0 {
-                    ExceptionManager.throwInvalidException(eventType:  ChwMgmtEventType.prescription.rawValue, paramName:  "dosage_value", className:String(describing:CfLogPrescriptionEvent.self))
+                    ExceptionManager.throwInvalidException(eventType: ChwMgmtEventType.prescription.rawValue, paramName: "dosage_value", className: String(describing: CfLogPrescriptionEvent.self))
                 } else if item.dosageUnit.isEmpty {
                     ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName: "dosage_unit")
                 } else if item.prescribedDays < 0 {
-                    ExceptionManager.throwInvalidException(eventType: ChwMgmtEventType.prescription.rawValue, paramName: "prescribed_days", className:String(describing:CfLogPrescriptionEvent.self))
+                    ExceptionManager.throwInvalidException(eventType: ChwMgmtEventType.prescription.rawValue, paramName: "prescribed_days", className: String(describing: CfLogPrescriptionEvent.self))
                 }
             }
-            
+
             let prescriptionEventObject = PrescriptionEventObject(
                 patientId: patientId!,
                 siteId: siteId!,
@@ -219,11 +212,6 @@ public class CfLogPrescriptionEvent {
                 logObject: prescriptionEventObject,
                 updateImmediately: updateImmediately
             )
-            
         }
-        
-        
-        
     }
-    
 }

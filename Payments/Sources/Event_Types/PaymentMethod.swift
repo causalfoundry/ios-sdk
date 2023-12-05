@@ -4,11 +4,10 @@
 //
 //  Created by khushbu on 02/11/23.
 
-
-import Foundation
 import CasualFoundryCore
+import Foundation
 
-public enum PaymentMethod: String ,Codable,EnumComposable{
+public enum PaymentMethod: String, Codable, EnumComposable {
     case bank_transfer
     case cheque
     case cod
@@ -17,4 +16,3 @@ public enum PaymentMethod: String ,Codable,EnumComposable{
     case bank_card
     case other
 }
-

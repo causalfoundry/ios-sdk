@@ -1,7 +1,6 @@
 import XCTest
 
 class CfLogSurveyEventTests: XCTestCase {
-
     func testSetActionWithEnum() {
         let cfLogSurveyEvent = CfLogSurveyEvent()
         let result = cfLogSurveyEvent.setAction(action: SurveyAction.view)
@@ -170,5 +169,3 @@ class CfLogSurveyEventTests: XCTestCase {
         cfLogSurveyEvent.build()
     }
 }
-
-

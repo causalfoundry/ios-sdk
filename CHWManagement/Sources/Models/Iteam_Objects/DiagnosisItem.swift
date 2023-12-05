@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct DiagnosisItem: Codable {
     var type: String
     var value: String

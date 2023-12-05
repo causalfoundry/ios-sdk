@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct ItemImpressionModel: Codable {
     var item_properties: ItemModel
     var catalog_properties: Any?
@@ -26,7 +25,7 @@ struct ItemImpressionModel: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         item_properties = try container.decode(ItemModel.self, forKey: .item_properties)
-        
+
         if let catalog_properties = try? container.decode(DrugCatalogModel.self, forKey: .catalog_properties) {
             self.catalog_properties = catalog_properties
         } else if let catalog_properties = try? container.decode(GroceryCatalogModel.self, forKey: .catalog_properties) {
@@ -62,7 +61,5 @@ struct ItemImpressionModel: Codable {
         } else if let catalog_properties = catalog_properties as? MedicalEquipmentCatalogModel {
             try container.encode(catalog_properties, forKey: .catalog_properties)
         }
-
     }
 }
-

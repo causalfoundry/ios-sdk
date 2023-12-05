@@ -7,13 +7,12 @@
 
 import Foundation
 
-
 enum EComEventType: String {
     // E Commerce
-    case item = "item"
-    case delivery = "delivery"
-    case checkout = "checkout"
-    case cart = "cart"
+    case item
+    case delivery
+    case checkout
+    case cart
     case scheduleDelivery = "schedule_delivery"
     case cancelCheckout = "cancel_checkout"
     case itemReport = "item_report"
