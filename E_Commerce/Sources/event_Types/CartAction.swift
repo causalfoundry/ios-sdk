@@ -9,6 +9,6 @@ import CasualFoundryCore
 import Foundation
 
 public enum CartAction: String, Codable, EnumComposable {
-    case addItem
-    case removeItem
+    case add_item
+    case remove_item
 }

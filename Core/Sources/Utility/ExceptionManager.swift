@@ -246,7 +246,7 @@ public enum ExceptionManager {
 
         if CoreConstants.shared.isDebugMode, CoreConstants.shared.isAppDebuggable {
             // Handle debug mode throwing exception
-            // fatalError(stackTrace.localizedDescription)
+            fatalError(stackTrace.localizedDescription)
         }
     }
 }

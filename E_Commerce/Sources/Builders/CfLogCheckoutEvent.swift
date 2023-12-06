@@ -9,15 +9,15 @@ public class CfLogCheckoutEvent {
      * that order.
      */
 
-    var order_id: String?
-    var cart_id: String?
-    var is_successful: Bool = true
-    var price_value: Float?
-    var currency_value: String?
-    var shop_mode: String = ShopMode.delivery.rawValue
-    var item_list: [ItemModel] = []
-    var meta: Any?
-    var update_immediately: Bool = CoreConstants.shared.updateImmediately
+    var orderId: String = ""
+    var cartId: String = ""
+    var isSuccessfulValue: Bool = true
+    var priceValue: Float = 0
+    var currencyValue: String = ""
+    var shopMode: String = ShopMode.delivery.rawValue
+    var itemList: [ItemModel] = []
+    var meta: Any? = nil
+    var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
     private var checkoutObject: CheckoutObject?
 
@@ -30,8 +30,8 @@ public class CfLogCheckoutEvent {
      * placement details.
      */
     @discardableResult
-    public func setOrderId(order_id: String) -> CfLogCheckoutEvent {
-        self.order_id = order_id
+    public func setOrderId(orderId: String) -> CfLogCheckoutEvent {
+        self.orderId = orderId
         return self
     }
 
@@ -40,8 +40,8 @@ public class CfLogCheckoutEvent {
      * include the unique cartId for the cart items so that they can be tracked.
      */
     @discardableResult
-    public func setCartId(cart_id: String) -> CfLogCheckoutEvent {
-        self.cart_id = cart_id
+    public func setCartId(cartId: String) -> CfLogCheckoutEvent {
+        self.cartId = cartId
         return self
     }
 
@@ -50,8 +50,8 @@ public class CfLogCheckoutEvent {
      * order placement is not successful.
      */
     @discardableResult
-    public func isSuccessful(is_successful: Bool) -> CfLogCheckoutEvent {
-        self.is_successful = is_successful
+    public func isSuccessful(isSuccessfulValue: Bool) -> CfLogCheckoutEvent {
+        self.isSuccessfulValue = isSuccessfulValue
         return self
     }
 
@@ -60,20 +60,8 @@ public class CfLogCheckoutEvent {
      * should be in accordance to the currency selected.
      */
     @discardableResult
-    public func setPrice(price: Float) -> CfLogCheckoutEvent {
-        price_value = ((price * 100.0).rounded() / 100.0)
-        return self
-    }
-
-    @discardableResult
-    public func setPrice(price: Int?) -> CfLogCheckoutEvent {
-        price_value = price != nil ? Float(price!) : nil
-        return self
-    }
-
-    @discardableResult
-    public func setPrice(price: Double) -> CfLogCheckoutEvent {
-        price_value = Float((price * 100.0).rounded() / 100.0)
+    public func setPrice(priceValue: Float) -> CfLogCheckoutEvent {
+        self.priceValue = ((priceValue * 100.0).rounded() / 100.0)
         return self
     }
 
@@ -83,9 +71,9 @@ public class CfLogCheckoutEvent {
      * would be easy to log. You can also use the string function to provide the currency.
      */
     @discardableResult
-    public func setCurrency(currency: String) -> CfLogCheckoutEvent {
-        if CoreConstants.shared.enumContains(InternalCurrencyCode.self, name: currency) {
-            currency_value = currency
+    public func setCurrency(currencyValue: String) -> CfLogCheckoutEvent {
+        if CoreConstants.shared.enumContains(InternalCurrencyCode.self, name: currencyValue) {
+            self.currencyValue = currencyValue
         } else {
             ExceptionManager.throwEnumException(eventType: EComEventType.checkout.rawValue, className: "CurrencyCode")
         }
@@ -100,7 +88,7 @@ public class CfLogCheckoutEvent {
      */
     @discardableResult
     public func setShopMode(shopMode: ShopMode) -> CfLogCheckoutEvent {
-        shop_mode = shopMode.rawValue
+        self.shopMode = shopMode.rawValue
         return self
     }
 
@@ -113,7 +101,7 @@ public class CfLogCheckoutEvent {
     @discardableResult
     public func setShopMode(shopMode: String) -> CfLogCheckoutEvent {
         if CoreConstants.shared.enumContains(ShopMode.self, name: shopMode) {
-            shop_mode = shopMode
+            self.shopMode = shopMode
         } else {
             ExceptionManager.throwEnumException(eventType: EComEventType.checkout.rawValue, className: "ShopMode")
         }
@@ -131,8 +119,10 @@ public class CfLogCheckoutEvent {
      */
     @discardableResult
     public func addItem(itemModel: ItemModel) -> CfLogCheckoutEvent {
-        ECommerceConstants.isItemValueObjectValid(itemValue: itemModel, eventType: EComEventType.checkout)
-        item_list.append(itemModel)
+        if(!ECommerceConstants.isItemValueObjectValid(itemValue: itemModel, eventType: EComEventType.checkout)){
+            return self
+        }
+        self.itemList.append(itemModel)
         return self
     }
 
@@ -148,7 +138,6 @@ public class CfLogCheckoutEvent {
         if let data = itemJsonString.data(using: .utf8),
            var item = try? JSONDecoder.new.decode(ItemModel.self, from: data)
         {
-            item_list.append(item)
             if item.type == ItemType.blood.rawValue {
                 let bloodMetaModel = try? JSONDecoder.new.decode(BloodMetaModel.self, from: data)
                 item.meta = bloodMetaModel
@@ -156,7 +145,10 @@ public class CfLogCheckoutEvent {
                 let oxygenMetaModel = try? JSONDecoder.new.decode(OxygenMetaModel.self, from: data)
                 item.meta = oxygenMetaModel
             }
-            ECommerceConstants.isItemValueObjectValid(itemValue: item, eventType: EComEventType.checkout)
+            if(!ECommerceConstants.isItemValueObjectValid(itemValue: item, eventType: EComEventType.checkout)){
+                return self
+            }
+            self.itemList.append(item)
         } else {
             // Handle JSON parsing error
         }
@@ -175,9 +167,11 @@ public class CfLogCheckoutEvent {
     @discardableResult
     public func addItemList(itemList: [ItemModel]) -> CfLogCheckoutEvent {
         for item in itemList {
-            ECommerceConstants.isItemValueObjectValid(itemValue: item, eventType: EComEventType.checkout)
+            if(!ECommerceConstants.isItemValueObjectValid(itemValue: item, eventType: EComEventType.checkout)){
+                return self
+            }
         }
-        item_list.append(contentsOf: itemList)
+        self.itemList.append(contentsOf: itemList)
         return self
     }
 
@@ -197,19 +191,20 @@ public class CfLogCheckoutEvent {
         if let data = itemListString.data(using: .utf8),
            let itemModels = try? JSONDecoder.new.decode([ItemModel].self, from: data)
         {
-            var itemList = itemModels
-            for item in itemList {
-                var dataItem = item
+            for index in itemModels.indices {
+                var item = itemModels[index]
                 if item.type == ItemType.blood.rawValue {
                     let bloodMetaModel = try? JSONDecoder.new.decode(BloodMetaModel.self, from: data)
-                    dataItem.meta = bloodMetaModel
+                    item.meta = bloodMetaModel
                 } else if item.type == ItemType.oxygen.rawValue {
                     let oxygenMetaModel = try? JSONDecoder.new.decode(OxygenMetaModel.self, from: data)
-                    dataItem.meta = oxygenMetaModel
+                    item.meta = oxygenMetaModel
                 }
-                ECommerceConstants.isItemValueObjectValid(itemValue: dataItem, eventType: EComEventType.checkout)
+                if(!ECommerceConstants.isItemValueObjectValid(itemValue: item, eventType: EComEventType.checkout)){
+                    return self
+                }
             }
-            item_list.append(contentsOf: itemList)
+            self.itemList.append(contentsOf: itemModels)
         } else {
             // Handle JSON parsing error
         }
@@ -235,8 +230,8 @@ public class CfLogCheckoutEvent {
      * session, which is whenever the app goes into the background.
      */
     @discardableResult
-    public func updateImmediately(update_immediately: Bool) -> CfLogCheckoutEvent {
-        self.update_immediately = update_immediately
+    public func updateImmediately(updateImmediately: Bool) -> CfLogCheckoutEvent {
+        self.updateImmediately = updateImmediately
         return self
     }
 
@@ -246,41 +241,47 @@ public class CfLogCheckoutEvent {
      * user's network resources.
      */
     public func build() {
-        guard let order_id = order_id, let cart_id = cart_id,
-              let price_value = price_value, let currency_value = currency_value
-        else {
-            // Required parameters are missing.
-            fatalError("Required parameters are missing.")
+        
+        if orderId.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "orderId")
+            return
+        }else if cartId.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "cartId")
+            return
+        }else if priceValue < 0 {
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "cartPrice")
+            return
+        }else if shopMode.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "shopMode")
+            return
+        }else if currencyValue.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: String(describing: InternalCurrencyCode.self))
+            return
+        }else if(itemList.isEmpty){
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "itemList")
+            return
         }
-
-        var checkoutObject = CheckoutObject(order_id: order_id,
-                                            cart_id: cart_id,
-                                            is_successful: is_successful,
-                                            cart_price: price_value,
-                                            currency: currency_value,
-                                            shopMode: shop_mode,
-                                            items: item_list,
-                                            meta: meta as? Encodable)
-
-        if currency_value == InternalCurrencyCode.USD.rawValue {
-            checkoutObject.usd_rate = 1.0
-            CFSetup().track(
-                contentBlockName: ECommerceConstants.contentBlockName,
-                eventType: EComEventType.checkout.rawValue,
-                logObject: checkoutObject,
-                updateImmediately: update_immediately
-            )
-        } else {
-            CFSetup().getUSDRate(fromCurrency: currency_value) { usdRate in
-                checkoutObject.usd_rate = Float(usdRate)
-                CFSetup().track(
-                    contentBlockName: ECommerceConstants.contentBlockName,
-                    eventType: EComEventType.checkout.rawValue,
-                    logObject: checkoutObject,
-                    updateImmediately: self.update_immediately
-                )
-                return checkoutObject.usd_rate!
+        
+        for itemValue in itemList {
+            if (currencyValue != itemValue.currency) {
+                ExceptionManager.throwCurrencyNotSameException(eventType: EComEventType.cart.rawValue, valueName: "checkout")
             }
         }
+
+        let checkoutObject = CheckoutObject(orderId: orderId,
+                                            cartId: cartId,
+                                            isSuccessful: isSuccessfulValue,
+                                            cartPrice: priceValue,
+                                            currency: currencyValue,
+                                            shopMode: shopMode,
+                                            items: itemList,
+                                            meta: meta as? Encodable)
+        
+        CFSetup().track(
+            contentBlockName: ECommerceConstants.contentBlockName,
+            eventType: EComEventType.checkout.rawValue,
+            logObject: checkoutObject,
+            updateImmediately: updateImmediately
+        )
     }
 }

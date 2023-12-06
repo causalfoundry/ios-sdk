@@ -14,11 +14,11 @@ public class CfLogItemEvent {
      * and when an item's detail is viewed.
      */
 
-    var itemActionValue: String?
-    var itemValue: ItemModel = .init(id: "", quantity: 1, price: -1.0, currency: "", type: "", stockStatus: nil, promoId: "", facilityId: nil)
-    var searchId: String?
-    var catalogModel: Any?
-    var meta: Any?
+    var itemActionValue: String = ""
+    var itemValue: ItemModel = ItemModel(id: "", type: "", quantity: 1, price: -1.0, currency: "")
+    var searchId: String = ""
+    var catalogModel: Any? = nil
+    var meta: Any? = nil
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
     public init() {}
@@ -56,133 +56,6 @@ public class CfLogItemEvent {
     }
 
     /**
-     * setItemId is required to log the Id for item the events are being logged. Details
-     * about the item are to be provided in the catalog for more details about the item.
-     */
-    @discardableResult
-    public func setItemId(_ itemId: String) -> CfLogItemEvent {
-        itemValue.id = itemId
-        return self
-    }
-
-    /**
-     * setItemQuantity is required to log the quantity for item the events are being logged. Details
-     * about the item are to be provided in the catalog for more details about the item.
-     */
-    @discardableResult
-    public func setItemQuantity(_ itemQuantity: Int) -> CfLogItemEvent {
-        itemValue.quantity = itemQuantity
-        return self
-    }
-
-    /**
-     * setItemPrice is required to log the price for item the events are being logged. Details
-     * about the item are to be provided in the catalog for more details about the item.
-     */
-    @discardableResult
-    public func setItemPrice(_ itemPrice: Float) -> CfLogItemEvent {
-        itemValue.price = ((itemPrice * 100.0).rounded() / 100.0)
-        return self
-    }
-
-    @discardableResult
-    public func setItemPrice(_ itemPrice: Int) -> CfLogItemEvent {
-        itemValue.price = Float(itemPrice)
-        return self
-    }
-
-    @discardableResult
-    public func setItemPrice(_ itemPrice: Double) -> CfLogItemEvent {
-        itemValue.price = Float((itemPrice * 100.0).rounded() / 100.0)
-        return self
-    }
-
-    /**
-     * setItemCurrency is required to log the currency for item the events are being logged. Details
-     * about the item are to be provided in the catalog for more details about the item.
-     */
-    //    @discardableResult
-    //    public func setItemCurrency(_ currencyCode: CurrencyCode) -> CfLogItemEvent {
-    //        self.itemCurrency = currencyCode.rawValue
-    //        return self
-    //    }
-
-    @discardableResult
-    public func setItemCurrency(_ currencyCode: String) -> CfLogItemEvent {
-        if CoreConstants.shared.enumContains(InternalCurrencyCode.self, name: currencyCode) {
-            itemValue.currency = currencyCode
-        } else {
-            ExceptionManager.throwEnumException(eventType: EComEventType.item.rawValue, className: String(describing: InternalCurrencyCode.self))
-        }
-        return self
-    }
-
-    /**
-     * setItemType is required to log the type for item the events are being
-     * logged. Details about the item are to be provided in the catalog for more details about
-     * the item.
-     */
-    @discardableResult
-    public func setItemType(_ itemType: ItemType) -> CfLogItemEvent {
-        itemValue.type = itemType.rawValue
-        return self
-    }
-
-    @discardableResult
-    public func setItemType(_ itemType: String) -> CfLogItemEvent {
-        if CoreConstants.shared.enumContains(ItemType.self, name: itemType) {
-            itemValue.type = itemType
-        } else {
-            ExceptionManager.throwEnumException(eventType: EComEventType.item.rawValue, className: String(describing: ItemType.self))
-        }
-        return self
-    }
-
-    /**
-     * setItemStockStatus is required to log the stock status for item the events are being
-     * logged. Details about the item are to be provided in the catalog for more details about
-     * the item.
-     */
-    @discardableResult
-    public func setItemStockStatus(_ stockStatus: ItemStockStatus) -> CfLogItemEvent {
-        itemValue.stockStatus = stockStatus.rawValue
-        return self
-    }
-
-    @discardableResult
-    public func setItemStockStatus(_ stockStatus: String) -> CfLogItemEvent {
-        if CoreConstants.shared.enumContains(ItemStockStatus.self, name: stockStatus) {
-            itemValue.stockStatus = stockStatus
-        } else {
-            ExceptionManager.throwEnumException(eventType: EComEventType.item.rawValue, className: String(describing: ItemStockStatus.self))
-        }
-        return self
-    }
-
-    /**
-     * setItemPromoId is required to log the promo Id for item the events are being
-     * logged. Details about the item are to be provided in the catalog for more details about
-     * the item. If there is no promo associated with the product, you do not need to pass it.
-     */
-    @discardableResult
-    public func setItemPromoId(_ promoId: String) -> CfLogItemEvent {
-        itemValue.promoId = promoId
-        return self
-    }
-
-    /**
-     * setItemFacilityId is required to log the facility Id for item the events are being
-     * logged. Details about the item are to be provided in the facility catalog for more
-     * details about the item. If there is no facility associated with the product,
-     * you do not need to pass it. Facility here refers to the hospital, clinic, pharmacy, etc.
-     */
-    @discardableResult
-    public func setItemFacilityId(_ facilityId: String) -> CfLogItemEvent {
-        itemValue.facilityId = facilityId
-        return self
-    }
-
-    /**
      * setItem can be used to pass the whole item as an object as well. You can use the POJO
      * ItemModel to parse the data int he required format and pass that to this function to
      * log the event.
@@ -216,7 +89,7 @@ public class CfLogItemEvent {
      * the app.
      */
     @discardableResult
-    public func setSearchId(_ searchId: String?) -> CfLogItemEvent {
+    public func setSearchId(_ searchId: String) -> CfLogItemEvent {
         self.searchId = searchId
         return self
     }
@@ -264,30 +137,24 @@ public class CfLogItemEvent {
     }
 
     public func build() {
-        if itemActionValue?.isEmpty ?? true {
+        if itemActionValue.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.item.rawValue, elementName: String(describing: ItemAction.self))
-        } else {
-            ECommerceConstants.isItemValueObjectValid(itemValue: itemValue, eventType: EComEventType.item)
-
-            var itemObject = ViewItemObject(action: itemActionValue!, item: itemValue)
-
-            if itemValue.currency == InternalCurrencyCode.USD.rawValue {
-                itemObject.usd_rate = 1.0
-                CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: itemObject, updateImmediately: updateImmediately)
-            } else {
-                var copyItemObject = itemObject
-                CFSetup().getUSDRate(fromCurrency: itemValue.currency!, callback: { [weak self] usdRate in
-                    copyItemObject.usd_rate = usdRate
-                    CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: copyItemObject, updateImmediately: self!.updateImmediately)
-                    return usdRate
-                })
-            }
-
-            if itemActionValue == ItemAction.view.rawValue, let catalogModel = catalogModel {
-                guard let itemId = itemValue.id else { return }
-                guard let itemType = itemValue.type else { return }
-                CfEComCatalog.callCatalogAPI(itemId: itemId, itemType: itemType, catalogModel: catalogModel)
-            }
+            return
+        } else if (!ECommerceConstants.isItemValueObjectValid(itemValue: itemValue, eventType: EComEventType.item)) {
+            return
+        }else {
+            let itemObject = ViewItemObject(action:itemActionValue, item: itemValue)
+            
+            CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: itemObject, updateImmediately: updateImmediately)
+            
+            
+//            if itemActionValue == ItemAction.view.rawValue, let catalogModel = catalogModel {
+//                guard let itemId = itemValue.id else { return  }
+//                guard let itemType = itemValue.type else { return  }
+//                CfEComCatalog.callCatalogAPI(itemId:itemId , itemType: itemType, catalogModel: catalogModel)
+//                
+//            }
+            
         }
     }
 }

@@ -17,4 +17,10 @@ public enum ItemAction: String, EnumComposable {
     case add_reminder
     case remove_reminder
     case remove_reminder_auto
+    case top_up
+    case cancel
+    case update
+    case remove
+    case add
+    case select
 }
