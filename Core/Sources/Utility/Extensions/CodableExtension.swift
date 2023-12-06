@@ -123,15 +123,16 @@ extension KeyedEncodingContainer {
         }
         var container = nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
         for item in safeValue {
-            if let val = item.value as? Int {
+            let typeID = CFGetTypeID(item.value as CFTypeRef)
+            if let val = item.value as? Int, typeID == CFNumberGetTypeID() {
                 try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
             } else if let val = item.value as? String {
                 try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else if let val = item.value as? Double {
+            } else if let val = item.value as? Double, typeID == CFNumberGetTypeID() {
                 try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else if let val = item.value as? Float {
+            } else if let val = item.value as? Float, typeID == CFNumberGetTypeID() {
                 try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else if let val = item.value as? Bool {
+            } else if let val = item.value as? Bool, typeID == CFBooleanGetTypeID()  {
                 try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
             } else if let val = item.value as? [Any] {
                 try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
@@ -172,15 +173,16 @@ extension UnkeyedEncodingContainer {
     mutating func encodeIfPresent(_ value: [String: Any]) throws {
         var container = nestedContainer(keyedBy: JSONCodingKeys.self)
         for item in value {
-            if let val = item.value as? Int {
+            let typeID = CFGetTypeID(item.value as CFTypeRef)
+            if let val = item.value as? Int, typeID == CFNumberGetTypeID() {
                 try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
             } else if let val = item.value as? String {
                 try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else if let val = item.value as? Double {
+            } else if let val = item.value as? Double, typeID == CFNumberGetTypeID() {
                 try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else if let val = item.value as? Float {
+            } else if let val = item.value as? Float, typeID == CFNumberGetTypeID() {
                 try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
-            } else if let val = item.value as? Bool {
+            } else if let val = item.value as? Bool, typeID == CFBooleanGetTypeID()  {
                 try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
             } else if let val = item.value as? [Any] {
                 try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
