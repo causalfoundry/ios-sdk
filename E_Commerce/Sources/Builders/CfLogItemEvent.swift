@@ -31,7 +31,7 @@ public class CfLogItemEvent {
      * Below is the method for the enum based approach.
      */
     @discardableResult
-    public func setItemAction(_ itemAction: ItemAction) -> CfLogItemEvent {
+    public func setItemAction(itemAction: ItemAction) -> CfLogItemEvent {
         itemActionValue = itemAction.rawValue
         return self
     }
@@ -46,7 +46,7 @@ public class CfLogItemEvent {
      * be discarded.
      */
     @discardableResult
-    public func setItemAction(_ itemActionValue: String) -> CfLogItemEvent {
+    public func setItemAction(itemActionValue: String) -> CfLogItemEvent {
         if CoreConstants.shared.enumContains(ItemAction.self, name: itemActionValue) {
             self.itemActionValue = itemActionValue
         } else {
@@ -61,7 +61,7 @@ public class CfLogItemEvent {
      * log the event.
      */
     @discardableResult
-    public func setItem(_ item: ItemModel) -> CfLogItemEvent {
+    public func setItem(item: ItemModel) -> CfLogItemEvent {
         itemValue = item
         return self
     }
@@ -74,7 +74,7 @@ public class CfLogItemEvent {
      * and is suitable for a React Native bridge.
      */
     @discardableResult
-    public func setItem(_ itemJsonString: String) -> CfLogItemEvent {
+    public func setItem(itemJsonString: String) -> CfLogItemEvent {
         if let data = itemJsonString.data(using: .utf8),
            let item = try? JSONDecoder.new.decode(ItemModel.self, from: data)
         {
@@ -89,7 +89,7 @@ public class CfLogItemEvent {
      * the app.
      */
     @discardableResult
-    public func setSearchId(_ searchId: String) -> CfLogItemEvent {
+    public func setSearchId(searchId: String) -> CfLogItemEvent {
         self.searchId = searchId
         return self
     }
@@ -100,7 +100,7 @@ public class CfLogItemEvent {
      * providing more context to the log. Default value for the meta is nil.
      */
     @discardableResult
-    public func setMeta(_ meta: Any?) -> CfLogItemEvent {
+    public func setMeta(meta: Any?) -> CfLogItemEvent {
         self.meta = meta
         return self
     }
@@ -113,13 +113,13 @@ public class CfLogItemEvent {
      * session which is whenever the app goes into the background.
      */
     @discardableResult
-    public func updateImmediately(_ updateImmediately: Bool) -> CfLogItemEvent {
+    public func updateImmediately(updateImmediately: Bool) -> CfLogItemEvent {
         self.updateImmediately = updateImmediately
         return self
     }
 
     @discardableResult
-    public func setCatalogProperties(_ catalogProperties: Any?) -> CfLogItemEvent {
+    public func setCatalogProperties(catalogProperties: Any?) -> CfLogItemEvent {
         if catalogProperties != nil {
             if let catalogData = catalogProperties as? DrugCatalogModel {
                 catalogModel = catalogData

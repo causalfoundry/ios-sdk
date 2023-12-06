@@ -243,28 +243,28 @@ public class CfLogCheckoutEvent {
     public func build() {
         
         if orderId.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "orderId")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.checkout.rawValue, elementName: "orderId")
             return
         }else if cartId.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "cartId")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.checkout.rawValue, elementName: "cartId")
             return
         }else if priceValue < 0 {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "cartPrice")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.checkout.rawValue, elementName: "cartPrice")
             return
         }else if shopMode.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "shopMode")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.checkout.rawValue, elementName: "shopMode")
             return
         }else if currencyValue.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: String(describing: InternalCurrencyCode.self))
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.checkout.rawValue, elementName: String(describing: InternalCurrencyCode.self))
             return
         }else if(itemList.isEmpty){
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "itemList")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.checkout.rawValue, elementName: "itemList")
             return
         }
         
         for itemValue in itemList {
             if (currencyValue != itemValue.currency) {
-                ExceptionManager.throwCurrencyNotSameException(eventType: EComEventType.cart.rawValue, valueName: "checkout")
+                ExceptionManager.throwCurrencyNotSameException(eventType: EComEventType.checkout.rawValue, valueName: "checkout")
             }
         }
 

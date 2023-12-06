@@ -14,7 +14,7 @@ public class CfLogCartEvent {
      */
     var cartId: String = ""
     var cartAction: String =  ""
-    var itemValue: ItemModel = ItemModel(id: "", type: "", quantity: 1, price: -1.0, currency: "",  stockStatus: "", promoId: "", facilityId: nil)
+    var itemValue: ItemModel = ItemModel(id: "", type: "", quantity: 1, price: -1.0, currency: "")
     var cartPrice: Float = 0
     var currencyValue: String = ""
     var meta: Any? = nil

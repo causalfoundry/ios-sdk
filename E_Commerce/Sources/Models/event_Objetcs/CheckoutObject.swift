@@ -44,7 +44,6 @@ public struct CheckoutObject: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(orderId, forKey: .orderId)
         try container.encode(cartId, forKey: .cartId)
-        print("Before encoding - isSuccessful: \(isSuccessful)")
         try container.encode(isSuccessful, forKey: .isSuccessful)
         try container.encode(cartPrice, forKey: .cartPrice)
         try container.encode(currency, forKey: .currency)
@@ -62,7 +61,6 @@ public struct CheckoutObject: Codable {
         orderId = try container.decode(String.self, forKey: .orderId)
         cartId = try container.decode(String.self, forKey: .cartId)
         isSuccessful = try container.decode(Bool.self, forKey: .isSuccessful)
-        print("After decoding - isSuccessful: \(isSuccessful)")
         cartPrice = try container.decode(Float.self, forKey: .cartPrice)
         currency = try container.decode(String.self, forKey: .currency)
         shopMode = try container.decode(String.self, forKey: .shopMode) // Decoding enum from rawValue
