@@ -20,16 +20,14 @@ public enum ECommerceConstants {
         return dateFormatter.string(from: date)
     }
 
-    static func isItemValueObjectValid(itemValue: ItemModel, eventType: EComEventType) {
+    static func isItemValueObjectValid(itemValue: ItemModel, eventType: EComEventType) -> Bool {
         let eventName = eventType.rawValue
 
         if itemValue.id == "" {
             ExceptionManager.throwIsRequiredException(eventType:eventName, elementName: "item_id")
         } else if itemValue.quantity < 0 {
             ExceptionManager.throwItemQuantityException(eventType: eventName)
-        } else if itemValue.price == nil {
-            ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_price")
-        } else if itemValue.price == -1.0 {
+        } else if itemValue.price < 0 {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_price")
         } else if itemValue.currency == "" {
             ExceptionManager.throwIsRequiredException(eventType:eventName , elementName: "item_currency")
@@ -51,7 +49,10 @@ public enum ECommerceConstants {
             } else if !(itemValue.meta is OxygenMetaModel) {
                 ExceptionManager.throwEnumException(eventType: eventName, className: "Oxygen Meta Properties")
             }
+        }else{
+            return true
         }
+        return false
     }
 
     static func isItemTypeObjectValid(itemValue: ItemTypeModel, eventType: EComEventType) {

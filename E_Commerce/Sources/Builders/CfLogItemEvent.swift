@@ -139,9 +139,10 @@ public class CfLogItemEvent {
     public func build() {
         if itemActionValue.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.item.rawValue, elementName: String(describing: ItemAction.self))
-        } else {
-            ECommerceConstants.isItemValueObjectValid(itemValue: itemValue, eventType: EComEventType.item)
-            
+            return
+        } else if (!ECommerceConstants.isItemValueObjectValid(itemValue: itemValue, eventType: EComEventType.item)) {
+            return
+        }else {
             let itemObject = ViewItemObject(action:itemActionValue, item: itemValue)
             
             CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: itemObject, updateImmediately: updateImmediately)

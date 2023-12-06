@@ -161,9 +161,11 @@ public class CfLogCartEvent {
         }else if currencyValue.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: String(describing: InternalCurrencyCode.self))
             return
+        }else if(!ECommerceConstants.isItemValueObjectValid(itemValue: itemValue, eventType: EComEventType.cart)){
+            return
         }
 
-        ECommerceConstants.isItemValueObjectValid(itemValue: itemValue, eventType: EComEventType.cart)
+        
 
         if self.currencyValue != itemValue.currency {
             ExceptionManager.throwCurrencyNotSameException(eventType: EComEventType.cart.rawValue, valueName: "cart")
