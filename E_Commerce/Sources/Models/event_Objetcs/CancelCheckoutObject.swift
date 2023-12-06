@@ -56,7 +56,6 @@ struct CancelCheckoutObject: Codable {
         } else {
             meta = nil
         }
-        
     }
     
 }

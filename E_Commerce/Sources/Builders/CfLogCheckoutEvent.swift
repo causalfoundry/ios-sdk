@@ -117,10 +117,9 @@ public class CfLogCheckoutEvent {
      */
     @discardableResult
     public func addItem(itemModel: ItemModel) -> CfLogCheckoutEvent {
-        if(!ECommerceConstants.isItemValueObjectValid(itemValue: itemModel, eventType: EComEventType.checkout)){
-            return self
+        if(ECommerceConstants.isItemValueObjectValid(itemValue: itemModel, eventType: EComEventType.checkout)){
+            self.itemList.append(itemModel)
         }
-        self.itemList.append(itemModel)
         return self
     }
 
@@ -143,12 +142,7 @@ public class CfLogCheckoutEvent {
                 let oxygenMetaModel = try? JSONDecoder.new.decode(OxygenMetaModel.self, from: data)
                 item.meta = oxygenMetaModel
             }
-            if(!ECommerceConstants.isItemValueObjectValid(itemValue: item, eventType: EComEventType.checkout)){
-                return self
-            }
-            self.itemList.append(item)
-        } else {
-            // Handle JSON parsing error
+            addItem(itemModel: item)
         }
         return self
     }
@@ -198,11 +192,8 @@ public class CfLogCheckoutEvent {
                     let oxygenMetaModel = try? JSONDecoder.new.decode(OxygenMetaModel.self, from: data)
                     item.meta = oxygenMetaModel
                 }
-                if(!ECommerceConstants.isItemValueObjectValid(itemValue: item, eventType: EComEventType.checkout)){
-                    return self
-                }
             }
-            self.itemList.append(contentsOf: itemModels)
+            addItemList(itemList: itemModels)
         } else {
             // Handle JSON parsing error
         }

@@ -76,7 +76,9 @@ public class CfLogCartEvent {
      */
     @discardableResult
     public func setItem(item: ItemModel) -> CfLogCartEvent {
-        itemValue = item
+        if(ECommerceConstants.isItemValueObjectValid(itemValue: item, eventType: EComEventType.cart)){
+            itemValue = item
+        }
         return self
     }
 
@@ -91,8 +93,11 @@ public class CfLogCartEvent {
 
     @discardableResult
     public func setItem(itemJsonString: String) -> CfLogCartEvent {
-        let item = try? JSONDecoder.new.decode(ItemModel.self, from: Data(itemJsonString.utf8))
-        itemValue = item!
+        if let data = itemJsonString.data(using: .utf8),
+           let item = try? JSONDecoder.new.decode(ItemModel.self, from: data)
+        {
+            setItem(item: item)
+        }
         return self
     }
 
@@ -159,11 +164,7 @@ public class CfLogCartEvent {
         }else if currencyValue.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: String(describing: InternalCurrencyCode.self))
             return
-        }else if(!ECommerceConstants.isItemValueObjectValid(itemValue: itemValue, eventType: EComEventType.cart)){
-            return
         }
-
-        
 
         if self.currencyValue != itemValue.currency {
             ExceptionManager.throwCurrencyNotSameException(eventType: EComEventType.cart.rawValue, valueName: "cart")

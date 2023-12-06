@@ -84,10 +84,7 @@ public class CfLogCancelCheckoutEvent {
         if let itemData = itemJsonString.data(using: .utf8),
            let itemTypeModel = try? JSONDecoder.new.decode(ItemTypeModel.self, from: itemData)
         {
-            if(!ECommerceConstants.isItemTypeObjectValid(itemValue: itemTypeModel, eventType: .cancelCheckout)){
-                return self
-            }
-            self.itemList.append(itemTypeModel)
+            addItem(itemTypeModel: itemTypeModel)
         }
         return self
     }
@@ -126,12 +123,7 @@ public class CfLogCancelCheckoutEvent {
         if let data = itemListString.data(using: .utf8),
            let itemtypeList = try? JSONDecoder.new.decode([ItemTypeModel].self, from: data)
         {
-            for item in itemtypeList {
-                if(!ECommerceConstants.isItemTypeObjectValid(itemValue: item, eventType: .cancelCheckout)){
-                    return self
-                }
-            }
-            self.itemList.append(contentsOf: itemtypeList)
+            addItemList(itemtypeList: itemtypeList)
         }
         return self
     }

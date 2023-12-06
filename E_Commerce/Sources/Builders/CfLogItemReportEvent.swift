@@ -12,11 +12,11 @@ public class CfLogItemReportEvent {
     /**
      * CfLogItemReportEvent is used to log the event an item is reported.
      */
-    var item_object: ItemTypeModel?
-    var store_object: StoreObject?
-    var report_object: ReportObject?
+    var itemObject: ItemTypeModel?
+    var storeObject: StoreObject?
+    var reportObject: ReportObject?
     var meta: Any?
-    var update_immediately: Bool = CoreConstants.shared.updateImmediately
+    var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
     public init() {}
 
@@ -26,17 +26,13 @@ public class CfLogItemReportEvent {
      * converted to the object with proper param names. in-case the names are not correct
      * the SDK will throw an exception. Below is the function for providing item as a string.
      */
+    
     @discardableResult
-    public func setItem(item_object: ItemTypeModel) -> CfLogItemReportEvent {
-        if CoreConstants.shared.enumContains(ItemType.self, name: item_object.item_type) {
-            ECommerceConstants.isItemTypeObjectValid(itemValue: item_object, eventType: EComEventType.itemReport)
-            self.item_object = item_object
-        } else {
-            ExceptionManager.throwEnumException(
-                eventType: EComEventType.itemReport.rawValue,
-                className: String(describing: ItemType.self)
-            )
+    public func setItem(itemTypeModel: ItemTypeModel) -> CfLogItemReportEvent {
+        if(!ECommerceConstants.isItemTypeObjectValid(itemValue: itemTypeModel, eventType: .itemReport)){
+            return self
         }
+        self.itemObject = itemTypeModel
         return self
     }
 
@@ -47,12 +43,18 @@ public class CfLogItemReportEvent {
      * the SDK will throw an exception. Below is the function for providing item as a string.
      */
     @discardableResult
-    public func setItem(item_object: String) -> CfLogItemReportEvent {
-        if let item = try? JSONDecoder.new.decode(ItemTypeModel.self, from: item_object.data(using: .utf8)!) {
-            setItem(item_object: item)
+    public func setItem(itemJsonString: String) -> CfLogItemReportEvent {
+        if let itemData = itemJsonString.data(using: .utf8),
+           let itemTypeModel = try? JSONDecoder.new.decode(ItemTypeModel.self, from: itemData)
+        {
+            if(!ECommerceConstants.isItemTypeObjectValid(itemValue: itemTypeModel, eventType: .itemReport)){
+                return self
+            }
+            self.itemObject = itemTypeModel
         }
         return self
     }
+    
 
     /**
      * setStoreObject is for the providing store object details for the item report if any.
@@ -61,16 +63,20 @@ public class CfLogItemReportEvent {
      * the SDK will throw an exception. Below is the function for providing item as a string.
      */
     @discardableResult
-    public func setStoreObject(store_object: StoreObject) -> CfLogItemReportEvent {
-        self.store_object = store_object
+    public func setStoreObject(storeObject: StoreObject) -> CfLogItemReportEvent {
+        if(storeObject.id.isEmpty){
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemReport.rawValue, elementName: "store_object.id")
+            return self
+        }
+        self.storeObject = storeObject
         return self
     }
-
+    
     // Set store object using JSON string
     @discardableResult
-    public func setStoreObject(store_object: String) -> CfLogItemReportEvent {
-        if let store = try? JSONDecoder.new.decode(StoreObject.self, from: store_object.data(using: .utf8)!) {
-            setStoreObject(store_object: store)
+    public func setStoreObject(storeObjectString: String) -> CfLogItemReportEvent {
+        if let store = try? JSONDecoder.new.decode(StoreObject.self, from: storeObjectString.data(using: .utf8)!) {
+            setStoreObject(storeObject: store)
         }
         return self
     }
@@ -82,16 +88,23 @@ public class CfLogItemReportEvent {
      * the SDK will throw an exception. Below is the function for providing item as a string.
      */
     @discardableResult
-    public func setReportObject(report_object: ReportObject) -> CfLogItemReportEvent {
-        self.report_object = report_object
+    public func setReportObject(reportObject: ReportObject) -> CfLogItemReportEvent {
+        if(reportObject.id.isEmpty){
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemReport.rawValue, elementName: "report_object.id")
+            return self
+        }else if(reportObject.shortDesc.isEmpty){
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemReport.rawValue, elementName: "report_object.short_desc")
+            return self
+        }
+        self.reportObject = reportObject
         return self
     }
 
     // Set report object using JSON string
     @discardableResult
-    public func setReportObject(report_object: String) -> CfLogItemReportEvent {
-        if let report = try? JSONDecoder.new.decode(ReportObject.self, from: report_object.data(using: .utf8)!) {
-            setReportObject(report_object: report)
+    public func setReportObject(reportObjectString: String) -> CfLogItemReportEvent {
+        if let report = try? JSONDecoder.new.decode(ReportObject.self, from: reportObjectString.data(using: .utf8)!) {
+           setReportObject(reportObject: report)
         }
         return self
     }
@@ -115,8 +128,8 @@ public class CfLogItemReportEvent {
      * session which is whenever the app goes into background.
      */
     @discardableResult
-    public func updateImmediately(update_immediately: Bool) -> CfLogItemReportEvent {
-        self.update_immediately = update_immediately
+    public func updateImmediately(updateImmediately: Bool) -> CfLogItemReportEvent {
+        self.updateImmediately = updateImmediately
         return self
     }
 
@@ -126,57 +139,25 @@ public class CfLogItemReportEvent {
      * user's network resources.
      */
     public func build() {
-        guard let item_object = item_object else {
-            ExceptionManager.throwIsRequiredException(
-                eventType: EComEventType.itemReport.rawValue,
-                elementName: "item_object"
-            )
+        
+        if(itemObject == nil){
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemReport.rawValue, elementName: "item_object")
+            return
+        }else if(storeObject == nil){
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemReport.rawValue, elementName: "store_object")
+            return
+        }else if(reportObject == nil){
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemReport.rawValue, elementName: "report_object")
             return
         }
 
-        guard let store_object = store_object else {
-            ExceptionManager.throwIsRequiredException(
-                eventType: EComEventType.itemReport.rawValue,
-                elementName: "store_object"
-            )
-            return
-        }
-        guard let report_object = report_object else {
-            ExceptionManager.throwIsRequiredException(
-                eventType: EComEventType.itemReport.rawValue,
-                elementName: "report_object"
-            )
-            return
-        }
-
-        guard !store_object.id.isEmpty else {
-            ExceptionManager.throwIsRequiredException(
-                eventType: EComEventType.itemReport.rawValue,
-                elementName: "store_id"
-            )
-            return
-        }
-
-        guard !report_object.id.isEmpty, !report_object.short_desc.isEmpty else {
-            ExceptionManager.throwIsRequiredException(
-                eventType: EComEventType.itemReport.rawValue,
-                elementName: "report_id, report_short_desc"
-            )
-            return
-        }
-
-        let itemReportObject = ItemReportObject(
-            item: item_object,
-            store_info: store_object,
-            report_info: report_object,
-            meta: meta as? Encodable
-        )
+        let itemReportObject = ItemReportObject(item: itemObject!, storeObject: storeObject!, reportObject: reportObject!, meta: meta as? Encodable)
 
         CFSetup().track(
             contentBlockName: ECommerceConstants.contentBlockName,
             eventType: EComEventType.itemReport.rawValue,
             logObject: itemReportObject,
-            updateImmediately: update_immediately
+            updateImmediately: updateImmediately
         )
     }
 }

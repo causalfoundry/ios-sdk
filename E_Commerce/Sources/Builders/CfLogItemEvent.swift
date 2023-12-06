@@ -62,7 +62,9 @@ public class CfLogItemEvent {
      */
     @discardableResult
     public func setItem(item: ItemModel) -> CfLogItemEvent {
-        itemValue = item
+        if(ECommerceConstants.isItemValueObjectValid(itemValue: item, eventType: EComEventType.item)){
+            itemValue = item
+        }
         return self
     }
 
@@ -78,7 +80,7 @@ public class CfLogItemEvent {
         if let data = itemJsonString.data(using: .utf8),
            let item = try? JSONDecoder.new.decode(ItemModel.self, from: data)
         {
-            itemValue = item
+            setItem(item: item)
         }
         return self
     }
@@ -140,11 +142,8 @@ public class CfLogItemEvent {
         if itemActionValue.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.item.rawValue, elementName: String(describing: ItemAction.self))
             return
-        } else if (!ECommerceConstants.isItemValueObjectValid(itemValue: itemValue, eventType: EComEventType.item)) {
-            return
-        }else {
+        } else {
             let itemObject = ViewItemObject(action:itemActionValue, item: itemValue)
-            
             CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: itemObject, updateImmediately: updateImmediately)
             
             
