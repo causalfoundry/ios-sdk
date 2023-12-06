@@ -71,15 +71,19 @@ public enum ECommerceConstants {
         return true
     }
 
-    static func isItemTypeObjectValid(itemValue: ItemTypeModel, eventType: EComEventType) {
+    static func isItemTypeObjectValid(itemValue: ItemTypeModel, eventType: EComEventType) -> Bool {
         let eventName = eventType.rawValue
         if itemValue.item_id.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_id")
+            return false
         } else if itemValue.item_type.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_type")
+            return false
         } else if !CoreConstants.shared.enumContains(ItemType.self, name: itemValue.item_type) {
             ExceptionManager.throwEnumException(eventType: eventName, className: "ItemType")
+            return false
         }
+        return true
     }
 
     static func verifyCatalogForDrug(drugId: String, drugCatalogModel: DrugCatalogModel) -> InternalDrugModel? {

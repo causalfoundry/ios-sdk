@@ -20,8 +20,6 @@ public class CfLogCartEvent {
     var meta: Any? = nil
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
-    private var cartObject: CartObject?
-
     public init() {}
 
     /**
@@ -61,7 +59,7 @@ public class CfLogCartEvent {
      * in the enum or else the events will be discarded
      */
     @discardableResult
-    public func setCartAction(_ cartAction: String) -> CfLogCartEvent {
+    public func setCartAction(cartAction: String) -> CfLogCartEvent {
         if CoreConstants.shared.enumContains(CartAction.self, name: cartAction) {
             self.cartAction = cartAction
         } else {
@@ -171,7 +169,7 @@ public class CfLogCartEvent {
             ExceptionManager.throwCurrencyNotSameException(eventType: EComEventType.cart.rawValue, valueName: "cart")
         }
 
-        cartObject = CartObject(cartId: cartId, action: cartAction, item: itemValue, cartPrice: cartPrice, currency: currencyValue, meta: meta as? Encodable)
+        let cartObject = CartObject(cartId: cartId, action: cartAction, item: itemValue, cartPrice: cartPrice, currency: currencyValue, meta: meta as? Encodable)
 
         CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.cart.rawValue, logObject: cartObject, updateImmediately: updateImmediately)
     }

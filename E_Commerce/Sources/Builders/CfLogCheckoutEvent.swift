@@ -19,8 +19,6 @@ public class CfLogCheckoutEvent {
     var meta: Any? = nil
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
-    private var checkoutObject: CheckoutObject?
-
     public init() {}
 
     /**
