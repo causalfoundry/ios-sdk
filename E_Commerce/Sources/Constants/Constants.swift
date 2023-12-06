@@ -22,37 +22,53 @@ public enum ECommerceConstants {
 
     static func isItemValueObjectValid(itemValue: ItemModel, eventType: EComEventType) -> Bool {
         let eventName = eventType.rawValue
-
         if itemValue.id == "" {
             ExceptionManager.throwIsRequiredException(eventType:eventName, elementName: "item_id")
-        } else if itemValue.quantity < 0 {
+            return false
+        }
+        if itemValue.quantity < 0 {
             ExceptionManager.throwItemQuantityException(eventType: eventName)
-        } else if itemValue.price < 0 {
+            return false
+        }
+        if itemValue.price < 0 {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_price")
-        } else if itemValue.currency == "" {
+            return false
+        }
+        if itemValue.currency == "" {
             ExceptionManager.throwIsRequiredException(eventType:eventName , elementName: "item_currency")
-        } else if !CoreConstants.shared.enumContains(InternalCurrencyCode.self, name:itemValue.currency) {
+            return false
+        }
+        if !CoreConstants.shared.enumContains(InternalCurrencyCode.self, name:itemValue.currency) {
             ExceptionManager.throwEnumException(eventType: eventName, className:"CurrencyCode")
-        } else if itemValue.type == "" {
+            return false
+        }
+        if itemValue.type == "" {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName:"item_type")
-        } else if !CoreConstants.shared.enumContains(ItemType.self, name:itemValue.type) {
+            return false
+        }
+        if !CoreConstants.shared.enumContains(ItemType.self, name:itemValue.type) {
             ExceptionManager.throwEnumException(eventType: eventName, className: "ItemType")
-        } else if eventType == .checkout, itemValue.type == ItemType.blood.rawValue {
+            return false
+        }
+        if eventType == .checkout, itemValue.type == ItemType.blood.rawValue {
             if itemValue.meta == nil {
                 ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "Blood Meta Properties")
+                return false
             } else if !(itemValue.meta is BloodMetaModel) {
                 ExceptionManager.throwEnumException(eventType: eventName, className: "Blood Meta Properties")
+                return false
             }
-        } else if eventType == .checkout, itemValue.type == ItemType.oxygen.rawValue {
+        } 
+        if eventType == .checkout, itemValue.type == ItemType.oxygen.rawValue {
             if itemValue.meta == nil {
                 ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "Oxygen Meta Properties")
+                return false
             } else if !(itemValue.meta is OxygenMetaModel) {
                 ExceptionManager.throwEnumException(eventType: eventName, className: "Oxygen Meta Properties")
+                return false
             }
-        }else{
-            return true
         }
-        return false
+        return true
     }
 
     static func isItemTypeObjectValid(itemValue: ItemTypeModel, eventType: EComEventType) {
