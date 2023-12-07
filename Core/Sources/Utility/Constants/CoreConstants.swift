@@ -14,7 +14,16 @@ public class CoreConstants {
     let devUrl = "https://api-dev.causalfoundry.ai/v1/"
     let prodUrl = "https://api.causalfoundry.ai/v1/"
 
-    public var userId: String = ""
+    public var userId: String? {
+        get {
+            var id = MMKVHelper.shared.fetchUserID()
+            if id?.isEmpty == true {
+                id = UIDevice.current.identifierForVendor?.uuidString
+            }
+            return id
+        }
+        set { MMKVHelper.shared.writeUser(user: newValue) }
+    }
     var sdkKey: String = ""
     var isDebugMode: Bool = true
     var allowAutoPageTrack: Bool = true
