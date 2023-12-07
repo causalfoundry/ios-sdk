@@ -91,11 +91,9 @@ public enum WorkerCaller {
         }
     }
 
-    #if DEBUG
-        public static func performUpload() async throws {
-            try await InjestEvenstuploader.uploadEvents()
-            try await ExceptionEventsUploader.uploadEvents()
-            try await CatalogEventsUploader.uploadEvents()
-        }
-    #endif
+    public static func performUpload() async throws {
+        try await InjestEvenstuploader.uploadEvents()
+        try await ExceptionEventsUploader.uploadEvents()
+        try await CatalogEventsUploader.uploadEvents()
+    }
 }
