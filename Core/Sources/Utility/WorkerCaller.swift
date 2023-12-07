@@ -48,10 +48,7 @@ public enum WorkerCaller {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: WorkerCaller.nudgeDownloadTaskIdentifier, using: nil) { task in
             Task {
                 do {
-                    let objects = try await CFNudgeListener.shared.fetchNudges()
-                    objects.forEach { object in
-                        CFNotificationController.shared.triggerNudgeNotification(object: object)
-                    }
+                    try await CFNudgeListener.shared.fetchAndDisplayNudges()
                     print("Background task \(task.identifier) completed")
                     task.setTaskCompleted(success: true)
                 } catch {

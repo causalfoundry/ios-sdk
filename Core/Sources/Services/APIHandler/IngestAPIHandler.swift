@@ -13,7 +13,7 @@ public class IngestAPIHandler: NSObject {
 
     static let shared = IngestAPIHandler()
     
-    let reachability = try! Reachability()
+    private let reachability = try! Reachability()
 
     func ingestTrackAPI<T: Codable>(contentBlock: String,
                                     eventType: String,
@@ -21,35 +21,26 @@ public class IngestAPIHandler: NSObject {
                                     updateImmediately: Bool,
                                     eventTime _: Int64 = 0)
     {
-        if !CoreConstants.shared.pauseSDK {
-            reachability.stopNotifier()
+        guard !CoreConstants.shared.pauseSDK else { return }
+        
+        let isInternetAvailable = reachability.connection == .wifi || reachability.connection == .cellular
+        let eventObject = EventDataObject(block: contentBlock, ol: isInternetAvailable, ts: Date(), type: eventType, props: trackProperties)
 
-            let isInternetAvailable: Bool = (reachability.connection == .wifi || reachability.connection == .cellular) ? true : false
-            let eventObject = EventDataObject(block: contentBlock, ol: isInternetAvailable, ts: Date(), type: eventType, props: trackProperties)
-
-            if updateImmediately {
-                updateEventTrack(eventArray: [eventObject]) { [weak self] success in
-                    if !success {
-                        self?.storeEventTrack(eventObject: eventObject)
-                    }
+        if updateImmediately && isInternetAvailable && !CoreConstants.shared.isAnonymousUserAllowed {
+            updateEventTrack(eventArray: [eventObject]) { [weak self] success in
+                if !success {
+                    self?.storeEventTrack(eventObject: eventObject)
                 }
-            } else {
-                storeEventTrack(eventObject: eventObject)
             }
+        } else {
+            storeEventTrack(eventObject: eventObject)
         }
     }
 
-    // GET USD Rate
-
-    // Update Track Event
     func updateEventTrack(eventArray: [EventDataObject], callback: @escaping (Bool) -> Void) {
-        var userID: String = CoreConstants.shared.userId
 
-        if !CoreConstants.shared.isAnonymousUserAllowed {
-            userID = ""
-        }
-        guard !userID.isEmpty else {
-            callback(true)
+        guard let userID = CoreConstants.shared.userId, !userID.isEmpty else {
+            callback(false)
             return
         }
 
@@ -64,16 +55,22 @@ public class IngestAPIHandler: NSObject {
         let dictionary = mainBody.dictionary ?? [:]
 
         print(dictionary.prettyJSON)
+        
         // Show notification if tasks takes more then 10 seconds to complete and if allowed
 
-        DispatchQueue.main.async {
-            if NotificationConstants.shared.INGEST_NOTIFICATION_ENABLED {
-                self.showNotification()
+        var showDelayNotification = true
+        
+        if NotificationConstants.shared.INGEST_NOTIFICATION_ENABLED {
+            DispatchQueue.main.asyncAfter(deadline: .now() + NotificationConstants.shared.INGEST_NOTIFICATION_INTERVAL_TIME) { [weak self] in
+                if showDelayNotification {
+                    self?.showNotification()
+                }
             }
         }
         
         let url = URL(string: APIConstants.trackEvent)!
         BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: dictionary) { result in
+            showDelayNotification = false
             switch result {
             case .success:
                 callback(true)
@@ -83,31 +80,32 @@ public class IngestAPIHandler: NSObject {
         }
     }
 
-    func storeEventTrack(eventObject: EventDataObject) {
+    private func storeEventTrack(eventObject: EventDataObject) {
         var prevEvent = MMKVHelper.shared.readInjectEvents()
         prevEvent.append(eventObject)
         MMKVHelper.shared.writeEvents(eventsArray: prevEvent)
     }
 
-    public func getUSDRate(fromCurrency: String, callback: @escaping (Float) -> Float) {
+    func getUSDRate(fromCurrency: String) -> Float {
         let currencyObject: CurrencyMainObject? = MMKVHelper.shared.readCurrencyObject()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
 
+        let isAgainRate = CoreConstants.shared.isAgainRate
+        CoreConstants.shared.isAgainRate = true
+        
         if let currencyObject = currencyObject,
            currencyObject.fromCurrency == fromCurrency,
            let toCurrencyObject = currencyObject.toCurrencyObject,
-           toCurrencyObject.date == dateFormatter.string(from: Date()) || CoreConstants.shared.isAgainRate
+           toCurrencyObject.date == dateFormatter.string(from: Date()) || isAgainRate
         {
-            _ = callback(toCurrencyObject.usd)
+           return toCurrencyObject.usd
         } else {
-            _ = callCurrencyApi(fromCurrency: fromCurrency)
+           return callCurrencyApi(fromCurrency: fromCurrency)
         }
-
-        CoreConstants.shared.isAgainRate = true
     }
 
-    public func callCurrencyApi(fromCurrency: String) -> Float {
+    private func callCurrencyApi(fromCurrency: String) -> Float {
         let currencyObject = CurrencyMainObject(
             fromCurrency: fromCurrency,
             toCurrencyObject: CurrencyObject(
@@ -121,5 +119,20 @@ public class IngestAPIHandler: NSObject {
 }
 
 extension IngestAPIHandler: UNUserNotificationCenterDelegate {
-    private func showNotification() {}
+    private func showNotification() {
+        /*
+        guard let topViewController = UIApplication.shared.rootViewController else { return }
+        let alert = UIAlertController(title: NotificationConstants.shared.INGEST_NOTIFICATION_TITLE, message: NotificationConstants.shared.INGEST_NOTIFICATION_DESCRIPTION, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        topViewController.present(alert, animated: true, completion: nil)
+        */
+    }
+}
+
+extension UIApplication {
+    
+    var rootViewController: UIViewController? {
+        windows.filter({ $0.isKeyWindow }).first?.rootViewController
+    }
 }

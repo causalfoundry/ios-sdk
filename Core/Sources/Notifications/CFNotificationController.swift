@@ -59,8 +59,8 @@ public final class CFNotificationController: NSObject {
             try await center.add(request)
         }
     }
-
-    private func track(object: BackendNudgeMainObject, response: NudgeRepsonseObject.NudgeRepsonse) {
+    
+    func track(object: BackendNudgeMainObject, response: NudgeRepsonseObject.NudgeRepsonse) {
         let nudgeResponse = NudgeRepsonseObject(object: object,
                                                 response: response)
         CFSetup()
@@ -69,6 +69,16 @@ public final class CFNotificationController: NSObject {
                    logObject: nudgeResponse,
                    updateImmediately: CoreConstants.shared.updateImmediately,
                    eventTime: 0)
+    }
+    
+    func trackAndOpen(object: BackendNudgeMainObject) {
+        track(object: object, response: .open)
+        if let cta = object.nd.cta, cta == "redirect" || cta == "add_to_cart",
+           let itemType = object.nd.message?.tmplCFG?.itemPairCFG?.itemType, !itemType.isEmpty,
+           let itemID = object.extra?.itemPair?.ids?.first
+        {
+            delegate?.openedNudge(cta: cta, itemType: itemType, itemID: itemID)
+        }
     }
 }
 
@@ -84,13 +94,7 @@ extension CFNotificationController: UNUserNotificationCenterDelegate {
     public func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         // user tapped on notification
         if let data = response.notification.request.content.userInfo[userInfoKey] as? Data, let object = data.toObject() {
-            track(object: object, response: .open)
-            if let cta = object.nd.cta, cta == "redirect" || cta == "add_to_cart",
-               let itemType = object.nd.message?.tmplCFG?.itemPairCFG?.itemType, !itemType.isEmpty,
-               let itemID = object.extra?.itemPair?.ids?.first
-            {
-                delegate?.openedNudge(cta: cta, itemType: itemType, itemID: itemID)
-            }
+            trackAndOpen(object: object)
         }
         completionHandler()
     }

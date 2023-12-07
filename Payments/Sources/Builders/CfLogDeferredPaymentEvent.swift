@@ -260,16 +260,14 @@ public class CfLogDeferredPaymentEvent {
         var paymentObject = DeferredPaymentObject(paymentId: paymentId, orderId: orderId, type: paymentMethod, action: action, accountBalance: accountBalance, paymentAmount: paymentAmount, currency: currencyValue, isSuccessful: isSuccessful, usdRate: nil, meta: meta as? Encodable)
 
         if currencyValue != InternalCurrencyCode.USD.rawValue {
-            CFSetup().getUSDRate(fromCurrency: currencyValue) { value in
-                paymentObject.usdRate = 1
-                CFSetup().track(
-                    contentBlockName: PaymentsConstants.contentBlockName,
-                    eventType: PaymentsEventType.deferred_payment.rawValue,
-                    logObject: paymentObject,
-                    updateImmediately: self.updateImmediately
-                )
-                return value
-            }
+            let value = CFSetup().getUSDRate(fromCurrency: currencyValue)
+            paymentObject.usdRate = value
+            CFSetup().track(
+                contentBlockName: PaymentsConstants.contentBlockName,
+                eventType: PaymentsEventType.deferred_payment.rawValue,
+                logObject: paymentObject,
+                updateImmediately: self.updateImmediately
+            )
         } else {
             CFSetup().track(
                 contentBlockName: PaymentsConstants.contentBlockName,

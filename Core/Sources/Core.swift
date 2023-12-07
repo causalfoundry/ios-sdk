@@ -20,7 +20,7 @@ public class CFLog {
 
 public class CFLogBuilder {
     var applicationState: UIApplication.State?
-    var showInAppBudge: Bool = true
+    var autoShowInAppNudge: Bool = true
     var updateImmediately: Bool = true
     var pauseSDK: Bool = false
 
@@ -88,8 +88,8 @@ public class CFLogBuilder {
      * In such cases, the device Id will be used as the userId
      */
     @discardableResult
-    public func allowAnonymousUsers() -> CFLogBuilder {
-        CoreConstants.shared.isAnonymousUserAllowed = true
+    public func allowAnonymousUsers(_ allowed: Bool = true) -> CFLogBuilder {
+        CoreConstants.shared.isAnonymousUserAllowed = allowed
         return self
     }
 
@@ -127,7 +127,7 @@ public class CFLogBuilder {
     //                }
     @discardableResult
     public func setAutoShowInAppNudge(showInAppNudge: Bool) -> CFLogBuilder {
-        showInAppBudge = showInAppNudge
+        autoShowInAppNudge = showInAppNudge
         return self
     }
 
@@ -188,7 +188,7 @@ public class CFLogBuilder {
      * However it is not recommended to do so.
      */
     @discardableResult
-    public func updateIngestNotificationShowInterval(notificationShowInterval: Int64) -> CFLogBuilder {
+    public func updateIngestNotificationShowInterval(notificationShowInterval: TimeInterval) -> CFLogBuilder {
         NotificationConstants.shared.INGEST_NOTIFICATION_INTERVAL_TIME = notificationShowInterval
         return self
     }
@@ -200,8 +200,8 @@ public class CFLogBuilder {
      * configuration.
      */
     @discardableResult
-    public func updateInAppMessageInitialDelay(initialDelayInMillis: Int64) -> CFLogBuilder {
-        NotificationConstants.shared.IN_APP_MESSAGE_INITIAL_DELAY_IN_MILLIS = initialDelayInMillis
+    public func updateInAppMessageInitialDelay(initialDelay: Int) -> CFLogBuilder {
+        NotificationConstants.shared.IN_APP_MESSAGE_INITIAL_DELAY = initialDelay
         return self
     }
 
@@ -209,6 +209,6 @@ public class CFLogBuilder {
      * Using this will validate the endpoints provided and initialise the SDK
      */
     public func build() {
-        CFSetup().initalize(event: applicationState!, pauseSDK: pauseSDK, autoShowInAppNudge: showInAppBudge, updateImmediately: updateImmediately)
+        CFSetup().initalize(event: applicationState!, pauseSDK: pauseSDK, autoShowInAppNudge: autoShowInAppNudge, updateImmediately: updateImmediately)
     }
 }

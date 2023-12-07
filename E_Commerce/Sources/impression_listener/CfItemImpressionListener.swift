@@ -19,7 +19,6 @@ public class CfItemImpressionListener {
         recyclerViewValue = recyclerView
         currentDataProviderValue = currentDataProvider()
         searchIdValue = searchId
-
 //        callCoreImpressionListenerTrackRecyclerView()
 
     }

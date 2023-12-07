@@ -12,33 +12,30 @@ class CFNudgeListener {
 
     private var nudgeTimer: Timer?
     private var nudgeTask: URLSessionDataTask?
-    private var userID: String?
 
     let timeInterval: TimeInterval = 20 * 3600
 
     func endListening() {
-        userID = nil
         endTimer()
         NotificationCenter.default.removeObserver(self)
     }
 
-    func beginListening(userID: String) {
+    func beginListening() {
         endListening()
-        guard !userID.isEmpty else { return }
-        self.userID = userID
+        guard let userID = CoreConstants.shared.userId, !userID.isEmpty else { return }
         startTimer()
-        fetchAndDisplayNudges()
+        fetchAndDisplayNudgesTask()
         NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: .main) { [weak self] _ in
             self?.endTimer()
         }
         NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: .main) { [weak self] _ in
             self?.startTimer()
-            self?.fetchAndDisplayNudges()
+            self?.fetchAndDisplayNudgesTask()
         }
     }
 
-    func fetchNudges() async throws -> [BackendNudgeMainObject] {
-        guard let userID = userID, !userID.isEmpty else { return [] }
+    private func fetchNudges() async throws -> [BackendNudgeMainObject] {
+        guard let userID = CoreConstants.shared.userId, !userID.isEmpty else { return [] }
         return try await withCheckedThrowingContinuation { continuation in
             let url = URL(string: "\(CoreConstants.shared.devUrl)nudge/sdk/\(userID)")!
             BackgroundRequestController.shared.request(url: url, httpMethod: .get, params: nil) { result in
@@ -47,7 +44,7 @@ class CFNudgeListener {
                     do {
                         /*
                          #if DEBUG
-                         let debugObjects = try self.debugObjects()
+                         let debugObjects = try BackendNudgeMainObject.debugObjects()
                          continuation.resume(with: .success(debugObjects))
                          return
                          #endif
@@ -68,7 +65,7 @@ class CFNudgeListener {
     private func startTimer() {
         nudgeTimer?.invalidate()
         nudgeTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) { [weak self] _ in
-            self?.fetchAndDisplayNudges()
+            self?.fetchAndDisplayNudgesTask()
         }
     }
 
@@ -77,97 +74,116 @@ class CFNudgeListener {
         nudgeTimer = nil
     }
 
-    private func fetchAndDisplayNudges() {
-        Task {
-            let objects = try await fetchNudges()
-            for object in objects {
+    func fetchAndDisplayNudges() async throws {
+        
+        let objects = try await fetchNudges().filter { !$0.isExpired }
+        
+        let pushNotificationNudges = objects.filter { $0.nd.renderMethod == .pushNotification }
+        let nonPushNotificationNudges = objects.filter { $0.nd.renderMethod != .pushNotification }
+        
+        if CoreConstants.shared.autoShowInAppNudge {
+            for object in pushNotificationNudges {
                 CFNotificationController.shared.triggerNudgeNotification(object: object)
             }
         }
+        
+        var savedObjects = MMKVHelper.shared.readNudges()
+        savedObjects.append(contentsOf: nonPushNotificationNudges)
+        
+        MMKVHelper.shared.writeNudges(objects: savedObjects)
     }
-
-    #if DEBUG
-        private func debugObjects() throws -> [BackendNudgeMainObject] {
-            let json = """
-            [
-              {
-                "ref": "adp_0",
-                "time": "2023-08-30T11:53:00+02:00",
-                "nd": {
-                  "type": "message",
-                  "message": {
-                    "title": "Test Traits and Item Pair with Values",
-                    "tmpl_cfg": {
-                      "tmpl_type": "item_pair, traits",
-                      "item_pair_cfg": {
-                        "item_type": "drug",
-                        "pair_rank_type": ""
-                      },
-                      "traits": [
-                        "data.ct_user.country"
-                      ]
-                    },
-                    "body": "Hello from Country: {{ data.ct_user.country }} and buy {{primary}} AND {{secondary}}",
-                    "tags": [
-                      "incentive"
-                    ]
-                  },
-                  "render_method": "push_notification",
-                  "cta": "redirect"
-                },
-                "extra": {
-                  "traits": {
-                    "data.ct_user.country": "Spain"
-                  },
-                  "item_pair": {
-                    "ids": [
-                      "12",
-                      "13"
-                    ],
-                    "names": [
-                      "Panadol",
-                      "Bruffin"
-                    ]
-                  }
-                }
-              },
-              {
-                "ref": "adp_94",
-                "time": "2023-08-30T11:53:00+02:00",
-                "nd": {
-                  "type": "message",
-                  "message": {
-                    "title": "Test Traits with Values",
-                    "tmpl_cfg": {
-                      "tmpl_type": "traits",
-                      "item_pair_cfg": {
-                        "item_type": "drug",
-                        "pair_rank_type": ""
-                      },
-                      "traits": [
-                        "data.ct_user.country"
-                      ]
-                    },
-                    "body": "Hellooooo from Country: {{ data.ct_user.country }}",
-                    "tags": [
-                      "incentive"
-                    ]
-                  },
-                  "render_method": "push_notification",
-                  "cta": "redirect"
-                },
-                "extra": {
-                  "traits": {
-                    "data.ct_user.country": "Spain"
-                  }
-                }
-              }
-            ]
-            """
-            let data = json.data(using: .utf8)!
-            let decoder = JSONDecoder.new
-            let objects = try decoder.decode([BackendNudgeMainObject].self, from: data)
-            return objects
+    
+    private func fetchAndDisplayNudgesTask() {
+        Task {
+            try await fetchAndDisplayNudges()
         }
-    #endif
+    }
 }
+
+#if DEBUG
+extension BackendNudgeMainObject {
+    
+    static func debugObjects() throws -> [BackendNudgeMainObject] {
+        let json = """
+        [
+          {
+            "ref": "adp_0",
+            "time": "2023-08-30T11:53:00+02:00",
+            "nd": {
+              "type": "message",
+              "message": {
+                "title": "Test Traits and Item Pair with Values",
+                "tmpl_cfg": {
+                  "tmpl_type": "item_pair, traits",
+                  "item_pair_cfg": {
+                    "item_type": "drug",
+                    "pair_rank_type": ""
+                  },
+                  "traits": [
+                    "data.ct_user.country"
+                  ]
+                },
+                "body": "Hello from Country: {{ data.ct_user.country }} and buy {{primary}} AND {{secondary}}",
+                "tags": [
+                  "incentive"
+                ]
+              },
+              "render_method": "push_notification",
+              "cta": "redirect"
+            },
+            "extra": {
+              "traits": {
+                "data.ct_user.country": "Spain"
+              },
+              "item_pair": {
+                "ids": [
+                  "12",
+                  "13"
+                ],
+                "names": [
+                  "Panadol",
+                  "Bruffin"
+                ]
+              }
+            }
+          },
+          {
+            "ref": "adp_94",
+            "time": "2023-08-30T11:53:00+02:00",
+            "nd": {
+              "type": "message",
+              "message": {
+                "title": "Test Traits with Values",
+                "tmpl_cfg": {
+                  "tmpl_type": "traits",
+                  "item_pair_cfg": {
+                    "item_type": "drug",
+                    "pair_rank_type": ""
+                  },
+                  "traits": [
+                    "data.ct_user.country"
+                  ]
+                },
+                "body": "Hellooooo from Country: {{ data.ct_user.country }}",
+                "tags": [
+                  "incentive"
+                ]
+              },
+              "render_method": "push_notification",
+              "cta": "redirect"
+            },
+            "extra": {
+              "traits": {
+                "data.ct_user.country": "Spain"
+              }
+            }
+          }
+        ]
+        """
+        let data = json.data(using: .utf8)!
+        let decoder = JSONDecoder.new
+        let objects = try decoder.decode([BackendNudgeMainObject].self, from: data)
+        return objects
+    }
+}
+#endif
