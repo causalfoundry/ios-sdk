@@ -193,16 +193,14 @@ public class CfLogPaymentMethodEvent {
                 updateImmediately: update_immediately
             )
         } else {
-            CFSetup().getUSDRate(fromCurrency: currency_value) { value in
-                self.paymentMethodObject?.usd_rate = 1
-                CFSetup().track(
-                    contentBlockName: PaymentsConstants.contentBlockName,
-                    eventType: PaymentsEventType.deferred_payment.rawValue,
-                    logObject: self.paymentMethodObject,
-                    updateImmediately: self.update_immediately
-                )
-                return value
-            }
+            let value = CFSetup().getUSDRate(fromCurrency: currency_value)
+            self.paymentMethodObject?.usd_rate = value
+            CFSetup().track(
+                contentBlockName: PaymentsConstants.contentBlockName,
+                eventType: PaymentsEventType.deferred_payment.rawValue,
+                logObject: self.paymentMethodObject,
+                updateImmediately: self.update_immediately
+            )
         }
     }
 
