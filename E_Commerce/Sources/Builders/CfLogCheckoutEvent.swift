@@ -19,8 +19,6 @@ public class CfLogCheckoutEvent {
     var meta: Any? = nil
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
-    private var checkoutObject: CheckoutObject?
-
     public init() {}
 
     /**
@@ -119,10 +117,9 @@ public class CfLogCheckoutEvent {
      */
     @discardableResult
     public func addItem(itemModel: ItemModel) -> CfLogCheckoutEvent {
-        if(!ECommerceConstants.isItemValueObjectValid(itemValue: itemModel, eventType: EComEventType.checkout)){
-            return self
+        if(ECommerceConstants.isItemValueObjectValid(itemValue: itemModel, eventType: EComEventType.checkout)){
+            self.itemList.append(itemModel)
         }
-        self.itemList.append(itemModel)
         return self
     }
 
@@ -145,12 +142,7 @@ public class CfLogCheckoutEvent {
                 let oxygenMetaModel = try? JSONDecoder.new.decode(OxygenMetaModel.self, from: data)
                 item.meta = oxygenMetaModel
             }
-            if(!ECommerceConstants.isItemValueObjectValid(itemValue: item, eventType: EComEventType.checkout)){
-                return self
-            }
-            self.itemList.append(item)
-        } else {
-            // Handle JSON parsing error
+            addItem(itemModel: item)
         }
         return self
     }
@@ -200,11 +192,8 @@ public class CfLogCheckoutEvent {
                     let oxygenMetaModel = try? JSONDecoder.new.decode(OxygenMetaModel.self, from: data)
                     item.meta = oxygenMetaModel
                 }
-                if(!ECommerceConstants.isItemValueObjectValid(itemValue: item, eventType: EComEventType.checkout)){
-                    return self
-                }
             }
-            self.itemList.append(contentsOf: itemModels)
+            addItemList(itemList: itemModels)
         } else {
             // Handle JSON parsing error
         }
@@ -243,28 +232,28 @@ public class CfLogCheckoutEvent {
     public func build() {
         
         if orderId.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "orderId")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.checkout.rawValue, elementName: "orderId")
             return
         }else if cartId.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "cartId")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.checkout.rawValue, elementName: "cartId")
             return
         }else if priceValue < 0 {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "cartPrice")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.checkout.rawValue, elementName: "cartPrice")
             return
         }else if shopMode.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "shopMode")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.checkout.rawValue, elementName: "shopMode")
             return
         }else if currencyValue.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: String(describing: InternalCurrencyCode.self))
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.checkout.rawValue, elementName: String(describing: InternalCurrencyCode.self))
             return
         }else if(itemList.isEmpty){
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "itemList")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.checkout.rawValue, elementName: "itemList")
             return
         }
         
         for itemValue in itemList {
             if (currencyValue != itemValue.currency) {
-                ExceptionManager.throwCurrencyNotSameException(eventType: EComEventType.cart.rawValue, valueName: "checkout")
+                ExceptionManager.throwCurrencyNotSameException(eventType: EComEventType.checkout.rawValue, valueName: "checkout")
             }
         }
 

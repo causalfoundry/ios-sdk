@@ -7,38 +7,37 @@
 
 import Foundation
 
-public struct ReportObject {
+public struct ReportObject : Codable {
     var id: String
-    var short_desc: String
-    var remarks: String
+    var shortDesc: String
+    var remarks: String? = ""
 
-    public init(id: String, short_desc: String, remarks: String) {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case shortDesc = "short_desc"
+        case remarks
+    }
+    
+    public init(id: String, shortDesc: String, remarks: String? = "") {
         self.id = id
-        self.short_desc = short_desc
+        self.shortDesc = shortDesc
         self.remarks = remarks
     }
-}
-
-extension ReportObject: Encodable {
+    
+    // Custom encoding method
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encode(short_desc, forKey: .short_desc)
+        try container.encode(shortDesc, forKey: .shortDesc)
         try container.encode(remarks, forKey: .remarks)
     }
 
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case short_desc
-        case remarks
-    }
-}
-
-extension ReportObject: Decodable {
+    // Custom decoding method
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        short_desc = try container.decode(String.self, forKey: .short_desc)
+        shortDesc = try container.decode(String.self, forKey: .shortDesc)
         remarks = try container.decode(String.self, forKey: .remarks)
     }
+    
 }

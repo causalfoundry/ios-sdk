@@ -14,10 +14,10 @@ public struct ItemModel: Codable {
     var price: Float
     var currency: String
     var stockStatus: String?
-    var promoId: String?
-    var discount: Float?
-    var facilityId: String?
-    var subscription: SubscriptionObject?
+    var promoId: String?  = ""
+    var discount: Float? = 0
+    var facilityId: String? = ""
+    var subscription: SubscriptionObject? = nil
     var meta: Encodable?
 
     enum CodingKeys: String, CodingKey {
@@ -77,10 +77,10 @@ public struct ItemModel: Codable {
         price = try container.decode(Float.self, forKey: .price)
         currency = try container.decode(String.self, forKey: .currency)
         stockStatus = try container.decode(String.self, forKey: .stockStatus) // Decoding enum from rawValue
-        promoId = try container.decode(String.self, forKey: .promoId)
-        discount = try container.decode(Float.self, forKey: .discount)
-        facilityId = try container.decode(String.self, forKey: .facilityId)
-        subscription = try container.decode(SubscriptionObject.self, forKey: .subscription)
+        promoId = try? container.decode(String.self, forKey: .promoId)
+        discount = try? container.decode(Float.self, forKey: .discount) 
+        facilityId = try? container.decode(String.self, forKey: .facilityId)
+        subscription = try? container.decode(SubscriptionObject.self, forKey: .subscription)
         if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {

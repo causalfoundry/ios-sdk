@@ -1,15 +1,14 @@
 import Foundation
 
-public struct ItemInfoObject: Codable {
+public struct ItemInfoModel: Codable {
     var id: String
     var type: String
-    var batchId: String
-    var surveyId: String
-    var rewardId: String
-    var isFeatured: Bool
-    var productionDate: Int64
-    var expiryDate: Int64
-    var meta: Encodable?
+    var batchId: String? = ""
+    var surveyId: String? = ""
+    var rewardId: String? = ""
+    var isFeatured: Bool? = false
+    var productionDate: Int64? = 0
+    var expiryDate: Int64? = 0
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -20,19 +19,17 @@ public struct ItemInfoObject: Codable {
         case isFeatured = "is_featured"
         case productionDate = "production_date"
         case expiryDate = "expiry_date"
-        case meta
     }
 
     public init(
         id: String,
         type: String,
-        batchId: String,
-        surveyId: String,
-        rewardId: String,
-        isFeatured: Bool = false,
-        productionDate: Int64 = 0,
-        expiryDate: Int64 = 0,
-        meta: Encodable? = nil
+        batchId: String? = "",
+        surveyId: String? = "",
+        rewardId: String? = "",
+        isFeatured: Bool? = false,
+        productionDate: Int64? = 0,
+        expiryDate: Int64? = 0
     ) {
         self.id = id
         self.type = type
@@ -42,7 +39,6 @@ public struct ItemInfoObject: Codable {
         self.isFeatured = isFeatured
         self.productionDate = productionDate
         self.expiryDate = expiryDate
-        self.meta = meta
     }
 
     // Encoding method
@@ -56,9 +52,6 @@ public struct ItemInfoObject: Codable {
         try container.encode(isFeatured, forKey: .isFeatured)
         try container.encode(productionDate, forKey: .productionDate)
         try container.encode(expiryDate, forKey: .expiryDate)
-        if let metaData = meta {
-            try container.encode(metaData, forKey: .meta)
-        }
     }
 
     // Decoding method
@@ -72,10 +65,5 @@ public struct ItemInfoObject: Codable {
         isFeatured = try container.decode(Bool.self, forKey: .isFeatured)
         productionDate = try container.decode(Int64.self, forKey: .productionDate)
         expiryDate = try container.decode(Int64.self, forKey: .expiryDate)
-        if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
-            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
-        } else {
-            meta = nil
-        }
     }
 }

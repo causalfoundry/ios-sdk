@@ -19,13 +19,8 @@ public class CfItemImpressionListener {
         recyclerViewValue = recyclerView
         currentDataProviderValue = currentDataProvider()
         searchIdValue = searchId
+//        callCoreImpressionListenerTrackRecyclerView()
 
-        if currentDataProviderValue[0].item_properties.currency != InternalCurrencyCode.USD.rawValue {
-            let usdRate = CFSetup().getUSDRate(fromCurrency: currentDataProviderValue[0].item_properties.currency)
-            self.getUSDRateAndLogEvent(usdRate)
-        } else {
-            callCoreImpressionListenerTrackRecyclerView()
-        }
     }
 
     private class func callCoreImpressionListenerTrackRecyclerView() {
@@ -60,10 +55,6 @@ public class CfItemImpressionListener {
 //                                )
     }
 
-    private class func getUSDRateAndLogEvent(_ usdRate: Float) {
-        usdRateValue = usdRate
-        callCoreImpressionListenerTrackRecyclerView()
-    }
 
     private class func prepareCatalogObject(_ itemId: String, _: String, _ catalogModel: Any?) -> Any? {
         if let drugCatalog = catalogModel as? DrugCatalogModel {
@@ -91,13 +82,6 @@ public class CfItemImpressionListener {
         currentDataProviderValue = currentDataProvider
         searchIdValue = searchId
         collectionViewId = collectionViewKey
-
-        if currentDataProvider[0].item_properties.currency != InternalCurrencyCode.USD.rawValue {
-            let usdRate = CFSetup().getUSDRate(fromCurrency: currentDataProvider[0].item_properties.currency)
-            getUSDRateAndLogRNEvent(usdRate)
-        } else {
-            callCoreCollectionUpdated()
-        }
     }
 
     class func onCollectionUpdatedRN(collectionViewKey: String, searchId: String, currentDataProvider: String) {
@@ -106,23 +90,23 @@ public class CfItemImpressionListener {
         var itemList = itemModels.map { item in
             var mutableItem = item
             do {
-                switch item.item_properties.type {
+                switch item.itemProperties.type {
                 case ItemType.drug.rawValue:
-                    mutableItem.catalog_properties = item.catalog_properties as? DrugCatalogModel
+                    mutableItem.catalogProperties = item.catalogProperties as? DrugCatalogModel
                 case ItemType.grocery.rawValue:
-                    mutableItem.catalog_properties = item.catalog_properties as? GroceryCatalogModel
+                    mutableItem.catalogProperties = item.catalogProperties as? GroceryCatalogModel
                 case ItemType.facility.rawValue:
-                    mutableItem.catalog_properties = item.catalog_properties as? FacilityCatalogModel
+                    mutableItem.catalogProperties = item.catalogProperties as? FacilityCatalogModel
                 case ItemType.blood.rawValue:
-                    mutableItem.catalog_properties = item.catalog_properties as? BloodCatalogModel
+                    mutableItem.catalogProperties = item.catalogProperties as? BloodCatalogModel
                 case ItemType.oxygen.rawValue:
-                    mutableItem.catalog_properties = item.catalog_properties as? OxygenCatalogModel
+                    mutableItem.catalogProperties = item.catalogProperties as? OxygenCatalogModel
                 case ItemType.medicalEquipment.rawValue:
-                    mutableItem.catalog_properties = item.catalog_properties as? MedicalEquipmentCatalogModel
+                    mutableItem.catalogProperties = item.catalogProperties as? MedicalEquipmentCatalogModel
                 default:
                     throw NSError(domain: "impression_listener", code: 1, userInfo: ["reason": "Invalid catalog object provided"])
                 }
-                ECommerceConstants.isItemValueObjectValid(itemValue: item.item_properties, eventType: EComEventType.item)
+                ECommerceConstants.isItemValueObjectValid(itemValue: item.itemProperties, eventType: EComEventType.item)
             } catch {
                 print(error)
             }
@@ -131,43 +115,6 @@ public class CfItemImpressionListener {
         currentDataProviderValue = itemList
         searchIdValue = searchId
         collectionViewId = collectionViewKey
-
-        if !itemList.isEmpty {
-            if itemList[0].item_properties.currency != InternalCurrencyCode.USD.rawValue {
-                let usdRate = CFSetup().getUSDRate(fromCurrency: itemList[0].item_properties.currency)
-                getUSDRateAndLogRNEvent(usdRate)
-            } else {
-                callCoreCollectionUpdated()
-            }
-        }
     }
 
-    private class func getUSDRateAndLogRNEvent(_ usdRate: Float) {
-        usdRateValue = usdRate
-        callCoreCollectionUpdated()
-    }
-
-    private class func callCoreCollectionUpdated() {
-//        let recyclerImpressionArray:[RecyclerImpressionModel]? = currentDataProviderValue.map { itemImpression in
-//            return RecyclerImpressionModel(
-//                element_id: itemImpression.item_properties.id!,
-//                content_block: ECommerceConstants.contentBlockName,
-//                event_name: EComEventType.item.rawValue,
-//                catalog_subject: itemImpression.item_properties.type!,
-//                item_properties: ViewItemObject(
-//                    action: ItemAction.impression.rawValue,
-//                    item: itemImpression.item_properties,
-//                    search_id: searchIdValue,
-//                    usd_rate: usdRateValue,
-//                    meta: nil
-//                ),
-//                catalog_properties: prepareCatalogObject(
-//                    itemImpression.item_properties.id!,
-//                    itemImpression.item_properties.type!,
-//                    itemImpression.catalog_properties
-//                )
-//            )
-//        }
-//        CfCoreImpressionListener.onCollectionUpdated(collectionView: nil, collectionViewKey: collectionViewId, searchId: searchIdValue, currentDataProvider: recyclerImpressionModels, userData: nil)
-    }
 }

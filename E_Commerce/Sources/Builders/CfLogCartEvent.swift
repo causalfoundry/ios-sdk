@@ -14,13 +14,11 @@ public class CfLogCartEvent {
      */
     var cartId: String = ""
     var cartAction: String =  ""
-    var itemValue: ItemModel = ItemModel(id: "", type: "", quantity: 1, price: -1.0, currency: "",  stockStatus: "", promoId: "", facilityId: nil)
+    var itemValue: ItemModel = ItemModel(id: "", type: "", quantity: 1, price: -1.0, currency: "")
     var cartPrice: Float = 0
     var currencyValue: String = ""
     var meta: Any? = nil
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
-
-    private var cartObject: CartObject?
 
     public init() {}
 
@@ -61,7 +59,7 @@ public class CfLogCartEvent {
      * in the enum or else the events will be discarded
      */
     @discardableResult
-    public func setCartAction(_ cartAction: String) -> CfLogCartEvent {
+    public func setCartAction(cartAction: String) -> CfLogCartEvent {
         if CoreConstants.shared.enumContains(CartAction.self, name: cartAction) {
             self.cartAction = cartAction
         } else {
@@ -78,7 +76,9 @@ public class CfLogCartEvent {
      */
     @discardableResult
     public func setItem(item: ItemModel) -> CfLogCartEvent {
-        itemValue = item
+        if(ECommerceConstants.isItemValueObjectValid(itemValue: item, eventType: EComEventType.cart)){
+            itemValue = item
+        }
         return self
     }
 
@@ -93,8 +93,11 @@ public class CfLogCartEvent {
 
     @discardableResult
     public func setItem(itemJsonString: String) -> CfLogCartEvent {
-        let item = try? JSONDecoder.new.decode(ItemModel.self, from: Data(itemJsonString.utf8))
-        itemValue = item!
+        if let data = itemJsonString.data(using: .utf8),
+           let item = try? JSONDecoder.new.decode(ItemModel.self, from: data)
+        {
+            setItem(item: item)
+        }
         return self
     }
 
@@ -161,17 +164,13 @@ public class CfLogCartEvent {
         }else if currencyValue.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: String(describing: InternalCurrencyCode.self))
             return
-        }else if(!ECommerceConstants.isItemValueObjectValid(itemValue: itemValue, eventType: EComEventType.cart)){
-            return
         }
-
-        
 
         if self.currencyValue != itemValue.currency {
             ExceptionManager.throwCurrencyNotSameException(eventType: EComEventType.cart.rawValue, valueName: "cart")
         }
 
-        cartObject = CartObject(cartId: cartId, action: cartAction, item: itemValue, cartPrice: cartPrice, currency: currencyValue, meta: meta as? Encodable)
+        let cartObject = CartObject(cartId: cartId, action: cartAction, item: itemValue, cartPrice: cartPrice, currency: currencyValue, meta: meta as? Encodable)
 
         CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.cart.rawValue, logObject: cartObject, updateImmediately: updateImmediately)
     }

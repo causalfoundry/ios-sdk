@@ -13,12 +13,12 @@ public class CfLogItemRequestEvent {
      * CfLogItemRequestEvent is used to log the event an item is requested.
      */
 
-    var item_request_id: String?
-    var item_name: String?
-    var manufacturer: String?
+    var itemRequestId: String = ""
+    var itemName: String = ""
+    var manufacturer: String = ""
     private var meta: Any?
 
-    private var update_immediately: Bool = CoreConstants.shared.updateImmediately
+    private var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
     public init() {}
 
@@ -26,8 +26,8 @@ public class CfLogItemRequestEvent {
      * setItemRequestId is for the providing Item name requested by the user.
      */
     @discardableResult
-    public func setItemRequestId(_ item_request_id: String) -> CfLogItemRequestEvent {
-        self.item_request_id = item_request_id
+    public func setItemRequestId(itemRequestId: String) -> CfLogItemRequestEvent {
+        self.itemRequestId = itemRequestId
         return self
     }
 
@@ -36,8 +36,8 @@ public class CfLogItemRequestEvent {
      */
 
     @discardableResult
-    public func setItemName(_ item_name: String) -> CfLogItemRequestEvent {
-        self.item_name = item_name
+    public func setItemName(itemName: String) -> CfLogItemRequestEvent {
+        self.itemName = itemName
         return self
     }
 
@@ -46,7 +46,7 @@ public class CfLogItemRequestEvent {
      */
 
     @discardableResult
-    public func setItemManufacturer(_ manufacturer: String) -> CfLogItemRequestEvent {
+    public func setItemManufacturer(manufacturer: String) -> CfLogItemRequestEvent {
         self.manufacturer = manufacturer
         return self
     }
@@ -58,7 +58,7 @@ public class CfLogItemRequestEvent {
      */
 
     @discardableResult
-    public func setMeta(_ meta: Any?) -> CfLogItemRequestEvent {
+    public func setMeta(meta: Any?) -> CfLogItemRequestEvent {
         self.meta = meta
         return self
     }
@@ -72,8 +72,8 @@ public class CfLogItemRequestEvent {
      */
 
     @discardableResult
-    public func updateImmediately(_ update_immediately: Bool) -> CfLogItemRequestEvent {
-        self.update_immediately = update_immediately
+    public func updateImmediately(updateImmediately: Bool) -> CfLogItemRequestEvent {
+        self.updateImmediately = updateImmediately
         return self
     }
 
@@ -84,39 +84,24 @@ public class CfLogItemRequestEvent {
      */
 
     public func build() {
-        guard let item_request_id = item_request_id else {
-            ExceptionManager.throwIsRequiredException(
-                eventType: EComEventType.itemRequest.rawValue,
-                elementName: "item_request_id"
-            )
+        
+        if(itemRequestId.isEmpty){
+            ExceptionManager.throwIsRequiredException( eventType: EComEventType.itemRequest.rawValue, elementName: "item_request_id")
             return
-        }
-        guard let item_name = item_name else {
-            ExceptionManager.throwIsRequiredException(
-                eventType: EComEventType.itemRequest.rawValue,
-                elementName: "item_name"
-            )
+        }else if(itemName.isEmpty){
+            ExceptionManager.throwIsRequiredException( eventType: EComEventType.itemRequest.rawValue, elementName: "item_name")
             return
-        }
-        guard let manufacturer = manufacturer else {
-            ExceptionManager.throwIsRequiredException(
-                eventType: EComEventType.itemRequest.rawValue,
-                elementName: " manufacturer"
-            )
+        }else if(manufacturer.isEmpty){
+            ExceptionManager.throwIsRequiredException( eventType: EComEventType.itemRequest.rawValue, elementName: "item_manufacturer")
             return
         }
 
-        let itemRequestObject = ItemRequestObject(
-            item_request_id: item_request_id,
-            item_name: item_name,
-            manufacturer: manufacturer,
-            meta: meta as? Encodable
-        )
+        let itemRequestObject = ItemRequestObject(itemRequestId: itemRequestId, itemName: itemName, manufacturer: manufacturer,meta: meta as? Encodable)
         CFSetup().track(
             contentBlockName: ECommerceConstants.contentBlockName,
             eventType: EComEventType.itemRequest.rawValue,
             logObject: itemRequestObject,
-            updateImmediately: update_immediately
+            updateImmediately: updateImmediately
         )
     }
 }

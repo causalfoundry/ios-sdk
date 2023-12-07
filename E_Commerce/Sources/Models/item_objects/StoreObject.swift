@@ -2,30 +2,30 @@
 //  StoreObject.swift
 //
 //
-//  Created by khushbu on 01/11/23.
+//  Created by moizhassankh on 06/12/23.
 //
 
 import Foundation
 
 public struct StoreObject: Codable {
     var id: String
-    var lat: Float
-    var lon: Float
+    var lat: Float? = 0
+    var lon: Float? = 0
 
     // Custom coding keys enum
     enum CodingKeys: String, CodingKey {
         case id
-        case lat = "latitude"
-        case lon = "longitude"
+        case lat
+        case lon
     }
 
-    public init(id: String, lat: Float, lon: Float) {
+    public init(id: String, lat: Float? = 0, lon: Float? = 0) {
         self.id = id
         self.lat = lat
         self.lon = lon
     }
 
-    // Encoding method
+    // Custom encoding method
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
@@ -33,7 +33,7 @@ public struct StoreObject: Codable {
         try container.encode(lon, forKey: .lon)
     }
 
-//    // Decoding method
+    // Custom decoding method
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)

@@ -14,9 +14,9 @@ public class CfLogDeliveryEvent {
      * delivered status of the order or a partial order. Details about the items in the specific
      * delivery should be provided in the catalog.
      */
-    var orderId: String?
-    var deliveryId: String?
-    var action: String?
+    var orderId: String = ""
+    var deliveryId: String = ""
+    var action: String = ""
     var meta: Any?
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
@@ -94,16 +94,20 @@ public class CfLogDeliveryEvent {
      * user's network resources.
      */
     public func build() {
-        if orderId == nil || orderId!.isEmpty {
+        
+        if orderId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.rawValue, elementName: "order_id")
-        } else if deliveryId == nil || deliveryId!.isEmpty {
+            return
+        }else if deliveryId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.rawValue, elementName: "delivery_id")
-        } else if action == nil || action!.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.rawValue, elementName: String(describing: DeliveryAction.self))
-        } else {
-//            let deliveryObject = DeliveryObject(id: deliveryId!, order_id: orderId!, action: action!, meta: meta)
-            let deliverObject = DeliveryObject(id: deliveryId!, order_id: orderId!, action: action!, meta: meta as? Encodable)
-            CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.delivery.rawValue, logObject: deliverObject, updateImmediately: updateImmediately)
+            return
+        }else if action.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.rawValue, elementName: "action")
+            return
         }
+        
+        let deliverObject = DeliveryObject(deliveryId: deliveryId, orderId: orderId, action: action, meta: meta as? Encodable)
+        CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.delivery.rawValue, logObject: deliverObject, updateImmediately: updateImmediately)
+        
     }
 }

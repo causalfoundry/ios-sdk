@@ -2,7 +2,7 @@
 //  OxygenCatalogModel.swift
 //
 //
-//  Created by khushbu on 27/10/23.
+//  Created by moizhassankh on 07/12/23.
 //
 
 import Foundation
@@ -24,7 +24,7 @@ public struct OxygenCatalogModel: Codable {
         case supplierName = "supplier_name"
     }
 
-    public init(marketId: String? = nil, packaging: String? = nil, packagingSize: Float? = nil, packagingUnits: String? = nil, supplierId: String? = nil, supplierName: String? = nil) {
+    public init(marketId: String? = "", packaging: String? = "", packagingSize: Float? = 0, packagingUnits: String? = "", supplierId: String? = "", supplierName: String? = "") {
         self.marketId = marketId
         self.packaging = packaging
         self.packagingSize = packagingSize
