@@ -96,7 +96,7 @@ public class CFSetup: NSObject, IngestProtocol {
                        versionName: application.build())
     }
 
-    public func getUSDRate(fromCurrency: String, callback: @escaping (Float) -> Float) {
-        ingestApiHandler.getUSDRate(fromCurrency: fromCurrency, callback: callback)
+    public func getUSDRate(fromCurrency: String) -> Float {
+        ingestApiHandler.getUSDRate(fromCurrency: fromCurrency)
     }
 }

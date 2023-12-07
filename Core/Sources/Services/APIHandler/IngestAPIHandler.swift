@@ -39,9 +39,6 @@ public class IngestAPIHandler: NSObject {
         }
     }
 
-    // GET USD Rate
-
-    // Update Track Event
     func updateEventTrack(eventArray: [EventDataObject], callback: @escaping (Bool) -> Void) {
         var userID: String = CoreConstants.shared.userId
 
@@ -89,25 +86,26 @@ public class IngestAPIHandler: NSObject {
         MMKVHelper.shared.writeEvents(eventsArray: prevEvent)
     }
 
-    public func getUSDRate(fromCurrency: String, callback: @escaping (Float) -> Float) {
+    func getUSDRate(fromCurrency: String) -> Float {
         let currencyObject: CurrencyMainObject? = MMKVHelper.shared.readCurrencyObject()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
 
+        let isAgainRate = CoreConstants.shared.isAgainRate
+        CoreConstants.shared.isAgainRate = true
+        
         if let currencyObject = currencyObject,
            currencyObject.fromCurrency == fromCurrency,
            let toCurrencyObject = currencyObject.toCurrencyObject,
-           toCurrencyObject.date == dateFormatter.string(from: Date()) || CoreConstants.shared.isAgainRate
+           toCurrencyObject.date == dateFormatter.string(from: Date()) || isAgainRate
         {
-            _ = callback(toCurrencyObject.usd)
+           return toCurrencyObject.usd
         } else {
-            _ = callCurrencyApi(fromCurrency: fromCurrency)
+           return callCurrencyApi(fromCurrency: fromCurrency)
         }
-
-        CoreConstants.shared.isAgainRate = true
     }
 
-    public func callCurrencyApi(fromCurrency: String) -> Float {
+    func callCurrencyApi(fromCurrency: String) -> Float {
         let currencyObject = CurrencyMainObject(
             fromCurrency: fromCurrency,
             toCurrencyObject: CurrencyObject(
