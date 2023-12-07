@@ -88,7 +88,7 @@ public class CfLogIdentityBuilder {
         self.app_user_id = app_user_id
         return self
     }
-
+    
     /**
      * You can pass any type of value in setMeta. It is for developer and partners to log
      * additional information with the log that they find would be helpful for logging and
@@ -142,35 +142,32 @@ public class CfLogIdentityBuilder {
          * Will throw and exception if the appUserId provided is null or no value is
          * provided at all.
          */
-        while app_user_id == nil {
+        if app_user_id == nil {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.identify.rawValue, elementName: "app_user_id")
+            return
         }
-        /**
-         * Will throw and exception if the identityAction provided is null or no action is
-         * provided at all.
-         */
-        while identity_action == nil {
+        else if identity_action == nil {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.identify.rawValue, elementName: "identity_action")
+            return
+        }else if((identity_action == IdentityAction.blocked.rawValue || identity_action == IdentityAction.unblocked.rawValue) &&
+                 (blocked_reason == nil)){
+                  ExceptionManager.throwIsRequiredException(eventType: CoreEventType.identify.rawValue, elementName: "reason")
+                  return
         }
         /**
          * Parsing the values into an object and passing to the setup block to queue
          * the event based on its priority.
          */
-
+        CFSetup().updateUserId(appUserId: app_user_id!)
         if identity_action == IdentityAction.logout.rawValue {
             CoreConstants.shared.logoutEvent = true
-        } else {
-            CFSetup().updateUserId(appUserId: app_user_id!)
         }
-
-        var action = identity_action
-        var blocked: IdentifyObject.Blocked?
-        if let reason = blocked_reason {
-            action = IdentityAction.blocked.rawValue
-            blocked = IdentifyObject.Blocked(reason: reason, remarks: blocked_remarks)
+        
+        var indetityObject = IdentifyObject(action: identity_action, blocked: nil)
+        if (identity_action == IdentityAction.blocked.rawValue || identity_action == IdentityAction.unblocked.rawValue){
+            indetityObject.blocked = IdentifyObject.Blocked(reason: blocked_reason!, remarks: blocked_remarks)
+            
         }
-
-        let indetityObject = IdentifyObject(action: action, blocked: blocked)
 
         CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.identify.rawValue, logObject: indetityObject, updateImmediately: update_immediately, eventTime: 0)
     }

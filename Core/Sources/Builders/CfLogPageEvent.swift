@@ -125,43 +125,29 @@ public class CfLogPageBuilder {
          * provided at all.
          */
 
-        while path_value == nil {
+        if path_value == nil {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "path_value")
-        }
-        /**
-         * Will throw and exception if the title provided is null or no value is
-         * provided at all.
-         */
-        while title_value == nil {
+            return
+        }else if title_value == nil {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "title")
-        }
-        /**
-         * Will throw and exception if the duration provided is null or no value is
-         * provided at all.
-         */
-        while duration_value == nil {
+            return
+        }else if duration_value == nil {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "duration")
-        }
-
-        /**
-         * Will throw and exception if the render_time_value provided is below 0
-         */
-        while render_time_value == nil {
+            return
+        }else if render_time_value == nil {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "render_time_value")
-        }
-        /**
-         * Will throw and exception if the render_time_value provided is more than 10000 - 10 sec
-         */
-        if render_time_value! > 1000 {
+            return
+        }else if duration_value! < 0 {
             ExceptionManager.throwInvalidException(eventType: CoreEventType.page.rawValue,
-                                                   paramName: "render_time", className: String(describing: CfLogPageEvent.self))
+                                                   paramName: "duration_value", className: String(describing: CfLogPageEvent.self))
+            return
         }
 
-        var pageObject = PageObject(path: path_value, title: title_value, duration: duration_value, render_time: render_time_value, meta: meta as? Encodable)
-
-        if pageObject.render_time! > 1000 {
-            pageObject.render_time = 0
+        if render_time_value! > 10000 {
+            render_time_value = 0
         }
+        
+        let pageObject = PageObject(path: path_value, title: title_value, duration: duration_value, render_time: render_time_value, meta: meta as? Encodable)
 
         CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.page.rawValue, logObject: pageObject, updateImmediately: update_immediately, eventTime: 0)
     }

@@ -8,13 +8,13 @@
 import Foundation
 
 struct MediaObject: Codable {
-    var id: String?
-    var type: String?
-    var action: String?
-    var time: String?
+    var id: String
+    var type: String
+    var action: String
+    var time: Int
     var meta: Encodable?
 
-    init(id: String? = nil, type: String? = nil, action: String? = nil, time: String? = nil, meta: Encodable? = nil) {
+    init(id: String, type: String, action: String, time: Int, meta: Encodable? = nil) {
         self.id = id
         self.type = type
         self.action = action
@@ -32,10 +32,10 @@ struct MediaObject: Codable {
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        id = try values.decodeIfPresent(String.self, forKey: .id)
-        type = try values.decodeIfPresent(String.self, forKey: .type)
-        action = try values.decodeIfPresent(String.self, forKey: .action)
-        time = try values.decodeIfPresent(String.self, forKey: .time)
+        id = try values.decode(String.self, forKey: .id)
+        type = try values.decode(String.self, forKey: .type)
+        action = try values.decode(String.self, forKey: .action)
+        time = try values.decode(Int.self, forKey: .time)
         if let metaData = try? values.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {

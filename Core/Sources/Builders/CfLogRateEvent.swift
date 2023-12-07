@@ -8,14 +8,14 @@
 import Foundation
 
 public class CfLogRateEvent {
-    var rateValue: Float?
-    var type: String?
-    var subjectId: String?
+    var rateValue: Float
+    var type: String
+    var subjectId: String
     var contentBlock: String
     var meta: Any?
     var updateImmediately: Bool?
 
-    init(rateValue: Float? = nil, type: String? = nil, subjectId: String? = nil, contentBlock: String, meta: Any? = nil, updateImmediately _: Bool) {
+    init(rateValue: Float, type: String, subjectId: String, contentBlock: String = ContentBlock.core.rawValue, meta: Any? = nil, updateImmediately _: Bool) {
         self.rateValue = rateValue
         self.type = type
         self.subjectId = subjectId
@@ -26,10 +26,10 @@ public class CfLogRateEvent {
 }
 
 public class CfLogRateEventBuilder {
-    var rateValue: Float? = 0.0
-    var type: String? = ""
-    var subjectId: String? = ""
-    var contentBlock: String? = ""
+    var rateValue: Float = 0.0
+    var type: String = ""
+    var subjectId: String = ""
+    var contentBlock: String = ""
     var meta: Any?
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
@@ -140,27 +140,18 @@ public class CfLogRateEventBuilder {
      * user's network resources.
      */
     public func build() {
-        guard let rateValue = rateValue else {
-            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.rate.rawValue, elementName: "Rate Value")
-            return
-        }
-
-        guard rateValue >= 0, rateValue <= 5 else {
+        if rateValue < 0 || rateValue > 5 {
             ExceptionManager.throwIllegalStateException(eventType: CoreEventType.rate.rawValue, message: "Rate Value should be 0 to 5 (both inclusive)", className: String(describing: CfLogRateEvent.self))
             return
-        }
-
-        guard let type = type, !type.isEmpty else {
+        }else if type.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.rate.rawValue, elementName: "\(RateType.self)")
             return
-        }
-
-        guard let subjectId = subjectId, !subjectId.isEmpty else {
+        }else if subjectId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.rate.rawValue, elementName: "subject_id")
             return
         }
 
         let rateObject = RateObject(rate_value: rateValue, type: type, subject_id: subjectId, meta: meta as? Encodable)
-        CFSetup().track(contentBlockName: contentBlock!, eventType: CoreEventType.rate.rawValue, logObject: rateObject, updateImmediately: updateImmediately)
+        CFSetup().track(contentBlockName: contentBlock, eventType: CoreEventType.rate.rawValue, logObject: rateObject, updateImmediately: updateImmediately)
     }
 }

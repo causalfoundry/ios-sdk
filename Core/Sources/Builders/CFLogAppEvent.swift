@@ -112,9 +112,9 @@ public class CFLogAppEventBuilder {
      */
 
     public func build() {
-        while action == nil {
-            ExceptionManager.throwInitException(eventType: "CFLog")
-            fatalError("action not found")
+        if action == nil {
+            ExceptionManager.throwInvalidException(eventType: "app", paramName: "action", className: "AppAction")
+            return
         }
 
         let appObject = AppObject(action: action!, startTime: startTimeValue, meta: (meta as? String) ?? "")

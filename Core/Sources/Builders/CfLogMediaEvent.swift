@@ -13,17 +13,15 @@ public class CfLogMediaEvent {
     var media_action: String?
     var duration_value: Int?
     var content_block: String = CoreConstants.shared.contentBlockName
-    var mediaModel_value: MediaCatalogModel?
     var meta: Any?
     var update_immediately: Bool = CoreConstants.shared.updateImmediately
 
-    init(media_id: String? = nil, media_type: String? = nil, media_action: String? = nil, duration_value: Int? = nil, content_block: String, mediaModel_value: MediaCatalogModel? = nil, meta: Any? = nil, update_immediately: Bool) {
+    init(media_id: String? = nil, media_type: String? = nil, media_action: String? = nil, duration_value: Int? = nil, content_block: String, meta: Any? = nil, update_immediately: Bool) {
         self.media_id = media_id
         self.media_type = media_type
         self.media_action = media_action
         self.duration_value = duration_value
         self.content_block = content_block
-        self.mediaModel_value = mediaModel_value
         self.meta = meta
         self.update_immediately = update_immediately
     }
@@ -35,7 +33,6 @@ public class CfLogMediaEventBuilder {
     var media_action: String?
     var duration_value: Int?
     var content_block: String = CoreConstants.shared.contentBlockName
-    var mediaModel_value: MediaCatalogModel?
     var meta: Any?
     var update_immediately: Bool = CoreConstants.shared.updateImmediately
 
@@ -176,29 +173,6 @@ public class CfLogMediaEventBuilder {
         return self
     }
 
-    @discardableResult
-    public func setMediaModel(mediaModelValue: MediaCatalogModel) -> CfLogMediaEventBuilder {
-        mediaModel_value = mediaModelValue
-        return self
-    }
-
-    @discardableResult
-    public func setMediaModel(mediaModelValue: String?) -> CfLogMediaEventBuilder {
-        if mediaModelValue != nil {
-            if let jsonData = mediaModelValue!.data(using: .utf8) {
-                // Decode the JSON data into a MediaCatalogModel instance
-                do {
-                    let mediaModel = try JSONDecoder.new.decode(MediaCatalogModel.self, from: jsonData)
-                    // Use the mediaModel instance as needed
-                    print("Decoded mediaModel: \(mediaModel)")
-                } catch {
-                    print("Error decoding JSON: \(error)")
-                }
-            }
-        }
-        return self
-    }
-
     /**
      * You can pass any type of value in setMeta. It is for developer and partners to log
      * additional information with the log that they find would be helpful for logging and
@@ -235,74 +209,27 @@ public class CfLogMediaEventBuilder {
          */
         if media_id?.isNilOREmpty() == true {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_id")
-        }
-        /**
-         * Will throw and exception if the appUserId provided is null or no value is
-         * provided at all.
-         */
-        else if mediaModel_value == nil {
-            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "mediaModel_value")
-        }
-        /**
-         * Will throw and exception if the mediaType provided is null or no type is
-         * provided at all.
-         */
-
-        else if media_type?.isNilOREmpty() == true {
+            return
+        }else if media_type?.isNilOREmpty() == true {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_type")
-
-            if media_type != MediaType.image.rawValue {
+            return
+        }else if media_type != MediaType.image.rawValue {
                 if (media_action?.isNilOREmpty()) == true {
                     ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_type")
+                    return
                 }
-
-                /**
-                 * Will throw and exception if the time provided is null or no value is
-                 * provided at all in case of type is audio or video.
-                 */
-
-                if duration_value == nil {
+                else if duration_value == nil {
                     ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "Current Seek Time")
+                    return
                 }
             } else {
-                /**
-                 * Will override the values for time to current time and mediaAction to
-                 * play in case of type is an image.
-                 */
                 media_action = MediaAction.play.rawValue
                 duration_value = 0
             }
-        } else {
-            let mediaObject = MediaObject(id: media_id, type: media_type, action: media_action, time: "\(duration_value ?? 0)", meta: meta as? Encodable)
-
-            if mediaModel_value != nil {
-                callCatalogAPI()
-            }
-            CFSetup().track(contentBlockName: content_block, eventType: CoreEventType.media.rawValue, logObject: mediaObject, updateImmediately: update_immediately)
-        }
+    
+        let mediaObject = MediaObject(id: media_id!, type: media_type!, action: media_action!, time: duration_value!, meta: meta as? Encodable)
+        CFSetup().track(contentBlockName: content_block, eventType: CoreEventType.media.rawValue, logObject: mediaObject, updateImmediately: update_immediately)
+    
     }
 
-    private func callCatalogAPI() {
-        guard let mediaModelValue = mediaModel_value else {
-            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_total_duration")
-            return
-        }
-
-        if let language = mediaModelValue.language, !language.isEmpty {
-            if !CoreConstants.shared.enumContains(LanguageCode.self, name: language) {
-                ExceptionManager.throwEnumException(eventType: CoreEventType.media.rawValue, className: String(describing: LanguageCode.self))
-                return
-            }
-            mediaModel_value?.language = LanguageCode(rawValue: language)?.languageISO2Code
-        }
-
-        let internalMediaModel = InternalMediaModel(media_id: media_id,
-                                                    media_name: mediaModel_value?.name,
-                                                    media_description: mediaModel_value?.description,
-                                                    type: media_type,
-                                                    length: mediaModel_value?.length,
-                                                    resolution: mediaModel_value?.resolution,
-                                                    language: mediaModel_value?.language)
-        CFSetup().updateCoreCatalogItem(subject: .media, catalogObject: [internalMediaModel].toData()!)
-    }
 }

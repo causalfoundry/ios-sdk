@@ -14,5 +14,5 @@ struct IdentifyObject: Codable {
     }
 
     let action: String?
-    let blocked: Blocked?
+    var blocked: Blocked?
 }

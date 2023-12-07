@@ -260,45 +260,16 @@ public class CfLogSearchEventBuilder {
      */
 
     public func build() {
-        switch true {
-            /**
-             * Will throw and exception if the query provided is null or no value is
-             * provided at all.
-             */
-
-        case queryText == nil:
+        if queryText == nil{
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.search.rawValue, elementName: "queryText")
-
-            /**
-             * Will throw and exception if the query provided is null or no value is
-             * provided at all.
-             */
-
-        case searchModule.isEmpty:
+            return
+        }else if searchModule.isEmpty{
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.search.rawValue, elementName: "SearchModuleType")
-
-            /**
-             * Will throw and exception if the result_ids_list provided is null though it
-             * accepts empty lists.
-             */
-            // results_list.isNullOrEmpty() -> { // not checking for empty list as results can be an empty list
-            // ExceptionManager.throwIsRequiredException("results_list")
-
-        default:
-            for item in resultsList {
-                if item.id!.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: CoreEventType.search.rawValue, elementName: "search result_item_id")
-
-                    // need to uncommnted code - Temporary
-//                } else if !(SearchItemType.allValues.filter({$0.rawValue == searchModule}).first != nil) {
-//                    ExceptionManager.throwEnumException(eventType: CoreEventType.search.rawValue, className: "SearchItemType")
-                }
-            }
-
-            let searchObject = SearchObject(search_id: searchId, query: queryText!, search_module: searchModule, results_list: resultsList, filter: filterValue, page: pageValue, meta: meta)
-
-            CoreConstants.shared.impressionItemsList.removeAll()
-            CFSetup().track(contentBlockName: contentBlock, eventType: CoreEventType.search.rawValue, logObject: searchObject, updateImmediately: updateImmediately)
+            return
         }
+
+        let searchObject = SearchObject(search_id: searchId, query: queryText!, search_module: searchModule, results_list: resultsList, filter: filterValue, page: pageValue, meta: meta)
+        CFSetup().track(contentBlockName: contentBlock, eventType: CoreEventType.search.rawValue, logObject: searchObject, updateImmediately: updateImmediately)
+        
     }
 }

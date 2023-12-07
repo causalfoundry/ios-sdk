@@ -12,4 +12,5 @@ public enum IdentityAction: String, CaseIterable {
     case login
     case logout
     case blocked
+    case unblocked
 }
