@@ -47,9 +47,8 @@ extension MMKVHelper {
         write(user, for: Key.user.rawValue)
     }
 
-    func fetchUserID() -> String {
-        let object: String? = read(for: Key.user.rawValue)
-        return object ?? ""
+    func fetchUserID() -> String? {
+        read(for: Key.user.rawValue)
     }
     
     func readInjectEvents() -> [EventDataObject] {

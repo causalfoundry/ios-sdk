@@ -12,20 +12,17 @@ class CFNudgeListener {
 
     private var nudgeTimer: Timer?
     private var nudgeTask: URLSessionDataTask?
-    private var userID: String?
 
     let timeInterval: TimeInterval = 20 * 3600
 
     func endListening() {
-        userID = nil
         endTimer()
         NotificationCenter.default.removeObserver(self)
     }
 
-    func beginListening(userID: String) {
+    func beginListening() {
         endListening()
-        guard !userID.isEmpty else { return }
-        self.userID = userID
+        guard let userID = CoreConstants.shared.userId, !userID.isEmpty else { return }
         startTimer()
         fetchAndDisplayNudges()
         NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: .main) { [weak self] _ in
@@ -38,7 +35,7 @@ class CFNudgeListener {
     }
 
     func fetchNudges() async throws -> [BackendNudgeMainObject] {
-        guard let userID = userID, !userID.isEmpty else { return [] }
+        guard let userID = CoreConstants.shared.userId, !userID.isEmpty else { return [] }
         return try await withCheckedThrowingContinuation { continuation in
             let url = URL(string: "\(CoreConstants.shared.devUrl)nudge/sdk/\(userID)")!
             BackgroundRequestController.shared.request(url: url, httpMethod: .get, params: nil) { result in

@@ -11,7 +11,6 @@ import UIKit
 public class CFSetup: NSObject, IngestProtocol {
     public var ingestApiHandler = IngestAPIHandler()
     public var catalogAPIHandler = CatalogAPIHandler()
-    private var userId: String = ""
 
     private func setup() {
         verifyAccessToken()
@@ -23,10 +22,8 @@ public class CFSetup: NSObject, IngestProtocol {
 
         CoreConstants.shared.sessionStartTime = Int64(Date().timeIntervalSince1970 * 1000)
         CoreConstants.shared.sessionEndTime = Int64(Date().timeIntervalSince1970 * 1000)
-
-        userId = MMKVHelper.shared.fetchUserID()
-
-        CFNudgeListener.shared.beginListening(userID: userId)
+        
+        CFNudgeListener.shared.beginListening()
     }
 
     func initalize(event _: UIApplication.State, pauseSDK: Bool, autoShowInAppNudge: Bool, updateImmediately: Bool) {
@@ -40,9 +37,7 @@ public class CFSetup: NSObject, IngestProtocol {
     func updateUserId(appUserId: String) {
         if !appUserId.isEmpty {
             CoreConstants.shared.userId = appUserId
-            MMKVHelper.shared.writeUser(user: CoreConstants.shared.userId)
-            userId = appUserId
-            CFNudgeListener.shared.beginListening(userID: appUserId)
+            CFNudgeListener.shared.beginListening()
         }
     }
 

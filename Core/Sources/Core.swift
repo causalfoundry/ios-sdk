@@ -88,8 +88,8 @@ public class CFLogBuilder {
      * In such cases, the device Id will be used as the userId
      */
     @discardableResult
-    public func allowAnonymousUsers() -> CFLogBuilder {
-        CoreConstants.shared.isAnonymousUserAllowed = true
+    public func allowAnonymousUsers(_ allowed: Bool = true) -> CFLogBuilder {
+        CoreConstants.shared.isAnonymousUserAllowed = allowed
         return self
     }
 
@@ -188,7 +188,7 @@ public class CFLogBuilder {
      * However it is not recommended to do so.
      */
     @discardableResult
-    public func updateIngestNotificationShowInterval(notificationShowInterval: Int64) -> CFLogBuilder {
+    public func updateIngestNotificationShowInterval(notificationShowInterval: TimeInterval) -> CFLogBuilder {
         NotificationConstants.shared.INGEST_NOTIFICATION_INTERVAL_TIME = notificationShowInterval
         return self
     }
@@ -200,8 +200,8 @@ public class CFLogBuilder {
      * configuration.
      */
     @discardableResult
-    public func updateInAppMessageInitialDelay(initialDelayInMillis: Int64) -> CFLogBuilder {
-        NotificationConstants.shared.IN_APP_MESSAGE_INITIAL_DELAY_IN_MILLIS = initialDelayInMillis
+    public func updateInAppMessageInitialDelay(initialDelay: Int) -> CFLogBuilder {
+        NotificationConstants.shared.IN_APP_MESSAGE_INITIAL_DELAY = initialDelay
         return self
     }
 
