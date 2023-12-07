@@ -1,0 +1,4 @@
+module CasualFoundryElearning {
+    header "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryElearning.build/CasualFoundryElearning-Swift.h"
+    requires objc
+}

@@ -1,0 +1,4 @@
+module CasualFoundryPayments {
+    header "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryPayments.build/CasualFoundryPayments-Swift.h"
+    requires objc
+}

@@ -1,0 +1,4 @@
+module CasualFoundryCHWManagement {
+    header "/Users/khushbu/Documents/CausalFoundry_ios_SDK/.build/x86_64-apple-macosx/debug/CasualFoundryCHWManagement.build/CasualFoundryCHWManagement-Swift.h"
+    requires objc
+}
