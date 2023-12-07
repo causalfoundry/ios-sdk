@@ -12,34 +12,43 @@ import Foundation
 
 public class CfEComCatalog {
     public static func callCatalogAPI(itemId: String, itemType: String, catalogModel: Any) {
-
+        var propertiesDecoded = false
         switch itemType {
         case ItemType.drug.rawValue:
             if let drugCatalogModel = catalogModel as? DrugCatalogModel {
                 CfEComCatalog.updateDrugCatalog(drugId: itemId, drugCatalogModel: drugCatalogModel)
+                propertiesDecoded = true
             }
         case ItemType.blood.rawValue:
             if let bloodCatalogModel = catalogModel as? BloodCatalogModel {
                 CfEComCatalog.updateBloodCatalog(itemId: itemId, bloodCatalogModel: bloodCatalogModel)
+                propertiesDecoded = true
             }
         case ItemType.oxygen.rawValue:
             if let oxygenCatalogModel = catalogModel as? OxygenCatalogModel {
                 CfEComCatalog.updateOxygenCatalog(itemId: itemId, oxygenCatalogModel: oxygenCatalogModel)
+                propertiesDecoded = true
             }
         case ItemType.medicalEquipment.rawValue:
             if let medicalEquipmentCatalogModel = catalogModel as? MedicalEquipmentCatalogModel {
                 CfEComCatalog.updateMedicalEquipmentCatalog(itemId: itemId, medicalEquipmentCatalogModel: medicalEquipmentCatalogModel)
+                propertiesDecoded = true
             }
         case ItemType.grocery.rawValue:
             if let groceryCatalogModel = catalogModel as? GroceryCatalogModel {
                 CfEComCatalog.updateGroceryCatalog(itemId: itemId, groceryCatalogModel: groceryCatalogModel)
+                propertiesDecoded = true
             }
         case ItemType.facility.rawValue:
             if let facilityCatalogModel = catalogModel as? FacilityCatalogModel {
                 CfEComCatalog.updateFacilityCatalog(facilityId: itemId, facilityCatalogModel: facilityCatalogModel)
+                propertiesDecoded = true
             }
         default:
-            ExceptionManager.throwIllegalStateException(eventType: "item catalog", message: "Please use correct catalog properties with provided item type", className: String(describing: CfEComCatalog.self))
+            break
+        }
+        if !propertiesDecoded {
+            ExceptionManager.throwIllegalStateException(eventType: "item catalog", message: "Please use correct catalog properties with provided item type", className: "ItemImpressionListener")
         }
     }
 
