@@ -5,7 +5,9 @@
 //  Created by moizhassankh on 07/12/23.
 //
 
+#if canImport(CasualFoundryCore)
 import CasualFoundryCore
+#endif
 import Foundation
 
 public class CfLogItemEvent {
@@ -31,7 +33,7 @@ public class CfLogItemEvent {
      * Below is the method for the enum based approach.
      */
     @discardableResult
-    public func setItemAction(itemAction: ItemAction) -> CfLogItemEvent {
+    public func setItemAction(itemAction: EComItemAction) -> CfLogItemEvent {
         itemActionValue = itemAction.rawValue
         return self
     }
@@ -47,10 +49,10 @@ public class CfLogItemEvent {
      */
     @discardableResult
     public func setItemAction(itemActionValue: String) -> CfLogItemEvent {
-        if CoreConstants.shared.enumContains(ItemAction.self, name: itemActionValue) {
+        if CoreConstants.shared.enumContains(EComItemAction.self, name: itemActionValue) {
             self.itemActionValue = itemActionValue
         } else {
-            ExceptionManager.throwEnumException(eventType: EComEventType.item.rawValue, className: String(describing: ItemAction.self))
+            ExceptionManager.throwEnumException(eventType: EComEventType.item.rawValue, className: String(describing: EComItemAction.self))
         }
         return self
     }
@@ -195,7 +197,7 @@ public class CfLogItemEvent {
 
     public func build() {
         if itemActionValue.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.item.rawValue, elementName: String(describing: ItemAction.self))
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.item.rawValue, elementName: String(describing: EComItemAction.self))
             return
         } else {
             let itemViewObject = ViewItemObject(action:itemActionValue, item: itemObject)

@@ -5,7 +5,9 @@
 //  Created by khushbu on 10/11/23.
 //
 
+#if canImport(CasualFoundryCore)
 import CasualFoundryCore
+#endif
 import Foundation
 
 enum ChwEventValidation {

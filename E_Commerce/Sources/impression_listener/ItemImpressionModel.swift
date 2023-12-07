@@ -6,7 +6,9 @@
 //
 
 import Foundation
+#if canImport(CasualFoundryCore)
 import CasualFoundryCore
+#endif
 
 struct ItemImpressionModel: Codable {
     var itemProperties: ItemModel
