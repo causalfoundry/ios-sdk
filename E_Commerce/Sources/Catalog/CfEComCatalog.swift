@@ -2,7 +2,7 @@
 //  CfEComCatalog.swift
 //
 //
-//  Created by khushbu on 30/10/23.
+//  Created by moizhassankh on 07/12/23.
 //
 
 import CasualFoundryCore
@@ -10,7 +10,6 @@ import Foundation
 
 public class CfEComCatalog {
     public static func callCatalogAPI(itemId: String, itemType: String, catalogModel: Any) {
-        let catalogName = "item catalog"
 
         switch itemType {
         case ItemType.drug.rawValue:
@@ -38,10 +37,11 @@ public class CfEComCatalog {
                 CfEComCatalog.updateFacilityCatalog(facilityId: itemId, facilityCatalogModel: facilityCatalogModel)
             }
         default:
-            ExceptionManager.throwIllegalStateException(eventType: catalogName, message: "Please use correct catalog properties with provided item type", className: String(describing: CfEComCatalog.self))
+            ExceptionManager.throwIllegalStateException(eventType: "item catalog", message: "Please use correct catalog properties with provided item type", className: String(describing: CfEComCatalog.self))
         }
     }
 
+    
     // Drug Catalog
     public static func updateDrugCatalog(drugId: String, drugCatalogModel: String) {
         if let drugCatalogModel = try? JSONDecoder.new.decode(DrugCatalogModel.self, from: Data(drugCatalogModel.utf8)) {
@@ -54,6 +54,8 @@ public class CfEComCatalog {
         CFSetup().updateEcommerceCatalogItem(subject: .drug, catalogObject: [drugInternalCatalog].toData()!)
     }
 
+    
+    
     // Grocery Catalog
     public static func updateGroceryCatalog(itemId: String, groceryCatalogModel: String) {
         if let groceryCatalogModel = try? JSONDecoder.new.decode(GroceryCatalogModel.self, from: Data(groceryCatalogModel.utf8)) {
@@ -66,6 +68,8 @@ public class CfEComCatalog {
         CFSetup().updateEcommerceCatalogItem(subject: .grocery, catalogObject: [groceryInternalCatalog].toData()!)
     }
 
+    
+    
     // Blood Catalog
     public static func updateBloodCatalog(itemId: String, bloodCatalogModel: String) {
         if let bloodCatalogModel = try? JSONDecoder.new.decode(BloodCatalogModel.self, from: Data(bloodCatalogModel.utf8)) {
@@ -78,6 +82,8 @@ public class CfEComCatalog {
         CFSetup().updateEcommerceCatalogItem(subject: .blood, catalogObject: [bloodInternalCatalog].toData()!)
     }
 
+    
+    
     // Oxygen Catalog
     public static func updateOxygenCatalog(itemId: String, oxygenCatalogModel: String) {
         if let oxygenCatalogModel = try? JSONDecoder.new.decode(OxygenCatalogModel.self, from: Data(oxygenCatalogModel.utf8)) {
@@ -90,6 +96,8 @@ public class CfEComCatalog {
         CFSetup().updateEcommerceCatalogItem(subject: .oxygen, catalogObject: [oxygenInternalCatalog].toData()!)
     }
 
+    
+    
     // Medical Equipment Catalog
     public static func updateMedicalEquipmentCatalog(itemId: String, medicalEquipmentCatalogModel: String) {
         if let medicalEquipmentCatalogModel = try? JSONDecoder.new.decode(MedicalEquipmentCatalogModel.self, from: Data(medicalEquipmentCatalogModel.utf8)) {
@@ -102,6 +110,8 @@ public class CfEComCatalog {
         CFSetup().updateEcommerceCatalogItem(subject: .medical_equipment, catalogObject: [medicalInternalCatalog].toData()!)
     }
 
+    
+    
     // Facility Catalogd
     public static func updateFacilityCatalog(facilityId: String, facilityCatalogModel: String) {
         if let facilityCatalogModel = try? JSONDecoder.new.decode(FacilityCatalogModel.self, from: Data(facilityCatalogModel.utf8)) {

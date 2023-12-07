@@ -2,13 +2,13 @@
 //  DrugCatalogModel.swift
 //
 //
-//  Created by khushbu on 27/10/23.
+//  Created by moizhassankh on 07/12/23.
 //
 
 import Foundation
 
 public struct DrugCatalogModel: Codable {
-    var name: String?
+    var name: String
     var marketId: String?
     var description: String?
     var supplierId: String?
@@ -20,21 +20,6 @@ public struct DrugCatalogModel: Codable {
     var drugStrength: String?
     var atcAnatomicalGroup: String?
     var otcOrEthical: String?
-
-    public init(name: String? = nil, marketId: String? = nil, description: String? = nil, supplierId: String? = nil, supplierName: String? = nil, producer: String? = nil, packaging: String? = nil, activeIngredients: [String]? = nil, drugForm: String? = nil, drugStrength: String? = nil, atcAnatomicalGroup: String? = nil, otcOrEthical: String? = nil) {
-        self.name = name
-        self.marketId = marketId
-        self.description = description
-        self.supplierId = supplierId
-        self.supplierName = supplierName
-        self.producer = producer
-        self.packaging = packaging
-        self.activeIngredients = activeIngredients
-        self.drugForm = drugForm
-        self.drugStrength = drugStrength
-        self.atcAnatomicalGroup = atcAnatomicalGroup
-        self.otcOrEthical = otcOrEthical
-    }
 
     enum CodingKeys: String, CodingKey {
         case name
@@ -50,10 +35,25 @@ public struct DrugCatalogModel: Codable {
         case atcAnatomicalGroup = "ATC_anatomical_group"
         case otcOrEthical = "OTC_or_ethical"
     }
+    
+    public init(name: String, marketId: String? = "", description: String? = "", supplierId: String? = "", supplierName: String? = "", producer: String? = "", packaging: String? = "", activeIngredients: [String]? = [], drugForm: String? = "", drugStrength: String? = "", atcAnatomicalGroup: String? = "", otcOrEthical: String? = "") {
+        self.name = name
+        self.marketId = marketId
+        self.description = description
+        self.supplierId = supplierId
+        self.supplierName = supplierName
+        self.producer = producer
+        self.packaging = packaging
+        self.activeIngredients = activeIngredients
+        self.drugForm = drugForm
+        self.drugStrength = drugStrength
+        self.atcAnatomicalGroup = atcAnatomicalGroup
+        self.otcOrEthical = otcOrEthical
+    }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(name, forKey: .name)
+        try container.encode(name, forKey: .name)
         try container.encodeIfPresent(marketId, forKey: .marketId)
         try container.encodeIfPresent(description, forKey: .description)
         try container.encodeIfPresent(supplierId, forKey: .supplierId)
@@ -70,7 +70,7 @@ public struct DrugCatalogModel: Codable {
     // Custom decoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        name = try container.decodeIfPresent(String.self, forKey: .name)
+        name = try container.decode(String.self, forKey: .name)
         marketId = try container.decodeIfPresent(String.self, forKey: .marketId)
         description = try container.decodeIfPresent(String.self, forKey: .description)
         supplierId = try container.decodeIfPresent(String.self, forKey: .supplierId)

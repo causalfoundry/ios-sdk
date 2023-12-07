@@ -2,7 +2,7 @@
 //  CfLogItemEvent.swift
 //
 //
-//  Created by khushbu on 27/10/23.
+//  Created by moizhassankh on 07/12/23.
 //
 
 import CasualFoundryCore
@@ -15,7 +15,7 @@ public class CfLogItemEvent {
      */
 
     var itemActionValue: String = ""
-    var itemValue: ItemModel = ItemModel(id: "", type: "", quantity: 1, price: -1.0, currency: "")
+    var itemObject: ItemModel = ItemModel(id: "", type: "", quantity: 1, price: -1.0, currency: "")
     var searchId: String = ""
     var catalogModel: Any? = nil
     var meta: Any? = nil
@@ -63,7 +63,7 @@ public class CfLogItemEvent {
     @discardableResult
     public func setItem(item: ItemModel) -> CfLogItemEvent {
         if(ECommerceConstants.isItemValueObjectValid(itemValue: item, eventType: EComEventType.item)){
-            itemValue = item
+            self.itemObject = item
         }
         return self
     }
@@ -81,6 +81,61 @@ public class CfLogItemEvent {
            let item = try? JSONDecoder.new.decode(ItemModel.self, from: data)
         {
             setItem(item: item)
+        }
+        return self
+    }
+    
+    /**
+     * setCatalog can be used to pass the whole catalog as an object as well. You can use the POJO
+     * for that catalog to parse the data int he required format and pass that to this function to
+     * log the event.
+     */
+    @discardableResult
+    public func setCatalogProperties(catalogPropertiesString: String) -> CfLogItemEvent {
+        switch self.itemObject.type {
+        case ItemType.drug.rawValue:
+            if let drugCatalogModel = try? JSONDecoder.new.decode(DrugCatalogModel.self, from: Data(catalogPropertiesString.utf8)) {
+                self.catalogModel = drugCatalogModel
+            } else { fallthrough }
+        case ItemType.grocery.rawValue:
+            if let groceryCatalogModel = try? JSONDecoder.new.decode(GroceryCatalogModel.self, from: Data(catalogPropertiesString.utf8)) {
+                self.catalogModel = groceryCatalogModel
+            } else { fallthrough }
+        case ItemType.blood.rawValue:
+            if let bloodCatalogModel = try? JSONDecoder.new.decode(BloodCatalogModel.self, from: Data(catalogPropertiesString.utf8)) {
+                self.catalogModel = bloodCatalogModel
+            } else { fallthrough }
+        case ItemType.oxygen.rawValue:
+            if let oxygenCatalogModel = try? JSONDecoder.new.decode(OxygenCatalogModel.self, from: Data(catalogPropertiesString.utf8)) {
+                self.catalogModel = oxygenCatalogModel
+            } else { fallthrough }
+        case ItemType.medicalEquipment.rawValue:
+            if let medicalEquipmentCatalogModel = try? JSONDecoder.new.decode(MedicalEquipmentCatalogModel.self, from: Data(catalogPropertiesString.utf8)) {
+                self.catalogModel = medicalEquipmentCatalogModel
+            } else { fallthrough }
+        case ItemType.facility.rawValue:
+            if let facilityCatalogModel = try? JSONDecoder.new.decode(FacilityCatalogModel.self, from: Data(catalogPropertiesString.utf8)) {
+                self.catalogModel = facilityCatalogModel
+            } else { fallthrough }
+        default:
+            ExceptionManager.throwIllegalStateException(eventType: "item catalog", message: "Please use correct catalog properties with provided item type", className: String(describing: CfEComCatalog.self))
+        }
+        return self
+    }
+
+    /**
+     * setCatalog can be used to pass the whole catalog as an object as well. You can use the POJO
+     * for that catalog to parse the data int he required format and pass that as string to this function to
+     * log the event. You can use JSONDecoder to convert the JSON
+     * string back to a POJO, so pass it in the log. This method should be used with caution
+     * and is suitable for a React Native bridge.
+     */
+    @discardableResult
+    public func setCatalogProperties(catalogProperties: Any) -> CfLogItemEvent {
+        if(catalogProperties is String){
+            setCatalogProperties(catalogPropertiesString: catalogProperties as! String)
+        }else {
+            self.catalogModel = catalogProperties
         }
         return self
     }
@@ -143,16 +198,13 @@ public class CfLogItemEvent {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.item.rawValue, elementName: String(describing: ItemAction.self))
             return
         } else {
-            let itemObject = ViewItemObject(action:itemActionValue, item: itemValue)
-            CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: itemObject, updateImmediately: updateImmediately)
+            let itemViewObject = ViewItemObject(action:itemActionValue, item: itemObject)
+            CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: itemViewObject, updateImmediately: updateImmediately)
             
-            
-//            if itemActionValue == ItemAction.view.rawValue, let catalogModel = catalogModel {
-//                guard let itemId = itemValue.id else { return  }
-//                guard let itemType = itemValue.type else { return  }
-//                CfEComCatalog.callCatalogAPI(itemId:itemId , itemType: itemType, catalogModel: catalogModel)
-//                
-//            }
+            if(self.catalogModel != nil) {
+                CfEComCatalog.callCatalogAPI(itemId:itemObject.id , itemType: itemObject.type, catalogModel: self.catalogModel as Any)
+                
+            }
             
         }
     }

@@ -2,7 +2,7 @@
 //  BloodCatalogModel.swift
 //
 //
-//  Created by khushbu on 27/10/23.
+//  Created by moizhassankh on 07/12/23.
 //
 
 import Foundation
@@ -10,7 +10,7 @@ import Foundation
 public struct BloodCatalogModel: Codable {
     var marketId: String?
     var bloodComponent: String?
-    var bloodGroup: String?
+    var bloodGroup: String
     var packaging: String?
     var packagingSize: Float?
     var packagingUnits: String?
@@ -28,7 +28,7 @@ public struct BloodCatalogModel: Codable {
         case supplierName = "supplier_name"
     }
 
-    public init(marketId: String?, bloodComponent: String?, bloodGroup: String?, packaging: String?, packagingSize: Float?, packagingUnits: String?, supplierId: String?, supplierName: String?) {
+    public init(bloodGroup: String, marketId: String? = "", bloodComponent: String? = "", packaging: String? = "", packagingSize: Float? = 0, packagingUnits: String? = "", supplierId: String? = "", supplierName: String? = "") {
         self.marketId = marketId
         self.bloodComponent = bloodComponent
         self.bloodGroup = bloodGroup
@@ -44,9 +44,9 @@ public struct BloodCatalogModel: Codable {
     // Custom encoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(bloodGroup, forKey: .bloodGroup)
         try container.encodeIfPresent(marketId, forKey: .marketId)
         try container.encodeIfPresent(bloodComponent, forKey: .bloodComponent)
-        try container.encodeIfPresent(bloodGroup, forKey: .bloodGroup)
         try container.encodeIfPresent(packaging, forKey: .packaging)
         try container.encodeIfPresent(packagingSize, forKey: .packagingSize)
         try container.encodeIfPresent(packagingUnits, forKey: .packagingUnits)
@@ -57,9 +57,9 @@ public struct BloodCatalogModel: Codable {
     // Custom decoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        bloodGroup = try container.decode(String.self, forKey: .bloodGroup)
         marketId = try container.decodeIfPresent(String.self, forKey: .marketId)
         bloodComponent = try container.decodeIfPresent(String.self, forKey: .bloodComponent)
-        bloodGroup = try container.decodeIfPresent(String.self, forKey: .bloodGroup)
         packaging = try container.decodeIfPresent(String.self, forKey: .packaging)
         packagingSize = try container.decodeIfPresent(Float.self, forKey: .packagingSize)
         packagingUnits = try container.decodeIfPresent(String.self, forKey: .packagingUnits)
