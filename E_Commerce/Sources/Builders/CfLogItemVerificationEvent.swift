@@ -13,12 +13,12 @@ public class CfLogItemVerificationEvent {
      * CfLogItemVerificationEvent is used to log the event an item is verified/scanned by the user.
      */
 
-    var scan_channel: String?
-    var scan_type: String?
-    var is_successful: Bool?
-    var item_info: ItemInfoObject?
+    var scanChannel: String = ""
+    var scanType: String = ""
+    var isSuccessful: Bool = false
+    var itemInfoObject: ItemInfoModel = ItemInfoModel(id: "", type: "")
     var meta: Any?
-    var update_immediately: Bool = CoreConstants.shared.updateImmediately
+    var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
     public init() {}
 
@@ -27,15 +27,15 @@ public class CfLogItemVerificationEvent {
      */
 
     @discardableResult
-    public func setScanChannel(_ scanChannel: ScanChannel) -> CfLogItemVerificationEvent {
-        scan_channel = scanChannel.rawValue
+    public func setScanChannel(scanChannel: ScanChannel) -> CfLogItemVerificationEvent {
+        self.scanChannel = scanChannel.rawValue
         return self
     }
 
     @discardableResult
-    public func setScanChannel(_ scanChannel: String) -> CfLogItemVerificationEvent {
+    public func setScanChannel(scanChannel: String) -> CfLogItemVerificationEvent {
         if CoreConstants.shared.enumContains(ScanChannel.self, name: scanChannel) {
-            scan_channel = scanChannel
+            self.scanChannel = scanChannel
         } else {
             ExceptionManager.throwEnumException(eventType: EComEventType.itemVerification.rawValue, className: String(describing: ScanChannel.self))
         }
@@ -47,15 +47,15 @@ public class CfLogItemVerificationEvent {
      */
 
     @discardableResult
-    public func setScanType(_ scanType: ScanType) -> CfLogItemVerificationEvent {
-        scan_type = scanType.rawValue
+    public func setScanType(scanType: ScanType) -> CfLogItemVerificationEvent {
+        self.scanType = scanType.rawValue
         return self
     }
 
     @discardableResult
-    public func setScanType(_ scanType: String) -> CfLogItemVerificationEvent {
+    public func setScanType(scanType: String) -> CfLogItemVerificationEvent {
         if CoreConstants.shared.enumContains(ScanType.self, name: scanType) {
-            scan_type = scanType
+            self.scanType = scanType
         } else {
             ExceptionManager.throwEnumException(
                 eventType: EComEventType.itemVerification.rawValue, className: String(describing: scanType.self)
@@ -69,8 +69,8 @@ public class CfLogItemVerificationEvent {
      */
 
     @discardableResult
-    public func isSuccessful(_ successful: Bool) -> CfLogItemVerificationEvent {
-        is_successful = successful
+    public func isSuccessful(isSuccessful: Bool) -> CfLogItemVerificationEvent {
+        self.isSuccessful = isSuccessful
         return self
     }
 
@@ -82,15 +82,15 @@ public class CfLogItemVerificationEvent {
      */
 
     @discardableResult
-    public func setItemInfo(_ itemInfo: ItemInfoObject?) -> CfLogItemVerificationEvent {
-        if let itemType = itemInfo?.type, CoreConstants.shared.enumContains(ItemType.self, name: itemType) {
-            item_info = itemInfo
-        } else {
-            ExceptionManager.throwEnumException(
-                eventType: EComEventType.itemVerification.rawValue, className: String(describing: ItemType.self
-                )
-            )
+    public func setItemInfo(itemInfoObject: ItemInfoModel) -> CfLogItemVerificationEvent {
+        if(itemInfoObject.id.isEmpty){
+            ExceptionManager.throwEnumException(eventType: EComEventType.itemVerification.rawValue, className: "item_info.id")
+            return self
+        }else if (!CoreConstants.shared.enumContains(ItemType.self, name:itemInfoObject.type)) {
+            ExceptionManager.throwEnumException(eventType: EComEventType.itemVerification.rawValue, className: "item_info.type")
+            return self
         }
+        self.itemInfoObject = itemInfoObject
         return self
     }
 
@@ -102,9 +102,9 @@ public class CfLogItemVerificationEvent {
      */
 
     @discardableResult
-    public func setItemInfo(_ itemInfo: String) -> CfLogItemVerificationEvent {
-        if let item = try? JSONDecoder.new.decode(ItemInfoObject.self, from: Data(itemInfo.utf8)) {
-            item_info = item
+    public func setItemInfo(itemInfoObjectString: String) -> CfLogItemVerificationEvent {
+        if let item = try? JSONDecoder.new.decode(ItemInfoModel.self, from: Data(itemInfoObjectString.utf8)) {
+            setItemInfo(itemInfoObject: item)
         }
         return self
     }
@@ -116,7 +116,7 @@ public class CfLogItemVerificationEvent {
      */
 
     @discardableResult
-    public func setMeta(_ meta: Any?) -> CfLogItemVerificationEvent {
+    public func setMeta(meta: Any?) -> CfLogItemVerificationEvent {
         self.meta = meta
         return self
     }
@@ -130,8 +130,8 @@ public class CfLogItemVerificationEvent {
      */
 
     @discardableResult
-    public func updateImmediately(_ updateImmediately: Bool) -> CfLogItemVerificationEvent {
-        update_immediately = updateImmediately
+    public func updateImmediately(updateImmediately: Bool) -> CfLogItemVerificationEvent {
+        self.updateImmediately = updateImmediately
         return self
     }
 
@@ -142,48 +142,23 @@ public class CfLogItemVerificationEvent {
      */
 
     public func build() {
-        guard let scanChannel = scan_channel,
-              let scanType = scan_type,
-              let successful = is_successful
-        else {
-            ExceptionManager.throwIsRequiredException(
-                eventType: EComEventType.itemVerification.rawValue,
-                elementName: "scan_channel"
-            )
+        
+        if(scanChannel.isEmpty){
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemVerification.rawValue,elementName: "scan_channel")
             return
-        }
-
-        if successful, item_info != nil {
-            guard let itemId = item_info?.id, !itemId.isEmpty else {
-                ExceptionManager.throwIsRequiredException(
-                    eventType: EComEventType.itemVerification.rawValue,
-                    elementName: "item_id"
-                )
-                return
-            }
-
-            guard let itemType = item_info?.type, !itemType.isEmpty else {
-                ExceptionManager.throwIsRequiredException(
-                    eventType: EComEventType.itemVerification.rawValue,
-                    elementName: "item_type"
-                )
-                return
-            }
-        } else if successful, item_info == nil {
-            ExceptionManager.throwIsRequiredException(
-                eventType: EComEventType.itemVerification.rawValue,
-                elementName: "item_info"
-            )
+        }else if(scanType.isEmpty){
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemVerification.rawValue,elementName: "scan_type")
             return
-        } else {
-            item_info = nil
+        }else if(itemInfoObject.id.isEmpty){
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemVerification.rawValue,elementName: "item_info")
+            return
         }
 
         let itemVerificationObject = ItemVerificationObject(
-            scan_channel: scanChannel,
-            scan_type: scanType,
-            is_successful: successful,
-            item_info: item_info,
+            scanChannel: scanChannel,
+            scanType: scanType,
+            isSuccessful: isSuccessful,
+            itemInfo: itemInfoObject,
             meta: meta as? Encodable
         )
 
@@ -191,7 +166,7 @@ public class CfLogItemVerificationEvent {
             contentBlockName: ECommerceConstants.contentBlockName,
             eventType: EComEventType.itemVerification.rawValue,
             logObject: itemVerificationObject,
-            updateImmediately: update_immediately
+            updateImmediately: updateImmediately
         )
     }
 }
