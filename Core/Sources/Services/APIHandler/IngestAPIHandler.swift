@@ -13,7 +13,7 @@ public class IngestAPIHandler: NSObject {
 
     static let shared = IngestAPIHandler()
     
-    let reachability = try! Reachability()
+    private let reachability = try! Reachability()
 
     func ingestTrackAPI<T: Codable>(contentBlock: String,
                                     eventType: String,
@@ -21,32 +21,26 @@ public class IngestAPIHandler: NSObject {
                                     updateImmediately: Bool,
                                     eventTime _: Int64 = 0)
     {
-        if !CoreConstants.shared.pauseSDK {
-            reachability.stopNotifier()
+        guard !CoreConstants.shared.pauseSDK else { return }
+        
+        let isInternetAvailable = reachability.connection == .wifi || reachability.connection == .cellular
+        let eventObject = EventDataObject(block: contentBlock, ol: isInternetAvailable, ts: Date(), type: eventType, props: trackProperties)
 
-            let isInternetAvailable = reachability.connection == .wifi || reachability.connection == .cellular
-            let eventObject = EventDataObject(block: contentBlock, ol: isInternetAvailable, ts: Date(), type: eventType, props: trackProperties)
-
-            if updateImmediately && isInternetAvailable {
-                updateEventTrack(eventArray: [eventObject]) { [weak self] success in
-                    if !success {
-                        self?.storeEventTrack(eventObject: eventObject)
-                    }
+        if updateImmediately && isInternetAvailable && !CoreConstants.shared.isAnonymousUserAllowed {
+            updateEventTrack(eventArray: [eventObject]) { [weak self] success in
+                if !success {
+                    self?.storeEventTrack(eventObject: eventObject)
                 }
-            } else {
-                storeEventTrack(eventObject: eventObject)
             }
+        } else {
+            storeEventTrack(eventObject: eventObject)
         }
     }
 
     func updateEventTrack(eventArray: [EventDataObject], callback: @escaping (Bool) -> Void) {
-        var userID: String = CoreConstants.shared.userId
 
-        if !CoreConstants.shared.isAnonymousUserAllowed {
-            userID = ""
-        }
-        guard !userID.isEmpty else {
-            callback(true)
+        guard let userID = CoreConstants.shared.userId, !userID.isEmpty else {
+            callback(false)
             return
         }
 
@@ -67,7 +61,7 @@ public class IngestAPIHandler: NSObject {
         var showDelayNotification = true
         
         if NotificationConstants.shared.INGEST_NOTIFICATION_ENABLED {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + NotificationConstants.shared.INGEST_NOTIFICATION_INTERVAL_TIME) { [weak self] in
                 if showDelayNotification {
                     self?.showNotification()
                 }
@@ -86,7 +80,7 @@ public class IngestAPIHandler: NSObject {
         }
     }
 
-    func storeEventTrack(eventObject: EventDataObject) {
+    private func storeEventTrack(eventObject: EventDataObject) {
         var prevEvent = MMKVHelper.shared.readInjectEvents()
         prevEvent.append(eventObject)
         MMKVHelper.shared.writeEvents(eventsArray: prevEvent)
@@ -111,7 +105,7 @@ public class IngestAPIHandler: NSObject {
         }
     }
 
-    func callCurrencyApi(fromCurrency: String) -> Float {
+    private func callCurrencyApi(fromCurrency: String) -> Float {
         let currencyObject = CurrencyMainObject(
             fromCurrency: fromCurrency,
             toCurrencyObject: CurrencyObject(
