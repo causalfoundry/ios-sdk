@@ -1,5 +1,5 @@
 //
-//  CFNudgeViewController.swift
+//  CFNudgePresenter.swift
 //
 //
 //  Created by Causal Foundry on 07.12.23.
@@ -18,7 +18,7 @@ public final class CFNudgePresenter {
         
         guard !nonPushNotificationNudges.isEmpty else { return }
         
-        let vc = CFNudgeViewController(objects: objects)
+        let vc = CFNudgeViewController(objects: nonPushNotificationNudges)
         uiViewController.present(vc, animated: true)
         
         MMKVHelper.shared.writeNudges(objects: pushNotificationNudges)
@@ -56,7 +56,7 @@ fileprivate final class CFNudgeViewController: UITableViewController {
         tableView.register(CFNudgeCell.self, forCellReuseIdentifier: "CFNudgeCell")
         tableView.dataSource = dataSource
         
-        update()
+        updateDatasource()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -66,6 +66,8 @@ fileprivate final class CFNudgeViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let object = dataSource.itemIdentifier(for: indexPath) else { return }
         CFNotificationController.shared.trackAndOpen(object: object)
+        remove(object: object)
+        updateDatasource()
     }
     
     private func makeDataSource() -> UITableViewDiffableDataSource<Section, BackendNudgeMainObject> {
@@ -74,8 +76,8 @@ fileprivate final class CFNudgeViewController: UITableViewController {
             cell?.object = object
             cell?.nudgeView?.closeAction = { [weak self] in
                 if let index = self?.objects.firstIndex(of: object) {
-                    self?.objects.remove(at: index)
-                    self?.update()
+                    self?.remove(object: object)
+                    self?.updateDatasource()
                     CFNotificationController.shared.track(object: object, response: .discard)
                 }
             }
@@ -83,7 +85,7 @@ fileprivate final class CFNudgeViewController: UITableViewController {
         })
     }
     
-    private func update() {
+    private func updateDatasource() {
         
         guard !objects.isEmpty else {
             dismiss(animated: true)
@@ -98,6 +100,11 @@ fileprivate final class CFNudgeViewController: UITableViewController {
         objects.forEach { object in
             CFNotificationController.shared.track(object: object, response: .shown)
         }
+    }
+    
+    private func remove(object: BackendNudgeMainObject) {
+        guard let index = objects.firstIndex(of: object) else { return }
+        objects.remove(at: index)
     }
 }
 

@@ -169,7 +169,7 @@ extension BackendNudgeMainObject {
                   "incentive"
                 ]
               },
-              "render_method": "push_notification",
+              "render_method": "in_app_message",
               "cta": "redirect"
             },
             "extra": {
