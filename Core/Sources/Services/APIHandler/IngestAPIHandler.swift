@@ -24,10 +24,10 @@ public class IngestAPIHandler: NSObject {
         if !CoreConstants.shared.pauseSDK {
             reachability.stopNotifier()
 
-            let isInternetAvailable: Bool = (reachability.connection == .wifi || reachability.connection == .cellular) ? true : false
+            let isInternetAvailable = reachability.connection == .wifi || reachability.connection == .cellular
             let eventObject = EventDataObject(block: contentBlock, ol: isInternetAvailable, ts: Date(), type: eventType, props: trackProperties)
 
-            if updateImmediately {
+            if updateImmediately && isInternetAvailable {
                 updateEventTrack(eventArray: [eventObject]) { [weak self] success in
                     if !success {
                         self?.storeEventTrack(eventObject: eventObject)
@@ -61,16 +61,22 @@ public class IngestAPIHandler: NSObject {
         let dictionary = mainBody.dictionary ?? [:]
 
         print(dictionary.prettyJSON)
+        
         // Show notification if tasks takes more then 10 seconds to complete and if allowed
 
-        DispatchQueue.main.async {
-            if NotificationConstants.shared.INGEST_NOTIFICATION_ENABLED {
-                self.showNotification()
+        var showDelayNotification = true
+        
+        if NotificationConstants.shared.INGEST_NOTIFICATION_ENABLED {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) { [weak self] in
+                if showDelayNotification {
+                    self?.showNotification()
+                }
             }
         }
         
         let url = URL(string: APIConstants.trackEvent)!
         BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: dictionary) { result in
+            showDelayNotification = false
             switch result {
             case .success:
                 callback(true)
@@ -119,5 +125,20 @@ public class IngestAPIHandler: NSObject {
 }
 
 extension IngestAPIHandler: UNUserNotificationCenterDelegate {
-    private func showNotification() {}
+    private func showNotification() {
+        /*
+        guard let topViewController = UIApplication.shared.rootViewController else { return }
+        let alert = UIAlertController(title: NotificationConstants.shared.INGEST_NOTIFICATION_TITLE, message: NotificationConstants.shared.INGEST_NOTIFICATION_DESCRIPTION, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        topViewController.present(alert, animated: true, completion: nil)
+        */
+    }
+}
+
+extension UIApplication {
+    
+    var rootViewController: UIViewController? {
+        windows.filter({ $0.isKeyWindow }).first?.rootViewController
+    }
 }
