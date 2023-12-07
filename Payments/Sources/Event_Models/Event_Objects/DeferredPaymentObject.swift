@@ -2,7 +2,8 @@
 //  DeferredPaymentObject.swift
 //
 //
-//  Created by khushbu on 02/11/23.
+//  Created by moizhassankh on 07/12/23.
+//
 
 import Foundation
 
@@ -15,7 +16,6 @@ public struct DeferredPaymentObject: Codable {
     var paymentAmount: Float?
     var currency: String?
     var isSuccessful: Bool?
-    var usdRate: Float?
     var meta: Encodable?
 
     enum CodingKeys: String, CodingKey {
@@ -23,15 +23,14 @@ public struct DeferredPaymentObject: Codable {
         case orderId = "order_id"
         case type
         case action
-        case accountBalance
-        case paymentAmount
+        case accountBalance = "account_balance"
+        case paymentAmount = "payment_amount"
         case currency
-        case isSuccessful
-        case usdRate
+        case isSuccessful = "is_successful"
         case meta
     }
 
-    public init(paymentId: String, orderId: String, type: String, action: String?, accountBalance: Float?, paymentAmount: Float?, currency: String?, isSuccessful: Bool?, usdRate: Float?, meta: Encodable?) {
+    public init(paymentId: String, orderId: String, type: String, action: String?, accountBalance: Float?, paymentAmount: Float?, currency: String?, isSuccessful: Bool?, meta: Encodable?) {
         self.paymentId = paymentId
         self.orderId = orderId
         self.type = type
@@ -40,7 +39,6 @@ public struct DeferredPaymentObject: Codable {
         self.paymentAmount = paymentAmount
         self.currency = currency
         self.isSuccessful = isSuccessful
-        self.usdRate = usdRate
         self.meta = meta
     }
 
@@ -55,7 +53,6 @@ public struct DeferredPaymentObject: Codable {
         try container.encodeIfPresent(paymentAmount, forKey: .paymentAmount)
         try container.encodeIfPresent(currency, forKey: .currency)
         try container.encodeIfPresent(isSuccessful, forKey: .isSuccessful)
-        try container.encodeIfPresent(usdRate, forKey: .usdRate)
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
@@ -72,7 +69,6 @@ public struct DeferredPaymentObject: Codable {
         paymentAmount = try container.decodeIfPresent(Float.self, forKey: .paymentAmount)
         currency = try container.decodeIfPresent(String.self, forKey: .currency)
         isSuccessful = try container.decodeIfPresent(Bool.self, forKey: .isSuccessful)
-        usdRate = try container.decodeIfPresent(Float.self, forKey: .usdRate)
         if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {

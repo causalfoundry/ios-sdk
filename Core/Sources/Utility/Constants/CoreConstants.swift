@@ -13,6 +13,9 @@ public class CoreConstants {
 
     let devUrl = "https://api-dev.causalfoundry.ai/v1/"
     let prodUrl = "https://api.causalfoundry.ai/v1/"
+    var apiUrl: String {
+            return devUrl // or prodUrl
+        }
 
     public var userId: String? {
         get {

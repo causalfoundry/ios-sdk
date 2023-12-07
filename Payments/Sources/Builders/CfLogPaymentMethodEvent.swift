@@ -14,13 +14,14 @@ public class CfLogPaymentMethodEvent {
      * CfLogPaymentMethodEvent is to log events for payments. Which method of the payment is
      * selected for the order.
      */
-    var order_id: String?
-    var payment_method: String?
-    var payment_amount: Float?
-    var currency_value: String?
+    var orderId: String = ""
+    var paymentId: String = ""
+    var paymentMethod: String = ""
+    var paymentAction: String = ""
+    var paymentAmount: Float?
+    var currencyValue: String = ""
     var meta: Any?
-    var update_immediately: Bool = CoreConstants.shared.updateImmediately
-    private var paymentMethodObject: PaymentMethodObject?
+    var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
     public init() {}
 
@@ -30,24 +31,53 @@ public class CfLogPaymentMethodEvent {
      */
 
     @discardableResult
-    public func setOrderId(order_id: String) -> CfLogPaymentMethodEvent {
-        self.order_id = order_id
+    public func setOrderId(orderId: String) -> CfLogPaymentMethodEvent {
+        self.orderId = orderId
+        return self
+    }
+    
+    @discardableResult
+    public func setPaymentId(paymentId: String) -> CfLogPaymentMethodEvent {
+        self.paymentId = paymentId
+        return self
+    }
+    
+    /**
+     * setPaymentAction is used to specify the action performed on the payments screen,
+     * there can be multiple types of actions that can include init payment process, cancel
+     * payment processing or upload receipt to bank deposit. By default SDK provides enum
+     * class to use as PaymentAction. Below function can be used to set action using enum.
+     */
+
+    @discardableResult
+    public func setPaymentAction(action: PaymentAction) -> CfLogPaymentMethodEvent {
+        self.paymentAction = action.rawValue
         return self
     }
 
+    @discardableResult
+    public func setPaymentAction(action: String) -> CfLogPaymentMethodEvent {
+        if CoreConstants.shared.enumContains(PaymentAction.self, name: action) {
+            self.paymentAction = action
+        } else {
+            ExceptionManager.throwEnumException(eventType: PaymentsEventType.payment_method.rawValue, className: String(describing: PaymentAction.self))
+        }
+        return self
+    }
+    
     /**
      * setPaymentMethod is required to set the type of the payment is being selected
      */
     @discardableResult
-    public func setPaymentMethod(payment_method: PaymentMethod) -> CfLogPaymentMethodEvent {
-        self.payment_method = payment_method.rawValue
+    public func setPaymentMethod(paymentMethod: PaymentMethod) -> CfLogPaymentMethodEvent {
+        self.paymentMethod = paymentMethod.rawValue
         return self
     }
 
     @discardableResult
-    public func setPaymentMethod(payment_method: String) -> CfLogPaymentMethodEvent {
-        if CoreConstants.shared.enumContains(PaymentMethod.self, name: payment_method) {
-            self.payment_method = payment_method
+    public func setPaymentMethod(paymentMethod: String) -> CfLogPaymentMethodEvent {
+        if CoreConstants.shared.enumContains(PaymentMethod.self, name: paymentMethod) {
+            self.paymentMethod = paymentMethod
         } else {
             ExceptionManager.throwEnumException(
                 eventType: PaymentsEventType.payment_method.rawValue,
@@ -65,10 +95,10 @@ public class CfLogPaymentMethodEvent {
      */
 
     @discardableResult
-    public func setCurrency(currency: String) -> CfLogPaymentMethodEvent {
-        if !currency.isEmpty {
-            if CoreConstants.shared.enumContains(InternalCurrencyCode.self, name: currency) {
-                currency_value = currency
+    public func setCurrency(currencyValue: String) -> CfLogPaymentMethodEvent {
+        if !currencyValue.isEmpty {
+            if CoreConstants.shared.enumContains(InternalCurrencyCode.self, name: currencyValue) {
+                self.currencyValue = currencyValue
             } else {
                 ExceptionManager.throwEnumException(
                     eventType: PaymentsEventType.payment_method.rawValue,
@@ -80,26 +110,8 @@ public class CfLogPaymentMethodEvent {
     }
 
     @discardableResult
-    public func setPaymentAmount(payment_amount: Float) -> CfLogPaymentMethodEvent {
-        self.payment_amount = ((payment_amount * 100.0).rounded() / 100.0)
-        return self
-    }
-
-    /**
-     * setPaymentAmount is required to log the total price of the payment being logged. Amount
-     * format should be in accordance to the currency selected.
-     */
-    @discardableResult
-    public func setPaymentAmount(payment_amount: Int?) -> CfLogPaymentMethodEvent {
-        if let amount = payment_amount {
-            self.payment_amount = Float(amount)
-        }
-        return self
-    }
-
-    @discardableResult
-    public func setPaymentAmount(payment_amount: Double) -> CfLogPaymentMethodEvent {
-        self.payment_amount = Float((payment_amount * 100.0).rounded() / 100.0)
+    public func setPaymentAmount(paymentAmount: Float) -> CfLogPaymentMethodEvent {
+        self.paymentAmount = ((paymentAmount * 100.0).rounded() / 100.0)
         return self
     }
 
@@ -124,8 +136,8 @@ public class CfLogPaymentMethodEvent {
      */
 
     @discardableResult
-    public func updateImmediately(update_immediately: Bool) -> CfLogPaymentMethodEvent {
-        self.update_immediately = update_immediately
+    public func updateImmediately(updateImmediately: Bool) -> CfLogPaymentMethodEvent {
+        self.updateImmediately = updateImmediately
         return self
     }
 
@@ -139,80 +151,33 @@ public class CfLogPaymentMethodEvent {
          * Will throw and exception if the orderId provided is null or no value is
          * provided at all.
          */
-        guard let order_id = order_id else {
-            ExceptionManager.throwIsRequiredException(
-                eventType: PaymentsEventType.payment_method.rawValue,
-                elementName: "order_id"
-            )
+        if orderId.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.payment_method.rawValue, elementName: "order_id")
+            return
+        }else if paymentId.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.payment_method.rawValue, elementName: "payment_id")
+            return
+        }else if paymentMethod.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.payment_method.rawValue, elementName: String(describing: PaymentMethod.self))
+            return
+        }else if paymentAmount == nil {
+            ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.payment_method.rawValue, elementName: "payment_amount")
+            return
+        }else if currencyValue.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.payment_method.rawValue, elementName: String(describing: CurrencyCode.self))
+            return
+        }else if paymentAction.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.payment_method.rawValue, elementName: "payment_action")
             return
         }
-        /**
-         * Will throw and exception if the payment method Type provided is null or no value is
-         * provided at all.
-         */
-        guard let payment_method = payment_method else {
-            ExceptionManager.throwIsRequiredException(
-                eventType: PaymentsEventType.payment_method.rawValue,
-                elementName: String(describing: PaymentMethod.self)
-            )
-            return
-        }
-        /**
-         * Will throw and exception if the payment_amount provided is null or no value is
-         * provided at all.
-         */
-        guard let payment_amount = payment_amount else {
-            ExceptionManager.throwIsRequiredException(
-                eventType: PaymentsEventType.payment_method.rawValue,
-                elementName: "payment_amount"
-            )
-            return
-        }
-        /**
-         * Will throw and exception if the currency provided is null or no value is
-         * provided at all.
-         */
-        guard let currency_value = currency_value else {
-            ExceptionManager.throwIsRequiredException(
-                eventType: PaymentsEventType.payment_method.rawValue,
-                elementName: String(describing: InternalCurrencyCode.self)
-            )
-            return
-        }
-        /**
-         * Parsing the values into an object and passing to the setup block to queue
-         * the event based on its priority.
-         */
-
-        paymentMethodObject = PaymentMethodObject(order_id: order_id, type: payment_method, payment_amount: payment_amount, currency: currency_value, usd_rate: nil, meta: meta as? Encodable)
-
-        if currency_value == InternalCurrencyCode.USD.rawValue {
-            paymentMethodObject?.usd_rate = 1.0
-            CFSetup().track(
-                contentBlockName: PaymentsConstants.contentBlockName,
-                eventType: PaymentsEventType.payment_method.rawValue,
-                logObject: paymentMethodObject,
-                updateImmediately: update_immediately
-            )
-        } else {
-            let value = CFSetup().getUSDRate(fromCurrency: currency_value)
-            self.paymentMethodObject?.usd_rate = value
-            CFSetup().track(
-                contentBlockName: PaymentsConstants.contentBlockName,
-                eventType: PaymentsEventType.deferred_payment.rawValue,
-                logObject: self.paymentMethodObject,
-                updateImmediately: self.update_immediately
-            )
-        }
-    }
-
-    private func getUSDRateAndLogEvent(usdRate: Float) {
-        paymentMethodObject?.usd_rate = usdRate
+        
+        let paymentMethodObject = PaymentMethodObject(paymentId: paymentId, orderId: orderId, type: paymentMethod, action: paymentAction, paymentAmount: paymentAmount!, currency: currencyValue, meta: meta as? Encodable)
         CFSetup().track(
             contentBlockName: PaymentsConstants.contentBlockName,
             eventType: PaymentsEventType.payment_method.rawValue,
             logObject: paymentMethodObject,
-            updateImmediately: update_immediately
+            updateImmediately: updateImmediately
         )
     }
+
 }

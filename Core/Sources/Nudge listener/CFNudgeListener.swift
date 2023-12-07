@@ -37,7 +37,7 @@ class CFNudgeListener {
     private func fetchNudges() async throws -> [BackendNudgeMainObject] {
         guard let userID = CoreConstants.shared.userId, !userID.isEmpty else { return [] }
         return try await withCheckedThrowingContinuation { continuation in
-            let url = URL(string: "\(CoreConstants.shared.devUrl)nudge/sdk/\(userID)")!
+            let url = URL(string: "\(APIConstants.fetchNudge)\(userID)")!
             BackgroundRequestController.shared.request(url: url, httpMethod: .get, params: nil) { result in
                 switch result {
                 case .success(let data):

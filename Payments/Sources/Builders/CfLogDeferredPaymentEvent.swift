@@ -16,25 +16,23 @@ public class CfLogDeferredPaymentEvent {
      * selected for the order.
      */
 
-    var orderId: String?
-    var paymentId: String?
-    var action: String?
-    var paymentMethod: String?
+    var orderId: String = ""
+    var paymentId: String = ""
+    var action: String = ""
+    var paymentMethod: String = ""
     private var accountBalance: Float?
     var paymentAmount: Float?
-    var currencyValue: String?
+    var currencyValue: String = ""
     private var isSuccessful: Bool = true
     private var meta: Any?
     private var updateImmediately: Bool = CoreConstants.shared.updateImmediately
-
-    private var paymentObject: DeferredPaymentObject?
 
     public init() {} /**
      * setOrderId is required to set the id for the order in log, Id should be in string
      * and must be in accordance to the catalog provided.
      */
     @discardableResult
-    public func setOrderId(_ orderId: String) -> CfLogDeferredPaymentEvent {
+    public func setOrderId(orderId: String) -> CfLogDeferredPaymentEvent {
         self.orderId = orderId
         return self
     }
@@ -44,7 +42,7 @@ public class CfLogDeferredPaymentEvent {
      * and must be in accordance to the catalog provided.
      */
     @discardableResult
-    public func setPaymentId(_ paymentId: String) -> CfLogDeferredPaymentEvent {
+    public func setPaymentId(paymentId: String) -> CfLogDeferredPaymentEvent {
         self.paymentId = paymentId
         return self
     }
@@ -53,13 +51,13 @@ public class CfLogDeferredPaymentEvent {
      * setPaymentMethod is required to set the type of the payment is being selected
      */
     @discardableResult
-    public func setPaymentMethod(_ paymentMethod: PaymentMethod) -> CfLogDeferredPaymentEvent {
+    public func setPaymentMethod(paymentMethod: PaymentMethod) -> CfLogDeferredPaymentEvent {
         self.paymentMethod = paymentMethod.rawValue
         return self
     }
 
     @discardableResult
-    public func setPaymentMethod(_ paymentMethod: String) -> CfLogDeferredPaymentEvent {
+    public func setPaymentMethod(paymentMethod: String) -> CfLogDeferredPaymentEvent {
         if CoreConstants.shared.enumContains(PaymentMethod.self, name: paymentMethod) {
             self.paymentMethod = paymentMethod
         } else {
@@ -76,13 +74,13 @@ public class CfLogDeferredPaymentEvent {
      */
 
     @discardableResult
-    public func setPaymentAction(_ action: PaymentAction) -> CfLogDeferredPaymentEvent {
+    public func setPaymentAction(action: PaymentAction) -> CfLogDeferredPaymentEvent {
         self.action = action.rawValue
         return self
     }
 
     @discardableResult
-    public func setPaymentAction(_ action: String) -> CfLogDeferredPaymentEvent {
+    public func setPaymentAction(action: String) -> CfLogDeferredPaymentEvent {
         if CoreConstants.shared.enumContains(PaymentAction.self, name: action) {
             self.action = action
         } else {
@@ -99,7 +97,7 @@ public class CfLogDeferredPaymentEvent {
      * strings as provided in the enums or else the event will be discarded.
      */
     @discardableResult
-    public func setCurrency(_ currency: String) -> CfLogDeferredPaymentEvent {
+    public func setCurrency(currency: String) -> CfLogDeferredPaymentEvent {
         if CoreConstants.shared.enumContains(InternalCurrencyCode.self, name: currency) {
             currencyValue = currency
         } else {
@@ -113,13 +111,13 @@ public class CfLogDeferredPaymentEvent {
      * should be in accordance to the currency selected.
      */
     @discardableResult
-    public func setAccountBalance(_ accountBalance: Float) -> CfLogDeferredPaymentEvent {
+    public func setAccountBalance(accountBalance: Float) -> CfLogDeferredPaymentEvent {
         self.accountBalance = accountBalance
         return self
     }
 
     @discardableResult
-    public func setAccountBalance(_ accountBalance: Int?) -> CfLogDeferredPaymentEvent {
+    public func setAccountBalance(accountBalance: Int?) -> CfLogDeferredPaymentEvent {
         if let balance = accountBalance {
             self.accountBalance = Float(balance)
         }
@@ -127,7 +125,7 @@ public class CfLogDeferredPaymentEvent {
     }
 
     @discardableResult
-    public func setAccountBalance(_ accountBalance: Double) -> CfLogDeferredPaymentEvent {
+    public func setAccountBalance(accountBalance: Double) -> CfLogDeferredPaymentEvent {
         self.accountBalance = Float(accountBalance)
         return self
     }
@@ -137,13 +135,13 @@ public class CfLogDeferredPaymentEvent {
      * format should be in accordance to the currency selected.
      */
     @discardableResult
-    public func setPaymentAmount(_ paymentAmount: Float) -> CfLogDeferredPaymentEvent {
+    public func setPaymentAmount(paymentAmount: Float) -> CfLogDeferredPaymentEvent {
         self.paymentAmount = paymentAmount
         return self
     }
 
     @discardableResult
-    public func setPaymentAmount(_ paymentAmount: Int?) -> CfLogDeferredPaymentEvent {
+    public func setPaymentAmount(paymentAmount: Int?) -> CfLogDeferredPaymentEvent {
         if let amount = paymentAmount {
             self.paymentAmount = Float(amount)
         }
@@ -151,7 +149,7 @@ public class CfLogDeferredPaymentEvent {
     }
 
     @discardableResult
-    public func setPaymentAmount(_ paymentAmount: Double) -> CfLogDeferredPaymentEvent {
+    public func setPaymentAmount(paymentAmount: Double) -> CfLogDeferredPaymentEvent {
         self.paymentAmount = Float(paymentAmount)
         return self
     }
@@ -160,7 +158,7 @@ public class CfLogDeferredPaymentEvent {
      * isSuccessful is required to log if the payment is processed successfully or not.
      */
     @discardableResult
-    public func isSuccessful(_ isSuccessful: Bool) -> CfLogDeferredPaymentEvent {
+    public func isSuccessful(isSuccessful: Bool) -> CfLogDeferredPaymentEvent {
         self.isSuccessful = isSuccessful
         return self
     }
@@ -171,7 +169,7 @@ public class CfLogDeferredPaymentEvent {
      * providing more context to the log. Default value for the meta is null.
      */
     @discardableResult
-    public func setMeta(_ meta: Any?) -> CfLogDeferredPaymentEvent {
+    public func setMeta(meta: Any?) -> CfLogDeferredPaymentEvent {
         self.meta = meta
         return self
     }
@@ -185,7 +183,7 @@ public class CfLogDeferredPaymentEvent {
      */
 
     @discardableResult
-    public func updateImmediately(_ updateImmediately: Bool) -> CfLogDeferredPaymentEvent {
+    public func updateImmediately(updateImmediately: Bool) -> CfLogDeferredPaymentEvent {
         self.updateImmediately = updateImmediately
         return self
     }
@@ -196,87 +194,36 @@ public class CfLogDeferredPaymentEvent {
      * user's network resources.
      */
     public func build() {
-        /**
-         * Will throw and exception if the orderId provided is null or no value is
-         * provided at all.
-         */
-        guard let orderId = orderId else {
+
+        if orderId.isEmpty{
             ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.deferred_payment.rawValue, elementName: "order_id")
             return
-        }
-        /**
-         * Will throw and exception if the paymentId provided is null or no value is
-         * provided at all.
-         */
-        guard let paymentId = paymentId else {
+        }else if paymentId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.deferred_payment.rawValue, elementName: "payment_id")
             return
-        }
-
-        /**
-         * Will throw and exception if the paymentAction provided is null or no value is
-         * provided at all.
-         */
-        guard let action = action else {
+        }else if action.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.deferred_payment.rawValue, elementName: String(describing: PaymentAction.self))
             return
-        }
-        /**
-         * Will throw and exception if the payment method Type provided is null or no value is
-         * provided at all.
-         */
-        guard let paymentMethod = paymentMethod else {
+        }else if paymentMethod.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.deferred_payment.rawValue, elementName: String(describing: paymentMethod.self))
             return
-        }
-
-        /**
-         * Will throw and exception if the currency provided is null or no value is
-         * provided at all.
-         */
-        guard let currencyValue = currencyValue else {
+        }else if currencyValue.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.deferred_payment.rawValue, elementName: "CurrencyCode")
             return
-        }
-        /**
-         * Will throw and exception if the account_balance provided is null or no value is
-         * provided at all.
-         */
-        guard let accountBalance = accountBalance else {
+        }else if accountBalance == nil {
             ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.deferred_payment.rawValue, elementName: "account_balance")
             return
-        }
-        /**
-         * Will throw and exception if the payment_amount provided is null or no value is
-         * provided at all.
-         */
-        guard let paymentAmount = paymentAmount else {
+        }else if paymentAmount == nil {
             ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.deferred_payment.rawValue, elementName: "payment_amount")
             return
         }
-        /**
-         * Parsing the values into an object and passing to the setup block to queue
-         * the event based on its priority.
-         */
 
-        var paymentObject = DeferredPaymentObject(paymentId: paymentId, orderId: orderId, type: paymentMethod, action: action, accountBalance: accountBalance, paymentAmount: paymentAmount, currency: currencyValue, isSuccessful: isSuccessful, usdRate: nil, meta: meta as? Encodable)
+        var paymentObject = DeferredPaymentObject(paymentId: paymentId, orderId: orderId, type: paymentMethod, action: action, accountBalance: accountBalance, paymentAmount: paymentAmount, currency: currencyValue, isSuccessful: isSuccessful, meta: meta as? Encodable)
 
-        if currencyValue != InternalCurrencyCode.USD.rawValue {
-            let value = CFSetup().getUSDRate(fromCurrency: currencyValue)
-            paymentObject.usdRate = value
-            CFSetup().track(
-                contentBlockName: PaymentsConstants.contentBlockName,
-                eventType: PaymentsEventType.deferred_payment.rawValue,
-                logObject: paymentObject,
-                updateImmediately: self.updateImmediately
-            )
-        } else {
-            CFSetup().track(
-                contentBlockName: PaymentsConstants.contentBlockName,
-                eventType: PaymentsEventType.deferred_payment.rawValue,
-                logObject: paymentObject,
-                updateImmediately: updateImmediately
-            )
-        }
+        CFSetup().track(
+            contentBlockName: PaymentsConstants.contentBlockName,
+            eventType: PaymentsEventType.deferred_payment.rawValue,
+            logObject: paymentObject,
+            updateImmediately: self.updateImmediately)
     }
 }
