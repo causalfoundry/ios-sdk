@@ -212,10 +212,8 @@ public class CfLogRewardEvent {
                 rewardEventObject.usdRate = 1.0
                 callEventTrack(rewardEventObject)
             } else {
-                CFSetup().getUSDRate(fromCurrency: rewardEventObject.redeem?.currency ?? "") { value in
-                    self.callEventTrack(RewardEventObject(rewardId: reward_id, action: reward_id, accPoints: self.acc_points, totalPoints: total_points, redeem: self.redeem_object, usdRate: self.usd_rate, meta: self.meta as? Encodable))
-                    return value
-                }
+                let value = CFSetup().getUSDRate(fromCurrency: rewardEventObject.redeem?.currency ?? "")
+                self.callEventTrack(RewardEventObject(rewardId: reward_id, action: reward_id, accPoints: self.acc_points, totalPoints: total_points, redeem: self.redeem_object, usdRate: self.usd_rate, meta: self.meta as? Encodable))
             }
         } else {
             callEventTrack(rewardEventObject)

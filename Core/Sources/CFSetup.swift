@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 public class CFSetup: NSObject, IngestProtocol {
-    public var ingestApiHandler = IngestAPIHandler()
-    public var catalogAPIHandler = CatalogAPIHandler()
+    public let ingestApiHandler = IngestAPIHandler()
+    public let catalogAPIHandler = CatalogAPIHandler()
 
     private func setup() {
         verifyAccessToken()

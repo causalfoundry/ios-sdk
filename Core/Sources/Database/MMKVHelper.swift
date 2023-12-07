@@ -16,6 +16,7 @@ public class MMKVHelper {
         case exceptionData
         case eventData
         case currency
+        case nudges
     }
 
     private struct CatalogHelper: Codable {
@@ -60,6 +61,10 @@ extension MMKVHelper {
         write(eventsArray, for: Key.eventData.rawValue)
     }
 
+    func deleteDataEventLogs() {
+        delete(for: Key.eventData.rawValue)
+    }
+    
     func readUserCatalog() -> UserCatalogModel? {
         let object: UserCatalogModel? = read(for: Key.userCatalog.rawValue)
         return object
@@ -88,8 +93,13 @@ extension MMKVHelper {
         return object?.data
     }
 
-    func deleteDataEventLogs() {
-        delete(for: Key.eventData.rawValue)
+    func readNudges() -> [BackendNudgeMainObject] {
+        let object: [BackendNudgeMainObject]? = read(for: Key.nudges.rawValue)
+        return object ?? []
+    }
+
+    func writeNudges(objects: [BackendNudgeMainObject]) {
+        write(objects, for: Key.nudges.rawValue)
     }
     
     private func write<T: Codable>(_ object: T?, for key: String) {

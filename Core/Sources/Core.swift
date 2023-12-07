@@ -20,7 +20,7 @@ public class CFLog {
 
 public class CFLogBuilder {
     var applicationState: UIApplication.State?
-    var showInAppBudge: Bool = true
+    var autoShowInAppNudge: Bool = true
     var updateImmediately: Bool = true
     var pauseSDK: Bool = false
 
@@ -127,7 +127,7 @@ public class CFLogBuilder {
     //                }
     @discardableResult
     public func setAutoShowInAppNudge(showInAppNudge: Bool) -> CFLogBuilder {
-        showInAppBudge = showInAppNudge
+        autoShowInAppNudge = showInAppNudge
         return self
     }
 
@@ -209,6 +209,6 @@ public class CFLogBuilder {
      * Using this will validate the endpoints provided and initialise the SDK
      */
     public func build() {
-        CFSetup().initalize(event: applicationState!, pauseSDK: pauseSDK, autoShowInAppNudge: showInAppBudge, updateImmediately: updateImmediately)
+        CFSetup().initalize(event: applicationState!, pauseSDK: pauseSDK, autoShowInAppNudge: autoShowInAppNudge, updateImmediately: updateImmediately)
     }
 }

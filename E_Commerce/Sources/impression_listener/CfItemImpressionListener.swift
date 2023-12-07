@@ -21,10 +21,8 @@ public class CfItemImpressionListener {
         searchIdValue = searchId
 
         if currentDataProviderValue[0].item_properties.currency != InternalCurrencyCode.USD.rawValue {
-            CFSetup().getUSDRate(fromCurrency: currentDataProviderValue[0].item_properties.currency, callback: { usdRate in
-                self.getUSDRateAndLogEvent(usdRate)
-                return usdRate
-            })
+            let usdRate = CFSetup().getUSDRate(fromCurrency: currentDataProviderValue[0].item_properties.currency)
+            self.getUSDRateAndLogEvent(usdRate)
         } else {
             callCoreImpressionListenerTrackRecyclerView()
         }
@@ -95,10 +93,8 @@ public class CfItemImpressionListener {
         collectionViewId = collectionViewKey
 
         if currentDataProvider[0].item_properties.currency != InternalCurrencyCode.USD.rawValue {
-            CFSetup().getUSDRate(fromCurrency: currentDataProvider[0].item_properties.currency, callback: { usdRate in
-                getUSDRateAndLogRNEvent(usdRate)
-                return usdRate
-            })
+            let usdRate = CFSetup().getUSDRate(fromCurrency: currentDataProvider[0].item_properties.currency)
+            getUSDRateAndLogRNEvent(usdRate)
         } else {
             callCoreCollectionUpdated()
         }
@@ -138,10 +134,8 @@ public class CfItemImpressionListener {
 
         if !itemList.isEmpty {
             if itemList[0].item_properties.currency != InternalCurrencyCode.USD.rawValue {
-                CFSetup().getUSDRate(fromCurrency: itemList[0].item_properties.currency, callback: { usdRate in
-                    getUSDRateAndLogRNEvent(usdRate)
-                    return usdRate
-                })
+                let usdRate = CFSetup().getUSDRate(fromCurrency: itemList[0].item_properties.currency)
+                getUSDRateAndLogRNEvent(usdRate)
             } else {
                 callCoreCollectionUpdated()
             }
