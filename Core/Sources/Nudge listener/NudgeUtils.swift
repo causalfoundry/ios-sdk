@@ -102,10 +102,12 @@ enum NudgeUtils {
     }
 
     private static func validateAndProvideItemPairString(inputString: String, nudgeObject: BackendNudgeMainObject) -> String {
+        /*
         guard let itemPairCfg = nudgeObject.nd.message?.tmplCFG?.itemPairCFG else {
             ExceptionManager.throwInvalidNudgeException(message: "Invalid tmpl_cfg.item_pair_cfg provided", nudgeObject: nudgeObject.prettyJSON)
             return ""
         }
+        */
         guard let extra = nudgeObject.extra else {
             ExceptionManager.throwInvalidNudgeException(message: "Invalid extra provided", nudgeObject: nudgeObject.prettyJSON)
             return ""

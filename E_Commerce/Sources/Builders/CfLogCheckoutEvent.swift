@@ -1,4 +1,6 @@
+#if canImport(CasualFoundryCore)
 import CasualFoundryCore
+#endif
 import Foundation
 
 public class CfLogCheckoutEvent {

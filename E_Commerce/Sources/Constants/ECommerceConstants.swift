@@ -5,7 +5,9 @@
 //  Created by moizhassankh on 07/12/23.
 //
 
+#if canImport(CasualFoundryCore)
 import CasualFoundryCore
+#endif
 import Foundation
 
 public enum ECommerceConstants {
