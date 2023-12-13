@@ -200,7 +200,7 @@ public class CfLogItemEvent {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.item.rawValue, elementName: String(describing: EComItemAction.self))
             return
         } else {
-            let itemViewObject = ViewItemObject(action:itemActionValue, item: itemObject)
+            let itemViewObject = ViewItemObject(action:itemActionValue, item: itemObject, searchId: searchId)
             CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: itemViewObject, updateImmediately: updateImmediately)
             
             if(self.catalogModel != nil) {

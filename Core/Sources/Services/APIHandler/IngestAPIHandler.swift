@@ -26,7 +26,7 @@ public class IngestAPIHandler: NSObject {
         let isInternetAvailable = reachability.connection == .wifi || reachability.connection == .cellular
         let eventObject = EventDataObject(block: contentBlock, ol: isInternetAvailable, ts: Date(), type: eventType, props: trackProperties)
 
-        if updateImmediately && isInternetAvailable && !CoreConstants.shared.isAnonymousUserAllowed {
+        if updateImmediately && isInternetAvailable {
             updateEventTrack(eventArray: [eventObject]) { [weak self] success in
                 if !success {
                     self?.storeEventTrack(eventObject: eventObject)

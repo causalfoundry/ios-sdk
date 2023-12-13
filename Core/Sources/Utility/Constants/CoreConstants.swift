@@ -48,7 +48,7 @@ public class CoreConstants {
 
     var deviceObject: DInfo?
     var appInfoObject: AppInfo?
-    public var previousSearchId: String? = ""
+    public var previousSearchId: String = ""
 
     public var userIdKey: String = "userIdKey"
 

@@ -247,10 +247,10 @@ public class CfLogSearchEventBuilder {
     }
 
     public func getSearchId() -> String {
-        if isNewSearch {
+        if isNewSearch || CoreConstants.shared.previousSearchId.isEmpty {
             CoreConstants.shared.previousSearchId = searchId
         }
-        return CoreConstants.shared.previousSearchId!
+        return CoreConstants.shared.previousSearchId
     }
 
     /**
@@ -268,7 +268,7 @@ public class CfLogSearchEventBuilder {
             return
         }
 
-        let searchObject = SearchObject(search_id: searchId, query: queryText!, search_module: searchModule, results_list: resultsList, filter: filterValue, page: pageValue, meta: meta)
+        let searchObject = SearchObject(search_id: getSearchId(), query: queryText!, search_module: searchModule, results_list: resultsList, filter: filterValue, page: pageValue, meta: meta)
         CFSetup().track(contentBlockName: contentBlock, eventType: CoreEventType.search.rawValue, logObject: searchObject, updateImmediately: updateImmediately)
         
     }
