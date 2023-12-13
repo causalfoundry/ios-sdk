@@ -10,18 +10,29 @@ import UIKit
 public final class CFNudgePresenter {
     
     public static func present(in uiViewController: UIViewController) {
-        
         let objects = MMKVHelper.shared.readNudges().filter { !$0.isExpired }
         
-        let pushNotificationNudges = objects.filter { $0.nd.renderMethod == .pushNotification }
-        let nonPushNotificationNudges = objects.filter { $0.nd.renderMethod != .pushNotification }
+        guard !objects.isEmpty else { return }
         
-        guard !nonPushNotificationNudges.isEmpty else { return }
-        
-        let vc = CFNudgeViewController(objects: nonPushNotificationNudges)
+        let vc = CFNudgeViewController(objects: objects)
         uiViewController.present(vc, animated: true)
         
-        MMKVHelper.shared.writeNudges(objects: pushNotificationNudges)
+        MMKVHelper.shared.writeNudges(objects: [])
+    }
+    
+    public static func presentWithData(in uiViewController: UIViewController, objects : [BackendNudgeMainObject]) {
+        guard !objects.isEmpty else { return }
+        if uiViewController.presentedViewController != nil {
+            DispatchQueue.main.asyncAfter(deadline: .now() + NotificationConstants.shared.IN_APP_MESSAGE_INITIAL_DELAY) {
+                let vc = CFNudgeViewController(objects: objects)
+                uiViewController.present(vc, animated: true)
+                MMKVHelper.shared.writeNudges(objects: [])
+            }
+        }else {
+            let vc = CFNudgeViewController(objects: objects)
+            uiViewController.present(vc, animated: true)
+            MMKVHelper.shared.writeNudges(objects: [])
+        }
     }
 }
 
@@ -45,7 +56,6 @@ fileprivate final class CFNudgeViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         isModalInPresentation = true
         modalPresentationStyle = .overFullScreen
         view.backgroundColor = .clear
@@ -75,7 +85,7 @@ fileprivate final class CFNudgeViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CFNudgeCell", for: indexPath) as? CFNudgeCell
             cell?.object = object
             cell?.nudgeView?.closeAction = { [weak self] in
-                if let index = self?.objects.firstIndex(of: object) {
+                if (self?.objects.firstIndex(of: object)) != nil {
                     self?.remove(object: object)
                     self?.updateDatasource()
                     CFNotificationController.shared.track(nudgeRef: object.ref, response: .discard)

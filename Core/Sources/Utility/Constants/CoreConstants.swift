@@ -16,6 +16,7 @@ public class CoreConstants {
     public private(set) var apiUrl: String
 
     
+    
     private init() {
             // Initialize apiUrl with the default prodUrl
             self.apiUrl = prodUrl
@@ -34,6 +35,8 @@ public class CoreConstants {
         }
         set { MMKVHelper.shared.writeUser(user: newValue) }
     }
+    
+    public var applicationContext: UIApplication? = nil
     var sdkKey: String = ""
     var isDebugMode: Bool = true
     var allowAutoPageTrack: Bool = true

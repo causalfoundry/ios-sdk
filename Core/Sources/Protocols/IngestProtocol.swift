@@ -10,7 +10,6 @@ import UIKit
 
 protocol IngestProtocol {
     func initalize(pauseSDK: Bool,
-                   autoShowInAppNudge: Bool,
                    updateImmediately: Bool)
 
     func updateUserId(appUserId: String)

@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - BackendNudgeMainObject
 
-struct BackendNudgeMainObject: Codable, Hashable {
+public struct BackendNudgeMainObject: Codable, Hashable {
     
     let ref: String
     let time: String

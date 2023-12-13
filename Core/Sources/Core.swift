@@ -117,7 +117,7 @@ public class CFLogBuilder {
     //                }
     @discardableResult
     public func setAutoShowInAppNudge(showInAppNudge: Bool) -> CFLogBuilder {
-        autoShowInAppNudge = showInAppNudge
+        CoreConstants.shared.autoShowInAppNudge = showInAppNudge
         return self
     }
 
@@ -190,7 +190,7 @@ public class CFLogBuilder {
      * configuration.
      */
     @discardableResult
-    public func updateInAppMessageInitialDelay(initialDelay: Int) -> CFLogBuilder {
+    public func updateInAppMessageInitialDelay(initialDelay: TimeInterval) -> CFLogBuilder {
         NotificationConstants.shared.IN_APP_MESSAGE_INITIAL_DELAY = initialDelay
         return self
     }
@@ -205,6 +205,6 @@ public class CFLogBuilder {
         }else {
             CoreConstants.shared.sdkKey = "Bearer \(appSdkKey)"
         }
-        CFSetup().initalize(pauseSDK: pauseSDK, autoShowInAppNudge: autoShowInAppNudge, updateImmediately: updateImmediately)
+        CFSetup().initalize(pauseSDK: pauseSDK, updateImmediately: updateImmediately)
     }
 }

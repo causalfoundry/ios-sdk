@@ -21,10 +21,10 @@ struct NudgeRepsonseObject: Codable {
     let details: String // reason for error
     let time: String
 
-    init(nudgeRef: String, response: NudgeRepsonse) {
+    init(nudgeRef: String, response: NudgeRepsonse, details : String = "") {
         ref = nudgeRef
         self.response = response.rawValue
-        details = ""
+        self.details = details
         time = ISO8601DateFormatter().string(from: Date())
     }
 }

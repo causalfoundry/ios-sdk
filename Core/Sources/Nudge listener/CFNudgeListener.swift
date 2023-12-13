@@ -76,21 +76,53 @@ class CFNudgeListener {
 
     func fetchAndDisplayNudges() async throws {
         
-        let objects = try await fetchNudges().filter { !$0.isExpired }
+        let allNudgeObjects = try await fetchNudges().filter { !$0.isExpired }
+        
+        // Filter the objects to get only the ones that are not expired
+        let objects = allNudgeObjects.filter { !$0.isExpired }
+
+        
+        // Find the expired objects by subtracting non-expired ones from all fetched objects
+        let expiredObjects = Set(objects).subtracting(Set(objects))
+
+        // Call a function for each expired object
+        expiredObjects.forEach { expiredNudge in
+            CFNotificationController.shared.track(nudgeRef: expiredNudge.ref, response: .error, errorDetails: "nudge expired")
+        }
         
         let pushNotificationNudges = objects.filter { $0.nd.renderMethod == .pushNotification }
-        let nonPushNotificationNudges = objects.filter { $0.nd.renderMethod != .pushNotification }
+        let InAppMessagesNudges = objects.filter { $0.nd.renderMethod == .inAppMessage }
         
-        if CoreConstants.shared.autoShowInAppNudge {
-            for object in pushNotificationNudges {
-                CFNotificationController.shared.triggerNudgeNotification(object: object)
+        for object in pushNotificationNudges {
+            CFNotificationController.shared.triggerNudgeNotification(object: object)
+        }
+        
+        if(!InAppMessagesNudges.isEmpty){
+            if CoreConstants.shared.autoShowInAppNudge {
+                
+                DispatchQueue.main.async {
+                    guard let window = UIApplication.shared.windows.first,
+                          let rootViewController = window.rootViewController else {
+                        print("INVALID VC")
+                        var savedObjects = MMKVHelper.shared.readNudges()
+                        savedObjects.append(contentsOf: InAppMessagesNudges)
+                        MMKVHelper.shared.writeNudges(objects: savedObjects)
+                            return // or perform some other action
+                        }
+                    print("ROOT VIEW")
+                    CFNudgePresenter.presentWithData(in: rootViewController, objects: InAppMessagesNudges)
+                }
+                
+            }else{
+                var savedObjects = MMKVHelper.shared.readNudges()
+                savedObjects.append(contentsOf: InAppMessagesNudges)
+                
+                MMKVHelper.shared.writeNudges(objects: savedObjects)
             }
         }
         
-        var savedObjects = MMKVHelper.shared.readNudges()
-        savedObjects.append(contentsOf: nonPushNotificationNudges)
         
-        MMKVHelper.shared.writeNudges(objects: savedObjects)
+        
     }
     
     private func fetchAndDisplayNudgesTask() {

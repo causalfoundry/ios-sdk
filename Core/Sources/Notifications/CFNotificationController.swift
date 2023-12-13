@@ -51,9 +51,9 @@ public final class CFNotificationController: NSObject {
         }
     }
     
-    func track(nudgeRef: String, response: NudgeRepsonseObject.NudgeRepsonse) {
+    func track(nudgeRef: String, response: NudgeRepsonseObject.NudgeRepsonse, errorDetails: String = "") {
         let nudgeResponse = NudgeRepsonseObject(nudgeRef: nudgeRef,
-                                                response: response)
+                                                response: response, details: errorDetails)
         CFSetup()
             .track(contentBlockName: CoreConstants.shared.contentBlockName,
                    eventType: CoreEventType.nudge_response.rawValue,
@@ -63,19 +63,16 @@ public final class CFNotificationController: NSObject {
     }
     
     func trackAndOpen(object: BackendNudgeMainObject) {
-        print("Track Called")
-        track(nudgeRef: object.ref, response: .open)
+       track(nudgeRef: object.ref, response: .open)
         if let cta = object.nd.cta, cta == "redirect" || cta == "add_to_cart",
            let itemType = object.nd.message?.tmplCFG?.itemPairCFG?.itemType, !itemType.isEmpty,
            let itemID = object.extra?.itemPair?.ids?.first
         {
-            print("hello Nudge")
             NudgeOnClickObject.nudgeOnClickInterface?.openedNudge(cta: cta, itemType: itemType, itemID: itemID)
         }else {
             let cta = object.nd.cta
             let itemType = object.nd.message?.tmplCFG?.itemPairCFG?.itemType
             let itemID = object.extra?.itemPair?.ids?.first
-            print("ctaqq: \(cta ?? "qq"), itemType: \(itemType ?? "qq"), itemID: \(itemID ?? "22")")
         }
     }
 }
