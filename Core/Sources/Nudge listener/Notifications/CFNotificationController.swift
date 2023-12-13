@@ -68,11 +68,9 @@ public final class CFNotificationController: NSObject {
            let itemType = object.nd.message?.tmplCFG?.itemPairCFG?.itemType, !itemType.isEmpty,
            let itemID = object.extra?.itemPair?.ids?.first
         {
-            NudgeOnClickObject.nudgeOnClickInterface?.openedNudge(cta: cta, itemType: itemType, itemID: itemID)
-        }else {
-            let cta = object.nd.cta
-            let itemType = object.nd.message?.tmplCFG?.itemPairCFG?.itemType
-            let itemID = object.extra?.itemPair?.ids?.first
+            if let closure = NudgeOnClickObject.nudgeOnClickInterface {
+                closure(cta, itemType, itemID)
+            }
         }
     }
 }
