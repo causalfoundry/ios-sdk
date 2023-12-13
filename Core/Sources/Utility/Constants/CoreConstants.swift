@@ -11,12 +11,19 @@ import UIKit
 public class CoreConstants {
     public static let shared = CoreConstants()
 
-    let devUrl = "https://api-dev.causalfoundry.ai/v1/"
-    let prodUrl = "https://api.causalfoundry.ai/v1/"
-    var apiUrl: String {
-            return devUrl // or prodUrl
-        }
+    public let devUrl = "https://api-dev.causalfoundry.ai/v1/"
+    public let prodUrl = "https://api.causalfoundry.ai/v1/"
+    public private(set) var apiUrl: String
 
+    
+    private init() {
+            // Initialize apiUrl with the default prodUrl
+            self.apiUrl = prodUrl
+        }
+    public func setApiUrl(to url: String) {
+            apiUrl = url
+        }
+    
     public var userId: String? {
         get {
             var id = MMKVHelper.shared.fetchUserID()
