@@ -7,10 +7,6 @@
 
 import UIKit
 
-public protocol CFNotificationControllerDelegate: AnyObject {
-    func openedNudge(cta: String, itemType: String, itemID: String)
-}
-
 public final class CFNotificationController: NSObject {
     public static let shared = CFNotificationController()
 
@@ -18,7 +14,6 @@ public final class CFNotificationController: NSObject {
 
     private let userInfoKey = "object"
     private let options: UNNotificationPresentationOptions = [.alert, .badge, .sound]
-    private weak var delegate: CFNotificationControllerDelegate?
 
     public func request(completionHandler: @escaping (Bool, Error?) -> Void) {
         center.requestAuthorization(options: [.alert, .badge, .sound], completionHandler: completionHandler)
@@ -34,15 +29,11 @@ public final class CFNotificationController: NSObject {
      }
      */
 
-    public func setDelegate(_ delegate: CFNotificationControllerDelegate?) {
-        self.delegate = delegate
-    }
-
     func triggerNudgeNotification(object: BackendNudgeMainObject) {
         Task {
             let settings = await center.notificationSettings()
             guard settings.authorizationStatus == .authorized else {
-                track(object: object, response: .block)
+                track(nudgeRef: object.ref, response: .block)
                 return
             }
             let identifier = UUID().uuidString
@@ -60,8 +51,8 @@ public final class CFNotificationController: NSObject {
         }
     }
     
-    func track(object: BackendNudgeMainObject, response: NudgeRepsonseObject.NudgeRepsonse) {
-        let nudgeResponse = NudgeRepsonseObject(object: object,
+    func track(nudgeRef: String, response: NudgeRepsonseObject.NudgeRepsonse) {
+        let nudgeResponse = NudgeRepsonseObject(nudgeRef: nudgeRef,
                                                 response: response)
         CFSetup()
             .track(contentBlockName: CoreConstants.shared.contentBlockName,
@@ -72,12 +63,19 @@ public final class CFNotificationController: NSObject {
     }
     
     func trackAndOpen(object: BackendNudgeMainObject) {
-        track(object: object, response: .open)
+        print("Track Called")
+        track(nudgeRef: object.ref, response: .open)
         if let cta = object.nd.cta, cta == "redirect" || cta == "add_to_cart",
            let itemType = object.nd.message?.tmplCFG?.itemPairCFG?.itemType, !itemType.isEmpty,
            let itemID = object.extra?.itemPair?.ids?.first
         {
-            delegate?.openedNudge(cta: cta, itemType: itemType, itemID: itemID)
+            print("hello Nudge")
+            NudgeOnClickObject.nudgeOnClickInterface?.openedNudge(cta: cta, itemType: itemType, itemID: itemID)
+        }else {
+            let cta = object.nd.cta
+            let itemType = object.nd.message?.tmplCFG?.itemPairCFG?.itemType
+            let itemID = object.extra?.itemPair?.ids?.first
+            print("ctaqq: \(cta ?? "qq"), itemType: \(itemType ?? "qq"), itemID: \(itemID ?? "22")")
         }
     }
 }
@@ -86,7 +84,7 @@ extension CFNotificationController: UNUserNotificationCenterDelegate {
     public func userNotificationCenter(_: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // notification is presented
         if let data = notification.request.content.userInfo[userInfoKey] as? Data, let object = data.toObject() {
-            track(object: object, response: .shown)
+            track(nudgeRef: object.ref, response: .shown)
         }
         completionHandler(options)
     }

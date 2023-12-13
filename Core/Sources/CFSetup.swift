@@ -26,7 +26,7 @@ public class CFSetup: NSObject, IngestProtocol {
         CFNudgeListener.shared.beginListening()
     }
 
-    func initalize(event _: UIApplication.State, pauseSDK: Bool, autoShowInAppNudge: Bool, updateImmediately: Bool) {
+    func initalize(pauseSDK: Bool, autoShowInAppNudge: Bool, updateImmediately: Bool) {
         CoreConstants.shared.isAppDebuggable = true
         CoreConstants.shared.updateImmediately = updateImmediately
         CoreConstants.shared.pauseSDK = pauseSDK

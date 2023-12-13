@@ -78,7 +78,7 @@ fileprivate final class CFNudgeViewController: UITableViewController {
                 if let index = self?.objects.firstIndex(of: object) {
                     self?.remove(object: object)
                     self?.updateDatasource()
-                    CFNotificationController.shared.track(object: object, response: .discard)
+                    CFNotificationController.shared.track(nudgeRef: object.ref, response: .discard)
                 }
             }
             return cell
@@ -98,7 +98,7 @@ fileprivate final class CFNudgeViewController: UITableViewController {
         dataSource.apply(snapshot, animatingDifferences: true)
         
         objects.forEach { object in
-            CFNotificationController.shared.track(object: object, response: .shown)
+            CFNotificationController.shared.track(nudgeRef: object.ref, response: .shown)
         }
     }
     

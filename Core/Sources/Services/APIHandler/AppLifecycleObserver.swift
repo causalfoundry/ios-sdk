@@ -15,10 +15,13 @@ public class CausualFoundry {
     var pageCreateTime: Int64? = 0
     var pageRenderTime: Int64? = 0
     var oldPageRenderTime: Int64 = 0
+    var appStartTime: Int64 = 0
 
     public static let shared = CausualFoundry()
 
-    public init() {}
+    public init() {
+        appStartTime = Int64(Date().timeIntervalSince1970 * 1000)
+    }
 
     public func configure() {
         setupNotifications()
@@ -37,12 +40,15 @@ public class CausualFoundry {
         } else {
             WorkerCaller.registerBackgroundTask()
         }
-
-        let currentTimeMillis = Date().timeIntervalSince1970 * 1000
-        CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
-
+        
+        
+        var startTime: Int64 = 0
+        if(appStartTime != 0){
+            let currentTimeMillis = Date().timeIntervalSince1970 * 1000
+            startTime = Int64(currentTimeMillis) - appStartTime
+        }
         CFLogAppEventBuilder().setAppEvent(appAction: .open)
-            .setStartTime(start_time: Int(CoreConstants.shared.sessionStartTime))
+            .setStartTime(start_time: Int(startTime))
             .build()
     }
 

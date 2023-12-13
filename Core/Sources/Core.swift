@@ -5,13 +5,13 @@ import Foundation
 import UIKit
 
 public class CFLog {
-    var applicationState: UIApplication.State?
+    var appSdkKey: String = ""
     var showInAppBudge: Bool = true
     var updateImmediately: Bool = true
     var pauseSDK: Bool = false
 
-    init(applicationState: UIApplication.State? = nil, showInAppBudge: Bool, updateImmediately: Bool, pauseSDK: Bool) {
-        self.applicationState = applicationState
+    init(appSdkKey: String, showInAppBudge: Bool, updateImmediately: Bool, pauseSDK: Bool) {
+        self.appSdkKey = appSdkKey
         self.showInAppBudge = showInAppBudge
         self.updateImmediately = updateImmediately
         self.pauseSDK = pauseSDK
@@ -19,22 +19,12 @@ public class CFLog {
 }
 
 public class CFLogBuilder {
-    var applicationState: UIApplication.State?
+    var appSdkKey: String = ""
     var autoShowInAppNudge: Bool = true
     var updateImmediately: Bool = true
     var pauseSDK: Bool = false
 
     public init() {}
-    /**
-     * Passing the lifecycle event variable to SDK to log app open and resume events
-     * automatically and manage app lifecycle components required by SDK to operate
-     */
-    @discardableResult
-    public func setLifecycleEvent(event: UIApplication.State) -> CFLogBuilder {
-        applicationState = event
-        return self
-    }
-
     /**
      * Using this will set the SDK on pause that it will not log any event and will not listen
      * for the nudges but FCM based nudges will still work base on the device token status.
@@ -53,7 +43,7 @@ public class CFLogBuilder {
      */
     @discardableResult
     public func setSdkKey(sdkKey: String) -> CFLogBuilder {
-        CoreConstants.shared.sdkKey = "Bearer \(sdkKey)"
+        self.appSdkKey = sdkKey
         return self
     }
 
@@ -209,6 +199,12 @@ public class CFLogBuilder {
      * Using this will validate the endpoints provided and initialise the SDK
      */
     public func build() {
-        CFSetup().initalize(event: applicationState!, pauseSDK: pauseSDK, autoShowInAppNudge: autoShowInAppNudge, updateImmediately: updateImmediately)
+        
+        if(appSdkKey.isEmpty){
+            ExceptionManager.throwIsRequiredException(eventType: "CFLog", elementName: "SDK KEY")
+        }else {
+            CoreConstants.shared.sdkKey = "Bearer \(appSdkKey)"
+        }
+        CFSetup().initalize(pauseSDK: pauseSDK, autoShowInAppNudge: autoShowInAppNudge, updateImmediately: updateImmediately)
     }
 }

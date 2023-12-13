@@ -21,8 +21,8 @@ struct NudgeRepsonseObject: Codable {
     let details: String // reason for error
     let time: String
 
-    init(object: BackendNudgeMainObject, response: NudgeRepsonse) {
-        ref = object.ref
+    init(nudgeRef: String, response: NudgeRepsonse) {
+        ref = nudgeRef
         self.response = response.rawValue
         details = ""
         time = ISO8601DateFormatter().string(from: Date())

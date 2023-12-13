@@ -9,8 +9,7 @@ import Foundation
 import UIKit
 
 protocol IngestProtocol {
-    func initalize(event: UIApplication.State,
-                   pauseSDK: Bool,
+    func initalize(pauseSDK: Bool,
                    autoShowInAppNudge: Bool,
                    updateImmediately: Bool)
 
