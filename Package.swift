@@ -16,8 +16,8 @@ let package = Package(
             targets: ["CasualFoundryElearning"]
         ),
         .library(
-            name: "CHWEPayments",
-            targets: ["CasualFoundryPayments"]
+            name: "CausalFoundrySDKPayments",
+            targets: ["CausalFoundrySDKPayments"]
         ),
         .library(
             name: "CHWManagement",
@@ -47,7 +47,7 @@ let package = Package(
                 "CausalFoundrySDKEcom",
                 "E_Learning",
                 "Loyalty",
-                "Payments",
+                "CausalFoundrySDKPayments",
             ]
         ),
         .target(
@@ -58,7 +58,7 @@ let package = Package(
                 "CausalFoundrySDKEcom",
                 "E_Learning",
                 "Loyalty",
-                "Payments",
+                "CausalFoundrySDKPayments",
             ]
         ),
         .target(
@@ -69,13 +69,13 @@ let package = Package(
                 "CHWManagement",
                 "E_Learning",
                 "Loyalty",
-                "Payments",
+                "CausalFoundrySDKPayments",
             ]
         ),
         .target(
-            name: "CasualFoundryPayments",
+            name: "CausalFoundrySDKPayments",
             dependencies: ["CausalFoundrySDKCore"],
-            path: "Payments/Sources",
+            path: "CausalFoundrySDKPayments/Sources",
             exclude: [
                 "CHWManagement",
                 "CausalFoundrySDKEcom",
@@ -91,7 +91,7 @@ let package = Package(
                 "CHWManagement",
                 "CausalFoundrySDKEcom",
                 "E_Learning",
-                "Payments",
+                "CausalFoundrySDKPayments",
             ]
         ),
         .target(
@@ -102,7 +102,7 @@ let package = Package(
                 "CHWManagement",
                 "CausalFoundrySDKEcom",
                 "Loyalty",
-                "Payments",
+                "CausalFoundrySDKPayments",
             ]
         ),
         .binaryTarget(
@@ -125,9 +125,9 @@ let package = Package(
             path: "CausalFoundrySDKEcom/Tests"
         ),
         .testTarget(
-            name: "PaymentsTests",
-            dependencies: ["CasualFoundryPayments"],
-            path: "Payments/Tests"
+            name: "CausalFoundrySDKPaymentsTests",
+            dependencies: ["CausalFoundrySDKPayments"],
+            path: "CausalFoundrySDKPayments/Tests"
         ),
     ]
 )

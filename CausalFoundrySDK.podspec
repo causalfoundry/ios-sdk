@@ -29,8 +29,8 @@ Pod::Spec.new do |s|
   s.author       = { "Developer" => "moiz@causalfoundry.ai" }
   s.platform     = :ios, "13.0"
   s.source       = { :git => "https://github.com/causalfoundry/ios-sdk", :branch => 'develop' }
-  s.source_files =  "CHWManagement/Sources/**/*.swift", "CausalFoundrySDKCore/Sources/**/*.swift", "CausalFoundrySDKEcom/Sources/**/*.swift", "E_Learning/Sources/**/*.swift", "Frameworks/**/*.xcframework", "Loyalty/Sources/**/*.swift", "Payments/Sources/**/*.swift"
-  s.exclude_files = "Package.swift", "build.sh", "CHWManagement/Tests", "CausalFoundrySDKCore/Tests", "CausalFoundrySDKEcom/Tests", "E_Learning/Tests", "Loyalty/Tests", "Payments/Testst"
+  s.source_files =  "CHWManagement/Sources/**/*.swift", "CausalFoundrySDKCore/Sources/**/*.swift", "CausalFoundrySDKEcom/Sources/**/*.swift", "E_Learning/Sources/**/*.swift", "Frameworks/**/*.xcframework", "Loyalty/Sources/**/*.swift", "CausalFoundrySDKPayments/Sources/**/*.swift"
+  s.exclude_files = "Package.swift", "build.sh", "CHWManagement/Tests", "CausalFoundrySDKCore/Tests", "CausalFoundrySDKEcom/Tests", "E_Learning/Tests", "Loyalty/Tests", "CausalFoundrySDKPayments/Testst"
   s.requires_arc = true
   s.swift_version= '5.4'
   s.vendored_frameworks = 'Frameworks/MMKV.xcframework'
