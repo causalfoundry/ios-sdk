@@ -216,7 +216,7 @@ public class CfLogDeferredPaymentEvent {
             return
         }
 
-        var paymentObject = DeferredPaymentObject(paymentId: paymentId, orderId: orderId, type: paymentMethod, action: action, accountBalance: accountBalance, paymentAmount: paymentAmount, currency: currencyValue, isSuccessful: isSuccessful, meta: meta as? Encodable)
+        let paymentObject = DeferredPaymentObject(paymentId: paymentId, orderId: orderId, type: paymentMethod, action: action, accountBalance: accountBalance, paymentAmount: paymentAmount, currency: currencyValue, isSuccessful: isSuccessful, meta: meta as? Encodable)
 
         CFSetup().track(
             contentBlockName: PaymentsConstants.contentBlockName,

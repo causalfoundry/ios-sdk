@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CausalFoundrySDKPayments"
-  s.version      = "0.4.3"
+  s.version      = "0.4.4"
   s.summary      = "Causal Foundry Payments SDK"
   s.description  = "CausalFoundry SDK for Payments related events (https://docs.causalfoundry.ai/core/)"
   s.homepage     = "https://docs.causalfoundry.ai/"
