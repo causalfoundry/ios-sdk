@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   }
   s.author       = { "Developer" => "dev@causalfoundry.ai" }
   s.platform     = :ios, "13.0"
-  s.source       = { :git => "https://github.com/causalfoundry/ios-sdk.git", :branch => 'main' :tag => s.version.to_s }
+  s.source       = { :git => "https://github.com/causalfoundry/ios-sdk.git", :tag => s.version.to_s }
   
   ios_deployment_target = '13.0'
   s.ios.deployment_target = ios_deployment_target
