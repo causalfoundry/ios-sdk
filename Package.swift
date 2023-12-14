@@ -24,8 +24,8 @@ let package = Package(
             targets: ["CasualFoundryCHWManagement"]
         ),
         .library(
-            name: "CHWEcommerce",
-            targets: ["CasualFoundryEcommerce"]
+            name: "CausalFoundrySDKEcom",
+            targets: ["CausalFoundrySDKEcom"]
         ),
         .library(
             name: "CHWLoyalty",
@@ -44,7 +44,7 @@ let package = Package(
             path: "CausalFoundrySDKCore/Sources",
             exclude: [
                 "CHWManagement",
-                "E_Commerce",
+                "CausalFoundrySDKEcom",
                 "E_Learning",
                 "Loyalty",
                 "Payments",
@@ -55,16 +55,16 @@ let package = Package(
             dependencies: ["CausalFoundrySDKCore"],
             path: "CHWManagement/Sources",
             exclude: [
-                "E_Commerce",
+                "CausalFoundrySDKEcom",
                 "E_Learning",
                 "Loyalty",
                 "Payments",
             ]
         ),
         .target(
-            name: "CasualFoundryEcommerce",
+            name: "CausalFoundrySDKEcom",
             dependencies: ["CausalFoundrySDKCore"],
-            path: "E_Commerce/Sources",
+            path: "CausalFoundrySDKEcom/Sources",
             exclude: [
                 "CHWManagement",
                 "E_Learning",
@@ -78,7 +78,7 @@ let package = Package(
             path: "Payments/Sources",
             exclude: [
                 "CHWManagement",
-                "E_Commerce",
+                "CausalFoundrySDKEcom",
                 "E_Learning",
                 "Loyalty",
             ]
@@ -89,7 +89,7 @@ let package = Package(
             path: "Loyalty/Sources",
             exclude: [
                 "CHWManagement",
-                "E_Commerce",
+                "CausalFoundrySDKEcom",
                 "E_Learning",
                 "Payments",
             ]
@@ -100,7 +100,7 @@ let package = Package(
             path: "E_Learning/Sources",
             exclude: [
                 "CHWManagement",
-                "E_Commerce",
+                "CausalFoundrySDKEcom",
                 "Loyalty",
                 "Payments",
             ]
@@ -120,9 +120,9 @@ let package = Package(
             path: "CHWManagement/Tests"
         ),
         .testTarget(
-            name: "ECommerceTests",
-            dependencies: ["CasualFoundryEcommerce"],
-            path: "E_Commerce/Tests"
+            name: "CausalFoundrySDKEcomTests",
+            dependencies: ["CausalFoundrySDKEcom"],
+            path: "CausalFoundrySDKEcom/Tests"
         ),
         .testTarget(
             name: "PaymentsTests",
