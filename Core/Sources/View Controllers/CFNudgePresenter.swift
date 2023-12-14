@@ -205,9 +205,9 @@ fileprivate final class CFNudgeView: UIView {
     }
 }
 
-#if DEBUG
-#Preview {
-    let debugObjects = try? BackendNudgeMainObject.debugObjects()
-    return CFNudgeView(object: debugObjects!.first!)
-}
-#endif
+//#if DEBUG
+//#Preview {
+//    let debugObjects = try? BackendNudgeMainObject.debugObjects()
+//    return CFNudgeView(object: debugObjects!.first!)
+//}
+//#endif
