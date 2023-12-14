@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "CausalFoundry_ios_SDK",
+    name: "CausalFoundrySDK",
     platforms: [.iOS(.v13)],
     products: [
         .library(
@@ -12,20 +12,20 @@ let package = Package(
             targets: ["CausalFoundrySDKCore"]
         ),
         .library(
-            name: "CHWElearning",
-            targets: ["CasualFoundryElearning"]
+            name: "CausalFoundrySDKEcom",
+            targets: ["CausalFoundrySDKEcom"]
         ),
         .library(
             name: "CausalFoundrySDKPayments",
             targets: ["CausalFoundrySDKPayments"]
         ),
         .library(
-            name: "CHWManagement",
-            targets: ["CasualFoundryCHWManagement"]
+            name: "CHWElearning",
+            targets: ["CasualFoundryElearning"]
         ),
         .library(
-            name: "CausalFoundrySDKEcom",
-            targets: ["CausalFoundrySDKEcom"]
+            name: "CHWManagement",
+            targets: ["CasualFoundryCHWManagement"]
         ),
         .library(
             name: "CHWLoyalty",
@@ -41,69 +41,32 @@ let package = Package(
         .target(
             name: "CausalFoundrySDKCore",
             dependencies: ["MMKV"],
-            path: "CausalFoundrySDKCore/Sources",
-            exclude: [
-                "CHWManagement",
-                "CausalFoundrySDKEcom",
-                "E_Learning",
-                "Loyalty",
-                "CausalFoundrySDKPayments",
-            ]
-        ),
-        .target(
-            name: "CasualFoundryCHWManagement",
-            dependencies: ["CausalFoundrySDKCore"],
-            path: "CHWManagement/Sources",
-            exclude: [
-                "CausalFoundrySDKEcom",
-                "E_Learning",
-                "Loyalty",
-                "CausalFoundrySDKPayments",
-            ]
+            path: "CausalFoundrySDKCore/Sources"
         ),
         .target(
             name: "CausalFoundrySDKEcom",
             dependencies: ["CausalFoundrySDKCore"],
-            path: "CausalFoundrySDKEcom/Sources",
-            exclude: [
-                "CHWManagement",
-                "E_Learning",
-                "Loyalty",
-                "CausalFoundrySDKPayments",
-            ]
+            path: "CausalFoundrySDKEcom/Sources"
         ),
         .target(
             name: "CausalFoundrySDKPayments",
             dependencies: ["CausalFoundrySDKCore"],
-            path: "CausalFoundrySDKPayments/Sources",
-            exclude: [
-                "CHWManagement",
-                "CausalFoundrySDKEcom",
-                "E_Learning",
-                "Loyalty",
-            ]
+            path: "CausalFoundrySDKPayments/Sources"
+        ),
+        .target(
+            name: "CasualFoundryCHWManagement",
+            dependencies: ["CausalFoundrySDKCore"],
+            path: "CHWManagement/Sources"
         ),
         .target(
             name: "CasualFoundryLoyalty",
             dependencies: ["CausalFoundrySDKCore"],
-            path: "Loyalty/Sources",
-            exclude: [
-                "CHWManagement",
-                "CausalFoundrySDKEcom",
-                "E_Learning",
-                "CausalFoundrySDKPayments",
-            ]
+            path: "Loyalty/Sources"
         ),
         .target(
             name: "CasualFoundryElearning",
             dependencies: ["CausalFoundrySDKCore"],
-            path: "E_Learning/Sources",
-            exclude: [
-                "CHWManagement",
-                "CausalFoundrySDKEcom",
-                "Loyalty",
-                "CausalFoundrySDKPayments",
-            ]
+            path: "E_Learning/Sources"
         ),
         .binaryTarget(
             name: "MMKV",
@@ -115,11 +78,6 @@ let package = Package(
             path: "CausalFoundrySDKCore/Tests"
         ),
         .testTarget(
-            name: "CHWManagementTests",
-            dependencies: ["CasualFoundryCHWManagement"],
-            path: "CHWManagement/Tests"
-        ),
-        .testTarget(
             name: "CausalFoundrySDKEcomTests",
             dependencies: ["CausalFoundrySDKEcom"],
             path: "CausalFoundrySDKEcom/Tests"
@@ -128,6 +86,11 @@ let package = Package(
             name: "CausalFoundrySDKPaymentsTests",
             dependencies: ["CausalFoundrySDKPayments"],
             path: "CausalFoundrySDKPayments/Tests"
+        ),
+        .testTarget(
+            name: "CHWManagementTests",
+            dependencies: ["CasualFoundryCHWManagement"],
+            path: "CHWManagement/Tests"
         ),
     ]
 )

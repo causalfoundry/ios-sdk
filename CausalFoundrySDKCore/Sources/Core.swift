@@ -204,6 +204,8 @@ public class CFLogBuilder {
             ExceptionManager.throwIsRequiredException(eventType: "CFLog", elementName: "SDK KEY")
         }else {
             CoreConstants.shared.sdkKey = "Bearer \(appSdkKey)"
+            let dnspeed = NetworkMonitor.shared.downloadSpeed
+            print(dnspeed)
         }
         CFSetup().initalize(pauseSDK: pauseSDK, updateImmediately: updateImmediately)
     }

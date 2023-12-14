@@ -55,7 +55,6 @@ public enum CatalogEventsUploader {
             for value in CatalogSubject.allCases {
                 guard let eventData = MMKVHelper.shared.readCatalogData(subject: value) else { continue }
                 group.addTask {
-                    #warning("SWIFT TASK CONTINUATION MISUSE: uploadEvents() leaked its continuation!")
                     let catalogMainObject = try? JSONSerialization.jsonObject(with: eventData, options: []) as? [Any]
                     try await withCheckedThrowingContinuation { continuation in
                         catalogAPIHandler.callCatalogAPI(catalogMainObject: catalogMainObject ?? [], catalogSubject: value.rawValue) { success in
