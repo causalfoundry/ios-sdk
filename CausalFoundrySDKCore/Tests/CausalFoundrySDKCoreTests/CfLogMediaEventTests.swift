@@ -5,7 +5,7 @@
 //  Created by khushbu on 24/10/23.
 //
 
-@testable import CasualFoundryCore
+@testable import CausalFoundrySDKCore
 import XCTest
 
 class CfLogMediaEventTests: XCTestCase {

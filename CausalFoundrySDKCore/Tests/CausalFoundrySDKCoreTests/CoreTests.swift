@@ -1,7 +1,7 @@
 import UIKit
 import XCTest
 
-@testable import CasualFoundryCore // Replace with your actual module name
+@testable import CausalFoundrySDKCore // Replace with your actual module name
 
 final class CFLogTests: XCTestCase {
     var application: UIApplication?

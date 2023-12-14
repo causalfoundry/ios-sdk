@@ -7,7 +7,7 @@
 
 import XCTest
 
-@testable import CasualFoundryCore
+@testable import CausalFoundrySDKCore
 
 class CFLogAppEventTests: XCTestCase {
     var builder: CFLogAppEventBuilder!

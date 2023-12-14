@@ -1,4 +1,4 @@
-@testable import CasualFoundryCore
+@testable import CausalFoundrySDKCore
 import XCTest
 
 class CfLogExamEventTests: XCTestCase {

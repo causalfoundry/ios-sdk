@@ -5,7 +5,7 @@
 //  Created by khushbu on 19/10/23.
 //
 
-@testable import CasualFoundryCore
+@testable import CausalFoundrySDKCore
 import XCTest
 
 class CfLogPageBuilderTests: XCTestCase {

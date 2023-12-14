@@ -8,7 +8,7 @@
 import XCTest
 
 @testable import CasualFoundryCHWManagement
-@testable import CasualFoundryCore
+@testable import CausalFoundrySDKCore
 
 class CfLogInvestigationEventTests: XCTestCase {
     var logEvent: CfLogInvestigationEvent!

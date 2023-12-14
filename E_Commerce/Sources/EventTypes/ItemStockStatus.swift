@@ -5,9 +5,7 @@
 //  Created by khushbu on 27/10/23.
 //
 
-#if canImport(CasualFoundryCore)
-import CasualFoundryCore
-#endif
+import CausalFoundrySDKCore
 import Foundation
 
 public enum ItemStockStatus: String, EnumComposable {

@@ -5,9 +5,7 @@
 //  Created by khushbu on 07/11/23.
 //
 
-#if canImport(CasualFoundryCore)
-import CasualFoundryCore
-#endif
+import CausalFoundrySDKCore
 import Foundation
 
 public enum ScreeningType: String, EnumComposable {

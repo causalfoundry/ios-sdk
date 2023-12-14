@@ -1,6 +1,6 @@
 import Foundation
 
-@testable import CasualFoundryCore
+@testable import CausalFoundrySDKCore
 import XCTest
 
 class CfLogIdentityEventTests: XCTestCase {

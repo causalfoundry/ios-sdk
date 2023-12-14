@@ -8,8 +8,8 @@ let package = Package(
     platforms: [.iOS(.v13)],
     products: [
         .library(
-            name: "Core",
-            targets: ["CasualFoundryCore"]
+            name: "CausalFoundrySDKCore",
+            targets: ["CausalFoundrySDKCore"]
         ),
         .library(
             name: "CHWElearning",
@@ -39,9 +39,9 @@ let package = Package(
         */
     targets: [
         .target(
-            name: "CasualFoundryCore",
+            name: "CausalFoundrySDKCore",
             dependencies: ["MMKV"],
-            path: "Core/Sources",
+            path: "CausalFoundrySDKCore/Sources",
             exclude: [
                 "CHWManagement",
                 "E_Commerce",
@@ -52,7 +52,7 @@ let package = Package(
         ),
         .target(
             name: "CasualFoundryCHWManagement",
-            dependencies: ["CasualFoundryCore"],
+            dependencies: ["CausalFoundrySDKCore"],
             path: "CHWManagement/Sources",
             exclude: [
                 "E_Commerce",
@@ -63,7 +63,7 @@ let package = Package(
         ),
         .target(
             name: "CasualFoundryEcommerce",
-            dependencies: ["CasualFoundryCore"],
+            dependencies: ["CausalFoundrySDKCore"],
             path: "E_Commerce/Sources",
             exclude: [
                 "CHWManagement",
@@ -74,7 +74,7 @@ let package = Package(
         ),
         .target(
             name: "CasualFoundryPayments",
-            dependencies: ["CasualFoundryCore"],
+            dependencies: ["CausalFoundrySDKCore"],
             path: "Payments/Sources",
             exclude: [
                 "CHWManagement",
@@ -85,7 +85,7 @@ let package = Package(
         ),
         .target(
             name: "CasualFoundryLoyalty",
-            dependencies: ["CasualFoundryCore"],
+            dependencies: ["CausalFoundrySDKCore"],
             path: "Loyalty/Sources",
             exclude: [
                 "CHWManagement",
@@ -96,7 +96,7 @@ let package = Package(
         ),
         .target(
             name: "CasualFoundryElearning",
-            dependencies: ["CasualFoundryCore"],
+            dependencies: ["CausalFoundrySDKCore"],
             path: "E_Learning/Sources",
             exclude: [
                 "CHWManagement",
@@ -110,9 +110,9 @@ let package = Package(
             path: "Frameworks/MMKV.xcframework"
         ),
         .testTarget(
-            name: "CoreTests",
-            dependencies: ["CasualFoundryCore"],
-            path: "Core/Tests"
+            name: "CausalFoundrySDKCoreTests",
+            dependencies: ["CausalFoundrySDKCore"],
+            path: "CausalFoundrySDKCore/Tests"
         ),
         .testTarget(
             name: "CHWManagementTests",

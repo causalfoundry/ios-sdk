@@ -4,10 +4,7 @@
 //
 //  Created by moizhassankh on 07/12/23.
 //
-
-#if canImport(CasualFoundryCore)
-import CasualFoundryCore
-#endif
+import CausalFoundrySDKCore
 import Foundation
 
 public enum PaymentAction: String, EnumComposable {
