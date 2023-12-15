@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name         = "CausalFoundrySDKPayments"
-  s.version      = "0.4.4"
+  s.version      = "0.4.5"
   s.summary      = "Causal Foundry Payments SDK"
-  s.description  = "CausalFoundry SDK for Payments related events (https://docs.causalfoundry.ai/core/)"
+  s.description  = "CausalFoundry SDK for Payments related events (https://docs.causalfoundry.ai/)"
   s.homepage     = "https://docs.causalfoundry.ai/"
   s.license      = { :type => 'Apache License, Version 2.0', :text => <<-LICENSE
     Licensed under the Apache License, Version 2.0 (the "License");
