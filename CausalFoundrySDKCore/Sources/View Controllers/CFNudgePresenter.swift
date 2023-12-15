@@ -76,7 +76,14 @@ fileprivate final class CFNudgeViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let object = dataSource.itemIdentifier(for: indexPath) else { return }
         CFNotificationController.shared.trackAndOpen(object: object)
-        remove(object: object)
+        if let cta = object.nd.cta, cta == "redirect" || cta == "add_to_cart",
+           let itemType = object.nd.message?.tmplCFG?.itemPairCFG?.itemType, !itemType.isEmpty,
+           let itemID = object.extra?.itemPair?.ids?.first, !itemID.isEmpty
+        {
+            removeAllObjects()
+        }else{
+            remove(object: object)
+        }
         updateDatasource()
     }
     
@@ -115,6 +122,9 @@ fileprivate final class CFNudgeViewController: UITableViewController {
     private func remove(object: BackendNudgeMainObject) {
         guard let index = objects.firstIndex(of: object) else { return }
         objects.remove(at: index)
+    }
+    private func removeAllObjects() {
+        objects.removeAll()
     }
 }
 

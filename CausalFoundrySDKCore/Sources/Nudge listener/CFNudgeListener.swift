@@ -77,10 +77,17 @@ class CFNudgeListener {
     func fetchAndDisplayNudges() async throws {
         
         let allNudgeObjects = try await fetchNudges().filter { !$0.isExpired }
+//        let allNudgeObjects = try? BackendNudgeMainObject.debugObjects()
         
         // Filter the objects to get only the ones that are not expired
-        let objects = allNudgeObjects.filter { !$0.isExpired }
-
+        var objects = allNudgeObjects.filter { !$0.isExpired }
+        let storedNudges = MMKVHelper.shared.readNudges().filter { !$0.isExpired }
+        if(!storedNudges.isEmpty){
+            objects.append(contentsOf: storedNudges)
+            let set = Set(objects)
+            objects = Array(set)
+        }
+        MMKVHelper.shared.writeNudges(objects: [])
         
         // Find the expired objects by subtracting non-expired ones from all fetched objects
         let expiredObjects = Set(objects).subtracting(Set(objects))
@@ -98,24 +105,17 @@ class CFNudgeListener {
         }
         
         if(!InAppMessagesNudges.isEmpty){
-            if CoreConstants.shared.autoShowInAppNudge {
-                
-                DispatchQueue.main.async {
-                    guard let window = UIApplication.shared.windows.first,
-                          let rootViewController = window.rootViewController else {
-                        var savedObjects = MMKVHelper.shared.readNudges()
-                        savedObjects.append(contentsOf: InAppMessagesNudges)
-                        MMKVHelper.shared.writeNudges(objects: savedObjects)
-                            return // or perform some other action
-                        }
-                    CFNudgePresenter.presentWithData(in: rootViewController, objects: InAppMessagesNudges)
-                }
-                
+            if (CoreConstants.shared.autoShowInAppNudge && CoreConstants.shared.isAppOpen) {
+                    DispatchQueue.main.async {
+                        guard let window = UIApplication.shared.windows.first,
+                              let rootViewController = window.rootViewController else {
+                                MMKVHelper.shared.writeNudges(objects: InAppMessagesNudges)
+                                return // or perform some other action
+                            }
+                            CFNudgePresenter.presentWithData(in: rootViewController, objects: InAppMessagesNudges)
+                    }
             }else{
-                var savedObjects = MMKVHelper.shared.readNudges()
-                savedObjects.append(contentsOf: InAppMessagesNudges)
-                
-                MMKVHelper.shared.writeNudges(objects: savedObjects)
+                MMKVHelper.shared.writeNudges(objects: InAppMessagesNudges)
             }
         }
         
@@ -158,7 +158,7 @@ extension BackendNudgeMainObject {
                   "incentive"
                 ]
               },
-              "render_method": "push_notification",
+              "render_method": "in_app_message",
               "cta": "redirect"
             },
             "extra": {
@@ -178,8 +178,8 @@ extension BackendNudgeMainObject {
             }
           },
           {
-            "ref": "adp_94",
-            "time": "2023-08-30T11:53:00+02:00",
+            "ref": "adp_0",
+            "time": "2023-08-31T11:53:00+02:00",
             "nd": {
               "type": "message",
               "message": {
