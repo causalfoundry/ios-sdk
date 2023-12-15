@@ -40,23 +40,13 @@ public class CFSetup: NSObject, IngestProtocol {
     func updateUserId(appUserId: String) {
         if !appUserId.isEmpty {
             CoreConstants.shared.userId = appUserId
+            MMKVHelper.shared.writeUserBackup(userId: appUserId)
             CFNudgeListener.shared.beginListening()
         }
     }
 
     public func updateCoreCatalogItem(subject: CatalogSubject, catalogObject: Data) {
         catalogAPIHandler.updateCoreCatalogItem(subject: subject, catalogObject: catalogObject)
-    }
-
-    @discardableResult
-    func getSDKAccessKey() -> String? {
-        guard let fileURL = URL(string: "Info.plist", relativeTo: nil) else {
-            fatalError("Can't find Info.plist")
-        }
-
-        let contents = NSDictionary(contentsOf: fileURL) as? [String: String] ?? [:]
-
-        return contents["ai.causalfoundry.iOS.sdk.APPLICATION_KEY"] ?? ""
     }
 
     public func track<T: Codable>(contentBlockName: String, eventType: String, logObject: T?, updateImmediately: Bool, eventTime: Int64 = 0) {
@@ -73,12 +63,8 @@ public class CFSetup: NSObject, IngestProtocol {
     }
 
     private func verifyAccessToken() {
-        if CoreConstants.shared.sdkKey == "" {
-            if getSDKAccessKey() == "" {
-                fatalError("Access key not found")
-            } else {
-                CoreConstants.shared.sdkKey = "Bearer \(getSDKAccessKey()!)"
-            }
+        if CoreConstants.shared.sdkKey.isEmpty {
+            fatalError("Access key not found")
         }
     }
 

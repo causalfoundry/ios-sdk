@@ -34,6 +34,7 @@ public enum WorkerCaller {
                     try await CatalogEventsUploader.uploadEvents()
                     print("Background task \(task.identifier) completed")
                     task.setTaskCompleted(success: true)
+                    
                 } catch {
                     scheduleEventUploadTask(earliestBeginDate: Date(timeIntervalSinceNow: 10 * 60)) // try again in 10 minutes
                     print("Background task error: \(error.localizedDescription)")

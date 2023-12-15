@@ -35,17 +35,32 @@ public class IngestAPIHandler: NSObject {
         } else {
             storeEventTrack(eventObject: eventObject)
         }
+        
+        if(CoreConstants.shared.logoutEvent){
+            Task {
+                do {
+                    try await WorkerCaller.performUpload()
+                    MMKVHelper.shared.writeUserCatalog(userCataLogData: nil)
+                } catch {
+                    print("unable to log sdk events")
+                }
+            }
+        }
+        
     }
 
     func updateEventTrack(eventArray: [EventDataObject], callback: @escaping (Bool) -> Void) {
 
-        guard let userID = CoreConstants.shared.userId, !userID.isEmpty else {
-            callback(false)
-            return
+        
+        var userId = CoreConstants.shared.userId
+        
+        if(userId == nil || userId?.isEmpty == true){
+            userId = MMKVHelper.shared.fetchUserBackupID()
         }
 
-        let mainBody = MainBody(sID: "\(userID)_\(CoreConstants.shared.sessionStartTime)_\(CoreConstants.shared.sessionEndTime)",
-                                uID: userID, appInfo: CoreConstants.shared.appInfoObject!,
+
+        let mainBody = MainBody(sID: "\(userId!)_\(CoreConstants.shared.sessionStartTime)_\(CoreConstants.shared.sessionEndTime)",
+                                uID: userId!, appInfo: CoreConstants.shared.appInfoObject!,
                                 dInfo: CoreConstants.shared.deviceObject!,
                                 dn: Int(NetworkMonitor.shared.downloadSpeed),
                                 sdk: CoreConstants.shared.SDKVersion,

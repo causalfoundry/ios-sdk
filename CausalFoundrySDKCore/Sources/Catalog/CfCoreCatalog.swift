@@ -12,17 +12,13 @@ public class CfCoreCatalog {
     // User Catalog
     //////////////////////////////////////////////////////
 
-    public static func updateUserCatalog(appUserId: String, userCatalogModel: String) {
-        if let jsonData = userCatalogModel.data(using: .utf8) {
-            do {
-                let jsonModel = try JSONDecoder.new.decode(UserCatalogModel.self, from: jsonData)
-                CfCoreCatalog.updateUserCatalogData(appUserId: appUserId, userCatalogModel: jsonModel)
-            } catch {
-                print("Error decoding JSON: \(error)")
-            }
-        } else {
-            print("Failed to convert JSON string to Data")
+    public static func updateUserCatalog(appUserId: String, userCatalogModelString: String) {
+        if let data = userCatalogModelString.data(using: .utf8),
+           let catalogItem = try? JSONDecoder.new.decode(UserCatalogModel.self, from: data)
+        {
+            CfCoreCatalog.updateUserCatalogData(appUserId: appUserId, userCatalogModel: catalogItem)
         }
+        return
     }
 
     public static func updateUserCatalogData(appUserId: String, userCatalogModel: UserCatalogModel) {
@@ -32,20 +28,17 @@ public class CfCoreCatalog {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "User Id")
         }
 
-        if !userCatalogModel.country.isEmpty,
-           !CoreConstants.shared.enumContains(CountryCode.self, name: userCatalogModel.country)
+        if (!userCatalogModel.country.isEmpty && !CoreConstants.shared.enumContains(CountryCode.self, name: userCatalogModel.country))
         {
             ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: CfCoreCatalog.self))
         }
 
-        if !userCatalogModel.language.isEmpty,
-           !CoreConstants.shared.enumContains(LanguageCode.self, name: userCatalogModel.language)
+        if (!userCatalogModel.language.isEmpty && !CoreConstants.shared.enumContains(LanguageCode.self, name: userCatalogModel.language))
         {
             ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: CfCoreCatalog.self))
         }
 
-        if !userCatalogModel.education_level.isEmpty,
-           !CoreConstants.shared.enumContains(EducationalLevel.self, name: userCatalogModel.education_level)
+        if (!userCatalogModel.education_level.isEmpty && !CoreConstants.shared.enumContains(EducationalLevel.self, name: userCatalogModel.education_level))
         {
             ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: CfCoreCatalog.self))
         }

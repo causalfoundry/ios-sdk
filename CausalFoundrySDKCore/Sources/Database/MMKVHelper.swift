@@ -12,6 +12,7 @@ import UIKit
 public class MMKVHelper {
     private enum Key: String {
         case user
+        case userBackup
         case userCatalog
         case exceptionData
         case eventData
@@ -52,6 +53,14 @@ extension MMKVHelper {
         read(for: Key.user.rawValue)
     }
     
+    func writeUserBackup(userId: String?) {
+        write(userId, for: Key.userBackup.rawValue)
+    }
+
+    func fetchUserBackupID() -> String? {
+        read(for: Key.userBackup.rawValue)
+    }
+    
     func readInjectEvents() -> [EventDataObject] {
         let object: [EventDataObject]? = read(for: Key.eventData.rawValue)
         return object ?? []
@@ -70,7 +79,7 @@ extension MMKVHelper {
         return object
     }
 
-    func writeUserCatalog(userCataLogData: UserCatalogModel) {
+    func writeUserCatalog(userCataLogData: UserCatalogModel?) {
         write(userCataLogData, for: Key.userCatalog.rawValue)
     }
 
