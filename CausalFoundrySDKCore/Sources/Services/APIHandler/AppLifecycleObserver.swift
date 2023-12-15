@@ -65,6 +65,14 @@ public class CausualFoundry {
         CoreConstants.shared.isAppPaused = true
     }
 
+    @objc func appDidBecomeActive() {
+        CoreConstants.shared.isAppOpen = true
+    }
+
+    @objc func appWillResignActive() {
+        CoreConstants.shared.isAppOpen = false
+    }
+    
     @objc func appDidEnterBackground() {
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
         CoreConstants.shared.sessionEndTime = Int64(currentTimeMillis)
@@ -74,14 +82,6 @@ public class CausualFoundry {
             .build()
 
         WorkerCaller.scheduleBackgroundTasks()
-    }
-
-    @objc func appDidBecomeActive() {
-        CoreConstants.shared.isAppOpen = true
-    }
-
-    @objc func appWillResignActive() {
-        CoreConstants.shared.isAppOpen = false
     }
 
     @objc func appWillTerminate() {

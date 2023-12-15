@@ -11,8 +11,8 @@ import UIKit
 public enum WorkerCaller {
     // Method to update events at session end
 
-    private static var eventUploadTaskIdentifier = "com.causalFoundry.updateAppEvents"
-    private static var nudgeDownloadTaskIdentifier = "com.causalFoundry.downloadNudges"
+    private static var eventUploadTaskIdentifier = "ai.causalfoundry.ingestAppEvents"
+    private static var nudgeDownloadTaskIdentifier = "ai.causalfoundry.fetchNudges"
 
     static func registerBackgroundTask() {
         registerEventUploadTask()
@@ -35,7 +35,7 @@ public enum WorkerCaller {
                     print("Background task \(task.identifier) completed")
                     task.setTaskCompleted(success: true)
                 } catch {
-                    scheduleEventUploadTask(earliestBeginDate: Date(timeIntervalSinceNow: 30 * 60)) // try again in 30 minutes
+                    scheduleEventUploadTask(earliestBeginDate: Date(timeIntervalSinceNow: 10 * 60)) // try again in 10 minutes
                     print("Background task error: \(error.localizedDescription)")
                     task.setTaskCompleted(success: false)
                 }
@@ -69,7 +69,7 @@ public enum WorkerCaller {
             try BGTaskScheduler.shared.submit(request)
             print("Submitted background task: \(request.identifier)")
             // add breakpoint to print statement above and execute command:
-            // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.causalFoundry.updateAppEvents"]
+            // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"ai.causalfoundry.ingestAppEvents"]
         } catch {
             print("Unable to schedule background task: \(error)")
         }
@@ -82,7 +82,7 @@ public enum WorkerCaller {
             try BGTaskScheduler.shared.submit(request)
             print("Submitted background task: \(request.identifier)")
             // add breakpoint to print statement above and execute command:
-            // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.causalFoundry.downloadNudges"]
+            // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"cai.causalfoundry.fetchNudges"]
         } catch {
             print("Unable to schedule background task: \(error)")
         }
