@@ -58,7 +58,7 @@ public final class CFNotificationController: NSObject {
             .track(contentBlockName: CoreConstants.shared.contentBlockName,
                    eventType: CoreEventType.nudge_response.rawValue,
                    logObject: nudgeResponse,
-                   updateImmediately: CoreConstants.shared.updateImmediately,
+                   updateImmediately: true,
                    eventTime: 0)
     }
     

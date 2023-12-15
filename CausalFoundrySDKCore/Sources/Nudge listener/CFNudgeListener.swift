@@ -103,13 +103,11 @@ class CFNudgeListener {
                 DispatchQueue.main.async {
                     guard let window = UIApplication.shared.windows.first,
                           let rootViewController = window.rootViewController else {
-                        print("INVALID VC")
                         var savedObjects = MMKVHelper.shared.readNudges()
                         savedObjects.append(contentsOf: InAppMessagesNudges)
                         MMKVHelper.shared.writeNudges(objects: savedObjects)
                             return // or perform some other action
                         }
-                    print("ROOT VIEW")
                     CFNudgePresenter.presentWithData(in: rootViewController, objects: InAppMessagesNudges)
                 }
                 
