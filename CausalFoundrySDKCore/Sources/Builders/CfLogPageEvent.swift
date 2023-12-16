@@ -8,24 +8,35 @@
 import Foundation
 
 public class CfLogPageEvent {
-    var path_value: String?
-    var title_value: String?
-    var duration_value: Float?
+    var path_value: String
+    var title_value: String
+    var duration_value: Float
+    var render_time_value: Int
+    var content_block: String
+    var meta: Any?
+    var update_immediately: Bool
+
+    init(path_value: String, title_value: String, duration_value: Float, render_time_value: Int = 0, contentBlock: String = CoreConstants.shared.contentBlockName, meta: Any? = nil, updateImmediately : Bool = CoreConstants.shared.updateImmediately) {
+        self.path_value = path_value
+        self.title_value = title_value
+        self.duration_value = duration_value
+        self.render_time_value = render_time_value
+        self.content_block = contentBlock
+        self.meta = meta
+        self.update_immediately = CoreConstants.shared.updateImmediately
+    }
+}
+
+public class CfLogPageBuilder {
+    var path_value: String = ""
+    var title_value: String = ""
+    var duration_value: Float = 0
     var render_time_value: Int = 0
     var content_block: String = CoreConstants.shared.contentBlockName
     var meta: Any?
     var update_immediately: Bool = CoreConstants.shared.updateImmediately
-}
 
-public class CfLogPageBuilder {
-    var path_value: String?
-    var title_value: String?
-    var duration_value: Float?
-    var render_time_value: Int?
-    var content_block: String = CoreConstants.shared.contentBlockName
-    var meta: Any?
-    var update_immediately: Bool = CoreConstants.shared.updateImmediately
-
+    public init() {}
     /**
      * setPath is required to log the package details for the activity/screen/page to know
      * the full context of the activity user is spending the time on.
@@ -125,25 +136,22 @@ public class CfLogPageBuilder {
          * provided at all.
          */
 
-        if path_value == nil {
+        if path_value == "" {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "path_value")
             return
-        }else if title_value == nil {
+        }else if title_value == "" {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "title")
             return
-        }else if duration_value == nil {
-            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "duration")
-            return
-        }else if render_time_value == nil {
+        }else if render_time_value < 0 {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "render_time_value")
             return
-        }else if duration_value! < 0 {
+        }else if duration_value <= 0 {
             ExceptionManager.throwInvalidException(eventType: CoreEventType.page.rawValue,
                                                    paramName: "duration_value", className: String(describing: CfLogPageEvent.self))
             return
         }
 
-        if render_time_value! > 10000 {
+        if render_time_value > 10000 {
             render_time_value = 0
         }
         

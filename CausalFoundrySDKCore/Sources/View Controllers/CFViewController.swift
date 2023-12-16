@@ -47,6 +47,7 @@ open class CFViewController: UIViewController {
                 .setPath(path: path)
                 .setDuration(duration: Float(CFAbsoluteTimeGetCurrent() - durationBeginTime))
                 .setRenderTime(render_time: Int(renderEndTime - renderBeginTime))
+                .updateImmediately(update_immediately: CoreConstants.shared.updateImmediately)
                 .build()
         }
     }

@@ -83,15 +83,6 @@ extension MMKVHelper {
         write(userCataLogData, for: Key.userCatalog.rawValue)
     }
 
-    func readCurrencyObject() -> CurrencyMainObject? {
-        let object: CurrencyMainObject? = read(for: Key.currency.rawValue)
-        return object
-    }
-
-    func writeCurrencyObject(currency: CurrencyMainObject) {
-        write(currency, for: Key.currency.rawValue)
-    }
-
     public func writeCatalogData(subject: CatalogSubject, data: Data) {
         let object = CatalogHelper(subject: subject, data: data)
         write(object, for: subject.rawValue)

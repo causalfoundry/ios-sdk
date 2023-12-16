@@ -100,37 +100,6 @@ public class IngestAPIHandler: NSObject {
         prevEvent.append(eventObject)
         MMKVHelper.shared.writeEvents(eventsArray: prevEvent)
     }
-
-    func getUSDRate(fromCurrency: String) -> Float {
-        let currencyObject: CurrencyMainObject? = MMKVHelper.shared.readCurrencyObject()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-
-        let isAgainRate = CoreConstants.shared.isAgainRate
-        CoreConstants.shared.isAgainRate = true
-        
-        if let currencyObject = currencyObject,
-           currencyObject.fromCurrency == fromCurrency,
-           let toCurrencyObject = currencyObject.toCurrencyObject,
-           toCurrencyObject.date == dateFormatter.string(from: Date()) || isAgainRate
-        {
-           return toCurrencyObject.usd
-        } else {
-           return callCurrencyApi(fromCurrency: fromCurrency)
-        }
-    }
-
-    private func callCurrencyApi(fromCurrency: String) -> Float {
-        let currencyObject = CurrencyMainObject(
-            fromCurrency: fromCurrency,
-            toCurrencyObject: CurrencyObject(
-                date: "",
-                usd: CoreConstants.shared.getCurrencyFromLocalStorage(fromCurrency: fromCurrency)
-            )
-        )
-        let usdRate = currencyObject.toCurrencyObject?.usd ?? 0.0
-        return usdRate
-    }
 }
 
 extension IngestAPIHandler: UNUserNotificationCenterDelegate {

@@ -79,8 +79,4 @@ public class CFSetup: NSObject, IngestProtocol {
                        versionCode: application.appVersion(),
                        versionName: application.build())
     }
-
-    public func getUSDRate(fromCurrency: String) -> Float {
-        ingestApiHandler.getUSDRate(fromCurrency: fromCurrency)
-    }
 }
