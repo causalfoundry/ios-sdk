@@ -50,24 +50,24 @@ public enum ECommerceConstants {
             ExceptionManager.throwEnumException(eventType: eventName, className: "ItemType")
             return false
         }
-        if eventType == .checkout, itemValue.type == ItemType.blood.rawValue {
-            if itemValue.meta == nil {
-                ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "Blood Meta Properties")
-                return false
-            } else if !(itemValue.meta is BloodMetaModel) {
-                ExceptionManager.throwEnumException(eventType: eventName, className: "Blood Meta Properties")
-                return false
-            }
-        } 
-        if eventType == .checkout, itemValue.type == ItemType.oxygen.rawValue {
-            if itemValue.meta == nil {
-                ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "Oxygen Meta Properties")
-                return false
-            } else if !(itemValue.meta is OxygenMetaModel) {
-                ExceptionManager.throwEnumException(eventType: eventName, className: "Oxygen Meta Properties")
-                return false
-            }
-        }
+//        if eventType == .checkout, itemValue.type == ItemType.blood.rawValue {
+//            if itemValue.meta == nil {
+//                ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "Blood Meta Properties")
+//                return false
+//            } else if !(itemValue.meta is BloodMetaModel) {
+//                ExceptionManager.throwEnumException(eventType: eventName, className: "Blood Meta Properties")
+//                return false
+//            }
+//        } 
+//        if eventType == .checkout, itemValue.type == ItemType.oxygen.rawValue {
+//            if itemValue.meta == nil {
+//                ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "Oxygen Meta Properties")
+//                return false
+//            } else if !(itemValue.meta is OxygenMetaModel) {
+//                ExceptionManager.throwEnumException(eventType: eventName, className: "Oxygen Meta Properties")
+//                return false
+//            }
+//        }
         return true
     }
 

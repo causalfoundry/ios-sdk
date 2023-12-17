@@ -11,7 +11,7 @@ public struct ItemVerificationObject: Codable {
     let scanChannel: String
     let scanType: String
     let isSuccessful: Bool
-    let itemInfo: ItemInfoModel
+    let itemInfo: ItemInfoModel?
     let meta: Encodable?
 
     enum CodingKeys: String, CodingKey {
@@ -22,7 +22,7 @@ public struct ItemVerificationObject: Codable {
         case meta
     }
 
-    public init(scanChannel: String, scanType: String, isSuccessful: Bool, itemInfo: ItemInfoModel, meta: Encodable? = nil) {
+    public init(scanChannel: String, scanType: String, isSuccessful: Bool, itemInfo: ItemInfoModel?, meta: Encodable? = nil) {
         self.scanChannel = scanChannel
         self.scanType = scanType
         self.isSuccessful = isSuccessful
@@ -36,7 +36,7 @@ public struct ItemVerificationObject: Codable {
         try container.encode(scanChannel, forKey: .scanChannel)
         try container.encode(scanType, forKey: .scanType)
         try container.encode(isSuccessful, forKey: .isSuccessful)
-        try container.encode(itemInfo, forKey: .itemInfo)
+        try container.encodeIfPresent(itemInfo, forKey: .itemInfo)
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
@@ -48,7 +48,7 @@ public struct ItemVerificationObject: Codable {
         scanChannel = try container.decode(String.self, forKey: .scanChannel)
         scanType = try container.decode(String.self, forKey: .scanType)
         isSuccessful = try container.decode(Bool.self, forKey: .isSuccessful)
-        itemInfo = try container.decode(ItemInfoModel.self, forKey: .itemInfo)
+        itemInfo = try container.decodeIfPresent(ItemInfoModel.self, forKey: .itemInfo)
         if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {

@@ -13,7 +13,7 @@ public struct ItemModel: Codable {
     var quantity: Int
     var price: Float
     var currency: String
-    var stockStatus: String?
+    var stockStatus: String? = ""
     var promoId: String?  = ""
     var discount: Float? = 0
     var facilityId: String? = ""
@@ -55,10 +55,10 @@ public struct ItemModel: Codable {
         try container.encode(quantity, forKey: .quantity)
         try container.encode(price, forKey: .price)
         try container.encode(currency, forKey: .currency)
-        try container.encode(stockStatus, forKey: .stockStatus) // Encoding enum as rawValue
-        try container.encode(promoId, forKey: .promoId)
-        try container.encode(discount, forKey: .discount)
-        try container.encode(facilityId, forKey: .facilityId)
+        try container.encodeIfPresent(stockStatus, forKey: .stockStatus) // Encoding enum as rawValue
+        try container.encodeIfPresent(promoId, forKey: .promoId)
+        try container.encodeIfPresent(discount, forKey: .discount)
+        try container.encodeIfPresent(facilityId, forKey: .facilityId)
         if let subscriptionData = subscription {
             try container.encode(subscriptionData, forKey: .subscription)
         }
@@ -76,11 +76,11 @@ public struct ItemModel: Codable {
         quantity = try container.decode(Int.self, forKey: .quantity)
         price = try container.decode(Float.self, forKey: .price)
         currency = try container.decode(String.self, forKey: .currency)
-        stockStatus = try container.decode(String.self, forKey: .stockStatus) // Decoding enum from rawValue
-        promoId = try? container.decode(String.self, forKey: .promoId)
-        discount = try? container.decode(Float.self, forKey: .discount) 
-        facilityId = try? container.decode(String.self, forKey: .facilityId)
-        subscription = try? container.decode(SubscriptionObject.self, forKey: .subscription)
+        stockStatus = try container.decodeIfPresent(String.self, forKey: .stockStatus) // Decoding enum from rawValue
+        promoId = try? container.decodeIfPresent(String.self, forKey: .promoId)
+        discount = try? container.decodeIfPresent(Float.self, forKey: .discount)
+        facilityId = try? container.decodeIfPresent(String.self, forKey: .facilityId)
+        subscription = try? container.decodeIfPresent(SubscriptionObject.self, forKey: .subscription)
         if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {

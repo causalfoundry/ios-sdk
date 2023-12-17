@@ -16,7 +16,7 @@ public class CfLogItemVerificationEvent {
     var scanChannel: String = ""
     var scanType: String = ""
     var isSuccessful: Bool = false
-    var itemInfoObject: ItemInfoModel = ItemInfoModel(id: "", type: "")
+    var itemInfoObject: ItemInfoModel? = ItemInfoModel(id: "", type: "")
     var meta: Any?
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
@@ -149,10 +149,22 @@ public class CfLogItemVerificationEvent {
         }else if(scanType.isEmpty){
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemVerification.rawValue,elementName: "scan_type")
             return
-        }else if(itemInfoObject.id.isEmpty){
+        }else if(isSuccessful && itemInfoObject == nil){
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemVerification.rawValue,elementName: "item_info")
             return
+        }else if(isSuccessful && itemInfoObject != nil && itemInfoObject!.id.isEmpty){
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemVerification.rawValue,elementName: "item_info id")
+            return
+        }else if(isSuccessful && itemInfoObject != nil && itemInfoObject!.type.isEmpty){
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemVerification.rawValue,elementName: "item_info type")
+            return
         }
+        
+        
+        if(!isSuccessful){
+            itemInfoObject = nil
+        }
+        
 
         let itemVerificationObject = ItemVerificationObject(
             scanChannel: scanChannel,
