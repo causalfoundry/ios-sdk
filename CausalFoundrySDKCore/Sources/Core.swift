@@ -46,6 +46,12 @@ public class CFLogBuilder {
         self.appSdkKey = sdkKey
         return self
     }
+    
+    @discardableResult
+    public func setUsageForReactNative() -> CFLogBuilder {
+        CoreConstants.shared.SDKVersion = "rn/"+CoreConstants.shared.SDKVersion
+        return self
+    }
 
     /**
      * Using this will disable the SDK debug mode. Using this will stop the SDK from throwing
