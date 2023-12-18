@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CausalFoundrySDKCore"
-  s.version      = "0.4.6"
+  s.version      = "0.4.7"
   s.summary      = "Causal Foundry Core SDK"
   s.description  = "Causal Foundry Core SDK (https://docs.causalfoundry.ai/)"
   s.homepage     = "https://docs.causalfoundry.ai/"
