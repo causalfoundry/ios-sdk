@@ -40,7 +40,11 @@ public class IngestAPIHandler: NSObject {
             Task {
                 do {
                     try await WorkerCaller.performUpload()
-                    MMKVHelper.shared.writeUserCatalog(userCataLogData: nil)
+                    MMKVHelper.shared.deleteUserCatalog()
+                    MMKVHelper.shared.deleteAllUserID()
+                    CoreConstants.shared.logoutEvent = false
+                    CoreConstants.shared.userId = ""
+                    
                 } catch {
                     print("unable to log sdk events")
                 }
@@ -52,10 +56,18 @@ public class IngestAPIHandler: NSObject {
     func updateEventTrack(eventArray: [EventDataObject], callback: @escaping (Bool) -> Void) {
 
         
+        if(!CoreConstants.shared.isAnonymousUserAllowed){
+            return
+        }
+        
         var userId = CoreConstants.shared.userId
         
         if(userId == nil || userId?.isEmpty == true){
             userId = MMKVHelper.shared.fetchUserBackupID()
+        }
+        
+        if(userId ==  nil || userId?.isEmpty == true){
+            userId = CoreConstants.shared.deviceObject?.id
         }
 
 

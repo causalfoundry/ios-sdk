@@ -50,6 +50,7 @@ enum ExceptionEventsUploader {
 
 public enum CatalogEventsUploader {
     public static func uploadEvents() async throws {
+        guard !CoreConstants.shared.pauseSDK else { return }
         let catalogAPIHandler = CatalogAPIHandler()
         await withThrowingTaskGroup(of: Void.self) { group in
             for value in CatalogSubject.allCases {
@@ -59,6 +60,7 @@ public enum CatalogEventsUploader {
                     try await withCheckedThrowingContinuation { continuation in
                         catalogAPIHandler.callCatalogAPI(catalogMainObject: catalogMainObject ?? [], catalogSubject: value.rawValue) { success in
                             if success {
+                                MMKVHelper.shared.deleteCatalogData(subject: value)
                                 continuation.resume(with: .success(()))
                             } else {
                                 continuation.resume(with: .failure(NSError(domain: "CatalogEventsUploader.uploadEvents", code: 0)))

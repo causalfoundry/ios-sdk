@@ -10,6 +10,7 @@ import UIKit
 
 public class CatalogAPIHandler {
     public func updateCoreCatalogItem(subject: CatalogSubject, catalogObject: Data) {
+        guard !CoreConstants.shared.pauseSDK else { return }
         MMKVHelper.shared.writeCatalogData(subject: subject, data: catalogObject)
     }
 

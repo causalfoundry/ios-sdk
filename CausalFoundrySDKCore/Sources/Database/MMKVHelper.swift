@@ -44,6 +44,10 @@ extension MMKVHelper {
     func writeExceptionEvents(eventArray: [ExceptionDataObject]) {
         write(eventArray, for: Key.exceptionData.rawValue)
     }
+    
+    func deleteExceptionEvents() {
+        delete(for: Key.exceptionData.rawValue)
+    }
 
     func writeUser(user: String?) {
         write(user, for: Key.user.rawValue)
@@ -59,6 +63,11 @@ extension MMKVHelper {
 
     func fetchUserBackupID() -> String? {
         read(for: Key.userBackup.rawValue)
+    }
+    
+    func deleteAllUserID() {
+        delete(for: Key.userBackup.rawValue)
+        delete(for: Key.userBackup.rawValue)
     }
     
     func readInjectEvents() -> [EventDataObject] {
@@ -82,6 +91,10 @@ extension MMKVHelper {
     func writeUserCatalog(userCataLogData: UserCatalogModel?) {
         write(userCataLogData, for: Key.userCatalog.rawValue)
     }
+    
+    func deleteUserCatalog() {
+        delete(for: Key.userCatalog.rawValue)
+    }
 
     public func writeCatalogData(subject: CatalogSubject, data: Data) {
         let object = CatalogHelper(subject: subject, data: data)
@@ -91,6 +104,10 @@ extension MMKVHelper {
     public func readCatalogData(subject: CatalogSubject) -> Data? {
         let object: CatalogHelper? = read(for: subject.rawValue)
         return object?.data
+    }
+    
+    func deleteCatalogData(subject: CatalogSubject) {
+        delete(for: subject.rawValue)
     }
 
     func readNudges() -> [BackendNudgeMainObject] {

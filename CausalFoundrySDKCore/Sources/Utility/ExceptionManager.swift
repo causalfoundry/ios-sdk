@@ -39,7 +39,7 @@ struct ExceptionDataObject: Codable {
 class ExceptionAPIHandler {
     func exceptionTrackAPI(exceptionObject: ExceptionDataObject, updateImmediately: Bool) {
         guard !CoreConstants.shared.pauseSDK else { return }
-        if updateImmediately && !CoreConstants.shared.isAnonymousUserAllowed {
+        if updateImmediately {
             updateExceptionEvents(eventArray: [exceptionObject]) { [weak self] success in
                 if !success {
                     self?.storeEventTrack(event: exceptionObject)
@@ -52,32 +52,25 @@ class ExceptionAPIHandler {
 
     func updateExceptionEvents(eventArray: [ExceptionDataObject], completion: @escaping (_ success: Bool) -> Void) {
         
-        guard let userId = CoreConstants.shared.userId, !userId.isEmpty else {
-            completion(false)
-            return
+        var userId = CoreConstants.shared.userId
+        
+        if(userId == nil || userId?.isEmpty == true){
+            userId = MMKVHelper.shared.fetchUserBackupID()
+        }
+        
+        if(userId ==  nil || userId?.isEmpty == true){
+            userId = CoreConstants.shared.deviceObject?.id
         }
         
         let mainExceptionBody = MainExceptionBody(user_id: userId, device_info: CoreConstants.shared.deviceObject, app_info: CoreConstants.shared.appInfoObject, sdk_version: CoreConstants.shared.SDKVersion, data: eventArray)
-        
-        // Show notification if tasks takes more then 10 seconds to complete and if allowed
-        
-        var showDelayNotification = true
-        
-        if NotificationConstants.shared.EXCEPTION_NOTIFICATION_ENABLED {
-            DispatchQueue.main.asyncAfter(deadline: .now() + NotificationConstants.shared.EXCEPTION_NOTIFICATION_INTERVAL_TIME) { [weak self] in
-                if showDelayNotification {
-                    self?.showNotification()
-                }
-            }
-        }
 
         let dictionary = mainExceptionBody.dictionary
 
         let url = URL(string: APIConstants.ingestExceptionEvent)!
         BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: dictionary) { result in
-            showDelayNotification = false
             switch result {
             case .success:
+                MMKVHelper.shared.deleteExceptionEvents()
                 completion(true)
             case .failure:
                 completion(false)
@@ -97,14 +90,6 @@ class ExceptionAPIHandler {
             previousExceptions.append(data)
         }
         MMKVHelper.shared.writeExceptionEvents(eventArray: previousExceptions)
-    }
-
-    private func showNotification() {
-        guard let topViewController = UIApplication.shared.rootViewController else { return }
-        let alert = UIAlertController(title: NotificationConstants.shared.EXCEPTION_NOTIFICATION_TITLE, message: NotificationConstants.shared.EXCEPTION_NOTIFICATION_DESCRIPTION, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(cancelAction)
-        topViewController.present(alert, animated: true, completion: nil)
     }
 }
 
