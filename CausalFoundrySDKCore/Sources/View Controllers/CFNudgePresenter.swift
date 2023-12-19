@@ -108,14 +108,11 @@ fileprivate final class CFNudgeViewController: UITableViewController {
     }
     
     private func updateDatasource() {
-        
-        if #available(iOS 13.0, *) {
-            
+    
             guard !objects.isEmpty else {
                 dismiss(animated: true)
                 return
             }
-            
             var snapshot = NSDiffableDataSourceSnapshot<Section, BackendNudgeMainObject>()
             snapshot.appendSections([Section.one])
             snapshot.appendItems(objects, toSection: .one)
@@ -124,7 +121,6 @@ fileprivate final class CFNudgeViewController: UITableViewController {
             objects.forEach { object in
                 CFNotificationController.shared.track(nudgeRef: object.ref, response: .shown)
             }
-        }
     }
     
     private func remove(object: BackendNudgeMainObject) {

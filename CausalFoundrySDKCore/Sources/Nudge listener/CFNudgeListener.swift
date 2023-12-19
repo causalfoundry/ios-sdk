@@ -28,7 +28,7 @@ class CFNudgeListener {
         NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: .main) { [weak self] _ in
             self?.endTimer()
         }
-        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: .main) { [weak self] _ in
+        NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { [weak self] _ in
             self?.startTimer()
             self?.fetchAndDisplayNudgesTask()
         }
@@ -81,7 +81,7 @@ class CFNudgeListener {
     func fetchAndDisplayNudges() async throws {
         
         let allNudgeObjects = try await fetchNudges().filter { !$0.isExpired }
-//        let allNudgeObjects = try? BackendNudgeMainObject.debugObjects()
+//        let allNudgeObjects = try BackendNudgeMainObject.debugObjects()
         
         // Filter the objects to get only the ones that are not expired
         var objects = allNudgeObjects.filter { !$0.isExpired }
@@ -194,10 +194,12 @@ extension BackendNudgeMainObject {
                     "pair_rank_type": ""
                   },
                   "traits": [
-                    "data.ct_user.country"
-                  ]
+                  "data.dt_day_user_chw_activity.review_change_sign_seven",
+                  "data.dt_day_user_chw_activity.review_change_seven",
+                  "data.dt_day_user_chw_activity.review_recommendation_seven"
+               ]
                 },
-                "body": "Hellooooo from Country: {{ data.ct_user.country }}",
+                "body": "The number of medical reviews you've submitted {{ data.dt_day_user_chw_activity.review_change_sign_seven }} by {{ data.dt_day_user_chw_activity.review_change_seven }} in the last seven days. {{ data.dt_day_user_chw_activity.review_recommendation_seven }}",
                 "tags": [
                   "incentive"
                 ]
@@ -207,8 +209,10 @@ extension BackendNudgeMainObject {
             },
             "extra": {
               "traits": {
-                "data.ct_user.country": "Spain"
-              }
+                    "data.dt_day_user_chw_activity.review_change_seven":0,
+                    "data.dt_day_user_chw_activity.review_change_sign_seven":"increased",
+                    "data.dt_day_user_chw_activity.review_recommendation_seven":"👍"
+                 }
             }
           }
         ]

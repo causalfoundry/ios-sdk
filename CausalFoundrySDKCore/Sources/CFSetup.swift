@@ -22,7 +22,6 @@ public class CFSetup: NSObject, IngestProtocol {
 
         CoreConstants.shared.sessionStartTime = Int64(Date().timeIntervalSince1970 * 1000)
         CoreConstants.shared.sessionEndTime = Int64(Date().timeIntervalSince1970 * 1000)
-        
         CFNudgeListener.shared.beginListening()
     }
 

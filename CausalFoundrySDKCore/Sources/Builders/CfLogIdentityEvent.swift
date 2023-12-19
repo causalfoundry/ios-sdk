@@ -158,7 +158,9 @@ public class CfLogIdentityBuilder {
          * Parsing the values into an object and passing to the setup block to queue
          * the event based on its priority.
          */
-        CFSetup().updateUserId(appUserId: app_user_id!)
+        if(identity_action == IdentityAction.register.rawValue || identity_action == IdentityAction.login.rawValue){
+            CFSetup().updateUserId(appUserId: app_user_id!)
+        }
         if identity_action == IdentityAction.logout.rawValue {
             CoreConstants.shared.logoutEvent = true
         }

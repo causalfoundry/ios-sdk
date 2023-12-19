@@ -26,7 +26,7 @@ public struct BackendNudgeMainObject: Codable, Hashable {
     // MARK: - Extra
 
     struct Extra: Codable, Hashable {
-        let traits: [String: String]?
+        let traits: [String: TraitsCodableValue]?
         let itemPair: ItemPair?
 
         enum CodingKeys: String, CodingKey {
@@ -101,6 +101,35 @@ public struct BackendNudgeMainObject: Codable, Hashable {
         enum CodingKeys: String, CodingKey {
             case itemType = "item_type"
             case pairRankType = "pair_rank_type"
+        }
+    }
+}
+
+enum TraitsCodableValue: Codable, Hashable {
+    case string(String)
+    case int(Int)
+    // Add other types you want to support
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let value = try? container.decode(String.self) {
+            self = .string(value)
+        } else if let value = try? container.decode(Int.self) {
+            self = .int(value)
+        } else {
+            // Handle other types or throw an error for unsupported types
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Unsupported type")
+        }
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .string(let value):
+            try container.encode(value)
+        case .int(let value):
+            try container.encode(value)
+        // Add encoding logic for other supported types
         }
     }
 }

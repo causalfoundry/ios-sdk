@@ -62,7 +62,7 @@ public class CausualFoundry {
                 .setStartTime(start_time: 0)
                 .build()
         }
-        CoreConstants.shared.isAppPaused = true
+        CoreConstants.shared.isAppPaused = false
     }
 
     @objc func appDidBecomeActive() {
@@ -71,6 +71,7 @@ public class CausualFoundry {
 
     @objc func appWillResignActive() {
         CoreConstants.shared.isAppOpen = false
+        CoreConstants.shared.isAppPaused = true
     }
     
     @objc func appDidEnterBackground() {
