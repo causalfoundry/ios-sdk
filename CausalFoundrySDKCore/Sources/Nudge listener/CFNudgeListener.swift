@@ -34,35 +34,32 @@ class CFNudgeListener {
         }
     }
 
+    @available(iOS 13.0, *)
     private func fetchNudges() async throws -> [BackendNudgeMainObject] {
-        if #available(iOS 13.0, *) {
-            guard let userID = CoreConstants.shared.userId, !userID.isEmpty else { return [] }
-            return try await withCheckedThrowingContinuation { continuation in
-                let url = URL(string: "\(APIConstants.fetchNudge)\(userID)")!
-                BackgroundRequestController.shared.request(url: url, httpMethod: .get, params: nil) { result in
-                    switch result {
-                    case .success(let data):
-                        do {
-                            /*
-                             #if DEBUG
-                             let debugObjects = try BackendNudgeMainObject.debugObjects()
-                             continuation.resume(with: .success(debugObjects))
-                             return
-                             #endif
-                             */
-                            let decoder = JSONDecoder.new
-                            let objects = try decoder.decode([BackendNudgeMainObject].self, from: data ?? Data())
-                            continuation.resume(with: .success(objects))
-                        } catch {
-                            continuation.resume(with: .failure(error))
-                        }
-                    case .failure(let error):
+        guard let userID = CoreConstants.shared.userId, !userID.isEmpty else { return [] }
+        return try await withCheckedThrowingContinuation { continuation in
+            let url = URL(string: "\(APIConstants.fetchNudge)\(userID)")!
+            BackgroundRequestController.shared.request(url: url, httpMethod: .get, params: nil) { result in
+                switch result {
+                case .success(let data):
+                    do {
+                        /*
+                         #if DEBUG
+                         let debugObjects = try BackendNudgeMainObject.debugObjects()
+                         continuation.resume(with: .success(debugObjects))
+                         return
+                         #endif
+                         */
+                        let decoder = JSONDecoder.new
+                        let objects = try decoder.decode([BackendNudgeMainObject].self, from: data ?? Data())
+                        continuation.resume(with: .success(objects))
+                    } catch {
                         continuation.resume(with: .failure(error))
                     }
+                case .failure(let error):
+                    continuation.resume(with: .failure(error))
                 }
             }
-        } else {
-            return []
         }
     }
 
@@ -78,6 +75,7 @@ class CFNudgeListener {
         nudgeTimer = nil
     }
 
+    @available(iOS 13.0, *)
     func fetchAndDisplayNudges() async throws {
         
         let allNudgeObjects = try await fetchNudges().filter { !$0.isExpired }

@@ -38,7 +38,9 @@ public class CausualFoundry {
         if !isBackgroundFetchEnabled {
             showBAckgroudTaskEnableNotification()
         } else {
-            WorkerCaller.registerBackgroundTask()
+            if #available(iOS 13.0, *) {
+                WorkerCaller.registerBackgroundTask()
+            }
         }
         
         
@@ -82,7 +84,9 @@ public class CausualFoundry {
             .setStartTime(start_time: 0)
             .build()
 
-        WorkerCaller.scheduleBackgroundTasks()
+        if #available(iOS 13.0, *) {
+            WorkerCaller.scheduleBackgroundTasks()
+        }
     }
 
     @objc func appWillTerminate() {
