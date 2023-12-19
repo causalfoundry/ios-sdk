@@ -38,58 +38,65 @@ struct ExceptionDataObject: Codable {
 
 class ExceptionAPIHandler {
     func exceptionTrackAPI(exceptionObject: ExceptionDataObject, updateImmediately: Bool) {
-        guard !CoreConstants.shared.pauseSDK else { return }
-        if updateImmediately {
-            updateExceptionEvents(eventArray: [exceptionObject]) { [weak self] success in
-                if !success {
-                    self?.storeEventTrack(event: exceptionObject)
+        if #available(iOS 13.0, *) {
+            guard !CoreConstants.shared.pauseSDK else { return }
+            if updateImmediately {
+                updateExceptionEvents(eventArray: [exceptionObject]) { [weak self] success in
+                    if !success {
+                        self?.storeEventTrack(event: exceptionObject)
+                    }
                 }
+            } else {
+                storeEventTrack(event: exceptionObject)
             }
-        } else {
-            storeEventTrack(event: exceptionObject)
         }
     }
 
     func updateExceptionEvents(eventArray: [ExceptionDataObject], completion: @escaping (_ success: Bool) -> Void) {
-        
-        var userId = CoreConstants.shared.userId
-        
-        if(userId == nil || userId?.isEmpty == true){
-            userId = MMKVHelper.shared.fetchUserBackupID()
-        }
-        
-        if(userId ==  nil || userId?.isEmpty == true){
-            userId = CoreConstants.shared.deviceObject?.id
-        }
-        
-        let mainExceptionBody = MainExceptionBody(user_id: userId, device_info: CoreConstants.shared.deviceObject, app_info: CoreConstants.shared.appInfoObject, sdk_version: CoreConstants.shared.SDKVersion, data: eventArray)
-
-        let dictionary = mainExceptionBody.dictionary
-
-        let url = URL(string: APIConstants.ingestExceptionEvent)!
-        BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: dictionary) { result in
-            switch result {
-            case .success:
-                MMKVHelper.shared.deleteExceptionEvents()
-                completion(true)
-            case .failure:
-                completion(false)
+        if #available(iOS 13.0, *) {
+            var userId = CoreConstants.shared.userId
+            
+            if(userId == nil || userId?.isEmpty == true){
+                userId = MMKVHelper.shared.fetchUserBackupID()
+            }
+            
+            if(userId ==  nil || userId?.isEmpty == true){
+                userId = CoreConstants.shared.deviceObject?.id
+            }
+            
+            let mainExceptionBody = MainExceptionBody(user_id: userId, device_info: CoreConstants.shared.deviceObject, app_info: CoreConstants.shared.appInfoObject, sdk_version: CoreConstants.shared.SDKVersion, data: eventArray)
+            
+            let dictionary = mainExceptionBody.dictionary
+            
+            let url = URL(string: APIConstants.ingestExceptionEvent)!
+            BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: dictionary) { result in
+                switch result {
+                case .success:
+                    MMKVHelper.shared.deleteExceptionEvents()
+                    completion(true)
+                case .failure:
+                    completion(false)
+                }
             }
         }
     }
 
     private func storeEventTrack(event: ExceptionDataObject) {
-        var previousExceptions = MMKVHelper.shared.readExceptionsData()
-        previousExceptions.append(event)
-        MMKVHelper.shared.writeExceptionEvents(eventArray: previousExceptions)
+        if #available(iOS 13.0, *) {
+            var previousExceptions = MMKVHelper.shared.readExceptionsData()
+            previousExceptions.append(event)
+            MMKVHelper.shared.writeExceptionEvents(eventArray: previousExceptions)
+        }
     }
 
     private func storeEventTrack(events: [ExceptionDataObject]) {
-        var previousExceptions = MMKVHelper.shared.readExceptionsData()
-        for data in events {
-            previousExceptions.append(data)
+        if #available(iOS 13.0, *) {
+            var previousExceptions = MMKVHelper.shared.readExceptionsData()
+            for data in events {
+                previousExceptions.append(data)
+            }
+            MMKVHelper.shared.writeExceptionEvents(eventArray: previousExceptions)
         }
-        MMKVHelper.shared.writeExceptionEvents(eventArray: previousExceptions)
     }
 }
 
@@ -226,20 +233,22 @@ public enum ExceptionManager {
         exceptionType: String,
         stackTrace: ExceptionError
     ) {
-        let exceptionDataObject = ExceptionDataObject(
-            title: title,
-            eventType: eventType,
-            exceptionType: exceptionType,
-            exceptionSource: "SDK",
-            stackTrace: stackTrace.localizedDescription,
-            ts: Date().convertMillisToTimeString()
-        )
-
-        ExceptionAPIHandler().exceptionTrackAPI(exceptionObject: exceptionDataObject, updateImmediately: false)
-
-        if CoreConstants.shared.isDebugMode, CoreConstants.shared.isAppDebuggable {
-            // Handle debug mode throwing exception
-            fatalError(stackTrace.localizedDescription)
+        if #available(iOS 13.0, *) {
+            let exceptionDataObject = ExceptionDataObject(
+                title: title,
+                eventType: eventType,
+                exceptionType: exceptionType,
+                exceptionSource: "SDK",
+                stackTrace: stackTrace.localizedDescription,
+                ts: Date().convertMillisToTimeString()
+            )
+            
+            ExceptionAPIHandler().exceptionTrackAPI(exceptionObject: exceptionDataObject, updateImmediately: false)
+            
+            if CoreConstants.shared.isDebugMode, CoreConstants.shared.isAppDebuggable {
+                // Handle debug mode throwing exception
+                fatalError(stackTrace.localizedDescription)
+            }
         }
     }
 }

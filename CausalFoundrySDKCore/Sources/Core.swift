@@ -205,14 +205,15 @@ public class CFLogBuilder {
      * Using this will validate the endpoints provided and initialise the SDK
      */
     public func build() {
-        
-        if(appSdkKey.isEmpty){
-            ExceptionManager.throwIsRequiredException(eventType: "CFLog", elementName: "SDK KEY")
-        }else {
-            CoreConstants.shared.sdkKey = "Bearer \(appSdkKey)"
-            let dnspeed = NetworkMonitor.shared.downloadSpeed
-            print(dnspeed)
+        if #available(iOS 13.0, *) {
+            if(appSdkKey.isEmpty){
+                ExceptionManager.throwIsRequiredException(eventType: "CFLog", elementName: "SDK KEY")
+            }else {
+                CoreConstants.shared.sdkKey = "Bearer \(appSdkKey)"
+                let dnspeed = NetworkMonitor.shared.downloadSpeed
+                print(dnspeed)
+            }
+            CFSetup().initalize(pauseSDK: pauseSDK, updateImmediately: updateImmediately)
         }
-        CFSetup().initalize(pauseSDK: pauseSDK, updateImmediately: updateImmediately)
     }
 }

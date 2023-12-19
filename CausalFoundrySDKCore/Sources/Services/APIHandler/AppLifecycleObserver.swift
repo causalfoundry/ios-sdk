@@ -110,17 +110,23 @@ public class CausualFoundry {
 
 extension CausualFoundry {
     func showBAckgroudTaskEnableNotification() {
-        guard let topViewController = UIApplication.shared.rootViewController else { return }
-        let alert = UIAlertController(title: "Enable Background App Refresh", message: "To take full advantage of our app's features, please enable Background App Refresh in your device settings.", preferredStyle: .alert)
-        let settingsAction = UIAlertAction(title: "Open Settings", style: .default) { _ in
-            if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
-                UIApplication.shared.open(settingsURL)
+        if #available(iOS 13.0, *) {
+            guard let window = UIApplication.shared.windows.first,
+                  let rootViewController = window.rootViewController else {
+                    return
+                }
+            
+            let alert = UIAlertController(title: "Enable Background App Refresh", message: "To take full advantage of our app's features, please enable Background App Refresh in your device settings.", preferredStyle: .alert)
+            let settingsAction = UIAlertAction(title: "Open Settings", style: .default) { _ in
+                if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(settingsURL)
+                }
             }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alert.addAction(settingsAction)
+            alert.addAction(cancelAction)
+            rootViewController.present(alert, animated: true, completion: nil)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alert.addAction(settingsAction)
-        alert.addAction(cancelAction)
-        topViewController.present(alert, animated: true, completion: nil)
     }
 }
 

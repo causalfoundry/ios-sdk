@@ -9,6 +9,7 @@ import UIKit
 
 public final class CFNudgePresenter {
     
+    @available(iOS 13.0, *)
     public static func present(in uiViewController: UIViewController) {
         let objects = MMKVHelper.shared.readNudges().filter { !$0.isExpired }
         
@@ -21,21 +22,24 @@ public final class CFNudgePresenter {
     }
     
     public static func presentWithData(in uiViewController: UIViewController, objects : [BackendNudgeMainObject]) {
-        guard !objects.isEmpty else { return }
-        if uiViewController.presentedViewController != nil {
-            DispatchQueue.main.asyncAfter(deadline: .now() + NotificationConstants.shared.IN_APP_MESSAGE_INITIAL_DELAY) {
+        if #available(iOS 13.0, *) {
+            guard !objects.isEmpty else { return }
+            if uiViewController.presentedViewController != nil {
+                DispatchQueue.main.asyncAfter(deadline: .now() + NotificationConstants.shared.IN_APP_MESSAGE_INITIAL_DELAY) {
+                    let vc = CFNudgeViewController(objects: objects)
+                    uiViewController.present(vc, animated: true)
+                    MMKVHelper.shared.writeNudges(objects: [])
+                }
+            }else {
                 let vc = CFNudgeViewController(objects: objects)
                 uiViewController.present(vc, animated: true)
                 MMKVHelper.shared.writeNudges(objects: [])
             }
-        }else {
-            let vc = CFNudgeViewController(objects: objects)
-            uiViewController.present(vc, animated: true)
-            MMKVHelper.shared.writeNudges(objects: [])
         }
     }
 }
 
+@available(iOS 13.0, *)
 fileprivate final class CFNudgeViewController: UITableViewController {
     
     private enum Section: Int {
@@ -87,6 +91,7 @@ fileprivate final class CFNudgeViewController: UITableViewController {
         updateDatasource()
     }
     
+    @available(iOS 13.0, *)
     private func makeDataSource() -> UITableViewDiffableDataSource<Section, BackendNudgeMainObject> {
         UITableViewDiffableDataSource(tableView: tableView, cellProvider: {  tableView, indexPath, object in
             let cell = tableView.dequeueReusableCell(withIdentifier: "CFNudgeCell", for: indexPath) as? CFNudgeCell
@@ -104,18 +109,21 @@ fileprivate final class CFNudgeViewController: UITableViewController {
     
     private func updateDatasource() {
         
-        guard !objects.isEmpty else {
-            dismiss(animated: true)
-            return
-        }
-        
-        var snapshot = NSDiffableDataSourceSnapshot<Section, BackendNudgeMainObject>()
-        snapshot.appendSections([Section.one])
-        snapshot.appendItems(objects, toSection: .one)
-        dataSource.apply(snapshot, animatingDifferences: true)
-        
-        objects.forEach { object in
-            CFNotificationController.shared.track(nudgeRef: object.ref, response: .shown)
+        if #available(iOS 13.0, *) {
+            
+            guard !objects.isEmpty else {
+                dismiss(animated: true)
+                return
+            }
+            
+            var snapshot = NSDiffableDataSourceSnapshot<Section, BackendNudgeMainObject>()
+            snapshot.appendSections([Section.one])
+            snapshot.appendItems(objects, toSection: .one)
+            dataSource.apply(snapshot, animatingDifferences: true)
+            
+            objects.forEach { object in
+                CFNotificationController.shared.track(nudgeRef: object.ref, response: .shown)
+            }
         }
     }
     
@@ -128,6 +136,7 @@ fileprivate final class CFNudgeViewController: UITableViewController {
     }
 }
 
+@available(iOS 13.0, *)
 fileprivate final class CFNudgeCell: UITableViewCell {
     
     var nudgeView: CFNudgeView?
@@ -161,6 +170,7 @@ fileprivate final class CFNudgeView: UIView {
     
     var closeAction: (() -> Void)?
     
+    @available(iOS 13.0, *)
     init(object: BackendNudgeMainObject) {
         super.init(frame: .zero)
         

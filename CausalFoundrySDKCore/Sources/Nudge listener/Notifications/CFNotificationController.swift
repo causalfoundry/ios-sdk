@@ -30,24 +30,26 @@ public final class CFNotificationController: NSObject {
      */
 
     func triggerNudgeNotification(object: BackendNudgeMainObject) {
-        Task {
-            let settings = await center.notificationSettings()
-            guard settings.authorizationStatus == .authorized else {
-                track(nudgeRef: object.ref, response: .block)
-                return
+        if #available(iOS 13.0, *) {
+            Task {
+                let settings = await center.notificationSettings()
+                guard settings.authorizationStatus == .authorized else {
+                    track(nudgeRef: object.ref, response: .block)
+                    return
+                }
+                let identifier = UUID().uuidString
+                let content = UNMutableNotificationContent()
+                content.title = object.nd.message?.title ?? ""
+                content.body = NudgeUtils.getBodyTextBasedOnTemplate(nudgeObject: object)
+                content.categoryIdentifier = "BackendNudgeMainObject"
+                if let data = object.toData() {
+                    content.userInfo = [userInfoKey: data]
+                }
+                content.sound = UNNotificationSound.default
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+                try await center.add(request)
             }
-            let identifier = UUID().uuidString
-            let content = UNMutableNotificationContent()
-            content.title = object.nd.message?.title ?? ""
-            content.body = NudgeUtils.getBodyTextBasedOnTemplate(nudgeObject: object)
-            content.categoryIdentifier = "BackendNudgeMainObject"
-            if let data = object.toData() {
-                content.userInfo = [userInfoKey: data]
-            }
-            content.sound = UNNotificationSound.default
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-            let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-            try await center.add(request)
         }
     }
     
