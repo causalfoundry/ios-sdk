@@ -20,8 +20,8 @@ let package = Package(
             targets: ["CausalFoundrySDKPayments"]
         ),
         .library(
-            name: "CHWElearning",
-            targets: ["CasualFoundryElearning"]
+            name: "CausalFoundrySDKElearn",
+            targets: ["CausalFoundrySDKElearn"]
         ),
         .library(
             name: "CHWManagement",
@@ -64,9 +64,9 @@ let package = Package(
             path: "Loyalty/Sources"
         ),
         .target(
-            name: "CasualFoundryElearning",
+            name: "CausalFoundrySDKElearn",
             dependencies: ["CausalFoundrySDKCore"],
-            path: "E_Learning/Sources"
+            path: "CausalFoundrySDKElearn/Sources"
         ),
         .binaryTarget(
             name: "MMKV",
@@ -81,6 +81,11 @@ let package = Package(
             name: "CausalFoundrySDKEcomTests",
             dependencies: ["CausalFoundrySDKEcom"],
             path: "CausalFoundrySDKEcom/Tests"
+        ),
+        .testTarget(
+            name: "CausalFoundrySDKElearnTests",
+            dependencies: ["CausalFoundrySDKElearn"],
+            path: "CausalFoundrySDKElearn/Tests"
         ),
         .testTarget(
             name: "CausalFoundrySDKPaymentsTests",

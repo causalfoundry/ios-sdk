@@ -2,7 +2,7 @@
 //  CfLogExamEvent.swift
 //
 //
-//  Created by khushbu on 02/11/23.
+//  Created by moizhassankhan on 04/01/24.
 //
 
 import CausalFoundrySDKCore
@@ -14,8 +14,8 @@ public class CfLogExamEvent {
      * includes the related to starting, retaking, reviewing and submit the exam. BsLogExamEvent
      * also updates the user level if they achieved a milestone.
      */
-    var examId: String?
-    var action: String?
+    var examId: String = ""
+    var action: String = ""
     var durationValue: Int?
     var scoreValue: Float?
     var isPassed: Bool?
@@ -30,7 +30,7 @@ public class CfLogExamEvent {
      * provided.
      */
     @discardableResult
-    public func setExamId(_ examId: String) -> CfLogExamEvent {
+    public func setExamId(examId: String) -> CfLogExamEvent {
         self.examId = examId
         return self
     }
@@ -43,7 +43,7 @@ public class CfLogExamEvent {
      */
 
     @discardableResult
-    public func setExamAction(_ action: ExamAction) -> CfLogExamEvent {
+    public func setExamAction(action: ExamAction) -> CfLogExamEvent {
         self.action = action.rawValue
         return self
     }
@@ -57,14 +57,13 @@ public class CfLogExamEvent {
      * events will be discarded.
      */
     @discardableResult
-    public func setExamAction(_ action: String) -> CfLogExamEvent {
-        if CoreConstants.shared.enumContains(ExamAction.self, name: action) {
-            self.action = action
-        } else {
-            ExceptionManager.throwEnumException(
-                eventType: ELearnEventType.exam.rawValue,
-                className: String(describing: ExamAction.self)
-            )
+    public func setExamAction(action: String?) -> CfLogExamEvent {
+        if let action = action {
+            if CoreConstants.shared.enumContains(ExamAction.self, name: action) {
+                self.action = action
+            } else {
+                ExceptionManager.throwEnumException(eventType: ELearnEventType.exam.rawValue, className: String(describing: ExamAction.self))
+            }
         }
         return self
     }
@@ -75,7 +74,7 @@ public class CfLogExamEvent {
      */
 
     @discardableResult
-    public func setDuration(_ duration: Int?) -> CfLogExamEvent {
+    public func setDuration(duration: Int) -> CfLogExamEvent {
         durationValue = duration
         return self
     }
@@ -85,7 +84,7 @@ public class CfLogExamEvent {
      * exam submitted. This is required in case of examAction been result.
      */
     @discardableResult
-    public func setScore(_ score: Float?) -> CfLogExamEvent {
+    public func setScore(score: Float) -> CfLogExamEvent {
         scoreValue = score
         return self
     }
@@ -96,7 +95,7 @@ public class CfLogExamEvent {
      */
 
     @discardableResult
-    public func isPassed(_ isPassed: Bool?) -> CfLogExamEvent {
+    public func isPassed(isPassed: Bool) -> CfLogExamEvent {
         self.isPassed = isPassed
         return self
     }
@@ -107,7 +106,7 @@ public class CfLogExamEvent {
      * providing more context to the log. Default value for the meta is null.
      */
     @discardableResult
-    public func setMeta(_ meta: Any?) -> CfLogExamEvent {
+    public func setMeta(meta: Any?) -> CfLogExamEvent {
         self.meta = meta
         return self
     }
@@ -120,7 +119,7 @@ public class CfLogExamEvent {
      * session which is whenever the app goes into background.
      */
     @discardableResult
-    public func updateImmediately(_ updateImmediately: Bool) -> CfLogExamEvent {
+    public func updateImmediately(updateImmediately: Bool) -> CfLogExamEvent {
         self.updateImmediately = updateImmediately
         return self
     }
@@ -136,20 +135,14 @@ public class CfLogExamEvent {
          * Will throw and exception if the examId provided is null or no value is
          * provided at all.
          */
-        guard let examId = examId else {
+        
+        if examId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.exam.rawValue, elementName: "exam_id")
             return
-        }
-        /**
-         * Will throw and exception if the action provided is null or no value is
-         * provided at all.
-         */
-        guard let action = action else {
-            ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.exam.rawValue, elementName: String(describing: ExamAction.self))
+        }else if action.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.exam.rawValue, elementName: "exam_action")
             return
-        }
-
-        if action == ExamAction.submit.rawValue, durationValue == nil {
+        }else if action == ExamAction.submit.rawValue, durationValue == nil {
             ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.exam.rawValue, elementName: "duration_value")
             return
         } else if action == ExamAction.result.rawValue, scoreValue == nil || isPassed == nil {

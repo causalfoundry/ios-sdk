@@ -2,7 +2,7 @@
 //  CfLogQuestionEvent.swift
 //
 //
-//  Created by khushbu on 02/11/23.
+//  Created by moizhassankhan on 04/01/24.
 //
 
 import CausalFoundrySDKCore
@@ -14,9 +14,9 @@ public class CfLogQuestionEvent {
      * need to provide the question Id that User has attempted and also the id for the answer the
      * user has selected.
      */
-    var questionId: String?
-    var examId: String?
-    var action: String?
+    var questionId: String = ""
+    var examId: String = ""
+    var action: String = ""
     var answerId: String?
     private var meta: Any?
     private var updateImmediately: Bool = CoreConstants.shared.updateImmediately
@@ -29,7 +29,7 @@ public class CfLogQuestionEvent {
      * provided.
      */
     @discardableResult
-    public func setQuestionId(_ questionId: String) -> CfLogQuestionEvent {
+    public func setQuestionId(questionId: String) -> CfLogQuestionEvent {
         self.questionId = questionId
         return self
     }
@@ -40,7 +40,7 @@ public class CfLogQuestionEvent {
      * provided.
      */
     @discardableResult
-    public func setExamId(_ examId: String) -> CfLogQuestionEvent {
+    public func setExamId(examId: String) -> CfLogQuestionEvent {
         self.examId = examId
         return self
     }
@@ -52,7 +52,7 @@ public class CfLogQuestionEvent {
      * string type. Below is the function to log type using enum.
      */
     @discardableResult
-    public func setQuestionAction(_ action: QuestionAction) -> CfLogQuestionEvent {
+    public func setQuestionAction(action: QuestionAction) -> CfLogQuestionEvent {
         self.action = action.rawValue
         return self
     }
@@ -66,7 +66,7 @@ public class CfLogQuestionEvent {
      * events will be discarded.
      */
     @discardableResult
-    public func setQuestionAction(_ action: String?) -> CfLogQuestionEvent {
+    public func setQuestionAction(action: String?) -> CfLogQuestionEvent {
         if let action = action {
             if CoreConstants.shared.enumContains(QuestionAction.self, name: action) {
                 self.action = action
@@ -76,8 +76,6 @@ public class CfLogQuestionEvent {
                     className: String(describing: QuestionAction.self)
                 )
             }
-        } else {
-            self.action = action
         }
         return self
     }
@@ -88,7 +86,7 @@ public class CfLogQuestionEvent {
      * must be in accordance to the catalog provided.
      */
     @discardableResult
-    public func setAnswerId(_ answerId: String?) -> CfLogQuestionEvent {
+    public func setAnswerId(answerId: String) -> CfLogQuestionEvent {
         self.answerId = answerId
         return self
     }
@@ -99,7 +97,7 @@ public class CfLogQuestionEvent {
      * providing more context to the log. Default value for the meta is null.
      */
     @discardableResult
-    public func setMeta(_ meta: Any?) -> CfLogQuestionEvent {
+    public func setMeta(meta: Any?) -> CfLogQuestionEvent {
         self.meta = meta
         return self
     }
@@ -112,7 +110,7 @@ public class CfLogQuestionEvent {
      * session which is whenever the app goes into background.
      */
     @discardableResult
-    public func updateImmediately(_ updateImmediately: Bool) -> CfLogQuestionEvent {
+    public func updateImmediately(updateImmediately: Bool) -> CfLogQuestionEvent {
         self.updateImmediately = updateImmediately
         return self
     }
@@ -127,23 +125,15 @@ public class CfLogQuestionEvent {
          * Will throw and exception if the questionId provided is null or no value is
          * provided at all.
          */
-        guard let questionId = questionId else {
+        
+        
+        if questionId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.question.rawValue, elementName: "question_id")
             return
-        }
-        /**
-         * Will throw and exception if the action provided is null or no value is
-         * provided at all.
-         */
-        guard let action = action else {
-            ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.question.rawValue, elementName: String(describing: QuestionAction.self))
+        }else if action.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.question.rawValue, elementName: "question action")
             return
-        }
-        /**
-         * Will throw and exception if the examId provided is null or no value is
-         * provided at all.
-         */
-        guard let examId = examId else {
+        }else if examId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.question.rawValue, elementName: "exam_id")
             return
         }
@@ -151,7 +141,7 @@ public class CfLogQuestionEvent {
          * Will throw and exception if the answerId provided is null or no value is
          * provided at all.
          */
-        if action == QuestionAction.answer.rawValue, answerId == nil {
+        if action == QuestionAction.answer.rawValue, answerId == nil || answerId == "" {
             ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.question.rawValue, elementName: "answer_id")
             return
         }

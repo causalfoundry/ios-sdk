@@ -2,7 +2,7 @@
 //  CfLogModuleEvent.swift
 //
 //
-//  Created by khushbu on 02/11/23.
+//  Created by moizhassankhan on 04/01/24.
 //
 
 import CausalFoundrySDKCore
@@ -14,9 +14,9 @@ public class CfLogModuleEvent {
      * the log for user viewing the module, starting and finishing the module and also user
      * viewing the content page as well.
      */
-    var moduleId: String?
-    var progress: Int?
-    var action: String?
+    var moduleId: String = ""
+    var progress: Int = 0
+    var action: String = ""
     private var meta: Any?
     private var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
@@ -29,7 +29,7 @@ public class CfLogModuleEvent {
      */
 
     @discardableResult
-    public func setModuleId(_ moduleId: String) -> CfLogModuleEvent {
+    public func setModuleId(moduleId: String) -> CfLogModuleEvent {
         self.moduleId = moduleId
         return self
     }
@@ -40,7 +40,7 @@ public class CfLogModuleEvent {
      * as an integer.
      */
     @discardableResult
-    public func setModuleProgress(_ progress: Int?) -> CfLogModuleEvent {
+    public func setModuleProgress(progress: Int) -> CfLogModuleEvent {
         self.progress = progress
         return self
     } /**
@@ -51,7 +51,7 @@ public class CfLogModuleEvent {
      */
 
     @discardableResult
-    public func setModuleAction(_ action: ModuleLogAction) -> CfLogModuleEvent {
+    public func setModuleAction(action: ModuleLogAction) -> CfLogModuleEvent {
         self.action = action.rawValue
         return self
     }
@@ -65,15 +65,13 @@ public class CfLogModuleEvent {
      * events will be discarded.
      */
     @discardableResult
-    public func setModuleAction(_ action: String?) -> CfLogModuleEvent {
+    public func setModuleAction(action: String?) -> CfLogModuleEvent {
         if let action = action {
             if CoreConstants.shared.enumContains(ModuleLogAction.self, name: action) {
                 self.action = action
             } else {
                 ExceptionManager.throwEnumException(eventType: ELearnEventType.module.rawValue, className: String(describing: ModuleLogAction.self))
             }
-        } else {
-            self.action = action
         }
         return self
     }
@@ -84,7 +82,7 @@ public class CfLogModuleEvent {
      * providing more context to the log. Default value for the meta is null.
      */
     @discardableResult
-    public func setMeta(_ meta: Any?) -> CfLogModuleEvent {
+    public func setMeta(meta: Any?) -> CfLogModuleEvent {
         self.meta = meta
         return self
     }
@@ -97,7 +95,7 @@ public class CfLogModuleEvent {
      * session which is whenever the app goes into background.
      */
     @discardableResult
-    public func updateImmediately(_ updateImmediately: Bool) -> CfLogModuleEvent {
+    public func updateImmediately(updateImmediately: Bool) -> CfLogModuleEvent {
         self.updateImmediately = updateImmediately
         return self
     }
@@ -113,19 +111,18 @@ public class CfLogModuleEvent {
          * Will throw and exception if the moduleId provided is null or no value is
          * provided at all.
          */
-        guard let moduleId = moduleId else {
+        
+        if moduleId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.module.rawValue, elementName: "module_id")
             return
-        }
-        /**
-         * Will throw and exception if the action provided is null or no value is
-         * provided at all.
-         */
-
-        guard let action = action else {
-            ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.module.rawValue, elementName: String(String(describing: ModuleLogAction.self)))
+        }else if action.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.module.rawValue, elementName: "module action")
+            return
+        }else if (progress < 0) {
+            ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.module.rawValue, elementName: "module progress")
             return
         }
+        
         /**
          * Parsing the values into an object and passing to the setup block to queue
          * the event based on its priority.
