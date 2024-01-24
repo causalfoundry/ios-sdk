@@ -29,7 +29,6 @@ public class CfLogInvestigationEvent {
      */
     @discardableResult
     public func setPatientId(_ patientId: String) -> CfLogInvestigationEvent {
-        var CfLogInvestigationEvent = self
         self.patientId = patientId
         return self
     }

@@ -2,7 +2,7 @@
 //  AppLifecycleObserver.swift
 //
 //
-//  Created by khushbu on 28/09/23.
+//  Created by moizhassankh on 28/09/23.
 //
 
 import BackgroundTasks
@@ -18,7 +18,8 @@ public class CausualFoundry {
     var appStartTime: Int64 = 0
 
     public static let shared = CausualFoundry()
-
+    private var timer: DispatchSourceTimer?
+    
     public init() {
         appStartTime = Int64(Date().timeIntervalSince1970 * 1000)
     }
@@ -34,15 +35,13 @@ public class CausualFoundry {
 
     @objc func appDidFinishLaunching() {
         // Register Background Task
-        let isBackgroundFetchEnabled = UIApplication.shared.backgroundRefreshStatus == .available
-        if !isBackgroundFetchEnabled {
-            showBAckgroudTaskEnableNotification()
-        } else {
-            if #available(iOS 13.0, *) {
+        if #available(iOS 13.0, *) {
+            if isBackgroundAppRefreshEnabled() {
                 WorkerCaller.registerBackgroundTask()
+            } else {
+                showBAckgroudTaskEnableNotification()
             }
         }
-        
         
         var startTime: Int64 = 0
         if(appStartTime != 0){
@@ -51,6 +50,7 @@ public class CausualFoundry {
         }
         CFLogAppEventBuilder().setAppEvent(appAction: .open)
             .setStartTime(start_time: Int(startTime))
+            .updateImmediately(update_immediately: false)
             .build()
     }
 
@@ -62,39 +62,64 @@ public class CausualFoundry {
             CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
             CFLogAppEventBuilder().setAppEvent(appAction: .resume)
                 .setStartTime(start_time: 0)
+                .updateImmediately(update_immediately: false)
                 .build()
         }
         CoreConstants.shared.isAppPaused = false
+        
     }
 
     @objc func appDidBecomeActive() {
         CoreConstants.shared.isAppOpen = true
+        
+        if #available(iOS 13.0, *), !isBackgroundAppRefreshEnabled() {
+            // Start the timer when the app enters the foreground to periodically send events when bg permission not provided
+            startTimer()
+        }
+        
+        if #available(iOS 13.0, *), isBackgroundAppRefreshEnabled() {
+            // stop the timer when the app enters the foreground and bg permission is provided
+            stopTimer()
+        }
+        
     }
 
     @objc func appWillResignActive() {
+        
         CoreConstants.shared.isAppOpen = false
         CoreConstants.shared.isAppPaused = true
+        
+        if #available(iOS 13.0, *), !isBackgroundAppRefreshEnabled() {
+            // Stop the timer when the app enters the background for when the background permission is not provided.
+            CFSDKPerformUpload()
+            stopTimer()
+        }
+        
     }
     
     @objc func appDidEnterBackground() {
+        
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
         CoreConstants.shared.sessionEndTime = Int64(currentTimeMillis)
         CoreConstants.shared.isAppOpen = false
         CFLogAppEventBuilder().setAppEvent(appAction: .background)
             .setStartTime(start_time: 0)
+            .updateImmediately(update_immediately: false)
             .build()
 
-        if #available(iOS 13.0, *) {
-            WorkerCaller.scheduleBackgroundTasks()
+        if #available(iOS 13.0, *), isBackgroundAppRefreshEnabled() {
+           WorkerCaller.scheduleBackgroundTasks()
         }
     }
 
     @objc func appWillTerminate() {
+        
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
         CoreConstants.shared.sessionEndTime = Int64(currentTimeMillis)
 
         CFLogAppEventBuilder().setAppEvent(appAction: .close)
             .setStartTime(start_time: 0)
+            .updateImmediately(update_immediately: false)
             .build()
     }
 
@@ -111,6 +136,56 @@ public class CausualFoundry {
     private func removeNotifiations() {
         NotificationCenter.default.removeObserver(self)
     }
+    
+    func isBackgroundAppRefreshEnabled() -> Bool {
+        let backgroundRefreshStatus = UIApplication.shared.backgroundRefreshStatus
+
+        switch backgroundRefreshStatus {
+        case .available:
+            return true
+        case .denied:
+            return false
+        case .restricted:
+            return false
+        @unknown default:
+            return false
+        }
+    }
+    
+    func startTimer() {
+           // Invalidate previous timer to avoid multiple timers running simultaneously
+           stopTimer()
+           // Create a new timer to call your asynchronous function periodically
+           timer = DispatchSource.makeTimerSource(queue: DispatchQueue.global())
+           // Set the time interval (in seconds)
+           timer?.schedule(deadline: .now(), repeating: .seconds(12))
+           // Set the event handler
+           timer?.setEventHandler { [weak self] in
+               self?.CFSDKPerformUpload()
+           }
+           timer?.resume()
+       }
+
+       func CFSDKPerformUpload() {
+           // Your asynchronous function implementation here
+           if #available(iOS 13.0, *) {
+               Task {
+                   do {
+                       try await WorkerCaller.performUpload()
+                   } catch {
+                       print("Error in CFSDKPerformUpload: \(error)")
+                   }
+               }
+           } else {
+               // Fallback on earlier versions
+           }
+       }
+    func stopTimer() {
+            // Stop the timer if it's running
+            timer?.cancel()
+            timer = nil
+    }
+    
 }
 
 extension CausualFoundry {
@@ -136,3 +211,4 @@ extension CausualFoundry {
 }
 
 // Call this in your AppDelegate or somewhere early in your app lifecycle
+

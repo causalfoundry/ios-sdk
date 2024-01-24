@@ -15,13 +15,13 @@ public extension MMKVHelper {
             let decoder = JSONDecoder.new
             if subject == .survey {
                 var catalogTableData = try decoder.decode([InternalSurveyModel].self, from: oldData)
-                var catalogNewData = try decoder.decode([InternalSurveyModel].self, from: newData)
+                let catalogNewData = try decoder.decode([InternalSurveyModel].self, from: newData)
                 catalogTableData.removeAll(where: { $0.id == catalogNewData.first?.id })
                 catalogTableData.append(catalogNewData.first!)
                 newUpdatedData = catalogTableData.toData()
             } else if subject == .reward {
                 var catalogTableData = try decoder.decode([InternalRewardModel].self, from: oldData)
-                var catalogNewData = try decoder.decode([InternalRewardModel].self, from: newData)
+                let catalogNewData = try decoder.decode([InternalRewardModel].self, from: newData)
                 catalogTableData.removeAll(where: { $0.id == catalogNewData.first?.id })
                 catalogTableData.append(catalogNewData.first!)
                 newUpdatedData = catalogTableData.toData()

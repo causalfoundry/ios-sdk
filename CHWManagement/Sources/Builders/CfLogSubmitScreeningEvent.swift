@@ -34,7 +34,7 @@ public class CfLogSubmitScreeningEvent {
 
     @discardableResult
     public func setEventTime(eventTimeValue: Int64) -> CfLogSubmitScreeningEvent {
-        var builder = self
+        let builder = self
         builder.eventTimeValue = eventTimeValue
         return builder
     }
@@ -45,7 +45,7 @@ public class CfLogSubmitScreeningEvent {
      */
     @discardableResult
     public func setPatientId(patientId: String) -> CfLogSubmitScreeningEvent {
-        var builder = self
+        let builder = self
         builder.patientId = patientId
         return builder
     }
@@ -56,7 +56,7 @@ public class CfLogSubmitScreeningEvent {
      */
     @discardableResult
     public func setSiteId(siteId: String) -> CfLogSubmitScreeningEvent {
-        var builder = self
+        let builder = self
         builder.siteId = siteId
         return builder
     }
@@ -159,7 +159,7 @@ public class CfLogSubmitScreeningEvent {
 
     @discardableResult
     public func setDiagnosisValueList(diagnosisValuesList: [DiagnosisItem]) -> CfLogSubmitScreeningEvent {
-        var builder = self
+        let builder = self
         builder.diagnosisValuesList = diagnosisValuesList
         return builder
     }

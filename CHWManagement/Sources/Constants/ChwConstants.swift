@@ -60,7 +60,7 @@ enum ChwConstants {
         }
 
         if !chwSiteCatalogModel.country.isEmpty {
-            guard let countryCode = CountryCode(rawValue: chwSiteCatalogModel.country) else {
+            guard CountryCode(rawValue: chwSiteCatalogModel.country) != nil else {
                 ExceptionManager.throwEnumException(eventType: catalogName, className: "CountryCode")
                 return nil
             }
@@ -93,14 +93,14 @@ enum ChwConstants {
         }
 
         if !patientCatalogModel.country.isEmpty {
-            guard let countryCode = CountryCode(rawValue: patientCatalogModel.country) else {
+            guard CountryCode(rawValue: patientCatalogModel.country) != nil else {
                 ExceptionManager.throwEnumException(eventType: catalogName, className: "CountryCode")
                 return nil
             }
         }
 
         if !patientCatalogModel.educationLevel.isEmpty {
-            guard let educationalLevel = EducationalLevel(rawValue: patientCatalogModel.educationLevel) else {
+            guard EducationalLevel(rawValue: patientCatalogModel.educationLevel) != nil else {
                 ExceptionManager.throwEnumException(eventType: catalogName, className: "EducationalLevel")
                 return nil
             }

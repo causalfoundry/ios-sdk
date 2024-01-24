@@ -2,7 +2,7 @@
 //  WorkerCaller.swift
 //
 //
-//  Created by khushbu on 08/11/23.
+//  Created by moizhassankh on 08/11/23.
 //
 
 import BackgroundTasks
@@ -16,13 +16,17 @@ public enum WorkerCaller {
     private static var nudgeDownloadTaskIdentifier = "ai.causalfoundry.fetchNudges"
 
     static func registerBackgroundTask() {
-        registerEventUploadTask()
-        registerNudgeDownloadTask()
+        if(CausualFoundry.shared.isBackgroundAppRefreshEnabled()){
+            registerEventUploadTask()
+            registerNudgeDownloadTask()
+        }
     }
 
     static func scheduleBackgroundTasks() {
-        scheduleEventUploadTask()
-        scheduleNudgeDownloadTask()
+        if(CausualFoundry.shared.isBackgroundAppRefreshEnabled()){
+            scheduleEventUploadTask()
+            scheduleNudgeDownloadTask()
+        }
     }
 
     private static func registerEventUploadTask() {
@@ -30,6 +34,7 @@ public enum WorkerCaller {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: WorkerCaller.eventUploadTaskIdentifier, using: nil) { task in
             Task {
                 do {
+                    
                     try await InjestEvenstuploader.uploadEvents()
                     try await ExceptionEventsUploader.uploadEvents()
                     try await CatalogEventsUploader.uploadEvents()
@@ -70,10 +75,11 @@ public enum WorkerCaller {
         do {
             try BGTaskScheduler.shared.submit(request)
             print("Submitted background task: \(request.identifier)")
-            // add breakpoint to print statement above and execute command:
-            // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"ai.causalfoundry.ingestAppEvents"]
         } catch {
-            print("Unable to schedule background task: \(error)")
+            print("Unable to schedule background task: \(error.localizedDescription)")
+            if let nsError = error as NSError? {
+                print("Error domain: \(nsError.domain)")
+            }
         }
     }
 
@@ -92,7 +98,8 @@ public enum WorkerCaller {
 
     public static func performUpload() async throws {
         try await InjestEvenstuploader.uploadEvents()
-        try await ExceptionEventsUploader.uploadEvents()
         try await CatalogEventsUploader.uploadEvents()
+        try await ExceptionEventsUploader.uploadEvents()
     }
 }
+

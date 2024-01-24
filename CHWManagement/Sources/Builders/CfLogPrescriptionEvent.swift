@@ -144,7 +144,7 @@ public class CfLogPrescriptionEvent {
          * Will throw and exception if the patient_id provided is null or no action is
          * provided at all.
          */
-        guard let patiendID = patientId else {
+        guard patientId != nil else {
             ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName: "patient_id")
             return
         }
@@ -152,7 +152,7 @@ public class CfLogPrescriptionEvent {
          * Will throw and exception if the site_id provided is null or no action is
          * provided at all.
          */
-        guard let siteID = siteId else {
+        guard siteId != nil else {
             ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName: "site_id")
             return
         }
@@ -160,7 +160,7 @@ public class CfLogPrescriptionEvent {
          * Will throw and exception if the action provided is null or no action is
          * provided at all.
          */
-        guard let presciptionID = prescriptionId else {
+        guard prescriptionId != nil else {
             ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName: "prescription_id")
             return
         }

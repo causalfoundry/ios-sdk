@@ -2,7 +2,7 @@
 //  IngestAPIHandler.swift
 //
 //
-//  Created by khushbu on 12/09/23.
+//  Created by moizhassankh on 12/09/23.
 //
 
 import Combine
@@ -80,9 +80,7 @@ public class IngestAPIHandler: NSObject {
                                     data: eventArray)
             
             let dictionary = mainBody.dictionary ?? [:]
-            
-            print(dictionary.prettyJSON)
-            
+                        
             let url = URL(string: APIConstants.trackEvent)!
             BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: dictionary) { result in
                 switch result {
@@ -103,3 +101,4 @@ public class IngestAPIHandler: NSObject {
         }
     }
 }
+
