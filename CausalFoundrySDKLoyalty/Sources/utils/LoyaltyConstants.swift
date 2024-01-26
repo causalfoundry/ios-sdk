@@ -20,10 +20,41 @@ enum LoyaltyConstants {
         } else if itemValue.item_type.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_type")
             return
-        } else if CoreConstants.shared.enumContains(PromoItemType.self, name: itemValue.item_type) {
+        } else if !CoreConstants.shared.enumContains(PromoItemType.self, name: itemValue.item_type) {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "ItemType")
             return
         }
+    }
+    
+    static func isSurveyObjectValid(surveyObject: SurveyObject, eventType: LoyaltyEventType) -> Bool {
+        let eventName = eventType.rawValue
+
+        if surveyObject.id.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "survey_id")
+            return false
+        } else if surveyObject.type.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "survey_type")
+            return false
+        } else if !CoreConstants.shared.enumContains(SurveyType.self, name: surveyObject.type) {
+            ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "survey_type")
+            return false
+        }
+        return true
+    }
+    
+    static func isSurveyResponseObjectValid(responseObject: SurveyResponseItem, eventType: LoyaltyEventType) -> Bool {
+        
+        if !CoreConstants.shared.enumContains(SurveyType.self, name: responseObject.type) {
+            ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: SurveyType.self))
+            return true
+        } else if responseObject.id.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "response_question_id")
+            return true
+        } else if responseObject.question.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "response_question")
+            return true
+        }
+        return true
     }
 
     static func verifyCatalogForSurvey(surveyId: String, surveyCatalogModel: SurveyCatalogModel) -> InternalSurveyModel? {

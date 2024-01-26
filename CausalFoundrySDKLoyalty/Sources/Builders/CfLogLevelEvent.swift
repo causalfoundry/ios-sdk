@@ -16,7 +16,7 @@ public class CfLogLevelEvent {
      */
     var prevLevel: Int?
     var newLevel: Int?
-    var moduleId: String?
+    var moduleId: String? = ""
     var meta: Any?
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
@@ -95,16 +95,11 @@ public class CfLogLevelEvent {
             return
         }
 
-        /**
-         * Will throw and exception if the new_level provided is null or no value is
-         * provided at all.
-         */
-
         guard newLevel != nil else {
             ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.level.rawValue, elementName: "new_level")
             return
         }
-
+        
         let levelObject = LevelObject(prevLevel: prevLevel!, newLevel: newLevel!, moduleId: moduleId, meta: meta as? Encodable)
 
         CFSetup().track(contentBlockName: LoyaltyConstants.contentBlockName, eventType: LoyaltyEventType.level.rawValue, logObject: levelObject, updateImmediately: updateImmediately)

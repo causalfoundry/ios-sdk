@@ -26,7 +26,7 @@ public class CfLogMilestoneEvent {
      */
 
     @discardableResult
-    public func setMilestoneId(_ milestone_id: String?) -> CfLogMilestoneEvent {
+    public func setMilestoneId(milestone_id: String?) -> CfLogMilestoneEvent {
         self.milestone_id = milestone_id!
         return self
     }
@@ -41,7 +41,7 @@ public class CfLogMilestoneEvent {
      */
 
     @discardableResult
-    public func setAction(_ action: MilestoneAction) -> CfLogMilestoneEvent {
+    public func setAction(action: MilestoneAction) -> CfLogMilestoneEvent {
         action_value = action.rawValue
         return self
     }
@@ -58,7 +58,7 @@ public class CfLogMilestoneEvent {
      */
 
     @discardableResult
-    public func setAction(_ action: String?) -> CfLogMilestoneEvent {
+    public func setAction(action: String?) -> CfLogMilestoneEvent {
         if let action = action {
             if CoreConstants.shared.enumContains(MilestoneAction.self, name: action) {
                 action_value = action
@@ -82,7 +82,7 @@ public class CfLogMilestoneEvent {
      */
 
     @discardableResult
-    public func setMeta(_ meta: Any?) -> CfLogMilestoneEvent {
+    public func setMeta(meta: Any?) -> CfLogMilestoneEvent {
         self.meta = meta
         return self
     }
@@ -96,7 +96,7 @@ public class CfLogMilestoneEvent {
      */
 
     @discardableResult
-    public func updateImmediately(_ update_immediately: Bool) -> CfLogMilestoneEvent {
+    public func updateImmediately(update_immediately: Bool) -> CfLogMilestoneEvent {
         self.update_immediately = update_immediately
         return self
     }

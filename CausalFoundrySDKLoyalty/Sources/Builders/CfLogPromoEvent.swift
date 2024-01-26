@@ -13,10 +13,10 @@ public class CfLogPromoEvent {
      * CfLogPromoEvent is to log the events associated of the promo lists and promo items and when they are clicked on.
      */
 
-    var promo_id: String?
-    var promo_action: String?
-    var promo_title: String?
-    var promo_type: String?
+    var promo_id: String = ""
+    var promo_action: String = ""
+    var promo_title: String = ""
+    var promo_type: String = ""
     var promo_items_list: [PromoItemObject] = []
     private var meta: Any?
     private var update_immediately: Bool = CoreConstants.shared.updateImmediately
@@ -27,7 +27,7 @@ public class CfLogPromoEvent {
      */
 
     @discardableResult
-    public func setPromoId(promo_id: String?) -> CfLogPromoEvent {
+    public func setPromoId(promo_id: String) -> CfLogPromoEvent {
         self.promo_id = promo_id
         return self
     }
@@ -55,7 +55,7 @@ public class CfLogPromoEvent {
      * setPromoTitle is required to set the title of the promo (if any)
      */
     @discardableResult
-    public func setPromoTitle(promo_title: String?) -> CfLogPromoEvent {
+    public func setPromoTitle(promo_title: String) -> CfLogPromoEvent {
         self.promo_title = promo_title
         return self
     }
@@ -119,7 +119,7 @@ public class CfLogPromoEvent {
         for promoItem in itemList {
             LoyaltyConstants.isItemTypeObjectValid(itemValue: promoItem, eventType: LoyaltyEventType.promo)
         }
-        promo_items_list.append(contentsOf: itemList)
+        promo_items_list = itemList
         return self
     }
 
@@ -134,10 +134,7 @@ public class CfLogPromoEvent {
     @discardableResult
     public func addItemList(itemListString: String) -> CfLogPromoEvent {
         if let data = itemListString.data(using: .utf8), let itemModels = try? JSONDecoder.new.decode([PromoItemObject].self, from: data) {
-            for promoItem in itemModels {
-                LoyaltyConstants.isItemTypeObjectValid(itemValue: promoItem, eventType: LoyaltyEventType.promo)
-            }
-            promo_items_list.append(contentsOf: itemModels)
+            addItemList(itemList: itemModels)
         }
         return self
     }
@@ -176,28 +173,32 @@ public class CfLogPromoEvent {
          * Will throw and exception if the promo_id provided is null or no value is
          * provided at all.
          */
-        guard let promo_id = promo_id, !promo_id.isEmpty else {
+        if promo_id.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.promo.rawValue, elementName: "promo_id")
             return
         }
-        /**
-         * Will throw and exception if the promo_action provided is null or no value is
-         * provided at all.
-         */
-        guard let promo_action = promo_action, !promo_action.isEmpty else {
+        
+        if promo_action.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.promo.rawValue, elementName: "promo_action")
             return
         }
-        /**
-         * Will throw and exception if the promo_type provided is null or no value is
-         * provided at all.
-         */
-
-        guard let promo_type = promo_type, !promo_type.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType: String(describing: LoyaltyEventType.promo.rawValue), elementName: "promo_type")
+        
+        if promo_items_list.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: String(describing: LoyaltyEventType.promo.rawValue), elementName: "promo_items_list")
+            return
+        }
+        
+        if promo_title.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: String(describing: LoyaltyEventType.promo.rawValue), elementName: "promo_title")
             return
         }
 
+        if promo_type.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: String(describing: LoyaltyEventType.promo.rawValue), elementName: "promo_type")
+            return
+        }
+        
+    
         /**
          * Parsing the values into an object and passing to the setup block to queue
          * the event based on its priority.

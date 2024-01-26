@@ -10,21 +10,21 @@ import Foundation
 struct LevelObject: Codable {
     let prevLevel: Int
     let newLevel: Int
-    let moduleId: String?
+    let moduleId: String
     let meta: Encodable?
 
     // Custom init method
     init(prevLevel: Int, newLevel: Int, moduleId: String?, meta: Encodable?) {
         self.prevLevel = prevLevel
         self.newLevel = newLevel
-        self.moduleId = moduleId
+        self.moduleId = (moduleId != nil) ? moduleId! : ""
         self.meta = meta
     }
 
     enum CodingKeys: String, CodingKey {
         case prevLevel = "prev_level"
         case newLevel = "new_level"
-        case moduleId
+        case moduleId = "module_id"
         case meta
     }
 
@@ -42,10 +42,10 @@ struct LevelObject: Codable {
     // Decoding method
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        prevLevel = try container.decodeIfPresent(Int.self, forKey: .prevLevel)!
-        newLevel = try container.decodeIfPresent(Int.self, forKey: .newLevel)!
-        moduleId = try container.decodeIfPresent(String.self, forKey: .moduleId)
-        if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
+        prevLevel = try container.decode(Int.self, forKey: .prevLevel)
+        newLevel = try container.decode(Int.self, forKey: .newLevel)
+        moduleId = try container.decodeIfPresent(String.self, forKey: .moduleId)!
+        if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {
             meta = nil
