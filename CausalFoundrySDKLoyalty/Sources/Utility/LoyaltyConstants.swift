@@ -20,10 +20,67 @@ enum LoyaltyConstants {
         } else if itemValue.item_type.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_type")
             return
-        } else if CoreConstants.shared.enumContains(PromoItemType.self, name: itemValue.item_type) {
+        } else if !CoreConstants.shared.enumContains(PromoItemType.self, name: itemValue.item_type) {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "ItemType")
             return
         }
+    }
+    
+    static func isSurveyObjectValid(surveyObject: SurveyObject, eventType: LoyaltyEventType) -> Bool {
+        let eventName = eventType.rawValue
+
+        if surveyObject.id.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "survey_id")
+            return false
+        } else if surveyObject.type.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "survey_type")
+            return false
+        } else if !CoreConstants.shared.enumContains(SurveyType.self, name: surveyObject.type) {
+            ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "survey_type")
+            return false
+        }
+        return true
+    }
+    
+    static func isSurveyResponseListValid(responseList: [SurveyResponseItem], eventType: LoyaltyEventType) -> Bool {
+        
+        for item in responseList {
+            if !CoreConstants.shared.enumContains(SurveyType.self, name: item.type) {
+                ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: SurveyType.self))
+                return false
+            } else if item.id.isEmpty {
+                ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "response_question_id")
+                return false
+            } else if item.question.isEmpty {
+                ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "response_question_text")
+                return false
+            }
+        }
+        return true
+    }
+    
+    static func isRedeemObjectValid(redeemObject: RedeemObject, eventType: LoyaltyEventType) -> Bool {
+        
+        if redeemObject.points_withdrawn < 0 {
+            ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "points_withdrawn")
+            return false
+        } else if !CoreConstants.shared.enumContains(RedeemType.self, name: redeemObject.type) {
+            ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: RedeemType.self))
+            return false
+        } else if redeemObject.converted_value! < 0 {
+            ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "converted_value")
+            return false
+        } else if redeemObject.is_successful == nil {
+            ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "redeem is_successful")
+            return false
+        } else if redeemObject.type == RedeemType.cash.rawValue, redeemObject.currency == nil {
+            ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "redeem currency")
+            return false
+        } else if redeemObject.type == RedeemType.cash.rawValue, !CoreConstants.shared.enumContains(CurrencyCode.self, name: redeemObject.currency!) {
+            ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: CurrencyCode.self))
+            return false
+        }
+        return true
     }
 
     static func verifyCatalogForSurvey(surveyId: String, surveyCatalogModel: SurveyCatalogModel) -> InternalSurveyModel? {
@@ -51,7 +108,8 @@ enum LoyaltyConstants {
                 questions_list: surveyCatalogModel.questions_list,
                 description: CoreConstants.shared.checkIfNull(surveyCatalogModel.description),
                 creation_date: getTimeConvertedToString(eventTime: Int64(surveyCatalogModel.creation_date)),
-                expiry_date: getTimeConvertedToString(eventTime: Int64(surveyCatalogModel.expiry_date)), organization_id: CoreConstants.shared.checkIfNull(surveyCatalogModel.organization_id),
+                expiry_date: getTimeConvertedToString(eventTime: Int64(surveyCatalogModel.expiry_date)), 
+                organization_id: CoreConstants.shared.checkIfNull(surveyCatalogModel.organization_id),
                 organization_name: CoreConstants.shared.checkIfNull(surveyCatalogModel.organization_name)
             )
         }

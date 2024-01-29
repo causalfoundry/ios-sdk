@@ -54,7 +54,7 @@ public struct PromoObject: Codable {
         promo_title = try container.decode(String.self, forKey: .promo_title)
         promo_type = try container.decode(String.self, forKey: .promo_type)
         promo_items_list = try container.decode([PromoItemObject].self, forKey: .promo_items_list)
-        if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
+        if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {
             meta = nil

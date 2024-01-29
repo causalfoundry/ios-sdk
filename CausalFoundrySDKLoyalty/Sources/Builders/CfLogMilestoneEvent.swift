@@ -13,8 +13,8 @@ public class CfLogMilestoneEvent {
      * CfLogMilestoneEvent is to log actions regarding milestones which can be when the user
      * achieved a milestone.
      */
-    var milestone_id: String = ""
-    var action_value: String = ""
+    private var milestone_id: String = ""
+    private var action_value: String = ""
     private var meta: Any?
     private var update_immediately: Bool = CoreConstants.shared.updateImmediately
 
@@ -26,8 +26,8 @@ public class CfLogMilestoneEvent {
      */
 
     @discardableResult
-    public func setMilestoneId(_ milestone_id: String?) -> CfLogMilestoneEvent {
-        self.milestone_id = milestone_id!
+    public func setMilestoneId(milestoneId: String?) -> CfLogMilestoneEvent {
+        self.milestone_id = milestoneId!
         return self
     }
 
@@ -41,7 +41,7 @@ public class CfLogMilestoneEvent {
      */
 
     @discardableResult
-    public func setAction(_ action: MilestoneAction) -> CfLogMilestoneEvent {
+    public func setAction(action: MilestoneAction) -> CfLogMilestoneEvent {
         action_value = action.rawValue
         return self
     }
@@ -58,7 +58,7 @@ public class CfLogMilestoneEvent {
      */
 
     @discardableResult
-    public func setAction(_ action: String?) -> CfLogMilestoneEvent {
+    public func setAction(action: String?) -> CfLogMilestoneEvent {
         if let action = action {
             if CoreConstants.shared.enumContains(MilestoneAction.self, name: action) {
                 action_value = action
@@ -82,7 +82,7 @@ public class CfLogMilestoneEvent {
      */
 
     @discardableResult
-    public func setMeta(_ meta: Any?) -> CfLogMilestoneEvent {
+    public func setMeta(meta: Any?) -> CfLogMilestoneEvent {
         self.meta = meta
         return self
     }
@@ -96,8 +96,8 @@ public class CfLogMilestoneEvent {
      */
 
     @discardableResult
-    public func updateImmediately(_ update_immediately: Bool) -> CfLogMilestoneEvent {
-        self.update_immediately = update_immediately
+    public func updateImmediately(updateImmediately: Bool) -> CfLogMilestoneEvent {
+        self.update_immediately = updateImmediately
         return self
     }
 

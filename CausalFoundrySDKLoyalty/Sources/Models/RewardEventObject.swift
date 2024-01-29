@@ -13,7 +13,6 @@ public struct RewardEventObject: Codable {
     var accPoints: Float?
     var totalPoints: Float
     var redeem: RedeemObject?
-    var usdRate: Float?
     var meta: Encodable?
 
     enum CodingKeys: String, CodingKey {
@@ -22,17 +21,15 @@ public struct RewardEventObject: Codable {
         case accPoints = "acc_points"
         case totalPoints = "total_points"
         case redeem
-        case usdRate = "usd_rate"
         case meta
     }
 
-    public init(rewardId: String, action: String, accPoints: Float? = 0.0, totalPoints: Float = 0.0, redeem: RedeemObject? = nil, usdRate: Float? = nil, meta: Encodable? = nil) {
+    public init(rewardId: String, action: String, accPoints: Float? = 0.0, totalPoints: Float = 0.0, redeem: RedeemObject? = nil, meta: Encodable? = nil) {
         self.rewardId = rewardId
         self.action = action
         self.accPoints = accPoints
         self.totalPoints = totalPoints
         self.redeem = redeem
-        self.usdRate = usdRate
         self.meta = meta
     }
 
@@ -43,7 +40,6 @@ public struct RewardEventObject: Codable {
         accPoints = try container.decodeIfPresent(Float.self, forKey: .accPoints)
         totalPoints = try container.decode(Float.self, forKey: .totalPoints)
         redeem = try container.decodeIfPresent(RedeemObject.self, forKey: .redeem)
-        usdRate = try container.decodeIfPresent(Float.self, forKey: .usdRate)
         if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {
@@ -58,7 +54,6 @@ public struct RewardEventObject: Codable {
         try container.encodeIfPresent(accPoints, forKey: .accPoints)
         try container.encode(totalPoints, forKey: .totalPoints)
         try container.encodeIfPresent(redeem, forKey: .redeem)
-        try container.encodeIfPresent(usdRate, forKey: .usdRate)
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }

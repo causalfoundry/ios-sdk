@@ -9,7 +9,7 @@ import Foundation
 
 public struct SurveyObject: Codable {
     var id: String
-    var isCompleted: Bool?
+    var isCompleted: Bool = false
     var rewardId: String?
     var type: String
 
@@ -20,7 +20,7 @@ public struct SurveyObject: Codable {
         case type
     }
 
-    public init(id: String, isCompleted: Bool? = nil, rewardId: String? = nil, type: String) {
+    public init(id: String, isCompleted: Bool = false, rewardId: String, type: String) {
         self.id = id
         self.isCompleted = isCompleted
         self.rewardId = rewardId
@@ -30,7 +30,7 @@ public struct SurveyObject: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        isCompleted = try container.decodeIfPresent(Bool.self, forKey: .isCompleted)
+        isCompleted = try container.decode(Bool.self, forKey: .isCompleted)
         rewardId = try container.decodeIfPresent(String.self, forKey: .rewardId)
         type = try container.decode(String.self, forKey: .type)
     }
@@ -39,7 +39,7 @@ public struct SurveyObject: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encodeIfPresent(isCompleted, forKey: .isCompleted)
-        try container.encodeIfPresent(rewardId, forKey: .rewardId)
+        try container.encode(rewardId, forKey: .rewardId)
         try container.encode(type, forKey: .type)
     }
 }

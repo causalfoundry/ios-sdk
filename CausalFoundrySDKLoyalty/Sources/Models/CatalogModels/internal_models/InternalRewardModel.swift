@@ -2,7 +2,7 @@
 //  InternalRewardModel.swift
 //
 //
-//  Created by khushbu on 07/11/23.
+//  Created by moizhassankh on 29/01/24.
 //
 
 import Foundation
@@ -30,7 +30,17 @@ public struct InternalRewardModel: Codable {
         case organizationName = "organization_name"
     }
 
-    public init(id: String, name: String, description: String, type: String, requiredPoints: Float, creationDate: String, expiryDate: String, organizationId: String, organizationName: String) {
+    public init(
+        id: String,
+        name: String,
+        description: String = "",
+        type: String,
+        requiredPoints: Float,
+        creationDate: String = "",
+        expiryDate: String = "",
+        organizationId: String = "",
+        organizationName: String = "")
+    {
         self.id = id
         self.name = name
         self.description = description
