@@ -50,9 +50,7 @@ public class CfLogSurveyEvent {
      */
     @discardableResult
     public func setSurveyObject(surveyObject: SurveyObject) -> CfLogSurveyEvent {
-        if(LoyaltyConstants.isSurveyObjectValid(surveyObject: surveyObject, eventType: LoyaltyEventType.survey)){
-            self.surveyObject = surveyObject
-        }
+        self.surveyObject = surveyObject
         return self
     }
 
@@ -123,7 +121,7 @@ public class CfLogSurveyEvent {
             ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.survey.rawValue, elementName: "survey_object")
         } else if actionValue == "submit", sureveyResponseList.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.survey.rawValue, elementName: "response_list")
-        } else if(LoyaltyConstants.isSurveyResponseListValid(responseList: sureveyResponseList, eventType: LoyaltyEventType.survey)) {
+        } else if(LoyaltyConstants.isSurveyObjectValid(surveyObject: surveyObject!, eventType: LoyaltyEventType.survey) && LoyaltyConstants.isSurveyResponseListValid(responseList: sureveyResponseList, eventType: LoyaltyEventType.survey)) {
             let surveyEventObject = SurveyEventObject(action: actionValue, survey: surveyObject!, response: sureveyResponseList, meta: meta as? Encodable)
             CFSetup().track(contentBlockName: LoyaltyConstants.contentBlockName, eventType: LoyaltyEventType.survey.rawValue, logObject: surveyEventObject, updateImmediately: updateImmediately)
         }
