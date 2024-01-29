@@ -42,17 +42,19 @@ enum LoyaltyConstants {
         return true
     }
     
-    static func isSurveyResponseObjectValid(responseObject: SurveyResponseItem, eventType: LoyaltyEventType) -> Bool {
+    static func isSurveyResponseListValid(responseList: [SurveyResponseItem], eventType: LoyaltyEventType) -> Bool {
         
-        if !CoreConstants.shared.enumContains(SurveyType.self, name: responseObject.type) {
-            ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: SurveyType.self))
-            return true
-        } else if responseObject.id.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "response_question_id")
-            return true
-        } else if responseObject.question.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "response_question")
-            return true
+        for item in responseList {
+            if !CoreConstants.shared.enumContains(SurveyType.self, name: item.type) {
+                ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: SurveyType.self))
+                return false
+            } else if item.id.isEmpty {
+                ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "response_question_id")
+                return false
+            } else if item.question.isEmpty {
+                ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "response_question_text")
+                return false
+            }
         }
         return true
     }

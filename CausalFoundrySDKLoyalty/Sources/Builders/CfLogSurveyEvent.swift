@@ -14,7 +14,7 @@ public class CfLogSurveyEvent {
 
     private var actionValue: String = ""
     private var surveyObject: SurveyObject?
-    private var responseList: [SurveyResponseItem] = []
+    private var sureveyResponseList: [SurveyResponseItem] = []
     private var meta: Any?
     private var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
@@ -74,18 +74,13 @@ public class CfLogSurveyEvent {
      */
     @discardableResult
     public func setResponseList(responseList: [SurveyResponseItem]) -> CfLogSurveyEvent {
-        self.responseList.removeAll()
-        for item in responseList{
-            if(LoyaltyConstants.isSurveyResponseObjectValid(responseObject: item, eventType: LoyaltyEventType.survey)){
-                self.responseList.append(contentsOf: responseList)
-            }
-        }
+        self.sureveyResponseList.removeAll()
+        self.sureveyResponseList.append(contentsOf: responseList)
         return self
     }
 
     @discardableResult
     public func setResponseList(responseList: String) -> CfLogSurveyEvent {
-        self.responseList.removeAll()
         if let itemsList = try? JSONDecoder.new.decode([SurveyResponseItem].self, from: Data(responseList.utf8)) {
             setResponseList(responseList: itemsList)
         }
@@ -126,25 +121,10 @@ public class CfLogSurveyEvent {
             ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.survey.rawValue, elementName: "action_value")
         } else if surveyObject == nil {
             ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.survey.rawValue, elementName: "survey_object")
-        } else if actionValue == "submit", responseList.isEmpty {
+        } else if actionValue == "submit", sureveyResponseList.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.survey.rawValue, elementName: "response_list")
-        } else {
-            
-            for item in responseList {
-                if !CoreConstants.shared.enumContains(SurveyType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: LoyaltyEventType.survey.rawValue, className: String(describing: SurveyType.self))
-                } else if item.id.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.survey.rawValue, elementName: "response_question_id")
-                } else if item.question.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.survey.rawValue, elementName: "response_question")
-                }
-            }
-
-            /**
-             * Parsing the values into an object and passing to the setup block to queue
-             * the event based on its priority.
-             */
-            let surveyEventObject = SurveyEventObject(action: actionValue, survey: surveyObject!, response: responseList, meta: meta as? Encodable)
+        } else if(LoyaltyConstants.isSurveyResponseListValid(responseList: sureveyResponseList, eventType: LoyaltyEventType.survey)) {
+            let surveyEventObject = SurveyEventObject(action: actionValue, survey: surveyObject!, response: sureveyResponseList, meta: meta as? Encodable)
             CFSetup().track(contentBlockName: LoyaltyConstants.contentBlockName, eventType: LoyaltyEventType.survey.rawValue, logObject: surveyEventObject, updateImmediately: updateImmediately)
         }
     }
