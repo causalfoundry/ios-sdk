@@ -2,7 +2,7 @@
 //  SurveyCatalogModel.swift
 //
 //
-//  Created by khushbu on 07/11/23.
+//  Created by moizhassankh on 29/01/24.
 //
 
 import Foundation
@@ -33,11 +33,11 @@ public struct SurveyCatalogModel: Codable {
     }
 
     public init(
-        name: String = "",
+        name: String,
         duration: Int = 0,
-        type: String = "",
+        type: String,
         reward_id: String = "",
-        questions_list: [String] = [],
+        questions_list: [String],
         description: String = "",
         creation_date: Int = 0,
         expiry_date: Int = 0,

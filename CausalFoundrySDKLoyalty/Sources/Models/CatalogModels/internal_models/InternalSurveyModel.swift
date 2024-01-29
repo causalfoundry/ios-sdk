@@ -2,13 +2,13 @@
 //  InternalSurveyModel.swift
 //
 //
-//  Created by khushbu on 07/11/23.
+//  Created by moizhassankh on 29/01/24.
 //
 
 import Foundation
 
 public struct InternalSurveyModel: Codable {
-    var id: String?
+    var id: String
     var name: String
     var duration: Int
     var type: String
@@ -35,7 +35,7 @@ public struct InternalSurveyModel: Codable {
     }
 
     public init(
-        id: String? = nil,
+        id: String,
         name: String = "",
         duration: Int = 0,
         type: String = "",
@@ -62,7 +62,7 @@ public struct InternalSurveyModel: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decodeIfPresent(String.self, forKey: .id)
+        id = try container.decode(String.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
         duration = try container.decode(Int.self, forKey: .duration)
         type = try container.decode(String.self, forKey: .type)

@@ -2,7 +2,7 @@
 //  RewardCatalogModel.swift
 //
 //
-//  Created by khushbu on 07/11/23.
+//  Created by moizhassankh on 29/01/24.
 //
 
 import Foundation
@@ -28,7 +28,16 @@ public struct RewardCatalogModel: Codable {
         case organizationName = "organization_name"
     }
 
-    public init(name: String, description: String, type: String, requiredPoints: Float, creationDate: Int64, expiryDate: Int64, organizationId: String, organizationName: String) {
+    public init(
+        name: String,
+        description: String = "",
+        type: String,
+        requiredPoints: Float,
+        creationDate: Int64 = 0,
+        expiryDate: Int64 = 0,
+        organizationId: String = "",
+        organizationName: String = "")
+    {
         self.name = name
         self.description = description
         self.type = type

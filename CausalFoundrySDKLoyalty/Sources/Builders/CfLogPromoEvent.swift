@@ -27,8 +27,8 @@ public class CfLogPromoEvent {
      */
 
     @discardableResult
-    public func setPromoId(promo_id: String) -> CfLogPromoEvent {
-        self.promo_id = promo_id
+    public func setPromoId(promoId: String) -> CfLogPromoEvent {
+        self.promo_id = promoId
         return self
     }
 
@@ -36,15 +36,15 @@ public class CfLogPromoEvent {
      * setPromoAction is required to set the action for the promo
      */
     @discardableResult
-    public func setPromoAction(promo_action: PromoAction) -> CfLogPromoEvent {
-        self.promo_action = promo_action.rawValue
+    public func setPromoAction(promoAction: PromoAction) -> CfLogPromoEvent {
+        self.promo_action = promoAction.rawValue
         return self
     }
 
     @discardableResult
-    public func setPromoAction(promo_action: String) -> CfLogPromoEvent {
+    public func setPromoAction(promoAction: String) -> CfLogPromoEvent {
         if CoreConstants.shared.enumContains(PromoAction.self, name: promo_action) {
-            self.promo_action = promo_action
+            self.promo_action = promoAction
         } else {
             ExceptionManager.throwEnumException(eventType: LoyaltyEventType.promo.rawValue, className: String(String(describing: PromoAction.self)))
         }
@@ -55,8 +55,8 @@ public class CfLogPromoEvent {
      * setPromoTitle is required to set the title of the promo (if any)
      */
     @discardableResult
-    public func setPromoTitle(promo_title: String) -> CfLogPromoEvent {
-        self.promo_title = promo_title
+    public func setPromoTitle(promoTitle: String) -> CfLogPromoEvent {
+        self.promo_title = promoTitle
         return self
     }
 
@@ -64,15 +64,15 @@ public class CfLogPromoEvent {
      * setPromoType is required to set the type of the promo
      */
     @discardableResult
-    public func setPromoType(promo_type: PromoType) -> CfLogPromoEvent {
-        self.promo_type = promo_type.rawValue
+    public func setPromoType(promoType: PromoType) -> CfLogPromoEvent {
+        self.promo_type = promoType.rawValue
         return self
     }
 
     @discardableResult
-    public func setPromoType(promo_type: String) -> CfLogPromoEvent {
-        if CoreConstants.shared.enumContains(PromoType.self, name: promo_type) {
-            self.promo_type = promo_type
+    public func setPromoType(promoType: String) -> CfLogPromoEvent {
+        if CoreConstants.shared.enumContains(PromoType.self, name: promoType) {
+            self.promo_type = promoType
         } else {
             ExceptionManager.throwEnumException(eventType: LoyaltyEventType.promo.rawValue, className: String(describing: PromoType.self))
         }
@@ -158,8 +158,8 @@ public class CfLogPromoEvent {
      * session which is whenever the app goes into background.
      */
     @discardableResult
-    public func updateImmediately(update_immediately: Bool) -> CfLogPromoEvent {
-        self.update_immediately = update_immediately
+    public func updateImmediately(updateImmediately: Bool) -> CfLogPromoEvent {
+        self.update_immediately = updateImmediately
         return self
     }
 
