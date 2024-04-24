@@ -7,26 +7,26 @@
 
 import Foundation
 
-enum CoreEventType: CaseIterable {
-    case identify,
-         page,
-         app,
-         search,
-         media,
-         nudge_response,
-         rate,
-         track
+enum CoreEventType: String, EnumComposable {
+    case Identify
+    case Page
+    case App
+    case Search
+    case Media
+    case NudgeResponse
+    case Rate
+    case Track
 
     var rawValue: String {
         switch self {
-        case .identify: return "identity"
-        case .page: return "page"
-        case .app: return "app"
-        case .search: return "search"
-        case .media: return "media"
-        case .nudge_response: return "nudge_response"
-        case .rate: return "rate"
-        case .track: return "track"
+        case .Identify: return "identity"
+        case .Page: return "page"
+        case .App: return "app"
+        case .Search: return "search"
+        case .Media: return "media"
+        case .NudgeResponse: return "nudge_response"
+        case .Rate: return "rate"
+        case .Track: return "track"
         }
     }
 }

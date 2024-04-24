@@ -8,7 +8,7 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public enum ScanType: String, Codable, EnumComposable {
+public enum ScanType: String, EnumComposable {
     case pin
     case qr_code
 }

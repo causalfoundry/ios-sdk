@@ -8,7 +8,7 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public enum ShopMode: String, Codable, EnumComposable {
+public enum ShopMode: String, EnumComposable {
     case delivery
     case pickup
 }

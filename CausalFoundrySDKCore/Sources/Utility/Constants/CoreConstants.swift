@@ -41,7 +41,7 @@ public class CoreConstants {
     var isDebugMode: Bool = true
     var allowAutoPageTrack: Bool = true
     var isAnonymousUserAllowed: Bool = false
-    var contentBlock: ContentBlock = .core
+    var contentBlock: ContentBlock = .Core
     var contentBlockName: String {
         return contentBlock.rawValue
     }
@@ -84,7 +84,7 @@ public class CoreConstants {
     }
 }
 
-public protocol EnumComposable: RawRepresentable, CaseIterable {}
+public protocol EnumComposable: Codable, RawRepresentable, CaseIterable {}
 
 extension CoreConstants {
     func isSearchItemModelObjectValid(itemValue: SearchItemModel, eventType: CoreEventType) {

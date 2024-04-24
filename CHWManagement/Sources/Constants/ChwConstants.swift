@@ -9,7 +9,7 @@ import CausalFoundrySDKCore
 import Foundation
 
 enum ChwConstants {
-    static var contentBlockName: String = ContentBlock.chw_mgmt.rawValue
+    static var contentBlockName: String = ContentBlock.PatientMgmt.rawValue
 
     static func verifyChwCatalog(_ chwId: String, _ chwCatalogModel: ChwCatalogModel) -> InternalChwModel? {
         let catalogName = CatalogSubject.chw.rawValue + " catalog"

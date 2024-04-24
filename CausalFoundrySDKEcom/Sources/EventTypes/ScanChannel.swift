@@ -8,7 +8,7 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public enum ScanChannel: String, Codable, EnumComposable {
+public enum ScanChannel: String, EnumComposable {
     case app
     case ussd
 }

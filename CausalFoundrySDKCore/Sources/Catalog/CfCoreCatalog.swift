@@ -63,6 +63,10 @@ public class CfCoreCatalog {
             )
             MMKVHelper.shared.writeUserCatalog(userCataLogData: userCatalogModel)
             CFSetup().updateCoreCatalogItem(subject: CatalogSubject.user, catalogObject: [internalUserModel].toData()!)
+            
+            
+            print("USER Catalog Items: \(MMKVHelper.shared.readCatalogData(subject: CatalogSubject.user))")
+            
         }
     }
 }

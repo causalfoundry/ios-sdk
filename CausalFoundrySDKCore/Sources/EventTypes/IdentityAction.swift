@@ -8,9 +8,19 @@
 import Foundation
 
 public enum IdentityAction: String, CaseIterable {
-    case register
-    case login
-    case logout
-    case blocked
-    case unblocked
+    case Register
+    case Login
+    case Logout
+    case Blocked
+    case Unblocked
+    
+    public var rawValue: String {
+            switch self {
+            case .Register: return "register"
+            case .Login: return "login"
+            case .Logout: return "logout"
+            case .Blocked: return "blocked"
+            case .Unblocked: return "unblocked"
+            }
+        }
 }

@@ -8,7 +8,7 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public enum ItemAction: String, Codable, EnumComposable {
+public enum ItemAction: String, EnumComposable {
     case view
     case add
     case update

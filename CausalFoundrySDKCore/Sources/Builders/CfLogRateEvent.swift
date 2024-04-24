@@ -15,7 +15,7 @@ public class CfLogRateEvent {
     var meta: Any?
     var updateImmediately: Bool?
 
-    init(rateValue: Float, type: String, subjectId: String, contentBlock: String = ContentBlock.core.rawValue, meta: Any? = nil, updateImmediately _: Bool) {
+    init(rateValue: Float, type: String, subjectId: String, contentBlock: String = ContentBlock.Core.rawValue, meta: Any? = nil, updateImmediately _: Bool) {
         self.rateValue = rateValue
         self.type = type
         self.subjectId = subjectId
@@ -61,7 +61,7 @@ public class CfLogRateEventBuilder {
         if CoreConstants.shared.enumContains(ContentBlock.self, name: contentBlock) {
             self.contentBlock = contentBlock
         } else {
-            ExceptionManager.throwEnumException(eventType: CoreEventType.rate.rawValue, className: String(describing: ContentBlock.self))
+            ExceptionManager.throwEnumException(eventType: CoreEventType.Rate.rawValue, className: String(describing: ContentBlock.self))
         }
         return self
     }
@@ -94,7 +94,7 @@ public class CfLogRateEventBuilder {
         if CoreConstants.shared.enumContains(RateType.self, name: type) {
             self.type = type
         } else {
-            ExceptionManager.throwEnumException(eventType: CoreEventType.rate.rawValue, className: String(describing: RateType.self))
+            ExceptionManager.throwEnumException(eventType: CoreEventType.Rate.rawValue, className: String(describing: RateType.self))
         }
         return self
     }
@@ -141,17 +141,17 @@ public class CfLogRateEventBuilder {
      */
     public func build() {
         if rateValue < 0 || rateValue > 5 {
-            ExceptionManager.throwIllegalStateException(eventType: CoreEventType.rate.rawValue, message: "Rate Value should be 0 to 5 (both inclusive)", className: String(describing: CfLogRateEvent.self))
+            ExceptionManager.throwIllegalStateException(eventType: CoreEventType.Rate.rawValue, message: "Rate Value should be 0 to 5 (both inclusive)", className: String(describing: CfLogRateEvent.self))
             return
         }else if type.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.rate.rawValue, elementName: "\(RateType.self)")
+            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Rate.rawValue, elementName: "\(RateType.self)")
             return
         }else if subjectId.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.rate.rawValue, elementName: "subject_id")
+            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Rate.rawValue, elementName: "subject_id")
             return
         }
 
         let rateObject = RateObject(rate_value: rateValue, type: type, subject_id: subjectId, meta: meta as? Encodable)
-        CFSetup().track(contentBlockName: contentBlock, eventType: CoreEventType.rate.rawValue, logObject: rateObject, updateImmediately: updateImmediately)
+        CFSetup().track(contentBlockName: contentBlock, eventType: CoreEventType.Rate.rawValue, logObject: rateObject, updateImmediately: updateImmediately)
     }
 }

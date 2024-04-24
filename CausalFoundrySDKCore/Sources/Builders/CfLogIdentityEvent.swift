@@ -72,7 +72,7 @@ public class CfLogIdentityBuilder {
         if IdentityAction.allCases.filter({ $0.rawValue == identity_action }).first != nil {
             self.identity_action = identity_action
         } else {
-            ExceptionManager.throwEnumException(eventType: CoreEventType.identify.rawValue, className: String(describing: CfLogIdentityEvent.self))
+            ExceptionManager.throwEnumException(eventType: CoreEventType.Identify.rawValue, className: String(describing: CfLogIdentityEvent.self))
         }
         return self
     }
@@ -114,7 +114,7 @@ public class CfLogIdentityBuilder {
     public func setCountry(country: String?) -> CfLogIdentityBuilder {
         if country != nil {
             if !CoreConstants.shared.enumContains(CountryCode.self, name: country!) {
-                ExceptionManager.throwEnumException(eventType: CoreEventType.identify.rawValue, className: String(describing: "CfLogIdentityEvent"))
+                ExceptionManager.throwEnumException(eventType: CoreEventType.Identify.rawValue, className: String(describing: "CfLogIdentityEvent"))
             }
         }
 
@@ -143,34 +143,34 @@ public class CfLogIdentityBuilder {
          * provided at all.
          */
         if app_user_id == nil {
-            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.identify.rawValue, elementName: "app_user_id")
+            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Identify.rawValue, elementName: "app_user_id")
             return
         }
         else if identity_action == nil {
-            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.identify.rawValue, elementName: "identity_action")
+            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Identify.rawValue, elementName: "identity_action")
             return
-        }else if((identity_action == IdentityAction.blocked.rawValue || identity_action == IdentityAction.unblocked.rawValue) &&
+        }else if((identity_action == IdentityAction.Blocked.rawValue || identity_action == IdentityAction.Unblocked.rawValue) &&
                  (blocked_reason == nil)){
-                  ExceptionManager.throwIsRequiredException(eventType: CoreEventType.identify.rawValue, elementName: "reason")
+                  ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Identify.rawValue, elementName: "reason")
                   return
         }
         /**
          * Parsing the values into an object and passing to the setup block to queue
          * the event based on its priority.
          */
-        if(identity_action == IdentityAction.register.rawValue || identity_action == IdentityAction.login.rawValue){
+        if(identity_action == IdentityAction.Register.rawValue || identity_action == IdentityAction.Login.rawValue){
             CFSetup().updateUserId(appUserId: app_user_id!)
         }
-        if identity_action == IdentityAction.logout.rawValue {
+        if identity_action == IdentityAction.Logout.rawValue {
             CoreConstants.shared.logoutEvent = true
         }
         
         var indetityObject = IdentifyObject(action: identity_action, blocked: nil)
-        if (identity_action == IdentityAction.blocked.rawValue || identity_action == IdentityAction.unblocked.rawValue){
+        if (identity_action == IdentityAction.Blocked.rawValue || identity_action == IdentityAction.Unblocked.rawValue){
             indetityObject.blocked = IdentifyObject.Blocked(reason: blocked_reason!, remarks: blocked_remarks)
             
         }
 
-        CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.identify.rawValue, logObject: indetityObject, updateImmediately: update_immediately, eventTime: 0)
+        CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.Identify.rawValue, logObject: indetityObject, updateImmediately: update_immediately, eventTime: 0)
     }
 }

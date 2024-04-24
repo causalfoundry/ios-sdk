@@ -8,7 +8,7 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public enum SurveyAction: String, Codable, EnumComposable {
+public enum SurveyAction: String, EnumComposable {
     case view
     case impression
     case start

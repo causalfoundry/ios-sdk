@@ -8,7 +8,7 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public enum ScheduleDeliveryAction: String, Codable, EnumComposable {
+public enum ScheduleDeliveryAction: String, EnumComposable {
     case schedule
     case update
 }

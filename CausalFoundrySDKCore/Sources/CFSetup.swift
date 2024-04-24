@@ -52,9 +52,9 @@ public class CFSetup: NSObject, IngestProtocol {
         verifyAccessToken()
 
         var cBlockName = contentBlockName
-        if cBlockName == ContentBlock.e_commerce.rawValue {
+        if cBlockName == ContentBlock.ECommerce.rawValue {
             cBlockName = "e-commerce"
-        } else if contentBlockName == ContentBlock.e_learning.rawValue {
+        } else if contentBlockName == ContentBlock.ELearning.rawValue {
             cBlockName = "e-learning"
         }
 

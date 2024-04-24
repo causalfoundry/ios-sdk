@@ -7,12 +7,26 @@
 
 import Foundation
 
-public enum ContentBlock: String, CaseIterable, EnumComposable {
-    case core
-    case e_learning
-    case e_commerce
-    case payment
-    case social
-    case loyalty
-    case chw_mgmt
+public enum ContentBlock: String, EnumComposable {
+    case Core,
+         ECommerce,
+         ELearning,
+         Payment,
+         Social,
+         Loyalty,
+         PatientMgmt
+    
+
+    public var rawValue: String {
+        switch self {
+        case .Core: return "core"
+        case .ECommerce: return "e_commerce"
+        case .ELearning: return "e_learning"
+        case .Payment: return "payment"
+        case .Social: return "social"
+        case .Loyalty: return "loyalty"
+        case .PatientMgmt: return "patient_mgmt"
+        }
+    }
+    
 }

@@ -8,12 +8,26 @@
 import Foundation
 
 public enum EducationalLevel: String, CaseIterable, EnumComposable {
-    case primary
-    case lowerSecondary = "lower_secondary"
-    case upperSecondary = "upper_secondary"
-    case nonTertiary = "non_tertiary"
-    case tertiary
-    case bachelors
-    case masters
-    case doctorate
+    case Primary
+    case LowerSecondary
+    case UpperSecondary
+    case NonTertiary
+    case Tertiary
+    case Bachelors
+    case Masters
+    case Doctorate
+    
+    public var rawValue: String {
+        switch self {
+        case .Primary: return "primary"
+        case .LowerSecondary: return "lower_secondary"
+        case .UpperSecondary: return "upper_secondary"
+        case .NonTertiary: return "non_tertiary"
+        case .Tertiary: return "tertiary"
+        case .Bachelors: return "bachelors"
+        case .Masters: return "masters"
+        case .Doctorate: return "doctorate"
+        }
+    }
+    
 }

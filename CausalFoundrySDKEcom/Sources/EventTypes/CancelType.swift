@@ -8,7 +8,7 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public enum CancelType: String, Codable, EnumComposable {
+public enum CancelType: String, EnumComposable {
     case cart
     case order
 }

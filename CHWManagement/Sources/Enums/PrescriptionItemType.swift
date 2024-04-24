@@ -10,7 +10,7 @@ import Foundation
 
 import Foundation
 
-public enum PrescriptionItemType: String, Codable, EnumComposable {
+public enum PrescriptionItemType: String, EnumComposable {
     case tablet
     case capsule
     case syrup

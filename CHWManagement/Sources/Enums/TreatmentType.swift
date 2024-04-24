@@ -8,7 +8,7 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public enum TreatmentType: String, Codable, EnumComposable {
+public enum TreatmentType: String, EnumComposable {
     case medical_review
     case blood_pressure
     case blood_glucose

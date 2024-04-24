@@ -48,7 +48,7 @@ public class CausualFoundry {
             let currentTimeMillis = Date().timeIntervalSince1970 * 1000
             startTime = Int64(currentTimeMillis) - appStartTime
         }
-        CFLogAppEventBuilder().setAppEvent(appAction: .open)
+        CFLogAppEventBuilder().setAppEvent(appAction: .Open)
             .setStartTime(start_time: Int(startTime))
             .updateImmediately(update_immediately: false)
             .build()
@@ -60,7 +60,7 @@ public class CausualFoundry {
         if CoreConstants.shared.isAppPaused {
             let currentTimeMillis = Date().timeIntervalSince1970 * 1000
             CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
-            CFLogAppEventBuilder().setAppEvent(appAction: .resume)
+            CFLogAppEventBuilder().setAppEvent(appAction: .Resume)
                 .setStartTime(start_time: 0)
                 .updateImmediately(update_immediately: false)
                 .build()
@@ -71,6 +71,10 @@ public class CausualFoundry {
 
     @objc func appDidBecomeActive() {
         CoreConstants.shared.isAppOpen = true
+        
+        if #available(iOS 13.0, *){
+            CFSDKPerformUpload()
+        }
         
         if #available(iOS 13.0, *), !isBackgroundAppRefreshEnabled() {
             // Start the timer when the app enters the foreground to periodically send events when bg permission not provided
@@ -102,7 +106,7 @@ public class CausualFoundry {
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
         CoreConstants.shared.sessionEndTime = Int64(currentTimeMillis)
         CoreConstants.shared.isAppOpen = false
-        CFLogAppEventBuilder().setAppEvent(appAction: .background)
+        CFLogAppEventBuilder().setAppEvent(appAction: .Background)
             .setStartTime(start_time: 0)
             .updateImmediately(update_immediately: false)
             .build()
@@ -117,7 +121,7 @@ public class CausualFoundry {
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
         CoreConstants.shared.sessionEndTime = Int64(currentTimeMillis)
 
-        CFLogAppEventBuilder().setAppEvent(appAction: .close)
+        CFLogAppEventBuilder().setAppEvent(appAction: .Close)
             .setStartTime(start_time: 0)
             .updateImmediately(update_immediately: false)
             .build()

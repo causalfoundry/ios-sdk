@@ -8,7 +8,7 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public enum RedeemType: String, Codable, EnumComposable {
+public enum RedeemType: String, EnumComposable {
     case cash
     case airtime
     case other

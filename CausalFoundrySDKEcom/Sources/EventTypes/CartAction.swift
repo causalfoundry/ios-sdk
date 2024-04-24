@@ -8,7 +8,7 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public enum CartAction: String, Codable, EnumComposable {
+public enum CartAction: String, EnumComposable {
     case add_item
     case remove_item
 }

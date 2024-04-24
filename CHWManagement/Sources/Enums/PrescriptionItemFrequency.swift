@@ -8,7 +8,7 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public enum PrescriptionItemFrequency: String, Codable, EnumComposable {
+public enum PrescriptionItemFrequency: String, EnumComposable {
     case AM
     case PM
     case OD

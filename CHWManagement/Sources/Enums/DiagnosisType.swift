@@ -8,7 +8,7 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public enum DiagnosisType: String, Codable, EnumComposable {
+public enum DiagnosisType: String, EnumComposable {
     case bloodPressure = "blood_pressure"
     case bloodGlucose = "blood_glucose"
     case bmi

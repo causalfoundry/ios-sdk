@@ -178,7 +178,7 @@ public enum ExceptionManager {
 
         let exceptionDataObject = ExceptionDataObject(
             title: message,
-            eventType: CoreEventType.nudge_response.rawValue,
+            eventType: CoreEventType.NudgeResponse.rawValue,
             exceptionType: "IllegalArgumentException",
             exceptionSource: "SDK",
             stackTrace: "Nudge Object:\n\(nudgeObject) \n\nException:\n\(exception)",
@@ -196,7 +196,7 @@ public enum ExceptionManager {
 
         let exceptionDataObject = ExceptionDataObject(
             title: message,
-            eventType: CoreEventType.app.rawValue,
+            eventType: CoreEventType.App.rawValue,
             exceptionType: "IllegalArgumentException",
             exceptionSource: "SDK",
             stackTrace: "Value: \(speed) \n\nException:\n\(exception)",

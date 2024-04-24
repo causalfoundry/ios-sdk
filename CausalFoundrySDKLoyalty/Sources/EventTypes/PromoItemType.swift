@@ -8,7 +8,7 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public enum PromoItemType: String, Codable, EnumComposable {
+public enum PromoItemType: String, EnumComposable {
     case blood
     case oxygen
     case drug
