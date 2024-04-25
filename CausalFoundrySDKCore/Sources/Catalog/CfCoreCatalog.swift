@@ -17,8 +17,6 @@ public class CfCoreCatalog {
            let catalogItem = try? JSONDecoder.new.decode(UserCatalogModel.self, from: data)
         {
             CfCoreCatalog.updateUserCatalogData(appUserId: appUserId, userCatalogModel: catalogItem)
-        }else{
-            print("FAILED TO DECODE:  \(userCatalogModelString.data(using: .utf8))")
         }
         return
     }

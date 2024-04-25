@@ -33,7 +33,7 @@ public extension MMKVHelper {
                 newUpdatedData = catalogTableData.toData()
             }
         } catch {
-            print("Error decoding data into Person: \(error)")
+            print("Error decoding data into CHW: \(error)")
         }
         return newUpdatedData
     }

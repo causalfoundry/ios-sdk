@@ -14,9 +14,9 @@ struct RateObject: Codable {
     let meta: Encodable?
 
     enum CodingKeys: String, CodingKey {
-        case rate_value
+        case rateValue = "rate_value"
         case type
-        case subject_id
+        case subjectId = "subject_id"
         case meta
     }
 
@@ -31,9 +31,9 @@ struct RateObject: Codable {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(rateValue, forKey: .rate_value)
+        try container.encode(rateValue, forKey: .rateValue)
         try container.encode(type, forKey: .type)
-        try container.encode(subjectId, forKey: .subject_id)
+        try container.encode(subjectId, forKey: .subjectId)
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
@@ -43,9 +43,9 @@ struct RateObject: Codable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        rateValue = try container.decode(Float.self, forKey: .rate_value)
+        rateValue = try container.decode(Float.self, forKey: .rateValue)
         type = try container.decode(String.self, forKey: .type)
-        subjectId = try container.decode(String.self, forKey: .subject_id)
+        subjectId = try container.decode(String.self, forKey: .subjectId)
         if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {

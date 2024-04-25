@@ -164,7 +164,7 @@ public class CfLogSearchEventBuilder {
         if !resultsIdsList.isEmpty {
             if let itemIds = try? JSONDecoder.new.decode([String].self, from: resultsIdsList.data(using: .utf8)!) {
                 for item in itemIds {
-                    let searchItemObject = SearchItemModel(item_id: item, item_type: resultListItemType, facility_id: resultsFacilityId)
+                    let searchItemObject = SearchItemModel(item_id: item, item_type: resultListItemType, facilityId: resultsFacilityId)
                     CoreConstants.shared.isSearchItemModelObjectValid(itemValue: searchItemObject, eventType: CoreEventType.Search)
                     resultsList.append(searchItemObject)
                 }
@@ -268,7 +268,7 @@ public class CfLogSearchEventBuilder {
             return
         }
 
-        let searchObject = SearchObject(search_id: getSearchId(), query: queryText!, search_module: searchModule, results_list: resultsList, filter: filterValue, page: pageValue, meta: meta)
+        let searchObject = SearchObject(searchId: getSearchId(), query: queryText!, searchModule: searchModule, resultsList: resultsList, filter: filterValue, page: pageValue, meta: meta)
         CFSetup().track(contentBlockName: contentBlock, eventType: CoreEventType.Search.rawValue, logObject: searchObject, updateImmediately: updateImmediately)
         
     }

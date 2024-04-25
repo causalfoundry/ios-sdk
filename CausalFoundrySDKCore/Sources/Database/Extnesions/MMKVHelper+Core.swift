@@ -8,7 +8,7 @@
 import Foundation
 
 public extension MMKVHelper {
-    func getCorecatalogTypeData(newData: Data, oldData: Data, subject: CatalogSubject) -> Data? {
+    func getCoreCatalogTypeData(newData: Data, oldData: Data, subject: CatalogSubject) -> Data? {
         var newUpdatedData: Data?
         do {
             let decoder = JSONDecoder.new

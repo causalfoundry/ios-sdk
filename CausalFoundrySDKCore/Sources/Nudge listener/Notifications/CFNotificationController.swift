@@ -64,6 +64,16 @@ public final class CFNotificationController: NSObject {
                    eventTime: 0)
     }
     
+    func trackExpired(nudgeRef: String, response: NudgeRepsonseObject.NudgeRepsonse) {
+        let nudgeResponse = NudgeRepsonseObject(nudgeRef: nudgeRef, response: response)
+        CFSetup()
+            .track(contentBlockName: CoreConstants.shared.contentBlockName,
+                   eventType: CoreEventType.NudgeResponse.rawValue,
+                   logObject: nudgeResponse,
+                   updateImmediately: true,
+                   eventTime: 0)
+    }
+    
     func trackAndOpen(object: BackendNudgeMainObject) {
        track(nudgeRef: object.ref, response: .open)
         if let cta = object.nd.cta, cta == "redirect" || cta == "add_to_cart",

@@ -10,17 +10,17 @@ import Foundation
 public struct SearchItemModel: Codable {
     var id: String?
     var type: String?
-    var facility_id: String?
+    var facilityId: String?
 
-    public init(item_id: String, item_type: String, facility_id: String = "") {
+    public init(item_id: String, item_type: String, facilityId: String = "") {
         id = item_id
         type = item_type
-        self.facility_id = facility_id
+        self.facilityId = facilityId
     }
 
     enum CodingKeys: String, CodingKey {
         case id
         case type
-        case facility_id
+        case facilityId = "facility_id"
     }
 }
