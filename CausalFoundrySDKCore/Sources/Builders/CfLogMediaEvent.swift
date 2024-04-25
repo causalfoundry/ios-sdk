@@ -213,7 +213,7 @@ public class CfLogMediaEventBuilder {
         }else if media_type?.isNilOREmpty() == true {
             ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Media.rawValue, elementName: "media_type")
             return
-        }else if media_type != MediaType.image.rawValue {
+        }else if media_type != MediaType.Image.rawValue {
                 if (media_action?.isNilOREmpty()) == true {
                     ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Media.rawValue, elementName: "media_type")
                     return
@@ -223,7 +223,7 @@ public class CfLogMediaEventBuilder {
                     return
                 }
             } else {
-                media_action = MediaAction.play.rawValue
+                media_action = MediaAction.Play.rawValue
                 duration_value = 0
             }
     

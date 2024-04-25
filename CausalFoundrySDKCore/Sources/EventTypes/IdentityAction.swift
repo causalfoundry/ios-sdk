@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum IdentityAction: String, CaseIterable {
+public enum IdentityAction: String, EnumComposable {
     case Register
     case Login
     case Logout

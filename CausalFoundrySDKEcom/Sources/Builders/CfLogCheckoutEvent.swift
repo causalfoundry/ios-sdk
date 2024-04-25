@@ -70,7 +70,7 @@ public class CfLogCheckoutEvent {
      */
     @discardableResult
     public func setCurrency(currencyValue: String) -> CfLogCheckoutEvent {
-        if CoreConstants.shared.enumContains(InternalCurrencyCode.self, name: currencyValue) {
+        if CoreConstants.shared.enumContains(CurrencyCode.self, name: currencyValue) {
             self.currencyValue = currencyValue
         } else {
             ExceptionManager.throwEnumException(eventType: EComEventType.checkout.rawValue, className: "CurrencyCode")
@@ -244,7 +244,7 @@ public class CfLogCheckoutEvent {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.checkout.rawValue, elementName: "shopMode")
             return
         }else if currencyValue.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.checkout.rawValue, elementName: String(describing: InternalCurrencyCode.self))
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.checkout.rawValue, elementName: String(describing: CurrencyCode.self))
             return
         }else if(itemList.isEmpty){
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.checkout.rawValue, elementName: "itemList")

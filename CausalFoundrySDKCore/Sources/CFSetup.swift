@@ -45,7 +45,27 @@ public class CFSetup: NSObject, IngestProtocol {
     }
 
     public func updateCoreCatalogItem(subject: CatalogSubject, catalogObject: Data) {
-        catalogAPIHandler.updateCoreCatalogItem(subject: subject, catalogObject: catalogObject)
+        
+        let oldData = MMKVHelper.shared.readCatalogData(subject: CatalogSubject.user) ?? Data()
+        let newData = getCoreCatalogTypeData(newData: catalogObject, oldData: oldData, subject: CatalogSubject.user)
+        catalogAPIHandler.updateCoreCatalogItem(subject: subject, catalogObject: newData ?? catalogObject)
+    }
+    
+    func getCoreCatalogTypeData(newData: Data, oldData: Data, subject: CatalogSubject) -> Data? {
+        var newUpdatedData: Data?
+        do {
+            let decoder = JSONDecoder.new
+            if subject == .user {
+                var catalogTableData = try decoder.decode([InternalUserModel].self, from: oldData)
+                let catalogNewData = try decoder.decode([InternalUserModel].self, from: newData)
+                catalogTableData.removeAll(where: { $0.id == catalogNewData.first?.id })
+                catalogTableData.append(catalogNewData.first!)
+                newUpdatedData = catalogTableData.toData()
+            }
+        } catch {
+            print("Error decoding data into Person: \(error)")
+        }
+        return newUpdatedData
     }
 
     public func track<T: Codable>(contentBlockName: String, eventType: String, logObject: T?, updateImmediately: Bool, eventTime: Int64 = 0) {

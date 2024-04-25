@@ -211,7 +211,6 @@ public class CFLogBuilder {
             }else {
                 CoreConstants.shared.sdkKey = "Bearer \(appSdkKey)"
                 let dnspeed = NetworkMonitor.shared.downloadSpeed
-                print(dnspeed)
             }
             CFSetup().initalize(pauseSDK: pauseSDK, updateImmediately: updateImmediately)
         }

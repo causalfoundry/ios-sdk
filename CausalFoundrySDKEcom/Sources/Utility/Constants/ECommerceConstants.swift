@@ -38,7 +38,7 @@ public enum ECommerceConstants {
             ExceptionManager.throwIsRequiredException(eventType:eventName , elementName: "item_currency")
             return false
         }
-        if !CoreConstants.shared.enumContains(InternalCurrencyCode.self, name:itemValue.currency) {
+        if !CoreConstants.shared.enumContains(CurrencyCode.self, name:itemValue.currency) {
             ExceptionManager.throwEnumException(eventType: eventName, className:"CurrencyCode")
             return false
         }

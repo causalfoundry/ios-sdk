@@ -20,9 +20,6 @@ public class CatalogAPIHandler {
         if #available(iOS 13.0, *) {
             let url = URL(string: "\(APIConstants.updateCatalog)\(catalogSubject)")!
             let arrayWithoutDuplicates = Array(NSOrderedSet(array: catalogMainObject)) as! [Any]
-            
-            print("USER Catalog \(arrayWithoutDuplicates)")
-            
             BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: arrayWithoutDuplicates) { result in
                 switch result {
                 case .success:

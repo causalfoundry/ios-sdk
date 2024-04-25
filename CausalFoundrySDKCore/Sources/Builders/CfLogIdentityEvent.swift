@@ -72,7 +72,7 @@ public class CfLogIdentityBuilder {
         if IdentityAction.allCases.filter({ $0.rawValue == identity_action }).first != nil {
             self.identity_action = identity_action
         } else {
-            ExceptionManager.throwEnumException(eventType: CoreEventType.Identify.rawValue, className: String(describing: CfLogIdentityEvent.self))
+            ExceptionManager.throwEnumException(eventType: CoreEventType.Identify.rawValue, className: String(describing: IdentityAction.self))
         }
         return self
     }

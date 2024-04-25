@@ -12,7 +12,7 @@ public class CfLogSearchEvent {
     var queryText: String?
     var resultsList: [SearchItemModel] = []
     var filterValue: Any?
-    var searchModule: String = SearchModuleType.core.rawValue
+    var searchModule: String = SearchModuleType.Core.rawValue
     var contentBlock: String = CoreConstants.shared.contentBlockName
     var pageValue: Int = 1
     var isNewSearch: Bool = true
@@ -36,7 +36,7 @@ public class CfLogSearchEventBuilder {
     var queryText: String?
     var resultsList: [SearchItemModel] = []
     var filterValue: Any?
-    var searchModule: String = SearchModuleType.core.rawValue
+    var searchModule: String = SearchModuleType.Core.rawValue
     var contentBlock: String = CoreConstants.shared.contentBlockName
     var pageValue: Int = 1
     var isNewSearch: Bool = true

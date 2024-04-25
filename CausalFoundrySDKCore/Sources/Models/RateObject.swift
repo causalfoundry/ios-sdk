@@ -8,9 +8,9 @@
 import Foundation
 
 struct RateObject: Codable {
-    let rate_value: Float
+    let rateValue: Float
     let type: String
-    let subject_id: String
+    let subjectId: String
     let meta: Encodable?
 
     enum CodingKeys: String, CodingKey {
@@ -20,10 +20,10 @@ struct RateObject: Codable {
         case meta
     }
 
-    init(rate_value: Float, type: String, subject_id: String, meta: Encodable? = nil) {
-        self.rate_value = rate_value
+    init(rateValue: Float, type: String, subjectId: String, meta: Encodable? = nil) {
+        self.rateValue = rateValue
         self.type = type
-        self.subject_id = subject_id
+        self.subjectId = subjectId
         self.meta = meta
     }
 
@@ -31,9 +31,9 @@ struct RateObject: Codable {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(rate_value, forKey: .rate_value)
+        try container.encode(rateValue, forKey: .rate_value)
         try container.encode(type, forKey: .type)
-        try container.encode(subject_id, forKey: .subject_id)
+        try container.encode(subjectId, forKey: .subject_id)
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
@@ -43,9 +43,9 @@ struct RateObject: Codable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        rate_value = try container.decode(Float.self, forKey: .rate_value)
+        rateValue = try container.decode(Float.self, forKey: .rate_value)
         type = try container.decode(String.self, forKey: .type)
-        subject_id = try container.decode(String.self, forKey: .subject_id)
+        subjectId = try container.decode(String.self, forKey: .subject_id)
         if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {

@@ -7,11 +7,22 @@
 
 import Foundation
 
-public enum MediaAction: String, CaseIterable {
-    case view = "View"
-    case play
-    case pause
-    case seek
-    case finish
-    case impression
+public enum MediaAction: String, EnumComposable {
+    case View
+    case Play
+    case Pause
+    case Seek
+    case Finish
+    case Impression
+    
+    public var rawValue: String {
+            switch self {
+            case .View: return "view"
+            case .Play: return "play"
+            case .Pause: return "pause"
+            case .Seek: return "seek"
+            case .Finish: return "finish"
+            case .Impression: return "impression"
+            }
+        }
 }

@@ -72,15 +72,11 @@ public class CoreConstants {
 
     public var isAgainRate: Bool = false
 
-    public func enumContains<T: EnumComposable>(_: T.Type, name: String) -> Bool where T.RawValue == String {
-//
-//        if type == LanguageCode.self {
-        ////            return (T.allCases.contains{ ($0.languageISO3Code == name) || ($0.languageISO2Code == name) || ($0.languageFullName == name) })
-//
-//            return (T.allCases.contains{ ($0.languageISO3Code == name)} ||  T.allCases.contains{ ($0.T.allCases.contains{ ($0.languageISO3Code == name)} == name)} || T.allCases.contains{ ($0.languageFullName == name)})
-//        }else{
+    public func enumContains<T: EnumComposable>(_: T.Type, name: String?) -> Bool where T.RawValue == String {
+        if(name == nil || name!.isEmpty){
+            return false
+        }
         return T.allCases.contains { $0.rawValue == name }
-        // }
     }
 }
 

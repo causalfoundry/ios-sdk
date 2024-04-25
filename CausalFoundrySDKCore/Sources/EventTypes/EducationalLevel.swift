@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum EducationalLevel: String, CaseIterable, EnumComposable {
+public enum EducationalLevel: String, EnumComposable {
     case Primary
     case LowerSecondary
     case UpperSecondary
