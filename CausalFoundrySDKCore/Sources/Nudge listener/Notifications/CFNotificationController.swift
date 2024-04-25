@@ -38,17 +38,22 @@ public final class CFNotificationController: NSObject {
                     return
                 }
                 let identifier = UUID().uuidString
-                let content = UNMutableNotificationContent()
-                content.title = object.nd.message?.title ?? ""
-                content.body = NudgeUtils.getBodyTextBasedOnTemplate(nudgeObject: object)
-                content.categoryIdentifier = "BackendNudgeMainObject"
-                if let data = object.toData() {
-                    content.userInfo = [userInfoKey: data]
+                if let attributedString = NSAttributedString.fromHTML((object.nd.message?.body)!) {
+                    let content = UNMutableNotificationContent()
+                    content.title = object.nd.message?.title ?? ""
+                    content.body = attributedString.string
+                    content.categoryIdentifier = "BackendNudgeMainObject"
+                    if let data = object.toData() {
+                        content.userInfo = [userInfoKey: data]
+                    }
+                    content.sound = UNNotificationSound.default
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                    let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+                    try await center.add(request)
+                } else {
+                    print("Failed to convert HTML string to attributed string.")
                 }
-                content.sound = UNNotificationSound.default
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-                try await center.add(request)
+                
             }
         }
     }

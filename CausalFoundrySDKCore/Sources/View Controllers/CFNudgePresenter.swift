@@ -180,12 +180,17 @@ fileprivate final class CFNudgeView: UIView {
         addSubview(titleView)
         
         let bodyView = UILabel(frame: .zero)
-        bodyView.text = NudgeUtils.getBodyTextBasedOnTemplate(nudgeObject: object)
         bodyView.font = UIFont.preferredFont(forTextStyle: .body)
         bodyView.numberOfLines = 0
         bodyView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(bodyView)
         
+        if let attributedString = NSAttributedString.fromHTML((object.nd.message?.body)!) {
+            bodyView.attributedText = attributedString
+        } else {
+            print("Failed to convert HTML string to attributed string.")
+        }
+        addSubview(bodyView)
+    
         let button = UIButton(type: .close)
         button.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
