@@ -141,7 +141,7 @@ public class CfLogQuestionEvent {
          * Will throw and exception if the answerId provided is null or no value is
          * provided at all.
          */
-        if action == QuestionAction.answer.rawValue, answerId == nil || answerId == "" {
+        if action == QuestionAction.Answer.rawValue, answerId == nil || answerId == "" {
             ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.question.rawValue, elementName: "answer_id")
             return
         }

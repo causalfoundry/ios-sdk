@@ -142,10 +142,10 @@ public class CfLogExamEvent {
         }else if action.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.exam.rawValue, elementName: "exam_action")
             return
-        }else if action == ExamAction.submit.rawValue, durationValue == nil {
+        }else if action == ExamAction.Submit.rawValue, durationValue == nil {
             ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.exam.rawValue, elementName: "duration_value")
             return
-        } else if action == ExamAction.result.rawValue, scoreValue == nil || isPassed == nil {
+        } else if action == ExamAction.Result.rawValue, scoreValue == nil || isPassed == nil {
             ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.exam.rawValue, elementName: "score")
             return
         } else {
