@@ -62,7 +62,7 @@ public class CfLogCounselingEvent {
     @discardableResult
     public func setCounselingType(_ counselingType: String) -> CfLogCounselingEvent {
         if !CoreConstants.shared.enumContains(CounselingType.self, name: counselingType) {
-            ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.counseling.rawValue, className: String(describing: counselingType))
+            ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.counseling.rawValue, className: String(describing: counselingType))
         } else {
             self.counselingType = counselingType
         }
@@ -162,27 +162,27 @@ public class CfLogCounselingEvent {
          * provided at all.
          */
         guard let patientID = patientId else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.counseling.rawValue, elementName: "patient_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.counseling.rawValue, elementName: "patient_id")
             return
         }
         guard let siteID = siteId else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.counseling.rawValue, elementName: "site_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.counseling.rawValue, elementName: "site_id")
             return
         }
 
         guard let counselingID = counselingId else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.counseling.rawValue, elementName: "counseling_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.counseling.rawValue, elementName: "counseling_id")
             return
         }
         guard let counseling_Type = counselingType else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.counseling.rawValue, elementName: "counseling_type")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.counseling.rawValue, elementName: "counseling_type")
             return
         }
         if counselingPlanList.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.counseling.rawValue, elementName: "counseling_plan_list")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.counseling.rawValue, elementName: "counseling_plan_list")
             return
         } else {
-            if ChwEventValidation.verifyCounselingPlanList(eventType: ChwMgmtEventType.counseling, counselingPlanList: counselingPlanList) {
+            if ChwEventValidation.verifyCounselingPlanList(eventType: PatientMgmtEventType.counseling, counselingPlanList: counselingPlanList) {
                 let counselingEventObject = CounselingEventObject(
                     patientId: patientID,
                     siteId: siteID,
@@ -193,7 +193,7 @@ public class CfLogCounselingEvent {
                 )
                 CFSetup().track(
                     contentBlockName: ChwConstants.contentBlockName,
-                    eventType: ChwMgmtEventType.counseling.rawValue,
+                    eventType: PatientMgmtEventType.counseling.rawValue,
                     logObject: counselingEventObject,
                     updateImmediately: updateImmediately
                 )

@@ -221,7 +221,7 @@ public class CfLogSubmitAssessmentEvent {
          * provided at all.
          */
         guard let patient_id = patient_id else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "patient_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_assessment.rawValue, elementName: "patient_id")
             return
         }
         /**
@@ -229,7 +229,7 @@ public class CfLogSubmitAssessmentEvent {
          * provided at all.
          */
         guard let site_id = site_id else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "patient_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_assessment.rawValue, elementName: "patient_id")
             return
         }
         /**
@@ -237,7 +237,7 @@ public class CfLogSubmitAssessmentEvent {
          * provided at all.
          */
         guard let referred_for_assessment = referred_for_assessment else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "patient_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_assessment.rawValue, elementName: "patient_id")
             return
         }
         /**
@@ -245,14 +245,14 @@ public class CfLogSubmitAssessmentEvent {
          * or no diagnosis_values_list is provided at all.
          */
         if diagnosis_values_list.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "patient_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_assessment.rawValue, elementName: "patient_id")
             return
                 /**
                     * Will throw and exception if the diagnosis_result_list provided is null or
                     * no diagnosis_result_list is provided at all.
                     */
         } else if diagnosis_result_list.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "patient_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_assessment.rawValue, elementName: "patient_id")
             return
         } else {
             /**
@@ -261,29 +261,29 @@ public class CfLogSubmitAssessmentEvent {
              */
             for item in diagnosis_values_list {
                 if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.submitAssessment.rawValue, className: String(describing: DiagnosisType.self))
+                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_assessment.rawValue, className: String(describing: DiagnosisType.self))
                 } else if item.value.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "diagnosis_item value")
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_assessment.rawValue, elementName: "diagnosis_item value")
                 } else if item.unit.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "diagnosis_item unit")
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_assessment.rawValue, elementName: "diagnosis_item unit")
                 }
             }
 
             for item in diagnosis_result_list {
                 if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.submitAssessment.rawValue, className: String(describing: DiagnosisType.self))
+                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_assessment.rawValue, className: String(describing: DiagnosisType.self))
                 } else if item.value.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "diagnosis_item value")
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_assessment.rawValue, elementName: "diagnosis_item value")
                 } else if item.unit.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "diagnosis_item unit")
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_assessment.rawValue, elementName: "diagnosis_item unit")
                 }
             }
 
             for item in diagnosis_symptoms_list {
                 if !CoreConstants.shared.enumContains(DiagnosisSymptomType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.submitAssessment.rawValue, className: String(describing: DiagnosisSymptomType.self))
+                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_assessment.rawValue, className: String(describing: DiagnosisSymptomType.self))
                 } else if item.symptoms.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitAssessment.rawValue, elementName: "diagnosis symptom")
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_assessment.rawValue, elementName: "diagnosis symptom")
                 }
 
                 let submitAssessmentEventObject = SubmitAssessmentEventObject(
@@ -293,7 +293,7 @@ public class CfLogSubmitAssessmentEvent {
                     meta: meta as? Encodable
                 )
 
-                CFSetup().track(contentBlockName: ChwConstants.contentBlockName, eventType: ChwMgmtEventType.submitAssessment.rawValue, logObject: submitAssessmentEventObject, updateImmediately: update_immediately)
+                CFSetup().track(contentBlockName: ChwConstants.contentBlockName, eventType: PatientMgmtEventType.submit_assessment.rawValue, logObject: submitAssessmentEventObject, updateImmediately: update_immediately)
             }
         }
     }

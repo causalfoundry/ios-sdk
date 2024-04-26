@@ -38,8 +38,8 @@ public class CfLogChwModuleEventBuilder {
      * an enum as param.
      */
     @discardableResult
-    public func setChwModuleEvent(_ chwModuleType: ChwModuleType) -> CfLogChwModuleEventBuilder {
-        moduleType = chwModuleType.rawValue
+    public func setChwModuleEvent(patientModuleType: PatientModuleType) -> CfLogChwModuleEventBuilder {
+        moduleType = patientModuleType.rawValue
         return self
     }
 
@@ -50,11 +50,11 @@ public class CfLogChwModuleEventBuilder {
      * an string as param.
      */
     @discardableResult
-    public func setChwModuleEvent(_ chwModuleType: String) -> CfLogChwModuleEventBuilder {
-        if CoreConstants.shared.enumContains(ChwModuleType.self, name: chwModuleType) {
-            moduleType = chwModuleType
+    public func setChwModuleEvent(patientModuleType: String) -> CfLogChwModuleEventBuilder {
+        if CoreConstants.shared.enumContains(PatientModuleType.self, name: patientModuleType) {
+            moduleType = patientModuleType
         } else {
-            ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.moduleSelection.rawValue, className: "ChwModuleType")
+            ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.module_selection.rawValue, className: "PatientModuleType")
         }
         return self
     }
@@ -95,16 +95,16 @@ public class CfLogChwModuleEventBuilder {
          * provided at all.
          */
         guard let moduleType = moduleType, !moduleType.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.moduleSelection.rawValue, elementName: "ChwModuleType")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.module_selection.rawValue, elementName: "PatientModuleType")
             return
         }
 
-        if !CoreConstants.shared.enumContains(ChwModuleType.self, name: self.moduleType!) {
-            ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.moduleSelection.rawValue, className: "ChwModuleType")
+        if !CoreConstants.shared.enumContains(PatientModuleType.self, name: self.moduleType!) {
+            ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.module_selection.rawValue, className: "PatientModuleType")
             return
         }
 
         let chwModelObject = ChwModelObject(type: moduleType, meta: meta)
-        CFSetup().track(contentBlockName: ChwConstants.contentBlockName, eventType: ChwMgmtEventType.moduleSelection.rawValue, logObject: chwModelObject, updateImmediately: updateImmediately)
+        CFSetup().track(contentBlockName: ChwConstants.contentBlockName, eventType: PatientMgmtEventType.module_selection.rawValue, logObject: chwModelObject, updateImmediately: updateImmediately)
     }
 }

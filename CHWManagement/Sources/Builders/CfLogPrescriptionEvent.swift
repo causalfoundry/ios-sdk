@@ -145,7 +145,7 @@ public class CfLogPrescriptionEvent {
          * provided at all.
          */
         guard patientId != nil else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName: "patient_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.prescription.rawValue, elementName: "patient_id")
             return
         }
         /**
@@ -153,7 +153,7 @@ public class CfLogPrescriptionEvent {
          * provided at all.
          */
         guard siteId != nil else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName: "site_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.prescription.rawValue, elementName: "site_id")
             return
         }
         /**
@@ -161,7 +161,7 @@ public class CfLogPrescriptionEvent {
          * provided at all.
          */
         guard prescriptionId != nil else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName: "prescription_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.prescription.rawValue, elementName: "prescription_id")
             return
         }
 
@@ -171,7 +171,7 @@ public class CfLogPrescriptionEvent {
          */
 
         if prescriptionList.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName: "prescription_list")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.prescription.rawValue, elementName: "prescription_list")
         } else {
             /**
              * Parsing the values into an object and passing to the setup block to queue
@@ -180,22 +180,22 @@ public class CfLogPrescriptionEvent {
 
             for item in prescriptionList {
                 if item.drugId.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName: "drug_id")
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.prescription.rawValue, elementName: "drug_id")
 
                 } else if item.name.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName: "name")
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.prescription.rawValue, elementName: "name")
                 } else if !CoreConstants.shared.enumContains(PrescriptionItemType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.prescription.rawValue, className: String(describing: PrescriptionItemType.self))
+                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.prescription.rawValue, className: String(describing: PrescriptionItemType.self))
                 } else if !CoreConstants.shared.enumContains(PrescriptionItemFrequency.self, name: item.frequency) {
-                    ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.prescription.rawValue, className: String(describing: PrescriptionItemFrequency.self))
+                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.prescription.rawValue, className: String(describing: PrescriptionItemFrequency.self))
                 } else if !CoreConstants.shared.enumContains(ItemAction.self, name: item.action) {
-                    ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.prescription.rawValue, className: String(describing: ItemAction.self))
+                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.prescription.rawValue, className: String(describing: ItemAction.self))
                 } else if item.dosageValue < 0.0 {
-                    ExceptionManager.throwInvalidException(eventType: ChwMgmtEventType.prescription.rawValue, paramName: "dosage_value", className: String(describing: CfLogPrescriptionEvent.self))
+                    ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.prescription.rawValue, paramName: "dosage_value", className: String(describing: CfLogPrescriptionEvent.self))
                 } else if item.dosageUnit.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.prescription.rawValue, elementName: "dosage_unit")
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.prescription.rawValue, elementName: "dosage_unit")
                 } else if item.prescribedDays < 0 {
-                    ExceptionManager.throwInvalidException(eventType: ChwMgmtEventType.prescription.rawValue, paramName: "prescribed_days", className: String(describing: CfLogPrescriptionEvent.self))
+                    ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.prescription.rawValue, paramName: "prescribed_days", className: String(describing: CfLogPrescriptionEvent.self))
                 }
             }
 
@@ -208,7 +208,7 @@ public class CfLogPrescriptionEvent {
             )
             CFSetup().track(
                 contentBlockName: ChwConstants.contentBlockName,
-                eventType: ChwMgmtEventType.prescription.rawValue,
+                eventType: PatientMgmtEventType.prescription.rawValue,
                 logObject: prescriptionEventObject,
                 updateImmediately: updateImmediately
             )

@@ -139,7 +139,7 @@ public class CfLogLifestyleEvent {
          * provided at all.
          */
         guard let patientId = patientId else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.lifestyle.rawValue, elementName: "patient_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.lifestyle.rawValue, elementName: "patient_id")
             return
         }
 
@@ -148,7 +148,7 @@ public class CfLogLifestyleEvent {
          * provided at all.
          */
         guard let siteId = siteId else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.lifestyle.rawValue, elementName: "site_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.lifestyle.rawValue, elementName: "site_id")
             return
         }
 
@@ -157,12 +157,12 @@ public class CfLogLifestyleEvent {
          * provided at all.
          */
         guard let lifestyleId = lifestyleId else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.lifestyle.rawValue, elementName: "lifestyle_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.lifestyle.rawValue, elementName: "lifestyle_id")
             return
         }
 
         if lifestylePlanList.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.lifestyle.rawValue, elementName: "lifestyle_plan_list")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.lifestyle.rawValue, elementName: "lifestyle_plan_list")
             return
         } else {
             /**
@@ -172,10 +172,10 @@ public class CfLogLifestyleEvent {
 
             for item in lifestylePlanList {
                 if item.name.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.lifestyle.rawValue, elementName: "name")
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.lifestyle.rawValue, elementName: "name")
                     return
                 } else if !CoreConstants.shared.enumContains(ItemAction.self, name: item.action) {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.lifestyle.rawValue, elementName: String(describing: ItemAction.self))
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.lifestyle.rawValue, elementName: String(describing: ItemAction.self))
                     return
                 }
             }
@@ -190,7 +190,7 @@ public class CfLogLifestyleEvent {
 
             CFSetup().track(
                 contentBlockName: ChwConstants.contentBlockName,
-                eventType: ChwMgmtEventType.lifestyle.rawValue,
+                eventType: PatientMgmtEventType.lifestyle.rawValue,
                 logObject: lifestyleEventObject,
                 updateImmediately: updateImmediately
             )

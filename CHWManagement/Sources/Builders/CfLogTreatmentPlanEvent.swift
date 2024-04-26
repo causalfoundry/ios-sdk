@@ -140,49 +140,49 @@ public class CfLogTreatmentPlanEvent {
      */
     public func build() {
         guard let patientId = patientId, !patientId.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.treatmentPlan.rawValue, elementName: "patient_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.treatment_plan.rawValue, elementName: "patient_id")
             return
         }
 
         guard let siteId = siteId, !siteId.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.treatmentPlan.rawValue, elementName: "site_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.treatment_plan.rawValue, elementName: "site_id")
             return
         }
 
         guard let treatmentPlanId = treatmentPlanId, !treatmentPlanId.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.treatmentPlan.rawValue, elementName: "treatment_plan_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.treatment_plan.rawValue, elementName: "treatment_plan_id")
             return
         }
 
         guard !treatmentPlanList.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.treatmentPlan.rawValue, elementName: "treatment_plan_list")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.treatment_plan.rawValue, elementName: "treatment_plan_list")
             return
         }
 
         for item in treatmentPlanList {
             guard CoreConstants.shared.enumContains(TreatmentType.self, name: item.type) else {
-                ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.treatmentPlan.rawValue, className: String(describing: TreatmentType.self))
+                ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.treatment_plan.rawValue, className: String(describing: TreatmentType.self))
                 return
             }
 
             guard CoreConstants.shared.enumContains(TreatmentFrequency.self, name: item.frequency) else {
-                ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.treatmentPlan.rawValue, className: String(describing: TreatmentFrequency.self))
+                ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.treatment_plan.rawValue, className: String(describing: TreatmentFrequency.self))
                 return
             }
 
             guard CoreConstants.shared.enumContains(ItemAction.self, name: item.action) else {
-                ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.treatmentPlan.rawValue, className: String(describing: ItemAction.self))
+                ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.treatment_plan.rawValue, className: String(describing: ItemAction.self))
                 return
             }
 
             guard item.value != 0 else {
-                ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.treatmentPlan.rawValue, elementName: "value")
+                ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.treatment_plan.rawValue, elementName: "value")
                 return
             }
 
             guard item.isApproved != nil else {
                 ExceptionManager.throwIsRequiredException(
-                    eventType: ChwMgmtEventType.treatmentPlan.rawValue,
+                    eventType: PatientMgmtEventType.treatment_plan.rawValue,
                     elementName: "is_approved"
                 )
                 return
@@ -199,7 +199,7 @@ public class CfLogTreatmentPlanEvent {
 
         CFSetup().track(
             contentBlockName: ChwConstants.contentBlockName,
-            eventType: ChwMgmtEventType.treatmentPlan.rawValue,
+            eventType: PatientMgmtEventType.treatment_plan.rawValue,
             logObject: treatmentPlanEventObject,
             updateImmediately: updateImmediately
         )

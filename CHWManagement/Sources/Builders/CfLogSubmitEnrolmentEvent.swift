@@ -55,7 +55,7 @@ public class CfLogSubmitEnrolmentEvent {
     @discardableResult
     public func setAction(_ action: String) -> CfLogSubmitEnrolmentEvent {
         if !CoreConstants.shared.enumContains(ItemAction.self, name: action) {
-            ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.submitEnrolment.rawValue, className: String(describing: ItemAction.self))
+            ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: ItemAction.self))
         } else {
             self.action = action
         }
@@ -328,7 +328,7 @@ public class CfLogSubmitEnrolmentEvent {
          * provided at all.
          */
         guard patientId != nil else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitEnrolment.rawValue, elementName: "patient_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "patient_id")
             return
         }
         /**
@@ -336,7 +336,7 @@ public class CfLogSubmitEnrolmentEvent {
          * provided at all.
          */
         guard siteId != nil else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitEnrolment.rawValue, elementName: "site_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "site_id")
             return
         }
 
@@ -346,7 +346,7 @@ public class CfLogSubmitEnrolmentEvent {
          */
 
         guard action != nil else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitEnrolment.rawValue, elementName: "action")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "action")
             return
         }
         /**
@@ -354,7 +354,7 @@ public class CfLogSubmitEnrolmentEvent {
          * patient_status_list is provided at all.
          */
         if patientStatusList.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitEnrolment.rawValue, elementName: "patient_status_list")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "patient_status_list")
             return
         } else {
             /**
@@ -363,53 +363,53 @@ public class CfLogSubmitEnrolmentEvent {
              */
             for item in diagnosisValuesList {
                 if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.submitEnrolment.rawValue, className: String(describing: DiagnosisType.self))
+                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: DiagnosisType.self))
                     return
                 } else if item.value.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitEnrolment.rawValue, elementName: "diagnosis_item value")
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "diagnosis_item value")
                     return
                 } else if item.unit.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitEnrolment.rawValue, elementName: "diagnosis_item unit")
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "diagnosis_item unit")
                     return
                 }
             }
 
             for item in diagnosisResultList {
                 if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.submitEnrolment.rawValue, className: String(describing: DiagnosisType.self))
+                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: DiagnosisType.self))
                     return
                 } else if item.value.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitEnrolment.rawValue, elementName: "diagnosis_item value")
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "diagnosis_item value")
                     return
                 } else if item.unit.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitEnrolment.rawValue, elementName: "diagnosis_item unit")
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "diagnosis_item unit")
                     return
                 }
             }
 
             for item in patientStatusList {
                 if !CoreConstants.shared.enumContains(DiagnosisSymptomType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.submitEnrolment.rawValue, className: String(describing: DiagnosisSymptomType.self))
+                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: DiagnosisSymptomType.self))
                 } else if !CoreConstants.shared.enumContains(PatientStatusValueType.self, name: item.value) {
-                    ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.submitEnrolment.rawValue, className: String(describing: PatientStatusValueType.self))
+                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: PatientStatusValueType.self))
                 }
             }
 
             for item in treatmentPlanList {
                 if !CoreConstants.shared.enumContains(TreatmentType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.submitEnrolment.rawValue, className: String(describing: TreatmentType.self))
+                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: TreatmentType.self))
                 } else if !CoreConstants.shared.enumContains(TreatmentFrequency.self, name: item.frequency) {
                     ExceptionManager.throwEnumException(
-                        eventType: ChwMgmtEventType.submitEnrolment.rawValue,
+                        eventType: PatientMgmtEventType.submit_enrolment.rawValue,
                         className: String(describing: TreatmentFrequency.self)
                     )
                 } else if !CoreConstants.shared.enumContains(ItemAction.self, name: item.action) {
                     ExceptionManager.throwEnumException(
-                        eventType: ChwMgmtEventType.submitEnrolment.rawValue,
+                        eventType: PatientMgmtEventType.submit_enrolment.rawValue,
                         className: String(describing: ItemAction.self)
                     )
                 } else if item.value == 0 {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitEnrolment.rawValue, elementName: "value")
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "value")
                 }
             }
 
@@ -425,7 +425,7 @@ public class CfLogSubmitEnrolmentEvent {
             )
             CFSetup().track(
                 contentBlockName: ChwConstants.contentBlockName,
-                eventType: ChwMgmtEventType.submitEnrolment.rawValue,
+                eventType: PatientMgmtEventType.submit_enrolment.rawValue,
                 logObject: submitEnrolmentEventObject,
                 updateImmediately: updateImmediately
             )

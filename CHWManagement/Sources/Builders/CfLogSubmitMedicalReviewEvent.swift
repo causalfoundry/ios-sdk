@@ -109,7 +109,7 @@ public class CfLogSubmitMedicalReviewEvent {
          * is in question.
          */
         guard let patientId = patientId else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.medicalReview.rawValue, elementName: "patient_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.medical_review.rawValue, elementName: "patient_id")
             return
         }
 
@@ -118,7 +118,7 @@ public class CfLogSubmitMedicalReviewEvent {
          * is concluded.
          */
         guard let siteId = siteId else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.medicalReview.rawValue, elementName: "site_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.medical_review.rawValue, elementName: "site_id")
             return
         }
         /**
@@ -126,7 +126,7 @@ public class CfLogSubmitMedicalReviewEvent {
          * provided at all.
          */
         if medicalReviewObject == nil {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.medicalReview.rawValue, elementName: "medical review object")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.medical_review.rawValue, elementName: "medical review object")
             return
         }
         /**
@@ -135,15 +135,15 @@ public class CfLogSubmitMedicalReviewEvent {
          */
 
         if medicalReviewObject?.id == nil {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.medicalReview.rawValue, elementName: "medical review id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.medical_review.rawValue, elementName: "medical review id")
             return
         } else {
             if let medicalReviewSummaries = medicalReviewObject?.reviewSummaryList {
                 for item in medicalReviewSummaries {
                     if !CoreConstants.shared.enumContains(ReviewSummaryItem.self, name: item.type) {
-                        ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.medicalReview.rawValue, className: String(describing: ReviewSummaryItem.self))
+                        ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.medical_review.rawValue, className: String(describing: ReviewSummaryItem.self))
                     } else if item.value.isEmpty {
-                        ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.medicalReview.rawValue, elementName: "\(item.type) values")
+                        ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.medical_review.rawValue, elementName: "\(item.type) values")
                         return
                     }
                 }
@@ -158,7 +158,7 @@ public class CfLogSubmitMedicalReviewEvent {
 
             CFSetup().track(
                 contentBlockName: ChwConstants.contentBlockName,
-                eventType: ChwMgmtEventType.medicalReview.rawValue,
+                eventType: PatientMgmtEventType.medical_review.rawValue,
                 logObject: submitMedicalReviewObject,
                 updateImmediately: updateImmediately
             )

@@ -144,7 +144,7 @@ public class CfLogInvestigationEvent {
          * provided at all.
          */
         guard let patientId = patientId, !patientId.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.investigation.rawValue, elementName: "patient_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.investigation.rawValue, elementName: "patient_id")
             return
         }
         /**
@@ -152,7 +152,7 @@ public class CfLogInvestigationEvent {
          * provided at all.
          */
         guard let siteId = siteId, !siteId.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.investigation.rawValue, elementName: "site_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.investigation.rawValue, elementName: "site_id")
             return
         }
 
@@ -161,7 +161,7 @@ public class CfLogInvestigationEvent {
          * provided at all.
          */
         guard let investigationId = investigationId, !investigationId.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.investigation.rawValue, elementName: "investigation_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.investigation.rawValue, elementName: "investigation_id")
             return
         }
         /**
@@ -169,7 +169,7 @@ public class CfLogInvestigationEvent {
          * provided at all.
          */
         guard !prescribedTestsList.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.investigation.rawValue, elementName: "prescribed_tests_list")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.investigation.rawValue, elementName: "prescribed_tests_list")
             return
         }
 
@@ -179,10 +179,10 @@ public class CfLogInvestigationEvent {
          */
         for item in prescribedTestsList {
             if item.name.isEmpty {
-                ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.investigation.rawValue, elementName: "name")
+                ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.investigation.rawValue, elementName: "name")
                 return
             } else if !CoreConstants.shared.enumContains(ItemAction.self, name: item.action) {
-                ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.investigation.rawValue, elementName: String(describing: ItemAction.self))
+                ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.investigation.rawValue, elementName: String(describing: ItemAction.self))
             }
         }
 
@@ -196,7 +196,7 @@ public class CfLogInvestigationEvent {
 
         CFSetup().track(
             contentBlockName: ChwConstants.contentBlockName,
-            eventType: ChwMgmtEventType.investigation.rawValue,
+            eventType: PatientMgmtEventType.investigation.rawValue,
             logObject: investigationEventObject,
             updateImmediately: updateImmediately
         )

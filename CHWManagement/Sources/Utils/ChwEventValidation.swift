@@ -9,7 +9,7 @@ import CausalFoundrySDKCore
 import Foundation
 
 enum ChwEventValidation {
-    static func verifyCounselingPlanList(eventType: ChwMgmtEventType, counselingPlanList: [CounselingPlanItem]) -> Bool {
+    static func verifyCounselingPlanList(eventType: PatientMgmtEventType, counselingPlanList: [CounselingPlanItem]) -> Bool {
         for item in counselingPlanList {
             if item.name.isEmpty {
                 ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "name")

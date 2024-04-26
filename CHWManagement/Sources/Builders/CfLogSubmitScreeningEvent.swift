@@ -70,8 +70,8 @@ public class CfLogSubmitScreeningEvent {
 
     @discardableResult
     public func setSiteCategory(category: String) -> CfLogSubmitScreeningEvent {
-        if !CoreConstants.shared.enumContains(ChwSiteType.self, name: category) {
-            ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.submitScreening.rawValue, className: String(describing: ChwSiteType.self))
+        if !CoreConstants.shared.enumContains(HcwSiteType.self, name: category) {
+            ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_screening.rawValue, className: String(describing: HcwSiteType.self))
         } else {
             self.category = category
         }
@@ -85,7 +85,7 @@ public class CfLogSubmitScreeningEvent {
      * enum provided.
      */
     @discardableResult
-    public func setSiteCategory(category: ChwSiteType) -> CfLogSubmitScreeningEvent {
+    public func setSiteCategory(category: HcwSiteType) -> CfLogSubmitScreeningEvent {
         self.category = category.rawValue
         return self
     }
@@ -100,7 +100,7 @@ public class CfLogSubmitScreeningEvent {
     @discardableResult
     public func setScreeningType(type: String) -> CfLogSubmitScreeningEvent {
         if !CoreConstants.shared.enumContains(ScreeningType.self, name: type) {
-            ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.submitScreening.rawValue, className: String(describing: ScreeningType.self))
+            ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_screening.rawValue, className: String(describing: ScreeningType.self))
         } else {
             self.type = type
         }
@@ -281,7 +281,7 @@ public class CfLogSubmitScreeningEvent {
          * provided at all.
          */
         if patientId == nil || patientId!.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "patient_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "patient_id")
             return
         }
         /**
@@ -290,7 +290,7 @@ public class CfLogSubmitScreeningEvent {
          */
 
         if siteId == nil || siteId!.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "site_id")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "site_id")
             return
         }
         /**
@@ -299,7 +299,7 @@ public class CfLogSubmitScreeningEvent {
          */
 
         if category == nil || category!.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "category")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "category")
             return
         }
         /**
@@ -308,7 +308,7 @@ public class CfLogSubmitScreeningEvent {
          */
 
         if type == nil || type!.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "type")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "type")
             return
         }
         /**
@@ -317,7 +317,7 @@ public class CfLogSubmitScreeningEvent {
          */
 
         if referredForAssessment == nil {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "referred_for_assessment")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "referred_for_assessment")
             return
         }
         /**
@@ -326,7 +326,7 @@ public class CfLogSubmitScreeningEvent {
          */
 
         if diagnosisValuesList.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "diagnosis_values_list")
+            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "diagnosis_values_list")
             return
         }
 
@@ -340,22 +340,22 @@ public class CfLogSubmitScreeningEvent {
         } else {
             for item in diagnosisValuesList {
                 if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.submitScreening.rawValue, className: String(describing: DiagnosisType.self))
+                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_screening.rawValue, className: String(describing: DiagnosisType.self))
                 } else if item.value.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "diagnosis_item value")
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "diagnosis_item value")
                 } else if item.unit.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "diagnosis_item unit")
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "diagnosis_item unit")
                 }
             }
 
             for item in diagnosisResultList {
                 if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: ChwMgmtEventType.submitScreening.rawValue, className: String(describing: DiagnosisType.self))
+                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_screening.rawValue, className: String(describing: DiagnosisType.self))
                 } else if item.value.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "diagnosis_item value")
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "diagnosis_item value")
 
                 } else if item.unit.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: ChwMgmtEventType.submitScreening.rawValue, elementName: "diagnosis_item unit")
+                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "diagnosis_item unit")
                 }
             }
 
@@ -371,7 +371,7 @@ public class CfLogSubmitScreeningEvent {
             )
 
             CFSetup().track(
-                contentBlockName: ChwConstants.contentBlockName, eventType: ChwMgmtEventType.submitScreening.rawValue, logObject: submitScreeningEventObject,
+                contentBlockName: ChwConstants.contentBlockName, eventType: PatientMgmtEventType.submit_screening.rawValue, logObject: submitScreeningEventObject,
                 updateImmediately: updateImmediately,
                 eventTime: eventTimeValue
             )

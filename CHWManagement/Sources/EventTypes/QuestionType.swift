@@ -1,14 +1,14 @@
 //
-//  SurveyType.swift
+//  QuestionType.swift
 //
 //
-//  Created by khushbu on 08/11/23.
+//  Created by MOIZ HASSAN KHAN on 26/4/24.
 //
 
 import CausalFoundrySDKCore
 import Foundation
 
-public enum SurveyType: String, EnumComposable {
+public enum QuestionType: String, EnumComposable {
     case OpenEnded
     case ClosedEnded
     case Nominal
