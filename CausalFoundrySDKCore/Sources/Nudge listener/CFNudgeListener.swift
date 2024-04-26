@@ -104,7 +104,7 @@ class CFNudgeListener {
 
         // Call a function for each expired object
         expiredObjects.forEach { expiredNudge in
-            CFNotificationController.shared.trackExpired(nudgeRef: expiredNudge.ref, response: .expired)
+            CFNotificationController.shared.track(nudgeRef: expiredNudge.ref, response: .expired)
         }
         
         for object in nonExpiredNudges {
@@ -114,7 +114,7 @@ class CFNudgeListener {
     
     
     @available(iOS 13.0, *)
-    func fetchAndDisplayInAppMessagesNudges(nudgeScreenType: NudgeScreenType) async throws {
+    func fetchAndDisplayInAppMessagesNudges(nudgeScreenType: NudgeScreenType) async throws {        
         let inAppMessageNudgeObjects = try await fetchInAppMessagesNudges(nudgeScreenType: nudgeScreenType)
         
         // Filter the objects to get only the ones that are not expired
@@ -125,7 +125,7 @@ class CFNudgeListener {
 
         // Call a function for each expired object
         expiredObjects.forEach { expiredNudge in
-            CFNotificationController.shared.trackExpired(nudgeRef: expiredNudge.ref, response: .expired)
+            CFNotificationController.shared.track(nudgeRef: expiredNudge.ref, response: .expired)
         }
         
         if(!nonExpiredNudges.isEmpty){
@@ -184,6 +184,7 @@ extension BackendNudgeMainObject {
           {
             "ref": "adp_0",
             "time": "2023-08-30T11:53:00+02:00",
+            "expire_at": "2024-08-30T11:53:00+02:00",
             "nd": {
               "type": "message",
               "message": {
@@ -198,7 +199,7 @@ extension BackendNudgeMainObject {
                     "data.ct_user.country"
                   ]
                 },
-                "body": "Hello from Country: {{ data.ct_user.country }} and buy {{primary}} AND {{secondary}}",
+                "body": "Hello from Country: <b style='color:red;'>BOLD</b> and buy <i>Italic</i>",
                 "tags": [
                   "incentive"
                 ]

@@ -45,7 +45,7 @@ public struct BackendNudgeMainObject: Codable, Hashable {
 
     struct Nd: Codable, Hashable {
         let type: String?
-        let message: Message?
+        let message: Message
         let renderMethod: RenderMethod?
         let cta: String?
 
@@ -67,9 +67,9 @@ public struct BackendNudgeMainObject: Codable, Hashable {
     // MARK: - Message
 
     struct Message: Codable, Hashable {
-        let title: String?
+        let title: String
         let tmplCFG: TmplCFG?
-        let body: String?
+        let body: String
         let tags: [String]?
 
         enum CodingKeys: String, CodingKey {

@@ -38,21 +38,17 @@ public final class CFNotificationController: NSObject {
                     return
                 }
                 let identifier = UUID().uuidString
-                if let attributedString = NSAttributedString.fromHTML((object.nd.message?.body)!) {
-                    let content = UNMutableNotificationContent()
-                    content.title = object.nd.message?.title ?? ""
-                    content.body = attributedString.string
-                    content.categoryIdentifier = "BackendNudgeMainObject"
-                    if let data = object.toData() {
-                        content.userInfo = [userInfoKey: data]
-                    }
-                    content.sound = UNNotificationSound.default
-                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-                    let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-                    try await center.add(request)
-                } else {
-                    print("Failed to convert HTML string to attributed string.")
+                let content = UNMutableNotificationContent()
+                content.title = object.nd.message.title
+                content.body = object.nd.message.body.htmlAttributedString().with(font:UIFont.preferredFont(forTextStyle: .body)).string
+                content.categoryIdentifier = "BackendNudgeMainObject"
+                if let data = object.toData() {
+                    content.userInfo = [userInfoKey: data]
                 }
+                content.sound = UNNotificationSound.default
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+                try await center.add(request)
                 
             }
         }
@@ -69,20 +65,10 @@ public final class CFNotificationController: NSObject {
                    eventTime: 0)
     }
     
-    func trackExpired(nudgeRef: String, response: NudgeRepsonseObject.NudgeRepsonse) {
-        let nudgeResponse = NudgeRepsonseObject(nudgeRef: nudgeRef, response: response)
-        CFSetup()
-            .track(contentBlockName: CoreConstants.shared.contentBlockName,
-                   eventType: CoreEventType.NudgeResponse.rawValue,
-                   logObject: nudgeResponse,
-                   updateImmediately: true,
-                   eventTime: 0)
-    }
-    
     func trackAndOpen(object: BackendNudgeMainObject) {
        track(nudgeRef: object.ref, response: .open)
         if let cta = object.nd.cta, cta == "redirect" || cta == "add_to_cart",
-           let itemType = object.nd.message?.tmplCFG?.itemPairCFG?.itemType, !itemType.isEmpty,
+           let itemType = object.nd.message.tmplCFG?.itemPairCFG?.itemType, !itemType.isEmpty,
            let itemID = object.extra?.itemPair?.ids?.first
         {
             if let closure = NudgeOnClickObject.nudgeOnClickInterface {
