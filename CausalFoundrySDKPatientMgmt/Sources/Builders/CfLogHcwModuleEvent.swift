@@ -1,36 +1,20 @@
 //
-//  CfLogChwModuleEvent.swift
+//  CfLogHcwModuleEvent.swift
 //
 //
-//  Created by khushbu on 25/10/23.
+//  Created by MOIZ HASSAN KHAN on 26/04/24.
 //
 
 import CausalFoundrySDKCore
 import Foundation
 
-public class CfLogChwModuleEvent {
-    var moduleType: String?
-    var meta: Any?
-    var updateImmediately: Bool = CoreConstants.shared.updateImmediately
-
-    public init(moduleType: String? = nil, meta: Any? = nil, updateImmediately: Bool) {
-        self.moduleType = moduleType
-        self.meta = meta
-        self.updateImmediately = updateImmediately
-    }
-    /**
-     * CfLogChwModuleEvent is required to log events related to selection of modules in a
-     * chw management app screen. You can select the module type with the log values.
-     */
-}
-
-public class CfLogChwModuleEventBuilder {
+public class CfLogHcwModuleEvent {
     public var moduleType: String?
     public var meta: Any?
     public var updateImmediately: Bool = CoreConstants.shared.updateImmediately
-
+    
     public init() {}
-
+    
     /**
      * setChwModuleEvent is for the providing the current module selected by the
      * user in the chw mgmt section on the main screen. You can use the default enum
@@ -38,11 +22,11 @@ public class CfLogChwModuleEventBuilder {
      * an enum as param.
      */
     @discardableResult
-    public func setChwModuleEvent(patientModuleType: PatientModuleType) -> CfLogChwModuleEventBuilder {
+    public func setPatientModuleType(patientModuleType: PatientModuleType) -> CfLogHcwModuleEvent {
         moduleType = patientModuleType.rawValue
         return self
     }
-
+    
     /**
      * setChwModuleEvent is for the providing the current module selected by the
      * user in the chw mgmt section on the main screen. You can use the default enum
@@ -50,7 +34,7 @@ public class CfLogChwModuleEventBuilder {
      * an string as param.
      */
     @discardableResult
-    public func setChwModuleEvent(patientModuleType: String) -> CfLogChwModuleEventBuilder {
+    public func setPatientModuleType(patientModuleType: String) -> CfLogHcwModuleEvent {
         if CoreConstants.shared.enumContains(PatientModuleType.self, name: patientModuleType) {
             moduleType = patientModuleType
         } else {
@@ -58,18 +42,18 @@ public class CfLogChwModuleEventBuilder {
         }
         return self
     }
-
+    
     /**
      * You can pass any type of value in setMeta. It is for developer and partners to log
      * additional information with the log that they find would be helpful for logging and
      * providing more context to the log. Default value for the meta is null.
      */
     @discardableResult
-    public func setMeta(_ meta: Any?) -> CfLogChwModuleEventBuilder {
+    public func setMeta(meta: Any?) -> CfLogHcwModuleEvent {
         self.meta = meta
         return self
     }
-
+    
     /**
      * updateImmediately is responsible for updating the values ot the backend immediately.
      * By default this is set to false or whatever the developer has set in the SDK
@@ -78,17 +62,17 @@ public class CfLogChwModuleEventBuilder {
      * session which is whenever the app goes into background.
      */
     @discardableResult
-    public func updateImmediately(_ updateImmediately: Bool) -> CfLogChwModuleEventBuilder {
+    public func updateImmediately(updateImmediately: Bool) -> CfLogHcwModuleEvent {
         self.updateImmediately = updateImmediately
         return self
     }
-
+    
     /**
      * build will validate all of the values provided and if passes will call the track
      * function and queue the events based on it's updateImmediately value and also on the
      * user's network resources.
      */
-
+    
     public func build() {
         /**
          * Will throw and exception if the action provided is null or no action is
@@ -98,12 +82,12 @@ public class CfLogChwModuleEventBuilder {
             ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.module_selection.rawValue, elementName: "PatientModuleType")
             return
         }
-
+        
         if !CoreConstants.shared.enumContains(PatientModuleType.self, name: self.moduleType!) {
             ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.module_selection.rawValue, className: "PatientModuleType")
             return
         }
-
+        
         let chwModelObject = ChwModelObject(type: moduleType, meta: meta)
         CFSetup().track(contentBlockName: ChwConstants.contentBlockName, eventType: PatientMgmtEventType.module_selection.rawValue, logObject: chwModelObject, updateImmediately: updateImmediately)
     }

@@ -27,7 +27,7 @@ public class CfLogSubmitMedicalReviewEvent {
      * is in question.
      */
     @discardableResult
-    public func setPatientId(_ patientId: String) -> CfLogSubmitMedicalReviewEvent {
+    public func setPatientId(patientId: String) -> CfLogSubmitMedicalReviewEvent {
         self.patientId = patientId
         return self
     }
@@ -38,7 +38,7 @@ public class CfLogSubmitMedicalReviewEvent {
      */
 
     @discardableResult
-    public func setSiteId(_ siteId: String) -> CfLogSubmitMedicalReviewEvent {
+    public func setSiteId(siteId: String) -> CfLogSubmitMedicalReviewEvent {
         self.siteId = siteId
         return self
     }
@@ -50,7 +50,7 @@ public class CfLogSubmitMedicalReviewEvent {
      * the SDK will throw an exception. Below is the function for providing item as an object.
      */
     @discardableResult
-    public func setMedicalReviewObject(_ medicalReviewObject: MedicalReviewObject) -> CfLogSubmitMedicalReviewEvent {
+    public func setMedicalReviewObject(medicalReviewObject: MedicalReviewObject) -> CfLogSubmitMedicalReviewEvent {
         self.medicalReviewObject = medicalReviewObject
         return self
     }
@@ -62,7 +62,7 @@ public class CfLogSubmitMedicalReviewEvent {
      * the SDK will throw an exception. Below is the function for providing item as a string.
      */
     @discardableResult
-    public func setMedicalReviewObject(_ medicalReviewObject: String) -> CfLogSubmitMedicalReviewEvent {
+    public func setMedicalReviewObject(medicalReviewObject: String) -> CfLogSubmitMedicalReviewEvent {
         if let data = medicalReviewObject.data(using: .utf8),
            let obj = try? JSONDecoder.new.decode(MedicalReviewObject.self, from: data)
         {
@@ -78,7 +78,7 @@ public class CfLogSubmitMedicalReviewEvent {
      */
 
     @discardableResult
-    public func setMeta(_ meta: Any?) -> CfLogSubmitMedicalReviewEvent {
+    public func setMeta(meta: Any?) -> CfLogSubmitMedicalReviewEvent {
         self.meta = meta
         return self
     }
@@ -92,7 +92,7 @@ public class CfLogSubmitMedicalReviewEvent {
      */
 
     @discardableResult
-    public func updateImmediately(_ updateImmediately: Bool) -> CfLogSubmitMedicalReviewEvent {
+    public func updateImmediately(updateImmediately: Bool) -> CfLogSubmitMedicalReviewEvent {
         self.updateImmediately = updateImmediately
         return self
     }

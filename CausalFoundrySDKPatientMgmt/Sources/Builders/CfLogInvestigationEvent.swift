@@ -28,7 +28,7 @@ public class CfLogInvestigationEvent {
      * are in question.
      */
     @discardableResult
-    public func setPatientId(_ patientId: String) -> CfLogInvestigationEvent {
+    public func setPatientId(patientId: String) -> CfLogInvestigationEvent {
         self.patientId = patientId
         return self
     }
@@ -38,7 +38,7 @@ public class CfLogInvestigationEvent {
      * are being done.
      */
     @discardableResult
-    public func setSiteId(_ siteId: String) -> CfLogInvestigationEvent {
+    public func setSiteId(siteId: String) -> CfLogInvestigationEvent {
         self.siteId = siteId
         return self
     }
@@ -50,7 +50,7 @@ public class CfLogInvestigationEvent {
      * investigation ID: investigation_<patientId>
      */
     @discardableResult
-    public func setInvestigationId(_ investigationId: String) -> CfLogInvestigationEvent {
+    public func setInvestigationId(investigationId: String) -> CfLogInvestigationEvent {
         self.investigationId = investigationId
         return self
     }
@@ -62,7 +62,7 @@ public class CfLogInvestigationEvent {
      * the SDK will throw an exception.
      */
     @discardableResult
-    public func addInvestigationItem(_ investigationItem: InvestigationItem) -> CfLogInvestigationEvent {
+    public func addInvestigationItem(investigationItem: InvestigationItem) -> CfLogInvestigationEvent {
         prescribedTestsList.append(investigationItem)
         return self
     }
@@ -74,7 +74,7 @@ public class CfLogInvestigationEvent {
      * the SDK will throw an exception.
      */
     @discardableResult
-    public func addInvestigationItem(_ investigationItem: String) -> CfLogInvestigationEvent {
+    public func addInvestigationItem(investigationItem: String) -> CfLogInvestigationEvent {
         if let item = try? JSONDecoder.new.decode(InvestigationItem.self, from: Data(investigationItem.utf8)) {
             prescribedTestsList.append(item)
         }
@@ -88,7 +88,7 @@ public class CfLogInvestigationEvent {
      * the SDK will throw an exception.
      */
     @discardableResult
-    public func setInvestigationList(_ prescribedTestsList: [InvestigationItem]) -> CfLogInvestigationEvent {
+    public func setInvestigationList(prescribedTestsList: [InvestigationItem]) -> CfLogInvestigationEvent {
         self.prescribedTestsList = prescribedTestsList
         return self
     }
@@ -100,7 +100,7 @@ public class CfLogInvestigationEvent {
      * the SDK will throw an exception.
      */
     @discardableResult
-    public func setInvestigationList(_ prescribedTestsList: String) -> CfLogInvestigationEvent {
+    public func setInvestigationList(prescribedTestsList: String) -> CfLogInvestigationEvent {
         if let data = prescribedTestsList.data(using: .utf8),
            let itemsList = try? JSONDecoder.new.decode([InvestigationItem].self, from: data)
         {
@@ -115,7 +115,7 @@ public class CfLogInvestigationEvent {
      * providing more context to the log. The default value for meta is nil.
      */
     @discardableResult
-    public func setMeta(_ meta: Any?) -> Self {
+    public func setMeta(meta: Any?) -> Self {
         self.meta = meta
         return self
     }
@@ -128,7 +128,7 @@ public class CfLogInvestigationEvent {
      * session, which is whenever the app goes into the background.
      */
     @discardableResult
-    public func updateImmediately(_ updateImmediately: Bool) -> CfLogInvestigationEvent {
+    public func updateImmediately(updateImmediately: Bool) -> CfLogInvestigationEvent {
         self.updateImmediately = updateImmediately
         return self
     }

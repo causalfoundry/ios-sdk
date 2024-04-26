@@ -11,7 +11,7 @@ import Foundation
 enum ChwConstants {
     static var contentBlockName: String = ContentBlock.PatientMgmt.rawValue
 
-    static func verifyChwCatalog(_ chwId: String, _ chwCatalogModel: ChwCatalogModel) -> InternalChwModel? {
+    static func verifyChwCatalog(chwId: String, chwCatalogModel: ChwCatalogModel) -> InternalChwModel? {
         let catalogName = CatalogSubject.chw.rawValue + " catalog"
 
         guard !chwId.isEmpty else {
@@ -51,7 +51,7 @@ enum ChwConstants {
         )
     }
 
-    static func verifySiteCatalog(_ siteId: String, _ chwSiteCatalogModel: ChwSiteCatalogModel) -> InternalSiteModel? {
+    static func verifySiteCatalog(siteId: String, chwSiteCatalogModel: ChwSiteCatalogModel) -> InternalSiteModel? {
         let catalogName = CatalogSubject.chwsite.rawValue + " catalog"
 
         guard !siteId.isEmpty else {
@@ -84,7 +84,7 @@ enum ChwConstants {
         )
     }
 
-    static func verifyPatientCatalog(_ patientId: String, _ patientCatalogModel: PatientCatalogModel) -> InternalPatientModel? {
+    static func verifyPatientCatalog(patientId: String, patientCatalogModel: PatientCatalogModel) -> InternalPatientModel? {
         let catalogName = CatalogSubject.patient.rawValue + " catalog"
 
         guard !patientId.isEmpty else {

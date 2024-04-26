@@ -30,7 +30,7 @@ public class CfLogSubmitEnrolmentEvent {
      * setPatientId is for the providing the id for the patient whose Enrollment is done.
      */
     @discardableResult
-    public func setPatientId(_ patientId: String) -> CfLogSubmitEnrolmentEvent {
+    public func setPatientId(patientId: String) -> CfLogSubmitEnrolmentEvent {
         self.patientId = patientId
         return self
     }
@@ -40,7 +40,7 @@ public class CfLogSubmitEnrolmentEvent {
      */
 
     @discardableResult
-    public func setSiteId(_ siteId: String) -> CfLogSubmitEnrolmentEvent {
+    public func setSiteId(siteId: String) -> CfLogSubmitEnrolmentEvent {
         self.siteId = siteId
         return self
     }
@@ -53,7 +53,7 @@ public class CfLogSubmitEnrolmentEvent {
      */
 
     @discardableResult
-    public func setAction(_ action: String) -> CfLogSubmitEnrolmentEvent {
+    public func setAction(action: String) -> CfLogSubmitEnrolmentEvent {
         if !CoreConstants.shared.enumContains(ItemAction.self, name: action) {
             ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: ItemAction.self))
         } else {
@@ -70,7 +70,7 @@ public class CfLogSubmitEnrolmentEvent {
      * enum provided.
      */
     @discardableResult
-    public func setAction(_ action: ItemAction) -> CfLogSubmitEnrolmentEvent {
+    public func setAction(action: ItemAction) -> CfLogSubmitEnrolmentEvent {
         self.action = action.rawValue
         return self
     }
@@ -82,7 +82,7 @@ public class CfLogSubmitEnrolmentEvent {
      * the SDK will throw an exception. Below is the function for providing item as an object.
      */
     @discardableResult
-    public func addDiagnosisValueItem(_ diagnosisValueItem: DiagnosisItem) -> CfLogSubmitEnrolmentEvent {
+    public func addDiagnosisValueItem(diagnosisValueItem: DiagnosisItem) -> CfLogSubmitEnrolmentEvent {
         diagnosisValuesList.append(diagnosisValueItem)
         return self
     }
@@ -95,7 +95,7 @@ public class CfLogSubmitEnrolmentEvent {
      */
 
     @discardableResult
-    public func addDiagnosisValueItem(_ diagnosisValueItem: String) -> CfLogSubmitEnrolmentEvent {
+    public func addDiagnosisValueItem(diagnosisValueItem: String) -> CfLogSubmitEnrolmentEvent {
         if let item = try? JSONDecoder.new.decode(DiagnosisItem.self, from: Data(diagnosisValueItem.utf8)) {
             diagnosisValuesList.append(item)
         }
@@ -109,7 +109,7 @@ public class CfLogSubmitEnrolmentEvent {
      * the SDK will throw an exception. Below is the function for providing item as an object.
      */
     @discardableResult
-    public func setDiagnosisValueList(_ diagnosisValuesList: [DiagnosisItem]) -> CfLogSubmitEnrolmentEvent {
+    public func setDiagnosisValueList(diagnosisValuesList: [DiagnosisItem]) -> CfLogSubmitEnrolmentEvent {
         self.diagnosisValuesList = diagnosisValuesList
         return self
     }
@@ -121,7 +121,7 @@ public class CfLogSubmitEnrolmentEvent {
      * the SDK will throw an exception. Below is the function for providing item as a string.
      */
     @discardableResult
-    public func setDiagnosisValueList(_ diagnosisValuesList: String) -> CfLogSubmitEnrolmentEvent {
+    public func setDiagnosisValueList(diagnosisValuesList: String) -> CfLogSubmitEnrolmentEvent {
         if let data = diagnosisValuesList.data(using: .utf8),
            let items = try? JSONDecoder.new.decode([DiagnosisItem].self, from: data)
         {
@@ -137,7 +137,7 @@ public class CfLogSubmitEnrolmentEvent {
      * the SDK will throw an exception. Below is the function for providing the item as an object.
      */
     @discardableResult
-    public func addDiagnosisResultItem(_ diagnosisResultItem: DiagnosisItem) -> CfLogSubmitEnrolmentEvent {
+    public func addDiagnosisResultItem(diagnosisResultItem: DiagnosisItem) -> CfLogSubmitEnrolmentEvent {
         diagnosisResultList.append(diagnosisResultItem)
         return self
     }
@@ -149,7 +149,7 @@ public class CfLogSubmitEnrolmentEvent {
      * the SDK will throw an exception. Below is the function for providing the item as a string.
      */
     @discardableResult
-    public func addDiagnosisResultItem(_ diagnosisResultItem: String) -> CfLogSubmitEnrolmentEvent {
+    public func addDiagnosisResultItem(diagnosisResultItem: String) -> CfLogSubmitEnrolmentEvent {
         if let diagnosisItem = try? JSONDecoder.new.decode(DiagnosisItem.self, from: diagnosisResultItem.data(using: .utf8)!) {
             diagnosisResultList.append(diagnosisItem)
         }
@@ -163,7 +163,7 @@ public class CfLogSubmitEnrolmentEvent {
      * the SDK will throw an exception. Below is the function for providing the item as an object.
      */
     @discardableResult
-    public func setDiagnosisResultList(_ diagnosisResultList: [DiagnosisItem]) -> CfLogSubmitEnrolmentEvent {
+    public func setDiagnosisResultList(diagnosisResultList: [DiagnosisItem]) -> CfLogSubmitEnrolmentEvent {
         self.diagnosisResultList = diagnosisResultList
         return self
     }
@@ -175,7 +175,7 @@ public class CfLogSubmitEnrolmentEvent {
      * the SDK will throw an exception. Below is the function for providing the item as a string.
      */
     @discardableResult
-    public func setDiagnosisResultList(_ diagnosisResultList: String) -> CfLogSubmitEnrolmentEvent {
+    public func setDiagnosisResultList(diagnosisResultList: String) -> CfLogSubmitEnrolmentEvent {
         if let data = diagnosisResultList.data(using: .utf8),
            let itemsList = try? JSONDecoder.new.decode([DiagnosisItem].self, from: data)
         {

@@ -27,7 +27,7 @@ public class CfLogPrescriptionEvent {
      * are in question.
      */
     @discardableResult
-    public func setPatientId(_ patientId: String) -> CfLogPrescriptionEvent {
+    public func setPatientId(patientId: String) -> CfLogPrescriptionEvent {
         self.patientId = patientId
         return self
     }
@@ -37,7 +37,7 @@ public class CfLogPrescriptionEvent {
      * are concluded.
      */
     @discardableResult
-    public func setSiteId(_ siteId: String) -> CfLogPrescriptionEvent {
+    public func setSiteId(siteId: String) -> CfLogPrescriptionEvent {
         self.siteId = siteId
         return self
     }
@@ -49,7 +49,7 @@ public class CfLogPrescriptionEvent {
      * prescription id: prescription_<patient_id>
      */
     @discardableResult
-    public func setPrescriptionId(_ prescriptionId: String) -> CfLogPrescriptionEvent {
+    public func setPrescriptionId(prescriptionId: String) -> CfLogPrescriptionEvent {
         self.prescriptionId = prescriptionId
         return self
     }
@@ -61,7 +61,7 @@ public class CfLogPrescriptionEvent {
      * the SDK will throw an exception. Below is the function for providing an item as an object.
      */
     @discardableResult
-    public func addPrescriptionItem(_ prescriptionItem: PrescriptionItem) -> CfLogPrescriptionEvent {
+    public func addPrescriptionItem(prescriptionItem: PrescriptionItem) -> CfLogPrescriptionEvent {
         prescriptionList.append(prescriptionItem)
         return self
     }
@@ -73,7 +73,7 @@ public class CfLogPrescriptionEvent {
      * the SDK will throw an exception. Below is the function for providing an item as a string.
      */
     @discardableResult
-    public func addPrescriptionItem(_ prescriptionItem: String) -> CfLogPrescriptionEvent {
+    public func addPrescriptionItem(prescriptionItem: String) -> CfLogPrescriptionEvent {
         if let item = try? JSONDecoder.new.decode(PrescriptionItem.self, from: Data(prescriptionItem.utf8)) {
             prescriptionList.append(item)
         }
@@ -87,7 +87,7 @@ public class CfLogPrescriptionEvent {
      * the SDK will throw an exception. Below is the function for providing items as objects.
      */
     @discardableResult
-    public func setPrescriptionList(_ prescriptionList: [PrescriptionItem]) -> CfLogPrescriptionEvent {
+    public func setPrescriptionList(prescriptionList: [PrescriptionItem]) -> CfLogPrescriptionEvent {
         self.prescriptionList = prescriptionList
         return self
     }
@@ -99,7 +99,7 @@ public class CfLogPrescriptionEvent {
      * the SDK will throw an exception. Below is the function for providing items as strings.
      */
     @discardableResult
-    public func setPrescriptionList(_ prescriptionList: String) -> CfLogPrescriptionEvent {
+    public func setPrescriptionList(prescriptionList: String) -> CfLogPrescriptionEvent {
         if !prescriptionList.isEmpty {
             if let data = prescriptionList.data(using: .utf8),
                let items = try? JSONDecoder.new.decode([PrescriptionItem].self, from: data)
@@ -116,7 +116,7 @@ public class CfLogPrescriptionEvent {
      * providing more context to the log. The default value for meta is nil.
      */
     @discardableResult
-    public func setMeta(_ meta: Any?) -> CfLogPrescriptionEvent {
+    public func setMeta(meta: Any?) -> CfLogPrescriptionEvent {
         self.meta = meta
         return self
     }
@@ -129,7 +129,7 @@ public class CfLogPrescriptionEvent {
      * session, which is whenever the app goes into the background.
      */
     @discardableResult
-    public func updateImmediately(_ updateImmediately: Bool) -> CfLogPrescriptionEvent {
+    public func updateImmediately(updateImmediately: Bool) -> CfLogPrescriptionEvent {
         self.updateImmediately = updateImmediately
         return self
     }

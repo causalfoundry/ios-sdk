@@ -28,7 +28,7 @@ public class CfLogLifestyleEvent {
      * review is shown on screen.
      */
     @discardableResult
-    public func setPatientId(_ patientId: String) -> CfLogLifestyleEvent {
+    public func setPatientId(patientId: String) -> CfLogLifestyleEvent {
         self.patientId = patientId
         return self
     }
@@ -38,7 +38,7 @@ public class CfLogLifestyleEvent {
      * review is being done.
      */
     @discardableResult
-    public func setSiteId(_ siteId: String) -> CfLogLifestyleEvent {
+    public func setSiteId(siteId: String) -> CfLogLifestyleEvent {
         self.siteId = siteId
         return self
     }
@@ -49,7 +49,7 @@ public class CfLogLifestyleEvent {
      * lifestyle id, you can use the following id as the lifestyle id: lifestyle_<patient_id>
      */
     @discardableResult
-    public func setLifestyleId(_ lifestyleId: String) -> CfLogLifestyleEvent {
+    public func setLifestyleId(lifestyleId: String) -> CfLogLifestyleEvent {
         self.lifestyleId = lifestyleId
         return self
     }
@@ -61,7 +61,7 @@ public class CfLogLifestyleEvent {
      * the SDK will throw an exception. Below is the function for providing item as an object.
      */
     @discardableResult
-    public func addLifestylePlanItem(_ lifestylePlanItem: LifestylePlanItem) -> CfLogLifestyleEvent {
+    public func addLifestylePlanItem(lifestylePlanItem: LifestylePlanItem) -> CfLogLifestyleEvent {
         lifestylePlanList.append(lifestylePlanItem)
         return self
     }
@@ -74,7 +74,7 @@ public class CfLogLifestyleEvent {
      */
 
     @discardableResult
-    public func addLifestylePlanItem(_ lifestylePlanItem: String) -> CfLogLifestyleEvent {
+    public func addLifestylePlanItem(lifestylePlanItem: String) -> CfLogLifestyleEvent {
         if let item = try? JSONDecoder.new.decode(LifestylePlanItem.self, from: Data(lifestylePlanItem.utf8)) {
             lifestylePlanList.append(item)
         }
@@ -88,7 +88,7 @@ public class CfLogLifestyleEvent {
      * the SDK will throw an exception. Below is the function for providing item as an object.
      */
     @discardableResult
-    public func setLifestylePlanList(_ lifestylePlanList: [LifestylePlanItem]) -> CfLogLifestyleEvent {
+    public func setLifestylePlanList(lifestylePlanList: [LifestylePlanItem]) -> CfLogLifestyleEvent {
         self.lifestylePlanList = lifestylePlanList
         return self
     }
@@ -100,7 +100,7 @@ public class CfLogLifestyleEvent {
      * the SDK will throw an exception. Below is the function for providing item as a string.
      */
     @discardableResult
-    public func setLifestylePlanList(_ lifestylePlanList: String) -> CfLogLifestyleEvent {
+    public func setLifestylePlanList(lifestylePlanList: String) -> CfLogLifestyleEvent {
         if let data = lifestylePlanList.data(using: .utf8),
            let items = try? JSONDecoder.new.decode([LifestylePlanItem].self, from: data)
         {
@@ -115,7 +115,7 @@ public class CfLogLifestyleEvent {
      * providing more context to the log. Default value for the meta is null.
      */
     @discardableResult
-    public func setMeta(_ meta: Any?) -> CfLogLifestyleEvent {
+    public func setMeta(meta: Any?) -> CfLogLifestyleEvent {
         self.meta = meta
         return self
     }
@@ -128,7 +128,7 @@ public class CfLogLifestyleEvent {
      * session which is whenever the app goes into background.
      */
     @discardableResult
-    public func updateImmediately(_ updateImmediately: Bool) -> CfLogLifestyleEvent {
+    public func updateImmediately(updateImmediately: Bool) -> CfLogLifestyleEvent {
         self.updateImmediately = updateImmediately
         return self
     }

@@ -24,8 +24,8 @@ let package = Package(
             targets: ["CausalFoundrySDKElearn"]
         ),
         .library(
-            name: "CHWManagement",
-            targets: ["CasualFoundryCHWManagement"]
+            name: "CausalFoundrySDKPatientMgmt",
+            targets: ["CausalFoundrySDKPatientMgmt"]
         ),
         .library(
             name: "CausalFoundrySDKLoyalty",
@@ -54,9 +54,9 @@ let package = Package(
             path: "CausalFoundrySDKPayments/Sources"
         ),
         .target(
-            name: "CasualFoundryCHWManagement",
+            name: "CausalFoundrySDKPatientMgmt",
             dependencies: ["CausalFoundrySDKCore"],
-            path: "CHWManagement/Sources"
+            path: "CausalFoundrySDKPatientMgmt/Sources"
         ),
         .target(
             name: "CausalFoundrySDKLoyalty",
@@ -98,9 +98,9 @@ let package = Package(
             path: "CausalFoundrySDKLoyalty/Tests"
         ),
         .testTarget(
-            name: "CHWManagementTests",
-            dependencies: ["CasualFoundryCHWManagement"],
-            path: "CHWManagement/Tests"
+            name: "CausalFoundrySDKPatientMgmtTests",
+            dependencies: ["CausalFoundrySDKPatientMgmt"],
+            path: "CausalFoundrySDKPatientMgmt/Tests"
         ),
     ]
 )

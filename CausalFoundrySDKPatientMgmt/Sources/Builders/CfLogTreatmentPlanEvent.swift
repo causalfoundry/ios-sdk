@@ -28,7 +28,7 @@ public class CfLogTreatmentPlanEvent {
      * are in question.
      */
     @discardableResult
-    public func setPatientId(_ patientId: String) -> CfLogTreatmentPlanEvent {
+    public func setPatientId(patientId: String) -> CfLogTreatmentPlanEvent {
         self.patientId = patientId
         return self
     }
@@ -38,7 +38,7 @@ public class CfLogTreatmentPlanEvent {
      * are concluded.
      */
     @discardableResult
-    public func setSiteId(_ siteId: String) -> CfLogTreatmentPlanEvent {
+    public func setSiteId(siteId: String) -> CfLogTreatmentPlanEvent {
         self.siteId = siteId
         return self
     }
@@ -50,7 +50,7 @@ public class CfLogTreatmentPlanEvent {
      * treatment ID: treatment_<patient_id>
      */
     @discardableResult
-    public func setTreatmentPlanId(_ treatmentPlanId: String) -> CfLogTreatmentPlanEvent {
+    public func setTreatmentPlanId(treatmentPlanId: String) -> CfLogTreatmentPlanEvent {
         self.treatmentPlanId = treatmentPlanId
         return self
     }
@@ -62,7 +62,7 @@ public class CfLogTreatmentPlanEvent {
      * the SDK will throw an exception. Below is the function for providing an item as an object.
      */
     @discardableResult
-    public func addTreatmentPlanItem(_ treatmentPlanItem: TreatmentPlanItem) -> CfLogTreatmentPlanEvent {
+    public func addTreatmentPlanItem(treatmentPlanItem: TreatmentPlanItem) -> CfLogTreatmentPlanEvent {
         treatmentPlanList.append(treatmentPlanItem)
         return self
     }
@@ -74,7 +74,7 @@ public class CfLogTreatmentPlanEvent {
      * the SDK will throw an exception. Below is the function for providing an item as a string.
      */
     @discardableResult
-    public func addTreatmentPlanItem(_ treatmentPlanItem: String) -> CfLogTreatmentPlanEvent {
+    public func addTreatmentPlanItem(treatmentPlanItem: String) -> CfLogTreatmentPlanEvent {
         if let item = try? JSONDecoder.new.decode(TreatmentPlanItem.self, from: Data(treatmentPlanItem.utf8)) {
             treatmentPlanList.append(item)
         }
@@ -88,7 +88,7 @@ public class CfLogTreatmentPlanEvent {
      * the SDK will throw an exception. Below is the function for providing an item as an object.
      */
     @discardableResult
-    public func setTreatmentPlanList(_ treatmentPlanList: [TreatmentPlanItem]) -> CfLogTreatmentPlanEvent {
+    public func setTreatmentPlanList(treatmentPlanList: [TreatmentPlanItem]) -> CfLogTreatmentPlanEvent {
         self.treatmentPlanList = treatmentPlanList
         return self
     }
@@ -100,7 +100,7 @@ public class CfLogTreatmentPlanEvent {
      * the SDK will throw an exception. Below is the function for providing an item as a string.
      */
     @discardableResult
-    public func setTreatmentPlanList(_ treatmentPlanListString: String) -> CfLogTreatmentPlanEvent {
+    public func setTreatmentPlanList(treatmentPlanListString: String) -> CfLogTreatmentPlanEvent {
         if let data = treatmentPlanListString.data(using: .utf8),
            let itemsList = try? JSONDecoder.new.decode([TreatmentPlanItem].self, from: data)
         {
@@ -115,7 +115,7 @@ public class CfLogTreatmentPlanEvent {
      * providing more context to the log. The default value for meta is nil.
      */
     @discardableResult
-    public func setMeta(_ meta: Any?) -> CfLogTreatmentPlanEvent {
+    public func setMeta(meta: Any?) -> CfLogTreatmentPlanEvent {
         self.meta = meta
         return self
     }
@@ -128,7 +128,7 @@ public class CfLogTreatmentPlanEvent {
      * session, which is whenever the app goes into the background.
      */
     @discardableResult
-    public func updateImmediately(_ updateImmediately: Bool) -> CfLogTreatmentPlanEvent {
+    public func updateImmediately(updateImmediately: Bool) -> CfLogTreatmentPlanEvent {
         self.updateImmediately = updateImmediately
         return self
     }

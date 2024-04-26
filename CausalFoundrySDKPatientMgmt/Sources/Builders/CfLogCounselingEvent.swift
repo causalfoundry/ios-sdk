@@ -21,12 +21,14 @@ public class CfLogCounselingEvent {
     var meta: Any?
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
+    public init() {}
+    
     /**
      * setPatientId is for the providing the id for the patient whose counseling
      * review is shown on screen.
      */
     @discardableResult
-    public func setPatientId(_ patientId: String) -> CfLogCounselingEvent {
+    public func setPatientId(patientId: String) -> CfLogCounselingEvent {
         self.patientId = patientId
         return self
     }
@@ -36,7 +38,7 @@ public class CfLogCounselingEvent {
      * review is being done.
      */
     @discardableResult
-    public func setSiteId(_ siteId: String) -> CfLogCounselingEvent {
+    public func setSiteId(siteId: String) -> CfLogCounselingEvent {
         self.siteId = siteId
         return self
     }
@@ -48,7 +50,7 @@ public class CfLogCounselingEvent {
      */
 
     @discardableResult
-    public func setCounselingId(_ counselingId: String) -> CfLogCounselingEvent {
+    public func setCounselingId(counselingId: String) -> CfLogCounselingEvent {
         self.counselingId = counselingId
         return self
     }
@@ -60,7 +62,7 @@ public class CfLogCounselingEvent {
      * the SDK will throw an exception. Below is the function for providing item as a string.
      */
     @discardableResult
-    public func setCounselingType(_ counselingType: String) -> CfLogCounselingEvent {
+    public func setCounselingType(counselingType: String) -> CfLogCounselingEvent {
         if !CoreConstants.shared.enumContains(CounselingType.self, name: counselingType) {
             ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.counseling.rawValue, className: String(describing: counselingType))
         } else {
@@ -76,7 +78,7 @@ public class CfLogCounselingEvent {
      * the SDK will throw an exception. Below is the function for providing item as an object.
      */
     @discardableResult
-    public func addCounselingPlanItem(_ counselingPlanItem: CounselingPlanItem) -> CfLogCounselingEvent {
+    public func addCounselingPlanItem(counselingPlanItem: CounselingPlanItem) -> CfLogCounselingEvent {
         counselingPlanList.append(counselingPlanItem)
         return self
     }
@@ -88,7 +90,7 @@ public class CfLogCounselingEvent {
      * the SDK will throw an exception. Below is the function for providing item as a string.
      */
     @discardableResult
-    public func addCounselingPlanItem(_ counselingPlanItem: String) -> CfLogCounselingEvent {
+    public func addCounselingPlanItem(counselingPlanItem: String) -> CfLogCounselingEvent {
         if let diagnosisItem = try? JSONDecoder.new.decode(CounselingPlanItem.self, from: counselingPlanItem.data(using: .utf8)!) {
             counselingPlanList.append(diagnosisItem)
         }
@@ -102,7 +104,7 @@ public class CfLogCounselingEvent {
      * the SDK will throw an exception. Below is the function for providing item as an object.
      */
     @discardableResult
-    public func setCounselingPlanList(_ counselingPlanList: [CounselingPlanItem]) -> CfLogCounselingEvent {
+    public func setCounselingPlanList(counselingPlanList: [CounselingPlanItem]) -> CfLogCounselingEvent {
         self.counselingPlanList = counselingPlanList
         return self
     }
@@ -114,9 +116,9 @@ public class CfLogCounselingEvent {
      * the SDK will throw an exception. Below is the function for providing item as a string.
      */
     @discardableResult
-    public func setCounselingPlanList(_ counselingPlanList: String) -> CfLogCounselingEvent {
-        if !counselingPlanList.isEmpty {
-            if let data = counselingPlanList.data(using: .utf8),
+    public func setCounselingPlanList(counselingPlanList: String?) -> CfLogCounselingEvent {
+        if counselingPlanList?.isEmpty == false {
+            if let data = counselingPlanList?.data(using: .utf8),
                let itemsList = try? JSONDecoder.new.decode([CounselingPlanItem].self, from: data)
             {
                 self.counselingPlanList = itemsList
@@ -131,7 +133,7 @@ public class CfLogCounselingEvent {
      * providing more context to the log. Default value for the meta is null.
      */
     @discardableResult
-    public func setMeta(_ meta: Any?) -> CfLogCounselingEvent {
+    public func setMeta(meta: Any?) -> CfLogCounselingEvent {
         self.meta = meta
         return self
     }
@@ -145,7 +147,7 @@ public class CfLogCounselingEvent {
      */
 
     @discardableResult
-    public func updateImmediately(_ updateImmediately: Bool) -> CfLogCounselingEvent {
+    public func updateImmediately(updateImmediately: Bool) -> CfLogCounselingEvent {
         self.updateImmediately = updateImmediately
         return self
     }
@@ -156,7 +158,7 @@ public class CfLogCounselingEvent {
      * user's network resources.
      */
 
-    func build() {
+    public func build() {
         /**
          * Will throw and exception if the patient_id provided is null or no action is
          * provided at all.
@@ -178,10 +180,11 @@ public class CfLogCounselingEvent {
             ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.counseling.rawValue, elementName: "counseling_type")
             return
         }
-        if counselingPlanList.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.counseling.rawValue, elementName: "counseling_plan_list")
-            return
-        } else {
+//        if counselingPlanList.isEmpty {
+//            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.counseling.rawValue, elementName: "counseling_plan_list")
+//            return
+//        } 
+//        else {
             if ChwEventValidation.verifyCounselingPlanList(eventType: PatientMgmtEventType.counseling, counselingPlanList: counselingPlanList) {
                 let counselingEventObject = CounselingEventObject(
                     patientId: patientID,
@@ -197,7 +200,7 @@ public class CfLogCounselingEvent {
                     logObject: counselingEventObject,
                     updateImmediately: updateImmediately
                 )
-            }
+//            }
         }
     }
 }

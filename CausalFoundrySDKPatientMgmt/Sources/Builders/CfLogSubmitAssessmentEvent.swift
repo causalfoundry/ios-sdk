@@ -29,7 +29,7 @@ public class CfLogSubmitAssessmentEvent {
      * setPatientId is for providing the ID for the patient whose assessment is concluded.
      */
     @discardableResult
-    public func setPatientId(_ patient_id: String) -> CfLogSubmitAssessmentEvent {
+    public func setPatientId(patient_id: String) -> CfLogSubmitAssessmentEvent {
         self.patient_id = patient_id
         return self
     }
@@ -38,7 +38,7 @@ public class CfLogSubmitAssessmentEvent {
      * setSiteId is for providing the ID for the site where the assessment is concluded.
      */
     @discardableResult
-    public func setSiteId(_ site_id: String) -> CfLogSubmitAssessmentEvent {
+    public func setSiteId(site_id: String) -> CfLogSubmitAssessmentEvent {
         self.site_id = site_id
         return self
     }
@@ -48,7 +48,7 @@ public class CfLogSubmitAssessmentEvent {
      * patient in question.
      */
     @discardableResult
-    public func setMedicationAdherence(_ medication_adherence: String) -> CfLogSubmitAssessmentEvent {
+    public func setMedicationAdherence(medication_adherence: String) -> CfLogSubmitAssessmentEvent {
         self.medication_adherence = medication_adherence
         return self
     }
@@ -57,7 +57,7 @@ public class CfLogSubmitAssessmentEvent {
      * addDiagnosisValueItem is for providing one diagnosis value item at a time.
      */
     @discardableResult
-    public func addDiagnosisValueItem(_ diagnosis_value_item: DiagnosisItem) -> CfLogSubmitAssessmentEvent {
+    public func addDiagnosisValueItem(diagnosis_value_item: DiagnosisItem) -> CfLogSubmitAssessmentEvent {
         diagnosis_values_list.append(diagnosis_value_item)
         return self
     }
@@ -66,7 +66,7 @@ public class CfLogSubmitAssessmentEvent {
      * addDiagnosisValueItem is for providing one diagnosis value item at a time as a JSON string.
      */
     @discardableResult
-    public func addDiagnosisValueItem(_ diagnosis_value_item: String) -> CfLogSubmitAssessmentEvent {
+    public func addDiagnosisValueItem(diagnosis_value_item: String) -> CfLogSubmitAssessmentEvent {
         if let item = try? JSONDecoder.new.decode(DiagnosisItem.self, from: Data(diagnosis_value_item.utf8)) {
             diagnosis_values_list.append(item)
         }
@@ -77,7 +77,7 @@ public class CfLogSubmitAssessmentEvent {
      * setDiagnosisValueList is for providing a list of diagnosis value items.
      */
     @discardableResult
-    public func setDiagnosisValueList(_ diagnosis_values_list: [DiagnosisItem]) -> CfLogSubmitAssessmentEvent {
+    public func setDiagnosisValueList(diagnosis_values_list: [DiagnosisItem]) -> CfLogSubmitAssessmentEvent {
         self.diagnosis_values_list = diagnosis_values_list
         return self
     }
@@ -86,7 +86,7 @@ public class CfLogSubmitAssessmentEvent {
      * setDiagnosisValueList is for providing a list of diagnosis value items as a JSON string.
      */
     @discardableResult
-    public func setDiagnosisValueList(_ diagnosis_values_list: String) -> CfLogSubmitAssessmentEvent {
+    public func setDiagnosisValueList(diagnosis_values_list: String) -> CfLogSubmitAssessmentEvent {
         if let data = diagnosis_values_list.data(using: .utf8),
            let items = try? JSONDecoder.new.decode([DiagnosisItem].self, from: data)
         {
@@ -99,7 +99,7 @@ public class CfLogSubmitAssessmentEvent {
      * addDiagnosisResultItem is for providing one diagnosis result item at a time.
      */
     @discardableResult
-    public func addDiagnosisResultItem(_ diagnosis_result_item: DiagnosisItem) -> CfLogSubmitAssessmentEvent {
+    public func addDiagnosisResultItem(diagnosis_result_item: DiagnosisItem) -> CfLogSubmitAssessmentEvent {
         diagnosis_result_list.append(diagnosis_result_item)
         return self
     }
@@ -108,7 +108,7 @@ public class CfLogSubmitAssessmentEvent {
      * addDiagnosisResultItem is for providing one diagnosis result item at a time as a JSON string.
      */
     @discardableResult
-    public func addDiagnosisResultItem(_ diagnosis_result_item: String) -> CfLogSubmitAssessmentEvent {
+    public func addDiagnosisResultItem(diagnosis_result_item: String) -> CfLogSubmitAssessmentEvent {
         if let item = try? JSONDecoder.new.decode(DiagnosisItem.self, from: Data(diagnosis_result_item.utf8)) {
             diagnosis_result_list.append(item)
         }
@@ -119,7 +119,7 @@ public class CfLogSubmitAssessmentEvent {
      * setDiagnosisResultList is for providing a list of diagnosis result items.
      */
     @discardableResult
-    public func setDiagnosisResultList(_ diagnosis_result_list: [DiagnosisItem]) -> CfLogSubmitAssessmentEvent {
+    public func setDiagnosisResultList(diagnosis_result_list: [DiagnosisItem]) -> CfLogSubmitAssessmentEvent {
         self.diagnosis_result_list = diagnosis_result_list
         return self
     }
@@ -128,7 +128,7 @@ public class CfLogSubmitAssessmentEvent {
      * setDiagnosisResultList is for providing a list of diagnosis result items as a JSON string.
      */
     @discardableResult
-    public func setDiagnosisResultList(_ diagnosis_result_list: String) -> CfLogSubmitAssessmentEvent {
+    public func setDiagnosisResultList(diagnosis_result_list: String) -> CfLogSubmitAssessmentEvent {
         if let data = diagnosis_result_list.data(using: .utf8),
            let items = try? JSONDecoder.new.decode([DiagnosisItem].self, from: data)
         {
@@ -141,7 +141,7 @@ public class CfLogSubmitAssessmentEvent {
      * addDiagnosisSymptomItem is for providing one diagnosis symptom item at a time.
      */
     @discardableResult
-    public func addDiagnosisSymptomItem(_ diagnosis_symptom_item: DiagnosisSymptomItem) -> CfLogSubmitAssessmentEvent {
+    public func addDiagnosisSymptomItem(diagnosis_symptom_item: DiagnosisSymptomItem) -> CfLogSubmitAssessmentEvent {
         diagnosis_symptoms_list.append(diagnosis_symptom_item)
         return self
     }
@@ -150,7 +150,7 @@ public class CfLogSubmitAssessmentEvent {
      * addDiagnosisSymptomItem is for providing one diagnosis symptom item at a time as a JSON string.
      */
     @discardableResult
-    public func addDiagnosisSymptomItem(_ diagnosis_symptom_item: String) -> CfLogSubmitAssessmentEvent {
+    public func addDiagnosisSymptomItem(diagnosis_symptom_item: String) -> CfLogSubmitAssessmentEvent {
         if let item = try? JSONDecoder.new.decode(DiagnosisSymptomItem.self, from: Data(diagnosis_symptom_item.utf8)) {
             diagnosis_symptoms_list.append(item)
         }
@@ -161,7 +161,7 @@ public class CfLogSubmitAssessmentEvent {
      * setDiagnosisSymptomList is for providing a list of diagnosis symptom items.
      */
     @discardableResult
-    public func setDiagnosisSymptomList(_ diagnosis_symptoms_list: [DiagnosisSymptomItem]) -> CfLogSubmitAssessmentEvent {
+    public func setDiagnosisSymptomList(diagnosis_symptoms_list: [DiagnosisSymptomItem]) -> CfLogSubmitAssessmentEvent {
         self.diagnosis_symptoms_list = diagnosis_symptoms_list
         return self
     }
@@ -170,7 +170,7 @@ public class CfLogSubmitAssessmentEvent {
      * setDiagnosisSymptomList is for providing a list of diagnosis symptom items as a JSON string.
      */
     @discardableResult
-    public func setDiagnosisSymptomList(_ diagnosis_symptoms_list: String) -> CfLogSubmitAssessmentEvent {
+    public func setDiagnosisSymptomList(diagnosis_symptoms_list: String) -> CfLogSubmitAssessmentEvent {
         if let data = diagnosis_symptoms_list.data(using: .utf8),
            let items = try? JSONDecoder.new.decode([DiagnosisSymptomItem].self, from: data)
         {
@@ -184,7 +184,7 @@ public class CfLogSubmitAssessmentEvent {
      * patient is further referred for assessment.
      */
     @discardableResult
-    public func isReferredForAssessment(_ referred_for_assessment: Bool) -> CfLogSubmitAssessmentEvent {
+    public func isReferredForAssessment(referred_for_assessment: Bool) -> CfLogSubmitAssessmentEvent {
         self.referred_for_assessment = referred_for_assessment
         return self
     }
@@ -195,7 +195,7 @@ public class CfLogSubmitAssessmentEvent {
      * providing more context to the log. The default value for meta is nil.
      */
     @discardableResult
-    public func setMeta(_ meta: Any?) -> CfLogSubmitAssessmentEvent {
+    public func setMeta(meta: Any?) -> CfLogSubmitAssessmentEvent {
         self.meta = meta
         return self
     }
@@ -206,7 +206,7 @@ public class CfLogSubmitAssessmentEvent {
      * initialization block. This affects the timing of when the logs will be sent.
      */
     @discardableResult
-    public func updateImmediately(_ update_immediately: Bool) -> CfLogSubmitAssessmentEvent {
+    public func updateImmediately(update_immediately: Bool) -> CfLogSubmitAssessmentEvent {
         self.update_immediately = update_immediately
         return self
     }
