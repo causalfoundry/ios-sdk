@@ -9,7 +9,18 @@ import CausalFoundrySDKCore
 import Foundation
 
 public enum RewardAction: String, EnumComposable {
-    case view
-    case add
-    case redeem
+    case View
+    case Add
+    case Redeem
+    case Other
+    
+    public var rawValue: String {
+        switch self {
+        case .View: return "view"
+        case .Add: return "add"
+        case .Redeem: return "redeem"
+        case .Other: return "other"
+        }
+    }
+    
 }

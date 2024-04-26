@@ -138,15 +138,15 @@ public class CfLogRewardEvent {
         }else if actionValue.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.reward.rawValue, elementName: "action_value")
             return
-        }else if actionValue == RewardAction.add.rawValue, accPoints == 0 {
+        }else if actionValue == RewardAction.Add.rawValue, accPoints == 0 {
             ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.reward.rawValue, elementName: "acc_points")
             return
-        }else if actionValue == RewardAction.redeem.rawValue, redeemObject == nil {
+        }else if actionValue == RewardAction.Redeem.rawValue, redeemObject == nil {
             ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.reward.rawValue, elementName: "redeem_object")
             return
-        } else if actionValue == RewardAction.redeem.rawValue, !LoyaltyConstants.isRedeemObjectValid(redeemObject: redeemObject!, eventType: LoyaltyEventType.reward) {
+        } else if actionValue == RewardAction.Redeem.rawValue, !LoyaltyConstants.isRedeemObjectValid(redeemObject: redeemObject!, eventType: LoyaltyEventType.reward) {
             return
-        } else if actionValue != RewardAction.redeem.rawValue {
+        } else if actionValue != RewardAction.Redeem.rawValue {
             redeemObject = nil
         }
 

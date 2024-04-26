@@ -11,12 +11,27 @@ import Foundation
 import Foundation
 
 public enum SurveyType: String, EnumComposable {
-    case openEnded = "open_ended"
-    case closedEnded = "closed_ended"
-    case nominal
-    case likertScale = "likert_scale"
-    case ratingScale = "rating_scale"
-    case yesNo = "yes_no"
-    case interview
-    case other
+    case OpenEnded
+    case ClosedEnded
+    case Nominal
+    case LikertScale
+    case RatingScale
+    case YesNo
+    case Interview
+    case Other
+    
+    
+    public var rawValue: String {
+        switch self {
+        case .OpenEnded: return "open_ended"
+        case .ClosedEnded: return "closed_ended"
+        case .Nominal: return "nominal"
+        case .LikertScale: return "likert_scale"
+        case .RatingScale: return "rating_scale"
+        case .YesNo: return "yes_no"
+        case .Interview: return "interview"
+        case .Other: return "other"
+        }
+    }
+    
 }

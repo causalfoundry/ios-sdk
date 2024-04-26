@@ -8,10 +8,24 @@ import CausalFoundrySDKCore
 import Foundation
 
 public enum PaymentAction: String, EnumComposable {
-    case view
-    case add
-    case remove
-    case update
-    case select
-    case payment_processed
+    case View
+    case Add
+    case Remove
+    case Update
+    case Select
+    case PaymentProcessed
+    case Other
+    
+    public var rawValue: String {
+        switch self {
+        case .View: return "view"
+        case .Add: return "add"
+        case .Remove: return "remove"
+        case .Update: return "update"
+        case .Select: return "select"
+        case .PaymentProcessed: return "payment_processed"
+        case .Other: return "other"
+        }
+    }
+    
 }

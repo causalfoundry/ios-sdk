@@ -61,22 +61,22 @@ enum LoyaltyConstants {
     
     static func isRedeemObjectValid(redeemObject: RedeemObject, eventType: LoyaltyEventType) -> Bool {
         
-        if redeemObject.points_withdrawn < 0 {
+        if redeemObject.pointsWithdrawn < 0 {
             ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "points_withdrawn")
             return false
         } else if !CoreConstants.shared.enumContains(RedeemType.self, name: redeemObject.type) {
             ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: RedeemType.self))
             return false
-        } else if redeemObject.converted_value! < 0 {
+        } else if redeemObject.convertedValue! < 0 {
             ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "converted_value")
             return false
-        } else if redeemObject.is_successful == nil {
+        } else if redeemObject.isSuccessful == nil {
             ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "redeem is_successful")
             return false
-        } else if redeemObject.type == RedeemType.cash.rawValue, redeemObject.currency == nil {
+        } else if redeemObject.type == RedeemType.Cash.rawValue, redeemObject.currency == nil {
             ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "redeem currency")
             return false
-        } else if redeemObject.type == RedeemType.cash.rawValue, !CoreConstants.shared.enumContains(CurrencyCode.self, name: redeemObject.currency!) {
+        } else if redeemObject.type == RedeemType.Cash.rawValue, !CoreConstants.shared.enumContains(CurrencyCode.self, name: redeemObject.currency!) {
             ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: CurrencyCode.self))
             return false
         }

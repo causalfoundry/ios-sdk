@@ -9,8 +9,20 @@ import CausalFoundrySDKCore
 import Foundation
 
 public enum SurveyAction: String, EnumComposable {
-    case view
-    case impression
-    case start
-    case submit
+    case View
+    case Impression
+    case Start
+    case Submit
+    case Other
+    
+    public var rawValue: String {
+        switch self {
+        case .View: return "view"
+        case .Impression: return "impression"
+        case .Start: return "start"
+        case .Submit: return "submit"
+        case .Other: return "other"
+        }
+    }
+    
 }

@@ -9,7 +9,15 @@ import CausalFoundrySDKCore
 import Foundation
 
 public enum RedeemType: String, EnumComposable {
-    case cash
-    case airtime
-    case other
+    case Cash
+    case Airtime
+    case Other
+    
+    public var rawValue: String {
+        switch self {
+        case .Cash: return "cash"
+        case .Airtime: return "airtime"
+        case .Other: return "other"
+        }
+    }
 }
