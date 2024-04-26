@@ -9,7 +9,7 @@ import BackgroundTasks
 import Foundation
 import UIKit
 
-public class CausualFoundry {
+public class CausalFoundry {
     var startTime: Int64?
     var previousStartTime: Int64?
     var pageCreateTime: Int64? = 0
@@ -17,7 +17,7 @@ public class CausualFoundry {
     var oldPageRenderTime: Int64 = 0
     var appStartTime: Int64 = 0
 
-    public static let shared = CausualFoundry()
+    public static let shared = CausalFoundry()
     private var timer: DispatchSourceTimer?
     
     public init() {
@@ -39,7 +39,7 @@ public class CausualFoundry {
             if isBackgroundAppRefreshEnabled() {
                 WorkerCaller.registerBackgroundTask()
             } else {
-                showBAckgroudTaskEnableNotification()
+                showBackgroudTaskEnableNotification()
             }
         }
         
@@ -192,8 +192,8 @@ public class CausualFoundry {
     
 }
 
-extension CausualFoundry {
-    func showBAckgroudTaskEnableNotification() {
+extension CausalFoundry {
+    func showBackgroudTaskEnableNotification() {
         if #available(iOS 13.0, *) {
             guard let window = UIApplication.shared.windows.first,
                   let rootViewController = window.rootViewController else {

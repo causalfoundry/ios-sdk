@@ -16,14 +16,14 @@ public enum WorkerCaller {
     private static var nudgeDownloadTaskIdentifier = "ai.causalfoundry.fetchNudges"
 
     static func registerBackgroundTask() {
-        if(CausualFoundry.shared.isBackgroundAppRefreshEnabled()){
+        if(CausalFoundry.shared.isBackgroundAppRefreshEnabled()){
             registerEventUploadTask()
             registerNudgeDownloadTask()
         }
     }
 
     static func scheduleBackgroundTasks() {
-        if(CausualFoundry.shared.isBackgroundAppRefreshEnabled()){
+        if(CausalFoundry.shared.isBackgroundAppRefreshEnabled()){
             scheduleEventUploadTask()
             scheduleNudgeDownloadTask()
         }
