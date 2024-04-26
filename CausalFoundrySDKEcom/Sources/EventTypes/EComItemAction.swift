@@ -9,18 +9,40 @@ import CausalFoundrySDKCore
 import Foundation
 
 public enum EComItemAction: String, EnumComposable {
-    case impression
-    case view
-    case detail
-    case add_favorite
-    case remove_favorite
-    case add_reminder
-    case remove_reminder
-    case remove_reminder_auto
-    case top_up
-    case cancel
-    case update
-    case remove
-    case add
-    case select
+    case Impression
+    case View
+    case Detail
+    case TopUp
+    case Cancel
+    case Update
+    case Remove
+    case Add
+    case Select
+    case AddFavorite
+    case RemoveFavorite
+    case AddReminder
+    case RemoveReminder
+    case RemoveReminderAuto
+    case Other
+    
+    public var rawValue: String {
+        switch self {
+        case .Impression: return "impression"
+        case .View: return "view"
+        case .Detail: return "detail"
+        case .TopUp: return "top_up"
+        case .Cancel: return "cancel"
+        case .Update: return "update"
+        case .Remove: return "remove"
+        case .Add: return "add"
+        case .Select: return "select"
+        case .AddFavorite: return "add_favorite"
+        case .RemoveFavorite: return "remove_favorite"
+        case .AddReminder: return "add_reminder"
+        case .RemoveReminder: return "remove_reminder"
+        case .RemoveReminderAuto: return "remove_reminder_auto"
+        case .Other: return "other"
+        }
+    }
+    
 }

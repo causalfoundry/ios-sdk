@@ -9,6 +9,14 @@ import CausalFoundrySDKCore
 import Foundation
 
 public enum ScanChannel: String, EnumComposable {
-    case app
-    case ussd
+    case App
+    case Ussd
+    
+    public var rawValue: String {
+        switch self {
+        case .App: return "app"
+        case .Ussd: return "ussd"
+        }
+    }
+    
 }

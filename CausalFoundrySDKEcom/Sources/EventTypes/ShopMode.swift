@@ -9,6 +9,13 @@ import CausalFoundrySDKCore
 import Foundation
 
 public enum ShopMode: String, EnumComposable {
-    case delivery
-    case pickup
+    case Delivery
+    case Pickup
+    
+    public var rawValue: String {
+        switch self {
+        case .Delivery: return "delivery"
+        case .Pickup: return "pickup"
+        }
+    }
 }

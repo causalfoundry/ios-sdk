@@ -11,19 +11,31 @@ public struct DeliveryObject: Codable {
     var deliveryId: String
     var orderId: String
     var action: String
+    var isUrgent: Bool
+    var estDeliveryTsValue: String?
+    var deliveryCoordinates: CoordinatesObject?
+    var dispatchCoordinates: CoordinatesObject?
     var meta: Encodable?
 
     enum CodingKeys: String, CodingKey {
         case deliveryId = "id"
         case orderId = "order_id"
         case action
+        case isUrgent = "is_urgent"
+        case estDeliveryTsValue = "est_delivery_ts"
+        case deliveryCoordinates = "delivery_coordinates"
+        case dispatchCoordinates = "dispatch_coordinates"
         case meta
     }
 
-    public init(deliveryId: String, orderId: String, action: String, meta: Encodable? = nil) {
+    public init(deliveryId: String, orderId: String, action: String, isUrgent: Bool = false, estDeliveryTsValue: String? = "", deliveryCoordinates: CoordinatesObject?, dispatchCoordinates: CoordinatesObject?, meta: Encodable? = nil) {
         self.deliveryId = deliveryId
         self.orderId = orderId
         self.action = action
+        self.isUrgent = isUrgent
+        self.estDeliveryTsValue = estDeliveryTsValue
+        self.deliveryCoordinates = deliveryCoordinates
+        self.dispatchCoordinates = dispatchCoordinates
         self.meta = meta
     }
 
@@ -34,6 +46,10 @@ public struct DeliveryObject: Codable {
         try container.encode(deliveryId, forKey: .deliveryId)
         try container.encode(orderId, forKey: .orderId)
         try container.encode(action, forKey: .action)
+        try container.encodeIfPresent(isUrgent, forKey: .isUrgent)
+        try container.encodeIfPresent(estDeliveryTsValue, forKey: .estDeliveryTsValue)
+        try container.encodeIfPresent(deliveryCoordinates, forKey: .deliveryCoordinates)
+        try container.encodeIfPresent(dispatchCoordinates, forKey: .dispatchCoordinates)
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
@@ -46,6 +62,10 @@ public struct DeliveryObject: Codable {
         deliveryId = try container.decode(String.self, forKey: .deliveryId)
         orderId = try container.decode(String.self, forKey: .orderId)
         action = try container.decode(String.self, forKey: .action)
+        isUrgent = try container.decode(Bool.self, forKey: .isUrgent)
+        estDeliveryTsValue = try container.decodeIfPresent(String.self, forKey: .estDeliveryTsValue)
+        deliveryCoordinates = try container.decodeIfPresent(CoordinatesObject.self, forKey: .deliveryCoordinates)
+        dispatchCoordinates = try container.decodeIfPresent(CoordinatesObject.self, forKey: .dispatchCoordinates)
         if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {

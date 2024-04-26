@@ -9,5 +9,17 @@ import CausalFoundrySDKCore
 import Foundation
 
 public enum DeliveryAction: String, EnumComposable {
-    case delivered
+    case Schedule
+    case Update
+    case Dispatch
+    case Delivered
+    
+    public var rawValue: String {
+        switch self {
+        case .Schedule: return "schedule"
+        case .Update: return "update"
+        case .Dispatch: return "dispatch"
+        case .Delivered: return "delivered"
+        }
+    }
 }

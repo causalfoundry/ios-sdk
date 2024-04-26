@@ -182,7 +182,7 @@ public class CfLogCancelCheckoutEvent {
             return
         }
         
-        let cancelCheckoutObject = CancelCheckoutObject(id: checkoutId, type: type, items: itemList, reason: reason, meta: meta as? Encodable)
+        let cancelCheckoutObject = CancelCheckoutObject(id: checkoutId, type: type, itemsList: itemList, reason: reason, meta: meta as? Encodable)
         CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.cancelCheckout.rawValue, logObject: cancelCheckoutObject, updateImmediately: updateImmediately)
     }
 }

@@ -14,7 +14,7 @@ public class CfLogCheckoutEvent {
     var isSuccessfulValue: Bool = true
     var priceValue: Float = 0
     var currencyValue: String = ""
-    var shopMode: String = ShopMode.delivery.rawValue
+    var shopMode: String = ShopMode.Delivery.rawValue
     var itemList: [ItemModel] = []
     var meta: Any? = nil
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
@@ -135,10 +135,10 @@ public class CfLogCheckoutEvent {
         if let data = itemJsonString.data(using: .utf8),
            var item = try? JSONDecoder.new.decode(ItemModel.self, from: data)
         {
-            if item.type == ItemType.blood.rawValue {
+            if item.type == ItemType.Blood.rawValue {
                 let bloodMetaModel = try? JSONDecoder.new.decode(BloodMetaModel.self, from: data)
                 item.meta = bloodMetaModel
-            } else if item.type == ItemType.oxygen.rawValue {
+            } else if item.type == ItemType.Oxygen.rawValue {
                 let oxygenMetaModel = try? JSONDecoder.new.decode(OxygenMetaModel.self, from: data)
                 item.meta = oxygenMetaModel
             }
@@ -185,10 +185,10 @@ public class CfLogCheckoutEvent {
         {
             for index in itemModels.indices {
                 var item = itemModels[index]
-                if item.type == ItemType.blood.rawValue {
+                if item.type == ItemType.Blood.rawValue {
                     let bloodMetaModel = try? JSONDecoder.new.decode(BloodMetaModel.self, from: data)
                     item.meta = bloodMetaModel
-                } else if item.type == ItemType.oxygen.rawValue {
+                } else if item.type == ItemType.Oxygen.rawValue {
                     let oxygenMetaModel = try? JSONDecoder.new.decode(OxygenMetaModel.self, from: data)
                     item.meta = oxygenMetaModel
                 }
@@ -263,7 +263,7 @@ public class CfLogCheckoutEvent {
                                             cartPrice: priceValue,
                                             currency: currencyValue,
                                             shopMode: shopMode,
-                                            items: itemList,
+                                            itemList: itemList,
                                             meta: meta as? Encodable)
         
         CFSetup().track(

@@ -28,32 +28,32 @@ public struct ItemImpressionModel: Codable {
         itemProperties = try container.decode(ItemModel.self, forKey: .itemProperties)
         var propertiesDecoded = false
         switch itemProperties.type {
-        case ItemType.drug.rawValue:
+        case ItemType.Drug.rawValue:
             if let catalog_properties = try? container.decodeIfPresent(DrugCatalogModel.self, forKey: .catalogProperties) {
                 self.catalogProperties = catalog_properties
                 propertiesDecoded = true
             }
-        case ItemType.blood.rawValue:
+        case ItemType.Blood.rawValue:
             if let catalog_properties = try? container.decodeIfPresent(BloodCatalogModel.self, forKey: .catalogProperties) {
                 self.catalogProperties = catalog_properties
                 propertiesDecoded = true
             }
-        case ItemType.oxygen.rawValue:
+        case ItemType.Oxygen.rawValue:
             if let catalog_properties = try? container.decodeIfPresent(OxygenCatalogModel.self, forKey: .catalogProperties) {
                 self.catalogProperties = catalog_properties
                 propertiesDecoded = true
             }
-        case ItemType.medicalEquipment.rawValue:
+        case ItemType.MedicalEquipment.rawValue:
             if let catalog_properties = try? container.decodeIfPresent(MedicalEquipmentCatalogModel.self, forKey: .catalogProperties) {
                 self.catalogProperties = catalog_properties
                 propertiesDecoded = true
             }
-        case ItemType.grocery.rawValue:
+        case ItemType.Grocery.rawValue:
             if let catalog_properties = try? container.decodeIfPresent(GroceryCatalogModel.self, forKey: .catalogProperties) {
                self.catalogProperties = catalog_properties
                 propertiesDecoded = true
            }
-        case ItemType.facility.rawValue:
+        case ItemType.Facility.rawValue:
             if let catalog_properties = try? container.decodeIfPresent(FacilityCatalogModel.self, forKey: .catalogProperties) {
                self.catalogProperties = catalog_properties
                 propertiesDecoded = true
@@ -72,17 +72,17 @@ public struct ItemImpressionModel: Codable {
         try container.encode(itemProperties, forKey: .itemProperties)
 
         switch itemProperties.type {
-        case ItemType.drug.rawValue:
+        case ItemType.Drug.rawValue:
             try container.encodeIfPresent(catalogProperties as? DrugCatalogModel, forKey: .catalogProperties)
-        case ItemType.blood.rawValue:
+        case ItemType.Blood.rawValue:
             try container.encodeIfPresent(catalogProperties as? BloodCatalogModel, forKey: .catalogProperties)
-        case ItemType.oxygen.rawValue:
+        case ItemType.Oxygen.rawValue:
             try container.encodeIfPresent(catalogProperties as? OxygenCatalogModel, forKey: .catalogProperties)
-        case ItemType.medicalEquipment.rawValue:
+        case ItemType.MedicalEquipment.rawValue:
             try container.encodeIfPresent(catalogProperties as? MedicalEquipmentCatalogModel, forKey: .catalogProperties)
-        case ItemType.grocery.rawValue:
+        case ItemType.Grocery.rawValue:
             try container.encodeIfPresent(catalogProperties as? GroceryCatalogModel, forKey: .catalogProperties)
-        case ItemType.facility.rawValue:
+        case ItemType.Facility.rawValue:
             try container.encodeIfPresent(catalogProperties as? FacilityCatalogModel, forKey: .catalogProperties)
         default:
             ExceptionManager.throwIllegalStateException(eventType: "item catalog", message: "Please use correct catalog properties with provided item type", className: "ItemImpressionListener")

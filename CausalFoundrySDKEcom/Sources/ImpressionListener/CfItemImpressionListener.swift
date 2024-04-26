@@ -50,7 +50,7 @@ public class CfItemImpressionListener {
                 return
             }
             
-            let itemViewObject = ViewItemObject(action: EComItemAction.impression.rawValue , item: itemImpressionObject.itemProperties,
+            let itemViewObject = ViewItemObject(action: EComItemAction.Impression.rawValue , item: itemImpressionObject.itemProperties,
                                                 searchId : searchIdValue)
             
             CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: itemViewObject, updateImmediately: false)
