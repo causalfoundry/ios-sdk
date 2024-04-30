@@ -185,7 +185,7 @@ public class CfLogCounselingEvent {
 //            return
 //        } 
 //        else {
-            if ChwEventValidation.verifyCounselingPlanList(eventType: PatientMgmtEventType.counseling, counselingPlanList: counselingPlanList) {
+            if PatientMgmtEventValidation.verifyCounselingPlanList(eventType: PatientMgmtEventType.counseling, counselingPlanList: counselingPlanList) {
                 let counselingEventObject = CounselingEventObject(
                     patientId: patientID,
                     siteId: siteID,

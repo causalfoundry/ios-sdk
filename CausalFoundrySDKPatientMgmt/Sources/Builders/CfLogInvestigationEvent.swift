@@ -168,37 +168,33 @@ public class CfLogInvestigationEvent {
          * Will throw and exception if the action provided is null or no action is
          * provided at all.
          */
-        guard !prescribedTestsList.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.investigation.rawValue, elementName: "prescribed_tests_list")
-            return
-        }
+//        guard !prescribedTestsList.isEmpty else {
+//            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.investigation.rawValue, elementName: "prescribed_tests_list")
+//            return
+//        }
 
         /**
          * Parsing the values into an object and passing to the setup block to queue
          * the event based on its priority.
          */
-        for item in prescribedTestsList {
-            if item.name.isEmpty {
-                ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.investigation.rawValue, elementName: "name")
-                return
-            } else if !CoreConstants.shared.enumContains(ItemAction.self, name: item.action) {
-                ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.investigation.rawValue, elementName: String(describing: ItemAction.self))
-            }
+        
+        if(PatientMgmtEventValidation.verifyPrescriptionTestList(eventType: PatientMgmtEventType.investigation,
+                                                                 prescribedTestsList: prescribedTestsList)){
+            let investigationEventObject = InvestigationEventObject(
+                patientId: patientId,
+                siteId: siteId,
+                investigationId: investigationId,
+                prescribedTestsList: prescribedTestsList,
+                meta: meta
+            )
+
+            CFSetup().track(
+                contentBlockName: ChwConstants.contentBlockName,
+                eventType: PatientMgmtEventType.investigation.rawValue,
+                logObject: investigationEventObject,
+                updateImmediately: updateImmediately
+            )
         }
 
-        let investigationEventObject = InvestigationEventObject(
-            patientId: patientId,
-            siteId: siteId,
-            investigationId: investigationId,
-            prescribedTestsList: prescribedTestsList,
-            meta: meta
-        )
-
-        CFSetup().track(
-            contentBlockName: ChwConstants.contentBlockName,
-            eventType: PatientMgmtEventType.investigation.rawValue,
-            logObject: investigationEventObject,
-            updateImmediately: updateImmediately
-        )
     }
 }

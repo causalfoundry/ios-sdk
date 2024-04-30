@@ -338,26 +338,26 @@ public class CfLogSubmitScreeningEvent {
             ExceptionManager.throwIsRequiredException(eventType: "diagnosis_values_list", elementName: "diagnosis_result_list")
             return
         } else {
-            for item in diagnosisValuesList {
-                if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_screening.rawValue, className: String(describing: DiagnosisType.self))
-                } else if item.value.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "diagnosis_item value")
-                } else if item.unit.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "diagnosis_item unit")
-                }
-            }
-
-            for item in diagnosisResultList {
-                if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_screening.rawValue, className: String(describing: DiagnosisType.self))
-                } else if item.value.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "diagnosis_item value")
-
-                } else if item.unit.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "diagnosis_item unit")
-                }
-            }
+//            for item in diagnosisValuesList {
+//                if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
+//                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_screening.rawValue, className: String(describing: DiagnosisType.self))
+//                } else if item.value.isEmpty {
+//                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "diagnosis_item value")
+//                } else if item.unit.isEmpty {
+//                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "diagnosis_item unit")
+//                }
+//            }
+//
+//            for item in diagnosisResultList {
+//                if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
+//                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_screening.rawValue, className: String(describing: DiagnosisType.self))
+//                } else if item.value.isEmpty {
+//                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "diagnosis_item value")
+//
+//                } else if item.unit.isEmpty {
+//                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "diagnosis_item unit")
+//                }
+//            }
 
             let submitScreeningEventObject = SubmitScreeningEventObject(
                 patientId: patientId!,

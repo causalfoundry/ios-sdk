@@ -35,7 +35,7 @@ public struct MedicalReviewSummaryObject: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
         try container.encode(value, forKey: .value)
-        try container.encode(remarks, forKey: .remarks)
+        try container.encodeIfPresent(remarks, forKey: .remarks)
     }
 }
 

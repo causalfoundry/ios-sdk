@@ -170,35 +170,17 @@ public class CfLogPrescriptionEvent {
          * provided at all.
          */
 
-        if prescriptionList.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.prescription.rawValue, elementName: "prescription_list")
-        } else {
-            /**
-             * Parsing the values into an object and passing to the setup block to queue
-             * the event based on its priority.
-             */
-
-            for item in prescriptionList {
-                if item.drugId.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.prescription.rawValue, elementName: "drug_id")
-
-                } else if item.name.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.prescription.rawValue, elementName: "name")
-                } else if !CoreConstants.shared.enumContains(PrescriptionItemType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.prescription.rawValue, className: String(describing: PrescriptionItemType.self))
-                } else if !CoreConstants.shared.enumContains(PrescriptionItemFrequency.self, name: item.frequency) {
-                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.prescription.rawValue, className: String(describing: PrescriptionItemFrequency.self))
-                } else if !CoreConstants.shared.enumContains(ItemAction.self, name: item.action) {
-                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.prescription.rawValue, className: String(describing: ItemAction.self))
-                } else if item.dosageValue < 0.0 {
-                    ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.prescription.rawValue, paramName: "dosage_value", className: String(describing: CfLogPrescriptionEvent.self))
-                } else if item.dosageUnit.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.prescription.rawValue, elementName: "dosage_unit")
-                } else if item.prescribedDays < 0 {
-                    ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.prescription.rawValue, paramName: "prescribed_days", className: String(describing: CfLogPrescriptionEvent.self))
-                }
-            }
-
+//        if prescriptionList.isEmpty {
+//            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.prescription.rawValue, elementName: "prescription_list")
+//        }
+        
+        /**
+         * Parsing the values into an object and passing to the setup block to queue
+         * the event based on its priority.
+         */
+        
+        if(PatientMgmtEventValidation.verifyPrescriptionList(eventType: PatientMgmtEventType.prescription,
+                                                             prescriptionList: prescriptionList)){
             let prescriptionEventObject = PrescriptionEventObject(
                 patientId: patientId!,
                 siteId: siteId!,

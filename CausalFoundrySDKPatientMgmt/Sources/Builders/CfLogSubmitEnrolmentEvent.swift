@@ -361,39 +361,39 @@ public class CfLogSubmitEnrolmentEvent {
              * Parsing the values into an object and passing to the setup block to queue
              * the event based on its priority.
              */
-            for item in diagnosisValuesList {
-                if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: DiagnosisType.self))
-                    return
-                } else if item.value.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "diagnosis_item value")
-                    return
-                } else if item.unit.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "diagnosis_item unit")
-                    return
-                }
-            }
-
-            for item in diagnosisResultList {
-                if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: DiagnosisType.self))
-                    return
-                } else if item.value.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "diagnosis_item value")
-                    return
-                } else if item.unit.isEmpty {
-                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "diagnosis_item unit")
-                    return
-                }
-            }
-
-            for item in patientStatusList {
-                if !CoreConstants.shared.enumContains(DiagnosisSymptomType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: DiagnosisSymptomType.self))
-                } else if !CoreConstants.shared.enumContains(PatientStatusValueType.self, name: item.value) {
-                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: PatientStatusValueType.self))
-                }
-            }
+//            for item in diagnosisValuesList {
+//                if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
+//                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: DiagnosisType.self))
+//                    return
+//                } else if item.value.isEmpty {
+//                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "diagnosis_item value")
+//                    return
+//                } else if item.unit.isEmpty {
+//                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "diagnosis_item unit")
+//                    return
+//                }
+//            }
+//
+//            for item in diagnosisResultList {
+//                if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
+//                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: DiagnosisType.self))
+//                    return
+//                } else if item.value.isEmpty {
+//                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "diagnosis_item value")
+//                    return
+//                } else if item.unit.isEmpty {
+//                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "diagnosis_item unit")
+//                    return
+//                }
+//            }
+//
+//            for item in patientStatusList {
+//                if !CoreConstants.shared.enumContains(DiagnosisSymptomType.self, name: item.type) {
+//                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: DiagnosisSymptomType.self))
+//                } else if !CoreConstants.shared.enumContains(PatientStatusValueType.self, name: item.value) {
+//                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: PatientStatusValueType.self))
+//                }
+//            }
 
             for item in treatmentPlanList {
                 if !CoreConstants.shared.enumContains(TreatmentType.self, name: item.type) {
@@ -413,22 +413,22 @@ public class CfLogSubmitEnrolmentEvent {
                 }
             }
 
-            let submitEnrolmentEventObject = SubmitEnrolmentEventObject(
-                patientId: patientId!,
-                siteId: siteId!,
-                action: action!,
-                patientStatusList: patientStatusList,
-                diagnosisValuesList: diagnosisValuesList,
-                diagnosisResultsList: diagnosisResultList,
-                treatmentPlanList: treatmentPlanList,
-                meta: meta as? Encodable
-            )
-            CFSetup().track(
-                contentBlockName: ChwConstants.contentBlockName,
-                eventType: PatientMgmtEventType.submit_enrolment.rawValue,
-                logObject: submitEnrolmentEventObject,
-                updateImmediately: updateImmediately
-            )
+//            let submitEnrolmentEventObject = SubmitEnrolmentEventObject(
+//                patientId: patientId!,
+//                siteId: siteId!,
+//                action: action!,
+//                patientStatusList: patientStatusList,
+//                diagnosisValuesList: diagnosisValuesList,
+//                diagnosisResultsList: diagnosisResultList,
+//                treatmentPlanList: treatmentPlanList,
+//                meta: meta as? Encodable
+//            )
+//            CFSetup().track(
+//                contentBlockName: ChwConstants.contentBlockName,
+//                eventType: PatientMgmtEventType.submit_enrolment.rawValue,
+//                logObject: submitEnrolmentEventObject,
+//                updateImmediately: updateImmediately
+//            )
         }
     }
 }

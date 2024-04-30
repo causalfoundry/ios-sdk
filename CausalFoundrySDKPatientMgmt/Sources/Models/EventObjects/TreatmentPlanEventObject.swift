@@ -11,7 +11,7 @@ struct TreatmentPlanEventObject: Codable {
     var patientId: String
     var siteId: String
     var treatmentPlanId: String
-    var treatmentPlanList: [TreatmentPlanItem]
+    var treatmentPlanList: [TreatmentPlanItem]?
     var meta: Encodable?
 
     // CodingKeys to specify custom keys if needed
@@ -28,7 +28,7 @@ struct TreatmentPlanEventObject: Codable {
         patientId: String,
         siteId: String,
         treatmentPlanId: String,
-        treatmentPlanList: [TreatmentPlanItem],
+        treatmentPlanList: [TreatmentPlanItem]? = [],
         meta: Encodable?
     ) {
         self.patientId = patientId
@@ -44,7 +44,7 @@ struct TreatmentPlanEventObject: Codable {
         try container.encode(patientId, forKey: .patientId)
         try container.encode(siteId, forKey: .siteId)
         try container.encode(treatmentPlanId, forKey: .treatmentPlanId)
-        try container.encode(treatmentPlanList, forKey: .treatmentPlanList)
+        try container.encodeIfPresent(treatmentPlanList, forKey: .treatmentPlanList)
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
@@ -56,7 +56,7 @@ struct TreatmentPlanEventObject: Codable {
         patientId = try container.decode(String.self, forKey: .patientId)
         siteId = try container.decode(String.self, forKey: .siteId)
         treatmentPlanId = try container.decode(String.self, forKey: .treatmentPlanId)
-        treatmentPlanList = try container.decode([TreatmentPlanItem].self, forKey: .treatmentPlanList)
+        treatmentPlanList = try container.decodeIfPresent([TreatmentPlanItem].self, forKey: .treatmentPlanList)
         if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {
