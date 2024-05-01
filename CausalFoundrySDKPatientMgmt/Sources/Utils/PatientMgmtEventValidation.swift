@@ -44,7 +44,8 @@ enum PatientMgmtEventValidation {
                 ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: DiagnosisType.self))
                 return false
             } else if item.value == nil {
-                ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "\(diagnosisType) diagnosis_item value")
+                print("Item Value \(item)")
+                ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "\(diagnosisType) rrdiagnosis_item value")
                 return false
             } else if let value = item.value as? String, value.isEmpty {
                 ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "\(diagnosisType) diagnosis_item value")
