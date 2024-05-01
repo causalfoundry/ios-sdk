@@ -61,7 +61,7 @@ enum PatientMgmtEventValidation {
         
         if let pregnancyDetailsList = pregnancyObject?.pregnancyDetailsList {
             for item in pregnancyDetailsList {
-                if !CoreConstants.shared.enumContains(DiagnosisSymptomType.self, name: item.type) {
+                if !CoreConstants.shared.enumContains(PregnancyDetailItemType.self, name: item.type) {
                     ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: "pregnancy detail item type")
                     return false
                 } else if item.value == nil {
@@ -86,6 +86,42 @@ enum PatientMgmtEventValidation {
                 return false
             } else if item.symptoms.isEmpty {
                 ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "diagnosis symptom")
+                return false
+            }
+        }
+        return true
+    }
+    
+    static func verifyPatientStatusList(eventType: PatientMgmtEventType, patientStatusList: [PatientStatusItem]) -> Bool {
+        for item in patientStatusList {
+            if !CoreConstants.shared.enumContains(DiagnosisSymptomType.self, name: item.type) {
+                ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: DiagnosisSymptomType.self))
+                return false
+            } else if !CoreConstants.shared.enumContains(PatientStatusValueType.self, name: item.value) {
+                ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: PatientStatusValueType.self))
+                return false
+            }
+        }
+        return true
+    }
+    
+    static func verifyTreatmentPlantList(eventType: PatientMgmtEventType, treatmentPlanList: [TreatmentPlanItem]) -> Bool {
+        for item in treatmentPlanList {
+            if !CoreConstants.shared.enumContains(TreatmentType.self, name: item.type) {
+                ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: TreatmentType.self))
+                return false
+            } else if !CoreConstants.shared.enumContains(TreatmentFrequency.self, name: item.frequency) {
+                ExceptionManager.throwEnumException(
+                    eventType: PatientMgmtEventType.submit_enrolment.rawValue,
+                    className: String(describing: TreatmentFrequency.self))
+                return false
+            } else if !CoreConstants.shared.enumContains(ItemAction.self, name: item.action) {
+                ExceptionManager.throwEnumException(
+                    eventType: PatientMgmtEventType.submit_enrolment.rawValue,
+                    className: String(describing: ItemAction.self))
+                return false
+            } else if item.value == 0 {
+                ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "value")
                 return false
             }
         }

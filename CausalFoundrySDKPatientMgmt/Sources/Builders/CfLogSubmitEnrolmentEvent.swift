@@ -17,10 +17,15 @@ public class CfLogSubmitEnrolmentEvent {
     var patientId: String?
     var siteId: String?
     var action: String?
+    var isFromGhoValue: Bool?
+    var diagnosisVitalsList: [DiagnosisItem] = []
     var patientStatusList: [PatientStatusItem] = []
     var diagnosisValuesList: [DiagnosisItem] = []
     var diagnosisResultList: [DiagnosisItem] = []
     var treatmentPlanList: [TreatmentPlanItem] = []
+    var diagnosisQuestionnaireList: [DiagnosisQuestionnaireObject] = []
+    var pregnancyDetailsValue: PregnancyDetailObject? = nil
+    
     var meta: Any?
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
@@ -44,6 +49,16 @@ public class CfLogSubmitEnrolmentEvent {
         self.siteId = siteId
         return self
     }
+    
+    /**
+     * isFromGHO is for the providing the value if the daa is fetched from GHO
+     */
+
+    @discardableResult
+    public func isFromGHO(isFromGho: Bool) -> CfLogSubmitEnrolmentEvent {
+        self.isFromGhoValue = isFromGho
+        return self
+    }
 
     /**
      * setAction is for the providing the type for the action as for which the
@@ -53,7 +68,7 @@ public class CfLogSubmitEnrolmentEvent {
      */
 
     @discardableResult
-    public func setAction(action: String) -> CfLogSubmitEnrolmentEvent {
+    public func setAction(action: String?) -> CfLogSubmitEnrolmentEvent {
         if !CoreConstants.shared.enumContains(ItemAction.self, name: action) {
             ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: ItemAction.self))
         } else {
@@ -75,11 +90,9 @@ public class CfLogSubmitEnrolmentEvent {
         return self
     }
 
+    
     /**
-     * addDiagnosisValueItem is for the providing one diagnosis value item at a time.
-     * The item should be based on the DiagnosisItem item object or a string that can be
-     * converted to the object with proper param names. in-case the names are not correct
-     * the SDK will throw an exception. Below is the function for providing item as an object.
+     * addDiagnosisValueItem is for providing one diagnosis value item at a time.
      */
     @discardableResult
     public func addDiagnosisValueItem(diagnosisValueItem: DiagnosisItem) -> CfLogSubmitEnrolmentEvent {
@@ -88,12 +101,8 @@ public class CfLogSubmitEnrolmentEvent {
     }
 
     /**
-     * addDiagnosisValueItem is for the providing one diagnosis value item at a time.
-     * The item should be based on the DiagnosisItem item object or a string that can be
-     * converted to the object with proper param names. in-case the names are not correct
-     * the SDK will throw an exception. Below is the function for providing item as a string.
+     * addDiagnosisValueItem is for providing one diagnosis value item at a time as a JSON string.
      */
-
     @discardableResult
     public func addDiagnosisValueItem(diagnosisValueItem: String) -> CfLogSubmitEnrolmentEvent {
         if let item = try? JSONDecoder.new.decode(DiagnosisItem.self, from: Data(diagnosisValueItem.utf8)) {
@@ -103,10 +112,7 @@ public class CfLogSubmitEnrolmentEvent {
     }
 
     /**
-     * setDiagnosisValueList is for the providing one diagnosis value items list.
-     * The item should be based on the DiagnosisItem item object or a string that can be
-     * converted to the object with proper param names. in-case the names are not correct
-     * the SDK will throw an exception. Below is the function for providing item as an object.
+     * setDiagnosisValueList is for providing a list of diagnosis value items.
      */
     @discardableResult
     public func setDiagnosisValueList(diagnosisValuesList: [DiagnosisItem]) -> CfLogSubmitEnrolmentEvent {
@@ -115,10 +121,7 @@ public class CfLogSubmitEnrolmentEvent {
     }
 
     /**
-     * setDiagnosisValueList is for the providing one diagnosis value items list.
-     * The item should be based on the DiagnosisItem item object or a string that can be
-     * converted to the object with proper param names. in-case the names are not correct
-     * the SDK will throw an exception. Below is the function for providing item as a string.
+     * setDiagnosisValueList is for providing a list of diagnosis value items as a JSON string.
      */
     @discardableResult
     public func setDiagnosisValueList(diagnosisValuesList: String) -> CfLogSubmitEnrolmentEvent {
@@ -132,9 +135,6 @@ public class CfLogSubmitEnrolmentEvent {
 
     /**
      * addDiagnosisResultItem is for providing one diagnosis result item at a time.
-     * The item should be based on the DiagnosisItem item object or a string that can be
-     * converted to the object with proper param names. In case the names are not correct,
-     * the SDK will throw an exception. Below is the function for providing the item as an object.
      */
     @discardableResult
     public func addDiagnosisResultItem(diagnosisResultItem: DiagnosisItem) -> CfLogSubmitEnrolmentEvent {
@@ -143,24 +143,18 @@ public class CfLogSubmitEnrolmentEvent {
     }
 
     /**
-     * addDiagnosisResultItem is for providing one diagnosis result item at a time.
-     * The item should be based on the DiagnosisItem item object or a string that can be
-     * converted to the object with proper param names. In case the names are not correct,
-     * the SDK will throw an exception. Below is the function for providing the item as a string.
+     * addDiagnosisResultItem is for providing one diagnosis result item at a time as a JSON string.
      */
     @discardableResult
     public func addDiagnosisResultItem(diagnosisResultItem: String) -> CfLogSubmitEnrolmentEvent {
-        if let diagnosisItem = try? JSONDecoder.new.decode(DiagnosisItem.self, from: diagnosisResultItem.data(using: .utf8)!) {
-            diagnosisResultList.append(diagnosisItem)
+        if let item = try? JSONDecoder.new.decode(DiagnosisItem.self, from: Data(diagnosisResultItem.utf8)) {
+            diagnosisResultList.append(item)
         }
         return self
     }
 
     /**
-     * setDiagnosisResultList is for providing one diagnosis result items list.
-     * The item should be based on the DiagnosisItem item object or a string that can be
-     * converted to the object with proper param names. In case the names are not correct,
-     * the SDK will throw an exception. Below is the function for providing the item as an object.
+     * setDiagnosisResultList is for providing a list of diagnosis result items.
      */
     @discardableResult
     public func setDiagnosisResultList(diagnosisResultList: [DiagnosisItem]) -> CfLogSubmitEnrolmentEvent {
@@ -169,20 +163,125 @@ public class CfLogSubmitEnrolmentEvent {
     }
 
     /**
-     * setDiagnosisResultList is for providing one diagnosis result items list.
-     * The item should be based on the DiagnosisItem item object or a string that can be
-     * converted to the object with proper param names. In case the names are not correct,
-     * the SDK will throw an exception. Below is the function for providing the item as a string.
+     * setDiagnosisResultList is for providing a list of diagnosis result items as a JSON string.
      */
     @discardableResult
     public func setDiagnosisResultList(diagnosisResultList: String) -> CfLogSubmitEnrolmentEvent {
         if let data = diagnosisResultList.data(using: .utf8),
-           let itemsList = try? JSONDecoder.new.decode([DiagnosisItem].self, from: data)
+           let items = try? JSONDecoder.new.decode([DiagnosisItem].self, from: data)
         {
-            self.diagnosisResultList = itemsList
+            self.diagnosisResultList = items
         }
         return self
     }
+
+
+    /**
+     * addDiagnosisVitalsItem is for providing one diagnosis vital item at a time.
+     */
+    @discardableResult
+    public func addDiagnosisVitalsItem(diagnosisVitalsItem: DiagnosisItem) -> CfLogSubmitEnrolmentEvent {
+        diagnosisVitalsList.append(diagnosisVitalsItem)
+        return self
+    }
+
+    /**
+     * addDiagnosisVitalsItem is for providing one diagnosis vital item at a time as a JSON string.
+     */
+    @discardableResult
+    public func addDiagnosisVitalsItem(diagnosisVitalsItem: String) -> CfLogSubmitEnrolmentEvent {
+        if let item = try? JSONDecoder.new.decode(DiagnosisItem.self, from: Data(diagnosisVitalsItem.utf8)) {
+            diagnosisVitalsList.append(item)
+        }
+        return self
+    }
+
+    /**
+     * setDiagnosisVitalsList is for providing a list of diagnosis vital items.
+     */
+    @discardableResult
+    public func setDiagnosisVitalsList(diagnosisVitalsList: [DiagnosisItem]) -> CfLogSubmitEnrolmentEvent {
+        self.diagnosisVitalsList = diagnosisVitalsList
+        return self
+    }
+
+    /**
+     * setDiagnosisVitalsList is for providing a list of diagnosis vital items as a JSON string.
+     */
+    @discardableResult
+    public func setDiagnosisVitalsList(diagnosisVitalsList: String) -> CfLogSubmitEnrolmentEvent {
+        if let data = diagnosisVitalsList.data(using: .utf8),
+           let items = try? JSONDecoder.new.decode([DiagnosisItem].self, from: data)
+        {
+            self.diagnosisVitalsList = items
+        }
+        return self
+    }
+
+    
+    
+    /**
+     * addDiagnosisQuestionnaireItem is for providing one diagnosis questionnaire item at a time.
+     */
+    @discardableResult
+    public func addDiagnosisQuestionnaireItem(diagnosisQuestionnaireItem: DiagnosisQuestionnaireObject) -> CfLogSubmitEnrolmentEvent {
+        diagnosisQuestionnaireList.append(diagnosisQuestionnaireItem)
+        return self
+    }
+
+    /**
+     * addDiagnosisQuestionnaireItem is for providing one diagnosis questionnaire item at a time as a JSON string.
+     */
+    @discardableResult
+    public func addDiagnosisQuestionnaireItem(diagnosisQuestionnaireItem: String) -> CfLogSubmitEnrolmentEvent {
+        if let item = try? JSONDecoder.new.decode(DiagnosisQuestionnaireObject.self, from: Data(diagnosisQuestionnaireItem.utf8)) {
+            diagnosisQuestionnaireList.append(item)
+        }
+        return self
+    }
+
+    /**
+     * setDiagnosisQuestionnaireList is for providing a list of diagnosis questionnaire items.
+     */
+    @discardableResult
+    public func setDiagnosisQuestionnaireList(diagnosisQuestionnaireList: [DiagnosisQuestionnaireObject]) -> CfLogSubmitEnrolmentEvent {
+        self.diagnosisQuestionnaireList = diagnosisQuestionnaireList
+        return self
+    }
+
+    /**
+     * setDiagnosisQuestionnaireList is for providing a list of diagnosis questionnaire items as a JSON string.
+     */
+    @discardableResult
+    public func setDiagnosisQuestionnaireList(diagnosisQuestionnaireList: String) -> CfLogSubmitEnrolmentEvent {
+        if let data = diagnosisQuestionnaireList.data(using: .utf8),
+           let items = try? JSONDecoder.new.decode([DiagnosisQuestionnaireObject].self, from: data)
+        {
+            self.diagnosisQuestionnaireList = items
+        }
+        return self
+    }
+
+    
+    
+    /**
+     * setPregnancyObject is for providing the pregnancy object values for the patient in question.
+     */
+    @discardableResult
+    public func setPregnancyObject(pregnancyDetails: PregnancyDetailObject) -> CfLogSubmitEnrolmentEvent {
+        self.pregnancyDetailsValue = pregnancyDetails
+        return self
+    }
+    @discardableResult
+    public func setPregnancyObject(pregnancyDetails: String?) -> CfLogSubmitEnrolmentEvent {
+        if let data = pregnancyDetails?.data(using: .utf8),
+           let item = try? JSONDecoder.new.decode(PregnancyDetailObject.self, from: data)
+        {
+            setPregnancyObject(pregnancyDetails: item)
+        }
+        return self
+    }
+    
 
     /**
      * addPatientStatusItem is for the providing one patient status item at a time.
@@ -191,8 +290,8 @@ public class CfLogSubmitEnrolmentEvent {
      * the SDK will throw an exception. Below is the function for providing item as an object.
      */
     @discardableResult
-    public func addPatientStatusItem(patient_status_item: PatientStatusItem) -> CfLogSubmitEnrolmentEvent {
-        patientStatusList.append(patient_status_item)
+    public func addPatientStatusItem(patientStatusItem: PatientStatusItem) -> CfLogSubmitEnrolmentEvent {
+        patientStatusList.append(patientStatusItem)
         return self
     }
 
@@ -203,8 +302,8 @@ public class CfLogSubmitEnrolmentEvent {
      * the SDK will throw an exception. Below is the function for providing item as a string.
      */
     @discardableResult
-    public func addPatientStatusItem(patient_status_item: String) -> CfLogSubmitEnrolmentEvent {
-        if let item = try? JSONDecoder.new.decode(PatientStatusItem.self, from: Data(patient_status_item.utf8)) {
+    public func addPatientStatusItem(patientStatusItem: String) -> CfLogSubmitEnrolmentEvent {
+        if let item = try? JSONDecoder.new.decode(PatientStatusItem.self, from: Data(patientStatusItem.utf8)) {
             patientStatusList.append(item)
         }
         return self
@@ -218,17 +317,17 @@ public class CfLogSubmitEnrolmentEvent {
      */
 
     @discardableResult
-    public func setPatientStatusList(patient_status_list: [PatientStatusItem]) -> CfLogSubmitEnrolmentEvent {
-        patientStatusList = patient_status_list
+    public func setPatientStatusList(patientStatusList: [PatientStatusItem]) -> CfLogSubmitEnrolmentEvent {
+        self.patientStatusList = patientStatusList
         return self
     }
 
     @discardableResult
-    public func setPatientStatusList(patient_status_list: String) -> CfLogSubmitEnrolmentEvent {
-        if let data = patient_status_list.data(using: .utf8),
+    public func setPatientStatusList(patientStatusList: String) -> CfLogSubmitEnrolmentEvent {
+        if let data = patientStatusList.data(using: .utf8),
            let items = try? JSONDecoder.new.decode([PatientStatusItem].self, from: data)
         {
-            patientStatusList = items
+            self.patientStatusList = items
         }
         return self
     }
@@ -240,8 +339,8 @@ public class CfLogSubmitEnrolmentEvent {
      * the SDK will throw an exception. Below is the function for providing item as an object.
      */
     @discardableResult
-    public func addTreatmentPlanItem(treatment_plan_item: TreatmentPlanItem) -> CfLogSubmitEnrolmentEvent {
-        treatmentPlanList.append(treatment_plan_item)
+    public func addTreatmentPlanItem(treatmentPlanItem: TreatmentPlanItem) -> CfLogSubmitEnrolmentEvent {
+        treatmentPlanList.append(treatmentPlanItem)
         return self
     }
 
@@ -253,8 +352,8 @@ public class CfLogSubmitEnrolmentEvent {
      */
 
     @discardableResult
-    public func addTreatmentPlanItem(treatment_plan_item: String) -> CfLogSubmitEnrolmentEvent {
-        if let item = try? JSONDecoder.new.decode(TreatmentPlanItem.self, from: Data(treatment_plan_item.utf8)) {
+    public func addTreatmentPlanItem(treatmentPlanItem: String) -> CfLogSubmitEnrolmentEvent {
+        if let item = try? JSONDecoder.new.decode(TreatmentPlanItem.self, from: Data(treatmentPlanItem.utf8)) {
             treatmentPlanList.append(item)
         }
         return self
@@ -268,8 +367,8 @@ public class CfLogSubmitEnrolmentEvent {
      */
 
     @discardableResult
-    public func setTreatmentPlanList(treatment_plan_list: [TreatmentPlanItem]) -> CfLogSubmitEnrolmentEvent {
-        treatmentPlanList = treatment_plan_list
+    public func setTreatmentPlanList(treatmentPlanList: [TreatmentPlanItem]) -> CfLogSubmitEnrolmentEvent {
+        self.treatmentPlanList = treatmentPlanList
         return self
     }
 
@@ -281,11 +380,11 @@ public class CfLogSubmitEnrolmentEvent {
      */
 
     @discardableResult
-    public func setTreatmentPlanList(treatment_plan_list: String) -> CfLogSubmitEnrolmentEvent {
-        if let data = treatment_plan_list.data(using: .utf8),
+    public func setTreatmentPlanList(treatmentPlanList: String) -> CfLogSubmitEnrolmentEvent {
+        if let data = treatmentPlanList.data(using: .utf8),
            let items = try? JSONDecoder.new.decode([TreatmentPlanItem].self, from: data)
         {
-            treatmentPlanList = items
+            self.treatmentPlanList = items
         }
         return self
     }
@@ -349,86 +448,48 @@ public class CfLogSubmitEnrolmentEvent {
             ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "action")
             return
         }
-        /**
-         * Will throw and exception if the patient_status_list provided is null or no
-         * patient_status_list is provided at all.
-         */
-        if patientStatusList.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "patient_status_list")
+        
+        
+        if !CoreConstants.shared.enumContains(ItemAction.self, name: action) {
+            ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className:  String(describing: ItemAction.self))
             return
-        } else {
-            /**
-             * Parsing the values into an object and passing to the setup block to queue
-             * the event based on its priority.
-             */
-//            for item in diagnosisValuesList {
-//                if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
-//                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: DiagnosisType.self))
-//                    return
-//                } else if item.value.isEmpty {
-//                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "diagnosis_item value")
-//                    return
-//                } else if item.unit.isEmpty {
-//                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "diagnosis_item unit")
-//                    return
-//                }
-//            }
-//
-//            for item in diagnosisResultList {
-//                if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
-//                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: DiagnosisType.self))
-//                    return
-//                } else if item.value.isEmpty {
-//                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "diagnosis_item value")
-//                    return
-//                } else if item.unit.isEmpty {
-//                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "diagnosis_item unit")
-//                    return
-//                }
-//            }
-//
-//            for item in patientStatusList {
-//                if !CoreConstants.shared.enumContains(DiagnosisSymptomType.self, name: item.type) {
-//                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: DiagnosisSymptomType.self))
-//                } else if !CoreConstants.shared.enumContains(PatientStatusValueType.self, name: item.value) {
-//                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: PatientStatusValueType.self))
-//                }
-//            }
-
-            for item in treatmentPlanList {
-                if !CoreConstants.shared.enumContains(TreatmentType.self, name: item.type) {
-                    ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: TreatmentType.self))
-                } else if !CoreConstants.shared.enumContains(TreatmentFrequency.self, name: item.frequency) {
-                    ExceptionManager.throwEnumException(
-                        eventType: PatientMgmtEventType.submit_enrolment.rawValue,
-                        className: String(describing: TreatmentFrequency.self)
-                    )
-                } else if !CoreConstants.shared.enumContains(ItemAction.self, name: item.action) {
-                    ExceptionManager.throwEnumException(
-                        eventType: PatientMgmtEventType.submit_enrolment.rawValue,
-                        className: String(describing: ItemAction.self)
-                    )
-                } else if item.value == 0 {
-                    ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "value")
-                }
-            }
-
-//            let submitEnrolmentEventObject = SubmitEnrolmentEventObject(
-//                patientId: patientId!,
-//                siteId: siteId!,
-//                action: action!,
-//                patientStatusList: patientStatusList,
-//                diagnosisValuesList: diagnosisValuesList,
-//                diagnosisResultsList: diagnosisResultList,
-//                treatmentPlanList: treatmentPlanList,
-//                meta: meta as? Encodable
-//            )
-//            CFSetup().track(
-//                contentBlockName: ChwConstants.contentBlockName,
-//                eventType: PatientMgmtEventType.submit_enrolment.rawValue,
-//                logObject: submitEnrolmentEventObject,
-//                updateImmediately: updateImmediately
-//            )
         }
+        
+        /**
+         * Parsing the values into an object and passing to the setup block to queue
+         * the event based on its priority.
+         */
+        if( PatientMgmtEventValidation.verifyDiagnosisObjectList(eventType: PatientMgmtEventType.submit_assessment, diagnosisType: "diagnosis_value_item", diagnosisList: diagnosisValuesList) &&
+            PatientMgmtEventValidation.verifyDiagnosisObjectList(eventType: PatientMgmtEventType.submit_assessment, diagnosisType: "diagnosis_result_item", diagnosisList: diagnosisResultList) &&
+            PatientMgmtEventValidation.verifyDiagnosisObjectList(eventType: PatientMgmtEventType.submit_assessment, diagnosisType: "diagnosis_vitals_item", diagnosisList: diagnosisVitalsList) &&
+            PatientMgmtEventValidation.verifyDiagnosisQuestionnaireList(eventType: PatientMgmtEventType.submit_assessment, diagnosisQuestionnaireList: diagnosisQuestionnaireList) &&
+            PatientMgmtEventValidation.verifyPregnancyObject(eventType: PatientMgmtEventType.submit_assessment, pregnancyObject: pregnancyDetailsValue) &&
+            PatientMgmtEventValidation.verifyPatientStatusList(eventType: PatientMgmtEventType.submit_assessment, patientStatusList: patientStatusList) &&
+            PatientMgmtEventValidation.verifyTreatmentPlantList(eventType: PatientMgmtEventType.submit_assessment, treatmentPlanList: treatmentPlanList)
+        
+        ){
+            
+            let submitEnrolmentEventObject = SubmitEnrolmentEventObject(
+                patientId: patientId!,
+                siteId: siteId!,
+                action: action!,
+                isFromGho: isFromGhoValue ?? false,
+                vitalsList: diagnosisVitalsList,
+                diagnosisValuesList: diagnosisValuesList, 
+                diagnosisResultsList: diagnosisResultList,
+                patientStatusList: patientStatusList,
+                diagnosisQuestionnaireList: diagnosisQuestionnaireList,
+                pregnancyDetails: pregnancyDetailsValue,
+                treatmentPlanList: treatmentPlanList,
+                meta: meta as? Encodable
+            )
+            CFSetup().track(
+                contentBlockName: ChwConstants.contentBlockName,
+                eventType: PatientMgmtEventType.submit_enrolment.rawValue,
+                logObject: submitEnrolmentEventObject,
+                updateImmediately: updateImmediately
+            )
+        }
+        
     }
 }
