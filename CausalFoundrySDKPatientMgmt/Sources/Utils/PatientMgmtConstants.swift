@@ -11,47 +11,47 @@ import Foundation
 enum PatientMgmtConstants {
     static var contentBlockName: String = "patient_mgmt"
 
-    static func verifyChwCatalog(chwId: String, chwCatalogModel: ChwCatalogModel) -> InternalChwModel? {
-        let catalogName = CatalogSubject.chw.rawValue + " catalog"
+    static func verifyHcwCatalog(hcwId: String, hcwCatalogModel: HcwCatalogModel) -> InternalHcwModel? {
+        let catalogName = "HCW catalog"
 
-        guard !chwId.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Chw Id")
+        guard !hcwId.isEmpty else {
+            ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Hcw Id")
             return nil
         }
 
-        for item in chwCatalogModel.rolePermissions {
+        for item in hcwCatalogModel.rolePermissions {
             guard !item.isEmpty else {
                 ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid role_permissions provided")
                 return nil
             }
         }
 
-        for item in chwCatalogModel.siteIdsList {
+        for item in hcwCatalogModel.siteIdsList {
             guard !item.isEmpty else {
                 ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid site_id_list provided")
                 return nil
             }
         }
 
-        for item in chwCatalogModel.servicesList {
+        for item in hcwCatalogModel.servicesList {
             guard !item.isEmpty else {
                 ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid services provided")
                 return nil
             }
         }
 
-        return InternalChwModel(
-            id: chwId,
-            name: chwCatalogModel.name,
-            isVolunteer: false,
-            role: chwCatalogModel.role,
-            rolePermissions: chwCatalogModel.rolePermissions,
-            siteIdsList: chwCatalogModel.siteIdsList,
-            servicesList: chwCatalogModel.servicesList
+        return InternalHcwModel(
+            id: hcwId,
+            name: hcwCatalogModel.name,
+            isVolunteer: hcwCatalogModel.isVolunteer,
+            role: hcwCatalogModel.role,
+            rolePermissions: hcwCatalogModel.rolePermissions,
+            siteIdsList: hcwCatalogModel.siteIdsList,
+            servicesList: hcwCatalogModel.servicesList
         )
     }
 
-    static func verifySiteCatalog(siteId: String, chwSiteCatalogModel: ChwSiteCatalogModel) -> InternalSiteModel? {
+    static func verifySiteCatalog(siteId: String, hcwSiteCatalogModel: HcwSiteCatalogModel) -> InternalHcwSiteCatalogModel? {
         let catalogName = CatalogSubject.chwsite.rawValue + " catalog"
 
         guard !siteId.isEmpty else {
@@ -59,28 +59,28 @@ enum PatientMgmtConstants {
             return nil
         }
 
-        if !chwSiteCatalogModel.country.isEmpty {
-            guard CountryCode(rawValue: chwSiteCatalogModel.country) != nil else {
+        if !hcwSiteCatalogModel.country.isEmpty {
+            guard CountryCode(rawValue: hcwSiteCatalogModel.country) != nil else {
                 ExceptionManager.throwEnumException(eventType: catalogName, className: "CountryCode")
                 return nil
             }
         }
 
-        return InternalSiteModel(
+        return InternalHcwSiteCatalogModel(
             id: siteId,
-            name: chwSiteCatalogModel.name,
-            country: chwSiteCatalogModel.country,
-            regionState: chwSiteCatalogModel.regionState,
-            city: chwSiteCatalogModel.city,
-            zipcode: chwSiteCatalogModel.zipcode,
-            level: chwSiteCatalogModel.level,
-            category: chwSiteCatalogModel.category,
-            isActive: chwSiteCatalogModel.isActive,
-            address: chwSiteCatalogModel.address,
-            addressType: chwSiteCatalogModel.addressType,
-            latitude: chwSiteCatalogModel.latitude,
-            longitude: chwSiteCatalogModel.longitude,
-            culture: chwSiteCatalogModel.culture
+            name: hcwSiteCatalogModel.name,
+            country: hcwSiteCatalogModel.country,
+            regionState: hcwSiteCatalogModel.regionState,
+            city: hcwSiteCatalogModel.city,
+            zipcode: hcwSiteCatalogModel.zipcode,
+            level: hcwSiteCatalogModel.level,
+            category: hcwSiteCatalogModel.category,
+            isActive: hcwSiteCatalogModel.isActive,
+            address: hcwSiteCatalogModel.address,
+            addressType: hcwSiteCatalogModel.addressType,
+            latitude: hcwSiteCatalogModel.latitude,
+            longitude: hcwSiteCatalogModel.longitude,
+            culture: hcwSiteCatalogModel.culture
         )
     }
 
@@ -99,11 +99,9 @@ enum PatientMgmtConstants {
             }
         }
 
-        if !patientCatalogModel.educationLevel.isEmpty {
-            guard EducationalLevel(rawValue: patientCatalogModel.educationLevel) != nil else {
-                ExceptionManager.throwEnumException(eventType: catalogName, className: "EducationalLevel")
-                return nil
-            }
+        if (!patientCatalogModel.educationLevel.isEmpty && !CoreConstants.shared.enumContains(EducationalLevel.self, name: patientCatalogModel.educationLevel)) {
+            ExceptionManager.throwEnumException(eventType: catalogName, className: "EducationalLevel")
+            return nil
         }
 
         for item in patientCatalogModel.siteIdsList {

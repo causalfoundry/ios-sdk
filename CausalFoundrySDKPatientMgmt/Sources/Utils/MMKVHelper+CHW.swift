@@ -13,15 +13,15 @@ public extension MMKVHelper {
         var newUpdatedData: Data?
         do {
             let decoder = JSONDecoder.new
-            if subject == .chw {
-                var catalogTableData = try decoder.decode([InternalChwModel].self, from: oldData)
-                let catalogNewData = try decoder.decode([InternalChwModel].self, from: newData)
+            if subject == .user_chw {
+                var catalogTableData = try decoder.decode([InternalHcwModel].self, from: oldData)
+                let catalogNewData = try decoder.decode([InternalHcwModel].self, from: newData)
                 catalogTableData.removeAll(where: { $0.id == catalogNewData.first?.id })
                 catalogTableData.append(catalogNewData.first!)
                 newUpdatedData = catalogTableData.toData()
             } else if subject == .chwsite {
-                var catalogTableData = try decoder.decode([InternalSiteModel].self, from: oldData)
-                let catalogNewData = try decoder.decode([InternalSiteModel].self, from: newData)
+                var catalogTableData = try decoder.decode([InternalHcwSiteCatalogModel].self, from: oldData)
+                let catalogNewData = try decoder.decode([InternalHcwSiteCatalogModel].self, from: newData)
                 catalogTableData.removeAll(where: { $0.id == catalogNewData.first?.id })
                 catalogTableData.append(catalogNewData.first!)
                 newUpdatedData = catalogTableData.toData()

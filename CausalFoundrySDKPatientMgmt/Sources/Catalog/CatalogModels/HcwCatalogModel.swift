@@ -1,13 +1,13 @@
 //
-//  ChwCatalogModel.swift
+//  HcwCatalogModel.swift
 //
 //
-//  Created by khushbu on 26/10/23.
+//  Created by MOIZ HASSAN KHAN on 01/05/24.
 //
 
 import Foundation
 
-public struct ChwCatalogModel: Codable {
+public struct HcwCatalogModel: Codable {
     var name: String
     var role: String
     var isVolunteer: Bool
@@ -24,7 +24,7 @@ public struct ChwCatalogModel: Codable {
         case servicesList = "services_list"
     }
 
-    public init(name: String, role: String, isVolunteer: Bool, rolePermissions: [String], siteIdsList: [String], servicesList: [String]) {
+    public init(name: String = "", role: String = "", isVolunteer: Bool = false, rolePermissions: [String] = [], siteIdsList: [String] = [], servicesList: [String] = []) {
         self.name = name
         self.role = role
         self.isVolunteer = isVolunteer

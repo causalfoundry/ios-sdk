@@ -21,8 +21,25 @@ public struct PatientCatalogModel: Codable {
     var landmark: String
     var phoneNumberCategory: String
     var programId: String
+    
+    public enum CodingKeys: String, CodingKey {
+        case country
+        case regionState = "region_state"
+        case city
+        case profession
+        case educationLevel = "education_level"
+        case siteIdsList = "site_ids_list"
+        case nationalId = "national_id"
+        case insuranceId = "insurance_id"
+        case insuranceType = "insurance_type"
+        case insuranceStatus = "insurance_status"
+        case landmark
+        case phoneNumberCategory = "phone_number_category"
+        case programId = "program_id"
+    }
 
-    public init(country: String, regionState: String, city: String, profession: String, educationLevel: String, siteIdsList: [String], nationalId: String, insuranceId: String, insuranceType: String, insuranceStatus: Bool, landmark: String, phoneNumberCategory: String, programId: String) {
+    public init(country: String  = "", regionState: String = "", city: String = "", profession: String = "", educationLevel: String = "", siteIdsList: [String] = [], nationalId: String = "", insuranceId: String = "", insuranceType: String = "", insuranceStatus: Bool = false, landmark: String = "", phoneNumberCategory: String = "", programId: String = "") {
+        
         self.country = country
         self.regionState = regionState
         self.city = city

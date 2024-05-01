@@ -10,7 +10,7 @@ import Foundation
 public enum CatalogSubject: String, CaseIterable, Codable {
     case user
     case media
-    case chw
+    case user_chw
     case chwsite
     case patient
 
