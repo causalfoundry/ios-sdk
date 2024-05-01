@@ -84,7 +84,7 @@ public class CFLogBuilder {
      * In such cases, the device Id will be used as the userId
      */
     @discardableResult
-    public func allowAnonymousUsers(_ allowed: Bool = true) -> CFLogBuilder {
+    public func allowAnonymousUsers(allowed: Bool = true) -> CFLogBuilder {
         CoreConstants.shared.isAnonymousUserAllowed = allowed
         return self
     }
@@ -210,8 +210,6 @@ public class CFLogBuilder {
                 ExceptionManager.throwIsRequiredException(eventType: "CFLog", elementName: "SDK KEY")
             }else {
                 CoreConstants.shared.sdkKey = "Bearer \(appSdkKey)"
-                let dnspeed = NetworkMonitor.shared.downloadSpeed
-                print(dnspeed)
             }
             CFSetup().initalize(pauseSDK: pauseSDK, updateImmediately: updateImmediately)
         }

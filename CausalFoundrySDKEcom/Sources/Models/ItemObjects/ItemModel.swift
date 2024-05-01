@@ -60,10 +60,10 @@ public struct ItemModel: Codable {
         try container.encodeIfPresent(discount, forKey: .discount)
         try container.encodeIfPresent(facilityId, forKey: .facilityId)
         if let subscriptionData = subscription {
-            try container.encode(subscriptionData, forKey: .subscription)
+            try container.encodeIfPresent(subscriptionData, forKey: .subscription)
         }
         if let metaData = meta {
-            try container.encode(metaData, forKey: .meta)
+            try container.encodeIfPresent(metaData, forKey: .meta)
         }
         
     }

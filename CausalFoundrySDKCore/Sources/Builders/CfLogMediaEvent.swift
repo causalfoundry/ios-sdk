@@ -75,7 +75,7 @@ public class CfLogMediaEventBuilder {
         if MediaType.allCases.filter({ $0.rawValue == media_type }).first != nil {
             self.media_type = media_type
         } else {
-            ExceptionManager.throwEnumException(eventType: CoreEventType.media.rawValue, className: String(describing: CfLogMediaEvent.self))
+            ExceptionManager.throwEnumException(eventType: CoreEventType.Media.rawValue, className: String(describing: CfLogMediaEvent.self))
         }
         return self
     }
@@ -112,7 +112,7 @@ public class CfLogMediaEventBuilder {
         if MediaAction.allCases.filter({ $0.rawValue == media_action }).first != nil {
             self.media_action = media_action
         } else {
-            ExceptionManager.throwEnumException(eventType: CoreEventType.media.rawValue, className: String(describing: CfLogMediaEvent.self))
+            ExceptionManager.throwEnumException(eventType: CoreEventType.Media.rawValue, className: String(describing: CfLogMediaEvent.self))
         }
         return self
     }
@@ -166,7 +166,7 @@ public class CfLogMediaEventBuilder {
             self.content_block = content_block
         } else {
             ExceptionManager.throwEnumException(
-                eventType: CoreEventType.media.rawValue,
+                eventType: CoreEventType.Media.rawValue,
                 className: String(String(describing: CfLogMediaEvent.self))
             )
         }
@@ -208,27 +208,27 @@ public class CfLogMediaEventBuilder {
          * provided at all.
          */
         if media_id?.isNilOREmpty() == true {
-            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_id")
+            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Media.rawValue, elementName: "media_id")
             return
         }else if media_type?.isNilOREmpty() == true {
-            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_type")
+            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Media.rawValue, elementName: "media_type")
             return
-        }else if media_type != MediaType.image.rawValue {
+        }else if media_type != MediaType.Image.rawValue {
                 if (media_action?.isNilOREmpty()) == true {
-                    ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "media_type")
+                    ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Media.rawValue, elementName: "media_type")
                     return
                 }
                 else if duration_value == nil {
-                    ExceptionManager.throwIsRequiredException(eventType: CoreEventType.media.rawValue, elementName: "Current Seek Time")
+                    ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Media.rawValue, elementName: "Current Seek Time")
                     return
                 }
             } else {
-                media_action = MediaAction.play.rawValue
+                media_action = MediaAction.Play.rawValue
                 duration_value = 0
             }
     
         let mediaObject = MediaObject(id: media_id!, type: media_type!, action: media_action!, time: duration_value!, meta: meta as? Encodable)
-        CFSetup().track(contentBlockName: content_block, eventType: CoreEventType.media.rawValue, logObject: mediaObject, updateImmediately: update_immediately)
+        CFSetup().track(contentBlockName: content_block, eventType: CoreEventType.Media.rawValue, logObject: mediaObject, updateImmediately: update_immediately)
     
     }
 

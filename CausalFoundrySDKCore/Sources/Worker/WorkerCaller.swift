@@ -16,14 +16,14 @@ public enum WorkerCaller {
     private static var nudgeDownloadTaskIdentifier = "ai.causalfoundry.fetchNudges"
 
     static func registerBackgroundTask() {
-        if(CausualFoundry.shared.isBackgroundAppRefreshEnabled()){
+        if(CausalFoundry.shared.isBackgroundAppRefreshEnabled()){
             registerEventUploadTask()
             registerNudgeDownloadTask()
         }
     }
 
     static func scheduleBackgroundTasks() {
-        if(CausualFoundry.shared.isBackgroundAppRefreshEnabled()){
+        if(CausalFoundry.shared.isBackgroundAppRefreshEnabled()){
             scheduleEventUploadTask()
             scheduleNudgeDownloadTask()
         }
@@ -55,7 +55,10 @@ public enum WorkerCaller {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: WorkerCaller.nudgeDownloadTaskIdentifier, using: nil) { task in
             Task {
                 do {
-                    try await CFNudgeListener.shared.fetchAndDisplayNudges()
+                    try await CFNudgeListener.shared.fetchAndDisplayPushNotificationNudges()
+                    if(CoreConstants.shared.isAppOpen && CoreConstants.shared.autoShowInAppNudge){
+                        try await CFNudgeListener.shared.fetchAndDisplayInAppMessagesNudges(nudgeScreenType: NudgeScreenType.None)
+                    }
                     print("Background task \(task.identifier) completed")
                     task.setTaskCompleted(success: true)
                 } catch {

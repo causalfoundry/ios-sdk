@@ -96,7 +96,7 @@ public class CfLogPageBuilder {
             self.content_block = content_block
         } else {
             ExceptionManager.throwEnumException(
-                eventType: CoreEventType.page.rawValue,
+                eventType: CoreEventType.Page.rawValue,
                 className: String(String(describing: CfLogPageEvent.self))
             )
         }
@@ -137,16 +137,16 @@ public class CfLogPageBuilder {
          */
 
         if path_value == "" {
-            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "path_value")
+            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Page.rawValue, elementName: "path_value")
             return
         }else if title_value == "" {
-            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "title")
+            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Page.rawValue, elementName: "title")
             return
         }else if render_time_value < 0 {
-            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.page.rawValue, elementName: "render_time_value")
+            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Page.rawValue, elementName: "render_time_value")
             return
         }else if duration_value <= 0 {
-            ExceptionManager.throwInvalidException(eventType: CoreEventType.page.rawValue,
+            ExceptionManager.throwInvalidException(eventType: CoreEventType.Page.rawValue,
                                                    paramName: "duration_value", className: String(describing: CfLogPageEvent.self))
             return
         }
@@ -157,6 +157,6 @@ public class CfLogPageBuilder {
         
         let pageObject = PageObject(path: path_value, title: title_value, duration: duration_value, render_time: render_time_value, meta: meta as? Encodable)
 
-        CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.page.rawValue, logObject: pageObject, updateImmediately: update_immediately, eventTime: 0)
+        CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.Page.rawValue, logObject: pageObject, updateImmediately: update_immediately, eventTime: 0)
     }
 }

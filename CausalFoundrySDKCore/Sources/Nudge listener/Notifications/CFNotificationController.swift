@@ -39,8 +39,8 @@ public final class CFNotificationController: NSObject {
                 }
                 let identifier = UUID().uuidString
                 let content = UNMutableNotificationContent()
-                content.title = object.nd.message?.title ?? ""
-                content.body = NudgeUtils.getBodyTextBasedOnTemplate(nudgeObject: object)
+                content.title = object.nd.message.title
+                content.body = object.nd.message.body.htmlAttributedString().with(font:UIFont.preferredFont(forTextStyle: .body)).string
                 content.categoryIdentifier = "BackendNudgeMainObject"
                 if let data = object.toData() {
                     content.userInfo = [userInfoKey: data]
@@ -49,6 +49,7 @@ public final class CFNotificationController: NSObject {
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
                 let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
                 try await center.add(request)
+                
             }
         }
     }
@@ -58,7 +59,7 @@ public final class CFNotificationController: NSObject {
                                                 response: response, details: errorDetails)
         CFSetup()
             .track(contentBlockName: CoreConstants.shared.contentBlockName,
-                   eventType: CoreEventType.nudge_response.rawValue,
+                   eventType: CoreEventType.NudgeResponse.rawValue,
                    logObject: nudgeResponse,
                    updateImmediately: true,
                    eventTime: 0)
@@ -67,7 +68,7 @@ public final class CFNotificationController: NSObject {
     func trackAndOpen(object: BackendNudgeMainObject) {
        track(nudgeRef: object.ref, response: .open)
         if let cta = object.nd.cta, cta == "redirect" || cta == "add_to_cart",
-           let itemType = object.nd.message?.tmplCFG?.itemPairCFG?.itemType, !itemType.isEmpty,
+           let itemType = object.nd.message.tmplCFG?.itemPairCFG?.itemType, !itemType.isEmpty,
            let itemID = object.extra?.itemPair?.ids?.first
         {
             if let closure = NudgeOnClickObject.nudgeOnClickInterface {

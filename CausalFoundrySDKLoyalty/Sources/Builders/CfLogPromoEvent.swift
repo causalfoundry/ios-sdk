@@ -204,11 +204,11 @@ public class CfLogPromoEvent {
          * the event based on its priority.
          */
         let promoObject = PromoObject(
-            promo_id: promo_id,
-            promo_action: promo_action,
-            promo_title: CoreConstants.shared.checkIfNull(promo_title),
-            promo_type: promo_type,
-            promo_items_list: promo_items_list,
+            promoId: promo_id,
+            promoAction: promo_action,
+            promoTitle: CoreConstants.shared.checkIfNull(promo_title),
+            promoType: promo_type,
+            promoItemsList: promo_items_list,
             meta: meta as? Encodable
         )
         CFSetup().track(contentBlockName: LoyaltyConstants.contentBlockName, eventType: LoyaltyEventType.promo.rawValue, logObject: promoObject, updateImmediately: update_immediately)

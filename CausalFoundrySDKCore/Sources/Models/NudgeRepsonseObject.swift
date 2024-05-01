@@ -14,6 +14,7 @@ struct NudgeRepsonseObject: Codable {
         case block // if the user has blocked the permission for push notifications, not effective for in-app messages.
         case shown // when the nudge is shown to the user, sent to the OS for showing up as a push notification and when the nudge is rendered on screen for the in-app message.
         case error // when there is some error in rendering the nudge for both push notification and in-app message, such as nudge body rendering
+        case expired // when the nudge is expired
     }
 
     let ref: String // ref provided in the nudge fetch API.

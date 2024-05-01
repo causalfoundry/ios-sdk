@@ -17,6 +17,10 @@ public class CfLogDeliveryEvent {
     var orderId: String = ""
     var deliveryId: String = ""
     var action: String = ""
+    var isUrgent: Bool = false
+    var estDeliveryTsValue: Int64 = 0
+    var deliveryCoordinatesObject: CoordinatesObject? = nil
+    var dispatchCoordinatesObject: CoordinatesObject? = nil
     var meta: Any?
     var updateImmediately: Bool = CoreConstants.shared.updateImmediately
 
@@ -62,7 +66,87 @@ public class CfLogDeliveryEvent {
         }
         return self
     }
+    
+    /**
+     * isUrgent is to mark the log if the delivery is scheduled to be an immediate or emergency
+     * delivery.
+     */
 
+    @discardableResult
+    public func isUrgent(isUrgent: Bool) -> CfLogDeliveryEvent {
+        self.isUrgent = isUrgent
+        return self
+    }
+
+    /**
+     * The timestamp in time in milliseconds format for the date and time for which the
+     * delivery is set to be scheduled
+     */
+
+    @discardableResult
+    public func setDeliveryDateTime(deliveryTs: Int64) -> CfLogDeliveryEvent {
+        self.estDeliveryTsValue = deliveryTs
+        return self
+    }
+
+    @discardableResult
+    public func setDeliveryDateTime(deliveryTsString: String) -> CfLogDeliveryEvent {
+        if let deliveryTs = Int64(deliveryTsString) {
+            self.estDeliveryTsValue = deliveryTs
+        } else {
+            ExceptionManager.throwRuntimeException(
+                eventType: EComEventType.delivery.rawValue,
+                message: "Unable to convert \(deliveryTsString) to Int64"
+            )
+        }
+        return self
+    }
+    
+    
+    /**
+     * setDeliveryCoordinates can be used to pass the whole Coordinates Object or as a
+     * Json String as well. You can use the POJO CoordinatesObject to parse the data
+     * in the required format and pass that to this function as a string to log the event.
+     * You can use Gson to convert the object to string but SDK will parse the Json string
+     * back to POJO so pass it in the log. This method should be used with caution and is
+     * suitable for react native bridge.
+     */
+    public func setDeliveryCoordinates(deliveryCoordinates: CoordinatesObject)  -> CfLogDeliveryEvent {
+        self.deliveryCoordinatesObject = deliveryCoordinates
+        return self
+    }
+
+    public func setDeliveryCoordinates(deliveryCoordinatesJsonString: String?)  -> CfLogDeliveryEvent {
+        if let data = deliveryCoordinatesJsonString?.data(using: .utf8),
+           let item = try? JSONDecoder.new.decode(CoordinatesObject.self, from: data)
+        {
+            self.deliveryCoordinatesObject = item
+        }
+        return self
+    }
+    
+    /**
+     * setDeliveryCoordinates can be used to pass the whole Coordinates Object or as a
+         * Json String as well. You can use the POJO CoordinatesObject to parse the data
+         * in the required format and pass that to this function as a string to log the event.
+         * You can use Gson to convert the object to string but SDK will parse the Json string
+         * back to POJO so pass it in the log. This method should be used with caution and is
+         * suitable for react native bridge.
+         */
+    public func setDispatchCoordinates(dispatchCoordinates: CoordinatesObject)  -> CfLogDeliveryEvent {
+        self.dispatchCoordinatesObject = dispatchCoordinates
+        return self
+    }
+
+    public func setDispatchCoordinates(dispatchCoordinatesJsonString: String?)  -> CfLogDeliveryEvent {
+        if let data = dispatchCoordinatesJsonString?.data(using: .utf8),
+           let item = try? JSONDecoder.new.decode(CoordinatesObject.self, from: data)
+        {
+            self.dispatchCoordinatesObject = item
+        }
+        return self
+    }
+    
     /**
      * You can pass any type of value in setMeta. It is for developer and partners to log
      * additional information with the log that they find would be helpful for logging and
@@ -104,9 +188,24 @@ public class CfLogDeliveryEvent {
         }else if action.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.rawValue, elementName: "action")
             return
+        }else if (estDeliveryTsValue < 1) {
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.rawValue, elementName: "estDeliveryTsValue")
+            return
+        }else if (deliveryCoordinatesObject != nil && (deliveryCoordinatesObject?.lat == 0.0 ||
+                                                       deliveryCoordinatesObject?.lon == 0.0)) {
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.rawValue, elementName: "Invalid Delivery Coordinates provided")
+            return
+        }else if (dispatchCoordinatesObject != nil && (dispatchCoordinatesObject?.lat == 0.0 ||
+                                                       dispatchCoordinatesObject?.lon == 0.0)) {
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.rawValue, elementName: "Invalid Dispatch Coordinates provided")
+            return
         }
-        
-        let deliverObject = DeliveryObject(deliveryId: deliveryId, orderId: orderId, action: action, meta: meta as? Encodable)
+        let deliverObject = DeliveryObject(
+            deliveryId: deliveryId, orderId: orderId,
+            action: action, isUrgent: isUrgent, estDeliveryTsValue: ECommerceConstants.getDateTime(milliSeconds: estDeliveryTsValue),
+            deliveryCoordinates: deliveryCoordinatesObject,
+            dispatchCoordinates: dispatchCoordinatesObject,
+            meta: meta as? Encodable)
         CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.delivery.rawValue, logObject: deliverObject, updateImmediately: updateImmediately)
         
     }

@@ -9,5 +9,14 @@ import CausalFoundrySDKCore
 import Foundation
 
 public enum ModuleLogAction: String, EnumComposable {
-    case view
+    case View
+    case Other
+    
+    public var rawValue: String {
+        switch self {
+        case .View: return "view"
+        case .Other: return "other"
+        }
+    }
+    
 }

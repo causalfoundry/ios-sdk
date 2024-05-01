@@ -10,6 +10,16 @@ import CausalFoundrySDKCore
 import Foundation
 
 public enum QuestionAction: String, EnumComposable {
-    case answer
-    case skip
+    case Answer
+    case Skip
+    case Other
+    
+    
+    public var rawValue: String {
+        switch self {
+        case .Answer: return "answer"
+        case .Skip: return "skip"
+        case .Other: return "other"
+        }
+    }
 }

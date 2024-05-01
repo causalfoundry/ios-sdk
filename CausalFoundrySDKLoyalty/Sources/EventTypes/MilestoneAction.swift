@@ -9,5 +9,13 @@ import CausalFoundrySDKCore
 import Foundation
 
 public enum MilestoneAction: String, EnumComposable {
-    case achieved
+    case Achieved
+    case Other
+    
+    public var rawValue: String {
+        switch self {
+        case .Achieved: return "achieved"
+        case .Other: return "other"
+        }
+    }
 }

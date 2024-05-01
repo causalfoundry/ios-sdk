@@ -93,27 +93,27 @@ public class CfLogItemEvent {
     @discardableResult
     public func setCatalogProperties(catalogPropertiesString: String) -> CfLogItemEvent {
         switch self.itemObject.type {
-        case ItemType.drug.rawValue:
+        case ItemType.Drug.rawValue:
             if let drugCatalogModel = try? JSONDecoder.new.decode(DrugCatalogModel.self, from: Data(catalogPropertiesString.utf8)) {
                 self.catalogModel = drugCatalogModel
             } else { fallthrough }
-        case ItemType.grocery.rawValue:
+        case ItemType.Grocery.rawValue:
             if let groceryCatalogModel = try? JSONDecoder.new.decode(GroceryCatalogModel.self, from: Data(catalogPropertiesString.utf8)) {
                 self.catalogModel = groceryCatalogModel
             } else { fallthrough }
-        case ItemType.blood.rawValue:
+        case ItemType.Blood.rawValue:
             if let bloodCatalogModel = try? JSONDecoder.new.decode(BloodCatalogModel.self, from: Data(catalogPropertiesString.utf8)) {
                 self.catalogModel = bloodCatalogModel
             } else { fallthrough }
-        case ItemType.oxygen.rawValue:
+        case ItemType.Oxygen.rawValue:
             if let oxygenCatalogModel = try? JSONDecoder.new.decode(OxygenCatalogModel.self, from: Data(catalogPropertiesString.utf8)) {
                 self.catalogModel = oxygenCatalogModel
             } else { fallthrough }
-        case ItemType.medicalEquipment.rawValue:
+        case ItemType.MedicalEquipment.rawValue:
             if let medicalEquipmentCatalogModel = try? JSONDecoder.new.decode(MedicalEquipmentCatalogModel.self, from: Data(catalogPropertiesString.utf8)) {
                 self.catalogModel = medicalEquipmentCatalogModel
             } else { fallthrough }
-        case ItemType.facility.rawValue:
+        case ItemType.Facility.rawValue:
             if let facilityCatalogModel = try? JSONDecoder.new.decode(FacilityCatalogModel.self, from: Data(catalogPropertiesString.utf8)) {
                 self.catalogModel = facilityCatalogModel
             } else { fallthrough }

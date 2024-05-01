@@ -81,7 +81,7 @@ fileprivate final class CFNudgeViewController: UITableViewController {
         guard let object = dataSource.itemIdentifier(for: indexPath) else { return }
         CFNotificationController.shared.trackAndOpen(object: object)
         if let cta = object.nd.cta, cta == "redirect" || cta == "add_to_cart",
-           let itemType = object.nd.message?.tmplCFG?.itemPairCFG?.itemType, !itemType.isEmpty,
+           let itemType = object.nd.message.tmplCFG?.itemPairCFG?.itemType, !itemType.isEmpty,
            let itemID = object.extra?.itemPair?.ids?.first, !itemID.isEmpty
         {
             removeAllObjects()
@@ -173,19 +173,19 @@ fileprivate final class CFNudgeView: UIView {
         backgroundColor = .systemBackground
         
         let titleView = UILabel(frame: .zero)
-        titleView.text = object.nd.message?.title ?? ""
+        titleView.text = object.nd.message.title
         titleView.font = UIFont.preferredFont(forTextStyle: .headline)
         titleView.numberOfLines = 0
         titleView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(titleView)
         
         let bodyView = UILabel(frame: .zero)
-        bodyView.text = NudgeUtils.getBodyTextBasedOnTemplate(nudgeObject: object)
-        bodyView.font = UIFont.preferredFont(forTextStyle: .body)
+        bodyView.attributedText = object.nd.message.body.htmlAttributedString().with(font:UIFont.preferredFont(forTextStyle: .body))
         bodyView.numberOfLines = 0
         bodyView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(bodyView)
         
+        addSubview(bodyView)
+    
         let button = UIButton(type: .close)
         button.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false

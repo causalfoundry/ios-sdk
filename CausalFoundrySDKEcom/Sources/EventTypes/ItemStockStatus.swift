@@ -9,7 +9,15 @@ import CausalFoundrySDKCore
 import Foundation
 
 public enum ItemStockStatus: String, EnumComposable {
-    case inStock = "in_stock"
-    case lowStock = "low_stock"
-    case outOfStock = "out_of_stock"
+    case InStock
+    case LowStock
+    case OutOfStock
+    
+    public var rawValue: String {
+        switch self {
+        case .InStock: return "in_stock"
+        case .LowStock: return "low_stock"
+        case .OutOfStock: return "out_of_stock"
+        }
+    }
 }

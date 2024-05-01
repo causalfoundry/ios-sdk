@@ -41,12 +41,12 @@ public class CoreConstants {
     var isDebugMode: Bool = true
     var allowAutoPageTrack: Bool = true
     var isAnonymousUserAllowed: Bool = false
-    var contentBlock: ContentBlock = .core
+    var contentBlock: ContentBlock = .Core
     var contentBlockName: String {
         return contentBlock.rawValue
     }
 
-    var SDKVersion: String = "ios/0.5.3"
+    var SDKVersion: String = "ios/0.9.5"
 
     public var updateImmediately: Bool = false
 
@@ -72,19 +72,15 @@ public class CoreConstants {
 
     public var isAgainRate: Bool = false
 
-    public func enumContains<T: EnumComposable>(_: T.Type, name: String) -> Bool where T.RawValue == String {
-//
-//        if type == LanguageCode.self {
-        ////            return (T.allCases.contains{ ($0.languageISO3Code == name) || ($0.languageISO2Code == name) || ($0.languageFullName == name) })
-//
-//            return (T.allCases.contains{ ($0.languageISO3Code == name)} ||  T.allCases.contains{ ($0.T.allCases.contains{ ($0.languageISO3Code == name)} == name)} || T.allCases.contains{ ($0.languageFullName == name)})
-//        }else{
+    public func enumContains<T: EnumComposable>(_: T.Type, name: String?) -> Bool where T.RawValue == String {
+        if(name == nil || name!.isEmpty){
+            return false
+        }
         return T.allCases.contains { $0.rawValue == name }
-        // }
     }
 }
 
-public protocol EnumComposable: RawRepresentable, CaseIterable {}
+public protocol EnumComposable: Codable, RawRepresentable, CaseIterable {}
 
 extension CoreConstants {
     func isSearchItemModelObjectValid(itemValue: SearchItemModel, eventType: CoreEventType) {

@@ -8,28 +8,28 @@
 import Foundation
 
 struct OxygenMetaModel: Codable {
-    var order_type: String
+    var orderType: String
     var reason: String
 
     enum CodingKeys: String, CodingKey {
-        case order_type
+        case orderType = "order_type"
         case reason
     }
 
-    init(order_type: String = "", reason: String = "") {
-        self.order_type = order_type
+    init(orderType: String = "", reason: String = "") {
+        self.orderType = orderType
         self.reason = reason
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        order_type = try container.decode(String.self, forKey: .order_type)
+        orderType = try container.decode(String.self, forKey: .orderType)
         reason = try container.decode(String.self, forKey: .reason)
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(order_type, forKey: .order_type)
+        try container.encode(orderType, forKey: .orderType)
         try container.encode(reason, forKey: .reason)
     }
 }

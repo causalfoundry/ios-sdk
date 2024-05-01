@@ -10,14 +10,14 @@ import Foundation
 struct CancelCheckoutObject: Codable {
     var id: String
     var type: String
-    var items: [ItemTypeModel] = []
+    var itemsList: [ItemTypeModel] = []
     var reason: String = ""
     var meta: Encodable? = nil
 
-    public init(id: String, type: String, items: [ItemTypeModel], reason: String = "", meta: Encodable? = nil) {
+    public init(id: String, type: String, itemsList: [ItemTypeModel], reason: String = "", meta: Encodable? = nil) {
         self.id = id
         self.type = type
-        self.items = items
+        self.itemsList = itemsList
         self.reason = reason
         self.meta = meta
     }
@@ -26,7 +26,7 @@ struct CancelCheckoutObject: Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case type
-        case items
+        case itemsList = "items"
         case reason
         case meta
     }
@@ -37,7 +37,7 @@ struct CancelCheckoutObject: Codable {
         try container.encode(id, forKey: .id)
         try container.encode(type, forKey: .type)
         try container.encode(reason, forKey: .reason)
-        try container.encode(items, forKey: .items)
+        try container.encode(itemsList, forKey: .itemsList)
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
@@ -50,7 +50,7 @@ struct CancelCheckoutObject: Codable {
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(String.self, forKey: .type)
         reason = try container.decode(String.self, forKey: .reason)
-        items = try container.decode([ItemTypeModel].self, forKey: .items)
+        itemsList = try container.decode([ItemTypeModel].self, forKey: .itemsList)
         if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {

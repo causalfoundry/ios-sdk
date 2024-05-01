@@ -14,7 +14,7 @@ public struct CheckoutObject: Codable {
     var cartPrice: Float
     var currency: String
     var shopMode: String
-    var items: [ItemModel]
+    var itemList: [ItemModel]
     var meta: Encodable?
 
     enum CodingKeys: String, CodingKey {
@@ -24,18 +24,18 @@ public struct CheckoutObject: Codable {
         case cartPrice  = "cart_price"
         case currency
         case shopMode = "shop_mode"
-        case items
+        case itemList = "items"
         case meta
     }
 
-    public init(orderId: String, cartId: String, isSuccessful: Bool, cartPrice: Float, currency: String, shopMode: String, items: [ItemModel], meta: Encodable? = nil) {
+    public init(orderId: String, cartId: String, isSuccessful: Bool, cartPrice: Float, currency: String, shopMode: String, itemList: [ItemModel], meta: Encodable? = nil) {
         self.orderId = orderId
         self.cartId = cartId
         self.isSuccessful = isSuccessful
         self.cartPrice = cartPrice
         self.currency = currency
         self.shopMode = shopMode
-        self.items = items
+        self.itemList = itemList
         self.meta = meta
     }
 
@@ -48,7 +48,7 @@ public struct CheckoutObject: Codable {
         try container.encode(cartPrice, forKey: .cartPrice)
         try container.encode(currency, forKey: .currency)
         try container.encode(shopMode, forKey: .shopMode)
-        try container.encode(items, forKey: .items)
+        try container.encode(itemList, forKey: .itemList)
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
@@ -64,7 +64,7 @@ public struct CheckoutObject: Codable {
         cartPrice = try container.decode(Float.self, forKey: .cartPrice)
         currency = try container.decode(String.self, forKey: .currency)
         shopMode = try container.decode(String.self, forKey: .shopMode) // Decoding enum from rawValue
-        items = try container.decode([ItemModel].self, forKey: .items)
+        itemList = try container.decode([ItemModel].self, forKey: .itemList)
         if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {

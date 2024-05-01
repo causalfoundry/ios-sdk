@@ -9,7 +9,7 @@ import BackgroundTasks
 import Foundation
 import UIKit
 
-public class CausualFoundry {
+public class CausalFoundry {
     var startTime: Int64?
     var previousStartTime: Int64?
     var pageCreateTime: Int64? = 0
@@ -17,7 +17,7 @@ public class CausualFoundry {
     var oldPageRenderTime: Int64 = 0
     var appStartTime: Int64 = 0
 
-    public static let shared = CausualFoundry()
+    public static let shared = CausalFoundry()
     private var timer: DispatchSourceTimer?
     
     public init() {
@@ -39,7 +39,7 @@ public class CausualFoundry {
             if isBackgroundAppRefreshEnabled() {
                 WorkerCaller.registerBackgroundTask()
             } else {
-                showBAckgroudTaskEnableNotification()
+                showBackgroudTaskEnableNotification()
             }
         }
         
@@ -48,7 +48,7 @@ public class CausualFoundry {
             let currentTimeMillis = Date().timeIntervalSince1970 * 1000
             startTime = Int64(currentTimeMillis) - appStartTime
         }
-        CFLogAppEventBuilder().setAppEvent(appAction: .open)
+        CFLogAppEventBuilder().setAppEvent(appAction: .Open)
             .setStartTime(start_time: Int(startTime))
             .updateImmediately(update_immediately: false)
             .build()
@@ -60,7 +60,7 @@ public class CausualFoundry {
         if CoreConstants.shared.isAppPaused {
             let currentTimeMillis = Date().timeIntervalSince1970 * 1000
             CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
-            CFLogAppEventBuilder().setAppEvent(appAction: .resume)
+            CFLogAppEventBuilder().setAppEvent(appAction: .Resume)
                 .setStartTime(start_time: 0)
                 .updateImmediately(update_immediately: false)
                 .build()
@@ -71,6 +71,10 @@ public class CausualFoundry {
 
     @objc func appDidBecomeActive() {
         CoreConstants.shared.isAppOpen = true
+        
+        if #available(iOS 13.0, *){
+            CFSDKPerformUpload()
+        }
         
         if #available(iOS 13.0, *), !isBackgroundAppRefreshEnabled() {
             // Start the timer when the app enters the foreground to periodically send events when bg permission not provided
@@ -102,7 +106,7 @@ public class CausualFoundry {
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
         CoreConstants.shared.sessionEndTime = Int64(currentTimeMillis)
         CoreConstants.shared.isAppOpen = false
-        CFLogAppEventBuilder().setAppEvent(appAction: .background)
+        CFLogAppEventBuilder().setAppEvent(appAction: .Background)
             .setStartTime(start_time: 0)
             .updateImmediately(update_immediately: false)
             .build()
@@ -117,7 +121,7 @@ public class CausualFoundry {
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
         CoreConstants.shared.sessionEndTime = Int64(currentTimeMillis)
 
-        CFLogAppEventBuilder().setAppEvent(appAction: .close)
+        CFLogAppEventBuilder().setAppEvent(appAction: .Close)
             .setStartTime(start_time: 0)
             .updateImmediately(update_immediately: false)
             .build()
@@ -188,8 +192,8 @@ public class CausualFoundry {
     
 }
 
-extension CausualFoundry {
-    func showBAckgroudTaskEnableNotification() {
+extension CausalFoundry {
+    func showBackgroudTaskEnableNotification() {
         if #available(iOS 13.0, *) {
             guard let window = UIApplication.shared.windows.first,
                   let rootViewController = window.rootViewController else {

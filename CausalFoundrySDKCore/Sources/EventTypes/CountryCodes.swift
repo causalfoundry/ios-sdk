@@ -1,6 +1,6 @@
 import Foundation
 
-public enum CountryCode: String, EnumComposable, CaseIterable {
+public enum CountryCode: String, EnumComposable {
     // Define an enum to represent country codes
         case Ascension_Island = "Ascension Island"
         case Andorra = "Andorra"

@@ -8,7 +8,14 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public enum ShopMode: String, Codable, EnumComposable {
-    case delivery
-    case pickup
+public enum ShopMode: String, EnumComposable {
+    case Delivery
+    case Pickup
+    
+    public var rawValue: String {
+        switch self {
+        case .Delivery: return "delivery"
+        case .Pickup: return "pickup"
+        }
+    }
 }

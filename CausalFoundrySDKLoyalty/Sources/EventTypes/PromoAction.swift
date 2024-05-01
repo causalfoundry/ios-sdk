@@ -9,6 +9,15 @@ import CausalFoundrySDKCore
 import Foundation
 
 public enum PromoAction: String, EnumComposable {
-    case view
-    case apply
+    case View
+    case Apply
+    case Other
+    
+    public var rawValue: String {
+        switch self {
+        case .View: return "view"
+        case .Apply: return "apply"
+        case .Other: return "other"
+        }
+    }
 }

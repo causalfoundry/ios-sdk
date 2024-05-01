@@ -13,7 +13,6 @@ enum EComEventType: String {
     case delivery
     case checkout
     case cart
-    case scheduleDelivery = "schedule_delivery"
     case cancelCheckout = "cancel_checkout"
     case itemReport = "item_report"
     case itemVerification = "item_verification"

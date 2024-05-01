@@ -46,7 +46,7 @@ public struct ViewItemObject: Codable {
         try container.encode(item, forKey: .item)
         try container.encode(searchId, forKey: .searchId)
         if let metaData = meta {
-            try container.encode(metaData, forKey: .meta)
+            try container.encodeIfPresent(metaData, forKey: .meta)
         }
     }
 }

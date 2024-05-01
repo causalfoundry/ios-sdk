@@ -26,21 +26,22 @@ public class CfCoreCatalog {
 
         if appUserId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "User Id")
-        }
-
-        if (!userCatalogModel.country.isEmpty && !CoreConstants.shared.enumContains(CountryCode.self, name: userCatalogModel.country))
-        {
-            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: CfCoreCatalog.self))
-        }
-
-        if (!userCatalogModel.language.isEmpty && !CoreConstants.shared.enumContains(LanguageCode.self, name: userCatalogModel.language))
-        {
-            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: CfCoreCatalog.self))
-        }
-
-        if (!userCatalogModel.education_level.isEmpty && !CoreConstants.shared.enumContains(EducationalLevel.self, name: userCatalogModel.education_level))
-        {
-            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: CfCoreCatalog.self))
+        } else if userCatalogModel.country?.isEmpty == false, !CoreConstants.shared.enumContains(CountryCode.self, name: userCatalogModel.country) {
+            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: CountryCode.self))
+        } else if userCatalogModel.language?.isEmpty == false, !CoreConstants.shared.enumContains(LanguageCode.self, name: userCatalogModel.language) {
+            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: LanguageCode.self))
+        } else if userCatalogModel.educationLevel?.isEmpty == false, !CoreConstants.shared.enumContains(EducationalLevel.self, name: userCatalogModel.educationLevel) {
+            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: EducationalLevel.self))
+        } else if ((userCatalogModel.birthYear != nil) && (userCatalogModel.birthYear != 0) && (userCatalogModel.birthYear! < 1900 || userCatalogModel.birthYear! > Calendar.current.component(.year, from: Date()))){
+            ExceptionManager.throwInvalidException(eventType: catalogName, paramName: "birthYear", className: String(describing: CfCoreCatalog.self))
+        } else if userCatalogModel.gender?.isEmpty == false, !CoreConstants.shared.enumContains(UserGender.self, name: userCatalogModel.gender) {
+            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: UserGender.self))
+        } else if userCatalogModel.maritalStatus?.isEmpty == false, !CoreConstants.shared.enumContains(MaritalStatus.self, name: userCatalogModel.maritalStatus) {
+            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: MaritalStatus.self))
+        } else if userCatalogModel.familyMembers?.isEmpty == false, !CoreConstants.shared.enumContains(MembersCount.self, name: userCatalogModel.familyMembers) {
+            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: MembersCount.self))
+        } else if userCatalogModel.childrenUnderFive?.isEmpty == false, !CoreConstants.shared.enumContains(MembersCount.self, name: userCatalogModel.childrenUnderFive) {
+            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: MembersCount.self))
         }
 
         let userCatalogModelItem: UserCatalogModel? = MMKVHelper.shared.readUserCatalog()
@@ -49,20 +50,30 @@ public class CfCoreCatalog {
                 id: appUserId,
                 name: userCatalogModel.name,
                 country: userCatalogModel.country,
-                region_state: userCatalogModel.region_state,
+                regionState: userCatalogModel.regionState,
                 city: userCatalogModel.city,
                 workplace: userCatalogModel.workplace,
                 profession: userCatalogModel.profession,
                 zipcode: userCatalogModel.zipcode,
                 language: userCatalogModel.language,
                 experience: userCatalogModel.experience,
-                education_level: userCatalogModel.education_level,
+                educationLevel: userCatalogModel.educationLevel,
                 timezone: CoreConstants.shared.getUserTimeZone(),
-                organization_id: userCatalogModel.organization_id,
-                organization_name: userCatalogModel.organization_name
+                organizationId: userCatalogModel.organizationId,
+                organizationName: userCatalogModel.organizationName,
+                accountType: userCatalogModel.accountType,
+                birthYear: userCatalogModel.birthYear,
+                gender: userCatalogModel.gender,
+                maritalStatus: userCatalogModel.maritalStatus,
+                familyMembers: userCatalogModel.familyMembers,
+                childrenUnderFive: userCatalogModel.childrenUnderFive
             )
             MMKVHelper.shared.writeUserCatalog(userCataLogData: userCatalogModel)
             CFSetup().updateCoreCatalogItem(subject: CatalogSubject.user, catalogObject: [internalUserModel].toData()!)
-        }
+        } 
     }
+    
+    
+    
+    
 }

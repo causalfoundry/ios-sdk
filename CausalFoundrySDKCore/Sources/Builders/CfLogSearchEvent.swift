@@ -12,7 +12,7 @@ public class CfLogSearchEvent {
     var queryText: String?
     var resultsList: [SearchItemModel] = []
     var filterValue: Any?
-    var searchModule: String = SearchModuleType.core.rawValue
+    var searchModule: String = SearchModuleType.Core.rawValue
     var contentBlock: String = CoreConstants.shared.contentBlockName
     var pageValue: Int = 1
     var isNewSearch: Bool = true
@@ -36,7 +36,7 @@ public class CfLogSearchEventBuilder {
     var queryText: String?
     var resultsList: [SearchItemModel] = []
     var filterValue: Any?
-    var searchModule: String = SearchModuleType.core.rawValue
+    var searchModule: String = SearchModuleType.Core.rawValue
     var contentBlock: String = CoreConstants.shared.contentBlockName
     var pageValue: Int = 1
     var isNewSearch: Bool = true
@@ -80,7 +80,7 @@ public class CfLogSearchEventBuilder {
         if ContentBlock.allCases.filter({ $0.rawValue == content_block }).first != nil {
             contentBlock = content_block
         } else {
-            ExceptionManager.throwEnumException(eventType: CoreEventType.search.rawValue, className: "ContentBlock")
+            ExceptionManager.throwEnumException(eventType: CoreEventType.Search.rawValue, className: "ContentBlock")
         }
 
         return self
@@ -109,7 +109,7 @@ public class CfLogSearchEventBuilder {
         if ContentBlock.allCases.filter({ $0.rawValue == searchModule }).first != nil {
             self.searchModule = searchModule
         } else {
-            ExceptionManager.throwEnumException(eventType: CoreEventType.search.rawValue, className: "SearchModuleType")
+            ExceptionManager.throwEnumException(eventType: CoreEventType.Search.rawValue, className: "SearchModuleType")
         }
         return self
     }
@@ -151,7 +151,7 @@ public class CfLogSearchEventBuilder {
         if !resultsList.isEmpty {
             if let itemModels = try? JSONDecoder.new.decode([SearchItemModel].self, from: resultsList.data(using: .utf8)!) {
                 for item in itemModels {
-                    CoreConstants.shared.isSearchItemModelObjectValid(itemValue: item, eventType: CoreEventType.search)
+                    CoreConstants.shared.isSearchItemModelObjectValid(itemValue: item, eventType: CoreEventType.Search)
                 }
                 self.resultsList += itemModels
             }
@@ -164,8 +164,8 @@ public class CfLogSearchEventBuilder {
         if !resultsIdsList.isEmpty {
             if let itemIds = try? JSONDecoder.new.decode([String].self, from: resultsIdsList.data(using: .utf8)!) {
                 for item in itemIds {
-                    let searchItemObject = SearchItemModel(item_id: item, item_type: resultListItemType, facility_id: resultsFacilityId)
-                    CoreConstants.shared.isSearchItemModelObjectValid(itemValue: searchItemObject, eventType: CoreEventType.search)
+                    let searchItemObject = SearchItemModel(item_id: item, item_type: resultListItemType, facilityId: resultsFacilityId)
+                    CoreConstants.shared.isSearchItemModelObjectValid(itemValue: searchItemObject, eventType: CoreEventType.Search)
                     resultsList.append(searchItemObject)
                 }
             }
@@ -178,7 +178,7 @@ public class CfLogSearchEventBuilder {
         if !resultsIdsList.isEmpty {
             for item in resultsIdsList {
                 let searchItemObject = SearchItemModel(item_id: item, item_type: resultListItemType)
-                CoreConstants.shared.isSearchItemModelObjectValid(itemValue: searchItemObject, eventType: CoreEventType.search)
+                CoreConstants.shared.isSearchItemModelObjectValid(itemValue: searchItemObject, eventType: CoreEventType.Search)
                 resultsList.append(searchItemObject)
             }
         }
@@ -215,7 +215,7 @@ public class CfLogSearchEventBuilder {
 
     public func setPage(page: Int) -> CfLogSearchEventBuilder {
         if page < 1 {
-            ExceptionManager.throwPageNumberException(eventType: CoreEventType.search.rawValue)
+            ExceptionManager.throwPageNumberException(eventType: CoreEventType.Search.rawValue)
         } else {
             pageValue = page
         }
@@ -261,15 +261,15 @@ public class CfLogSearchEventBuilder {
 
     public func build() {
         if queryText == nil{
-            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.search.rawValue, elementName: "queryText")
+            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Search.rawValue, elementName: "queryText")
             return
         }else if searchModule.isEmpty{
-            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.search.rawValue, elementName: "SearchModuleType")
+            ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Search.rawValue, elementName: "SearchModuleType")
             return
         }
 
-        let searchObject = SearchObject(search_id: getSearchId(), query: queryText!, search_module: searchModule, results_list: resultsList, filter: filterValue, page: pageValue, meta: meta)
-        CFSetup().track(contentBlockName: contentBlock, eventType: CoreEventType.search.rawValue, logObject: searchObject, updateImmediately: updateImmediately)
+        let searchObject = SearchObject(searchId: getSearchId(), query: queryText!, searchModule: searchModule, resultsList: resultsList, filter: filterValue, page: pageValue, meta: meta)
+        CFSetup().track(contentBlockName: contentBlock, eventType: CoreEventType.Search.rawValue, logObject: searchObject, updateImmediately: updateImmediately)
         
     }
 }

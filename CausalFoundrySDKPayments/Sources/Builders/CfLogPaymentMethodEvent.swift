@@ -95,12 +95,12 @@ public class CfLogPaymentMethodEvent {
     @discardableResult
     public func setCurrency(currencyValue: String) -> CfLogPaymentMethodEvent {
         if !currencyValue.isEmpty {
-            if CoreConstants.shared.enumContains(InternalCurrencyCode.self, name: currencyValue) {
+            if CoreConstants.shared.enumContains(CurrencyCode.self, name: currencyValue) {
                 self.currencyValue = currencyValue
             } else {
                 ExceptionManager.throwEnumException(
                     eventType: PaymentsEventType.payment_method.rawValue,
-                    className: "InternalCurrencyCode"
+                    className: "CurrencyCode"
                 )
             }
         }

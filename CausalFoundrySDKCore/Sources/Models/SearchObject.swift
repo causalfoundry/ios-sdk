@@ -8,36 +8,36 @@
 import Foundation
 
 struct SearchObject: Codable {
-    var search_id: String?
+    var searchId: String?
     var query: String?
-    var search_module: String?
-    var results_list: Any?
+    var searchModule: String?
+    var resultsList: Any?
     var filter: Any?
     var page: Int
     var meta: Any?
 
-    init(search_id: String,
+    init(searchId: String,
          query: String,
-         search_module: String,
-         results_list: Any? = nil,
+         searchModule: String,
+         resultsList: Any? = nil,
          filter: Any? = nil,
          page: Int = 1,
          meta: Any? = nil)
     {
-        self.search_id = search_id
+        self.searchId = searchId
         self.query = query
-        self.search_module = search_module
-        self.results_list = results_list
+        self.searchModule = searchModule
+        self.resultsList = resultsList
         self.filter = filter
         self.page = page
         self.meta = meta
     }
 
     private enum CodingKeys: String, CodingKey {
-        case search_id = "id"
+        case searchId = "id"
         case query
-        case search_module = "module"
-        case results_list
+        case searchModule = "module"
+        case resultsList = "results_list"
         case filter
         case page
         case meta
@@ -45,8 +45,8 @@ struct SearchObject: Codable {
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        search_id = try values.decodeIfPresent(String.self, forKey: .search_id)!
-        search_module = try values.decodeIfPresent(String.self, forKey: .search_module)!
+        searchId = try values.decodeIfPresent(String.self, forKey: .searchId)!
+        searchModule = try values.decodeIfPresent(String.self, forKey: .searchModule)!
         query = try values.decodeIfPresent(String.self, forKey: .query)!
         page = try values.decodeIfPresent(Int.self, forKey: .page)!
 
@@ -58,10 +58,10 @@ struct SearchObject: Codable {
             meta = nil
         }
 
-        if let decodeMetaInt = try values.decodeIfPresent(String.self, forKey: .results_list) {
-            results_list = decodeMetaInt
+        if let decodeMetaInt = try values.decodeIfPresent(String.self, forKey: .resultsList) {
+            resultsList = decodeMetaInt
         } else {
-            results_list = nil
+            resultsList = nil
         }
 
         if let decodeMetaInt = try values.decodeIfPresent([String: String].self, forKey: .filter) {
@@ -77,10 +77,10 @@ struct SearchObject: Codable {
 
     func encode(to encoder: Encoder) throws {
         var baseContainer = encoder.container(keyedBy: CodingKeys.self)
-        try baseContainer.encode(search_id, forKey: .search_id)
+        try baseContainer.encode(searchId, forKey: .searchId)
 
         try baseContainer.encode(query, forKey: .query)
-        try baseContainer.encode(search_module, forKey: .search_module)
+        try baseContainer.encode(searchModule, forKey: .searchModule)
         try baseContainer.encode(page, forKey: .page)
 
         let dataEncoder = baseContainer.superEncoder(forKey: .meta)
@@ -94,13 +94,13 @@ struct SearchObject: Codable {
             try (metaAsDouble).encode(to: dataEncoder)
         }
 
-        let dataEncoderResult = baseContainer.superEncoder(forKey: .results_list)
+        let dataEncoderResult = baseContainer.superEncoder(forKey: .resultsList)
 
-        if let resultTypeDictionary = results_list as? [SearchItemModel] {
+        if let resultTypeDictionary = resultsList as? [SearchItemModel] {
             try (resultTypeDictionary).encode(to: dataEncoderResult)
-        } else if let metaAsString = results_list as? String {
+        } else if let metaAsString = resultsList as? String {
             try (metaAsString).encode(to: dataEncoderResult)
-        } else if let metaAsDouble = results_list as? Double {
+        } else if let metaAsDouble = resultsList as? Double {
             try (metaAsDouble).encode(to: dataEncoderResult)
         }
 

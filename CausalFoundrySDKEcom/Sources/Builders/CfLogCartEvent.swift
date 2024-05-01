@@ -162,7 +162,7 @@ public class CfLogCartEvent {
             ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: "cart_price")
             return
         }else if currencyValue.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: String(describing: InternalCurrencyCode.self))
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cart.rawValue, elementName: String(describing: CurrencyCode.self))
             return
         }
 

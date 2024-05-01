@@ -45,16 +45,19 @@ public class CFSetup: NSObject, IngestProtocol {
     }
 
     public func updateCoreCatalogItem(subject: CatalogSubject, catalogObject: Data) {
-        catalogAPIHandler.updateCoreCatalogItem(subject: subject, catalogObject: catalogObject)
+        
+        let oldData = MMKVHelper.shared.readCatalogData(subject: CatalogSubject.user) ?? Data()
+        let newData = MMKVHelper.shared.getCoreCatalogTypeData(newData: catalogObject, oldData: oldData, subject: CatalogSubject.user)
+        catalogAPIHandler.updateCoreCatalogItem(subject: subject, catalogObject: newData ?? catalogObject)
     }
 
     public func track<T: Codable>(contentBlockName: String, eventType: String, logObject: T?, updateImmediately: Bool, eventTime: Int64 = 0) {
         verifyAccessToken()
 
         var cBlockName = contentBlockName
-        if cBlockName == ContentBlock.e_commerce.rawValue {
+        if cBlockName == ContentBlock.ECommerce.rawValue {
             cBlockName = "e-commerce"
-        } else if contentBlockName == ContentBlock.e_learning.rawValue {
+        } else if contentBlockName == ContentBlock.ELearning.rawValue {
             cBlockName = "e-learning"
         }
 

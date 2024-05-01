@@ -96,7 +96,7 @@ public class CfLogDeferredPaymentEvent {
      */
     @discardableResult
     public func setCurrency(currency: String) -> CfLogDeferredPaymentEvent {
-        if CoreConstants.shared.enumContains(InternalCurrencyCode.self, name: currency) {
+        if CoreConstants.shared.enumContains(CurrencyCode.self, name: currency) {
             currencyValue = currency
         } else {
             ExceptionManager.throwEnumException(eventType: PaymentsEventType.deferred_payment.rawValue, className: "currency")
