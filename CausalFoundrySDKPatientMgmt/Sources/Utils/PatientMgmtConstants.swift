@@ -1,15 +1,15 @@
 //
-//  ChwConstants.swift
+//  PatientMgmtConstants.swift
 //
 //
-//  Created by khushbu on 25/10/23.
+//  Created by MOIZ HASSAN KHAN on 01/05/24.
 //
 
 import CausalFoundrySDKCore
 import Foundation
 
-enum ChwConstants {
-    static var contentBlockName: String = ContentBlock.PatientMgmt.rawValue
+enum PatientMgmtConstants {
+    static var contentBlockName: String = "patient_mgmt"
 
     static func verifyChwCatalog(chwId: String, chwCatalogModel: ChwCatalogModel) -> InternalChwModel? {
         let catalogName = CatalogSubject.chw.rawValue + " catalog"

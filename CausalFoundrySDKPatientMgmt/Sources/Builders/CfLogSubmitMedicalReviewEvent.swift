@@ -153,7 +153,7 @@ public class CfLogSubmitMedicalReviewEvent {
             )
 
             CFSetup().track(
-                contentBlockName: ChwConstants.contentBlockName,
+                contentBlockName: PatientMgmtConstants.contentBlockName,
                 eventType: PatientMgmtEventType.medical_review.rawValue,
                 logObject: submitMedicalReviewObject,
                 updateImmediately: updateImmediately

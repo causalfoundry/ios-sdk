@@ -424,7 +424,7 @@ public class CfLogSubmitAssessmentEvent {
                 patientId: patientId, siteId: siteId, category: category, type: type, medicationAdherence: medicationAdherence, vitalsList: diagnosisVitalsList, diagnosisQuestionnaireList: diagnosisQuestionnaireList, diagnosisValuesList: diagnosisValuesList, diagnosisResultsList: diagnosisResultList, diagnosisSymptomsList: diagnosisSymptomsList, pregnancyDetails: pregnancyDetailsValue, referredForAssessment: referredForAssessment, meta:  meta as? Encodable
             )
 
-            CFSetup().track(contentBlockName: ChwConstants.contentBlockName, eventType: PatientMgmtEventType.submit_assessment.rawValue, logObject: submitAssessmentEventObject, updateImmediately: isUpdateImmediately)
+            CFSetup().track(contentBlockName: PatientMgmtConstants.contentBlockName, eventType: PatientMgmtEventType.submit_assessment.rawValue, logObject: submitAssessmentEventObject, updateImmediately: isUpdateImmediately)
         }
         
     }

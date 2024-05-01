@@ -189,7 +189,7 @@ public class CfLogPrescriptionEvent {
                 meta: meta as? Encodable
             )
             CFSetup().track(
-                contentBlockName: ChwConstants.contentBlockName,
+                contentBlockName: PatientMgmtConstants.contentBlockName,
                 eventType: PatientMgmtEventType.prescription.rawValue,
                 logObject: prescriptionEventObject,
                 updateImmediately: updateImmediately

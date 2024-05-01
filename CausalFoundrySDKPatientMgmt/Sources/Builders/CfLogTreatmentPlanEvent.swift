@@ -171,7 +171,7 @@ public class CfLogTreatmentPlanEvent {
             )
 
             CFSetup().track(
-                contentBlockName: ChwConstants.contentBlockName,
+                contentBlockName: PatientMgmtConstants.contentBlockName,
                 eventType: PatientMgmtEventType.treatment_plan.rawValue,
                 logObject: treatmentPlanEventObject,
                 updateImmediately: updateImmediately

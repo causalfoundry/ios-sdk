@@ -14,10 +14,10 @@ public class CfLogSubmitEnrolmentEvent {
      * the patient in question.
      */
 
-    var patientId: String?
-    var siteId: String?
-    var action: String?
-    var isFromGhoValue: Bool?
+    var patientId: String = ""
+    var siteId: String = ""
+    var action: String = ""
+    var isFromGhoValue: Bool = false
     var diagnosisVitalsList: [DiagnosisItem] = []
     var patientStatusList: [PatientStatusItem] = []
     var diagnosisValuesList: [DiagnosisItem] = []
@@ -68,7 +68,7 @@ public class CfLogSubmitEnrolmentEvent {
      */
 
     @discardableResult
-    public func setAction(action: String?) -> CfLogSubmitEnrolmentEvent {
+    public func setAction(action: String) -> CfLogSubmitEnrolmentEvent {
         if !CoreConstants.shared.enumContains(ItemAction.self, name: action) {
             ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, className: String(describing: ItemAction.self))
         } else {
@@ -426,7 +426,7 @@ public class CfLogSubmitEnrolmentEvent {
          * Will throw and exception if the patient_id provided is null or no action is
          * provided at all.
          */
-        guard patientId != nil else {
+        if patientId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "patient_id")
             return
         }
@@ -434,7 +434,7 @@ public class CfLogSubmitEnrolmentEvent {
          * Will throw and exception if the site_id provided is null or no action is
          * provided at all.
          */
-        guard siteId != nil else {
+        if siteId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "site_id")
             return
         }
@@ -444,7 +444,7 @@ public class CfLogSubmitEnrolmentEvent {
          * provided at all.
          */
 
-        guard action != nil else {
+        if action.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_enrolment.rawValue, elementName: "action")
             return
         }
@@ -470,10 +470,10 @@ public class CfLogSubmitEnrolmentEvent {
         ){
             
             let submitEnrolmentEventObject = SubmitEnrolmentEventObject(
-                patientId: patientId!,
-                siteId: siteId!,
-                action: action!,
-                isFromGho: isFromGhoValue ?? false,
+                patientId: patientId,
+                siteId: siteId,
+                action: action,
+                isFromGho: isFromGhoValue,
                 vitalsList: diagnosisVitalsList,
                 diagnosisValuesList: diagnosisValuesList, 
                 diagnosisResultsList: diagnosisResultList,
@@ -484,7 +484,7 @@ public class CfLogSubmitEnrolmentEvent {
                 meta: meta as? Encodable
             )
             CFSetup().track(
-                contentBlockName: ChwConstants.contentBlockName,
+                contentBlockName: PatientMgmtConstants.contentBlockName,
                 eventType: PatientMgmtEventType.submit_enrolment.rawValue,
                 logObject: submitEnrolmentEventObject,
                 updateImmediately: updateImmediately

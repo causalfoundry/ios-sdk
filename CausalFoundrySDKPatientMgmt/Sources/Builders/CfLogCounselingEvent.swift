@@ -195,7 +195,7 @@ public class CfLogCounselingEvent {
                     meta: meta as? Encodable
                 )
                 CFSetup().track(
-                    contentBlockName: ChwConstants.contentBlockName,
+                    contentBlockName: PatientMgmtConstants.contentBlockName,
                     eventType: PatientMgmtEventType.counseling.rawValue,
                     logObject: counselingEventObject,
                     updateImmediately: updateImmediately

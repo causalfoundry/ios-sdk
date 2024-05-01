@@ -46,7 +46,7 @@ public class CoreConstants {
         return contentBlock.rawValue
     }
 
-    var SDKVersion: String = "ios/0.5.3"
+    var SDKVersion: String = "ios/0.9.5"
 
     public var updateImmediately: Bool = false
 

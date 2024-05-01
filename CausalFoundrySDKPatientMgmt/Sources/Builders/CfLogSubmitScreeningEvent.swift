@@ -14,10 +14,10 @@ public class CfLogSubmitScreeningEvent {
      */
 
     var eventTimeValue: Int64 = 0
-    var patientId: String?
-    var siteId: String?
-    var category: String?
-    var type: String?
+    var patientId: String = ""
+    var siteId: String = ""
+    var category: String = ""
+    var type: String = ""
     var referredForAssessment: Bool?
     var diagnosisVitalsList: [DiagnosisItem] = []
     var diagnosisQuestionnaireList: [DiagnosisQuestionnaireObject] = []
@@ -407,7 +407,7 @@ public class CfLogSubmitScreeningEvent {
          * Will throw and exception if the action provided is null or no action is
          * provided at all.
          */
-        guard let patientId = patientId else {
+        if patientId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "patient_id")
             return
         }
@@ -416,7 +416,7 @@ public class CfLogSubmitScreeningEvent {
          * provided at all.
          */
 
-        guard let siteId = siteId else {
+        if siteId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.submit_screening.rawValue, elementName: "site_id")
             return
         }
@@ -425,7 +425,7 @@ public class CfLogSubmitScreeningEvent {
          * provided at all.
          */
 
-        if !CoreConstants.shared.enumContains(HcwSiteType.self, name: category) {
+        if category.isEmpty || !CoreConstants.shared.enumContains(HcwSiteType.self, name: category) {
             ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_screening.rawValue, className:  String(describing: HcwSiteType.self))
             return
         }
@@ -433,7 +433,7 @@ public class CfLogSubmitScreeningEvent {
          * Will throw and exception if the action provided is null or no action is
          * provided at all.
          */
-        if !CoreConstants.shared.enumContains(ScreeningType.self, name: type) {
+        if type.isEmpty || !CoreConstants.shared.enumContains(ScreeningType.self, name: type) {
             ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.submit_screening.rawValue, className:  String(describing: ScreeningType.self))
             return
         }
@@ -466,14 +466,14 @@ public class CfLogSubmitScreeningEvent {
                 diagnosisValuesList: diagnosisValuesList,
                 diagnosisResultsList: diagnosisResultList,
                 pregnancyDetails: pregnancyDetailsValue,
-                category: category!,
-                type: type!,
+                category: category,
+                type: type,
                 referredForAssessment: referredForAssessment!,
                 meta: meta as? Encodable
             )
 
             CFSetup().track(
-                contentBlockName: ChwConstants.contentBlockName, eventType: PatientMgmtEventType.submit_screening.rawValue, logObject: submitScreeningEventObject,
+                contentBlockName: PatientMgmtConstants.contentBlockName, eventType: PatientMgmtEventType.submit_screening.rawValue, logObject: submitScreeningEventObject,
                 updateImmediately: updateImmediately,
                 eventTime: eventTimeValue
             )

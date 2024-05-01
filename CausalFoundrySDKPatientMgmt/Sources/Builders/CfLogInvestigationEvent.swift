@@ -189,7 +189,7 @@ public class CfLogInvestigationEvent {
             )
 
             CFSetup().track(
-                contentBlockName: ChwConstants.contentBlockName,
+                contentBlockName: PatientMgmtConstants.contentBlockName,
                 eventType: PatientMgmtEventType.investigation.rawValue,
                 logObject: investigationEventObject,
                 updateImmediately: updateImmediately
