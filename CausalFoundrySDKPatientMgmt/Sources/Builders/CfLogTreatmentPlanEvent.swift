@@ -100,11 +100,11 @@ public class CfLogTreatmentPlanEvent {
      * the SDK will throw an exception. Below is the function for providing an item as a string.
      */
     @discardableResult
-    public func setTreatmentPlanList(treatmentPlanListString: String) -> CfLogTreatmentPlanEvent {
-        if let data = treatmentPlanListString.data(using: .utf8),
+    public func setTreatmentPlanList(treatmentPlanList: String) -> CfLogTreatmentPlanEvent {
+        if let data = treatmentPlanList.data(using: .utf8),
            let itemsList = try? JSONDecoder.new.decode([TreatmentPlanItem].self, from: data)
         {
-            treatmentPlanList = itemsList
+            self.treatmentPlanList = itemsList
         }
         return self
     }
@@ -154,54 +154,28 @@ public class CfLogTreatmentPlanEvent {
             return
         }
 
-        guard !treatmentPlanList.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.treatment_plan.rawValue, elementName: "treatment_plan_list")
-            return
+//        guard !treatmentPlanList.isEmpty else {
+//            ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.treatment_plan.rawValue, elementName: "treatment_plan_list")
+//            return
+//        }
+
+        if(PatientMgmtEventValidation.verifyTreatmentPlantList(eventType: PatientMgmtEventType.treatment_plan, treatmentPlanList: treatmentPlanList)
+           
+        ){
+            let treatmentPlanEventObject = TreatmentPlanEventObject(
+                patientId: patientId,
+                siteId: siteId,
+                treatmentPlanId: treatmentPlanId,
+                treatmentPlanList: treatmentPlanList,
+                meta: meta as? Encodable
+            )
+
+            CFSetup().track(
+                contentBlockName: ChwConstants.contentBlockName,
+                eventType: PatientMgmtEventType.treatment_plan.rawValue,
+                logObject: treatmentPlanEventObject,
+                updateImmediately: updateImmediately
+            )
         }
-
-        for item in treatmentPlanList {
-            guard CoreConstants.shared.enumContains(TreatmentType.self, name: item.type) else {
-                ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.treatment_plan.rawValue, className: String(describing: TreatmentType.self))
-                return
-            }
-
-            guard CoreConstants.shared.enumContains(TreatmentFrequency.self, name: item.frequency) else {
-                ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.treatment_plan.rawValue, className: String(describing: TreatmentFrequency.self))
-                return
-            }
-
-            guard CoreConstants.shared.enumContains(ItemAction.self, name: item.action) else {
-                ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.treatment_plan.rawValue, className: String(describing: ItemAction.self))
-                return
-            }
-
-            guard item.value != 0 else {
-                ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.treatment_plan.rawValue, elementName: "value")
-                return
-            }
-
-            guard item.isApproved != nil else {
-                ExceptionManager.throwIsRequiredException(
-                    eventType: PatientMgmtEventType.treatment_plan.rawValue,
-                    elementName: "is_approved"
-                )
-                return
-            }
-        }
-
-        let treatmentPlanEventObject = TreatmentPlanEventObject(
-            patientId: patientId,
-            siteId: siteId,
-            treatmentPlanId: treatmentPlanId,
-            treatmentPlanList: treatmentPlanList,
-            meta: meta as? Encodable
-        )
-
-        CFSetup().track(
-            contentBlockName: ChwConstants.contentBlockName,
-            eventType: PatientMgmtEventType.treatment_plan.rawValue,
-            logObject: treatmentPlanEventObject,
-            updateImmediately: updateImmediately
-        )
     }
 }
