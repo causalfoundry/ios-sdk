@@ -13,7 +13,6 @@ public class CfLogSubmitMedicalReviewEvent {
      * CfLogSubmitMedicalReviewEvent is required to log events related to update to
      * medical review of the patient
      */
-
     var patientId: String?
     var siteId: String?
     var medicalReviewObject: MedicalReviewObject?
@@ -137,18 +136,15 @@ public class CfLogSubmitMedicalReviewEvent {
         if medicalReviewObject?.id == nil {
             ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.medical_review.rawValue, elementName: "medical review id")
             return
-        } else {
-            if let medicalReviewSummaries = medicalReviewObject?.reviewSummaryList {
-                for item in medicalReviewSummaries {
-                    if !CoreConstants.shared.enumContains(ReviewSummaryItem.self, name: item.type) {
-                        ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.medical_review.rawValue, className: String(describing: ReviewSummaryItem.self))
-                    } else if item.value.isEmpty {
-                        ExceptionManager.throwIsRequiredException(eventType: PatientMgmtEventType.medical_review.rawValue, elementName: "\(item.type) values")
-                        return
-                    }
-                }
-            }
-
+        } 
+        
+        if( PatientMgmtEventValidation.verifyReviewSummaryList(eventType: PatientMgmtEventType.medical_review, medicalReviewSummary: medicalReviewObject?.reviewSummaryList ?? []) &&
+            PatientMgmtEventValidation.verifyDiagnosisObjectList(eventType: PatientMgmtEventType.medical_review, diagnosisType: "diagnosis_result_item", diagnosisList: medicalReviewObject?.diagnosisResultsList ?? []) &&
+            PatientMgmtEventValidation.verifyPatientStatusList(eventType: PatientMgmtEventType.medical_review, patientStatusList: medicalReviewObject?.patientStatusList ?? []) &&
+            PatientMgmtEventValidation.verifyDiagnosisQuestionList(eventType: PatientMgmtEventType.medical_review, diagnosisQuestionList: medicalReviewObject?.lifestyleAssessmentList ?? []) &&
+            PatientMgmtEventValidation.verifyPregnancyObject(eventType: PatientMgmtEventType.medical_review, pregnancyObject: medicalReviewObject?.pregnancyDetails)
+        
+        ){
             let submitMedicalReviewObject = SubmitMedicalReviewObject(
                 patientId: patientId,
                 siteId: siteId,

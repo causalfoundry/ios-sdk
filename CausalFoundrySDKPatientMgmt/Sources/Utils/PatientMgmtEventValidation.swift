@@ -92,6 +92,35 @@ enum PatientMgmtEventValidation {
         return true
     }
     
+    static func verifyReviewSummaryList(eventType: PatientMgmtEventType, medicalReviewSummary: [MedicalReviewSummaryObject]) -> Bool {
+        for item in medicalReviewSummary {
+            if !CoreConstants.shared.enumContains(ReviewSummaryItem.self, name: item.type) {
+                ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: ReviewSummaryItem.self))
+                return false
+            } else if item.value.isEmpty {
+                ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "\(item.type) values")
+                return false
+            }
+        }
+        return true
+    }
+    
+    static func verifyDiagnosisQuestionList(eventType: PatientMgmtEventType, diagnosisQuestionList: [DiagnosisQuestionItem]) -> Bool {
+        for questionObject in diagnosisQuestionList {
+            if !CoreConstants.shared.enumContains(QuestionType.self, name: questionObject.type) {
+                ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: "diagnosis question type")
+                return false
+            } else if questionObject.question.isEmpty {
+                ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "diagnosis question text")
+                return false
+            }else if questionObject.reply.isEmpty {
+                ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "diagnosis question reply")
+                return false
+            }
+        }
+        return true
+    }
+    
     static func verifyTreatmentPlantList(eventType: PatientMgmtEventType, treatmentPlanList: [TreatmentPlanItem]) -> Bool {
         for item in treatmentPlanList {
             guard CoreConstants.shared.enumContains(TreatmentType.self, name: item.type) else {
@@ -147,18 +176,7 @@ enum PatientMgmtEventValidation {
                 ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "diagnosis questionnaire questions")
                 return false
             } else if !item.questions.isEmpty {
-                for questionObject in item.questions {
-                    if !CoreConstants.shared.enumContains(QuestionType.self, name: questionObject.type) {
-                        ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: QuestionType.self))
-                        return false
-                    } else if questionObject.question.isEmpty {
-                        ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "diagnosis questionnaire question text")
-                        return false
-                    }else if questionObject.reply.isEmpty {
-                        ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "diagnosis questionnaire question reply")
-                        return false
-                    }
-                }
+                return verifyDiagnosisQuestionList(eventType: eventType, diagnosisQuestionList: item.questions)
             }
         }
         return true
