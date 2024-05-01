@@ -459,13 +459,13 @@ public class CfLogSubmitEnrolmentEvent {
          * Parsing the values into an object and passing to the setup block to queue
          * the event based on its priority.
          */
-        if( PatientMgmtEventValidation.verifyDiagnosisObjectList(eventType: PatientMgmtEventType.submit_assessment, diagnosisType: "diagnosis_value_item", diagnosisList: diagnosisValuesList) &&
-            PatientMgmtEventValidation.verifyDiagnosisObjectList(eventType: PatientMgmtEventType.submit_assessment, diagnosisType: "diagnosis_result_item", diagnosisList: diagnosisResultList) &&
-            PatientMgmtEventValidation.verifyDiagnosisObjectList(eventType: PatientMgmtEventType.submit_assessment, diagnosisType: "diagnosis_vitals_item", diagnosisList: diagnosisVitalsList) &&
-            PatientMgmtEventValidation.verifyDiagnosisQuestionnaireList(eventType: PatientMgmtEventType.submit_assessment, diagnosisQuestionnaireList: diagnosisQuestionnaireList) &&
-            PatientMgmtEventValidation.verifyPregnancyObject(eventType: PatientMgmtEventType.submit_assessment, pregnancyObject: pregnancyDetailsValue) &&
-            PatientMgmtEventValidation.verifyPatientStatusList(eventType: PatientMgmtEventType.submit_assessment, patientStatusList: patientStatusList) &&
-            PatientMgmtEventValidation.verifyTreatmentPlantList(eventType: PatientMgmtEventType.submit_assessment, treatmentPlanList: treatmentPlanList)
+        if( PatientMgmtEventValidation.verifyDiagnosisObjectList(eventType: PatientMgmtEventType.submit_enrolment, diagnosisType: "diagnosis_value_item", diagnosisList: diagnosisValuesList) &&
+            PatientMgmtEventValidation.verifyDiagnosisObjectList(eventType: PatientMgmtEventType.submit_enrolment, diagnosisType: "diagnosis_result_item", diagnosisList: diagnosisResultList) &&
+            PatientMgmtEventValidation.verifyDiagnosisObjectList(eventType: PatientMgmtEventType.submit_enrolment, diagnosisType: "diagnosis_vitals_item", diagnosisList: diagnosisVitalsList) &&
+            PatientMgmtEventValidation.verifyDiagnosisQuestionnaireList(eventType: PatientMgmtEventType.submit_enrolment, diagnosisQuestionnaireList: diagnosisQuestionnaireList) &&
+            PatientMgmtEventValidation.verifyPregnancyObject(eventType: PatientMgmtEventType.submit_enrolment, pregnancyObject: pregnancyDetailsValue) &&
+            PatientMgmtEventValidation.verifyPatientStatusList(eventType: PatientMgmtEventType.submit_enrolment, patientStatusList: patientStatusList) &&
+            PatientMgmtEventValidation.verifyTreatmentPlantList(eventType: PatientMgmtEventType.submit_enrolment, treatmentPlanList: treatmentPlanList)
         
         ){
             
