@@ -90,40 +90,42 @@ final class NetworkMonitor {
                 return
             }
 
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                print("Invalid or unsuccessful HTTP response")
+                completionHandler(nil)
+                return
+            }
+
             guard data != nil else {
                 print("No data received")
                 completionHandler(nil)
                 return
             }
 
-            guard let httpResponse = response as? HTTPURLResponse else {
-                print("Invalid HTTP response")
-                completionHandler(nil)
-                return
-            }
-
             let contentLength = Double(httpResponse.expectedContentLength)
             if contentLength <= 0 {
-                print("Invalid content length")
+                print("Invalid or unknown content length")
                 completionHandler(nil)
                 return
             }
 
             let elapsed = CFAbsoluteTimeGetCurrent() - startTime
-            guard elapsed != 0 else {
+            guard elapsed > 0 else {
                 print("Invalid elapsed time")
                 completionHandler(nil)
                 return
             }
 
-            var speed = (contentLength / elapsed) * 8 / 1024 // Speed in kbps
-            if (speed > 2000000) {
-                speed = 0
-            }
-            completionHandler(speed)
+            let speed = (contentLength / elapsed) * 8 / 1024  // Speed in kbps
+
+            // Cap speed at 2 gbps (2000000 kbps)
+            let cappedSpeed = min(speed, 2000000)
+
+            completionHandler(cappedSpeed)
         }
 
         downloadTask.resume()
+
     }
     
 
@@ -154,8 +156,8 @@ final class NetworkMonitor {
             // Calculate the upload speed in Mbps
             let fileSizeInBytes = Double(data.count)
             let uploadTimeInSeconds = Date().timeIntervalSinceNow * -1
-            let uploadSpeedMbps = (fileSizeInBytes / uploadTimeInSeconds) / 1_000_000
-            completionHandler(uploadSpeedMbps)
+            let uploadSpeedKbps = (fileSizeInBytes / 8) / (uploadTimeInSeconds * 1000)
+            completionHandler(uploadSpeedKbps)
         }
 
         uploadTask.resume()
