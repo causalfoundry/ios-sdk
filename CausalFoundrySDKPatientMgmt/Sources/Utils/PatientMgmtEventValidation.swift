@@ -98,7 +98,7 @@ enum PatientMgmtEventValidation {
             if !CoreConstants.shared.enumContains(ReviewSummaryItem.self, name: item.type) {
                 ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: ReviewSummaryItem.self))
                 return false
-            } else if item.value.isEmpty {
+            } else if item.values.isEmpty {
                 ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "\(item.type) values")
                 return false
             }

@@ -46,7 +46,7 @@ public class CoreConstants {
         return contentBlock.rawValue
     }
 
-    var SDKVersion: String = "ios/0.9.6"
+    var SDKVersion: String = "ios/0.9.7"
 
     public var updateImmediately: Bool = false
 
@@ -84,6 +84,9 @@ public protocol EnumComposable: Codable, RawRepresentable, CaseIterable {}
 
 extension CoreConstants {
     func isSearchItemModelObjectValid(itemValue: SearchItemModel, eventType: CoreEventType) {
+        
+        print("SearchItemModel: \(itemValue)")
+        
         let eventName = eventType.rawValue
 
         guard !itemValue.id!.isEmpty else {
@@ -96,10 +99,11 @@ extension CoreConstants {
             return
         }
 
-        guard let _ = SearchItemType(rawValue: itemValue.type!) else {
+        if !CoreConstants.shared.enumContains(SearchItemType.self, name: itemValue.type!) {
             ExceptionManager.throwEnumException(eventType: eventName, className: "ItemType")
             return
         }
+        
     }
 
     public func getCurrencyFromLocalStorage(fromCurrency: String) -> Float {

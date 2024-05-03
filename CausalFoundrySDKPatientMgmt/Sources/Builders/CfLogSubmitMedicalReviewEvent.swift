@@ -62,10 +62,15 @@ public class CfLogSubmitMedicalReviewEvent {
      */
     @discardableResult
     public func setMedicalReviewObject(medicalReviewObject: String) -> CfLogSubmitMedicalReviewEvent {
-        if let data = medicalReviewObject.data(using: .utf8),
-           let obj = try? JSONDecoder.new.decode(MedicalReviewObject.self, from: data)
-        {
-            self.medicalReviewObject = obj
+        if let data = medicalReviewObject.data(using: .utf8) {
+            do {
+                let obj = try JSONDecoder().decode(MedicalReviewObject.self, from: data)
+                self.medicalReviewObject = obj
+            } catch {
+                print("Error decoding medical review object: \(error)")
+            }
+        } else {
+            print("failed to convert string to data")
         }
         return self
     }

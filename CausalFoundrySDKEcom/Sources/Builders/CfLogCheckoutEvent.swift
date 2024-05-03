@@ -180,22 +180,17 @@ public class CfLogCheckoutEvent {
      */
     @discardableResult
     public func addItemList(itemListString: String) -> CfLogCheckoutEvent {
-        if let data = itemListString.data(using: .utf8),
-           let itemModels = try? JSONDecoder.new.decode([ItemModel].self, from: data)
-        {
-            for index in itemModels.indices {
-                var item = itemModels[index]
-                if item.type == ItemType.Blood.rawValue {
-                    let bloodMetaModel = try? JSONDecoder.new.decode(BloodMetaModel.self, from: data)
-                    item.meta = bloodMetaModel
-                } else if item.type == ItemType.Oxygen.rawValue {
-                    let oxygenMetaModel = try? JSONDecoder.new.decode(OxygenMetaModel.self, from: data)
-                    item.meta = oxygenMetaModel
-                }
+        if let data = itemListString.data(using: .utf8) {
+            do{
+                let itemModels = try JSONDecoder().decode([ItemModel].self, from: data)
+                addItemList(itemList: itemModels)
+            }catch {
+                print("Error decoding checkout object: \(error)")
             }
-            addItemList(itemList: itemModels)
+           
         } else {
             // Handle JSON parsing error
+            print("failed to convert string to data")
         }
         return self
     }

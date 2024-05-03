@@ -43,7 +43,7 @@ public class CfLogPromoEvent {
 
     @discardableResult
     public func setPromoAction(promoAction: String) -> CfLogPromoEvent {
-        if CoreConstants.shared.enumContains(PromoAction.self, name: promo_action) {
+        if CoreConstants.shared.enumContains(PromoAction.self, name: promoAction) {
             self.promo_action = promoAction
         } else {
             ExceptionManager.throwEnumException(eventType: LoyaltyEventType.promo.rawValue, className: String(String(describing: PromoAction.self)))

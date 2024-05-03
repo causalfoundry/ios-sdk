@@ -81,11 +81,21 @@ public struct ItemModel: Codable {
         discount = try? container.decodeIfPresent(Float.self, forKey: .discount)
         facilityId = try? container.decodeIfPresent(String.self, forKey: .facilityId)
         subscription = try? container.decodeIfPresent(SubscriptionObject.self, forKey: .subscription)
-        if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
-            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
+        if let metaString = try container.decodeIfPresent(String.self, forKey: .meta) {
+            if(type == "blood"){
+                let metaData = metaString.data(using: .utf8)!
+                meta = try JSONDecoder().decode(BloodMetaModel.self, from: metaData)
+            }else if (type == "oxygen"){
+                let metaData = metaString.data(using: .utf8)!
+                meta = try JSONDecoder().decode(OxygenMetaModel.self, from: metaData)
+            }else{
+                let metaData = metaString.data(using: .utf8)!
+                meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
+            }
         } else {
             meta = nil
         }
         
     }
 }
+

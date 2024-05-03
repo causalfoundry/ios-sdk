@@ -1,0 +1,17 @@
+# Changelog
+
+Documenting the changes in the SDK subject to each release version.
+
+The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+
+## **[0.9.7]  - 03.05.2024**
+
+### **Updated**
+- Updates related to RN SDK, mainly for checkout item meta models.
+- Synced with Android version `0.9.7`
+- Included Loyalty, E-learning and Patient Mgmt moodule.
+- Ability sync logs evn oif the bg permission is not granted, on next app startup.
+- InAppMessage nudges to be fetched only when app is in foreground. Also to fetch based on the nudgeScreentype.
+                                                  
+
+----
