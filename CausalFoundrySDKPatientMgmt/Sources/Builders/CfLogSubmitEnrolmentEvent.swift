@@ -410,8 +410,8 @@ public class CfLogSubmitEnrolmentEvent {
      */
 
     @discardableResult
-    public func updateImmediately(update_immediately: Bool) -> CfLogSubmitEnrolmentEvent {
-        updateImmediately = update_immediately
+    public func updateImmediately(updateImmediately: Bool) -> CfLogSubmitEnrolmentEvent {
+        self.updateImmediately = updateImmediately
         return self
     }
 

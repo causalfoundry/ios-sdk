@@ -104,5 +104,18 @@ public enum WorkerCaller {
         try await CatalogEventsUploader.uploadEvents()
         try await ExceptionEventsUploader.uploadEvents()
     }
+    
+    public static func performSanitizedUpload(indexToRemove : Int?){
+        if(indexToRemove == nil){
+            return
+        }
+        
+        Task {
+            do {
+                try await InjestEvenstuploader.uploadEventsAfterRemovingSanitize(indexToRemove: indexToRemove!)
+            } catch {
+            }
+        }
+    }
 }
 

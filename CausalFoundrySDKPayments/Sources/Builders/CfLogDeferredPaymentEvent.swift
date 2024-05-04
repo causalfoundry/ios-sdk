@@ -129,8 +129,7 @@ public class CfLogDeferredPaymentEvent {
     }
 
     /**
-     * setPaymentAmount is required to log the total price of the payment being logged. Amount
-     * format should be in accordance to the currency selected.
+     * setPaymentAmount is required to log the total price of the payment being logged. Amount format should be in accordance to the currency selected.
      */
     @discardableResult
     public func setPaymentAmount(paymentAmount: Float) -> CfLogDeferredPaymentEvent {

@@ -23,6 +23,33 @@ enum InjestEvenstuploader {
                     MMKVHelper.shared.deleteDataEventLogs()
                     continuation.resume(with: .success(()))
                 } else {
+                    print("Hello Failed")
+                    continuation.resume(with: .failure(NSError(domain: "InjestEvenstuploader.uploadEvents", code: 0)))
+                }
+            }
+        }
+    }
+    
+    
+    @available(iOS 13.0, *)
+    static func uploadEventsAfterRemovingSanitize(indexToRemove : Int) async throws {
+        let injestAPIHandler = IngestAPIHandler()
+        var events = MMKVHelper.shared.readInjectEvents()
+        guard events.count > 0 else {
+            print("No More Injest events")
+            return
+        }
+        
+        if indexToRemove >= 0 && indexToRemove < events.count {
+            events.remove(at: indexToRemove)
+        }
+        
+        try await withCheckedThrowingContinuation { continuation in
+            injestAPIHandler.updateEventTrack(eventArray: events) { success in
+                if success {
+                    MMKVHelper.shared.deleteDataEventLogs()
+                    continuation.resume(with: .success(()))
+                } else {
                     continuation.resume(with: .failure(NSError(domain: "InjestEvenstuploader.uploadEvents", code: 0)))
                 }
             }

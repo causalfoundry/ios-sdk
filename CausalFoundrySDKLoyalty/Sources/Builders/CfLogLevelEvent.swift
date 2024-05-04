@@ -33,8 +33,7 @@ public class CfLogLevelEvent {
     }
 
     /**
-     * setNewLevel is required to set the new score/level number for the user. This can be
-     * from any source, e-learning or e-commerce or even social.
+     * setNewLevel is required to set the new score/level number for the user. 
      */
     @discardableResult
     public func setNewLevel(newLevel: Int?) -> CfLogLevelEvent {

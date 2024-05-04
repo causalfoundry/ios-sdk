@@ -12,10 +12,12 @@ private final class BackgroundRequest {
     let task: URLSessionTask
     var data: Data?
     let completion: BackgroundRequestController.Completion
+    var errorOccurred: Bool
 
     init(task: URLSessionTask, completion: @escaping BackgroundRequestController.Completion) {
         self.task = task
         self.completion = completion
+        self.errorOccurred = false
     }
 }
 
@@ -96,7 +98,14 @@ extension BackgroundRequestController: URLSessionDelegate {
                     ExceptionManager.throwAPIFailException(apiName: task.originalRequest?.url?.absoluteString ?? "", response: task.response as? HTTPURLResponse, responseBody: nil)
                     request.completion(.failure(error))
                 } else {
-                    request.completion(.success(request.data))
+                    
+                    if request.errorOccurred {
+                        let customError = NSError(domain: task.originalRequest?.url?.absoluteString ?? "-", code: 0, userInfo: [NSLocalizedDescriptionKey: "IngestAPIResponseError"])
+                        request.completion(.failure(customError))
+                        request.errorOccurred = false
+                    }else{
+                        request.completion(.success(request.data))
+                    }
                 }
                 self.backgroundRequests.remove(at: index)
             }
@@ -113,6 +122,25 @@ extension BackgroundRequestController: URLSessionDataDelegate {
                     self.backgroundRequests[index].data = data
                 } else {
                     self.backgroundRequests[index].data! += data
+                }
+                if #available(iOS 13.0, *) {
+                                        
+                    if let url = dataTask.originalRequest?.url,
+                       url.absoluteString.contains("ingest/log"),
+                       let _ = String(data: data, encoding: .utf8) {
+                        // Set error flag if data is received
+                        self.backgroundRequests[index].errorOccurred = true
+                        do {
+                            if let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                               let dataValue = jsonObject["data"] as? String {
+                                    WorkerCaller.performSanitizedUpload(indexToRemove: Int(dataValue))
+                            } else {
+                                print("Failed to parse 'data' value.")
+                            }
+                        } catch {
+                            print("Error parsing JSON:", error)
+                        }
+                    }
                 }
             }
         }

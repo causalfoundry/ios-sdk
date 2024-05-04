@@ -84,10 +84,10 @@ public class CfLogItemVerificationEvent {
     @discardableResult
     public func setItemInfo(itemInfoObject: ItemInfoModel) -> CfLogItemVerificationEvent {
         if(itemInfoObject.id.isEmpty){
-            ExceptionManager.throwEnumException(eventType: EComEventType.itemVerification.rawValue, className: "item_info.id")
+            ExceptionManager.throwEnumException(eventType: EComEventType.itemVerification.rawValue, className: "item_info id")
             return self
         }else if (!CoreConstants.shared.enumContains(ItemType.self, name:itemInfoObject.type)) {
-            ExceptionManager.throwEnumException(eventType: EComEventType.itemVerification.rawValue, className: "item_info.type")
+            ExceptionManager.throwEnumException(eventType: EComEventType.itemVerification.rawValue, className: "item_info type")
             return self
         }
         self.itemInfoObject = itemInfoObject

@@ -113,7 +113,7 @@ public class CfLogModuleEvent {
          */
         
         if moduleId.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.module.rawValue, elementName: "module_id")
+            ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.module.rawValue, elementName: "module id")
             return
         }else if action.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: ELearnEventType.module.rawValue, elementName: "module action")
