@@ -4,6 +4,16 @@ Documenting the changes in the SDK subject to each release version.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+
+## **[0.9.8]  - 04.05.2024**
+
+### **Updated**
+- Auto-sanitize SDK events for API response error. Instead of discarding the whole batch, only remove the error event.
+                                                  
+
+----
+
+
 ## **[0.9.7]  - 03.05.2024**
 
 ### **Updated**
