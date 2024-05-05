@@ -82,19 +82,6 @@ extension MMKVHelper {
     func deleteDataEventLogs() {
         delete(for: Key.eventData.rawValue)
     }
-    
-    func readUserCatalog() -> UserCatalogModel? {
-        let object: UserCatalogModel? = read(for: Key.userCatalog.rawValue)
-        return object
-    }
-
-    func writeUserCatalog(userCataLogData: UserCatalogModel?) {
-        write(userCataLogData, for: Key.userCatalog.rawValue)
-    }
-    
-    func deleteUserCatalog() {
-        delete(for: Key.userCatalog.rawValue)
-    }
 
     public func writeCatalogData(subject: CatalogSubject, data: Data) {
         let object = CatalogHelper(subject: subject, data: data)

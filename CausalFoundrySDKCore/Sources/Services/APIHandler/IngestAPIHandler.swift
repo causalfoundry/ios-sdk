@@ -41,7 +41,6 @@ public class IngestAPIHandler: NSObject {
                 Task {
                     do {
                         try await WorkerCaller.performUpload()
-                        MMKVHelper.shared.deleteUserCatalog()
                         MMKVHelper.shared.deleteAllUserID()
                         CoreConstants.shared.logoutEvent = false
                         CoreConstants.shared.userId = ""

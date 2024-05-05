@@ -5,6 +5,15 @@ Documenting the changes in the SDK subject to each release version.
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 
+## **[1.0.2]  - 05.05.2024**
+
+### **Updated**
+- Updated user catalog restriction to process only 1 user catalog
+                                                  
+
+----
+
+
 ## **[0.9.8]  - 04.05.2024**
 
 ### **Updated**

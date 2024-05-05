@@ -44,8 +44,6 @@ public class CfCoreCatalog {
             ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: MembersCount.self))
         }
 
-//        let userCatalogModelItem: UserCatalogModel? = MMKVHelper.shared.readUserCatalog()
-//        if userCatalogModel != userCatalogModelItem {
             let internalUserModel = InternalUserModel(
                 id: appUserId,
                 name: userCatalogModel.name,
@@ -68,9 +66,7 @@ public class CfCoreCatalog {
                 familyMembers: userCatalogModel.familyMembers,
                 childrenUnderFive: userCatalogModel.childrenUnderFive
             )
-//            MMKVHelper.shared.writeUserCatalog(userCataLogData: userCatalogModel)
             CFSetup().updateCoreCatalogItem(subject: CatalogSubject.user, catalogObject: [internalUserModel].toData()!)
-//        } 
     }
     
     
