@@ -22,7 +22,6 @@ class CFNudgeListener {
 
     func beginListening() {
         endListening()
-        guard let userID = CoreConstants.shared.userId, !userID.isEmpty else { return }
         startTimer()
         fetchAndDisplayNudgesTask()
         NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: .main) { [weak self] _ in
@@ -36,7 +35,17 @@ class CFNudgeListener {
 
     @available(iOS 13.0, *)
     private func fetchPushNotificationNudges() async throws -> [BackendNudgeMainObject] {
-        guard let userID = CoreConstants.shared.userId, !userID.isEmpty else { return [] }
+        var userId = CoreConstants.shared.userId
+        
+        if(userId == nil || userId?.isEmpty == true){
+            userId = MMKVHelper.shared.fetchUserBackupID()
+        }
+        
+        if(userId ==  nil || userId?.isEmpty == true){
+            userId = CoreConstants.shared.deviceObject?.id
+        }
+        guard let userID = userId, !userID.isEmpty else {
+            return [] }
         return try await withCheckedThrowingContinuation { continuation in
             let url = URL(string: "\(APIConstants.fetchNudge)\(userID)?render_method=push_notification")!
             BackgroundRequestController.shared.request(url: url, httpMethod: .get, params: nil) { result in
@@ -59,7 +68,17 @@ class CFNudgeListener {
     
     @available(iOS 13.0, *)
     private func fetchInAppMessagesNudges(nudgeScreenType : NudgeScreenType) async throws -> [BackendNudgeMainObject] {
-        guard let userID = CoreConstants.shared.userId, !userID.isEmpty else { return [] }
+        var userId = CoreConstants.shared.userId
+        
+        if(userId == nil || userId?.isEmpty == true){
+            userId = MMKVHelper.shared.fetchUserBackupID()
+        }
+        
+        if(userId ==  nil || userId?.isEmpty == true){
+            userId = CoreConstants.shared.deviceObject?.id
+        }
+        guard let userID = userId, !userID.isEmpty else {
+            return [] }
         return try await withCheckedThrowingContinuation { continuation in
             let url = URL(string: "\(APIConstants.fetchNudge)\(userID)?render_method=in_app_message&render_page=\(nudgeScreenType.rawValue)")!
             BackgroundRequestController.shared.request(url: url, httpMethod: .get, params: nil) { result in
@@ -114,7 +133,7 @@ class CFNudgeListener {
     
     
     @available(iOS 13.0, *)
-    func fetchAndDisplayInAppMessagesNudges(nudgeScreenType: NudgeScreenType) async throws {        
+    func fetchAndDisplayInAppMessagesNudges(nudgeScreenType: NudgeScreenType) async throws {
         let inAppMessageNudgeObjects = try await fetchInAppMessagesNudges(nudgeScreenType: nudgeScreenType)
         
         // Filter the objects to get only the ones that are not expired
@@ -127,7 +146,6 @@ class CFNudgeListener {
         expiredObjects.forEach { expiredNudge in
             CFNotificationController.shared.track(nudgeRef: expiredNudge.ref, response: .expired)
         }
-        
         if(!nonExpiredNudges.isEmpty){
             if (CoreConstants.shared.isAppOpen) {
                     DispatchQueue.main.async {

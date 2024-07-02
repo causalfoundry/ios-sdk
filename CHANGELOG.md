@@ -5,6 +5,14 @@ Documenting the changes in the SDK subject to each release version.
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 
+## **[1.0.3]  - 02.07.2024**
+
+### **Updated**
+- Updated userID management for push notification and in app messages
+                                                  
+
+----
+
 ## **[1.0.2]  - 05.05.2024**
 
 ### **Updated**

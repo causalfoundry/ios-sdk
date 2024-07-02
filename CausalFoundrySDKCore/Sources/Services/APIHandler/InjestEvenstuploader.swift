@@ -23,7 +23,6 @@ enum InjestEvenstuploader {
                     MMKVHelper.shared.deleteDataEventLogs()
                     continuation.resume(with: .success(()))
                 } else {
-                    print("Hello Failed")
                     continuation.resume(with: .failure(NSError(domain: "InjestEvenstuploader.uploadEvents", code: 0)))
                 }
             }

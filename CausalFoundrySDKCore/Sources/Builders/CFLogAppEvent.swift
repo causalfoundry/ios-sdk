@@ -118,7 +118,7 @@ public class CFLogAppEventBuilder {
         }
 
         let appObject = AppObject(action: action!, startTime: startTimeValue, meta: (meta as? String) ?? "")
-
-        IngestAPIHandler.shared.ingestTrackAPI(contentBlock: CoreConstants.shared.contentBlockName, eventType: CoreEventType.App.rawValue, trackProperties: appObject, updateImmediately: update_immediately, eventTime: eventTimeValue)
+        
+        CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.App.rawValue, logObject: appObject, updateImmediately: update_immediately, eventTime: eventTimeValue)
     }
 }
