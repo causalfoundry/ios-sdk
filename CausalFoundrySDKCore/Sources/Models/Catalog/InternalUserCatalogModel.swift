@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct UserCatalogModel: Codable, Equatable {
+public struct InternalUserCatalogModel: Codable, Equatable {
     var userId: String?
     var name: String?
     var country: String?
@@ -21,6 +21,7 @@ public struct UserCatalogModel: Codable, Equatable {
     var educationLevel: String?
     var organizationId: String?
     var organizationName: String?
+    var timezone: String?
     var accountType: String?
     var birthYear: Int?
     var gender: String?
@@ -43,6 +44,7 @@ public struct UserCatalogModel: Codable, Equatable {
         case educationLevel = "education_level"
         case organizationId = "organization_id"
         case organizationName = "organization_name"
+        case timezone
         case accountType = "account_type"
         case birthYear = "birth_year"
         case gender
@@ -52,7 +54,7 @@ public struct UserCatalogModel: Codable, Equatable {
     }
     
 
-    public init(userId: String? = "", name: String? = "", country: String? = "", regionState: String? = "", city: String? = "", workplace: String? = "", profession: String? = "", zipcode: String? = "", language: String? = "", experience: String? = "", educationLevel: String? = "", organizationId: String? = "", organizationName: String? = "", accountType: String? = "", birthYear: Int? = 0, gender: String? = "", maritalStatus: String? = "", familyMembers: String? = "", childrenUnderFive: String? = "") {
+    public init(userId: String? = "", name: String? = "", country: String? = "", regionState: String? = "", city: String? = "", workplace: String? = "", profession: String? = "", zipcode: String? = "", language: String? = "", experience: String? = "", educationLevel: String? = "", organizationId: String? = "", organizationName: String? = "", timezone: String? = "", accountType: String? = "", birthYear: Int? = 0, gender: String? = "", maritalStatus: String? = "", familyMembers: String? = "", childrenUnderFive: String? = "") {
         
         self.userId = userId
         self.name = name
@@ -67,6 +69,7 @@ public struct UserCatalogModel: Codable, Equatable {
         self.educationLevel = educationLevel
         self.organizationId = organizationId
         self.organizationName = organizationName
+        self.timezone = timezone
         self.accountType = accountType
         self.birthYear = birthYear
         self.gender = gender
@@ -92,6 +95,7 @@ public struct UserCatalogModel: Codable, Equatable {
         try container.encodeIfPresent(educationLevel, forKey: .educationLevel)
         try container.encodeIfPresent(organizationId, forKey: .organizationId)
         try container.encodeIfPresent(organizationName, forKey: .organizationName)
+        try container.encodeIfPresent(timezone, forKey: .timezone)
         try container.encodeIfPresent(accountType, forKey: .accountType)
         try container.encodeIfPresent(birthYear, forKey: .birthYear)
         try container.encodeIfPresent(gender, forKey: .gender)
@@ -118,39 +122,13 @@ public struct UserCatalogModel: Codable, Equatable {
         educationLevel = try container.decodeIfPresent(String.self, forKey: .educationLevel)
         organizationId = try container.decodeIfPresent(String.self, forKey: .organizationId)
         organizationName = try container.decodeIfPresent(String.self, forKey: .organizationName)
+        timezone = try container.decodeIfPresent(String.self, forKey: .timezone)
         accountType = try container.decodeIfPresent(String.self, forKey: .accountType)
         birthYear = try container.decodeIfPresent(Int.self, forKey: .birthYear)
         gender = try container.decodeIfPresent(String.self, forKey: .gender)
         maritalStatus = try container.decodeIfPresent(String.self, forKey: .maritalStatus)
         familyMembers = try container.decodeIfPresent(String.self, forKey: .familyMembers)
         childrenUnderFive = try container.decodeIfPresent(String.self, forKey: .childrenUnderFive)
-    }
-}
-
-extension UserCatalogModel {
-    func toInternalUserCatalogModel() -> InternalUserCatalogModel {
-        return InternalUserCatalogModel(
-            userId: self.userId,
-            name: self.name,
-            country: self.country,
-            regionState: self.regionState,
-            city: self.city,
-            workplace: self.workplace,
-            profession: self.profession,
-            zipcode: self.zipcode,
-            language: self.language,
-            experience: self.experience,
-            educationLevel: self.educationLevel,
-            organizationId: self.organizationId,
-            organizationName: self.organizationName,
-            timezone: CoreConstants.shared.getUserTimeZone(),
-            accountType: self.accountType,
-            birthYear: self.birthYear,
-            gender: self.gender,
-            maritalStatus: self.maritalStatus,
-            familyMembers: self.familyMembers,
-            childrenUnderFive: self.childrenUnderFive
-        )
     }
 }
 
