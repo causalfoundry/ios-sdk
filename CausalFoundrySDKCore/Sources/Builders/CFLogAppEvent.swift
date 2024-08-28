@@ -22,7 +22,7 @@ public class CFLogAppEvent {
     var startTimeValue: Int = 0
     var eventTimeValue: Int64 = 0
     var update_immediately: Bool = CoreConstants.shared.updateImmediately
-
+    
     init(action: String? = nil, meta: Any? = nil, startTimeValue: Int, eventTimeValue: Int64, update_immediately: Bool) {
         self.action = action
         self.meta = meta
@@ -38,9 +38,9 @@ public class CFLogAppEventBuilder {
     var startTimeValue: Int = 0
     var eventTimeValue: Int64 = 0
     var update_immediately: Bool = CoreConstants.shared.updateImmediately
-
+    
     public init() {}
-
+    
     /**
      * setAppEvent is for the providing the current state of the app which is open, close,
      * background and resume, you can provide the value by using the enum given in the SDK or
@@ -53,13 +53,13 @@ public class CFLogAppEventBuilder {
         action = appAction.rawValue
         return self
     }
-
+    
     @discardableResult
     public func setAppEvent(appAction: String) -> CFLogAppEventBuilder {
         action = appAction
         return self
     }
-
+    
     /**
      * setEventTime is for the providing the start and end time for the app to measure
      * app start time and session logs
@@ -69,7 +69,7 @@ public class CFLogAppEventBuilder {
         eventTimeValue = event_time
         return self
     }
-
+    
     /**
      * setStartTime is for the providing the latency time in terms of rendering the first
      * page on the screen since the app tap is pressed, difference in ms
@@ -79,7 +79,7 @@ public class CFLogAppEventBuilder {
         startTimeValue = start_time
         return self
     }
-
+    
     /**
      * You can pass any type of value in setMeta. It is for developer and partners to log
      * additional information with the log that they find would be helpful for logging and
@@ -90,7 +90,7 @@ public class CFLogAppEventBuilder {
         self.meta = meta
         return self
     }
-
+    
     /**
      * updateImmediately is responsible for updating the values ot the backend immediately.
      * By default this is set to false or whatever the developer has set in the SDK
@@ -98,27 +98,41 @@ public class CFLogAppEventBuilder {
      * the SDK will log the content instantly and if false it will wait till the end of user
      * session which is whenever the app goes into background.
      */
-
+    
     @discardableResult
     public func updateImmediately(update_immediately: Bool) -> CFLogAppEventBuilder {
         self.update_immediately = update_immediately
         return self
     }
-
+    
     /**
      * build will validate all of the values provided and if passes will call the track
      * function and queue the events based on it's updateImmediately value and also on the
      * user's network resources.
      */
-
+    
     public func build() {
         if action == nil {
             ExceptionManager.throwInvalidException(eventType: "app", paramName: "action", className: "AppAction")
             return
         }
-
-        let appObject = AppObject(action: action!, startTime: startTimeValue, meta: (meta as? String) ?? "")
         
-        CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.App.rawValue, logObject: appObject, updateImmediately: update_immediately, eventTime: eventTimeValue)
+        let appObject = AppObject(action: action!, startTime: startTimeValue, meta: (meta as? String) ?? "")
+        //        CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventType: .App, logObject: appObject)
+        do {
+            let jsonData = try JSONEncoder().encode(appObject)
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                
+                CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventType: .App, logObject: AppEventValidator.mapStringToInternalAppObject(appObjectString: jsonString))
+            }
+            
+        } catch {
+            print("Failed to convert appObject to JSON string: \(error)")
+        }
+        
+        
+        
+        //
+        //        CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.App.rawValue, logObject: appObject, updateImmediately: update_immediately, eventTime: eventTimeValue)
     }
 }

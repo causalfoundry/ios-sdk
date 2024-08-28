@@ -9,24 +9,36 @@ import Foundation
 
 internal class CFCoreSetupInterfaceImpl: CFCoreSetupInterface {
     
+    
+    // Singleton instance
+        static let shared = CFCoreSetupInterfaceImpl()
+        
+        // Private initializer to prevent external instantiation
+        private init() {}
+    
+    
     func trackSDKEvent<T: Codable>(eventType: CoreEventType,
                        logObject: T?,
-                       contentBlock: ContentBlock?,
-                       isUpdateImmediately: Bool?,
-                       eventTime: Int64?) {
+                       contentBlock: ContentBlock? = CoreConstants.shared.contentBlock,
+                       isUpdateImmediately: Bool? = CoreConstants.shared.updateImmediately,
+                       eventTime: Int64? = 0) {
         
         if CoreConstants.shared.pauseSDK {
             return
         }
         
        
-        CFSetup().track(
-            contentBlockName: (contentBlock ?? .Core).rawValue,
-            eventType: eventType.rawValue,
-            logObject: validateCoreEvent(eventType: eventType, logObject: logObject),
-            updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
-            eventTime: eventTime ?? 0
-        )
+        if let eventObject = validateCoreEvent(eventType: eventType, logObject: logObject){
+            CFSetup().track(
+                contentBlockName: contentBlock?.rawValue ?? ContentBlock.Core.rawValue,
+                eventType: eventType.rawValue,
+                logObject: eventObject,
+                updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                eventTime: eventTime ?? 0
+            )
+        }else{
+            print("Unknown event object type")
+        }
     }
 
     func trackCatalogEvent(coreCatalogType: CoreCatalogSubject, catalogModel: Any) {
@@ -64,10 +76,9 @@ internal class CFCoreSetupInterfaceImpl: CFCoreSetupInterface {
     }
 
     private func validateCoreEvent<T: Codable>(eventType: CoreEventType, logObject: T?) -> T? {
-        return logObject
-//        switch eventType {
-//        case .App:
-//            return AppEventValidator.validateAppObject(logObject: logObject)
+        switch eventType {
+        case .App:
+            return AppEventValidator.validateAppObject(logObject: logObject) as? T
 //        case .Page:
 //            return PageEventValidator.validatePageObject(logObject: logObject)
 //        case .Identify:
@@ -78,9 +89,9 @@ internal class CFCoreSetupInterfaceImpl: CFCoreSetupInterface {
 //            return RateEventValidator.validateRateObject(logObject: logObject)
 //        case .Search:
 //            return SearchEventValidator.validateSearchObject(logObject: logObject)
-//        default:
-//            print("Unknown event or object type")
-//            return nil
-//        }
+        default:
+            print("Unknown event or object type")
+            return logObject
+        }
     }
 }

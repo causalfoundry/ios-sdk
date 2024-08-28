@@ -111,16 +111,6 @@ public class CfLogIdentityBuilder {
         return self
     }
 
-    public func setCountry(country: String?) -> CfLogIdentityBuilder {
-        if country != nil {
-            if !CoreConstants.shared.enumContains(CountryCode.self, name: country!) {
-                ExceptionManager.throwEnumException(eventType: CoreEventType.Identify.rawValue, className: String(describing: "CfLogIdentityEvent"))
-            }
-        }
-
-        return self
-    }
-
     public func setBlockedReason(blocked_reason: String) -> CfLogIdentityBuilder {
         self.blocked_reason = blocked_reason
         return self
