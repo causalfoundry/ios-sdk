@@ -70,7 +70,7 @@ public class CfCoreCatalog {
             ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: LanguageCode.self))
         }
         
-        CFSetup().updateCoreCatalogItem(subject: CatalogSubject.user, catalogObject: [mediaCatalogModel].toData()!)
+        CFSetup().updateCoreCatalogItem(subject: CatalogSubject.media, catalogObject: [mediaCatalogModel].toData()!)
     }
     
     

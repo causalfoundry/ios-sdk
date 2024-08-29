@@ -268,8 +268,8 @@ public class CfLogSearchEventBuilder {
             return
         }
 
-        let searchObject = SearchObject(searchId: getSearchId(), query: queryText!, searchModule: searchModule, resultsList: resultsList, filter: filterValue, page: pageValue, meta: meta)
-        CFSetup().track(contentBlockName: contentBlock, eventType: CoreEventType.Search.rawValue, logObject: searchObject, updateImmediately: updateImmediately)
+//        let searchObject = SearchObject(searchId: getSearchId(), query: queryText!, searchModule: searchModule, resultsList: resultsList, filter: filterValue, page: pageValue, meta: meta)
+//        CFSetup().track(contentBlockName: contentBlock, eventType: CoreEventType.Search.rawValue, logObject: searchObject, updateImmediately: updateImmediately)
         
     }
 }

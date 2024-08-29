@@ -87,8 +87,8 @@ internal class CFCoreSetupInterfaceImpl: CFCoreSetupInterface {
             return MediaEventValidator.validateMediaObject(logObject: logObject) as? T
         case .Rate:
             return RateEventValidator.validateRateObject(logObject: logObject) as? T
-//        case .Search:
-//            return SearchEventValidator.validateSearchObject(logObject: logObject)
+        case .Search:
+            return SearchEventValidator.validateSearchObject(logObject: logObject) as? T
         default:
             print("Unknown event or object type")
             return logObject

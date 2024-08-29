@@ -83,26 +83,22 @@ public class CoreConstants {
 public protocol EnumComposable: Codable, RawRepresentable, CaseIterable {}
 
 extension CoreConstants {
-    func isSearchItemModelObjectValid(itemValue: SearchItemModel, eventType: CoreEventType) {
-        
-        print("SearchItemModel: \(itemValue)")
-        
-        let eventName = eventType.rawValue
+    func isSearchItemModelObjectValid(itemValue: SearchItemModel, eventType: CoreEventType) -> Bool {
 
+        let eventName = eventType.rawValue
         guard !itemValue.id!.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_id")
-            return
+            return false
         }
-
         guard !itemValue.type!.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_type")
-            return
+            return false
         }
-
         if !CoreConstants.shared.enumContains(SearchItemType.self, name: itemValue.type!) {
             ExceptionManager.throwEnumException(eventType: eventName, className: "ItemType")
-            return
+            return false
         }
+        return true
         
     }
 

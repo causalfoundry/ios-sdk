@@ -27,7 +27,7 @@ public struct MediaCatalogModel: Codable, Equatable {
     }
     
 
-    public init(mediaId: String? = "", mediaName: String? = "", mediaDescription: String? = "", length: Int? = 0, type: String? = "", resolution: String? = "", language: String? = "") {
+    public init(mediaId: String, mediaName: String, mediaDescription: String? = "", length: Int? = 0, type: String, resolution: String? = "", language: String? = "") {
         
         self.mediaId = mediaId
         self.mediaName = mediaName
