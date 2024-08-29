@@ -7,12 +7,9 @@
 
 import Foundation
 
-class AppEventValidator {
+public class AppEventValidator {
 
     static func validateAppObject<T:Codable>(logObject: T?) -> AppObject? {
-        
-        
-        
         let appObject: AppObject? = {
             if let appObject = logObject as? AppObject {
                 return appObject
@@ -42,8 +39,8 @@ class AppEventValidator {
         return nil
     }
     
-    static func mapStringToInternalAppObject(appObjectString: String) -> AppObject? {
-        guard let data = appObjectString.data(using: .utf8) else { return nil }
+    public static func mapStringToAppObject(objectString: String) -> AppObject? {
+        guard let data = objectString.data(using: .utf8) else { return nil }
         return try? JSONDecoder().decode(AppObject.self, from: data)
     }
 

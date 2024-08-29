@@ -148,18 +148,14 @@ public class CfLogIdentityBuilder {
          * Parsing the values into an object and passing to the setup block to queue
          * the event based on its priority.
          */
-        if(identity_action == IdentityAction.Register.rawValue || identity_action == IdentityAction.Login.rawValue){
-            CFSetup().updateUserId(appUserId: app_user_id!)
-        }
-        if identity_action == IdentityAction.Logout.rawValue {
-            CoreConstants.shared.logoutEvent = true
-        }
+//        if(identity_action == IdentityAction.Register.rawValue || identity_action == IdentityAction.Login.rawValue){
+//            CFSetup().updateUserId(appUserId: app_user_id!)
+//        }
+//        if identity_action == IdentityAction.Logout.rawValue {
+//            CoreConstants.shared.logoutEvent = true
+//        }
         
-        var indetityObject = IdentifyObject(action: identity_action, blocked: nil)
-        if (identity_action == IdentityAction.Blocked.rawValue || identity_action == IdentityAction.Unblocked.rawValue){
-            indetityObject.blocked = IdentifyObject.Blocked(reason: blocked_reason!, remarks: blocked_remarks)
-            
-        }
+        var indetityObject = InternalIdentifyObject(userId: app_user_id!, action: identity_action!, blocked: nil)
 
         CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.Identify.rawValue, logObject: indetityObject, updateImmediately: update_immediately, eventTime: 0)
     }

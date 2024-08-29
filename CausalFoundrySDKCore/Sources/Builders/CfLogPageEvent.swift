@@ -155,8 +155,23 @@ public class CfLogPageBuilder {
             render_time_value = 0
         }
         
-        let pageObject = PageObject(path: path_value, title: title_value, duration: duration_value, render_time: render_time_value, meta: meta as? Encodable)
+        let pageObject = PageObject(path: path_value, title: title_value, duration: duration_value, renderTime: render_time_value, meta: meta as? Encodable)
+        
+        
+        CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventType: .Page, logObject: pageObject)
+//        do {
+//            let jsonData = try JSONEncoder().encode(pageObject)
+//            if let jsonString = String(data: jsonData, encoding: .utf8) {
+//                
+//                CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventType: .Page, logObject: PageEventValidator.mapStringToPageObject(objectString: jsonString))
+//            }
+//            
+//        } catch {
+//            print("Failed to convert appObject to JSON string: \(error)")
+//        }
+        
+        
 
-        CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.Page.rawValue, logObject: pageObject, updateImmediately: update_immediately, eventTime: 0)
+//        CFSetup().track(contentBlockName: CoreConstants.shared.contentBlockName, eventType: CoreEventType.Page.rawValue, logObject: pageObject, updateImmediately: update_immediately, eventTime: 0)
     }
 }

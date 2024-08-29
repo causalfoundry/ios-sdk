@@ -79,10 +79,10 @@ internal class CFCoreSetupInterfaceImpl: CFCoreSetupInterface {
         switch eventType {
         case .App:
             return AppEventValidator.validateAppObject(logObject: logObject) as? T
-//        case .Page:
-//            return PageEventValidator.validatePageObject(logObject: logObject)
-//        case .Identify:
-//            return IdentifyEventValidator.validateIdentifyObject(logObject: logObject)
+        case .Page:
+            return PageEventValidator.validatePageObject(logObject: logObject) as? T
+        case .Identify:
+            return IdentifyEventValidator.validateIdentifyObject(logObject: logObject) as? T
 //        case .Media:
 //            return MediaEventValidator.validateMediaObject(logObject: logObject)
 //        case .Rate:

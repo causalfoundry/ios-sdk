@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct AppObject: Codable {
+public struct AppObject: Codable {
     var action: String?
     var startTime: Int?
     var meta: Encodable?
 
-    init(action: String, startTime: Int, meta: Encodable? = nil) {
+    public init(action: String, startTime: Int, meta: Encodable? = nil) {
         self.action = action
         self.startTime = startTime
         self.meta = meta
@@ -24,7 +24,7 @@ struct AppObject: Codable {
         case meta
     }
     
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         action = try values.decode(String.self, forKey: .action)
         startTime = try values.decode(Int.self, forKey: .start_time)
@@ -37,7 +37,7 @@ struct AppObject: Codable {
 
     // MARK: Encodable
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var baseContainer = encoder.container(keyedBy: CodingKeys.self)
         try baseContainer.encode(action, forKey: .action)
         try baseContainer.encode(startTime, forKey: .start_time)

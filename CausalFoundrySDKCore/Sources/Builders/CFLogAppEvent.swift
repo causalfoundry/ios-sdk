@@ -123,7 +123,7 @@ public class CFLogAppEventBuilder {
             let jsonData = try JSONEncoder().encode(appObject)
             if let jsonString = String(data: jsonData, encoding: .utf8) {
                 
-                CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventType: .App, logObject: AppEventValidator.mapStringToInternalAppObject(appObjectString: jsonString))
+                CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventType: .App, logObject: AppEventValidator.mapStringToAppObject(objectString: jsonString))
             }
             
         } catch {

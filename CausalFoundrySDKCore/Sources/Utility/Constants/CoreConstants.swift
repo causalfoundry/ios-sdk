@@ -41,7 +41,7 @@ public class CoreConstants {
     var isDebugMode: Bool = true
     var allowAutoPageTrack: Bool = true
     var isAnonymousUserAllowed: Bool = false
-    var contentBlock: ContentBlock = .Core
+    public var contentBlock: ContentBlock = .Core
     var contentBlockName: String {
         return contentBlock.rawValue
     }
