@@ -88,7 +88,7 @@ public class CfLogHcwModuleEvent {
             return
         }
         
-        let chwModelObject = ChwModelObject(type: moduleType, meta: meta)
+        let chwModelObject = HcwModuleObject(type: moduleType, meta: meta)
         CFSetup().track(contentBlockName: PatientMgmtConstants.contentBlockName, eventType: PatientMgmtEventType.module_selection.rawValue, logObject: chwModelObject, updateImmediately: updateImmediately)
     }
 }

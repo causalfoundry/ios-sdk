@@ -8,6 +8,7 @@
 import Foundation
 
 public struct HcwSiteCatalogModel: Codable {
+    var siteId: String
     var name: String
     var country: String
     var regionState: String
@@ -21,9 +22,11 @@ public struct HcwSiteCatalogModel: Codable {
     var latitude: Double
     var longitude: Double
     var culture: String
+    var parentSiteId: String
     
     
     public enum CodingKeys: String, CodingKey {
+        case siteId = "id"
         case name
         case country
         case regionState = "region_state"
@@ -37,10 +40,12 @@ public struct HcwSiteCatalogModel: Codable {
         case latitude
         case longitude
         case culture
+        case parentSiteId = "parent_site_id"
     }
     
 
-    public init(name: String = "", country: String = "", regionState: String = "", city: String = "", zipcode: String = "", level: String = "", category: String = "", isActive: Bool = true, address: String = "", addressType: String = "", latitude: Double = 0, longitude: Double = 0, culture: String = "") {
+    public init(siteId: String, name: String, country: String, regionState: String = "", city: String = "", zipcode: String = "", level: String = "", category: String = "", isActive: Bool = true, address: String = "", addressType: String = "", latitude: Double = 0, longitude: Double = 0, culture: String = "", parentSiteId: String = "") {
+        self.siteId = siteId
         self.name = name
         self.country = country
         self.regionState = regionState
@@ -54,5 +59,6 @@ public struct HcwSiteCatalogModel: Codable {
         self.latitude = latitude
         self.longitude = longitude
         self.culture = culture
+        self.parentSiteId = parentSiteId
     }
 }

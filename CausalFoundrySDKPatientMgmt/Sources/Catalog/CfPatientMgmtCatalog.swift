@@ -11,34 +11,34 @@ import Foundation
 public enum CfPatientMgmtCatalog {
     // MARK: - CHW Catalog
 
-    public static func updateHcwCatalog(hcwId: String, hcwCatalogModel: String) {
-        updateHcwCatalog(hcwId: hcwId, hcwCatalogModel: try! JSONDecoder.new.decode(HcwCatalogModel.self, from: hcwCatalogModel.data(using: .utf8)!))
+    public static func updateHcwCatalogString(hcwCatalogString: String) {
+        updateHcwCatalog(hcwCatalogModel: try! JSONDecoder.new.decode(HcwCatalogModel.self, from: hcwCatalogString.data(using: .utf8)!))
     }
 
-    public static func updateHcwCatalog(hcwId: String, hcwCatalogModel: HcwCatalogModel) {
-        let internalCatalog = PatientMgmtConstants.verifyHcwCatalog(hcwId: hcwId, hcwCatalogModel: hcwCatalogModel)
+    public static func updateHcwCatalog(hcwCatalogModel: HcwCatalogModel) {
+        let internalCatalog = PatientMgmtConstants.verifyHcwCatalog(hcwCatalogModel: hcwCatalogModel)
         CFSetup().updateCHWMamnagementCatalogItem(subject: .user_chw, catalogObject: [internalCatalog].toData()!)
     }
 
     // MARK: - CHW Site Catalog
 
-    public static func updateHcwSiteCatalog(siteId: String, hcwSiteCatalogModel: String) {
-        updateHcwSiteCatalog(siteId: siteId, hcwSiteCatalogModel: try! JSONDecoder.new.decode(HcwSiteCatalogModel.self, from: hcwSiteCatalogModel.data(using: .utf8)!))
+    public static func updateHcwSiteCatalogString(hcwSiteCatalogString: String) {
+        updateHcwSiteCatalog(hcwSiteCatalogModel: try! JSONDecoder.new.decode(HcwSiteCatalogModel.self, from: hcwSiteCatalogString.data(using: .utf8)!))
     }
 
-    public static func updateHcwSiteCatalog(siteId: String, hcwSiteCatalogModel: HcwSiteCatalogModel) {
-        let internalCatalog = PatientMgmtConstants.verifySiteCatalog(siteId: siteId, hcwSiteCatalogModel: hcwSiteCatalogModel)
+    public static func updateHcwSiteCatalog(hcwSiteCatalogModel: HcwSiteCatalogModel) {
+        let internalCatalog = PatientMgmtConstants.verifySiteCatalog(hcwSiteCatalogModel: hcwSiteCatalogModel)
         CFSetup().updateCHWMamnagementCatalogItem(subject: .chwsite, catalogObject: [internalCatalog].toData()!)
     }
 
     // MARK: - Patient Catalog
 
-    public static func updatePatientCatalog(patientId: String, patientCatalogModel: String) {
-        updatePatientCatalog(patientId: patientId, patientCatalogModel: try! JSONDecoder.new.decode(PatientCatalogModel.self, from: patientCatalogModel.data(using: .utf8)!))
+    public static func updatePatientCatalogString(patientCatalogString: String) {
+        updatePatientCatalog(patientCatalogModel: try! JSONDecoder.new.decode(PatientCatalogModel.self, from: patientCatalogString.data(using: .utf8)!))
     }
 
-    public static func updatePatientCatalog(patientId: String, patientCatalogModel: PatientCatalogModel) {
-        let internalCatalog = PatientMgmtConstants.verifyPatientCatalog(patientId: patientId, patientCatalogModel: patientCatalogModel)
+    public static func updatePatientCatalog(patientCatalogModel: PatientCatalogModel) {
+        let internalCatalog = PatientMgmtConstants.verifyPatientCatalog(patientCatalogModel: patientCatalogModel)
         CFSetup().updateCHWMamnagementCatalogItem(subject: .patient, catalogObject: [internalCatalog].toData()!)
     }
 }

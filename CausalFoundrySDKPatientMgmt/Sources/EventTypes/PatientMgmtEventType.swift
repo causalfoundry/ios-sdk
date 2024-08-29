@@ -8,6 +8,7 @@
 import Foundation
 
 public enum PatientMgmtEventType: String, CaseIterable {
+    
     case module_selection
     case lifestyle
     case counseling
@@ -18,4 +19,19 @@ public enum PatientMgmtEventType: String, CaseIterable {
     case submit_screening
     case submit_assessment
     case submit_enrolment
+    
+    case ModuleSelection
+    case Patient
+    case Encounter
+    case Appointment
+
+    public var rawValue: String {
+        switch self {
+        case .ModuleSelection: return "module_selection"
+        case .Patient: return "patient"
+        case .Encounter: return "encounter"
+        case .Appointment: return "appointment"
+        default: return "other"
+        }
+    }
 }

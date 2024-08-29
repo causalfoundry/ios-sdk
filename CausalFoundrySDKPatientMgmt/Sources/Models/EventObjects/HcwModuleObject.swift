@@ -2,12 +2,12 @@
 //  ChwModelObject.swift
 //
 //
-//  Created by khushbu on 26/10/23.
+//  Created by Moiz Hassan Khan on 29/08/24.
 //
 
 import Foundation
 
-public struct ChwModelObject: Codable {
+public struct HcwModuleObject: Codable {
     var type: String
     var meta: Any?
 
