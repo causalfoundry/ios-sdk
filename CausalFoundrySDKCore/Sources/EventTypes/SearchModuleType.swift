@@ -16,6 +16,7 @@ public enum SearchModuleType: String, EnumComposable {
     case Enrolment
     case MedicalReview
     case MyPatients
+    case Appointments
     case Prescription
     case LifestyleMgmt
     case PsychologicalMgmt
@@ -35,6 +36,7 @@ public enum SearchModuleType: String, EnumComposable {
         case .Enrolment: return "enrolment"
         case .MedicalReview: return "medical_review"
         case .MyPatients: return "my_patients"
+        case .Appointments: return "appointments"
         case .Prescription: return "prescription"
         case .LifestyleMgmt: return "lifestyle_mgmt"
         case .PsychologicalMgmt: return "psychological_mgmt"

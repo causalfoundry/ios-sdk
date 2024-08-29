@@ -14,6 +14,9 @@ public enum SearchItemType: String, EnumComposable {
     case Grocery
     case Facility
     case MedicalEquipment
+    case Appointment
+    case Assessment
+    case MedicalRecord
     case Subscription
     case Electronics
     case Clothing
@@ -38,6 +41,9 @@ public enum SearchItemType: String, EnumComposable {
         case .Grocery: return "grocery"
         case .Facility: return "facility"
         case .MedicalEquipment: return "medical_equipment"
+        case .Appointment: return "appointment"
+        case .Assessment: return "assessment"
+        case .MedicalRecord: return "medical_record"
         case .Subscription: return "subscription"
         case .Electronics: return "electronics"
         case .Clothing: return "clothing"
@@ -49,6 +55,7 @@ public enum SearchItemType: String, EnumComposable {
         case .InvestigationTestItem: return "investigation_test_item"
         case .TreatmentPlanItem: return "treatment_plan_item"
         case .ItemVerification: return "item_verification"
+        case .ItemReport: return "item_report"
         case .ItemReport: return "item_report"
         case .Reward: return "reward"
         case .Survey: return "survey"
