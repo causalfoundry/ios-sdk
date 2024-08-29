@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RateObject: Codable {
+public struct RateObject: Codable {
     let rateValue: Float
     let type: String
     let subjectId: String
@@ -20,7 +20,7 @@ struct RateObject: Codable {
         case meta
     }
 
-    init(rateValue: Float, type: String, subjectId: String, meta: Encodable? = nil) {
+    public init(rateValue: Float, type: String, subjectId: String, meta: Encodable? = nil) {
         self.rateValue = rateValue
         self.type = type
         self.subjectId = subjectId
@@ -29,7 +29,7 @@ struct RateObject: Codable {
 
     // MARK: - Encoding
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(rateValue, forKey: .rateValue)
         try container.encode(type, forKey: .type)
@@ -41,7 +41,7 @@ struct RateObject: Codable {
 
     // MARK: - Decoding
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         rateValue = try container.decode(Float.self, forKey: .rateValue)
         type = try container.decode(String.self, forKey: .type)
