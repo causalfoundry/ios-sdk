@@ -15,7 +15,7 @@ public class ModuleSelectionEventValidator {
             if let eventObject = logObject as? HcwModuleObject {
                 return eventObject
             } else {
-                ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Patient.rawValue,
+                ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.ModuleSelection.rawValue,
                                                        paramName: "HcwModuleObject", className: "HcwModuleObject")
                 return nil
             }
@@ -23,11 +23,11 @@ public class ModuleSelectionEventValidator {
         if let eventObject = eventObject {
             // Will throw an exception if the action provided is null or no action is provided at all.
             if eventObject.type.isEmpty {
-                ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Patient.rawValue,
-                                                       paramName: String(describing: AppAction.self),
-                                                       className: String(describing: AppAction.self))
+                ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.ModuleSelection.rawValue,
+                                                       paramName: String(describing: PatientModuleType.self),
+                                                       className: String(describing: PatientModuleType.self))
             } else if !CoreConstants.shared.enumContains(PatientModuleType.self, name: eventObject.type) {
-                ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.Patient.rawValue,
+                ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.ModuleSelection.rawValue,
                                                        className: String(describing: PatientModuleType.self))
             } else {
                 return eventObject

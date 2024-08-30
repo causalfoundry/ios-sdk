@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct MedicationAdherenceObject: Codable {
+public struct TreatmentAdherenceItem: Codable {
     var medicationAdherence: String?
     var lackAdherenceReason: String?
 

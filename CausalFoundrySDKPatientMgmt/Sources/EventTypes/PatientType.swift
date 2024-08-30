@@ -1,14 +1,14 @@
 //
-//  ScreeningType.swift
+//  File.swift
+//  
 //
-//
-//  Created by khushbu on 07/11/23.
+//  Created by MOIZ HASSAN KHAN on 30/8/24.
 //
 
-import CausalFoundrySDKCore
 import Foundation
+import CausalFoundrySDKCore
 
-public enum ScreeningType: String, EnumComposable {
+public enum PatientType: String, EnumComposable {
     case Triage
     case Outpatient
     case Inpatient

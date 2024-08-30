@@ -8,9 +8,10 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public enum HcwSiteType: String, EnumComposable {
+public enum HcwSiteCategory: String, EnumComposable {
     case Facility
     case Community
+    case PatientAddress
     case Other
 
     
@@ -18,6 +19,7 @@ public enum HcwSiteType: String, EnumComposable {
         switch self {
         case .Facility: return "facility"
         case .Community: return "community"
+        case .PatientAddress: return "patient_address"
         case .Other: return "other"
         }
     }

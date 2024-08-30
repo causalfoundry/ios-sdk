@@ -12,6 +12,8 @@ public struct DiagnosisQuestionItem: Codable {
     var question: String
     var reply: String
     var score: Float?
+    var fullScore: Float?
+    var section: String?
     var remarks: String?
 
     enum CodingKeys: String, CodingKey {
@@ -19,14 +21,18 @@ public struct DiagnosisQuestionItem: Codable {
         case question
         case reply
         case score
+        case fullScore = "full_score"
+        case section
         case remarks
     }
 
-    public init(type: String, question: String, reply: String, score: Float? = nil, remarks: String? = nil) {
+    public init(type: String, question: String, reply: String, score: Float? = nil, fullScore: Float? = nil, section: String? = nil, remarks: String? = nil) {
         self.type = type
         self.question = question
         self.reply = reply
         self.score = score
+        self.fullScore = fullScore
+        self.section = section
         self.remarks = remarks
     }
 
@@ -36,6 +42,8 @@ public struct DiagnosisQuestionItem: Codable {
         question = try container.decode(String.self, forKey: .question)
         reply = try container.decode(String.self, forKey: .reply)
         score = try container.decodeIfPresent(Float.self, forKey: .score)
+        fullScore = try container.decodeIfPresent(Float.self, forKey: .fullScore)
+        section = try container.decodeIfPresent(String.self, forKey: .section)
         remarks = try container.decodeIfPresent(String.self, forKey: .remarks)
     }
 
@@ -45,6 +53,8 @@ public struct DiagnosisQuestionItem: Codable {
         try container.encode(question, forKey: .question)
         try container.encode(reply, forKey: .reply)
         try container.encodeIfPresent(score, forKey: .score)
+        try container.encodeIfPresent(fullScore, forKey: .fullScore)
+        try container.encodeIfPresent(section, forKey: .section)
         try container.encodeIfPresent(remarks, forKey: .remarks)
     }
 }
