@@ -18,7 +18,7 @@ public struct AppointmentEventObject: Codable {
         case meta
     }
 
-    init(action: String, appointment: AppointmentItem, meta: Encodable? = nil) {
+    public init(action: String, appointment: AppointmentItem, meta: Encodable? = nil) {
         self.action = action
         self.appointment = appointment
         self.meta = meta

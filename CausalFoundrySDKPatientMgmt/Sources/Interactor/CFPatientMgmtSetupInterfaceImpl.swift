@@ -95,8 +95,8 @@ internal class CFPatientMgmtSetupInterfaceImpl: CFPatientMgmtSetupInterface {
                 return PatientEventValidator.validatePatientObject(logObject: logObject) as? T
             case .Encounter:
                 return EncounterEventValidator.validateEncounterObject(logObject: logObject) as? T
-                //        case .Appointment:
-                //            return MediaEventValidator.validateMediaObject(logObject: logObject) as? T
+            case .Appointment:
+                return AppointmentEventValidator.validateAppointmentObject(logObject: logObject) as? T
             default:
                 print("Unknown event or object type")
                 return logObject

@@ -264,4 +264,86 @@ enum PatientMgmtEventValidation {
         && verifyCounselingPlanList(eventType: eventType, counselingPlanList: encounterSummaryObject.counselingList)
     }
     
+    
+    static func verifyAppointmentTypeList(eventType: PatientMgmtEventType, typeList: [String]) -> Bool {
+        
+        if typeList.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "type list")
+            return false
+        }
+        for item in typeList {
+            if item.isEmpty {
+                ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "item list")
+                return false
+            } else  if !CoreConstants.shared.enumContains(ScheduleItemType.self, name: item) {
+                ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: ScheduleItemType.self))
+                return false
+            }
+        }
+        return true
+        
+    }
+    
+    static func verifyAppointmentSubTypeList(eventType: PatientMgmtEventType, subTypeList: [String]) -> Bool {
+        
+        if subTypeList.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "sub type list")
+            return false
+        }
+        for item in subTypeList {
+            if item.isEmpty {
+                ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "sub item list")
+                return false
+            } else  if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item) {
+                ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: DiagnosisType.self))
+                return false
+            }
+        }
+        return true
+        
+    }
+    
+    
+    static func verifyAppointmentUpdateItem(eventType: PatientMgmtEventType, updateItem: AppointmentUpdateItem?) -> Bool {
+        
+        if updateItem == nil {
+            return true
+        } else if updateItem!.appointmentId.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "update appointment Id")
+            return false
+        } else if updateItem!.reason.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "update appointment reason")
+            return false
+        } else if updateItem!.prevTime < 0 {
+            ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "update appointment previous time")
+            return false
+        }
+        return true
+    }
+    
+    
+    static func verifyMissedAppointmentUpdateItem(eventType: PatientMgmtEventType, missedItem: AppointmentMissedItem?) -> Bool {
+        
+        if missedItem == nil {
+            return true
+        } else if missedItem!.id.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "missed appointment item Id")
+            return false
+        } else if missedItem!.appointmentFollowUpType.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "missed appointment followup type")
+            return false
+        } else if !CoreConstants.shared.enumContains(AppointmentFollowupType.self, name: missedItem!.appointmentFollowUpType) {
+            ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: AppointmentFollowupType.self))
+            return false
+        }else if missedItem!.followUptime < 0 {
+            ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "missed appointment followup time")
+            return false
+        }else if missedItem!.response.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "missed appointment response")
+            return false
+        }
+        return true
+    }
+    
+    
 }
