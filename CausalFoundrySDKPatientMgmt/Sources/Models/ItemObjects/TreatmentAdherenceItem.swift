@@ -8,7 +8,7 @@
 import Foundation
 
 public struct TreatmentAdherenceItem: Codable {
-    var medicationAdherence: String?
+    var medicationAdherence: String
     var lackAdherenceReason: String?
 
     enum CodingKeys: String, CodingKey {
@@ -16,7 +16,7 @@ public struct TreatmentAdherenceItem: Codable {
         case lackAdherenceReason = "lack_adherence_reason"
     }
 
-    public init(medicationAdherence: String? = "", lackAdherenceReason: String? = "") {
+    public init(medicationAdherence: String = "", lackAdherenceReason: String? = "") {
         self.medicationAdherence = medicationAdherence
         self.lackAdherenceReason = lackAdherenceReason
     }
@@ -29,7 +29,7 @@ public struct TreatmentAdherenceItem: Codable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(medicationAdherence, forKey: .medicationAdherence)
+        try container.encode(medicationAdherence, forKey: .medicationAdherence)
         try container.encodeIfPresent(lackAdherenceReason, forKey: .lackAdherenceReason)
     }
 }

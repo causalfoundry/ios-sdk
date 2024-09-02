@@ -12,6 +12,7 @@ public enum HcwSiteCategory: String, EnumComposable {
     case Facility
     case Community
     case PatientAddress
+    case Virtual
     case Other
 
     
@@ -20,6 +21,7 @@ public enum HcwSiteCategory: String, EnumComposable {
         case .Facility: return "facility"
         case .Community: return "community"
         case .PatientAddress: return "patient_address"
+        case .Virtual: return "virtual"
         case .Other: return "other"
         }
     }

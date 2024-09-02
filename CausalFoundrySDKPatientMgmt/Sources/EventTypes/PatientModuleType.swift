@@ -21,6 +21,8 @@ public enum PatientModuleType: String, EnumComposable {
     case CounselingMgmt
     case Investigation
     case TreatmentPlan
+    case Appointment
+    case HCWMgmt
     case Other
     
     
@@ -38,6 +40,8 @@ public enum PatientModuleType: String, EnumComposable {
         case .CounselingMgmt: return "counseling_mgmt"
         case .Investigation: return "investigation"
         case .TreatmentPlan: return "treatment_plan"
+        case .Appointment: return "appointment"
+        case .HCWMgmt: return "hcw_mgmt"
         case .Other: return "other"
         }
     }

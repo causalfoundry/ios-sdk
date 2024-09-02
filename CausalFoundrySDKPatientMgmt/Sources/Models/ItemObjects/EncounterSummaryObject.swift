@@ -14,10 +14,10 @@ public struct EncounterSummaryObject: Codable {
     var hcwIdList: [String]
     var prevDiagnosisStatus: [DiagnosisStatusItem] = []
     var diagnosisStatus: [DiagnosisStatusItem]
-    var prevTreatmentPlan: [TreatmentPlanItem]?
-    var treatmentPlan: [TreatmentPlanItem]?
+    var prevTreatmentPlan: TreatmentPlanItem?
+    var treatmentPlan: TreatmentPlanItem?
     var mainComplaints: [String] = []
-    var diagnosticElements: [DiagnosticElementObject]?
+    var diagnosticElements: DiagnosticElementObject?
     var pregnancyDetails: PregnancyDetailObject?
     var counselingList: [CounselingPlanItem]?
     var remarks: String?
@@ -49,7 +49,7 @@ public struct EncounterSummaryObject: Codable {
         case meta
     }
 
-    public init(encounterId: String, appointmentId: String, encounterTime: Int64, hcwIdList: [String], prevDiagnosisStatus: [DiagnosisStatusItem] = [], diagnosisStatus: [DiagnosisStatusItem] = [], prevTreatmentPlan: [TreatmentPlanItem]? = nil, treatmentPlan: [TreatmentPlanItem]? = nil, mainComplaints: [String] = [], diagnosticElements: [DiagnosticElementObject]? = nil, pregnancyDetails: PregnancyDetailObject? = nil, counselingList: [CounselingPlanItem] = [], remarks: String? = "", isFollowupId: String? = "", isReferralId: String? = "", hasFollowup: Bool? = nil, hasReferral: Bool? = nil, meta: Encodable? = nil ) {
+    public init(encounterId: String, appointmentId: String, encounterTime: Int64, hcwIdList: [String], prevDiagnosisStatus: [DiagnosisStatusItem] = [], diagnosisStatus: [DiagnosisStatusItem] = [], prevTreatmentPlan: TreatmentPlanItem? = nil, treatmentPlan: TreatmentPlanItem? = nil, mainComplaints: [String] = [], diagnosticElements: DiagnosticElementObject? = nil, pregnancyDetails: PregnancyDetailObject? = nil, counselingList: [CounselingPlanItem] = [], remarks: String? = "", isFollowupId: String? = "", isReferralId: String? = "", hasFollowup: Bool? = nil, hasReferral: Bool? = nil, meta: Encodable? = nil ) {
         self.encounterId = encounterId
         self.appointmentId = appointmentId
         self.encounterTime = encounterTime
@@ -78,10 +78,10 @@ public struct EncounterSummaryObject: Codable {
         hcwIdList = try container.decode([String].self, forKey: .hcwIdList)
         prevDiagnosisStatus = try container.decode([DiagnosisStatusItem].self, forKey: .prevDiagnosisStatus)
         diagnosisStatus = try container.decode([DiagnosisStatusItem].self, forKey: .diagnosisStatus)
-        prevTreatmentPlan = try container.decodeIfPresent([TreatmentPlanItem].self, forKey: .prevTreatmentPlan)
-        treatmentPlan = try container.decodeIfPresent([TreatmentPlanItem].self, forKey: .treatmentPlan)
+        prevTreatmentPlan = try container.decodeIfPresent(TreatmentPlanItem.self, forKey: .prevTreatmentPlan)
+        treatmentPlan = try container.decodeIfPresent(TreatmentPlanItem.self, forKey: .treatmentPlan)
         mainComplaints = try container.decode([String].self, forKey: .mainComplaints)
-        diagnosticElements = try container.decodeIfPresent([DiagnosticElementObject].self, forKey: .diagnosticElements)
+        diagnosticElements = try container.decodeIfPresent(DiagnosticElementObject.self, forKey: .diagnosticElements)
         pregnancyDetails = try container.decodeIfPresent(PregnancyDetailObject.self, forKey: .pregnancyDetails)
         counselingList = try container.decodeIfPresent([CounselingPlanItem].self, forKey: .counselingList)
         remarks = try container.decodeIfPresent(String.self, forKey: .remarks)

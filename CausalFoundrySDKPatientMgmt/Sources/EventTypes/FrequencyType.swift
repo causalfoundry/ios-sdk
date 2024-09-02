@@ -8,7 +8,7 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public enum TreatmentFrequency: String, EnumComposable {
+public enum FrequencyType: String, EnumComposable {
     case Daily
     case Days
     case Weeks

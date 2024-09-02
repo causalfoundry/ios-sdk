@@ -36,9 +36,9 @@ public class PatientEventValidator {
             } else if !CoreConstants.shared.enumContains(HcwSiteCategory.self, name: eventObject.category) {
                 ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.Patient.rawValue,
                                                     className: String(describing: HcwSiteCategory.self))
-            } else if eventObject.category.isEmpty {
+            } else if eventObject.type.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Patient.rawValue, paramName: "type" , className: String(describing: PatientType.self))
-            } else if !CoreConstants.shared.enumContains(PatientType.self, name: eventObject.category) {
+            } else if !CoreConstants.shared.enumContains(PatientType.self, name: eventObject.type) {
                 ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.Patient.rawValue,
                                                     className: String(describing: PatientType.self))
             } else {

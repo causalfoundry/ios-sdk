@@ -91,10 +91,10 @@ internal class CFPatientMgmtSetupInterfaceImpl: CFPatientMgmtSetupInterface {
             switch eventType {
             case .ModuleSelection:
                 return ModuleSelectionEventValidator.validateModuleSelectionObject(logObject: logObject) as? T
-                //        case .Patient:
-                //            return PageEventValidator.validatePageObject(logObject: logObject) as? T
-                //        case .Encounter:
-                //            return IdentifyEventValidator.validateIdentifyObject(logObject: logObject) as? T
+            case .Patient:
+                return PatientEventValidator.validatePatientObject(logObject: logObject) as? T
+            case .Encounter:
+                return EncounterEventValidator.validateEncounterObject(logObject: logObject) as? T
                 //        case .Appointment:
                 //            return MediaEventValidator.validateMediaObject(logObject: logObject) as? T
             default:
