@@ -87,20 +87,17 @@ internal class CFPatientMgmtSetupInterfaceImpl: CFPatientMgmtSetupInterface {
         }
     }
         
-        func validatePatientMgmtEvent<T: Codable>(eventType: PatientMgmtEventType, logObject: T?) -> T? {
-            switch eventType {
-            case .ModuleSelection:
-                return ModuleSelectionEventValidator.validateModuleSelectionObject(logObject: logObject) as? T
-            case .Patient:
-                return PatientEventValidator.validatePatientObject(logObject: logObject) as? T
-            case .Encounter:
-                return EncounterEventValidator.validateEncounterObject(logObject: logObject) as? T
-            case .Appointment:
-                return AppointmentEventValidator.validateAppointmentObject(logObject: logObject) as? T
-            default:
-                print("Unknown event or object type")
-                return logObject
-            }
+    func validatePatientMgmtEvent<T: Codable>(eventType: PatientMgmtEventType, logObject: T?) -> T? {
+        switch eventType {
+        case .ModuleSelection:
+            return ModuleSelectionEventValidator.validateModuleSelectionObject(logObject: logObject) as? T
+        case .Patient:
+            return PatientEventValidator.validatePatientObject(logObject: logObject) as? T
+        case .Encounter:
+            return EncounterEventValidator.validateEncounterObject(logObject: logObject) as? T
+        case .Appointment:
+            return AppointmentEventValidator.validateAppointmentObject(logObject: logObject) as? T
         }
+    }
     
 }

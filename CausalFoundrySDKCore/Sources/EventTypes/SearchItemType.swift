@@ -56,7 +56,6 @@ public enum SearchItemType: String, EnumComposable {
         case .TreatmentPlanItem: return "treatment_plan_item"
         case .ItemVerification: return "item_verification"
         case .ItemReport: return "item_report"
-        case .ItemReport: return "item_report"
         case .Reward: return "reward"
         case .Survey: return "survey"
         case .Other: return "other"

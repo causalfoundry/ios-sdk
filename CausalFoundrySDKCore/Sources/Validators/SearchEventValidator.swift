@@ -21,9 +21,10 @@ public class SearchEventValidator {
         }()
         if let eventObject = eventObject {
             // Will throw an exception if the action provided is null or no action is provided at all.
-            if eventObject.query == nil {
-                ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Search.rawValue, elementName: "search query")
-            }else if (eventObject.searchModule.isEmpty) {
+//            if eventObject.query {
+//                ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Search.rawValue, elementName: "search query")
+//            }else 
+            if (eventObject.searchModule.isEmpty) {
                 ExceptionManager.throwInvalidException(eventType: CoreEventType.Search.rawValue,
                                                        paramName: String(describing: SearchModuleType.self),
                                                        className: String(describing: SearchModuleType.self))
