@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CausalFoundrySDKLoyalty"
-  s.version      = "1.0.3"
+  s.version      = "1.1.4"
   s.summary      = "Causal Foundry Loyalty SDK"
   s.description  = "Causal Foundry SDK for Loyalty section in the apps (https://docs.causalfoundry.ai/)"
   s.homepage     = "https://docs.causalfoundry.ai/"

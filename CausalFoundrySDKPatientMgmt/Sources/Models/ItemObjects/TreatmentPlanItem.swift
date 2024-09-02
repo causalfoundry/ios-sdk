@@ -8,50 +8,35 @@
 import Foundation
 
 public struct TreatmentPlanItem: Codable {
-    var type: String
-    var value: Int
-    var frequency: String
-    var action: String
-    var isApproved: Bool?
-    var remarks: String?
+    var followupList: [ScheduleItem]
+    var prescriptionList: [PrescriptionItem]
+    var investigationList: [InvestigationItem]
 
     enum CodingKeys: String, CodingKey {
-        case type
-        case value
-        case frequency
-        case action
-        case isApproved = "is_approved"
-        case remarks
+        case followupList = "followup_list"
+        case prescriptionList = "prescription_list"
+        case investigationList = "investigation_list"
     }
 
-    public init(type: String, value: Int, frequency: String, action: String, isApproved: Bool, remarks: String? = nil) {
-        self.type = type
-        self.value = value
-        self.frequency = frequency
-        self.action = action
-        self.isApproved = isApproved
-        self.remarks = remarks
+    public init(followupList: [ScheduleItem], prescriptionList: [PrescriptionItem], investigationList: [InvestigationItem]) {
+        self.followupList = followupList
+        self.prescriptionList = prescriptionList
+        self.investigationList = investigationList
     }
 
     // Encoding to JSON
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(type, forKey: .type)
-        try container.encode(value, forKey: .value)
-        try container.encode(frequency, forKey: .frequency)
-        try container.encode(action, forKey: .action)
-        try container.encode(isApproved, forKey: .isApproved)
-        try container.encode(remarks, forKey: .remarks)
+        try container.encode(followupList, forKey: .followupList)
+        try container.encode(prescriptionList, forKey: .prescriptionList)
+        try container.encode(investigationList, forKey: .investigationList)
     }
 
     // Decoding from JSON
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        type = try container.decode(String.self, forKey: .type)
-        value = try container.decode(Int.self, forKey: .value)
-        frequency = try container.decode(String.self, forKey: .frequency)
-        action = try container.decode(String.self, forKey: .action)
-        isApproved = try container.decode(Bool.self, forKey: .isApproved)
-        remarks = try container.decodeIfPresent(String.self, forKey: .remarks)
+        followupList = try container.decode([ScheduleItem].self, forKey: .followupList)
+        prescriptionList = try container.decode([PrescriptionItem].self, forKey: .prescriptionList)
+        investigationList = try container.decode([InvestigationItem].self, forKey: .investigationList)
     }
 }

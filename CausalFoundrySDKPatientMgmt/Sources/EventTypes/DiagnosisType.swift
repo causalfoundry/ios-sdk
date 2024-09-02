@@ -9,47 +9,51 @@ import CausalFoundrySDKCore
 import Foundation
 
 public enum DiagnosisType: String, EnumComposable {
-    case Age
-    case Gender
-    case Height
-    case Weight
-    case Smoker
-    case BloodPressure
-    case BloodGlucose
-    case HbA1c
-    case Temperature
-    case Bmi
-    case Cvd
-    case Phq4
-    case Phq9
-    case Gad7
-    case PregnancyStatus
-    case PregnancyDangerSigns
-    case SuicidalIdeation
-    case HighRiskPregnancy
+    case Bio
+    case HIV
+    case NCD
+    case TB
+    case ECD
+    case Diabetes
+    case Hypertension
+    case Pregnancy
+    case MentalHealth
+    case SubstanceUseDisorder
+    case AdolescentHealth
+    case GeneralScreening
+    case Antenatal
+    case Postnatal
+    case CervicalCancer
+    case Lifestyle
+    case Psychological
+    case GenderBasedViolence
+    case SexualBehaviour
+    case EconomicStrength
     case Other
     
     
     public var rawValue: String {
         switch self {
-        case .Age: return "age"
-        case .Gender: return "gender"
-        case .Height: return "height"
-        case .Weight: return "weight"
-        case .Smoker: return "smoker"
-        case .BloodPressure: return "blood_pressure"
-        case .BloodGlucose: return "blood_glucose"
-        case .HbA1c: return "hbA1c"
-        case .Temperature: return "temperature"
-        case .Bmi: return "bmi"
-        case .Cvd: return "cvd"
-        case .Phq4: return "phq_4"
-        case .Phq9: return "phq_9"
-        case .Gad7: return "gad_7"
-        case .PregnancyStatus: return "pregnancy_status"
-        case .PregnancyDangerSigns: return "pregnancy_danger_signs"
-        case .SuicidalIdeation: return "suicidal_ideation"
-        case .HighRiskPregnancy: return "high_risk_pregnancy"
+        case .Bio: return "bio"
+        case .HIV: return "hiv"
+        case .NCD: return "ncd"
+        case .TB: return "tb"
+        case .ECD: return "ecd"
+        case .Diabetes: return "diabetes"
+        case .Hypertension: return "hypertension"
+        case .Pregnancy: return "pregnancy"
+        case .MentalHealth: return "mental_health"
+        case .SubstanceUseDisorder: return "substance_use_disorder"
+        case .AdolescentHealth: return "adolescent_health"
+        case .GeneralScreening: return "general_screening"
+        case .Antenatal: return "antenatal"
+        case .Postnatal: return "postnatal"
+        case .CervicalCancer: return "cervical_cancer"
+        case .Lifestyle: return "lifestyle"
+        case .Psychological: return "psychological"
+        case .GenderBasedViolence: return "gender_based_violence"
+        case .SexualBehaviour: return "sexual_behaviour"
+        case .EconomicStrength: return "economic_strengthening"
         case .Other: return "other"
         }
     }

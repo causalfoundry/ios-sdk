@@ -8,6 +8,7 @@
 import Foundation
 
 public struct UserCatalogModel: Codable, Equatable {
+    var userId: String?
     var name: String?
     var country: String?
     var regionState: String?
@@ -29,6 +30,7 @@ public struct UserCatalogModel: Codable, Equatable {
 
     
     enum CodingKeys: String, CodingKey {
+        case userId = "id"
         case name
         case country
         case regionState = "region_state"
@@ -50,8 +52,9 @@ public struct UserCatalogModel: Codable, Equatable {
     }
     
 
-    public init(name: String? = "", country: String? = "", regionState: String? = "", city: String? = "", workplace: String? = "", profession: String? = "", zipcode: String? = "", language: String? = "", experience: String? = "", educationLevel: String? = "", organizationId: String? = "", organizationName: String? = "", accountType: String? = "", birthYear: Int? = 0, gender: String? = "", maritalStatus: String? = "", familyMembers: String? = "", childrenUnderFive: String? = "") {
+    public init(userId: String? = "", name: String? = "", country: String? = "", regionState: String? = "", city: String? = "", workplace: String? = "", profession: String? = "", zipcode: String? = "", language: String? = "", experience: String? = "", educationLevel: String? = "", organizationId: String? = "", organizationName: String? = "", accountType: String? = "", birthYear: Int? = 0, gender: String? = "", maritalStatus: String? = "", familyMembers: String? = "", childrenUnderFive: String? = "") {
         
+        self.userId = userId
         self.name = name
         self.country = country
         self.regionState = regionState
@@ -76,6 +79,7 @@ public struct UserCatalogModel: Codable, Equatable {
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(userId, forKey: .userId)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(country, forKey: .country)
         try container.encodeIfPresent(regionState, forKey: .regionState)
@@ -101,6 +105,7 @@ public struct UserCatalogModel: Codable, Equatable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        userId = try container.decodeIfPresent(String.self, forKey: .userId)
         name = try container.decodeIfPresent(String.self, forKey: .name)
         country = try container.decodeIfPresent(String.self, forKey: .country)
         regionState = try container.decodeIfPresent(String.self, forKey: .regionState)
@@ -121,3 +126,31 @@ public struct UserCatalogModel: Codable, Equatable {
         childrenUnderFive = try container.decodeIfPresent(String.self, forKey: .childrenUnderFive)
     }
 }
+
+extension UserCatalogModel {
+    func toInternalUserCatalogModel() -> InternalUserCatalogModel {
+        return InternalUserCatalogModel(
+            userId: self.userId,
+            name: self.name,
+            country: self.country,
+            regionState: self.regionState,
+            city: self.city,
+            workplace: self.workplace,
+            profession: self.profession,
+            zipcode: self.zipcode,
+            language: self.language,
+            experience: self.experience,
+            educationLevel: self.educationLevel,
+            organizationId: self.organizationId,
+            organizationName: self.organizationName,
+            timezone: CoreConstants.shared.getUserTimeZone(),
+            accountType: self.accountType,
+            birthYear: self.birthYear,
+            gender: self.gender,
+            maritalStatus: self.maritalStatus,
+            familyMembers: self.familyMembers,
+            childrenUnderFive: self.childrenUnderFive
+        )
+    }
+}
+

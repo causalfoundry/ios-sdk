@@ -16,7 +16,6 @@ public struct PregnancyDetailObject: Codable {
     var nFetus: Int?
     var neonatalOutcome: String?
     var maternalOutcome: String?
-    var pregnancyDetailsList: [PregnancyDetailItem]?
 
     enum CodingKeys: String, CodingKey {
         case pregnancyStatus = "pregnancy_status"
@@ -27,10 +26,9 @@ public struct PregnancyDetailObject: Codable {
         case nFetus = "n_fetus"
         case neonatalOutcome = "neonatal_outcome"
         case maternalOutcome = "maternal_outcome"
-        case pregnancyDetailsList = "pregnancy_details_list"
     }
 
-    public init(pregnancyStatus: Bool, lastMenstrualPeriod: Int64? = nil, highRisk: Bool? = nil, gravida: Int? = nil, parity: Int? = nil, nFetus: Int? = nil, neonatalOutcome: String? = nil, maternalOutcome: String? = nil, pregnancyDetailsList: [PregnancyDetailItem]? = []) {
+    public init(pregnancyStatus: Bool, lastMenstrualPeriod: Int64? = nil, highRisk: Bool? = nil, gravida: Int? = nil, parity: Int? = nil, nFetus: Int? = nil, neonatalOutcome: String? = nil, maternalOutcome: String? = nil) {
         self.pregnancyStatus = pregnancyStatus
         self.lastMenstrualPeriod = lastMenstrualPeriod
         self.highRisk = highRisk
@@ -39,7 +37,6 @@ public struct PregnancyDetailObject: Codable {
         self.nFetus = nFetus
         self.neonatalOutcome = neonatalOutcome
         self.maternalOutcome = maternalOutcome
-        self.pregnancyDetailsList = pregnancyDetailsList
     }
 
     // Encoding to JSON
@@ -53,7 +50,6 @@ public struct PregnancyDetailObject: Codable {
         try container.encodeIfPresent(nFetus, forKey: .nFetus)
         try container.encodeIfPresent(neonatalOutcome, forKey: .neonatalOutcome)
         try container.encodeIfPresent(maternalOutcome, forKey: .maternalOutcome)
-        try container.encodeIfPresent(pregnancyDetailsList, forKey: .pregnancyDetailsList)
     }
 
     // Decoding from JSON
@@ -67,7 +63,6 @@ public struct PregnancyDetailObject: Codable {
         nFetus = try container.decodeIfPresent(Int.self, forKey: .nFetus)
         neonatalOutcome = try container.decodeIfPresent(String.self, forKey: .neonatalOutcome)
         maternalOutcome = try container.decodeIfPresent(String.self, forKey: .maternalOutcome)
-        pregnancyDetailsList = try container.decodeIfPresent([PregnancyDetailItem].self, forKey: .pregnancyDetailsList)
     }
 }
 

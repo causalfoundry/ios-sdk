@@ -9,33 +9,41 @@ import Foundation
 
 public struct DiagnosisItem: Codable {
     var type: String
+    var subType: String
+    var category: String
     var value: Any?
     var unit: String
     var remarks: String?
-    var diagnosisDate: Int64?
+    var observationTime: Int64?
 
     enum CodingKeys: String, CodingKey {
         case type
+        case subType = "sub_type"
+        case category
         case value
         case unit
         case remarks
-        case diagnosisDate = "diagnosis_date"
+        case observationTime = "observation_time"
     }
 
-    public init(type: String, value: Any? = nil, unit: String = "value", remarks: String? = nil, diagnosisDate: Int64? = nil) {
+    public init(type: String, subType: String, category: String, value: Any? = nil, unit: String = "value", observationTime: Int64? = nil, remarks: String? = nil) {
         self.type = type
+        self.subType = subType
+        self.category = category
         self.value = value
         self.unit = unit
         self.remarks = remarks
-        self.diagnosisDate = diagnosisDate
+        self.observationTime = observationTime
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decode(String.self, forKey: .type)
+        subType = try container.decode(String.self, forKey: .subType)
+        category = try container.decode(String.self, forKey: .category)
         unit = try container.decode(String.self, forKey: .unit)
         remarks = try container.decodeIfPresent(String.self, forKey: .remarks)
-        diagnosisDate = try container.decodeIfPresent(Int64.self, forKey: .diagnosisDate)
+        observationTime = try container.decodeIfPresent(Int64.self, forKey: .observationTime)
         if let intValue = try? container.decodeIfPresent(Int.self, forKey: .value) {
             value = intValue
         } else if let doubleValue = try? container.decodeIfPresent(Double.self, forKey: .value) {
@@ -54,9 +62,11 @@ public struct DiagnosisItem: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
+        try container.encode(subType, forKey: .subType)
+        try container.encode(category, forKey: .category)
         try container.encode(unit, forKey: .unit)
         try container.encodeIfPresent(remarks, forKey: .remarks)
-        try container.encodeIfPresent(diagnosisDate, forKey: .diagnosisDate)
+        try container.encodeIfPresent(observationTime, forKey: .observationTime)
         if let value = value {
             if let intValue = value as? Int {
                 try container.encode(intValue, forKey: .value)

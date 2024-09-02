@@ -48,10 +48,8 @@ public class CausalFoundry {
             let currentTimeMillis = Date().timeIntervalSince1970 * 1000
             startTime = Int64(currentTimeMillis) - appStartTime
         }
-        CFLogAppEventBuilder().setAppEvent(appAction: .Open)
-            .setStartTime(start_time: Int(startTime))
-            .updateImmediately(update_immediately: false)
-            .build()
+        let appObject = AppObject(action: AppAction.Open.rawValue, startTime: Int(startTime))
+        CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventType: .App, logObject: appObject)
     }
 
     @objc func appWillEnterForeground() {
@@ -60,10 +58,10 @@ public class CausalFoundry {
         if CoreConstants.shared.isAppPaused {
             let currentTimeMillis = Date().timeIntervalSince1970 * 1000
             CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
-            CFLogAppEventBuilder().setAppEvent(appAction: .Resume)
-                .setStartTime(start_time: 0)
-                .updateImmediately(update_immediately: false)
-                .build()
+            
+            let appObject = AppObject(action: AppAction.Resume.rawValue, startTime: 0)
+            CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventType: .App, logObject: appObject)
+        
         }
         CoreConstants.shared.isAppPaused = false
         
@@ -106,10 +104,10 @@ public class CausalFoundry {
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
         CoreConstants.shared.sessionEndTime = Int64(currentTimeMillis)
         CoreConstants.shared.isAppOpen = false
-        CFLogAppEventBuilder().setAppEvent(appAction: .Background)
-            .setStartTime(start_time: 0)
-            .updateImmediately(update_immediately: false)
-            .build()
+        
+        let appObject = AppObject(action: AppAction.Background.rawValue, startTime: 0)
+        CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventType: .App, logObject: appObject)
+        
 
         if #available(iOS 13.0, *), isBackgroundAppRefreshEnabled() {
            WorkerCaller.scheduleBackgroundTasks()
@@ -121,10 +119,9 @@ public class CausalFoundry {
         let currentTimeMillis = Date().timeIntervalSince1970 * 1000
         CoreConstants.shared.sessionEndTime = Int64(currentTimeMillis)
 
-        CFLogAppEventBuilder().setAppEvent(appAction: .Close)
-            .setStartTime(start_time: 0)
-            .updateImmediately(update_immediately: false)
-            .build()
+        let appObject = AppObject(action: AppAction.Close.rawValue, startTime: 0)
+        CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventType: .App, logObject: appObject)
+        
     }
 
     private func setupNotifications() {

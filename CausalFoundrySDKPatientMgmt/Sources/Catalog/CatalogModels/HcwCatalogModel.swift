@@ -8,28 +8,25 @@
 import Foundation
 
 public struct HcwCatalogModel: Codable {
+    var hcwId: String
     var name: String
     var role: String
-    var isVolunteer: Bool
-    var rolePermissions: [String]
-    var siteIdsList: [String]
-    var servicesList: [String]
+    var siteIdList: [String]
+    var supervisorIdList: [String]
 
     public enum CodingKeys: String, CodingKey {
+        case hcwId = "id"
         case name
         case role
-        case isVolunteer = "is_volunteer"
-        case rolePermissions = "role_permissions_list"
-        case siteIdsList = "site_ids_list"
-        case servicesList = "services_list"
+        case siteIdList = "site_id_list"
+        case supervisorIdList = "supervisor_id_list"
     }
 
-    public init(name: String = "", role: String = "", isVolunteer: Bool = false, rolePermissions: [String] = [], siteIdsList: [String] = [], servicesList: [String] = []) {
+    public init(hcwId: String, name: String = "", role: String = "", siteIdList: [String] = [], supervisorIdList: [String] = []) {
+        self.hcwId = hcwId
         self.name = name
         self.role = role
-        self.isVolunteer = isVolunteer
-        self.rolePermissions = rolePermissions
-        self.siteIdsList = siteIdsList
-        self.servicesList = servicesList
+        self.siteIdList = siteIdList
+        self.supervisorIdList = supervisorIdList
     }
 }

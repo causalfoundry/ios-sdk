@@ -41,14 +41,12 @@ open class CFViewController: UIViewController {
     override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if(CoreConstants.shared.allowAutoPageTrack){
-            CfLogPageBuilder()
-                .setContentBlock(content_block: CoreConstants.shared.contentBlock)
-                .setTitle(title: className)
-                .setPath(path: path)
-                .setDuration(duration: Float(CFAbsoluteTimeGetCurrent() - durationBeginTime))
-                .setRenderTime(render_time: Int(renderEndTime - renderBeginTime))
-                .updateImmediately(update_immediately: CoreConstants.shared.updateImmediately)
-                .build()
+            let duration = CFAbsoluteTimeGetCurrent() - durationBeginTime
+            let formattedDuration = Float(String(format: "%.2f", duration)) ?? 1.0
+        
+            let pageObject = PageObject(path: path, title: className, duration: formattedDuration, renderTime: Int(renderEndTime - renderBeginTime))
+            CFCoreEvent.shared.logIngest(eventType: .Page, logObject: pageObject)
+            
         }
     }
 }

@@ -61,7 +61,7 @@ public class CFSetup: NSObject, IngestProtocol {
             cBlockName = "e-learning"
         }
 
-        ingestApiHandler.ingestTrackAPI(contentBlock: cBlockName, eventType: eventType, trackProperties: logObject!, updateImmediately: updateImmediately, eventTime: eventTime)
+        ingestApiHandler.ingestTrackAPI(contentBlock: cBlockName, eventType: eventType, trackProperties: logObject, updateImmediately: updateImmediately, eventTime: eventTime)
     }
 
     private func verifyAccessToken() {

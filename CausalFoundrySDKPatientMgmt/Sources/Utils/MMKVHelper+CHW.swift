@@ -14,21 +14,21 @@ public extension MMKVHelper {
         do {
             let decoder = JSONDecoder.new
             if subject == .user_chw {
-                var catalogTableData = try decoder.decode([InternalHcwModel].self, from: oldData)
-                let catalogNewData = try decoder.decode([InternalHcwModel].self, from: newData)
-                catalogTableData.removeAll(where: { $0.id == catalogNewData.first?.id })
+                var catalogTableData = try decoder.decode([HcwCatalogModel].self, from: oldData)
+                let catalogNewData = try decoder.decode([HcwCatalogModel].self, from: newData)
+                catalogTableData.removeAll(where: { $0.hcwId == catalogNewData.first?.hcwId })
                 catalogTableData.append(catalogNewData.first!)
                 newUpdatedData = catalogTableData.toData()
             } else if subject == .chwsite {
-                var catalogTableData = try decoder.decode([InternalHcwSiteCatalogModel].self, from: oldData)
-                let catalogNewData = try decoder.decode([InternalHcwSiteCatalogModel].self, from: newData)
-                catalogTableData.removeAll(where: { $0.id == catalogNewData.first?.id })
+                var catalogTableData = try decoder.decode([HcwSiteCatalogModel].self, from: oldData)
+                let catalogNewData = try decoder.decode([HcwSiteCatalogModel].self, from: newData)
+                catalogTableData.removeAll(where: { $0.siteId == catalogNewData.first?.siteId })
                 catalogTableData.append(catalogNewData.first!)
                 newUpdatedData = catalogTableData.toData()
             } else if subject == .patient {
-                var catalogTableData = try decoder.decode([InternalPatientModel].self, from: oldData)
-                let catalogNewData = try decoder.decode([InternalPatientModel].self, from: newData)
-                catalogTableData.removeAll(where: { $0.id == catalogNewData.first?.id })
+                var catalogTableData = try decoder.decode([PatientCatalogModel].self, from: oldData)
+                let catalogNewData = try decoder.decode([PatientCatalogModel].self, from: newData)
+                catalogTableData.removeAll(where: { $0.patientId == catalogNewData.first?.patientId })
                 catalogTableData.append(catalogNewData.first!)
                 newUpdatedData = catalogTableData.toData()
             }

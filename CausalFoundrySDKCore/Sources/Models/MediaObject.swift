@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct MediaObject: Codable {
+public struct MediaObject: Codable {
     var id: String
     var type: String
     var action: String
     var time: Int
     var meta: Encodable?
 
-    init(id: String, type: String, action: String, time: Int, meta: Encodable? = nil) {
+    public init(id: String, type: String, action: String, time: Int, meta: Encodable? = nil) {
         self.id = id
         self.type = type
         self.action = action
@@ -30,7 +30,7 @@ struct MediaObject: Codable {
         case meta
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decode(String.self, forKey: .id)
         type = try values.decode(String.self, forKey: .type)
@@ -45,7 +45,7 @@ struct MediaObject: Codable {
 
     // MARK: Encodable
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var baseContainer = encoder.container(keyedBy: CodingKeys.self)
         try baseContainer.encode(id, forKey: .id)
 

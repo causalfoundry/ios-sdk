@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CoreEventType: String, EnumComposable {
+public enum CoreEventType: String, EnumComposable {
     case Identify
     case Page
     case App
@@ -17,7 +17,7 @@ enum CoreEventType: String, EnumComposable {
     case Rate
     case Track
 
-    var rawValue: String {
+    public var rawValue: String {
         switch self {
         case .Identify: return "identity"
         case .Page: return "page"
