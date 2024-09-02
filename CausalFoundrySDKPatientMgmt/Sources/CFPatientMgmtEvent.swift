@@ -14,7 +14,7 @@ public class CFPatientMgmtEvent {
     private init() {}
     
     
-    public func trackSDKEvent<T: Codable>(eventType: PatientMgmtEventType,
+    public func logIngest<T: Codable>(eventType: PatientMgmtEventType,
                        logObject: T?,
                        isUpdateImmediately: Bool? = CoreConstants.shared.updateImmediately,
                                    eventTime: Int64? = 0){
@@ -25,7 +25,7 @@ public class CFPatientMgmtEvent {
                                                       eventTime: eventTime)
     }
     
-    public func trackCatalogEvent(patientMgmtCatalogType: PatientMgmtCatalogSubject, catalogModel: Any) {
+    public func logCatalog(patientMgmtCatalogType: PatientMgmtCatalogSubject, catalogModel: Any) {
         CFPatientMgmtSetupInterfaceImpl.shared.trackCatalogEvent(patientMgmtCatalogType: patientMgmtCatalogType, catalogModel: catalogModel)
     }
     

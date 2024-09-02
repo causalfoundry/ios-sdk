@@ -45,7 +45,7 @@ open class CFViewController: UIViewController {
             let formattedDuration = Float(String(format: "%.2f", duration)) ?? 1.0
         
             let pageObject = PageObject(path: path, title: className, duration: formattedDuration, renderTime: Int(renderEndTime - renderBeginTime))
-            CFCoreEvent.shared.trackSDKEvent(eventType: .Page, logObject: pageObject)
+            CFCoreEvent.shared.logIngest(eventType: .Page, logObject: pageObject)
             
         }
     }

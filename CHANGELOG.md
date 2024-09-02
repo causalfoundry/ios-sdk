@@ -5,6 +5,15 @@ Documenting the changes in the SDK subject to each release version.
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 
+## **[1.1.4]  - 02.09.2024**
+
+### **Updated**
+- Moved Core and Patient mgmt SDK to log format
+- Revamped Patient mgmt SDK for new events (Module selection, Patient, Appointment and Encounter)
+                                                  
+
+----
+
 ## **[1.0.3]  - 02.07.2024**
 
 ### **Updated**

@@ -13,7 +13,7 @@ public class CFCoreEvent {
     private init() {}
     
     
-    public func trackSDKEvent<T: Codable>(eventType: CoreEventType,
+    public func logIngest<T: Codable>(eventType: CoreEventType,
                                           logObject: T?,
                                           contentBlock: ContentBlock? = CoreConstants.shared.contentBlock,
                                           isUpdateImmediately: Bool? = CoreConstants.shared.updateImmediately,
@@ -26,7 +26,7 @@ public class CFCoreEvent {
                                                       eventTime: eventTime)
     }
     
-    public func trackCatalogEvent(coreCatalogType: CoreCatalogSubject, catalogModel: Any) {
+    public func logCatalog(coreCatalogType: CoreCatalogSubject, catalogModel: Any) {
         CFCoreSetupInterfaceImpl.shared.trackCatalogEvent(coreCatalogType: coreCatalogType, catalogModel: catalogModel)
     }
     
