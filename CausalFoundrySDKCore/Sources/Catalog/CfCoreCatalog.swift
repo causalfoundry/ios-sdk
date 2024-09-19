@@ -24,7 +24,7 @@ public class CfCoreCatalog {
     public static func updateUserCatalogData(userCatalogModel: UserCatalogModel) {
         let catalogName = "\(CatalogSubject.user.rawValue) catalog"
 
-        if userCatalogModel.userId?.isEmpty == true {
+        if userCatalogModel.userId.isEmpty == true {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "User Id")
         } else if userCatalogModel.country?.isEmpty == false, !CoreConstants.shared.enumContains(CountryCode.self, name: userCatalogModel.country) {
             ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: CountryCode.self))
