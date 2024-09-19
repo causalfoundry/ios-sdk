@@ -9,7 +9,7 @@ import Foundation
 
 public struct HcwSiteCatalogModel: Codable {
     var siteId: String
-    var name: String?
+    var name: String
     var country: String?
     var regionState: String?
     var city: String?
@@ -44,7 +44,7 @@ public struct HcwSiteCatalogModel: Codable {
     }
     
 
-    public init(siteId: String, name: String? = "", country: String? = "", regionState: String? = "", city: String? = "", zipcode: String? = "", level: String? = "", category: String? = "", isActive: Bool? = true, address: String? = "", addressType: String? = "", latitude: Double? = 0, longitude: Double? = 0, culture: String? = "", parentSiteId: String? = "") {
+    public init(siteId: String, name: String = "", country: String? = "", regionState: String? = "", city: String? = "", zipcode: String? = "", level: String? = "", category: String? = "", isActive: Bool? = true, address: String? = "", addressType: String? = "", latitude: Double? = 0, longitude: Double? = 0, culture: String? = "", parentSiteId: String? = "") {
         self.siteId = siteId
         self.name = name
         self.country = country
@@ -67,7 +67,7 @@ public struct HcwSiteCatalogModel: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(siteId, forKey: .siteId)
-        try container.encodeIfPresent(name, forKey: .name)
+        try container.encode(name, forKey: .name)
         try container.encodeIfPresent(country, forKey: .country)
         try container.encodeIfPresent(regionState, forKey: .regionState)
         try container.encodeIfPresent(city, forKey: .city)
@@ -88,7 +88,7 @@ public struct HcwSiteCatalogModel: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         siteId = try container.decode(String.self, forKey: .siteId)
-        name = try container.decodeIfPresent(String.self, forKey: .name)
+        name = try container.decode(String.self, forKey: .name)
         country = try container.decodeIfPresent(String.self, forKey: .country)
         regionState = try container.decodeIfPresent(String.self, forKey: .regionState)
         city = try container.decodeIfPresent(String.self, forKey: .city)

@@ -5,6 +5,17 @@ Documenting the changes in the SDK subject to each release version.
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 
+## **[1.1.8]  - 19.09.2024**
+
+### **Updated**
+- Updated SDK for React Native usage
+- Updated Patient Mgmt catalogs for optional values
+- Bugs fixing and Improvements including app version in logs
+                                                  
+
+----
+
+
 ## **[1.1.4]  - 02.09.2024**
 
 ### **Updated**

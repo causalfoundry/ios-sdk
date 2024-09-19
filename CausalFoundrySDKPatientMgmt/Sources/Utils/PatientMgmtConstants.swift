@@ -46,13 +46,12 @@ enum PatientMgmtConstants {
     static func verifySiteCatalog(hcwSiteCatalogModel: HcwSiteCatalogModel) -> HcwSiteCatalogModel? {
         let catalogName = CatalogSubject.chwsite.rawValue + " catalog"
 
-        print(hcwSiteCatalogModel)
         guard !hcwSiteCatalogModel.siteId.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Site val Id")
             return nil
         }
         
-        guard let siteName = hcwSiteCatalogModel.name, !siteName.isEmpty else {
+        if hcwSiteCatalogModel.name.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Site name")
             return nil
         }
