@@ -52,7 +52,7 @@ public class PatientEventValidator {
         return nil
     }
     
-    public static func mapStringToHcwModuleObject(objectString: String) -> PatientEventObject? {
+    public static func mapStringToPatientEventObject(objectString: String) -> PatientEventObject? {
         guard let data = objectString.data(using: .utf8) else { return nil }
         return try? JSONDecoder().decode(PatientEventObject.self, from: data)
     }

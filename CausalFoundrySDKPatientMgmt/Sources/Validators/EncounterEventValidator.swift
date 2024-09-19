@@ -53,7 +53,7 @@ public class EncounterEventValidator {
         return nil
     }
     
-    public static func mapStringToHcwModuleObject(objectString: String) -> EncounterEventObject? {
+    public static func mapStringToEncounterEventObject(objectString: String) -> EncounterEventObject? {
         guard let data = objectString.data(using: .utf8) else { return nil }
         return try? JSONDecoder().decode(EncounterEventObject.self, from: data)
     }
