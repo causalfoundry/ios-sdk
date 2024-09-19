@@ -49,7 +49,7 @@ public struct DiagnosisQuestionnaireObject: Codable {
         try container.encode(subType, forKey: .subType)
         try container.encode(category, forKey: .category)
         try container.encode(questionList, forKey: .questionList)
-        try container.encode(outcomeList, forKey: .questionList)
+        try container.encode(outcomeList, forKey: .outcomeList)
         try container.encodeIfPresent(remarks, forKey: .remarks)
     }
 }

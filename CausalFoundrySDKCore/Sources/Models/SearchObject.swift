@@ -11,7 +11,7 @@ public struct SearchObject: Codable {
     var query: String
     var searchModule: String
     var resultsList: [SearchItemModel]
-    var filter: [String: String]?
+    var filter: [String: Any]?
     var page: Int
     var meta: Encodable?
 
@@ -19,7 +19,7 @@ public struct SearchObject: Codable {
          query: String,
          searchModule: String,
          resultsList: [SearchItemModel] = [],
-         filter: [String: String]? = nil,
+         filter: [String: Any]? = nil,
          page: Int = 1,
          meta: Encodable? = nil)
     {
@@ -42,11 +42,11 @@ public struct SearchObject: Codable {
 
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        searchModule = try values.decodeIfPresent(String.self, forKey: .searchModule)!
-        query = try values.decodeIfPresent(String.self, forKey: .query)!
-        page = try values.decodeIfPresent(Int.self, forKey: .page)!
-        resultsList = try values.decodeIfPresent([SearchItemModel].self, forKey: .resultsList)!
-        filter = try values.decodeIfPresent([String: String].self, forKey: .filter)!
+        searchModule = try values.decode(String.self, forKey: .searchModule)
+        query = try values.decode(String.self, forKey: .query)
+        page = try values.decode(Int.self, forKey: .page)
+        resultsList = try values.decode([SearchItemModel].self, forKey: .resultsList)
+        filter = try values.decodeIfPresent([String: Any].self, forKey: .filter)
         
         if let metaData = try? values.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)

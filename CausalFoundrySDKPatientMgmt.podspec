@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CausalFoundrySDKPatientMgmt"
-  s.version      = "1.1.4"
+  s.version      = "1.1.8"
   s.summary      = "Causal Foundry Patient Mgmt SDK"
   s.description  = "CausalFoundry SDK for Patient Mgmt related events (https://docs.causalfoundry.ai/)"
   s.homepage     = "https://docs.causalfoundry.ai/"

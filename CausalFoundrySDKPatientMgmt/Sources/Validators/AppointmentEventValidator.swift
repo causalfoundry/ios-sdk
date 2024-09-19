@@ -56,7 +56,7 @@ public class AppointmentEventValidator {
         return nil
     }
     
-    public static func mapStringToHcwModuleObject(objectString: String) -> AppointmentEventObject? {
+    public static func mapStringToAppointmentEventObject(objectString: String) -> AppointmentEventObject? {
         guard let data = objectString.data(using: .utf8) else { return nil }
         return try? JSONDecoder().decode(AppointmentEventObject.self, from: data)
     }

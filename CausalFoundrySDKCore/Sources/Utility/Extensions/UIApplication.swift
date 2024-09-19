@@ -23,32 +23,31 @@ extension UIApplication {
         return icon
     }
 
-    func appVersion() -> Int {
-        if let appVersionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") {
-            guard let majorVersion = (appVersionNumber as! String).split(separator: ".").first else {
-                return 0
-            }
-            return Int(majorVersion)!
+    func appVersion() -> String {
+    
+        if let appVersionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+            return  appVersionNumber
         } else {
-            return 0
+            return "0.0" // Default or fallback version if the version number is not found
         }
     }
 
-    func build() -> String {
-        if let buildVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) {
-            return "\(buildVersion)"
+    func build() -> Int {
+        
+        if let buildVersionString = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String,
+           let buildVersionInt = Int(buildVersionString) {
+            return buildVersionInt
         } else {
-            return ""
+            return 0 // Fallback if the build version isn't found or can't be converted
         }
     }
 
     func versionBuild() -> String {
-        var versionString = ""
-        let versionNumber = "\(appVersion())"
-        let build: String = self.build()
-        versionString = "\(versionNumber).\(build)"
-
-        return versionString
+        if let appVersionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+            return  "\(appVersionNumber) (\(build()))"
+        } else {
+            return "0.0" // Default or fallback version if the version number is not found
+        }
     }
 
     func bundleIdentifier() -> String {

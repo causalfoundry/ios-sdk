@@ -19,19 +19,26 @@ enum PatientMgmtConstants {
             return nil
         }
 
-        for item in hcwCatalogModel.siteIdList {
-            guard !item.isEmpty else {
-                ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid site_id_list provided")
-                return nil
+        
+        if let siteIdList = hcwCatalogModel.siteIdList, !siteIdList.isEmpty {
+            for item in siteIdList {
+                guard !item.isEmpty else {
+                    ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid site_id_list provided")
+                    return nil
+                }
             }
         }
-
-        for item in hcwCatalogModel.supervisorIdList {
-            guard !item.isEmpty else {
-                ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid supervisor_id_list provided")
-                return nil
+        
+        
+        if let supervisorIdList = hcwCatalogModel.supervisorIdList, !supervisorIdList.isEmpty {
+            for item in supervisorIdList {
+                guard !item.isEmpty else {
+                    ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid supervisor_id_list provided")
+                    return nil
+                }
             }
         }
+        
 
         return hcwCatalogModel
     }
@@ -39,20 +46,18 @@ enum PatientMgmtConstants {
     static func verifySiteCatalog(hcwSiteCatalogModel: HcwSiteCatalogModel) -> HcwSiteCatalogModel? {
         let catalogName = CatalogSubject.chwsite.rawValue + " catalog"
 
-        print("--------")
-        print(hcwSiteCatalogModel)
         guard !hcwSiteCatalogModel.siteId.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Site val Id")
             return nil
         }
         
-        guard !hcwSiteCatalogModel.name.isEmpty else {
+        if hcwSiteCatalogModel.name.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Site name")
             return nil
         }
-
-        if !hcwSiteCatalogModel.country.isEmpty {
-            guard CountryCode(rawValue: hcwSiteCatalogModel.country) != nil else {
+        
+        if let country = hcwSiteCatalogModel.country, !country.isEmpty {
+            guard CountryCode(rawValue: country) != nil else {
                 ExceptionManager.throwEnumException(eventType: catalogName, className: "CountryCode")
                 return nil
             }
@@ -69,22 +74,27 @@ enum PatientMgmtConstants {
             return nil
         }
 
-        if !patientCatalogModel.country.isEmpty {
-            guard CountryCode(rawValue: patientCatalogModel.country) != nil else {
+        if let country = patientCatalogModel.country, !country.isEmpty {
+            guard CountryCode(rawValue: country) != nil else {
                 ExceptionManager.throwEnumException(eventType: catalogName, className: "CountryCode")
                 return nil
             }
         }
 
-        if (!patientCatalogModel.educationLevel.isEmpty && !CoreConstants.shared.enumContains(EducationalLevel.self, name: patientCatalogModel.educationLevel)) {
+        if let educationLevel = patientCatalogModel.educationLevel,
+           !educationLevel.isEmpty,
+           !CoreConstants.shared.enumContains(EducationalLevel.self, name: educationLevel) {
+               
             ExceptionManager.throwEnumException(eventType: catalogName, className: "EducationalLevel")
             return nil
         }
 
-        for item in patientCatalogModel.siteIdList {
-            guard !item.isEmpty else {
-                ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid site_id_list provided")
-                return nil
+        if let siteIdList = patientCatalogModel.siteIdList, !siteIdList.isEmpty {
+            for item in siteIdList {
+                guard !item.isEmpty else {
+                    ExceptionManager.throwRuntimeException(eventType: catalogName, message: "Invalid site_id_list provided")
+                    return nil
+                }
             }
         }
 
@@ -95,3 +105,4 @@ enum PatientMgmtConstants {
     
     
 }
+

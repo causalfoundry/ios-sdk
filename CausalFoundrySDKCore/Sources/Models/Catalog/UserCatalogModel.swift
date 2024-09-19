@@ -8,7 +8,7 @@
 import Foundation
 
 public struct UserCatalogModel: Codable, Equatable {
-    var userId: String?
+    var userId: String
     var name: String?
     var country: String?
     var regionState: String?
@@ -52,7 +52,7 @@ public struct UserCatalogModel: Codable, Equatable {
     }
     
 
-    public init(userId: String? = "", name: String? = "", country: String? = "", regionState: String? = "", city: String? = "", workplace: String? = "", profession: String? = "", zipcode: String? = "", language: String? = "", experience: String? = "", educationLevel: String? = "", organizationId: String? = "", organizationName: String? = "", accountType: String? = "", birthYear: Int? = 0, gender: String? = "", maritalStatus: String? = "", familyMembers: String? = "", childrenUnderFive: String? = "") {
+    public init(userId: String, name: String? = "", country: String? = "", regionState: String? = "", city: String? = "", workplace: String? = "", profession: String? = "", zipcode: String? = "", language: String? = "", experience: String? = "", educationLevel: String? = "", organizationId: String? = "", organizationName: String? = "", accountType: String? = "", birthYear: Int? = 0, gender: String? = "", maritalStatus: String? = "", familyMembers: String? = "", childrenUnderFive: String? = "") {
         
         self.userId = userId
         self.name = name
@@ -79,7 +79,7 @@ public struct UserCatalogModel: Codable, Equatable {
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(userId, forKey: .userId)
+        try container.encode(userId, forKey: .userId)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(country, forKey: .country)
         try container.encodeIfPresent(regionState, forKey: .regionState)
@@ -105,7 +105,7 @@ public struct UserCatalogModel: Codable, Equatable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        userId = try container.decodeIfPresent(String.self, forKey: .userId)
+        userId = try container.decode(String.self, forKey: .userId)
         name = try container.decodeIfPresent(String.self, forKey: .name)
         country = try container.decodeIfPresent(String.self, forKey: .country)
         regionState = try container.decodeIfPresent(String.self, forKey: .regionState)

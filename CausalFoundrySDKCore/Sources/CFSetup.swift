@@ -78,7 +78,7 @@ public class CFSetup: NSObject, IngestProtocol {
                        minSDKVersion: application.minimumVersion(),
                        targetSDKVersion: application.targetVersion(),
                        version: application.versionBuild(),
-                       versionCode: application.appVersion(),
-                       versionName: application.build())
+                       versionCode: application.build(),
+                       versionName: application.appVersion())
     }
 }
