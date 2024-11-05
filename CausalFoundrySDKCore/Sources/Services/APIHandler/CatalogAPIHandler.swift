@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 public class CatalogAPIHandler {
     public func updateCoreCatalogItem(subject: CatalogSubject, catalogObject: Data) {

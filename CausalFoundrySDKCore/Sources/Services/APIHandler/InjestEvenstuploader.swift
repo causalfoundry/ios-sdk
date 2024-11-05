@@ -12,13 +12,13 @@ enum InjestEvenstuploader {
     @available(iOS 13.0, *)
     static func uploadEvents() async throws {
         let injestAPIHandler = IngestAPIHandler()
-        let events = MMKVHelper.shared.readInjectEvents()
-        guard events.count > 0 else {
+        let filteredArray = MMKVHelper.shared.readInjectEvents().filter { !$0.isTypeOrPropsEmpty }.removingDuplicates()
+        guard filteredArray.count > 0 else {
             print("No More Injest events")
             return
         }
         try await withCheckedThrowingContinuation { continuation in
-            injestAPIHandler.updateEventTrack(eventArray: events) { success in
+            injestAPIHandler.updateEventTrack(eventArray: filteredArray) { success in
                 if success {
                     MMKVHelper.shared.deleteDataEventLogs()
                     continuation.resume(with: .success(()))
@@ -32,19 +32,19 @@ enum InjestEvenstuploader {
     
     @available(iOS 13.0, *)
     static func uploadEventsAfterRemovingSanitize(indexToRemove : Int) async throws {
-        let injestAPIHandler = IngestAPIHandler()
-        var events = MMKVHelper.shared.readInjectEvents()
-        guard events.count > 0 else {
+        var filteredArray = MMKVHelper.shared.readInjectEvents().filter { !$0.isTypeOrPropsEmpty }.removingDuplicates()
+        guard filteredArray.count > 0 else {
             print("No More Injest events")
             return
         }
         
-        if indexToRemove >= 0 && indexToRemove < events.count {
-            events.remove(at: indexToRemove)
+        if indexToRemove >= 0 && indexToRemove < filteredArray.count {
+            filteredArray.remove(at: indexToRemove)
         }
+        MMKVHelper.shared.writeEvents(eventsArray: filteredArray)
         
         try await withCheckedThrowingContinuation { continuation in
-            injestAPIHandler.updateEventTrack(eventArray: events) { success in
+            IngestAPIHandler().updateEventTrack(eventArray: filteredArray) { success in
                 if success {
                     MMKVHelper.shared.deleteDataEventLogs()
                     continuation.resume(with: .success(()))
@@ -61,12 +61,13 @@ enum ExceptionEventsUploader {
     static func uploadEvents() async throws {
         let exceptionManager = ExceptionAPIHandler()
         let events = MMKVHelper.shared.readExceptionsData()
-        guard events.count > 0 else {
+        let filteredArray = events.filter { !$0.isTypeOrPropsEmpty }.removingDuplicates()
+        guard filteredArray.count > 0 else {
             print("No More Exception events")
             return
         }
         try await withCheckedThrowingContinuation { continuation in
-            exceptionManager.updateExceptionEvents(eventArray: events) { success in
+            exceptionManager.updateExceptionEvents(eventArray: filteredArray) { success in
                 if success {
                     continuation.resume(with: .success(()))
                 } else {
