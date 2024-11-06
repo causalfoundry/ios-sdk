@@ -9,11 +9,13 @@ import Foundation
 
 public enum CoreCatalogSubject: String, CaseIterable, Codable {
     case User
+    case Site
     case Media
     
     public var rawValue: String {
         switch self {
         case .User: return "user"
+        case .Site: return "site"
         case .Media: return "media"
         }
     }

@@ -19,17 +19,7 @@ public enum CfPatientMgmtCatalog {
         let internalCatalog = PatientMgmtConstants.verifyHcwCatalog(hcwCatalogModel: hcwCatalogModel)
         CFSetup().updateCHWMamnagementCatalogItem(subject: .user_chw, catalogObject: [internalCatalog].toData()!)
     }
-
-    // MARK: - CHW Site Catalog
-
-    public static func updateHcwSiteCatalogString(hcwSiteCatalogString: String) {
-        updateHcwSiteCatalog(hcwSiteCatalogModel: try! JSONDecoder.new.decode(HcwSiteCatalogModel.self, from: hcwSiteCatalogString.data(using: .utf8)!))
-    }
-
-    public static func updateHcwSiteCatalog(hcwSiteCatalogModel: HcwSiteCatalogModel) {
-        let internalCatalog = PatientMgmtConstants.verifySiteCatalog(hcwSiteCatalogModel: hcwSiteCatalogModel)
-        CFSetup().updateCHWMamnagementCatalogItem(subject: .chwsite, catalogObject: [internalCatalog].toData()!)
-    }
+    
 
     // MARK: - Patient Catalog
 

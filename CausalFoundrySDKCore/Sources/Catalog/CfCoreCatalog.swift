@@ -48,7 +48,10 @@ public class CfCoreCatalog {
     }
     
     
-    
+    //////////////////////////////////////////////////////
+    // Media Catalog
+    //////////////////////////////////////////////////////
+
     
     public static func updateMediaCatalog(mediaCatalogModelString: String) {
         if let data = mediaCatalogModelString.data(using: .utf8),
@@ -71,9 +74,43 @@ public class CfCoreCatalog {
         }
         
         CFSetup().updateCoreCatalogItem(subject: CatalogSubject.media, catalogObject: [mediaCatalogModel].toData()!)
+        
     }
     
     
-    
+    //////////////////////////////////////////////////////
+    // Site Catalog
+    //////////////////////////////////////////////////////
+
+    public static func updateSiteCatalogString(siteCatalogString: String) {
+        if let data = siteCatalogString.data(using: .utf8),
+           let catalogItem = try? JSONDecoder.new.decode(SiteCatalogModel.self, from: data)
+        {
+            CfCoreCatalog.updateSiteCatalog(siteCatalogModel: catalogItem)
+        }
+        return
+    }
+
+    public static func updateSiteCatalog(siteCatalogModel: SiteCatalogModel) {
+        let catalogName = "\(CatalogSubject.site.rawValue) catalog"
+        print("\(catalogName) - ssPressed")
+        if siteCatalogModel.siteId.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Site Id")
+        } else if siteCatalogModel.name.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Site Name")
+        } else if siteCatalogModel.type.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Site Type")
+        } else if !CoreConstants.shared.enumContains(SiteCatalogType.self, name: siteCatalogModel.type) {
+            ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: SiteCatalogType.self))
+        } else if let country = siteCatalogModel.country, !country.isEmpty {
+            guard CountryCode(rawValue: country) != nil else {
+                ExceptionManager.throwEnumException(eventType: catalogName, className: "CountryCode")
+                return
+            }
+        }
+        
+        CFSetup().updateCoreCatalogItem(subject: CatalogSubject.site, catalogObject: [siteCatalogModel].toData()!)
+        
+    }
     
 }

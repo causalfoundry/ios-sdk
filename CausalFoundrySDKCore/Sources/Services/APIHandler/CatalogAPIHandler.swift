@@ -11,6 +11,7 @@ public class CatalogAPIHandler {
     public func updateCoreCatalogItem(subject: CatalogSubject, catalogObject: Data) {
         if #available(iOS 13.0, *) {
             guard !CoreConstants.shared.pauseSDK else { return }
+            print("subject 3: \(catalogObject)")
             MMKVHelper.shared.writeCatalogData(subject: subject, data: catalogObject)
         }
     }
