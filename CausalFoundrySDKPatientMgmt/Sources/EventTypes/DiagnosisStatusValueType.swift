@@ -1,30 +1,29 @@
 //
-//  File.swift
-//  
+//  DiagnosisStatusValueType.swift
+//  CausalFoundrySDK
 //
-//  Created by MOIZ HASSAN KHAN on 2/9/24.
+//  Created by MOIZ HASSAN KHAN on 6/11/24.
 //
 
 import CausalFoundrySDKCore
 import Foundation
 
 public enum DiagnosisStatusValueType: String, EnumComposable {
-    case HighRisk
-    case NotHighRisk
+    case Positive
+    case Negative
+    case Recovered
     case NA
-    case NewPatient
-    case KnownPatient
+    case Unknown
     case Other
     
     public var rawValue: String {
         switch self {
-        case .HighRisk: return "high_risk"
-        case .NotHighRisk: return "not_high_risk"
+        case .Positive: return "positive"
+        case .Negative: return "negative"
+        case .Recovered: return "recovered"
         case .NA: return "n_a"
-        case .NewPatient: return "new_patient"
-        case .KnownPatient: return "known_patient"
+        case .Unknown: return "unknown"
         case .Other: return "other"
         }
     }
-    
 }

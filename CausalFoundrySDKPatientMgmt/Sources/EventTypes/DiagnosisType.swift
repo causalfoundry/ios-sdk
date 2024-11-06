@@ -21,6 +21,7 @@ public enum DiagnosisType: String, EnumComposable {
     case SubstanceUseDisorder
     case AdolescentHealth
     case GeneralScreening
+    case Gynecologic
     case Antenatal
     case Postnatal
     case CervicalCancer
@@ -46,6 +47,7 @@ public enum DiagnosisType: String, EnumComposable {
         case .SubstanceUseDisorder: return "substance_use_disorder"
         case .AdolescentHealth: return "adolescent_health"
         case .GeneralScreening: return "general_screening"
+        case .Gynecologic: return "gynecologic"
         case .Antenatal: return "antenatal"
         case .Postnatal: return "postnatal"
         case .CervicalCancer: return "cervical_cancer"

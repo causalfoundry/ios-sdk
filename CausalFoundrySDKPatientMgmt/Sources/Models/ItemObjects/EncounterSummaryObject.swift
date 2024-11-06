@@ -12,14 +12,15 @@ public struct EncounterSummaryObject: Codable {
     var appointmentId: String
     var encounterTime: Int64
     var hcwIdList: [String]
-    var prevDiagnosisStatus: [DiagnosisStatusItem] = []
-    var diagnosisStatus: [DiagnosisStatusItem]
+    var prevDiagnosisStatusList: [DiagnosisStatusItem] = []
+    var diagnosisStatusList: [DiagnosisStatusItem]
     var prevTreatmentPlan: TreatmentPlanItem?
     var treatmentPlan: TreatmentPlanItem?
-    var mainComplaints: [String] = []
+    var mainComplaintsList: [String] = []
     var diagnosticElements: DiagnosticElementObject?
     var pregnancyDetails: PregnancyDetailObject?
     var counselingList: [CounselingPlanItem]?
+    var immunizationList: [ImmunizationItem]?
     var remarks: String?
     var isFollowupId: String?
     var isReferralId: String?
@@ -32,14 +33,15 @@ public struct EncounterSummaryObject: Codable {
         case appointmentId = "appointment_id"
         case encounterTime = "encounter_time"
         case hcwIdList = "hcw_id_list"
-        case prevDiagnosisStatus = "prev_diagnosis_status"
-        case diagnosisStatus = "diagnosis_status"
+        case prevDiagnosisStatusList = "prev_diagnosis_status_list"
+        case diagnosisStatusList = "diagnosis_status_list"
         case prevTreatmentPlan = "prev_treatment_plan"
         case treatmentPlan = "treatment_plan"
-        case mainComplaints = "main_complaints"
+        case mainComplaintsList = "main_complaints_list"
         case diagnosticElements = "diagnostic_elements"
         case pregnancyDetails = "pregnancy_details"
         case counselingList = "counseling_list"
+        case immunizationList = "immunization_list"
         case subType = "sub_type"
         case remarks = "remarks"
         case isFollowupId = "is_followup_id"
@@ -49,19 +51,20 @@ public struct EncounterSummaryObject: Codable {
         case meta
     }
 
-    public init(encounterId: String, appointmentId: String, encounterTime: Int64, hcwIdList: [String], prevDiagnosisStatus: [DiagnosisStatusItem] = [], diagnosisStatus: [DiagnosisStatusItem] = [], prevTreatmentPlan: TreatmentPlanItem? = nil, treatmentPlan: TreatmentPlanItem? = nil, mainComplaints: [String] = [], diagnosticElements: DiagnosticElementObject? = nil, pregnancyDetails: PregnancyDetailObject? = nil, counselingList: [CounselingPlanItem] = [], remarks: String? = "", isFollowupId: String? = "", isReferralId: String? = "", hasFollowup: Bool? = nil, hasReferral: Bool? = nil, meta: Encodable? = nil ) {
+    public init(encounterId: String, appointmentId: String, encounterTime: Int64, hcwIdList: [String], prevDiagnosisStatusList: [DiagnosisStatusItem] = [], diagnosisStatusList: [DiagnosisStatusItem] = [], prevTreatmentPlan: TreatmentPlanItem? = nil, treatmentPlan: TreatmentPlanItem? = nil, mainComplaintsList: [String] = [], diagnosticElements: DiagnosticElementObject? = nil, pregnancyDetails: PregnancyDetailObject? = nil, counselingList: [CounselingPlanItem] = [], immunizationList: [ImmunizationItem] = [], remarks: String? = "", isFollowupId: String? = "", isReferralId: String? = "", hasFollowup: Bool? = nil, hasReferral: Bool? = nil, meta: Encodable? = nil ) {
         self.encounterId = encounterId
         self.appointmentId = appointmentId
         self.encounterTime = encounterTime
         self.hcwIdList = hcwIdList
-        self.prevDiagnosisStatus = prevDiagnosisStatus
-        self.diagnosisStatus = diagnosisStatus
+        self.prevDiagnosisStatusList = prevDiagnosisStatusList
+        self.diagnosisStatusList = diagnosisStatusList
         self.prevTreatmentPlan = prevTreatmentPlan
         self.treatmentPlan = treatmentPlan
-        self.mainComplaints = mainComplaints
+        self.mainComplaintsList = mainComplaintsList
         self.diagnosticElements = diagnosticElements
         self.pregnancyDetails = pregnancyDetails
         self.counselingList = counselingList
+        self.immunizationList = immunizationList
         self.remarks = remarks
         self.isFollowupId = isFollowupId
         self.isReferralId = isReferralId
@@ -76,14 +79,15 @@ public struct EncounterSummaryObject: Codable {
         appointmentId = try container.decode(String.self, forKey: .appointmentId)
         encounterTime = try container.decode(Int64.self, forKey: .encounterTime)
         hcwIdList = try container.decode([String].self, forKey: .hcwIdList)
-        prevDiagnosisStatus = try container.decode([DiagnosisStatusItem].self, forKey: .prevDiagnosisStatus)
-        diagnosisStatus = try container.decode([DiagnosisStatusItem].self, forKey: .diagnosisStatus)
+        prevDiagnosisStatusList = try container.decode([DiagnosisStatusItem].self, forKey: .prevDiagnosisStatusList)
+        diagnosisStatusList = try container.decode([DiagnosisStatusItem].self, forKey: .diagnosisStatusList)
         prevTreatmentPlan = try container.decodeIfPresent(TreatmentPlanItem.self, forKey: .prevTreatmentPlan)
         treatmentPlan = try container.decodeIfPresent(TreatmentPlanItem.self, forKey: .treatmentPlan)
-        mainComplaints = try container.decode([String].self, forKey: .mainComplaints)
+        mainComplaintsList = try container.decode([String].self, forKey: .mainComplaintsList)
         diagnosticElements = try container.decodeIfPresent(DiagnosticElementObject.self, forKey: .diagnosticElements)
         pregnancyDetails = try container.decodeIfPresent(PregnancyDetailObject.self, forKey: .pregnancyDetails)
         counselingList = try container.decodeIfPresent([CounselingPlanItem].self, forKey: .counselingList)
+        immunizationList = try container.decodeIfPresent([ImmunizationItem].self, forKey: .immunizationList)
         remarks = try container.decodeIfPresent(String.self, forKey: .remarks)
         isFollowupId = try container.decodeIfPresent(String.self, forKey: .isFollowupId)
         isReferralId = try container.decodeIfPresent(String.self, forKey: .isReferralId)
@@ -102,14 +106,15 @@ public struct EncounterSummaryObject: Codable {
         try container.encode(appointmentId, forKey: .appointmentId)
         try container.encode(encounterTime, forKey: .encounterTime)
         try container.encode(hcwIdList, forKey: .hcwIdList)
-        try container.encode(prevDiagnosisStatus, forKey: .prevDiagnosisStatus)
-        try container.encode(diagnosisStatus, forKey: .diagnosisStatus)
+        try container.encode(prevDiagnosisStatusList, forKey: .prevDiagnosisStatusList)
+        try container.encode(diagnosisStatusList, forKey: .diagnosisStatusList)
         try container.encodeIfPresent(prevTreatmentPlan, forKey: .prevTreatmentPlan)
         try container.encodeIfPresent(treatmentPlan, forKey: .treatmentPlan)
-        try container.encode(mainComplaints, forKey: .mainComplaints)
+        try container.encode(mainComplaintsList, forKey: .mainComplaintsList)
         try container.encodeIfPresent(diagnosticElements, forKey: .diagnosticElements)
         try container.encodeIfPresent(pregnancyDetails, forKey: .pregnancyDetails)
         try container.encodeIfPresent(counselingList, forKey: .counselingList)
+        try container.encodeIfPresent(immunizationList, forKey: .immunizationList)
         try container.encodeIfPresent(remarks, forKey: .remarks)
         try container.encodeIfPresent(isFollowupId, forKey: .isFollowupId)
         try container.encodeIfPresent(isReferralId, forKey: .isReferralId)

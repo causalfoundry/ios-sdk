@@ -1,8 +1,8 @@
 //
-//  PrescriptionItemType.swift
+//  PrescriptionFormulationType.swift
 //
 //
-//  Created by khushbu on 03/11/23.
+//  Created by Moiz Hassan Khan on 06/11/24.
 //
 
 import CausalFoundrySDKCore
@@ -10,12 +10,13 @@ import Foundation
 
 import Foundation
 
-public enum PrescriptionItemType: String, EnumComposable {
+public enum PrescriptionFormulationType: String, EnumComposable {
     case Tablet
     case Capsule
     case Syrup
     case Injection
     case Insulin
+    case Contraceptive
     case Other
     
     public var rawValue: String {
@@ -25,6 +26,7 @@ public enum PrescriptionItemType: String, EnumComposable {
         case .Syrup: return "syrup"
         case .Injection: return "injection"
         case .Insulin: return "insulin"
+        case .Contraceptive: return "contraceptive"
         case .Other: return "other"
         }
     }

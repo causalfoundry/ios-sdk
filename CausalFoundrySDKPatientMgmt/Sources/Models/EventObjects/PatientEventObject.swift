@@ -22,7 +22,7 @@ public struct PatientEventObject: Codable {
     var meta: Encodable?
 
     public enum CodingKeys: String, CodingKey {
-        case patientId = "id"
+        case patientId = "patient_id"
         case siteId = "site_id"
         case action = "action"
         case isFromGho = "is_from_gho"

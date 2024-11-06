@@ -12,11 +12,12 @@ public struct PrescriptionItem: Codable {
     var name: String
     var dosageValue: Float
     var dosageUnit: String
+    var formulation: String
     var type: String
     var frequency: String
     var prescribedDays: Int
     var dispensedDays: Int
-    var prescriptionDate: Int64
+    var prescriptionDate: Int64?
     var action: String
     var remarks: String?
 
@@ -25,6 +26,7 @@ public struct PrescriptionItem: Codable {
         case name
         case dosageValue = "dosage_value"
         case dosageUnit = "dosage_unit"
+        case formulation
         case type
         case frequency
         case prescribedDays = "prescribed_days"
@@ -34,11 +36,12 @@ public struct PrescriptionItem: Codable {
         case remarks
     }
 
-    public init(drugId: String, name: String, dosageValue: Float = 0.0, dosageUnit: String, type: String, frequency: String, prescribedDays: Int = 0, dispensedDays: Int = 0, prescriptionDate: Int64 = 0, action: String, remarks: String? = nil) {
+    public init(drugId: String, name: String, dosageValue: Float = 0.0, dosageUnit: String, formulation: String, type: String, frequency: String, prescribedDays: Int = 0, dispensedDays: Int = 0, prescriptionDate: Int64? = 0, action: String, remarks: String? = nil) {
         self.drugId = drugId
         self.name = name
         self.dosageValue = dosageValue
         self.dosageUnit = dosageUnit
+        self.formulation = formulation
         self.type = type
         self.frequency = frequency
         self.prescribedDays = prescribedDays
@@ -55,6 +58,7 @@ public struct PrescriptionItem: Codable {
         try container.encode(name, forKey: .name)
         try container.encode(dosageValue, forKey: .dosageValue)
         try container.encode(dosageUnit, forKey: .dosageUnit)
+        try container.encode(formulation, forKey: .formulation)
         try container.encode(type, forKey: .type)
         try container.encode(frequency, forKey: .frequency)
         try container.encode(prescribedDays, forKey: .prescribedDays)
@@ -71,11 +75,12 @@ public struct PrescriptionItem: Codable {
         name = try container.decode(String.self, forKey: .name)
         dosageValue = try container.decode(Float.self, forKey: .dosageValue)
         dosageUnit = try container.decode(String.self, forKey: .dosageUnit)
+        formulation = try container.decode(String.self, forKey: .formulation)
         type = try container.decode(String.self, forKey: .type)
         frequency = try container.decode(String.self, forKey: .frequency)
         prescribedDays = try container.decode(Int.self, forKey: .prescribedDays)
         dispensedDays = try container.decode(Int.self, forKey: .dispensedDays)
-        prescriptionDate = try container.decode(Int64.self, forKey: .prescriptionDate)
+        prescriptionDate = try container.decodeIfPresent(Int64.self, forKey: .prescriptionDate)
         action = try container.decode(String.self, forKey: .action)
         remarks = try container.decodeIfPresent(String.self, forKey: .remarks)
     }
