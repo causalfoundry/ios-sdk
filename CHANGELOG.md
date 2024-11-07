@@ -5,6 +5,32 @@ Documenting the changes in the SDK subject to each release version.
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 
+## **[1.1.12]  - .11.2024**
+
+### **Added**
+- Added Immunization list int he encounter summary
+- Added Site catalog in Core module
+
+### **Removed**
+- Removed ChwSite catalog from PatientMgmt module
+
+### **Updated**
+- Include immunization_list in the encounter mapper
+- Renamed `prev_diagnosis_status` and `diagnosis_status` to `prev_diagnosis_status_list` and `diagnosis_status_list`
+- Update Prescription item to make prescriptionDate as optional
+- Update event, catalog and exception array to be distinct
+- Updated DiagnosisSymptomItem for more types
+- Updated PrescriptionItem type for more types.
+- Updated treatmentAdherence to include type and remarks param
+- Updated DiagnosisStatusItem to replace value by status and add risk type with updated enums
+- Updated PrescriptionItem to replace existing type by formulation and type as Diagnosis type
+- Updated multiple list params to include _list in the param names
+- Updated patient, appointment and encounter event for patient and site ids
+- Updated patient, appointment and encounter event for patient and site ids
+
+
+----
+
 ## **[1.1.8]  - 19.09.2024**
 
 ### **Updated**
