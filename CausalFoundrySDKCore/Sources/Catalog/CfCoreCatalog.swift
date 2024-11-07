@@ -93,7 +93,6 @@ public class CfCoreCatalog {
 
     public static func updateSiteCatalog(siteCatalogModel: SiteCatalogModel) {
         let catalogName = "\(CatalogSubject.site.rawValue) catalog"
-        print("\(catalogName) - ssPressed")
         if siteCatalogModel.siteId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Site Id")
         } else if siteCatalogModel.name.isEmpty {

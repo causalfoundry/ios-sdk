@@ -5,7 +5,7 @@ Documenting the changes in the SDK subject to each release version.
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 
-## **[1.1.12]  - .11.2024**
+## **[1.1.12]  - 07.11.2024**
 
 ### **Added**
 - Added Immunization list int he encounter summary
