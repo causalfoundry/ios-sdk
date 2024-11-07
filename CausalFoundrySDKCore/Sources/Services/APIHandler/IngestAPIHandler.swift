@@ -7,7 +7,6 @@
 
 import Combine
 import Foundation
-import UIKit
 
 public class IngestAPIHandler: NSObject {
 
@@ -79,6 +78,11 @@ public class IngestAPIHandler: NSObject {
                                     data: eventArray)
             
             let dictionary = mainBody.dictionary ?? [:]
+            
+            if dictionary.isEmpty {
+                print("No More Injest events")
+                return
+            }
                         
             let url = URL(string: APIConstants.trackEvent)!
             BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: dictionary) { result in

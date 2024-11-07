@@ -2,64 +2,67 @@
 //  ChwSiteCatalogModel.swift
 //
 //
-//  Created by MOIZ HASSAN KHAN on 01/05/24.
+//  Created by MOIZ HASSAN KHAN on 05/11/24.
 //
 
 import Foundation
 
-public struct HcwSiteCatalogModel: Codable {
+public struct SiteCatalogModel: Codable, Equatable {
     var siteId: String
     var name: String
+    var type: String
     var country: String?
     var regionState: String?
     var city: String?
+    var streetAddress: String?
     var zipcode: String?
     var level: String?
     var category: String?
     var isActive: Bool?
-    var address: String?
-    var addressType: String?
     var latitude: Double?
     var longitude: Double?
     var culture: String?
     var parentSiteId: String?
+    var serviceList: [String]?
     
     
     public enum CodingKeys: String, CodingKey {
         case siteId = "id"
         case name
+        case type
         case country
         case regionState = "region_state"
         case city
+        case streetAddress = "street_address"
         case zipcode
         case level
         case category
         case isActive = "is_active"
-        case address
-        case addressType = "address_type"
         case latitude
         case longitude
         case culture
-        case parentSiteId = "parent_site_id"
+        case parentSiteId = "parent_id"
+        case serviceList = "service_list"
     }
     
 
-    public init(siteId: String, name: String = "", country: String? = "", regionState: String? = "", city: String? = "", zipcode: String? = "", level: String? = "", category: String? = "", isActive: Bool? = true, address: String? = "", addressType: String? = "", latitude: Double? = 0, longitude: Double? = 0, culture: String? = "", parentSiteId: String? = "") {
+    public init(siteId: String, name: String = "", type: String = "", country: String? = "", regionState: String? = "", city: String? = "", streetAddress: String? = "", zipcode: String? = "", level: String? = "", category: String? = "", isActive: Bool? = true, latitude: Double? = 0, longitude: Double? = 0, culture: String? = "", parentSiteId: String? = "", serviceList: [String]? = []) {
         self.siteId = siteId
         self.name = name
+        self.type = type
         self.country = country
         self.regionState = regionState
         self.city = city
+        self.streetAddress = streetAddress
         self.zipcode = zipcode
         self.level = level
         self.category = category
         self.isActive = isActive
-        self.address = address
-        self.addressType = addressType
         self.latitude = latitude
         self.longitude = longitude
         self.culture = culture
         self.parentSiteId = parentSiteId
+        self.serviceList = serviceList
     }
     
     
@@ -68,19 +71,20 @@ public struct HcwSiteCatalogModel: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(siteId, forKey: .siteId)
         try container.encode(name, forKey: .name)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(country, forKey: .country)
         try container.encodeIfPresent(regionState, forKey: .regionState)
         try container.encodeIfPresent(city, forKey: .city)
+        try container.encodeIfPresent(streetAddress, forKey: .streetAddress)
         try container.encodeIfPresent(zipcode, forKey: .zipcode)
         try container.encodeIfPresent(level, forKey: .level)
         try container.encodeIfPresent(category, forKey: .category)
         try container.encodeIfPresent(isActive, forKey: .isActive)
-        try container.encodeIfPresent(address, forKey: .address)
-        try container.encodeIfPresent(addressType, forKey: .addressType)
         try container.encodeIfPresent(latitude, forKey: .latitude)
         try container.encodeIfPresent(longitude, forKey: .longitude)
         try container.encodeIfPresent(culture, forKey: .culture)
         try container.encodeIfPresent(parentSiteId, forKey: .parentSiteId)
+        try container.encodeIfPresent(serviceList, forKey: .serviceList)
         
     }
 
@@ -89,19 +93,20 @@ public struct HcwSiteCatalogModel: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         siteId = try container.decode(String.self, forKey: .siteId)
         name = try container.decode(String.self, forKey: .name)
+        type = try container.decode(String.self, forKey: .type)
         country = try container.decodeIfPresent(String.self, forKey: .country)
         regionState = try container.decodeIfPresent(String.self, forKey: .regionState)
         city = try container.decodeIfPresent(String.self, forKey: .city)
+        streetAddress = try container.decodeIfPresent(String.self, forKey: .streetAddress)
         zipcode = try container.decodeIfPresent(String.self, forKey: .zipcode)
         level = try container.decodeIfPresent(String.self, forKey: .level)
         category = try container.decodeIfPresent(String.self, forKey: .category)
         isActive = try container.decodeIfPresent(Bool.self, forKey: .isActive)
-        address = try container.decodeIfPresent(String.self, forKey: .address)
-        addressType = try container.decodeIfPresent(String.self, forKey: .addressType)
         latitude = try container.decodeIfPresent(Double.self, forKey: .latitude)
         longitude = try container.decodeIfPresent(Double.self, forKey: .longitude)
         culture = try container.decodeIfPresent(String.self, forKey: .culture)
         parentSiteId = try container.decodeIfPresent(String.self, forKey: .parentSiteId)
+        serviceList = try container.decodeIfPresent([String].self, forKey: .serviceList)
         
     }
 

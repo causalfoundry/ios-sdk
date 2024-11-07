@@ -28,6 +28,33 @@ enum PatientMgmtEventValidation {
         return true
     }
     
+    static func verifyImmunizationList(eventType: PatientMgmtEventType, immunizationList: [ImmunizationItem]?) -> Bool {
+        
+        if(immunizationList == nil){
+            return true
+        }
+        
+        for item in immunizationList! {
+            if item.id.isEmpty {
+                ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "id")
+                return false
+            } else if item.dose < 0 {
+                ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "dose")
+                return false
+            } else if item.type.isEmpty {
+                ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "type")
+                return false
+            } else if item.action.isEmpty {
+                ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "action")
+                return false
+            } else if !CoreConstants.shared.enumContains(HcwItemAction.self, name: item.action) {
+                ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: HcwItemAction.self))
+                return false
+            }
+        }
+        return true
+    }
+    
     
     static func verifyPrescriptionTestList(eventType: PatientMgmtEventType, prescribedTestsList: [InvestigationItem]) -> Bool {
         for item in prescribedTestsList {
@@ -74,8 +101,8 @@ enum PatientMgmtEventValidation {
             if !CoreConstants.shared.enumContains(DiagnosisSymptomType.self, name: item.type) {
                 ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: DiagnosisSymptomType.self))
                 return false
-            } else if item.symptoms.isEmpty {
-                ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "diagnosis symptom")
+            } else if item.symptomsList.isEmpty {
+                ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "diagnosis symptoms List")
                 return false
             }
         }
@@ -85,8 +112,8 @@ enum PatientMgmtEventValidation {
     static func verifyTreatmentAdherenceList(eventType: PatientMgmtEventType, treatmentAdherenceList: [TreatmentAdherenceItem]) -> Bool {
         
         for item in treatmentAdherenceList {
-            if item.medicationAdherence.isEmpty {
-                ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: "medication adherence")
+            if item.type.isEmpty {
+                ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: "treatment adherence type")
                 return false
             }
         }
@@ -131,8 +158,11 @@ enum PatientMgmtEventValidation {
             } else if !CoreConstants.shared.enumContains(HcwItemAction.self, name: item.action) {
                 ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: "item action")
                 return false
-            } else if !CoreConstants.shared.enumContains(DiagnosisStatusValueType.self, name: item.value) {
+            } else if !CoreConstants.shared.enumContains(DiagnosisStatusValueType.self, name: item.status) {
                 ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: "diagnosis status value type")
+                return false
+            } else if !CoreConstants.shared.enumContains(DiagnosisStatusRiskType.self, name: item.risk) {
+                ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: "diagnosis status risk type")
                 return false
             } else if item.diagnosisDate < 0 {
                 ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "diagnosis date")
@@ -186,8 +216,8 @@ enum PatientMgmtEventValidation {
         return verifyPrescriptionTestList(eventType: eventType, prescribedTestsList: diagnosticElementObject!.investigationList)
         && verifyDiagnosisObjectList(eventType: eventType, diagnosisType: "Biometric", diagnosisList: diagnosticElementObject!.biometricList)
         && verifyDiagnosisSymptomList(eventType: eventType, diagnosisSymptomList: diagnosticElementObject!.signSymptomList)
-        && verifyTreatmentAdherenceList(eventType: eventType, treatmentAdherenceList: diagnosticElementObject!.treatmentAdherence)
-        && verifyDiagnosisQuestionnaireList(eventType: eventType, diagnosisQuestionnaireList: diagnosticElementObject!.healthQuestionnaire)
+        && verifyTreatmentAdherenceList(eventType: eventType, treatmentAdherenceList: diagnosticElementObject!.treatmentAdherenceList)
+        && verifyDiagnosisQuestionnaireList(eventType: eventType, diagnosisQuestionnaireList: diagnosticElementObject!.healthQuestionnaireList)
         
     }
     
@@ -223,8 +253,11 @@ enum PatientMgmtEventValidation {
             } else if item.name.isEmpty {
                 ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "name")
                 return false
-            } else if !CoreConstants.shared.enumContains(PrescriptionItemType.self, name: item.type) {
-                ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: PrescriptionItemType.self))
+            } else if !CoreConstants.shared.enumContains(PrescriptionFormulationType.self, name: item.formulation) {
+                ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: PrescriptionFormulationType.self))
+                return false
+            } else if !CoreConstants.shared.enumContains(DiagnosisType.self, name: item.type) {
+                ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: DiagnosisType.self))
                 return false
             } else if !CoreConstants.shared.enumContains(PrescriptionItemFrequency.self, name: item.frequency) {
                 ExceptionManager.throwEnumException(eventType: eventType.rawValue, className: String(describing: PrescriptionItemFrequency.self))
@@ -241,6 +274,9 @@ enum PatientMgmtEventValidation {
             } else if item.prescribedDays < 0 {
                 ExceptionManager.throwInvalidException(eventType: eventType.rawValue, paramName: "prescribed_days", className: "class")
                 return false
+            } else if item.dispensedDays < 0 {
+                ExceptionManager.throwInvalidException(eventType: eventType.rawValue, paramName: "dispensed_days", className: "class")
+                return false
             }
         }
         return true
@@ -256,12 +292,13 @@ enum PatientMgmtEventValidation {
             ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "hcwIdList")
         }
         
-        return verifyDiagnosisStatusList(eventType: eventType, diagnosisStatusList: encounterSummaryObject.prevDiagnosisStatus)
-        && verifyDiagnosisStatusList(eventType: eventType, diagnosisStatusList: encounterSummaryObject.diagnosisStatus)
+        return verifyDiagnosisStatusList(eventType: eventType, diagnosisStatusList: encounterSummaryObject.prevDiagnosisStatusList)
+        && verifyDiagnosisStatusList(eventType: eventType, diagnosisStatusList: encounterSummaryObject.diagnosisStatusList)
         && verifyTreatmentPlan(eventType: eventType, treatmentPlanItem: encounterSummaryObject.prevTreatmentPlan)
         && verifyTreatmentPlan(eventType: eventType, treatmentPlanItem: encounterSummaryObject.treatmentPlan)
         && verifyDiagnosticElementObject(eventType: eventType, diagnosticElementObject: encounterSummaryObject.diagnosticElements)
         && verifyCounselingPlanList(eventType: eventType, counselingPlanList: encounterSummaryObject.counselingList)
+        && verifyImmunizationList(eventType: eventType, immunizationList: encounterSummaryObject.immunizationList)
     }
     
     
@@ -326,7 +363,7 @@ enum PatientMgmtEventValidation {
         
         if missedItem == nil {
             return true
-        } else if missedItem!.id.isEmpty {
+        } else if missedItem!.appointmentId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: eventType.rawValue, elementName: "missed appointment item Id")
             return false
         } else if missedItem!.appointmentFollowUpType.isEmpty {

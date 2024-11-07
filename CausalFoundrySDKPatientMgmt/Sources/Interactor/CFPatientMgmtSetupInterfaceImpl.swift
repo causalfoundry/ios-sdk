@@ -61,17 +61,6 @@ internal class CFPatientMgmtSetupInterfaceImpl: CFPatientMgmtSetupInterface {
                     eventType: "Hcw Catalog", paramName: "HcwCatalogModel", className: String(describing: HcwCatalogModel.self)
                 )
             }
-        case .HcwSite:
-            switch catalogObject {
-            case let catalogObject as HcwSiteCatalogModel:
-                CfPatientMgmtCatalog.updateHcwSiteCatalog(hcwSiteCatalogModel: catalogObject)
-            case let catalogObject as String:
-                CfPatientMgmtCatalog.updateHcwSiteCatalogString(hcwSiteCatalogString: catalogObject)
-            default:
-                ExceptionManager.throwInvalidException(
-                    eventType: "Hcw Site Catalog", paramName: "HcwSiteCatalogModel", className: String(describing: HcwSiteCatalogModel.self)
-                )
-            }
         case .Patient:
             switch catalogObject {
             case let catalogObject as PatientCatalogModel:

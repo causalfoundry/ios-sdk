@@ -43,29 +43,6 @@ enum PatientMgmtConstants {
         return hcwCatalogModel
     }
 
-    static func verifySiteCatalog(hcwSiteCatalogModel: HcwSiteCatalogModel) -> HcwSiteCatalogModel? {
-        let catalogName = CatalogSubject.chwsite.rawValue + " catalog"
-
-        guard !hcwSiteCatalogModel.siteId.isEmpty else {
-            ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Site val Id")
-            return nil
-        }
-        
-        if hcwSiteCatalogModel.name.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Site name")
-            return nil
-        }
-        
-        if let country = hcwSiteCatalogModel.country, !country.isEmpty {
-            guard CountryCode(rawValue: country) != nil else {
-                ExceptionManager.throwEnumException(eventType: catalogName, className: "CountryCode")
-                return nil
-            }
-        }
-
-        return hcwSiteCatalogModel
-    }
-
     static func verifyPatientCatalog(patientCatalogModel: PatientCatalogModel) -> PatientCatalogModel? {
         let catalogName = CatalogSubject.patient.rawValue + " catalog"
 

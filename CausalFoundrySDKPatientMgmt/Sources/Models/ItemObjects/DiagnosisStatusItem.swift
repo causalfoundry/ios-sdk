@@ -11,7 +11,8 @@ public struct DiagnosisStatusItem: Codable {
     var type: String
     var subType: String
     var action: String
-    var value: String
+    var status: String
+    var risk: String
     var diagnosisDate: Int64
     var isConfirmed: Bool?
     var remarks: String?
@@ -22,7 +23,8 @@ public struct DiagnosisStatusItem: Codable {
         case type
         case subType = "sub_type"
         case action
-        case value
+        case status
+        case risk
         case diagnosisDate = "diagnosis_date"
         case isConfirmed = "is_confirmed"
         case remarks
@@ -30,11 +32,12 @@ public struct DiagnosisStatusItem: Codable {
         case treatmentStatus = "treatment_status"
     }
     
-    public init(type: String, subType: String, action: String, value: String, diagnosisDate: Int64, isConfirmed: Bool? = nil, remarks: String? = nil, stage: String? = nil, treatmentStatus: String? = nil) {
+    public init(type: String, subType: String, action: String, status: String, risk: String, diagnosisDate: Int64, isConfirmed: Bool? = nil, remarks: String? = nil, stage: String? = nil, treatmentStatus: String? = nil) {
         self.type = type
         self.subType = subType
         self.action = action
-        self.value = value
+        self.status = status
+        self.risk = risk
         self.diagnosisDate = diagnosisDate
         self.isConfirmed = isConfirmed
         self.remarks = remarks
@@ -47,7 +50,8 @@ public struct DiagnosisStatusItem: Codable {
         type = try container.decode(String.self, forKey: .type)
         subType = try container.decode(String.self, forKey: .subType)
         action = try container.decode(String.self, forKey: .action)
-        value = try container.decode(String.self, forKey: .value)
+        status = try container.decode(String.self, forKey: .status)
+        risk = try container.decode(String.self, forKey: .risk)
         diagnosisDate = try container.decode(Int64.self, forKey: .diagnosisDate)
         isConfirmed = try container.decodeIfPresent(Bool.self, forKey: .isConfirmed)
         remarks = try container.decodeIfPresent(String.self, forKey: .remarks)
@@ -61,7 +65,8 @@ public struct DiagnosisStatusItem: Codable {
         try container.encode(type, forKey: .type)
         try container.encode(subType, forKey: .subType)
         try container.encode(action, forKey: .action)
-        try container.encode(value, forKey: .value)
+        try container.encode(status, forKey: .status)
+        try container.encode(risk, forKey: .risk)
         try container.encode(diagnosisDate, forKey: .diagnosisDate)
         try container.encodeIfPresent(isConfirmed, forKey: .isConfirmed)
         try container.encodeIfPresent(remarks, forKey: .remarks)

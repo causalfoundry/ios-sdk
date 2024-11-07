@@ -61,6 +61,19 @@ internal class CFCoreSetupInterfaceImpl: CFCoreSetupInterface {
                     eventType: "User Catalog", paramName: "UserCatalogModel", className: String(describing: UserCatalogModel.self)
                 )
             }
+        case .Site:
+            print("SS wwPressed")
+            switch catalogObject {
+            case let catalogObject as SiteCatalogModel:
+                print("wwPressed \(catalogObject)")
+                CfCoreCatalog.updateSiteCatalog(siteCatalogModel: catalogObject)
+            case let catalogObject as String:
+                CfCoreCatalog.updateSiteCatalogString(siteCatalogString: catalogObject)
+            default:
+                ExceptionManager.throwInvalidException(
+                    eventType: "Site Catalog", paramName: "SiteCatalogModel", className: String(describing: SiteCatalogModel.self)
+                )
+            }
         case .Media:
             switch catalogObject {
             case let mediaCatalogModel as MediaCatalogModel:

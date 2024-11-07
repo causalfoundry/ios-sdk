@@ -19,12 +19,6 @@ public extension MMKVHelper {
                 catalogTableData.removeAll(where: { $0.hcwId == catalogNewData.first?.hcwId })
                 catalogTableData.append(catalogNewData.first!)
                 newUpdatedData = catalogTableData.toData()
-            } else if subject == .chwsite {
-                var catalogTableData = try decoder.decode([HcwSiteCatalogModel].self, from: oldData)
-                let catalogNewData = try decoder.decode([HcwSiteCatalogModel].self, from: newData)
-                catalogTableData.removeAll(where: { $0.siteId == catalogNewData.first?.siteId })
-                catalogTableData.append(catalogNewData.first!)
-                newUpdatedData = catalogTableData.toData()
             } else if subject == .patient {
                 var catalogTableData = try decoder.decode([PatientCatalogModel].self, from: oldData)
                 let catalogNewData = try decoder.decode([PatientCatalogModel].self, from: newData)

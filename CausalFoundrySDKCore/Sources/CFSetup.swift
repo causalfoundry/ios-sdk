@@ -46,8 +46,12 @@ public class CFSetup: NSObject, IngestProtocol {
 
     public func updateCoreCatalogItem(subject: CatalogSubject, catalogObject: Data) {
         
-        let oldData = MMKVHelper.shared.readCatalogData(subject: CatalogSubject.user) ?? Data()
-        let newData = MMKVHelper.shared.getCoreCatalogTypeData(newData: catalogObject, oldData: oldData, subject: CatalogSubject.user)
+        print("subject 1: \(subject)")
+        print("subject 1A: \(catalogObject)")
+        let oldData = MMKVHelper.shared.readCatalogData(subject: subject) ?? Data()
+        print("subject 2A: \(oldData)")
+        let newData = MMKVHelper.shared.getCoreCatalogTypeData(newData: catalogObject, oldData: oldData, subject: subject)
+        print("subject 2: \(newData)")
         catalogAPIHandler.updateCoreCatalogItem(subject: subject, catalogObject: newData ?? catalogObject)
     }
 

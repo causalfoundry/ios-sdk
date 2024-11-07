@@ -7,9 +7,8 @@
 
 import Foundation
 import Network
-import UIKit
 
-struct ExceptionDataObject: Codable {
+struct ExceptionDataObject: Codable, Hashable {
     let title: String?
     let eventType: String?
     let exceptionType: String?
@@ -34,6 +33,32 @@ struct ExceptionDataObject: Codable {
         self.stackTrace = stackTrace
         self.ts = ts
     }
+    
+    // Computed property to check if `type` or `stack` is nil or empty
+    var isTypeOrPropsEmpty: Bool {
+        let optionalStrings: [String?] = [eventType, exceptionType, exceptionSource]
+        return optionalStrings.contains(where: { $0?.isEmpty ?? true })
+    }
+    
+    // Hashable conformance
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(title)
+        hasher.combine(eventType)
+        hasher.combine(exceptionType)
+        hasher.combine(exceptionSource)
+        hasher.combine(stackTrace)
+        hasher.combine(ts)
+    }
+
+    static func == (lhs: ExceptionDataObject, rhs: ExceptionDataObject) -> Bool {
+        return lhs.title == rhs.title &&
+               lhs.eventType == rhs.eventType &&
+               lhs.exceptionType == rhs.exceptionType &&
+               lhs.exceptionSource == rhs.exceptionSource &&
+               lhs.stackTrace == rhs.stackTrace &&
+               lhs.ts == rhs.ts
+    }
+    
 }
 
 class ExceptionAPIHandler {

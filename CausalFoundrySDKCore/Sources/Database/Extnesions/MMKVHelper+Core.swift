@@ -18,6 +18,12 @@ public extension MMKVHelper {
                 catalogTableData.removeAll(where: { $0.userId == catalogNewData.first?.userId })
                 catalogTableData.append(catalogNewData.first!)
                 newUpdatedData = catalogTableData.toData()
+            } else if subject == .site {
+                var catalogTableData = try decoder.decode([SiteCatalogModel].self, from: oldData)
+                let catalogNewData = try decoder.decode([SiteCatalogModel].self, from: newData)
+                catalogTableData.removeAll(where: { $0.siteId == catalogNewData.first?.siteId })
+                catalogTableData.append(catalogNewData.first!)
+                newUpdatedData = catalogTableData.toData()
             } else if subject == .media {
                 var catalogTableData = try decoder.decode([MediaCatalogModel].self, from: oldData)
                 let catalogNewData = try decoder.decode([MediaCatalogModel].self, from: newData)
@@ -26,6 +32,7 @@ public extension MMKVHelper {
                 newUpdatedData = catalogTableData.toData()
             }
         } catch {
+            MMKVHelper.shared.deleteCatalogData(subject: subject)
             print("Error decoding data into Person: \(error)")
         }
         return newUpdatedData

@@ -18,7 +18,7 @@ public struct EncounterEventObject: Codable {
     var meta: Encodable?
 
     enum CodingKeys: String, CodingKey {
-        case patientId = "id"
+        case patientId = "patient_id"
         case siteId = "site_id"
         case action
         case category

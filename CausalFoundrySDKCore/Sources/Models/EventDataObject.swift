@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct EventDataObject: Codable {
+struct EventDataObject: Codable, Hashable {
     enum CodingKeys: String, CodingKey {
         case block
         case ol
@@ -38,7 +38,7 @@ struct EventDataObject: Codable {
         type = try container.decode(String.self, forKey: .type)
         props = try container.decodeIfPresent([String: Any].self, forKey: .props)
     }
-
+    
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(block, forKey: .block)
@@ -47,4 +47,36 @@ struct EventDataObject: Codable {
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(props, forKey: .props)
     }
+    
+    // Computed property to check if `type` or `props` is nil or empty
+    var isTypeOrPropsEmpty: Bool {
+        return type.isEmpty || props?.isEmpty ?? true
+    }
+    
+    // Hashable conformance with props inclusion
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(block)
+        hasher.combine(ol)
+        hasher.combine(ts)
+        hasher.combine(type)
+        
+        if let props = propsAsJSONData() {
+            hasher.combine(props)
+        }
+    }
+
+    static func == (lhs: EventDataObject, rhs: EventDataObject) -> Bool {
+        return lhs.block == rhs.block &&
+               lhs.ol == rhs.ol &&
+               lhs.ts == rhs.ts &&
+               lhs.type == rhs.type &&
+               lhs.propsAsJSONData() == rhs.propsAsJSONData()
+    }
+
+    // Convert props dictionary to JSON data for accurate comparison
+    private func propsAsJSONData() -> Data? {
+        guard let props = props else { return nil }
+        return try? JSONSerialization.data(withJSONObject: props, options: .sortedKeys)
+    }
+
 }
