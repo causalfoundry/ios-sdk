@@ -7,14 +7,27 @@
 
 import Foundation
 
-enum EComEventType: String {
-    // E Commerce
-    case item
-    case delivery
-    case checkout
-    case cart
-    case cancelCheckout = "cancel_checkout"
-    case itemReport = "item_report"
-    case itemVerification = "item_verification"
-    case itemRequest = "item_request"
+public enum EComEventType: String, CaseIterable, Codable {
+    case Item
+    case Delivery
+    case Checkout
+    case Cart
+    case CancelCheckout
+    case ItemReport
+    case ItemVerification
+    case ItemRequest
+    
+    public var rawValue: String {
+        switch self {
+        case .Item: return "item"
+        case .Delivery: return "delivery"
+        case .Checkout: return "checkout"
+        case .Cart: return "cart"
+        case .CancelCheckout: return "cancel_checkout"
+        case .ItemReport: return "item_report"
+        case .ItemVerification: return "item_verification"
+        case .ItemRequest: return "item_request"
+        }
+    }
+    
 }
