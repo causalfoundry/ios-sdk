@@ -17,7 +17,7 @@ public struct DeliveryObject: Codable {
     var dispatchCoordinates: CoordinatesObject?
     var meta: Encodable?
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case deliveryId = "id"
         case orderId = "order_id"
         case action
@@ -28,12 +28,12 @@ public struct DeliveryObject: Codable {
         case meta
     }
 
-    public init(deliveryId: String, orderId: String, action: String, isUrgent: Bool = false, estDeliveryTsValue: String? = "", deliveryCoordinates: CoordinatesObject?, dispatchCoordinates: CoordinatesObject?, meta: Encodable? = nil) {
+    public init(deliveryId: String, orderId: String, action: DeliveryAction, isUrgent: Bool = false, deliveryTs: Int64 = 0, deliveryCoordinates: CoordinatesObject? = nil, dispatchCoordinates: CoordinatesObject? = nil, meta: Encodable? = nil) {
         self.deliveryId = deliveryId
         self.orderId = orderId
-        self.action = action
+        self.action = action.rawValue
         self.isUrgent = isUrgent
-        self.estDeliveryTsValue = estDeliveryTsValue
+        self.estDeliveryTsValue = ECommerceConstants.getDateTime(milliSeconds: deliveryTs)
         self.deliveryCoordinates = deliveryCoordinates
         self.dispatchCoordinates = dispatchCoordinates
         self.meta = meta

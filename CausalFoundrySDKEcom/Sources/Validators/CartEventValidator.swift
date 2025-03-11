@@ -31,7 +31,7 @@ public class CartEventValidator {
         }
         
         guard eventObject.currency == eventObject.item.currency else {
-            ExceptionManager.throwCurrencyNotSameException(eventType: EComEventType.Cart.rawValue, valueName: "cartPrice")
+            ExceptionManager.throwCurrencyNotSameException(eventType: EComEventType.Cart.rawValue, valueName: "currency")
             return nil
         }
         
