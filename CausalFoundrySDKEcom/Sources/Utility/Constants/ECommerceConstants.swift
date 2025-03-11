@@ -22,7 +22,7 @@ public enum ECommerceConstants {
 
     static func isItemValueObjectValid(itemValue: ItemModel, eventType: EComEventType) -> Bool {
         let eventName = eventType.rawValue
-        if itemValue.id == "" {
+        if itemValue.id.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType:eventName, elementName: "item_id")
             return false
         }
@@ -34,16 +34,8 @@ public enum ECommerceConstants {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_price")
             return false
         }
-        if itemValue.currency == "" {
-            ExceptionManager.throwIsRequiredException(eventType:eventName , elementName: "item_currency")
-            return false
-        }
         if !CoreConstants.shared.enumContains(CurrencyCode.self, name:itemValue.currency) {
             ExceptionManager.throwEnumException(eventType: eventName, className:"CurrencyCode")
-            return false
-        }
-        if itemValue.type == "" {
-            ExceptionManager.throwIsRequiredException(eventType: eventName, elementName:"item_type")
             return false
         }
         if !CoreConstants.shared.enumContains(ItemType.self, name:itemValue.type) {

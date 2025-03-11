@@ -29,7 +29,7 @@ public class CfLogItemReportEvent {
     
     @discardableResult
     public func setItem(itemTypeModel: ItemTypeModel) -> CfLogItemReportEvent {
-        if(!ECommerceConstants.isItemTypeObjectValid(itemValue: itemTypeModel, eventType: .itemReport)){
+        if(!ECommerceConstants.isItemTypeObjectValid(itemValue: itemTypeModel, eventType: .ItemReport)){
             return self
         }
         self.itemObject = itemTypeModel
@@ -47,7 +47,7 @@ public class CfLogItemReportEvent {
         if let itemData = itemJsonString.data(using: .utf8),
            let itemTypeModel = try? JSONDecoder.new.decode(ItemTypeModel.self, from: itemData)
         {
-            if(!ECommerceConstants.isItemTypeObjectValid(itemValue: itemTypeModel, eventType: .itemReport)){
+            if(!ECommerceConstants.isItemTypeObjectValid(itemValue: itemTypeModel, eventType: .ItemReport)){
                 return self
             }
             self.itemObject = itemTypeModel
@@ -65,7 +65,7 @@ public class CfLogItemReportEvent {
     @discardableResult
     public func setStoreObject(storeObject: StoreObject) -> CfLogItemReportEvent {
         if(storeObject.id.isEmpty){
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemReport.rawValue, elementName: "store_object.id")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.ItemReport.rawValue, elementName: "store_object.id")
             return self
         }
         self.storeObject = storeObject
@@ -90,10 +90,10 @@ public class CfLogItemReportEvent {
     @discardableResult
     public func setReportObject(reportObject: ReportObject) -> CfLogItemReportEvent {
         if(reportObject.id.isEmpty){
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemReport.rawValue, elementName: "report_object.id")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.ItemReport.rawValue, elementName: "report_object.id")
             return self
         }else if(reportObject.shortDesc.isEmpty){
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemReport.rawValue, elementName: "report_object.short_desc")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.ItemReport.rawValue, elementName: "report_object.short_desc")
             return self
         }
         self.reportObject = reportObject
@@ -141,13 +141,13 @@ public class CfLogItemReportEvent {
     public func build() {
         
         if(itemObject == nil){
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemReport.rawValue, elementName: "item_object")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.ItemReport.rawValue, elementName: "item_object")
             return
         }else if(storeObject == nil){
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemReport.rawValue, elementName: "store_object")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.ItemReport.rawValue, elementName: "store_object")
             return
         }else if(reportObject == nil){
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemReport.rawValue, elementName: "report_object")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.ItemReport.rawValue, elementName: "report_object")
             return
         }
 
@@ -155,7 +155,7 @@ public class CfLogItemReportEvent {
 
         CFSetup().track(
             contentBlockName: ECommerceConstants.contentBlockName,
-            eventType: EComEventType.itemReport.rawValue,
+            eventType: EComEventType.ItemReport.rawValue,
             logObject: itemReportObject,
             updateImmediately: updateImmediately
         )

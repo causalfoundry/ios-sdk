@@ -86,20 +86,20 @@ public class CfLogItemRequestEvent {
     public func build() {
         
         if(itemRequestId.isEmpty){
-            ExceptionManager.throwIsRequiredException( eventType: EComEventType.itemRequest.rawValue, elementName: "item_request_id")
+            ExceptionManager.throwIsRequiredException( eventType: EComEventType.ItemRequest.rawValue, elementName: "item_request_id")
             return
         }else if(itemName.isEmpty){
-            ExceptionManager.throwIsRequiredException( eventType: EComEventType.itemRequest.rawValue, elementName: "item_name")
+            ExceptionManager.throwIsRequiredException( eventType: EComEventType.ItemRequest.rawValue, elementName: "item_name")
             return
         }else if(manufacturer.isEmpty){
-            ExceptionManager.throwIsRequiredException( eventType: EComEventType.itemRequest.rawValue, elementName: "item_manufacturer")
+            ExceptionManager.throwIsRequiredException( eventType: EComEventType.ItemRequest.rawValue, elementName: "item_manufacturer")
             return
         }
 
         let itemRequestObject = ItemRequestObject(itemRequestId: itemRequestId, itemName: itemName, manufacturer: manufacturer,meta: meta as? Encodable)
         CFSetup().track(
             contentBlockName: ECommerceConstants.contentBlockName,
-            eventType: EComEventType.itemRequest.rawValue,
+            eventType: EComEventType.ItemRequest.rawValue,
             logObject: itemRequestObject,
             updateImmediately: updateImmediately
         )

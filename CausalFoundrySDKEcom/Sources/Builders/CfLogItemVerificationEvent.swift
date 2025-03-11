@@ -37,7 +37,7 @@ public class CfLogItemVerificationEvent {
         if CoreConstants.shared.enumContains(ScanChannel.self, name: scanChannel) {
             self.scanChannel = scanChannel
         } else {
-            ExceptionManager.throwEnumException(eventType: EComEventType.itemVerification.rawValue, className: String(describing: ScanChannel.self))
+            ExceptionManager.throwEnumException(eventType: EComEventType.ItemVerification.rawValue, className: String(describing: ScanChannel.self))
         }
         return self
     }
@@ -58,7 +58,7 @@ public class CfLogItemVerificationEvent {
             self.scanType = scanType
         } else {
             ExceptionManager.throwEnumException(
-                eventType: EComEventType.itemVerification.rawValue, className: String(describing: scanType.self)
+                eventType: EComEventType.ItemVerification.rawValue, className: String(describing: scanType.self)
             )
         }
         return self
@@ -84,10 +84,10 @@ public class CfLogItemVerificationEvent {
     @discardableResult
     public func setItemInfo(itemInfoObject: ItemInfoModel) -> CfLogItemVerificationEvent {
         if(itemInfoObject.id.isEmpty){
-            ExceptionManager.throwEnumException(eventType: EComEventType.itemVerification.rawValue, className: "item_info id")
+            ExceptionManager.throwEnumException(eventType: EComEventType.ItemVerification.rawValue, className: "item_info id")
             return self
         }else if (!CoreConstants.shared.enumContains(ItemType.self, name:itemInfoObject.type)) {
-            ExceptionManager.throwEnumException(eventType: EComEventType.itemVerification.rawValue, className: "item_info type")
+            ExceptionManager.throwEnumException(eventType: EComEventType.ItemVerification.rawValue, className: "item_info type")
             return self
         }
         self.itemInfoObject = itemInfoObject
@@ -144,19 +144,19 @@ public class CfLogItemVerificationEvent {
     public func build() {
         
         if(scanChannel.isEmpty){
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemVerification.rawValue,elementName: "scan_channel")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.ItemVerification.rawValue,elementName: "scan_channel")
             return
         }else if(scanType.isEmpty){
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemVerification.rawValue,elementName: "scan_type")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.ItemVerification.rawValue,elementName: "scan_type")
             return
         }else if(isSuccessful && itemInfoObject == nil){
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemVerification.rawValue,elementName: "item_info")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.ItemVerification.rawValue,elementName: "item_info")
             return
         }else if(isSuccessful && itemInfoObject != nil && itemInfoObject!.id.isEmpty){
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemVerification.rawValue,elementName: "item_info id")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.ItemVerification.rawValue,elementName: "item_info id")
             return
         }else if(isSuccessful && itemInfoObject != nil && itemInfoObject!.type.isEmpty){
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.itemVerification.rawValue,elementName: "item_info type")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.ItemVerification.rawValue,elementName: "item_info type")
             return
         }
         
@@ -176,7 +176,7 @@ public class CfLogItemVerificationEvent {
 
         CFSetup().track(
             contentBlockName: ECommerceConstants.contentBlockName,
-            eventType: EComEventType.itemVerification.rawValue,
+            eventType: EComEventType.ItemVerification.rawValue,
             logObject: itemVerificationObject,
             updateImmediately: updateImmediately
         )

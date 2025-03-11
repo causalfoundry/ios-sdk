@@ -49,7 +49,7 @@ public class CfLogCancelCheckoutEvent {
         if CoreConstants.shared.enumContains(CancelType.self, name: cancelTypeString) {
             self.type = cancelTypeString
         } else {
-            ExceptionManager.throwEnumException(eventType: EComEventType.cancelCheckout.rawValue, className: String(describing: CancelType.self))
+            ExceptionManager.throwEnumException(eventType: EComEventType.CancelCheckout.rawValue, className: String(describing: CancelType.self))
         }
         return self
     }
@@ -64,7 +64,7 @@ public class CfLogCancelCheckoutEvent {
 
     @discardableResult
     public func addItem(itemTypeModel: ItemTypeModel) -> CfLogCancelCheckoutEvent {
-        if(!ECommerceConstants.isItemTypeObjectValid(itemValue: itemTypeModel, eventType: .cancelCheckout)){
+        if(!ECommerceConstants.isItemTypeObjectValid(itemValue: itemTypeModel, eventType: .CancelCheckout)){
             return self
         }
         self.itemList.append(itemTypeModel)
@@ -100,7 +100,7 @@ public class CfLogCancelCheckoutEvent {
     @discardableResult
     public func addItemList(itemtypeList: [ItemTypeModel]) -> CfLogCancelCheckoutEvent {
         for item in itemtypeList {
-            if(!ECommerceConstants.isItemTypeObjectValid(itemValue: item, eventType: .cancelCheckout)){
+            if(!ECommerceConstants.isItemTypeObjectValid(itemValue: item, eventType: .CancelCheckout)){
                 return self
             }
         }
@@ -172,17 +172,17 @@ public class CfLogCancelCheckoutEvent {
     public func build() {
         
         if checkoutId.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cancelCheckout.rawValue, elementName: "checkout_id")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.CancelCheckout.rawValue, elementName: "checkout_id")
             return
         }else if type.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cancelCheckout.rawValue, elementName: "cancel_type")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.CancelCheckout.rawValue, elementName: "cancel_type")
             return
         }else if itemList.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.cancelCheckout.rawValue, elementName: "items_list")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.CancelCheckout.rawValue, elementName: "items_list")
             return
         }
         
         let cancelCheckoutObject = CancelCheckoutObject(id: checkoutId, type: type, itemsList: itemList, reason: reason, meta: meta as? Encodable)
-        CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.cancelCheckout.rawValue, logObject: cancelCheckoutObject, updateImmediately: updateImmediately)
+        CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.CancelCheckout.rawValue, logObject: cancelCheckoutObject, updateImmediately: updateImmediately)
     }
 }

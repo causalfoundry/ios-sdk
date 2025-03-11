@@ -62,7 +62,7 @@ public class CfLogDeliveryEvent {
         if CoreConstants.shared.enumContains(DeliveryAction.self, name: action) {
             self.action = action
         } else {
-            ExceptionManager.throwEnumException(eventType: EComEventType.delivery.rawValue, className: String(describing: DeliveryAction.self))
+            ExceptionManager.throwEnumException(eventType: EComEventType.Delivery.rawValue, className: String(describing: DeliveryAction.self))
         }
         return self
     }
@@ -95,7 +95,7 @@ public class CfLogDeliveryEvent {
             self.estDeliveryTsValue = deliveryTs
         } else {
             ExceptionManager.throwRuntimeException(
-                eventType: EComEventType.delivery.rawValue,
+                eventType: EComEventType.Delivery.rawValue,
                 message: "Unable to convert \(deliveryTsString) to Int64"
             )
         }
@@ -180,24 +180,24 @@ public class CfLogDeliveryEvent {
     public func build() {
         
         if orderId.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.rawValue, elementName: "order_id")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.Delivery.rawValue, elementName: "order_id")
             return
         }else if deliveryId.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.rawValue, elementName: "delivery_id")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.Delivery.rawValue, elementName: "delivery_id")
             return
         }else if action.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.rawValue, elementName: "action")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.Delivery.rawValue, elementName: "action")
             return
         }else if (estDeliveryTsValue < 1) {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.rawValue, elementName: "estDeliveryTsValue")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.Delivery.rawValue, elementName: "estDeliveryTsValue")
             return
         }else if (deliveryCoordinatesObject != nil && (deliveryCoordinatesObject?.lat == 0.0 ||
                                                        deliveryCoordinatesObject?.lon == 0.0)) {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.rawValue, elementName: "Invalid Delivery Coordinates provided")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.Delivery.rawValue, elementName: "Invalid Delivery Coordinates provided")
             return
         }else if (dispatchCoordinatesObject != nil && (dispatchCoordinatesObject?.lat == 0.0 ||
                                                        dispatchCoordinatesObject?.lon == 0.0)) {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.delivery.rawValue, elementName: "Invalid Dispatch Coordinates provided")
+            ExceptionManager.throwIsRequiredException(eventType: EComEventType.Delivery.rawValue, elementName: "Invalid Dispatch Coordinates provided")
             return
         }
         let deliverObject = DeliveryObject(
@@ -206,7 +206,7 @@ public class CfLogDeliveryEvent {
             deliveryCoordinates: deliveryCoordinatesObject,
             dispatchCoordinates: dispatchCoordinatesObject,
             meta: meta as? Encodable)
-        CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.delivery.rawValue, logObject: deliverObject, updateImmediately: updateImmediately)
+        CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.Delivery.rawValue, logObject: deliverObject, updateImmediately: updateImmediately)
         
     }
 }

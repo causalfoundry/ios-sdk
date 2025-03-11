@@ -46,14 +46,14 @@ public class CfItemImpressionListener {
     public func build() {
         for itemImpressionObject in currentDataProviderValue{
             
-            if(!ECommerceConstants.isItemValueObjectValid(itemValue: itemImpressionObject.itemProperties, eventType: EComEventType.item)){
+            if(!ECommerceConstants.isItemValueObjectValid(itemValue: itemImpressionObject.itemProperties, eventType: EComEventType.Item)){
                 return
             }
             
-            let itemViewObject = ViewItemObject(action: EComItemAction.Impression.rawValue , item: itemImpressionObject.itemProperties,
+            let itemViewObject = ViewItemObject(action: EComItemAction.Impression , item: itemImpressionObject.itemProperties,
                                                 searchId : searchIdValue)
             
-            CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.item.rawValue, logObject: itemViewObject, updateImmediately: false)
+            CFSetup().track(contentBlockName: ECommerceConstants.contentBlockName, eventType: EComEventType.Item.rawValue, logObject: itemViewObject, updateImmediately: false)
             
             if(itemImpressionObject.catalogProperties != nil){
                 CfEComCatalog.callCatalogAPI(itemId: itemImpressionObject.itemProperties.id, itemType: itemImpressionObject.itemProperties.type, catalogModel: itemImpressionObject.catalogProperties as Any)

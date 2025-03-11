@@ -49,34 +49,15 @@ internal class CFEComSetupInterfaceImpl: CFEComSetupInterface {
     }
     
     private func validateCoreCatalogEvent(catalogType: EComCatalogType, catalogObject: Any) {
-        switch catalogType {
-        case .Drug:
-            switch catalogObject {
-            case let userCatalogModel as UserCatalogModel:
-                CfCoreCatalog.updateUserCatalogData(userCatalogModel: userCatalogModel)
-            default:
-                ExceptionManager.throwInvalidException(
-                    eventType: "User Catalog", paramName: "UserCatalogModel", className: String(describing: UserCatalogModel.self)
-                )
-            }
-        case .Grocery:
-            <#code#>
-        case .Blood:
-            <#code#>
-        case .Oxygen:
-            <#code#>
-        case .MedicalEquipment:
-            <#code#>
-        case .Facility:
-            <#code#>
-        }
+       
     }
     
     private func validateEComEvent<T: Codable>(eventType: EComEventType, logObject: T?) -> T? {
         switch eventType {
         case .Item:
-            //            return AppEventValidator.validateAppObject(logObject: logObject) as? T
-            return nil
+            return ItemEventValidator.validateEvent(logObject: logObject) as? T
+        case .Cart:
+            return CartEventValidator.validateEvent(logObject: logObject) as? T
         default:
             print("Unknown event or object type")
             return logObject
