@@ -20,8 +20,8 @@ public enum ContentBlock: String, EnumComposable {
     public var rawValue: String {
         switch self {
         case .Core: return "core"
-        case .ECommerce: return "e_commerce"
-        case .ELearning: return "e_learning"
+        case .ECommerce: return "e-commerce"
+        case .ELearning: return "e-learning"
         case .Payment: return "payment"
         case .Social: return "social"
         case .Loyalty: return "loyalty"

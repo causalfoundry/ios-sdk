@@ -5,6 +5,7 @@
 //  Created by khushbu on 27/10/23.
 //
 
+import CausalFoundrySDKCore
 import Foundation
 
 public struct ItemModel: Codable {
@@ -33,13 +34,13 @@ public struct ItemModel: Codable {
         case subscription
         case meta
     }
-    public init(id: String, type: String, quantity: Int, price: Float, currency: String,  stockStatus: String? = "", promoId: String? = "", discount: Float? = 0, facilityId: String? = "", subscription: SubscriptionObject? = nil, meta: Encodable? = nil) {
+    public init(id: String, type: ItemType, quantity: Int, price: Float, currency: CurrencyCode,  stockStatus: ItemStockStatus? = ItemStockStatus.None, promoId: String? = "", discount: Float? = 0, facilityId: String? = "", subscription: SubscriptionObject? = nil, meta: Encodable? = nil) {
         self.id = id
-        self.type = type
+        self.type = type.rawValue
         self.quantity = quantity
         self.price = price
-        self.currency = currency
-        self.stockStatus = stockStatus
+        self.currency = currency.rawValue
+        self.stockStatus = stockStatus?.rawValue
         self.promoId = promoId
         self.discount = discount
         self.facilityId = facilityId

@@ -1,7 +1,7 @@
 import Foundation
 
 public struct ItemInfoModel: Codable {
-    var id: String
+    var itemId: String
     var type: String
     var batchId: String? = ""
     var surveyId: String? = ""
@@ -11,8 +11,8 @@ public struct ItemInfoModel: Codable {
     var expiryDate: Int64? = 0
     var meta: Encodable?
 
-    enum CodingKeys: String, CodingKey {
-        case id
+    private enum CodingKeys: String, CodingKey {
+        case itemId = "id"
         case type
         case batchId = "batch_id"
         case surveyId = "survey_id"
@@ -24,8 +24,8 @@ public struct ItemInfoModel: Codable {
     }
 
     public init(
-        id: String,
-        type: String,
+        itemId: String,
+        type: ItemType,
         batchId: String? = "",
         surveyId: String? = "",
         rewardId: String? = "",
@@ -34,8 +34,8 @@ public struct ItemInfoModel: Codable {
         expiryDate: Int64? = 0,
         meta: Encodable? = nil
     ) {
-        self.id = id
-        self.type = type
+        self.itemId = itemId
+        self.type = type.rawValue
         self.batchId = batchId
         self.surveyId = surveyId
         self.rewardId = rewardId
@@ -48,7 +48,7 @@ public struct ItemInfoModel: Codable {
     // Encoding method
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
+        try container.encode(itemId, forKey: .itemId)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(batchId, forKey: .batchId)
         try container.encodeIfPresent(surveyId, forKey: .surveyId)
@@ -64,7 +64,7 @@ public struct ItemInfoModel: Codable {
     // Decoding method
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
+        itemId = try container.decode(String.self, forKey: .itemId)
         type = try container.decode(String.self, forKey: .type)
         batchId = try container.decodeIfPresent(String.self, forKey: .batchId)
         surveyId = try container.decodeIfPresent(String.self, forKey: .surveyId)

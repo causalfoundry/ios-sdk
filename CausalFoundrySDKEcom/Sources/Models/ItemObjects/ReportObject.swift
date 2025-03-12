@@ -29,7 +29,7 @@ public struct ReportObject : Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(shortDesc, forKey: .shortDesc)
-        try container.encode(remarks, forKey: .remarks)
+        try container.encodeIfPresent(remarks, forKey: .remarks)
     }
 
     // Custom decoding method
@@ -37,7 +37,7 @@ public struct ReportObject : Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         shortDesc = try container.decode(String.self, forKey: .shortDesc)
-        remarks = try container.decode(String.self, forKey: .remarks)
+        remarks = try container.decodeIfPresent(String.self, forKey: .remarks)
     }
     
 }

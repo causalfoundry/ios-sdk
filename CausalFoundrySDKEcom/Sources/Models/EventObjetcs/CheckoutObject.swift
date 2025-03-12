@@ -5,6 +5,7 @@
 //  Created by moizhassankh on 05/12/23.
 //
 
+import CausalFoundrySDKCore
 import Foundation
 
 public struct CheckoutObject: Codable {
@@ -17,7 +18,7 @@ public struct CheckoutObject: Codable {
     var itemList: [ItemModel]
     var meta: Encodable?
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case orderId = "id"
         case cartId  = "cart_id"
         case isSuccessful = "is_successful"
@@ -28,13 +29,13 @@ public struct CheckoutObject: Codable {
         case meta
     }
 
-    public init(orderId: String, cartId: String, isSuccessful: Bool, cartPrice: Float, currency: String, shopMode: String, itemList: [ItemModel], meta: Encodable? = nil) {
+    public init(orderId: String, cartId: String, isSuccessful: Bool, cartPrice: Float, currency: CurrencyCode, shopMode: ShopMode, itemList: [ItemModel], meta: Encodable? = nil) {
         self.orderId = orderId
         self.cartId = cartId
         self.isSuccessful = isSuccessful
         self.cartPrice = cartPrice
-        self.currency = currency
-        self.shopMode = shopMode
+        self.currency = currency.rawValue
+        self.shopMode = shopMode.rawValue
         self.itemList = itemList
         self.meta = meta
     }
