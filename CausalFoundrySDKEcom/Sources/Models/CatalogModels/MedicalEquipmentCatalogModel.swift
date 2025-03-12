@@ -8,6 +8,7 @@
 import Foundation
 
 public struct MedicalEquipmentCatalogModel: Codable {
+    var itemId: String
     var name: String
     var description: String?
     var marketId: String?
@@ -20,6 +21,7 @@ public struct MedicalEquipmentCatalogModel: Codable {
     var category: String?
 
     enum CodingKeys: String, CodingKey {
+        case itemId = "id"
         case name
         case description
         case marketId = "market_id"
@@ -32,7 +34,8 @@ public struct MedicalEquipmentCatalogModel: Codable {
         case category
     }
 
-    public init(name: String, description: String? = "", marketId: String? = "", supplierId: String? = "", supplierName: String? = "", producer: String? = "", packaging: String? = "", packagingSize: Float? = 0, packagingUnits: String? = "", category: String? = "") {
+    public init(itemId: String, name: String, description: String? = "", marketId: String? = "", supplierId: String? = "", supplierName: String? = "", producer: String? = "", packaging: String? = "", packagingSize: Float? = 0, packagingUnits: String? = "", category: String? = "") {
+        self.itemId = itemId
         self.name = name
         self.description = description
         self.marketId = marketId
@@ -47,6 +50,7 @@ public struct MedicalEquipmentCatalogModel: Codable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(itemId, forKey: .itemId)
         try container.encode(name, forKey: .name)
         try container.encodeIfPresent(description, forKey: .description)
         try container.encodeIfPresent(marketId, forKey: .marketId)
@@ -62,6 +66,7 @@ public struct MedicalEquipmentCatalogModel: Codable {
     // Custom decoding
    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+       itemId = try container.decode(String.self, forKey: .itemId)
         name = try container.decode(String.self, forKey: .name)
         description = try container.decodeIfPresent(String.self, forKey: .description)
         marketId = try container.decodeIfPresent(String.self, forKey: .marketId)
@@ -74,3 +79,4 @@ public struct MedicalEquipmentCatalogModel: Codable {
         category = try container.decodeIfPresent(String.self, forKey: .category)
     }
 }
+

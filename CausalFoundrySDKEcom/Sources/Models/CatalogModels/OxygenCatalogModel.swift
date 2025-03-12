@@ -8,6 +8,7 @@
 import Foundation
 
 public struct OxygenCatalogModel: Codable {
+    var itemId: String
     var marketId: String?
     var packaging: String?
     var packagingSize: Float?
@@ -16,6 +17,7 @@ public struct OxygenCatalogModel: Codable {
     var supplierName: String?
 
     enum CodingKeys: String, CodingKey {
+        case itemId = "id"
         case marketId = "market_id"
         case packaging
         case packagingSize = "packaging_size"
@@ -24,8 +26,8 @@ public struct OxygenCatalogModel: Codable {
         case supplierName = "supplier_name"
     }
 
-    public init(marketId: String? = "", packaging: String? = "", packagingSize: Float? = 0, packagingUnits: String? = "", supplierId: String? = "", supplierName: String? = "") {
-        self.marketId = marketId
+    public init(itemId: String, marketId: String? = "", packaging: String? = "", packagingSize: Float? = 0, packagingUnits: String? = "", supplierId: String? = "", supplierName: String? = "") {
+        self.itemId = itemId
         self.packaging = packaging
         self.packagingSize = packagingSize
         self.packagingUnits = packagingUnits
@@ -38,6 +40,7 @@ public struct OxygenCatalogModel: Codable {
     // Custom encoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(itemId, forKey: .itemId)
         try container.encodeIfPresent(marketId, forKey: .marketId)
         try container.encodeIfPresent(packaging, forKey: .packaging)
         try container.encodeIfPresent(packagingSize, forKey: .packagingSize)
@@ -49,6 +52,7 @@ public struct OxygenCatalogModel: Codable {
     // Custom decoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        itemId = try container.decode(String.self, forKey: .itemId)
         marketId = try container.decodeIfPresent(String.self, forKey: .marketId)
         packaging = try container.decodeIfPresent(String.self, forKey: .packaging)
         packagingSize = try container.decodeIfPresent(Float.self, forKey: .packagingSize)

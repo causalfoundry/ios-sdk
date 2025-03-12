@@ -49,7 +49,10 @@ internal class CFEComSetupInterfaceImpl: CFEComSetupInterface {
     }
     
     private func validateCoreCatalogEvent(catalogType: EComCatalogType, catalogObject: Any) {
-       
+        if(CoreConstants.shared.pauseSDK){
+            return
+        }
+        CfEComCatalog.callCatalogAPI(catalogType: catalogType, catalogModel: catalogObject)
     }
     
     private func validateEComEvent<T: Codable>(eventType: EComEventType, logObject: T?) -> T? {
@@ -70,6 +73,7 @@ internal class CFEComSetupInterfaceImpl: CFEComSetupInterface {
             return ItemRequestEventValidator.validateEvent(logObject: logObject) as? T
         case .ItemVerification:
             return ItemVerificationEventValidator.validateEvent(logObject: logObject) as? T
+        }
     }
 }
 

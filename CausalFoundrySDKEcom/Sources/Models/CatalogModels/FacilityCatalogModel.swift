@@ -8,6 +8,7 @@
 import Foundation
 
 public struct FacilityCatalogModel: Codable {
+    var facilityId: String
     var name: String
     var type: String?
     var country: String?
@@ -18,6 +19,7 @@ public struct FacilityCatalogModel: Codable {
     var isSponsored: Bool?
 
     enum CodingKeys: String, CodingKey {
+        case facilityId = "id"
         case name
         case type
         case country
@@ -28,7 +30,8 @@ public struct FacilityCatalogModel: Codable {
         case isSponsored = "is_sponsored"
     }
 
-    public init(name: String, type: String? = "", country: String? = "", regionState: String? = "", city: String? = "", isActive: Bool? = nil, hasDelivery: Bool? = nil, isSponsored: Bool? = nil) {
+    public init(facilityId: String, name: String, type: String? = "", country: String? = "", regionState: String? = "", city: String? = "", isActive: Bool? = nil, hasDelivery: Bool? = nil, isSponsored: Bool? = nil) {
+        self.facilityId = facilityId
         self.name = name
         self.type = type
         self.country = country
@@ -41,6 +44,7 @@ public struct FacilityCatalogModel: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        facilityId = try container.decode(String.self, forKey: .facilityId)
         name = try container.decode(String.self, forKey: .name)
         type = try container.decodeIfPresent(String.self, forKey: .type)
         country = try container.decodeIfPresent(String.self, forKey: .country)
@@ -53,6 +57,7 @@ public struct FacilityCatalogModel: Codable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(facilityId, forKey: .facilityId)
         try container.encode(name, forKey: .name)
         try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(country, forKey: .country)
@@ -63,3 +68,4 @@ public struct FacilityCatalogModel: Codable {
         try container.encodeIfPresent(isSponsored, forKey: .isSponsored)
     }
 }
+
