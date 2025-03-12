@@ -13,7 +13,7 @@ public struct ItemRequestObject: Codable {
     let manufacturer: String
     let meta: Encodable?
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case itemRequestId = "id"
         case itemName = "item_name"
         case manufacturer

@@ -22,9 +22,9 @@ public struct ItemVerificationObject: Codable {
         case meta
     }
 
-    public init(scanChannel: String, scanType: String, isSuccessful: Bool, itemInfo: ItemInfoModel?, meta: Encodable? = nil) {
-        self.scanChannel = scanChannel
-        self.scanType = scanType
+    public init(scanChannel: ScanChannel, scanType: ScanType, isSuccessful: Bool, itemInfo: ItemInfoModel?, meta: Encodable? = nil) {
+        self.scanChannel = scanChannel.rawValue
+        self.scanType = scanType.rawValue
         self.isSuccessful = isSuccessful
         self.itemInfo = itemInfo
         self.meta = meta

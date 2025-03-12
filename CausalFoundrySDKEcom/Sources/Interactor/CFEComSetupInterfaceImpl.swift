@@ -64,10 +64,12 @@ internal class CFEComSetupInterfaceImpl: CFEComSetupInterface {
             return CancelCheckoutEventValidator.validateEvent(logObject: logObject) as? T
         case .Delivery:
             return DeliveryEventValidator.validateEvent(logObject: logObject) as? T
-        default:
-            print("Unknown event or object type")
-            return logObject
-        }
+        case .ItemReport:
+            return ItemReportEventValidator.validateEvent(logObject: logObject) as? T
+        case .ItemRequest:
+            return ItemRequestEventValidator.validateEvent(logObject: logObject) as? T
+        case .ItemVerification:
+            return ItemVerificationEventValidator.validateEvent(logObject: logObject) as? T
     }
 }
 

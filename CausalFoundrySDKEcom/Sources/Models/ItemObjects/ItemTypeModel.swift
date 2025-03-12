@@ -12,7 +12,7 @@ public struct ItemTypeModel: Codable {
     var type: String
     var facilityId: String
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case itemId = "id"
         case type = "type"
         case facilityId = "facility_id"
