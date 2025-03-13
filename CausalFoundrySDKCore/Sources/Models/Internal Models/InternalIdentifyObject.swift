@@ -7,13 +7,13 @@
 
 import Foundation
 
-public struct InternalIdentifyObject: Codable {
+struct InternalIdentifyObject: Codable {
     var userId: String
     var action: String
     var blocked: BlockedObject?
     var meta: Encodable?
 
-    public init(userId: String, action: String, blocked: BlockedObject? = nil, meta: Encodable? = nil) {
+    init(userId: String, action: String, blocked: BlockedObject? = nil, meta: Encodable? = nil) {
         self.userId = userId
         self.action = action
         self.blocked = blocked
@@ -49,16 +49,5 @@ public struct InternalIdentifyObject: Codable {
         if let meta_Data = meta {
             try baseContainer.encode(meta_Data, forKey: .meta)
         }
-    }
-}
-
-extension InternalIdentifyObject {
-    func toIdentifyObject() -> IdentifyObject {
-        return IdentifyObject(
-            userId: self.userId,
-            action: self.action,
-            blocked: self.blocked,
-            meta: self.meta
-        )
     }
 }

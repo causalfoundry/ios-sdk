@@ -17,14 +17,14 @@ public struct SearchObject: Codable {
 
     public init(
          query: String,
-         searchModule: String,
+         searchModule: SearchModuleType,
          resultsList: [SearchItemModel] = [],
          filter: [String: Any]? = nil,
          page: Int = 1,
          meta: Encodable? = nil)
     {
         self.query = query
-        self.searchModule = searchModule
+        self.searchModule = searchModule.rawValue
         self.resultsList = resultsList
         self.filter = filter
         self.page = page

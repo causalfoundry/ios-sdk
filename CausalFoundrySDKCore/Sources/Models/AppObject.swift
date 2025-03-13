@@ -8,12 +8,12 @@
 import Foundation
 
 public struct AppObject: Codable {
-    var action: String?
-    var startTime: Int?
+    var action: String
+    var startTime: Int
     var meta: Encodable?
 
-    public init(action: String, startTime: Int, meta: Encodable? = nil) {
-        self.action = action
+    public init(action: AppAction, startTime: Int, meta: Encodable? = nil) {
+        self.action = action.rawValue
         self.startTime = startTime
         self.meta = meta
     }

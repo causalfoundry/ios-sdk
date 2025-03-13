@@ -22,19 +22,19 @@ public class PageEventValidator {
         }()
         if let eventObject = eventObject {
             // Will throw an exception if the action provided is null or no action is provided at all.
-            if eventObject.path!.isEmpty {
+            if eventObject.path.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: CoreEventType.Page.rawValue,
                                                        paramName: "path",
                                                        className: "path")
-            } else if eventObject.title!.isEmpty {
+            } else if eventObject.title.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: CoreEventType.Page.rawValue,
                                                        paramName: "title",
                                                        className: "title")
-            } else if eventObject.duration! < 0 {
+            } else if eventObject.duration < 0 {
                 ExceptionManager.throwInvalidException(eventType: CoreEventType.Page.rawValue,
                                                        paramName: "duration",
                                                        className: "duration")
-            }  else if eventObject.renderTime! < 0 {
+            }  else if eventObject.renderTime < 0 {
                 ExceptionManager.throwInvalidException(eventType: CoreEventType.Page.rawValue,
                                                        paramName: "render_time",
                                                        className: "render_time")
@@ -43,11 +43,6 @@ public class PageEventValidator {
             }
         }
         return nil
-    }
-    
-    public static func mapStringToPageObject(objectString: String) -> PageObject? {
-        guard let data = objectString.data(using: .utf8) else { return nil }
-        return try? JSONDecoder().decode(PageObject.self, from: data)
     }
 
 }

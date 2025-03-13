@@ -20,9 +20,9 @@ public struct RateObject: Codable {
         case meta
     }
 
-    public init(rateValue: Float, type: String, subjectId: String, meta: Encodable? = nil) {
+    public init(rateValue: Float, type: RateType, subjectId: String, meta: Encodable? = nil) {
         self.rateValue = rateValue
-        self.type = type
+        self.type = type.rawValue
         self.subjectId = subjectId
         self.meta = meta
     }

@@ -48,10 +48,5 @@ public class SearchEventValidator {
         }
         return nil
     }
-    
-    public static func mapStringToSearchObject(objectString: String) -> SearchObject? {
-        guard let data = objectString.data(using: .utf8) else {return nil}
-        return try? JSONDecoder().decode(SearchObject.self, from: data)
-    }
 
 }

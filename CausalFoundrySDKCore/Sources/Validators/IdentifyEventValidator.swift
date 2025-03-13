@@ -26,14 +26,7 @@ public class IdentifyEventValidator {
                 ExceptionManager.throwInvalidException(eventType: CoreEventType.Identify.rawValue,
                                                        paramName: "userId",
                                                        className: "userId")
-            } else if eventObject.action.isEmpty {
-                ExceptionManager.throwInvalidException(eventType: CoreEventType.Identify.rawValue,
-                                                       paramName: "action",
-                                                       className: "action")
-            }else if !CoreConstants.shared.enumContains(IdentityAction.self, name: eventObject.action) {
-                ExceptionManager.throwEnumException(eventType: CoreEventType.Identify.rawValue,
-                                                    className: String(describing: IdentityAction.self))
-            }else if [IdentityAction.Blocked.rawValue, IdentityAction.Unblocked.rawValue].contains(eventObject.action),
+            } else if [IdentityAction.Blocked.rawValue, IdentityAction.Unblocked.rawValue].contains(eventObject.action),
                      eventObject.blocked?.reason.isEmpty ?? true {
                 
                 ExceptionManager.throwInvalidException(eventType: CoreEventType.Identify.rawValue,
@@ -51,11 +44,6 @@ public class IdentifyEventValidator {
             }
         }
         return nil
-    }
-    
-    public static func mapStringToInternalIdentifyObject(objectString: String) -> IdentifyObject? {
-        guard let data = objectString.data(using: .utf8) else { return nil }
-        return try? JSONDecoder().decode(InternalIdentifyObject.self, from: data).toIdentifyObject()
     }
     
 }
