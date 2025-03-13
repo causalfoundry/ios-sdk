@@ -9,26 +9,26 @@ import Foundation
 
 public struct PromoObject: Codable {
     var promoId: String
-    var promoAction: String
+    var action: String
     var promoTitle: String
-    var promoType: String
+    var type: String
     var promoItemsList: [PromoItemObject]
     var meta: Encodable?
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case promoId = "id"
-        case promoAction = "action"
+        case action = "action"
         case promoTitle = "title"
-        case promoType = "type"
+        case type = "type"
         case promoItemsList = "items"
         case meta
     }
 
-    public init(promoId: String, promoAction: String, promoTitle: String, promoType: String, promoItemsList: [PromoItemObject], meta: Encodable?) {
+    public init(promoId: String, action: PromoAction, promoTitle: String, type: PromoType, promoItemsList: [PromoItemObject], meta: Encodable? = nil) {
         self.promoId = promoId
-        self.promoAction = promoAction
+        self.action = action.rawValue
         self.promoTitle = promoTitle
-        self.promoType = promoType
+        self.type = type.rawValue
         self.promoItemsList = promoItemsList
         self.meta = meta
     }
@@ -37,9 +37,9 @@ public struct PromoObject: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(promoId, forKey: .promoId)
-        try container.encode(promoAction, forKey: .promoAction)
+        try container.encode(action, forKey: .action)
         try container.encode(promoTitle, forKey: .promoTitle)
-        try container.encode(promoType, forKey: .promoType)
+        try container.encode(type, forKey: .type)
         try container.encode(promoItemsList, forKey: .promoItemsList)
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
@@ -50,9 +50,9 @@ public struct PromoObject: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         promoId = try container.decode(String.self, forKey: .promoId)
-        promoAction = try container.decode(String.self, forKey: .promoAction)
+        action = try container.decode(String.self, forKey: .action)
         promoTitle = try container.decode(String.self, forKey: .promoTitle)
-        promoType = try container.decode(String.self, forKey: .promoType)
+        type = try container.decode(String.self, forKey: .type)
         promoItemsList = try container.decode([PromoItemObject].self, forKey: .promoItemsList)
         if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)

@@ -14,14 +14,14 @@ public extension MMKVHelper {
         do {
             let decoder = JSONDecoder.new
             if subject == .survey {
-                var catalogTableData = try decoder.decode([InternalSurveyModel].self, from: oldData)
-                let catalogNewData = try decoder.decode([InternalSurveyModel].self, from: newData)
+                var catalogTableData = try decoder.decode([SurveyCatalogModel].self, from: oldData)
+                let catalogNewData = try decoder.decode([SurveyCatalogModel].self, from: newData)
                 catalogTableData.removeAll(where: { $0.id == catalogNewData.first?.id })
                 catalogTableData.append(catalogNewData.first!)
                 newUpdatedData = catalogTableData.toData()
             } else if subject == .reward {
-                var catalogTableData = try decoder.decode([InternalRewardModel].self, from: oldData)
-                let catalogNewData = try decoder.decode([InternalRewardModel].self, from: newData)
+                var catalogTableData = try decoder.decode([RewardCatalogModel].self, from: oldData)
+                let catalogNewData = try decoder.decode([RewardCatalogModel].self, from: newData)
                 catalogTableData.removeAll(where: { $0.id == catalogNewData.first?.id })
                 catalogTableData.append(catalogNewData.first!)
                 newUpdatedData = catalogTableData.toData()

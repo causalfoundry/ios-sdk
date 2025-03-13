@@ -45,15 +45,9 @@ internal class CFEComSetupInterfaceImpl: CFEComSetupInterface {
         if CoreConstants.shared.pauseSDK{
             return
         }
-        validateCoreCatalogEvent(catalogType: catalogType, catalogObject: catalogModel)
+        CfEComCatalog.callCatalogAPI(catalogType: catalogType, catalogModel: catalogModel)
     }
     
-    private func validateCoreCatalogEvent(catalogType: EComCatalogType, catalogObject: Any) {
-        if(CoreConstants.shared.pauseSDK){
-            return
-        }
-        CfEComCatalog.callCatalogAPI(catalogType: catalogType, catalogModel: catalogObject)
-    }
     
     private func validateEComEvent<T: Codable>(eventType: EComEventType, logObject: T?) -> T? {
         switch eventType {

@@ -13,18 +13,18 @@ public struct SurveyObject: Codable {
     var rewardId: String?
     var type: String
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case id
         case isCompleted = "is_completed"
         case rewardId = "reward_id"
         case type
     }
 
-    public init(id: String, isCompleted: Bool = false, rewardId: String, type: String) {
+    public init(id: String, isCompleted: Bool = false, rewardId: String, type: SurveyType) {
         self.id = id
         self.isCompleted = isCompleted
         self.rewardId = rewardId
-        self.type = type
+        self.type = type.rawValue
     }
 
     public init(from decoder: Decoder) throws {

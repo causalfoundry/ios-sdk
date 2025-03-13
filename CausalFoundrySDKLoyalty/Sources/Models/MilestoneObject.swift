@@ -13,9 +13,9 @@ public struct MilestoneObject: Codable {
     let meta: Encodable?
 
     // Custom initializer
-    public init(id: String, action: String, meta: Encodable? = nil) {
+    public init(id: String, action: MilestoneAction, meta: Encodable? = nil) {
         self.id = id
-        self.action = action
+        self.action = action.rawValue
         self.meta = meta
     }
 

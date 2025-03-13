@@ -48,11 +48,9 @@ class CfEComCatalog {
                 CFSetup().updateEcommerceCatalogItem(subject: .facility, catalogObject: [facilityInternalCatalog].toData())
                 propertiesDecoded = true
             }
-        default:
-            break
         }
         if !propertiesDecoded {
-            ExceptionManager.throwIllegalStateException(eventType: "item catalog", message: "Please use correct catalog properties with provided item type", className: "ItemImpressionListener")
+            ExceptionManager.throwIllegalStateException(eventType: "item catalog", message: "Please use correct catalog properties with provided item type", className: "CfEComCatalog")
         }
     }
 }

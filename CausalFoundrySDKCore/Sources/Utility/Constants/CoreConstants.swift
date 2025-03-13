@@ -115,4 +115,21 @@ extension CoreConstants {
         }
         return ""
     }
+    
+    private static func getDateTime(milliSeconds: Int64) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        let date = Date(timeIntervalSince1970: TimeInterval(milliSeconds) / 1000)
+        return dateFormatter.string(from: date)
+    }
+
+    public static func getTimeConvertedToString(_ eventTime: Int64) -> String {
+        if eventTime != 0 {
+            return getDateTime(milliSeconds: eventTime)
+        } else {
+            return ""
+        }
+    }
+
 }

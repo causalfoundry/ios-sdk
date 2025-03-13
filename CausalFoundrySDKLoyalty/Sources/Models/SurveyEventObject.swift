@@ -10,20 +10,20 @@ import Foundation
 public struct SurveyEventObject: Codable {
     var action: String
     var survey: SurveyObject
-    var response: [SurveyResponseItem]
+    var responseList: [SurveyResponseItem]
     var meta: Encodable?
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case action
         case survey
-        case response
+        case responseList = "response"
         case meta
     }
 
-    public init(action: String, survey: SurveyObject, response: [SurveyResponseItem] = [], meta: Encodable? = nil) {
-        self.action = action
+    public init(action: SurveyAction, survey: SurveyObject, responseList: [SurveyResponseItem] = [], meta: Encodable? = nil) {
+        self.action = action.rawValue
         self.survey = survey
-        self.response = response
+        self.responseList = responseList
         self.meta = meta
     }
 
@@ -31,7 +31,7 @@ public struct SurveyEventObject: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         action = try container.decode(String.self, forKey: .action)
         survey = try container.decode(SurveyObject.self, forKey: .survey)
-        response = try container.decode([SurveyResponseItem].self, forKey: .response)
+        responseList = try container.decode([SurveyResponseItem].self, forKey: .responseList)
 
         if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
@@ -44,7 +44,7 @@ public struct SurveyEventObject: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(action, forKey: .action)
         try container.encode(survey, forKey: .survey)
-        try container.encode(response, forKey: .response)
+        try container.encode(responseList, forKey: .responseList)
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
