@@ -5,18 +5,19 @@
 //  Created by moizhassankh on 07/12/23.
 //
 
+import CausalFoundrySDKCore
 import Foundation
 
 public struct PaymentMethodObject: Codable {
-    var paymentId: String = ""
-    var orderId: String = ""
-    var type: String = ""
-    var action: String = ""
-    var paymentAmount: Float?
-    var currency: String = ""
-    var meta: Encodable?
+    var paymentId: String
+    var orderId: String
+    var type: String
+    var action: String
+    var paymentAmount: Float
+    var currency: String
+    var meta: Encodable? = nil
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case paymentId = "id"
         case orderId = "order_id"
         case action
@@ -26,13 +27,13 @@ public struct PaymentMethodObject: Codable {
         case meta
     }
 
-    init(paymentId: String, orderId: String, type: String, action: String, paymentAmount: Float, currency: String, meta: Encodable? = nil) {
+    public init(paymentId: String, orderId: String, method: PaymentMethod, action: PaymentAction, paymentAmount: Float, currency: CurrencyCode, meta: Encodable? = nil) {
         self.paymentId = paymentId
         self.orderId = orderId
-        self.action = action
-        self.type = type
+        self.action = action.rawValue
+        self.type = method.rawValue
         self.paymentAmount = paymentAmount
-        self.currency = currency
+        self.currency = currency.rawValue
         self.meta = meta
     }
 
@@ -46,7 +47,7 @@ public struct PaymentMethodObject: Codable {
         try container.encode(paymentAmount, forKey: .paymentAmount)
         try container.encode(currency, forKey: .currency)
         if let metaData = meta {
-            try container.encode(metaData, forKey: .meta)
+            try container.encodeIfPresent(metaData, forKey: .meta)
         }
     }
 
