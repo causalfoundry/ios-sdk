@@ -8,9 +8,7 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public enum ECommerceConstants {
-    // SDK API endpoints
-    static let contentBlockName = "e-commerce"
+enum ECommerceConstants {
 
     static func getDateTime(milliSeconds: Int64) -> String {
         let dateFormatter = DateFormatter()

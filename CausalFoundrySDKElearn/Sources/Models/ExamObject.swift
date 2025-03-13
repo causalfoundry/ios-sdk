@@ -14,7 +14,7 @@ public struct ExamObject: Codable {
     var isPassed: Bool?
     var meta: Encodable?
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case id
         case action
         case duration
@@ -23,9 +23,9 @@ public struct ExamObject: Codable {
         case meta
     }
 
-    init(id: String, action: String, duration: Int? = nil, score: Float? = nil, isPassed: Bool? = nil, meta: Encodable? = nil) {
+    public init(id: String, action: ExamAction, duration: Int? = nil, score: Float? = nil, isPassed: Bool? = nil, meta: Encodable? = nil) {
         self.id = id
-        self.action = action
+        self.action = action.rawValue
         self.duration = duration
         self.score = score
         self.isPassed = isPassed

@@ -7,9 +7,17 @@
 
 import Foundation
 
-public enum ELearnEventType: String {
-    // E Learning
-    case module
-    case exam
-    case question
+public enum ELearnEventType: String, CaseIterable, Codable {
+    case Module
+    case Exam
+    case Question
+    
+    public var rawValue: String {
+        switch self {
+        case .Module: return "module"
+        case .Exam: return "exam"
+        case .Question: return "question"
+        }
+    }
+    
 }
