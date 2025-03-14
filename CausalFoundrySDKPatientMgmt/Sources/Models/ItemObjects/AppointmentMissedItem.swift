@@ -20,9 +20,9 @@ public struct AppointmentMissedItem: Codable {
         case response = "response"
     }
 
-    public init(appointmentId: String, appointmentFollowUpType: String, followUptime: Int64, response: String) {
+    public init(appointmentId: String, appointmentFollowUpType: AppointmentFollowupType, followUptime: Int64, response: String) {
         self.appointmentId = appointmentId
-        self.appointmentFollowUpType = appointmentFollowUpType
+        self.appointmentFollowUpType = appointmentFollowUpType.rawValue
         self.followUptime = followUptime
         self.response = response
     }

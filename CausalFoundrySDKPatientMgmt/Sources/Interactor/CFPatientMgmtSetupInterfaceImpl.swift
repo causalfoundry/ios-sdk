@@ -45,28 +45,20 @@ internal class CFPatientMgmtSetupInterfaceImpl: CFPatientMgmtSetupInterface {
         if CoreConstants.shared.pauseSDK{
             return
         }
-        validatePatientMgmtCatalogEvent(patientMgmtCatalogType: patientMgmtCatalogType, catalogObject: catalogModel)
-    }
-    
-    private func validatePatientMgmtCatalogEvent(patientMgmtCatalogType: PatientMgmtCatalogSubject, catalogObject: Any) {
         switch patientMgmtCatalogType {
         case .UserHcw:
-            switch catalogObject {
+            switch catalogModel {
             case let catalogObject as HcwCatalogModel:
                 CfPatientMgmtCatalog.updateHcwCatalog(hcwCatalogModel: catalogObject)
-            case let catalogObject as String:
-                CfPatientMgmtCatalog.updateHcwCatalogString(hcwCatalogString: catalogObject)
             default:
                 ExceptionManager.throwInvalidException(
                     eventType: "Hcw Catalog", paramName: "HcwCatalogModel", className: String(describing: HcwCatalogModel.self)
                 )
             }
         case .Patient:
-            switch catalogObject {
+            switch catalogModel {
             case let catalogObject as PatientCatalogModel:
                 CfPatientMgmtCatalog.updatePatientCatalog(patientCatalogModel: catalogObject)
-            case let catalogObject as String:
-                CfPatientMgmtCatalog.updatePatientCatalogString(patientCatalogString: catalogObject)
             default:
                 ExceptionManager.throwInvalidException(
                     eventType: "Patient Catalog", paramName: "PatientCatalogModel", className: String(describing: PatientCatalogModel.self)
@@ -78,8 +70,6 @@ internal class CFPatientMgmtSetupInterfaceImpl: CFPatientMgmtSetupInterface {
         
     func validatePatientMgmtEvent<T: Codable>(eventType: PatientMgmtEventType, logObject: T?) -> T? {
         switch eventType {
-        case .ModuleSelection:
-            return ModuleSelectionEventValidator.validateModuleSelectionObject(logObject: logObject) as? T
         case .Patient:
             return PatientEventValidator.validatePatientObject(logObject: logObject) as? T
         case .Encounter:

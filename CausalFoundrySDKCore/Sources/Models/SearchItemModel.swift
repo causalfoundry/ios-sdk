@@ -8,13 +8,13 @@
 import Foundation
 
 public struct SearchItemModel: Codable {
-    var id: String?
-    var type: String?
+    var id: String
+    var type: String
     var facilityId: String?
 
-    public init(item_id: String, item_type: String, facilityId: String = "") {
-        id = item_id
-        type = item_type
+    public init(itemId: String, itemType: SearchItemType, facilityId: String = "") {
+        id = itemId
+        type = itemType.rawValue
         self.facilityId = facilityId
     }
 

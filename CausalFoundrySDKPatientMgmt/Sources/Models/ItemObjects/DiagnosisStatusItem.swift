@@ -32,12 +32,12 @@ public struct DiagnosisStatusItem: Codable {
         case treatmentStatus = "treatment_status"
     }
     
-    public init(type: String, subType: String, action: String, status: String, risk: String, diagnosisDate: Int64, isConfirmed: Bool? = nil, remarks: String? = nil, stage: String? = nil, treatmentStatus: String? = nil) {
-        self.type = type
+    public init(type: DiagnosisType, subType: String, action: HcwItemAction, status: DiagnosisStatusValueType, risk: DiagnosisStatusRiskType, diagnosisDate: Int64, isConfirmed: Bool? = nil, remarks: String? = nil, stage: String? = nil, treatmentStatus: String? = nil) {
+        self.type = type.rawValue
         self.subType = subType
-        self.action = action
-        self.status = status
-        self.risk = risk
+        self.action = action.rawValue
+        self.status = status.rawValue
+        self.risk = risk.rawValue
         self.diagnosisDate = diagnosisDate
         self.isConfirmed = isConfirmed
         self.remarks = remarks

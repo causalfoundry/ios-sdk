@@ -26,21 +26,6 @@ public class PatientEventValidator {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Patient.rawValue, paramName: "patientId", className: "patientId")
             } else if eventObject.siteId.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Patient.rawValue, paramName: "siteId", className: "siteId")
-            }else if eventObject.action.isEmpty {
-                ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Patient.rawValue, paramName: "action" , className: String(describing: HcwItemAction.self))
-            } else if !CoreConstants.shared.enumContains(HcwItemAction.self, name: eventObject.action) {
-                ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.Patient.rawValue,
-                                                    className: String(describing: HcwItemAction.self))
-            }else if eventObject.category.isEmpty {
-                ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Patient.rawValue, paramName: "category" , className: String(describing: HcwSiteCategory.self))
-            } else if !CoreConstants.shared.enumContains(HcwSiteCategory.self, name: eventObject.category) {
-                ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.Patient.rawValue,
-                                                    className: String(describing: HcwSiteCategory.self))
-            } else if eventObject.type.isEmpty {
-                ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Patient.rawValue, paramName: "type" , className: String(describing: PatientType.self))
-            } else if !CoreConstants.shared.enumContains(PatientType.self, name: eventObject.type) {
-                ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.Patient.rawValue,
-                                                    className: String(describing: PatientType.self))
             } else {
                 
                 if(PatientMgmtEventValidation.verifyDiagnosisObjectList(eventType: PatientMgmtEventType.Patient, diagnosisType: "Biometric", diagnosisList: eventObject.biometricList)){
@@ -51,10 +36,4 @@ public class PatientEventValidator {
         }
         return nil
     }
-    
-    public static func mapStringToPatientEventObject(objectString: String) -> PatientEventObject? {
-        guard let data = objectString.data(using: .utf8) else { return nil }
-        return try? JSONDecoder().decode(PatientEventObject.self, from: data)
-    }
-    
 }

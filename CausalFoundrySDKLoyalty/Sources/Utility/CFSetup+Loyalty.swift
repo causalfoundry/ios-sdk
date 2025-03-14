@@ -9,7 +9,10 @@ import CausalFoundrySDKCore
 import Foundation
 
 public extension CFSetup {
-    func updateLoyaltyCatalogItem(subject: CatalogSubject, catalogObject: Data) {
-        catalogAPIHandler.updateLoyaltyCatalogItem(subject: subject, catalogObject: catalogObject)
+    func updateLoyaltyCatalogItem(subject: CatalogSubject, catalogObject: Data?) {
+        if(catalogObject == nil){
+            return
+        }
+        catalogAPIHandler.updateLoyaltyCatalogItem(subject: subject, catalogObject: catalogObject!)
     }
 }

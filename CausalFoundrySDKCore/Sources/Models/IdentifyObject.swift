@@ -13,9 +13,9 @@ public struct IdentifyObject: Codable {
     var blocked: BlockedObject?
     var meta: Encodable?
 
-    public init(userId: String, action: String, blocked: BlockedObject? = nil, meta: Encodable? = nil) {
+    public init(userId: String, action: IdentityAction, blocked: BlockedObject? = nil, meta: Encodable? = nil) {
         self.userId = userId
-        self.action = action
+        self.action = action.rawValue
         self.blocked = blocked
         self.meta = meta
     }

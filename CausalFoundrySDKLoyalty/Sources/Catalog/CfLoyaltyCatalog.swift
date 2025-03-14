@@ -8,26 +8,29 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public enum CfLoyaltyCatalog {
-    // MARK: - Survey Catalog
-
-    public static func updateSurveyCatalog(surveyId: String, surveyCatalogModel: String) {
-        updateSurveyCatalog(surveyId: surveyId, surveyCatalogModel: try! JSONDecoder.new.decode(SurveyCatalogModel.self, from: surveyCatalogModel.data(using: .utf8)!))
+enum CfLoyaltyCatalog {
+    
+    static func callCatalogAPI(catalogType: LoyaltyCatalogType, catalogModel: Any){
+        var propertiesDecoded = false
+        switch(catalogType){
+        case .Survey:
+            if let catalog = catalogModel as? SurveyCatalogModel {
+                let surveyCatalogObject = LoyaltyConstants.verifyCatalogForSurvey(surveyCatalogModel: catalog)
+                CFSetup().updateLoyaltyCatalogItem(subject: .survey, catalogObject: [surveyCatalogObject].toData())
+                propertiesDecoded = true
+            }
+        case .Reward:
+            if let catalog = catalogModel as? RewardCatalogModel {
+                let rewardCatalogObject = LoyaltyConstants.verifyCatalogForReward(rewardCatalogModel: catalog)
+                CFSetup().updateLoyaltyCatalogItem(subject: .reward, catalogObject: [rewardCatalogObject].toData())
+                propertiesDecoded = true
+            }
+        }
+        
+        if !propertiesDecoded {
+            ExceptionManager.throwIllegalStateException(eventType: "loyalty catalog", message: "Please use correct catalog properties with provided catalog type", className: "CfLoyaltyCatalog")
+        }
+        
     }
-
-    public static func updateSurveyCatalog(surveyId: String, surveyCatalogModel: SurveyCatalogModel) {
-        let surveyCatalogObject = LoyaltyConstants.verifyCatalogForSurvey(surveyId: surveyId, surveyCatalogModel: surveyCatalogModel)
-        CFSetup().updateLoyaltyCatalogItem(subject: .survey, catalogObject: [surveyCatalogObject].toData()!)
-    }
-
-    // MARK: - Reward Catalog
-
-    public static func updateRewardCatalog(rewardId: String, rewardCatalogModel: String) {
-        updateRewardCatalog(rewardId: rewardId, rewardCatalogModel: try! JSONDecoder.new.decode(RewardCatalogModel.self, from: rewardCatalogModel.data(using: .utf8)!))
-    }
-
-    public static func updateRewardCatalog(rewardId: String, rewardCatalogModel: RewardCatalogModel) {
-        let rewardCatalogObject = LoyaltyConstants.verifyCatalogForReward(rewardId: rewardId, rewardCatalogModel: rewardCatalogModel)
-        CFSetup().updateLoyaltyCatalogItem(subject: .reward, catalogObject: [rewardCatalogObject].toData()!)
-    }
+    
 }

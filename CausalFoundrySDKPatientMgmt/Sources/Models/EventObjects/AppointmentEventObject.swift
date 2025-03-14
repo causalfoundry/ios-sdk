@@ -22,10 +22,10 @@ public struct AppointmentEventObject: Codable {
         case meta
     }
 
-    public init(patientId: String, siteId: String, action: String, appointment: AppointmentItem, meta: Encodable? = nil) {
+    public init(patientId: String, siteId: String, action: HcwItemAction, appointment: AppointmentItem, meta: Encodable? = nil) {
         self.patientId = patientId
         self.siteId = siteId
-        self.action = action
+        self.action = action.rawValue
         self.appointment = appointment
         self.meta = meta
     }

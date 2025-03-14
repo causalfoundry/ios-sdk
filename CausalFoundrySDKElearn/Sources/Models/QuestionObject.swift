@@ -9,33 +9,33 @@ import Foundation
 
 public struct QuestionObject: Codable {
     var id: String = ""
-    var exam_id: String = ""
+    var examId: String = ""
     var action: String = ""
-    var answer_id: String?
+    var answerId: String?
     var meta: Encodable?
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case id
-        case exam_id
+        case examId = "exam_id"
         case action
-        case answer_id
+        case answerId = "answer_id"
         case meta
     }
 
-    public init(id: String, exam_id: String, action: String, answer_id: String? = nil, meta: Encodable? = nil) {
+    public init(id: String, examId: String, action: QuestionAction, answerId: String? = nil, meta: Encodable? = nil) {
         self.id = id
-        self.exam_id = exam_id
-        self.action = action
-        self.answer_id = answer_id
+        self.examId = examId
+        self.action = action.rawValue
+        self.answerId = answerId
         self.meta = meta
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encode(exam_id, forKey: .exam_id)
+        try container.encode(examId, forKey: .examId)
         try container.encode(action, forKey: .action)
-        try container.encodeIfPresent(answer_id, forKey: .answer_id)
+        try container.encodeIfPresent(answerId, forKey: .answerId)
         if let metaData = meta {
             try container.encodeIfPresent(metaData, forKey: .meta)
         }
@@ -44,9 +44,9 @@ public struct QuestionObject: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        exam_id = try container.decode(String.self, forKey: .exam_id)
+        examId = try container.decode(String.self, forKey: .examId)
         action = try container.decode(String.self, forKey: .action)
-        answer_id = try container.decodeIfPresent(String.self, forKey: .answer_id)
+        answerId = try container.decodeIfPresent(String.self, forKey: .answerId)
         if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {

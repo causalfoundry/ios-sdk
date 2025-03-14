@@ -8,6 +8,7 @@
 import Foundation
 
 public struct DrugCatalogModel: Codable {
+    var drugId: String
     var name: String
     var marketId: String?
     var description: String?
@@ -20,8 +21,9 @@ public struct DrugCatalogModel: Codable {
     var drugStrength: String?
     var atcAnatomicalGroup: String?
     var otcOrEthical: String?
-
+    
     enum CodingKeys: String, CodingKey {
+        case drugId = "id"
         case name
         case marketId = "market_id"
         case description
@@ -36,7 +38,8 @@ public struct DrugCatalogModel: Codable {
         case otcOrEthical = "OTC_or_ethical"
     }
     
-    public init(name: String, marketId: String? = "", description: String? = "", supplierId: String? = "", supplierName: String? = "", producer: String? = "", packaging: String? = "", activeIngredients: [String]? = [], drugForm: String? = "", drugStrength: String? = "", atcAnatomicalGroup: String? = "", otcOrEthical: String? = "") {
+    public init(drugId: String, name: String, marketId: String? = "", description: String? = "", supplierId: String? = "", supplierName: String? = "", producer: String? = "", packaging: String? = "", activeIngredients: [String]? = [], drugForm: String? = "", drugStrength: String? = "", atcAnatomicalGroup: String? = "", otcOrEthical: String? = "") {
+        self.drugId = drugId
         self.name = name
         self.marketId = marketId
         self.description = description
@@ -53,6 +56,7 @@ public struct DrugCatalogModel: Codable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(drugId, forKey: .drugId)
         try container.encode(name, forKey: .name)
         try container.encodeIfPresent(marketId, forKey: .marketId)
         try container.encodeIfPresent(description, forKey: .description)
@@ -70,6 +74,7 @@ public struct DrugCatalogModel: Codable {
     // Custom decoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        drugId = try container.decode(String.self, forKey: .drugId)
         name = try container.decode(String.self, forKey: .name)
         marketId = try container.decodeIfPresent(String.self, forKey: .marketId)
         description = try container.decodeIfPresent(String.self, forKey: .description)

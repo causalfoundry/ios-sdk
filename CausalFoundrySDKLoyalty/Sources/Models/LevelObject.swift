@@ -7,21 +7,21 @@
 
 import Foundation
 
-struct LevelObject: Codable {
+public struct LevelObject: Codable {
     let prevLevel: Int
     let newLevel: Int
     let moduleId: String
-    let meta: Encodable?
+    var meta: Encodable? = nil
 
     // Custom init method
-    init(prevLevel: Int, newLevel: Int, moduleId: String?, meta: Encodable?) {
+    public init(prevLevel: Int, newLevel: Int, moduleId: String?, meta: Encodable? = nil) {
         self.prevLevel = prevLevel
         self.newLevel = newLevel
         self.moduleId = (moduleId != nil) ? moduleId! : ""
         self.meta = meta
     }
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case prevLevel = "prev_level"
         case newLevel = "new_level"
         case moduleId = "module_id"

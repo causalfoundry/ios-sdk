@@ -8,6 +8,7 @@
 import Foundation
 
 public struct GroceryCatalogModel: Codable {
+    var groceryId: String
     var name: String
     var category: String?
     var marketId: String?
@@ -21,6 +22,7 @@ public struct GroceryCatalogModel: Codable {
     var activeIngredients: [String]?
 
     enum CodingKeys: String, CodingKey {
+        case groceryId = "id"
         case name
         case category
         case marketId = "market_id"
@@ -34,7 +36,8 @@ public struct GroceryCatalogModel: Codable {
         case activeIngredients = "active_ingredients"
     }
 
-    public init(name: String, category: String? = "", marketId: String? = "", description: String? = "", supplierId: String? = "", supplierName: String? = "", producer: String? = "", packaging: String? = "", packagingSize: Float? = 0, packagingUnits: String? = "", activeIngredients: [String]? = []) {
+    public init(groceryId: String, name: String, category: String? = "", marketId: String? = "", description: String? = "", supplierId: String? = "", supplierName: String? = "", producer: String? = "", packaging: String? = "", packagingSize: Float? = 0, packagingUnits: String? = "", activeIngredients: [String]? = []) {
+        self.groceryId = groceryId
         self.name = name
         self.category = category
         self.marketId = marketId
@@ -50,6 +53,7 @@ public struct GroceryCatalogModel: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        groceryId = try container.decode(String.self, forKey: .groceryId)
         name = try container.decode(String.self, forKey: .name)
         category = try container.decodeIfPresent(String.self, forKey: .category)
         marketId = try container.decodeIfPresent(String.self, forKey: .marketId)
@@ -65,6 +69,7 @@ public struct GroceryCatalogModel: Codable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(groceryId, forKey: .groceryId)
         try container.encode(name, forKey: .name)
         try container.encodeIfPresent(category, forKey: .category)
         try container.encodeIfPresent(marketId, forKey: .marketId)
@@ -78,3 +83,4 @@ public struct GroceryCatalogModel: Codable {
         try container.encodeIfPresent(activeIngredients, forKey: .activeIngredients)
     }
 }
+

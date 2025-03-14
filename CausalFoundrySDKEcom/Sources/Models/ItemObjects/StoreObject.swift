@@ -13,7 +13,7 @@ public struct StoreObject: Codable {
     var lon: Double? = 0
 
     // Custom coding keys enum
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case id
         case lat
         case lon

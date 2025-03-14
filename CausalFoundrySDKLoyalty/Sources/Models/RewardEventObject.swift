@@ -15,7 +15,7 @@ public struct RewardEventObject: Codable {
     var redeem: RedeemObject?
     var meta: Encodable?
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case rewardId = "id"
         case action
         case accPoints = "acc_points"
@@ -24,9 +24,9 @@ public struct RewardEventObject: Codable {
         case meta
     }
 
-    public init(rewardId: String, action: String, accPoints: Float? = 0.0, totalPoints: Float = 0.0, redeem: RedeemObject? = nil, meta: Encodable? = nil) {
+    public init(rewardId: String, action: RewardAction, accPoints: Float? = 0.0, totalPoints: Float = 0.0, redeem: RedeemObject? = nil, meta: Encodable? = nil) {
         self.rewardId = rewardId
-        self.action = action
+        self.action = action.rawValue
         self.accPoints = accPoints
         self.totalPoints = totalPoints
         self.redeem = redeem

@@ -21,14 +21,14 @@ public class AppEventValidator {
         }()
         if let appObject = appObject {
             // Will throw an exception if the action provided is null or no action is provided at all.
-            if appObject.action!.isEmpty {
+            if appObject.action.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: CoreEventType.App.rawValue,
                                                        paramName: String(describing: AppAction.self),
                                                        className: String(describing: AppAction.self))
             } else if !CoreConstants.shared.enumContains(AppAction.self, name: appObject.action) {
                 ExceptionManager.throwEnumException(eventType: CoreEventType.App.rawValue,
                                                        className: String(describing: AppAction.self))
-            } else if appObject.startTime! < 0 {
+            } else if appObject.startTime < 0 {
                 ExceptionManager.throwInvalidException(eventType: CoreEventType.App.rawValue,
                                                        paramName: "startTime",
                                                        className: String(describing: Int.self))
@@ -37,11 +37,6 @@ public class AppEventValidator {
             }
         }
         return nil
-    }
-    
-    public static func mapStringToAppObject(objectString: String) -> AppObject? {
-        guard let data = objectString.data(using: .utf8) else { return nil }
-        return try? JSONDecoder().decode(AppObject.self, from: data)
     }
 
 }

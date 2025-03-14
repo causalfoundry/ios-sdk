@@ -15,7 +15,7 @@ public enum CoreEventType: String, EnumComposable {
     case Media
     case NudgeResponse
     case Rate
-    case Track
+    case ModuleSelection
 
     public var rawValue: String {
         switch self {
@@ -26,7 +26,7 @@ public enum CoreEventType: String, EnumComposable {
         case .Media: return "media"
         case .NudgeResponse: return "nudge_response"
         case .Rate: return "rate"
-        case .Track: return "track"
+        case .ModuleSelection: return "module_selection"
         }
     }
 }

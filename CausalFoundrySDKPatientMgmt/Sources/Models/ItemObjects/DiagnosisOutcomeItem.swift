@@ -20,8 +20,8 @@ public struct DiagnosisOutcomeItem: Codable {
         case remarks
     }
 
-    public init(type: String, subType: String? = "", value: Any? = nil, remarks: String? = nil) {
-        self.type = type
+    public init(type: DiagnosisQuestionnaireOutcomeType, subType: String? = "", value: Any? = nil, remarks: String? = nil) {
+        self.type = type.rawValue
         self.subType = subType
         self.value = value
         self.remarks = remarks

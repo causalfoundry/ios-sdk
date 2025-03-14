@@ -24,10 +24,10 @@ public struct DiagnosisQuestionnaireObject: Codable {
         case remarks
     }
 
-    public init(type: String, subType: String, category: String, questionList: [DiagnosisQuestionItem], outcomeList: [DiagnosisOutcomeItem], remarks: String? = nil) {
-        self.type = type
-        self.subType = subType
-        self.category = category
+    public init(type: DiagnosisType, subType: DiagnosisSubType, category: DiagnosisQuestionnaireCategory, questionList: [DiagnosisQuestionItem], outcomeList: [DiagnosisOutcomeItem], remarks: String? = nil) {
+        self.type = type.rawValue
+        self.subType = subType.rawValue
+        self.category = category.rawValue
         self.questionList = questionList
         self.outcomeList = outcomeList
         self.remarks = remarks

@@ -36,18 +36,18 @@ public struct PrescriptionItem: Codable {
         case remarks
     }
 
-    public init(drugId: String, name: String, dosageValue: Float = 0.0, dosageUnit: String, formulation: String, type: String, frequency: String, prescribedDays: Int = 0, dispensedDays: Int = 0, prescriptionDate: Int64? = 0, action: String, remarks: String? = nil) {
+    public init(drugId: String, name: String, dosageValue: Float = 0.0, dosageUnit: String, formulation: PrescriptionFormulationType, type: DiagnosisType, frequency: PrescriptionItemFrequency, prescribedDays: Int = 0, dispensedDays: Int = 0, prescriptionDate: Int64? = 0, action: HcwItemAction, remarks: String? = nil) {
         self.drugId = drugId
         self.name = name
         self.dosageValue = dosageValue
         self.dosageUnit = dosageUnit
-        self.formulation = formulation
-        self.type = type
-        self.frequency = frequency
+        self.formulation = formulation.rawValue
+        self.type = type.rawValue
+        self.frequency = frequency.rawValue
         self.prescribedDays = prescribedDays
         self.dispensedDays = dispensedDays
         self.prescriptionDate = prescriptionDate
-        self.action = action
+        self.action = action.rawValue
         self.remarks = remarks
     }
 

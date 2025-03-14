@@ -14,10 +14,10 @@ public struct MediaObject: Codable {
     var time: Int
     var meta: Encodable?
 
-    public init(id: String, type: String, action: String, time: Int, meta: Encodable? = nil) {
+    public init(id: String, type: MediaType, action: MediaAction, time: Int, meta: Encodable? = nil) {
         self.id = id
-        self.type = type
-        self.action = action
+        self.type = type.rawValue
+        self.action = action.rawValue
         self.time = time
         self.meta = meta
     }

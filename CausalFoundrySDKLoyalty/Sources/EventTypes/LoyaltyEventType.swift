@@ -7,11 +7,21 @@
 
 import Foundation
 
-public enum LoyaltyEventType: String {
-    // Loyalty
-    case level
-    case milestone
-    case promo
-    case survey
-    case reward
+public enum LoyaltyEventType: String, CaseIterable, Codable {
+    case Level
+    case Milestone
+    case Promo
+    case Survey
+    case Reward
+    
+    public var rawValue: String {
+        switch self {
+        case .Level: return "level"
+        case .Milestone: return "milestone"
+        case .Promo: return "promo"
+        case .Survey: return "survey"
+        case .Reward: return "reward"
+        }
+    }
+    
 }

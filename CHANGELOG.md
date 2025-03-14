@@ -4,6 +4,20 @@ Documenting the changes in the SDK subject to each release version.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## **[1.2.2]  - 14.03.2025**
+
+### **Updated**
+**BREAKING CHANGES**
+- Moved all modules events to single function approach <ModuleName>.shared.logIngest(eventType, EventProperties)
+- Moved Module selection event from `patient_mgmt` to `core`
+
+### **Removed**
+- Removed React Native Dependencies, all enums will use their respective types rather than strings
+
+
+----
+
+
 ## **[1.1.13]  - 12.11.2024**
 
 ### **Updated**
@@ -32,7 +46,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 - Updated treatmentAdherence to include type and remarks param
 - Updated DiagnosisStatusItem to replace value by status and add risk type with updated enums
 - Updated PrescriptionItem to replace existing type by formulation and type as Diagnosis type
-- Updated multiple list params to include _list in the param names
+- Updated multiple list params to include `_list` in the param names
 - Updated patient, appointment and encounter event for patient and site ids
 - Updated patient, appointment and encounter event for patient and site ids
 

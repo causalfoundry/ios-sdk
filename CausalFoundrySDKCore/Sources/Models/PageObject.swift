@@ -8,13 +8,13 @@
 import Foundation
 
 public struct PageObject: Codable {
-    var path: String?
-    var title: String?
-    var duration: Float?
-    var renderTime: Int?
+    var path: String
+    var title: String
+    var duration: Float
+    var renderTime: Int
     var meta: Encodable?
 
-    public init(path: String? = nil, title: String? = nil, duration: Float? = nil, renderTime: Int? = nil, meta: Encodable? = nil) {
+    public init(path: String, title: String, duration: Float, renderTime: Int = 0, meta: Encodable? = nil) {
         self.path = path
         self.title = title
         self.duration = duration
@@ -32,10 +32,10 @@ public struct PageObject: Codable {
 
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        path = try values.decodeIfPresent(String.self, forKey: .path)
-        title = try values.decodeIfPresent(String.self, forKey: .title)
-        duration = try values.decodeIfPresent(Float.self, forKey: .duration)
-        renderTime = try values.decodeIfPresent(Int.self, forKey: .render_time)
+        path = try values.decode(String.self, forKey: .path)
+        title = try values.decode(String.self, forKey: .title)
+        duration = try values.decode(Float.self, forKey: .duration)
+        renderTime = try values.decode(Int.self, forKey: .render_time)
 
         if let meatData = try? values.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: meatData, options: .allowFragments) as! any Encodable)
@@ -54,7 +54,7 @@ public struct PageObject: Codable {
         try baseContainer.encode(duration, forKey: .duration)
         try baseContainer.encode(renderTime, forKey: .render_time)
         if let meta_Data = meta {
-            try baseContainer.encode(meta_Data, forKey: .meta)
+            try baseContainer.encodeIfPresent(meta_Data, forKey: .meta)
         }
     }
 }

@@ -4,7 +4,7 @@
 //
 //  Created by moizhassankh on 05/12/23.
 //
-
+import CausalFoundrySDKCore
 import Foundation
 
 public struct CartObject: Codable {
@@ -15,7 +15,7 @@ public struct CartObject: Codable {
     var currency: String
     var meta: Encodable?
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case cartId = "id"
         case action
         case item
@@ -24,12 +24,12 @@ public struct CartObject: Codable {
         case meta
     }
 
-    public init(cartId: String, action: String, item: ItemModel, cartPrice: Float, currency: String, meta: Encodable? = nil) {
+    public init(cartId: String, action: CartAction, item: ItemModel, cartPrice: Float, currency: CurrencyCode, meta: Encodable? = nil) {
         self.cartId = cartId
-        self.action = action
+        self.action = action.rawValue
         self.item = item
         self.cartPrice = cartPrice
-        self.currency = currency
+        self.currency = currency.rawValue
         self.meta = meta
     }
     

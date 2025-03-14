@@ -12,17 +12,17 @@ public struct ModuleObject: Codable {
     var action: String = ""
     var meta: Encodable?
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case id
         case progress
         case action
         case meta
     }
 
-    public init(id: String, progress: Int, action: String, meta: Encodable? = nil) {
+    public init(id: String, progress: Int, action: ModuleLogAction, meta: Encodable? = nil) {
         self.id = id
         self.progress = progress
-        self.action = action
+        self.action = action.rawValue
         self.meta = meta
     }
 

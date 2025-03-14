@@ -8,9 +8,9 @@
 import Foundation
 
 public struct ViewItemObject: Codable {
-    var action: String?
+    var action: String
     var item: ItemModel
-    var searchId: String?
+    var searchId: String
     var meta: Encodable?
 
     private enum CodingKeys: String, CodingKey {
@@ -21,8 +21,8 @@ public struct ViewItemObject: Codable {
     }
     
     
-    init(action: String, item: ItemModel, searchId: String = "", meta: Encodable? = nil) {
-        self.action = action
+    public init(action: EComItemAction, item: ItemModel, searchId: String = "", meta: Encodable? = nil) {
+        self.action = action.rawValue
         self.item = item
         self.searchId = searchId
         self.meta = meta
@@ -32,7 +32,7 @@ public struct ViewItemObject: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         action = try container.decode(String.self, forKey: .action)
         item = try container.decode(ItemModel.self, forKey: .item)
-        searchId = try container.decodeIfPresent(String.self, forKey: .searchId)
+        searchId = try container.decode(String.self, forKey: .searchId)
         if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {

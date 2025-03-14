@@ -9,7 +9,10 @@ import CausalFoundrySDKCore
 import Foundation
 
 public extension CFSetup {
-    func updateEcommerceCatalogItem(subject: CatalogSubject, catalogObject: Data) {
-        catalogAPIHandler.updateEcommerceCatalogItem(subject: subject, catalogObject: catalogObject)
+    func updateEcommerceCatalogItem(subject: CatalogSubject, catalogObject: Data?) {
+        if(catalogObject == nil){
+            return
+        }
+        catalogAPIHandler.updateEcommerceCatalogItem(subject: subject, catalogObject: catalogObject!)
     }
 }

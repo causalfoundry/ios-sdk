@@ -8,35 +8,35 @@
 import Foundation
 
 public struct ItemTypeModel: Codable {
-    var item_id: String
-    var item_type: String
-    var facility_id: String
+    var itemId: String
+    var type: String
+    var facilityId: String
 
-    enum CodingKeys: String, CodingKey {
-        case item_id = "id"
-        case item_type = "type"
-        case facility_id
+    private enum CodingKeys: String, CodingKey {
+        case itemId = "id"
+        case type = "type"
+        case facilityId = "facility_id"
     }
 
-    public init(item_id: String, item_type: String, facility_id: String = "") {
-        self.item_id = item_id
-        self.item_type = item_type
-        self.facility_id = facility_id
+    public init(itemId: String, type: ItemType, facilityId: String = "") {
+        self.itemId = itemId
+        self.type = type.rawValue
+        self.facilityId = facilityId
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        item_id = try container.decode(String.self, forKey: .item_id)
-        item_type = try container.decode(String.self, forKey: .item_type)
-        facility_id = try container.decodeIfPresent(String.self, forKey: .facility_id) ?? ""
+        itemId = try container.decode(String.self, forKey: .itemId)
+        type = try container.decode(String.self, forKey: .type)
+        facilityId = try container.decodeIfPresent(String.self, forKey: .facilityId) ?? ""
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(item_id, forKey: .item_id)
-        try container.encode(item_type, forKey: .item_type)
-        if !facility_id.isEmpty {
-            try container.encode(facility_id, forKey: .facility_id)
+        try container.encode(itemId, forKey: .itemId)
+        try container.encode(type, forKey: .type)
+        if !facilityId.isEmpty {
+            try container.encode(facilityId, forKey: .facilityId)
         }
     }
 }
