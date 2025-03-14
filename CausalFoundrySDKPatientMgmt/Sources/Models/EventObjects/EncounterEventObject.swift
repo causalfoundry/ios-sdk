@@ -28,13 +28,13 @@ public struct EncounterEventObject: Codable {
         case meta
     }
 
-    public init(patientId: String, siteId: String, action: String, category: String, type: String, subType: String, encounterSummaryObject: EncounterSummaryObject, meta: Encodable? = nil ) {
+    public init(patientId: String, siteId: String, action: HcwItemAction, category: HcwSiteCategory, type: EncounterType, subType: DiagnosisType, encounterSummaryObject: EncounterSummaryObject, meta: Encodable? = nil ) {
         self.patientId = patientId
         self.siteId = siteId
-        self.action = action
-        self.category = category
-        self.type = type
-        self.subType = subType
+        self.action = action.rawValue
+        self.category = category.rawValue
+        self.type = type.rawValue
+        self.subType = subType.rawValue
         self.encounterSummaryObject = encounterSummaryObject
         self.meta = meta
     }

@@ -17,7 +17,7 @@ public struct SearchObject: Codable {
 
     public init(
          query: String,
-         searchModule: SearchModuleType,
+         searchModule: ModuleType,
          resultsList: [SearchItemModel] = [],
          filter: [String: Any]? = nil,
          page: Int = 1,

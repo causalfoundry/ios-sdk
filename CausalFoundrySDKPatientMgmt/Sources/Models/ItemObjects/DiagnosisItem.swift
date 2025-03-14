@@ -26,10 +26,10 @@ public struct DiagnosisItem: Codable {
         case observationTime = "observation_time"
     }
 
-    public init(type: String, subType: String, category: String, value: Any? = nil, unit: String = "value", observationTime: Int64? = nil, remarks: String? = nil) {
-        self.type = type
-        self.subType = subType
-        self.category = category
+    public init(type: DiagnosisType, subType: DiagnosisSubType, category: DiagnosisCategory, value: Any, unit: String = "value", observationTime: Int64? = nil, remarks: String? = nil) {
+        self.type = type.rawValue
+        self.subType = subType.rawValue
+        self.category = category.rawValue
         self.value = value
         self.unit = unit
         self.remarks = remarks

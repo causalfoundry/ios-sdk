@@ -7,12 +7,12 @@
 
 import Foundation
 
-public struct HcwModuleObject: Codable {
+public struct ModuleSelectionObject: Codable {
     var type: String
     var meta: Any?
 
-    public init(type: String, meta: Any? = nil) {
-        self.type = type
+    public init(type: ModuleType, meta: Any? = nil) {
+        self.type = type.rawValue
         self.meta = meta
     }
 

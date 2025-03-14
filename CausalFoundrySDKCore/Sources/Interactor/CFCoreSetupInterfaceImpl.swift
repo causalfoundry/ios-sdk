@@ -100,9 +100,10 @@ internal class CFCoreSetupInterfaceImpl: CFCoreSetupInterface {
             return RateEventValidator.validateRateObject(logObject: logObject) as? T
         case .Search:
             return SearchEventValidator.validateSearchObject(logObject: logObject) as? T
-        default:
-            print("Unknown event or object type")
-            return logObject
+        case .ModuleSelection:
+            return ModuleSelectionEventValidator.validateModuleSelectionObject(logObject: logObject) as? T
+        case .NudgeResponse:
+            return nil // Nudge response is not supported by logIngest
         }
     }
 }

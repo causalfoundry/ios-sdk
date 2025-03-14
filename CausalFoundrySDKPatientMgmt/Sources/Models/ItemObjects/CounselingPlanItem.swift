@@ -34,9 +34,9 @@ public struct CounselingPlanItem: Codable {
         case remarks
     }
 
-    public init(name: String, action: String, clinicianNotes: String? = nil, assessmentRemarks: String? = nil, counselorNotes: String? = nil, referralDate: Int64? = nil, assessmentDate: Int64? = nil, referredBy: String? = nil, assessedBy: String? = nil, remarks: String? = nil) {
+    public init(name: String, action: HcwItemAction, clinicianNotes: String? = nil, assessmentRemarks: String? = nil, counselorNotes: String? = nil, referralDate: Int64? = nil, assessmentDate: Int64? = nil, referredBy: String? = nil, assessedBy: String? = nil, remarks: String? = nil) {
         self.name = name
-        self.action = action
+        self.action = action.rawValue
         self.clinicianNotes = clinicianNotes
         self.assessmentRemarks = assessmentRemarks
         self.counselorNotes = counselorNotes

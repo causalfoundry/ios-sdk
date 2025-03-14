@@ -2,12 +2,12 @@
 //  SearchModuleType.swift
 //
 //
-//  Created by khushbu on 16/10/23.
+//  Created by moizhassankh on 14/03/25.
 //
 
 import Foundation
 
-public enum SearchModuleType: String, EnumComposable {
+public enum ModuleType: String, EnumComposable {
     case Core
     case ECommerce
     case ELearning
@@ -16,7 +16,6 @@ public enum SearchModuleType: String, EnumComposable {
     case Enrolment
     case MedicalReview
     case MyPatients
-    case Appointments
     case Prescription
     case LifestyleMgmt
     case PsychologicalMgmt
@@ -24,6 +23,14 @@ public enum SearchModuleType: String, EnumComposable {
     case Investigation
     case TreatmentPlan
     case Transfers
+    case Appointment
+    case HCWMgmt
+    case Break
+    case CallerHistory
+    case AttendCall
+    case Single
+    case Dashboard
+    case Map
     case Other
     
     public var rawValue: String {
@@ -36,7 +43,7 @@ public enum SearchModuleType: String, EnumComposable {
         case .Enrolment: return "enrolment"
         case .MedicalReview: return "medical_review"
         case .MyPatients: return "my_patients"
-        case .Appointments: return "appointments"
+        case .Appointment: return "appointment"
         case .Prescription: return "prescription"
         case .LifestyleMgmt: return "lifestyle_mgmt"
         case .PsychologicalMgmt: return "psychological_mgmt"
@@ -44,6 +51,15 @@ public enum SearchModuleType: String, EnumComposable {
         case .Investigation: return "investigation"
         case .TreatmentPlan: return "treatment_plan"
         case .Transfers: return "transfers"
+        
+        case .HCWMgmt: return "hcw_mgmt"
+        case .Break: return "break"
+        case .CallerHistory: return "caller_history"
+        case .AttendCall: return "attend_call"
+        case .Single: return "single"
+        case .Dashboard: return "dashboard"
+        case .Map: return "map"
+            
         case .Other: return "other"
         }
     }

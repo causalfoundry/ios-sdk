@@ -26,36 +26,11 @@ public class EncounterEventValidator {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Encounter.rawValue, paramName: "patientId", className: "patientId")
             } else if eventObject.siteId.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Encounter.rawValue, paramName: "siteId", className: "siteId")
-            }else if eventObject.action.isEmpty {
-                ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Encounter.rawValue, paramName: "action" , className: String(describing: HcwItemAction.self))
-            } else if !CoreConstants.shared.enumContains(HcwItemAction.self, name: eventObject.action) {
-                ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.Encounter.rawValue,
-                                                    className: String(describing: HcwItemAction.self))
-            } else if eventObject.category.isEmpty {
-                ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Encounter.rawValue, paramName: "category" , className: String(describing: HcwSiteCategory.self))
-            } else if !CoreConstants.shared.enumContains(HcwSiteCategory.self, name: eventObject.category) {
-                ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.Encounter.rawValue,
-                                                    className: String(describing: HcwSiteCategory.self))
-            } else if eventObject.type.isEmpty {
-                ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Encounter.rawValue, paramName: "type" , className: String(describing: EncounterType.self))
-            } else if !CoreConstants.shared.enumContains(EncounterType.self, name: eventObject.type) {
-                ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.Encounter.rawValue,
-                                                    className: String(describing: EncounterType.self))
-            } else if eventObject.subType.isEmpty {
-                ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Encounter.rawValue, paramName: "sub_type" , className: String(describing: DiagnosisType.self))
-            } else if !CoreConstants.shared.enumContains(DiagnosisType.self, name: eventObject.subType) {
-                ExceptionManager.throwEnumException(eventType: PatientMgmtEventType.Encounter.rawValue,
-                                                    className: String(describing: DiagnosisType.self))
             } else if(PatientMgmtEventValidation.verifyEncounterSummaryObject(eventType: PatientMgmtEventType.Encounter, encounterSummaryObject: eventObject.encounterSummaryObject)){
                     return eventObject
             }
         }
         return nil
-    }
-    
-    public static func mapStringToEncounterEventObject(objectString: String) -> EncounterEventObject? {
-        guard let data = objectString.data(using: .utf8) else { return nil }
-        return try? JSONDecoder().decode(EncounterEventObject.self, from: data)
     }
     
 }

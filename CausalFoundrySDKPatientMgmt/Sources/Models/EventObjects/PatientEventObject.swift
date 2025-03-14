@@ -35,13 +35,13 @@ public struct PatientEventObject: Codable {
         case meta
     }
 
-    public init(patientId: String, siteId: String, action: String, isFromGho: Bool, category: String, type: String, subType: String, biometricList: [DiagnosisItem], pregnancyDetails: PregnancyDetailObject? = nil, registrationDate: Int64? = nil, meta: Encodable? = nil) {
+    public init(patientId: String, siteId: String, action: HcwItemAction, isFromGho: Bool, category: HcwSiteCategory, type: PatientType, subType: String, biometricList: [DiagnosisItem], pregnancyDetails: PregnancyDetailObject? = nil, registrationDate: Int64? = nil, meta: Encodable? = nil) {
         self.patientId = patientId
         self.siteId = siteId
-        self.action = action
+        self.action = action.rawValue
         self.isFromGho = isFromGho
-        self.category = category
-        self.type = type
+        self.category = category.rawValue
+        self.type = type.rawValue
         self.subType = subType
         self.biometricList = biometricList
         self.pregnancyDetails = pregnancyDetails

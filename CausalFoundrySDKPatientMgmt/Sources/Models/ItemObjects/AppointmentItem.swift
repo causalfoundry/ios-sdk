@@ -32,11 +32,11 @@ public struct AppointmentItem: Codable {
         case missed = "missed"
     }
 
-    public init(appointmentId: String, hcwId: String, category: String, status: String, appointmentDateTime: Int64, isTimeSensitive: Bool = true, typeList: [String], subTypeList: [String], update: AppointmentUpdateItem? = nil, missed: AppointmentMissedItem? = nil) {
+    public init(appointmentId: String, hcwId: String, category: HcwSiteCategory, status: AppointmentStatus, appointmentDateTime: Int64, isTimeSensitive: Bool = true, typeList: [String], subTypeList: [String], update: AppointmentUpdateItem? = nil, missed: AppointmentMissedItem? = nil) {
         self.appointmentId = appointmentId
         self.hcwId = hcwId
-        self.category = category
-        self.status = status
+        self.category = category.rawValue
+        self.status = status.rawValue
         self.appointmentDateTime = appointmentDateTime
         self.isTimeSensitive = isTimeSensitive
         self.typeList = typeList

@@ -30,12 +30,12 @@ public struct ScheduleItem: Codable {
 
     }
 
-    public init(type: String, subType: String, value: Int, frequency: String, action: String, remarks: String? = "", startDate: Int64? = nil, endDate: Int64? = nil) {
-        self.type = type
-        self.subType = subType
+    public init(type: ScheduleItemType, subType: DiagnosisType, value: Int, frequency: FrequencyType, action: HcwItemAction, remarks: String? = "", startDate: Int64? = nil, endDate: Int64? = nil) {
+        self.type = type.rawValue
+        self.subType = subType.rawValue
         self.value = value
-        self.frequency = frequency
-        self.action = action
+        self.frequency = frequency.rawValue
+        self.action = action.rawValue
         self.remarks = remarks
         self.startDate = startDate
         self.endDate = endDate

@@ -26,13 +26,13 @@ public struct InvestigationItem: Codable, Equatable {
         case remarks
     }
 
-    public init(name: String, testValue: String, testUnit: String, orderedDate: Int64, testedDate: Int64, action: String, remarks: String?) {
+    public init(name: String, testValue: String, testUnit: String, orderedDate: Int64, testedDate: Int64, action: HcwItemAction, remarks: String?) {
         self.name = name
         self.testValue = testValue
         self.testUnit = testUnit
         self.orderedDate = orderedDate
         self.testedDate = testedDate
-        self.action = action
+        self.action = action.rawValue
         self.remarks = remarks
     }
 

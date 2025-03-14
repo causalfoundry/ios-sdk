@@ -26,9 +26,9 @@ public struct ImmunizationItem: Codable {
         case remarks
     }
     
-    public init(id: String, action: String, type: String, dose: Int, status: Bool, date: Int64? = nil, remarks: String? = nil) {
+    public init(id: String, action: HcwItemAction, type: String, dose: Int, status: Bool, date: Int64? = nil, remarks: String? = nil) {
         self.id = id
-        self.action = action
+        self.action = action.rawValue
         self.type = type
         self.dose = dose
         self.status = status

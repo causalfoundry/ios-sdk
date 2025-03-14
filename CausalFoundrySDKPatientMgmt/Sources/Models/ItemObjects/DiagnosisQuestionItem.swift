@@ -26,8 +26,8 @@ public struct DiagnosisQuestionItem: Codable {
         case remarks
     }
 
-    public init(type: String, question: String, reply: String, score: Float? = nil, fullScore: Float? = nil, section: String? = nil, remarks: String? = nil) {
-        self.type = type
+    public init(type: QuestionType, question: String, reply: String, score: Float? = nil, fullScore: Float? = nil, section: String? = nil, remarks: String? = nil) {
+        self.type = type.rawValue
         self.question = question
         self.reply = reply
         self.score = score
