@@ -23,7 +23,7 @@ public enum ModuleType: String, EnumComposable {
     case Investigation
     case TreatmentPlan
     case Transfers
-    case Appointment
+    case Appointments
     case HCWMgmt
     case Break
     case CallerHistory
@@ -43,7 +43,7 @@ public enum ModuleType: String, EnumComposable {
         case .Enrolment: return "enrolment"
         case .MedicalReview: return "medical_review"
         case .MyPatients: return "my_patients"
-        case .Appointment: return "appointment"
+        case .Appointments: return "appointments"
         case .Prescription: return "prescription"
         case .LifestyleMgmt: return "lifestyle_mgmt"
         case .PsychologicalMgmt: return "psychological_mgmt"

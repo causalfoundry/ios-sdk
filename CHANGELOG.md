@@ -4,6 +4,15 @@ Documenting the changes in the SDK subject to each release version.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## **[1.2.3]  - 17.03.2025**
+
+### **Updated**
+- Renamed `Appointment` to `Appointments` for `ModuleType` enum
+
+
+----
+
+
 ## **[1.2.2]  - 14.03.2025**
 
 ### **Updated**
