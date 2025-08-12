@@ -9,9 +9,8 @@ import Foundation
 
 protocol CFCoreSetupInterface {
 
-    func trackSDKEvent<T: Codable>(eventType: CoreEventType,
+    func trackSDKEvent<T: Codable>(eventName: CoreEventType,
                        logObject: T?,
-                       contentBlock: ContentBlock?,
                        isUpdateImmediately: Bool?,
                        eventTime: Int64?)
 

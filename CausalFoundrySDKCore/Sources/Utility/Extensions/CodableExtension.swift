@@ -212,9 +212,14 @@ extension Decodable {
 
 extension Encodable {
     var dictionary: [String: Any]? {
-        let encoder = JSONEncoder.new
+        let encoder = JSONEncoder()
         guard let data = try? encoder.encode(self) else { return nil }
-        return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
+        guard let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
+        
+        guard let dict = jsonObject as? [String: Any], dict.isStrictlyPrimitive else {
+            return nil
+        }
+        return dict
     }
 
     var prettyJSON: String {
@@ -226,17 +231,36 @@ extension Dictionary {
     var prettyJSON: String {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted])
-            guard let jsonString = String(data: jsonData, encoding: String.Encoding.utf8) else {
-                print("Can't create string with data.")
-                return "{}"
-            }
-            return jsonString
-        } catch let parseError {
-            print("json serialization error: \(parseError)")
+            return String(data: jsonData, encoding: .utf8) ?? "{}"
+        } catch {
+            print("json serialization error: \(error)")
             return "{}"
         }
     }
 }
+
+private extension Dictionary where Key == String, Value == Any {
+    var isStrictlyPrimitive: Bool {
+        return self.allSatisfy { (_, value) in
+            isStrictlyPrimitiveValue(value)
+        }
+    }
+}
+
+private func isStrictlyPrimitiveValue(_ value: Any) -> Bool {
+    switch value {
+    case is String, is Int, is Double, is Bool, is NSNull:
+        return true
+    case let array as [Any]:
+        return array.allSatisfy { isStrictlyPrimitiveValue($0) }
+    case let dict as [String: Any]:
+        return dict.isStrictlyPrimitive
+    default:
+        return false
+    }
+}
+
+
 
 enum Utility {
     static func decode<T>(_: T.Type, from data: Data) -> T? where T: Decodable {

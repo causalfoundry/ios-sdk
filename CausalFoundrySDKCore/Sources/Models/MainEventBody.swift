@@ -5,30 +5,17 @@ import Foundation
 // MARK: - MainBody
 
 struct MainBody: Codable {
-    let sID, uID: String
-    let appInfo: AppInfo
-    let dInfo: DInfo
-    let dn: Int
-    let sdk: String
-    let up: Int
+    let userID: String
+    let timezone: String
+    let internalInfoObject: InternalInfoObject
     let data: [EventDataObject]
 
     enum CodingKeys: String, CodingKey {
-        case sID = "s_id"
-        case uID = "u_id"
-        case appInfo = "app_info"
-        case dInfo = "d_info"
-        case dn, sdk, up
+        case userID = "id"
+        case timezone = "tz"
+        case internalInfoObject = "internal"
         case data
     }
-}
-
-// MARK: - Props
-
-struct Props: Codable {
-    let action: String?
-    let duration: Double?
-    let path, title: String?
 }
 
 // MARK: - Helper functions for creating encoders and decoders

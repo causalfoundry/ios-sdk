@@ -61,71 +61,8 @@ struct ExceptionDataObject: Codable, Hashable {
     
 }
 
-class ExceptionAPIHandler {
-    func exceptionTrackAPI(exceptionObject: ExceptionDataObject, updateImmediately: Bool) {
-        if #available(iOS 13.0, *) {
-            guard !CoreConstants.shared.pauseSDK else { return }
-            if updateImmediately {
-                updateExceptionEvents(eventArray: [exceptionObject]) { [weak self] success in
-                    if !success {
-                        self?.storeEventTrack(event: exceptionObject)
-                    }
-                }
-            } else {
-                storeEventTrack(event: exceptionObject)
-            }
-        }
-    }
-
-    func updateExceptionEvents(eventArray: [ExceptionDataObject], completion: @escaping (_ success: Bool) -> Void) {
-        if #available(iOS 13.0, *) {
-            var userId = CoreConstants.shared.userId
-            
-            if(userId == nil || userId?.isEmpty == true){
-                userId = MMKVHelper.shared.fetchUserBackupID()
-            }
-            
-            if(userId ==  nil || userId?.isEmpty == true){
-                userId = CoreConstants.shared.deviceObject?.id
-            }
-            
-            let mainExceptionBody = MainExceptionBody(user_id: userId, device_info: CoreConstants.shared.deviceObject, app_info: CoreConstants.shared.appInfoObject, sdk_version: CoreConstants.shared.SDKVersion, data: eventArray)
-            
-            let dictionary = mainExceptionBody.dictionary
-            
-            let url = URL(string: APIConstants.ingestExceptionEvent)!
-            BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: dictionary) { result in
-                switch result {
-                case .success:
-                    MMKVHelper.shared.deleteExceptionEvents()
-                    completion(true)
-                case .failure:
-                    completion(false)
-                }
-            }
-        }
-    }
-
-    private func storeEventTrack(event: ExceptionDataObject) {
-        if #available(iOS 13.0, *) {
-            var previousExceptions = MMKVHelper.shared.readExceptionsData()
-            previousExceptions.append(event)
-            MMKVHelper.shared.writeExceptionEvents(eventArray: previousExceptions)
-        }
-    }
-
-    private func storeEventTrack(events: [ExceptionDataObject]) {
-        if #available(iOS 13.0, *) {
-            var previousExceptions = MMKVHelper.shared.readExceptionsData()
-            for data in events {
-                previousExceptions.append(data)
-            }
-            MMKVHelper.shared.writeExceptionEvents(eventArray: previousExceptions)
-        }
-    }
-}
-
 public enum ExceptionManager {
+        
     public static func throwEnumException(eventType: String, className: String) {
         let msg = "Invalid \(className) provided"
         let exception = IllegalArgumentException(msg)
@@ -197,6 +134,18 @@ public enum ExceptionManager {
         let exception = IllegalArgumentException(message)
         callExceptionAPI(title: message, eventType: eventType, exceptionType: "IllegalArgumentException", stackTrace: exception)
     }
+    
+    public static func throwNameAlreadyInUseException(_ name: String) {
+        let message = "Invalid event name provided, you cannot use \"\(name)\" as it is already in use"
+        let exception = IllegalArgumentException(message)
+    
+        callExceptionAPI(
+            title: message,
+            eventType: CoreEventType.Track.rawValue,
+            exceptionType: "IllegalArgumentException",
+            stackTrace: exception
+        )
+    }
 
     public static func throwInvalidNudgeException(message: String, nudgeObject: String) {
         let exception = IllegalArgumentException(message)
@@ -209,11 +158,13 @@ public enum ExceptionManager {
             stackTrace: "Nudge Object:\n\(nudgeObject) \n\nException:\n\(exception)",
             ts: Date().convertMillisToTimeString()
         )
-
-        ExceptionAPIHandler().exceptionTrackAPI(
-            exceptionObject: exceptionDataObject,
-            updateImmediately: false
-        )
+        
+        IngestAPIHandler().ingestTrackAPI(
+            eventName: "exception",
+            eventProperty: "failed",
+            eventCtx: exceptionDataObject,
+            updateImmediately: false)
+    
     }
 
     public static func throwInvalidNetworkException(message: String, speed: Int) {
@@ -228,10 +179,11 @@ public enum ExceptionManager {
             ts: Date().convertMillisToTimeString()
         )
 
-        ExceptionAPIHandler().exceptionTrackAPI(
-            exceptionObject: exceptionDataObject,
-            updateImmediately: false
-        )
+        IngestAPIHandler().ingestTrackAPI(
+            eventName: "exception",
+            eventProperty: "failed",
+            eventCtx: exceptionDataObject,
+            updateImmediately: false)
     }
 
     public static func throwInternalCrashException(eventType: String, message: String, exception: Error) {
@@ -244,10 +196,12 @@ public enum ExceptionManager {
             ts: Date().convertMillisToTimeString()
         )
 
-        ExceptionAPIHandler().exceptionTrackAPI(
-            exceptionObject: exceptionDataObject,
-            updateImmediately: false
-        )
+        IngestAPIHandler().ingestTrackAPI(
+            eventName: "exception",
+            eventProperty: "\(eventType)_failed",
+            eventCtx: exceptionDataObject,
+            updateImmediately: false)
+        
     }
 
     // Other exception throwing functions...
@@ -268,7 +222,11 @@ public enum ExceptionManager {
                 ts: Date().convertMillisToTimeString()
             )
             
-            ExceptionAPIHandler().exceptionTrackAPI(exceptionObject: exceptionDataObject, updateImmediately: false)
+            IngestAPIHandler().ingestTrackAPI(
+                eventName: "exception",
+                eventProperty: "\(eventType)_failed",
+                eventCtx: exceptionDataObject,
+                updateImmediately: false)
             
             if CoreConstants.shared.isDebugMode, CoreConstants.shared.isAppDebuggable {
                 // Handle debug mode throwing exception

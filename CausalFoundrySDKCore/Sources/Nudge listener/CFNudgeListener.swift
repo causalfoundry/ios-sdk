@@ -42,7 +42,7 @@ class CFNudgeListener {
         }
         
         if(userId ==  nil || userId?.isEmpty == true){
-            userId = CoreConstants.shared.deviceObject?.id
+            userId = CoreConstants.shared.deviceObject?.device_id
         }
         guard let userID = userId, !userID.isEmpty else {
             return [] }
@@ -75,7 +75,7 @@ class CFNudgeListener {
         }
         
         if(userId ==  nil || userId?.isEmpty == true){
-            userId = CoreConstants.shared.deviceObject?.id
+            userId = CoreConstants.shared.deviceObject?.device_id
         }
         guard let userID = userId, !userID.isEmpty else {
             return [] }

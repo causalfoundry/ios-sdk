@@ -14,9 +14,8 @@ public class CFSetup: NSObject, IngestProtocol {
 
     private func setup() {
         verifyAccessToken()
-        CoreConstants.shared.deviceObject = DInfo(brand: "Apple", id: UIDevice.current.identifierForVendor!.uuidString, model: UIDevice.modelName, os: "iOS", osVer: "\(UIDevice.current.systemVersion)")
-
-        CoreConstants.shared.appInfoObject = getApplicationInfo()
+       
+        CoreConstants.shared.internalInfoObject = getInternalInfo()
 
         // Change implementation
 
@@ -50,17 +49,9 @@ public class CFSetup: NSObject, IngestProtocol {
         catalogAPIHandler.updateCoreCatalogItem(subject: subject, catalogObject: newData ?? catalogObject)
     }
 
-    public func track<T: Codable>(contentBlockName: String, eventType: String, logObject: T?, updateImmediately: Bool, eventTime: Int64 = 0) {
+    public func track<T: Codable>(eventName: String, eventProperty: String?, eventCtx: T?, updateImmediately: Bool, eventTime: Int64 = 0) {
         verifyAccessToken()
-
-        var cBlockName = contentBlockName
-        if cBlockName == ContentBlock.ECommerce.rawValue {
-            cBlockName = "e-commerce"
-        } else if contentBlockName == ContentBlock.ELearning.rawValue {
-            cBlockName = "e-learning"
-        }
-
-        ingestApiHandler.ingestTrackAPI(contentBlock: cBlockName, eventType: eventType, trackProperties: logObject, updateImmediately: updateImmediately, eventTime: eventTime)
+        ingestApiHandler.ingestTrackAPI(eventName: eventName, eventProperty: eventProperty, eventCtx: eventCtx, updateImmediately: updateImmediately, eventTime: eventTime)
     }
 
     private func verifyAccessToken() {
@@ -71,13 +62,16 @@ public class CFSetup: NSObject, IngestProtocol {
 
     // Get Application Info Of app
 
-    private func getApplicationInfo() -> AppInfo {
+    private func getInternalInfo() -> InternalInfoObject {
+        
         let application = UIApplication.shared
-        return AppInfo(id: application.bundleIdentifier(),
-                       minSDKVersion: application.minimumVersion(),
-                       targetSDKVersion: application.targetVersion(),
-                       version: application.versionBuild(),
-                       versionCode: application.build(),
-                       versionName: application.appVersion())
+        return InternalInfoObject(
+            s_id: "",
+            sdk: CoreConstants.shared.SDKVersion,
+            app_id: application.bundleIdentifier(),
+            app_version: application.versionBuild(),
+            device_id: UIDevice.current.identifierForVendor!.uuidString,
+            device_os: UIDevice.current.systemName
+        )
     }
 }

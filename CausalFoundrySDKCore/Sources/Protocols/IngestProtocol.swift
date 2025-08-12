@@ -17,9 +17,10 @@ protocol IngestProtocol {
     func updateCoreCatalogItem(subject: CatalogSubject,
                                catalogObject: Data)
 
-    func track<T: Codable>(contentBlockName: String,
-                           eventType: String,
-                           logObject: T?,
+    func track<T: Codable>(
+                           eventName: String,
+                           eventProperty: String?,
+                           eventCtx: T?,
                            updateImmediately: Bool,
                            eventTime: Int64)
 }

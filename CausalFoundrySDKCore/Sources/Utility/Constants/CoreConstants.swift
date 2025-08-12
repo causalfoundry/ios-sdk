@@ -55,8 +55,8 @@ public class CoreConstants {
     var sessionStartTime: Int64 = 0
     var sessionEndTime: Int64 = 0
 
-    var deviceObject: DInfo?
-    var appInfoObject: AppInfo?
+    var internalInfoObject: InternalInfoObject?
+    
     public var previousSearchId: String = ""
 
     public var userIdKey: String = "userIdKey"
@@ -98,7 +98,7 @@ extension CoreConstants {
 
     func getUserTimeZone() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "Z"
+        dateFormatter.dateFormat = "XXX" // ISO 8601 timezone format with colon
         return dateFormatter.string(from: Date())
     }
 
@@ -108,12 +108,18 @@ extension CoreConstants {
         }
         return ""
     }
-    
     private static func getDateTime(milliSeconds: Int64) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        let date = Date(timeIntervalSince1970: TimeInterval(milliSeconds) / 1000)
+        
+        let date: Date
+        if milliSeconds == 0 {
+            date = Date()
+        } else {
+            date = Date(timeIntervalSince1970: TimeInterval(milliSeconds) / 1000)
+        }
+        
         return dateFormatter.string(from: date)
     }
 

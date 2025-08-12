@@ -14,9 +14,9 @@ public class IngestAPIHandler: NSObject {
     
     private let reachability = try! Reachability()
 
-    func ingestTrackAPI<T: Codable>(contentBlock: String,
-                                    eventType: String,
-                                    trackProperties: T,
+    func ingestTrackAPI<T: Codable>(eventName: String,
+                                    eventProperty: String?,
+                                    eventCtx: T,
                                     updateImmediately: Bool,
                                     eventTime _: Int64 = 0)
     {
@@ -24,7 +24,7 @@ public class IngestAPIHandler: NSObject {
             guard !CoreConstants.shared.pauseSDK else { return }
             
             let isInternetAvailable = reachability.connection == .wifi || reachability.connection == .cellular
-            let eventObject = EventDataObject(block: contentBlock, ol: isInternetAvailable, ts: Date(), type: eventType, props: trackProperties)
+            let eventObject = EventDataObject(ol: isInternetAvailable, ts: Date(), name: eventName, property: eventProperty ?? "", ctx: eventCtx)
 
             if updateImmediately && isInternetAvailable {
                 updateEventTrack(eventArray: [eventObject]) { [weak self] success in
@@ -65,17 +65,16 @@ public class IngestAPIHandler: NSObject {
             }
             
             if(userId ==  nil || userId?.isEmpty == true){
-                userId = CoreConstants.shared.deviceObject?.id
+                userId = CoreConstants.shared.internalInfoObject?.device_id
             }
             
+            CoreConstants.shared.internalInfoObject?.s_id = "\(userId!)_\(CoreConstants.shared.sessionStartTime)_\(CoreConstants.shared.sessionEndTime)"
             
-            let mainBody = MainBody(sID: "\(userId!)_\(CoreConstants.shared.sessionStartTime)_\(CoreConstants.shared.sessionEndTime)",
-                                    uID: userId!, appInfo: CoreConstants.shared.appInfoObject!,
-                                    dInfo: CoreConstants.shared.deviceObject!,
-                                    dn: Int(NetworkMonitor.shared.downloadSpeed),
-                                    sdk: CoreConstants.shared.SDKVersion,
-                                    up: Int(NetworkMonitor.shared.uploadSpeed),
-                                    data: eventArray)
+            let mainBody = MainBody(
+                userID: userId!,
+                timezone: CoreConstants.shared.getUserTimeZone(),
+                internalInfoObject: CoreConstants.shared.internalInfoObject!,
+                data: eventArray)
             
             let dictionary = mainBody.dictionary ?? [:]
             

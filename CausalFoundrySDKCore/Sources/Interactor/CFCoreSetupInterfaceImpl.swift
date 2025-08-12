@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by MOIZ HASSAN KHAN on 27/8/24.
 //
@@ -11,43 +11,33 @@ internal class CFCoreSetupInterfaceImpl: CFCoreSetupInterface {
     
     
     // Singleton instance
-        static let shared = CFCoreSetupInterfaceImpl()
-        
-        // Private initializer to prevent external instantiation
-        private init() {}
+    static let shared = CFCoreSetupInterfaceImpl()
+    
+    // Private initializer to prevent external instantiation
+    private init() {}
     
     
-    func trackSDKEvent<T: Codable>(eventType: CoreEventType,
-                       logObject: T?,
-                       contentBlock: ContentBlock? = CoreConstants.shared.contentBlock,
-                       isUpdateImmediately: Bool? = CoreConstants.shared.updateImmediately,
-                       eventTime: Int64? = 0) {
+    func trackSDKEvent<T: Codable>(
+        eventName: CoreEventType,
+        logObject: T?,
+        isUpdateImmediately: Bool? = CoreConstants.shared.updateImmediately,
+        eventTime: Int64? = 0) {
+            
+            if CoreConstants.shared.pauseSDK {
+                return
+            }
         
-        if CoreConstants.shared.pauseSDK {
-            return
+            validateCoreEvent(eventName: eventName, logObject: logObject, isUpdateImmediately: isUpdateImmediately, eventTime: eventTime)
+            
         }
-        
-       
-        if let eventObject = validateCoreEvent(eventType: eventType, logObject: logObject){
-            CFSetup().track(
-                contentBlockName: contentBlock?.rawValue ?? ContentBlock.Core.rawValue,
-                eventType: eventType.rawValue,
-                logObject: eventObject,
-                updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
-                eventTime: eventTime ?? 0
-            )
-        }else{
-            print("Unknown event object type")
-        }
-    }
-
+    
     func trackCatalogEvent(coreCatalogType: CoreCatalogSubject, catalogModel: Any) {
         if CoreConstants.shared.pauseSDK{
             return
         }
         validateCoreCatalogEvent(coreCatalogType: coreCatalogType, catalogObject: catalogModel)
     }
-
+    
     private func validateCoreCatalogEvent(coreCatalogType: CoreCatalogSubject, catalogObject: Any) {
         switch coreCatalogType {
         case .User:
@@ -85,25 +75,96 @@ internal class CFCoreSetupInterfaceImpl: CFCoreSetupInterface {
             }
         }
     }
-
-    private func validateCoreEvent<T: Codable>(eventType: CoreEventType, logObject: T?) -> T? {
-        switch eventType {
+    
+    private func validateCoreEvent<T: Codable>(eventName: CoreEventType, logObject: T?, isUpdateImmediately: Bool?, eventTime: Int64?) {
+        switch eventName {
         case .App:
-            return AppEventValidator.validateAppObject(logObject: logObject) as? T
+            let logobj = CoreEventValidator.validateAppObject(logObject: logObject)
+            CFSetup().track(
+                eventName: CoreEventType.App.rawValue,
+                eventProperty: logobj?.action,
+                eventCtx: logobj,
+                updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                eventTime: eventTime ?? 0
+            )
+        
         case .Page:
-            return PageEventValidator.validatePageObject(logObject: logObject) as? T
+            let logobj = CoreEventValidator.validatePageObject(logObject: logObject)
+            CFSetup().track(
+                eventName: CoreEventType.Page.rawValue,
+                eventProperty: logobj?.title,
+                eventCtx: logobj,
+                updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                eventTime: eventTime ?? 0
+            )
+            
         case .Identify:
-            return IdentifyEventValidator.validateIdentifyObject(logObject: logObject) as? T
+            let logobj =  CoreEventValidator.validateIdentifyObject(logObject: logObject)
+            CFSetup().track(
+                eventName: CoreEventType.Identify.rawValue,
+                eventProperty: logobj?.action,
+                eventCtx: logobj,
+                updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                eventTime: eventTime ?? 0
+            )
+            
         case .Media:
-            return MediaEventValidator.validateMediaObject(logObject: logObject) as? T
+            let logobj =  CoreEventValidator.validateMediaObject(logObject: logObject)
+            CFSetup().track(
+                eventName: CoreEventType.Media.rawValue,
+                eventProperty: logobj?.type,
+                eventCtx: logobj,
+                updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                eventTime: eventTime ?? 0
+            )
+            
         case .Rate:
-            return RateEventValidator.validateRateObject(logObject: logObject) as? T
+            let logobj =  CoreEventValidator.validateRateObject(logObject: logObject)
+            CFSetup().track(
+                eventName: CoreEventType.Rate.rawValue,
+                eventProperty: logobj?.type,
+                eventCtx: logobj,
+                updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                eventTime: eventTime ?? 0
+            )
+            
         case .Search:
-            return SearchEventValidator.validateSearchObject(logObject: logObject) as? T
+            let logobj =  CoreEventValidator.validateSearchObject(logObject: logObject)
+            CFSetup().track(
+                eventName: CoreEventType.Search.rawValue,
+                eventProperty: logobj?.query,
+                eventCtx: logobj,
+                updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                eventTime: eventTime ?? 0
+            )
+            
         case .ModuleSelection:
-            return ModuleSelectionEventValidator.validateModuleSelectionObject(logObject: logObject) as? T
+            let logobj =  CoreEventValidator.validateModuleSelectionObject(logObject: logObject)
+            CFSetup().track(
+                eventName: CoreEventType.ModuleSelection.rawValue,
+                eventProperty: logobj?.type,
+                eventCtx: logobj,
+                updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                eventTime: eventTime ?? 0
+            )
+            
+        case .Track:
+            if let logobj = CoreEventValidator.validateTrackObject(logObject: logObject) {
+                CFSetup().track(
+                    eventName: logobj.name, // already a String
+                    eventProperty: logobj.property,
+                    eventCtx: logobj,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
+            
         case .NudgeResponse:
-            return nil // Nudge response is not supported by logIngest
+            
         }
+        
+    
+        
+        
     }
 }

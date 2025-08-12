@@ -15,4 +15,11 @@ extension String {
             return false
         }
     }
+    
+    func toSnakeCase() -> String {
+        return self
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .replacingOccurrences(of: " ", with: "_")
+            .lowercased()
+    }
 }

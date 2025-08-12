@@ -56,28 +56,6 @@ enum InjestEvenstuploader {
     }
 }
 
-enum ExceptionEventsUploader {
-    @available(iOS 13.0, *)
-    static func uploadEvents() async throws {
-        let exceptionManager = ExceptionAPIHandler()
-        let events = MMKVHelper.shared.readExceptionsData()
-        let filteredArray = events.filter { !$0.isTypeOrPropsEmpty }.removingDuplicates()
-        guard filteredArray.count > 0 else {
-            print("No More Exception events")
-            return
-        }
-        try await withCheckedThrowingContinuation { continuation in
-            exceptionManager.updateExceptionEvents(eventArray: filteredArray) { success in
-                if success {
-                    continuation.resume(with: .success(()))
-                } else {
-                    continuation.resume(with: .failure(NSError(domain: "ExceptionEventsUploader.uploadEvents", code: 0)))
-                }
-            }
-        }
-    }
-}
-
 public enum CatalogEventsUploader {
     @available(iOS 13.0, *)
     public static func uploadEvents() async throws {
