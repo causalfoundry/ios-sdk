@@ -112,7 +112,7 @@ internal class CFCoreSetupInterfaceImpl: CFCoreSetupInterface {
             let logobj =  CoreEventValidator.validateMediaObject(logObject: logObject)
             CFSetup().track(
                 eventName: CoreEventType.Media.rawValue,
-                eventProperty: logobj?.type,
+                eventProperty: logobj?.mediaType,
                 eventCtx: logobj,
                 updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
                 eventTime: eventTime ?? 0
@@ -159,12 +159,17 @@ internal class CFCoreSetupInterfaceImpl: CFCoreSetupInterface {
                 )
             }
             
-        case .NudgeResponse:
-            
+        case .ActionResponse:
+            if let logobj = CoreEventValidator.validateActionResponseObject(logObject: logObject) {
+                CFSetup().track(
+                    eventName:CoreEventType.ActionResponse.rawValue,
+                    eventProperty: logobj.response,
+                    eventCtx: logobj,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         }
-        
-    
-        
         
     }
 }

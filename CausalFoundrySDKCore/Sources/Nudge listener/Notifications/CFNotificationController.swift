@@ -5,6 +5,7 @@
 //  Created by Causal Foundry on 29.11.23.
 //
 
+import Foundation
 import UIKit
 
 public final class CFNotificationController: NSObject {
@@ -29,19 +30,19 @@ public final class CFNotificationController: NSObject {
      }
      */
 
-    func triggerNudgeNotification(object: BackendNudgeMainObject) {
+    func triggerActionNotification(object: BackendActionMainObject) {
         if #available(iOS 13.0, *) {
             Task {
                 let settings = await center.notificationSettings()
                 guard settings.authorizationStatus == .authorized else {
-                    track(nudgeRef: object.ref, response: .block)
+                    track(response: ActionRepsonse.Block, expiredAt: object.internalObj.expiredAt, refTime: object.internalObj.refTime, modelId: object.internalObj.modelId, invId: object.internalObj.invId, actionId: object.internalObj.actionId, details: "")
                     return
                 }
                 let identifier = UUID().uuidString
                 let content = UNMutableNotificationContent()
-                content.title = object.nd.message.title
-                content.body = object.nd.message.body.htmlAttributedString().with(font:UIFont.preferredFont(forTextStyle: .body)).string
-                content.categoryIdentifier = "BackendNudgeMainObject"
+                content.title = object.content["title"] ?? ""
+                content.body = (object.content["body"] ?? "").htmlAttributedString().with(font:UIFont.preferredFont(forTextStyle: .body)).string
+                content.categoryIdentifier = "BackendActionMainObject"
                 if let data = object.toData() {
                     content.userInfo = [userInfoKey: data]
                 }
@@ -54,25 +55,18 @@ public final class CFNotificationController: NSObject {
         }
     }
     
-    func track(nudgeRef: String, response: NudgeRepsonseObject.NudgeRepsonse, errorDetails: String = "") {
-        let nudgeResponse = NudgeRepsonseObject(nudgeRef: nudgeRef,
-                                                response: response, details: errorDetails)
-        CFSetup()
-            .track(contentBlockName: CoreConstants.shared.contentBlockName,
-                   eventType: CoreEventType.NudgeResponse.rawValue,
-                   logObject: nudgeResponse,
-                   updateImmediately: true,
-                   eventTime: 0)
+    func track(response: ActionRepsonse, expiredAt : String, refTime : String, modelId : String, invId : String, actionId : String, details : String = "") {
+        let actionResponseObj = ActionRepsonseObject(response: response, expiredAt: expiredAt, refTime: refTime, modelId: modelId, invId: invId, actionId: actionId, details: details)
+        CFCoreEvent.shared.logIngest(eventType: .ActionResponse, logObject: actionResponseObj)
     }
     
-    func trackAndOpen(object: BackendNudgeMainObject) {
-       track(nudgeRef: object.ref, response: .open)
-        if let cta = object.nd.cta, cta == "redirect" || cta == "add_to_cart",
-           let itemType = object.nd.message.tmplCFG?.itemPairCFG?.itemType, !itemType.isEmpty,
-           let itemID = object.extra?.itemPair?.ids?.first
+    func trackAndOpen(object: BackendActionMainObject) {
+        track(response: ActionRepsonse.Open, expiredAt: object.internalObj.expiredAt, refTime: object.internalObj.refTime, modelId: object.internalObj.modelId, invId: object.internalObj.invId, actionId: object.internalObj.actionId, details: "")
+        if let cta = object.attr["cta_type"], cta == "redirect" || cta == "add_to_cart",
+           let itemID = object.attr["cta_id"]
         {
-            if let closure = NudgeOnClickObject.nudgeOnClickInterface {
-                closure(cta, itemType, itemID)
+            if let closure = ActionOnClickObject.actionOnClickInterface {
+                closure(cta, itemID)
             }
         }
     }
@@ -82,7 +76,7 @@ extension CFNotificationController: UNUserNotificationCenterDelegate {
     public func userNotificationCenter(_: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // notification is presented
         if let data = notification.request.content.userInfo[userInfoKey] as? Data, let object = data.toObject() {
-            track(nudgeRef: object.ref, response: .shown)
+            track(response: ActionRepsonse.Shown, expiredAt: object.internalObj.expiredAt, refTime: object.internalObj.refTime, modelId: object.internalObj.modelId, invId: object.internalObj.invId, actionId: object.internalObj.actionId, details: "")
         }
         completionHandler(options)
     }
@@ -97,8 +91,8 @@ extension CFNotificationController: UNUserNotificationCenterDelegate {
 }
 
 private extension Data {
-    func toObject() -> BackendNudgeMainObject? {
+    func toObject() -> BackendActionMainObject? {
         let decoder = JSONDecoder.new
-        return try? decoder.decode(BackendNudgeMainObject.self, from: self)
+        return try? decoder.decode(BackendActionMainObject.self, from: self)
     }
 }

@@ -20,14 +20,14 @@ public class CFLog {
 
 public class CFLogBuilder {
     var appSdkKey: String = ""
-    var autoShowInAppNudge: Bool = true
+    var autoShowInAppMessage: Bool = true
     var updateImmediately: Bool = true
     var pauseSDK: Bool = false
 
     public init() {}
     /**
      * Using this will set the SDK on pause that it will not log any event and will not listen
-     * for the nudges but FCM based nudges will still work base on the device token status.
+     * for the actions but FCM based actions will still work base on the device token status.
      * DEFAULT value is FALSE
      */
     @discardableResult
@@ -122,8 +122,8 @@ public class CFLogBuilder {
     //                    }
     //                }
     @discardableResult
-    public func setAutoShowInAppNudge(showInAppNudge: Bool) -> CFLogBuilder {
-        CoreConstants.shared.autoShowInAppNudge = showInAppNudge
+    public func setAutoShowInAppMessages(showInAppMessage: Bool) -> CFLogBuilder {
+        CoreConstants.shared.autoShowInAppMessage = showInAppMessage
         return self
     }
 

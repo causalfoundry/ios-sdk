@@ -10,7 +10,7 @@ import Foundation
 public struct SearchObject: Codable {
     var query: String
     var searchModule: String
-    var resultsList: [SearchItemModel]
+    var resultsList: [String]
     var filter: [String: Any]?
     var page: Int
     var meta: Encodable?
@@ -18,7 +18,7 @@ public struct SearchObject: Codable {
     public init(
          query: String,
          searchModule: ModuleType,
-         resultsList: [SearchItemModel] = [],
+         resultsList: [String] = [],
          filter: [String: Any]? = nil,
          page: Int = 1,
          meta: Encodable? = nil)
@@ -45,7 +45,7 @@ public struct SearchObject: Codable {
         searchModule = try values.decode(String.self, forKey: .searchModule)
         query = try values.decode(String.self, forKey: .query)
         page = try values.decode(Int.self, forKey: .page)
-        resultsList = try values.decode([SearchItemModel].self, forKey: .resultsList)
+        resultsList = try values.decode([String].self, forKey: .resultsList)
         filter = try values.decodeIfPresent([String: Any].self, forKey: .filter)
         
         if let metaData = try? values.decodeIfPresent(Data.self, forKey: .meta) {

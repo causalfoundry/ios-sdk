@@ -35,7 +35,6 @@ public class IngestAPIHandler: NSObject {
             } else {
                 storeEventTrack(eventObject: eventObject)
             }
-            
             if(CoreConstants.shared.logoutEvent){
                 Task {
                     do {
@@ -82,16 +81,20 @@ public class IngestAPIHandler: NSObject {
                 print("No More Injest events")
                 return
             }
-                        
-            let url = URL(string: APIConstants.trackEvent)!
-            BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: dictionary) { result in
-                switch result {
-                case .success:
-                    callback(true)
-                case .failure:
-                    callback(false)
-                }
-            }
+                
+            print("==========")
+            print(dictionary)
+            print("==========")
+            callback(true)
+//            let url = URL(string: APIConstants.trackEvent)!
+//            BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: dictionary) { result in
+//                switch result {
+//                case .success:
+//                    callback(true)
+//                case .failure:
+//                    callback(false)
+//                }
+//            }
         }
     }
 

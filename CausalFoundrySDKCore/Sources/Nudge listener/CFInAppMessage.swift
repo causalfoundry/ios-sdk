@@ -8,15 +8,15 @@
 import Foundation
 
 public class CFInAppMessage {
-    public static func show(nudgeScreenType: NudgeScreenType) {
-        CFNudgeListener.shared.showInAppMessages(nudgeScreenType: nudgeScreenType)
+    public static func show(actionScreenType: ActionScreenType) {
+        CFActionListener.shared.showInAppMessages(actionScreenType: actionScreenType)
     }
     
-    public static func show(nudgeScreenType: String) {
+    public static func show(actionScreenType: String) {
         
-        if NudgeScreenType(rawValue: nudgeScreenType) == nil {
-            ExceptionManager.throwEnumException(eventType: "InApp Message Fetch", className: "NudgeScreenType")
+        if ActionScreenType(rawValue: actionScreenType) == nil {
+            ExceptionManager.throwEnumException(eventType: "InApp Message Fetch", className: "ActionScreenType")
         }
-        CFNudgeListener.shared.showInAppMessages(nudgeScreenType: NudgeScreenType(rawValue: nudgeScreenType)!)
+        CFActionListener.shared.showInAppMessages(actionScreenType: ActionScreenType(rawValue: actionScreenType)!)
     }
 }

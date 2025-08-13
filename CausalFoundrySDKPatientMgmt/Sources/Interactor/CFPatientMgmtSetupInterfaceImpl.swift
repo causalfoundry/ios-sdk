@@ -30,9 +30,9 @@ internal class CFPatientMgmtSetupInterfaceImpl: CFPatientMgmtSetupInterface {
     
         if let eventObject = validatePatientMgmtEvent(eventType: eventType, logObject: logObject){
             CFSetup().track(
-                contentBlockName: ContentBlock.PatientMgmt.rawValue,
-                eventType: eventType.rawValue,
-                logObject: eventObject,
+                eventName: eventType.rawValue,
+                eventProperty: "",
+                eventCtx: eventObject,
                 updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
                 eventTime: eventTime ?? 0
             )

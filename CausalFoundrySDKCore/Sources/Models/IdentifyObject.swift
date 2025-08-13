@@ -10,26 +10,34 @@ import Foundation
 public struct IdentifyObject: Codable {
     var userId: String?
     var action: String
-    var blocked: BlockedObject?
+    var referralCode: String
+    var blockedReason: String?
+    var blockedRemarks: String?
     var meta: Encodable?
 
-    public init(userId: String, action: IdentifyAction, blocked: BlockedObject? = nil, meta: Encodable? = nil) {
+    public init(userId: String, action: IdentifyAction, referralCode: String = "", blockedReason: String? = nil, blockedRemarks: String? = nil, meta: Encodable? = nil) {
         self.userId = userId
         self.action = action.rawValue
-        self.blocked = blocked
+        self.referralCode = referralCode
+        self.blockedReason = blockedReason
+        self.blockedRemarks = blockedRemarks
         self.meta = meta
     }
 
     enum CodingKeys: String, CodingKey {
         case action
-        case blocked
+        case referralCode = "referral_code"
+        case blockedReason = "reason"
+        case blockedRemarks = "remarks"
         case meta
     }
 
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         action = try values.decode(String.self, forKey: .action)
-        blocked = try values.decodeIfPresent(BlockedObject.self, forKey: .blocked)
+        referralCode = try values.decode(String.self, forKey: .referralCode)
+        blockedReason = try values.decode(String.self, forKey: .blockedReason)
+        blockedRemarks = try values.decode(String.self, forKey: .blockedRemarks)
         if let meatData = try? values.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: meatData, options: .allowFragments) as! any Encodable)
         } else {
@@ -42,43 +50,11 @@ public struct IdentifyObject: Codable {
     public func encode(to encoder: Encoder) throws {
         var baseContainer = encoder.container(keyedBy: CodingKeys.self)
         try baseContainer.encode(action, forKey: .action)
-        try baseContainer.encode(blocked, forKey: .blocked)
+        try baseContainer.encode(referralCode, forKey: .referralCode)
+        try baseContainer.encode(blockedReason, forKey: .blockedReason)
+        try baseContainer.encode(blockedRemarks, forKey: .blockedRemarks)
         if let meta_Data = meta {
             try baseContainer.encode(meta_Data, forKey: .meta)
         }
     }
 }
-
-
-
-///////////
-
-public struct BlockedObject: Codable {
-    var reason: String
-    var remarks: String?
-
-    public init(reason: String, remarks: String? = nil) {
-        self.reason = reason
-        self.remarks = remarks
-    }
-
-    enum CodingKeys: String, CodingKey {
-        case reason
-        case remarks
-    }
-
-    public init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        reason = try values.decode(String.self, forKey: .reason)
-        remarks = try values.decodeIfPresent(String.self, forKey: .remarks)
-    }
-
-    // MARK: Encodable
-
-    public func encode(to encoder: Encoder) throws {
-        var baseContainer = encoder.container(keyedBy: CodingKeys.self)
-        try baseContainer.encode(reason, forKey: .reason)
-        try baseContainer.encode(remarks, forKey: .remarks)
-    }
-}
-

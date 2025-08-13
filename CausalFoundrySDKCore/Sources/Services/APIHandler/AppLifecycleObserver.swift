@@ -49,7 +49,7 @@ public class CausalFoundry {
             startTime = Int64(currentTimeMillis) - appStartTime
         }
         let appObject = AppObject(action: AppAction.Open, startTime: Int(startTime))
-        CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventType: .App, logObject: appObject)
+        CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventName: .App, logObject: appObject)
     }
 
     @objc func appWillEnterForeground() {
@@ -60,7 +60,7 @@ public class CausalFoundry {
             CoreConstants.shared.sessionStartTime = Int64(currentTimeMillis)
             
             let appObject = AppObject(action: AppAction.Resume, startTime: 0)
-            CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventType: .App, logObject: appObject)
+            CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventName: .App, logObject: appObject)
         
         }
         CoreConstants.shared.isAppPaused = false
@@ -106,7 +106,7 @@ public class CausalFoundry {
         CoreConstants.shared.isAppOpen = false
         
         let appObject = AppObject(action: AppAction.Background, startTime: 0)
-        CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventType: .App, logObject: appObject)
+        CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventName: .App, logObject: appObject)
         
 
         if #available(iOS 13.0, *), isBackgroundAppRefreshEnabled() {
@@ -120,7 +120,7 @@ public class CausalFoundry {
         CoreConstants.shared.sessionEndTime = Int64(currentTimeMillis)
 
         let appObject = AppObject(action: AppAction.Close, startTime: 0)
-        CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventType: .App, logObject: appObject)
+        CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventName: .App, logObject: appObject)
         
     }
 

@@ -30,9 +30,9 @@ internal class CFLoyaltySetupInterfaceImpl: CFLoyaltySetupInterface {
         
         if let eventObject = validateLoyaltyEvent(eventType: eventType, logObject: logObject){
             CFSetup().track(
-                contentBlockName: ContentBlock.Loyalty.rawValue,
-                eventType: eventType.rawValue,
-                logObject: eventObject,
+                eventName: eventType.rawValue,
+                eventProperty: "",
+                eventCtx: eventObject,
                 updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
                 eventTime: eventTime ?? 0
             )

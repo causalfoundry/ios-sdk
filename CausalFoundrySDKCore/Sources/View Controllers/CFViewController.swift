@@ -36,17 +36,15 @@ open class CFViewController: UIViewController {
             // only set once. user can return to preview view in stack
             renderEndTime = CFAbsoluteTimeGetCurrent()
         }
+        
+        if(CoreConstants.shared.allowAutoPageTrack){
+            let pageObject = PageObject(path: path, title: className, renderTime: Int(renderEndTime - renderBeginTime))
+            CFCoreEvent.shared.logIngest(eventType: .Page, logObject: pageObject)
+        }
+        
     }
 
     override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if(CoreConstants.shared.allowAutoPageTrack){
-            let duration = CFAbsoluteTimeGetCurrent() - durationBeginTime
-            let formattedDuration = Float(String(format: "%.2f", duration)) ?? 1.0
-        
-            let pageObject = PageObject(path: path, title: className, duration: formattedDuration, renderTime: Int(renderEndTime - renderBeginTime))
-            CFCoreEvent.shared.logIngest(eventType: .Page, logObject: pageObject)
-            
-        }
     }
 }

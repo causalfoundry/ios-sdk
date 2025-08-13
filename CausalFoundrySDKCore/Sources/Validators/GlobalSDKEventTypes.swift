@@ -12,10 +12,10 @@ public enum GlobalSDKEventTypes: String, EnumComposable {
     case App
     case Search
     case Media
-    case NudgeResponse
     case ActionResponse
     case Rate
     case ModuleSelection
+    case Track
     
     // ECommerce
     case Item
@@ -55,10 +55,10 @@ public enum GlobalSDKEventTypes: String, EnumComposable {
         case .App: return "app"
         case .Search: return "search"
         case .Media: return "media"
-        case .NudgeResponse: return "nudge_response"
         case .ActionResponse: return "action_response"
         case .Rate: return "rate"
         case .ModuleSelection: return "module_selection"
+        case .Track: return "track"
             
         // ECommerce
         case .Item: return "item"

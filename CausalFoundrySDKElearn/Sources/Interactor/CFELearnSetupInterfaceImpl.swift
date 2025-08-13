@@ -30,9 +30,9 @@ internal class CFELearnSetupInterfaceImpl: CFELearnSetupInterface {
         
         if let eventObject = validateELearnEvent(eventType: eventType, logObject: logObject){
             CFSetup().track(
-                contentBlockName: ContentBlock.ELearning.rawValue,
-                eventType: eventType.rawValue,
-                logObject: eventObject,
+                eventName: eventType.rawValue,
+                eventProperty: "",
+                eventCtx: eventObject,
                 updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
                 eventTime: eventTime ?? 0
             )

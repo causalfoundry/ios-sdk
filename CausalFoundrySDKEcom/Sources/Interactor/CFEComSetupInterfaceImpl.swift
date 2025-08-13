@@ -30,9 +30,9 @@ internal class CFEComSetupInterfaceImpl: CFEComSetupInterface {
         
         if let eventObject = validateEComEvent(eventType: eventType, logObject: logObject){
             CFSetup().track(
-                contentBlockName: ContentBlock.ECommerce.rawValue,
-                eventType: eventType.rawValue,
-                logObject: eventObject,
+                eventName: eventType.rawValue,
+                eventProperty: "",
+                eventCtx: eventObject,
                 updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
                 eventTime: eventTime ?? 0
             )

@@ -1,13 +1,13 @@
 //
-//  NudgeScreenType.swift
-//  
+//  ActionScreenType.swift
+//
 //
 //  Created by MOIZ HASSAN KHAN on 25/4/24.
 //
 
 import Foundation
 
-public enum NudgeScreenType: String, EnumComposable {
+public enum ActionScreenType: String, EnumComposable {
     case None
     case Home
     case Search

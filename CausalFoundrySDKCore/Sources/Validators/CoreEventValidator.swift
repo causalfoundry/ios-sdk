@@ -87,7 +87,7 @@ public class CoreEventValidator {
                                                        paramName: "userId",
                                                        className: "userId")
             } else if [IdentifyAction.Blocked.rawValue, IdentifyAction.Unblocked.rawValue].contains(eventObject.action),
-                     eventObject.blocked?.reason.isEmpty ?? true {
+                      eventObject.blockedReason?.isEmpty ?? true {
                 
                 ExceptionManager.throwInvalidException(eventType: CoreEventType.Identify.rawValue,
                                                        paramName: "blocked object reason",
@@ -118,17 +118,17 @@ public class CoreEventValidator {
         }()
         if var eventObject = eventObject {
             // Will throw an exception if the action provided is null or no action is provided at all.
-            if eventObject.id.isEmpty {
+            if eventObject.mediaId.isEmpty {
                 ExceptionManager.throwIsRequiredException(eventType: CoreEventType.Media.rawValue, elementName: "media Id")
-            } else if eventObject.time < 0 {
+            } else if eventObject.seekTime < 0 {
                 ExceptionManager.throwInvalidException(eventType: CoreEventType.Media.rawValue,
-                                                       paramName: "media duration",
+                                                       paramName: "media seek time",
                                                        className: String(describing: Float.self))
             } else {
                 
-                if (eventObject.type == MediaType.Image.rawValue) {
-                    eventObject.action = MediaAction.View.rawValue
-                    eventObject.time = 0
+                if (eventObject.mediaType == MediaType.Image.rawValue) {
+                    eventObject.mediaAction = MediaAction.View.rawValue
+                    eventObject.seekTime = 0
                 }
                 
                 return eventObject
@@ -175,11 +175,7 @@ public class CoreEventValidator {
                 ExceptionManager.throwInvalidException(eventType: CoreEventType.Page.rawValue,
                                                        paramName: "title",
                                                        className: "title")
-            } else if eventObject.duration < 0 {
-                ExceptionManager.throwInvalidException(eventType: CoreEventType.Page.rawValue,
-                                                       paramName: "duration",
-                                                       className: "duration")
-            }  else if eventObject.renderTime < 0 {
+            } else if eventObject.renderTime < 0 {
                 ExceptionManager.throwInvalidException(eventType: CoreEventType.Page.rawValue,
                                                        paramName: "render_time",
                                                        className: "render_time")
@@ -248,10 +244,35 @@ public class CoreEventValidator {
             }
         }
         return nil
+    }
+    
+    static func validateActionResponseObject<T:Codable>(logObject: T?) -> ActionRepsonseObject? {
         
+        let eventObject: ActionRepsonseObject? = {
+            if let eventObject = logObject as? ActionRepsonseObject {
+                return eventObject
+            } else {
+                ExceptionManager.throwInvalidException(eventType: CoreEventType.ActionResponse.rawValue,
+                                                       paramName: "response", className: "ActionResponse")
+                return nil
+            }
+        }()
+    
+        
+        if let eventObject = eventObject {
+            // Will throw an exception if the action provided is null or no action is provided at all.
+            if eventObject.action_id.isEmpty {
+                ExceptionManager.throwIsRequiredException(eventType: CoreEventType.ActionResponse.rawValue, elementName:  "actionId/ref")
+            }
+            else if CoreConstants.shared.enumContains(ActionRepsonse.self, name: eventObject.response) {
+                ExceptionManager.throwEnumException(eventType: CoreEventType.ActionResponse.rawValue, className:  "action_response")
+            }
+            else {
+                return eventObject
+            }
+        }
+        return nil
         
     }
-
-
 
 }

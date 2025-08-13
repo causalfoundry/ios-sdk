@@ -1,5 +1,5 @@
 //
-//  CFNudgeListener.swift
+//  CFActionListener.swift
 //
 //
 //  Created by Causal Foundry on 29.11.23.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class CFNudgeListener {
-    static let shared = CFNudgeListener()
+class CFActionListener {
+    static let shared = CFActionListener()
 
-    private var nudgeTimer: Timer?
-    private var nudgeTask: URLSessionDataTask?
+    private var actionTimer: Timer?
+    private var actionTask: URLSessionDataTask?
 
     let timeInterval: TimeInterval = 20 * 3600
 
@@ -23,18 +23,18 @@ class CFNudgeListener {
     func beginListening() {
         endListening()
         startTimer()
-        fetchAndDisplayNudgesTask()
+        fetchAndDisplayActionTask()
         NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: .main) { [weak self] _ in
             self?.endTimer()
         }
         NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { [weak self] _ in
             self?.startTimer()
-            self?.fetchAndDisplayNudgesTask()
+            self?.fetchAndDisplayActionTask()
         }
     }
 
     @available(iOS 13.0, *)
-    private func fetchPushNotificationNudges() async throws -> [BackendNudgeMainObject] {
+    private func fetchPushNotificationActions() async throws -> [BackendActionMainObject] {
         var userId = CoreConstants.shared.userId
         
         if(userId == nil || userId?.isEmpty == true){
@@ -42,18 +42,18 @@ class CFNudgeListener {
         }
         
         if(userId ==  nil || userId?.isEmpty == true){
-            userId = CoreConstants.shared.deviceObject?.device_id
+            userId = CoreConstants.shared.internalInfoObject?.device_id
         }
         guard let userID = userId, !userID.isEmpty else {
             return [] }
         return try await withCheckedThrowingContinuation { continuation in
-            let url = URL(string: "\(APIConstants.fetchNudge)\(userID)?render_method=push_notification")!
+            let url = URL(string: "\(APIConstants.fetchAction)\(userID)?render_method=push_notification")!
             BackgroundRequestController.shared.request(url: url, httpMethod: .get, params: nil) { result in
                 switch result {
                 case .success(let data):
                     do {
                         let decoder = JSONDecoder.new
-                        let objects = try decoder.decode([BackendNudgeMainObject].self, from: data ?? Data())
+                        let objects = try decoder.decode([BackendActionMainObject].self, from: data ?? Data())
                         continuation.resume(with: .success(objects))
                     } catch {
                         print("error: \(error)")
@@ -67,7 +67,7 @@ class CFNudgeListener {
     }
     
     @available(iOS 13.0, *)
-    private func fetchInAppMessagesNudges(nudgeScreenType : NudgeScreenType) async throws -> [BackendNudgeMainObject] {
+    private func fetchInAppMessagesActions(actionScreenType : ActionScreenType) async throws -> [BackendActionMainObject] {
         var userId = CoreConstants.shared.userId
         
         if(userId == nil || userId?.isEmpty == true){
@@ -75,18 +75,18 @@ class CFNudgeListener {
         }
         
         if(userId ==  nil || userId?.isEmpty == true){
-            userId = CoreConstants.shared.deviceObject?.device_id
+            userId = CoreConstants.shared.internalInfoObject?.device_id
         }
         guard let userID = userId, !userID.isEmpty else {
             return [] }
         return try await withCheckedThrowingContinuation { continuation in
-            let url = URL(string: "\(APIConstants.fetchNudge)\(userID)?render_method=in_app_message&render_page=\(nudgeScreenType.rawValue)")!
+            let url = URL(string: "\(APIConstants.fetchAction)\(userID)?render_method=in_app_message&render_page=\(actionScreenType.rawValue)")!
             BackgroundRequestController.shared.request(url: url, httpMethod: .get, params: nil) { result in
                 switch result {
                 case .success(let data):
                     do {
                         let decoder = JSONDecoder.new
-                        let objects = try decoder.decode([BackendNudgeMainObject].self, from: data ?? Data())
+                        let objects = try decoder.decode([BackendActionMainObject].self, from: data ?? Data())
                         continuation.resume(with: .success(objects))
                     } catch {
                         continuation.resume(with: .failure(error))
@@ -99,94 +99,94 @@ class CFNudgeListener {
     }
 
     private func startTimer() {
-        nudgeTimer?.invalidate()
-        nudgeTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) { [weak self] _ in
-            self?.fetchAndDisplayNudgesTask()
+        actionTimer?.invalidate()
+        actionTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) { [weak self] _ in
+            self?.fetchAndDisplayActionTask()
         }
     }
 
     private func endTimer() {
-        nudgeTimer?.invalidate()
-        nudgeTimer = nil
+        actionTimer?.invalidate()
+        actionTimer = nil
     }
 
     @available(iOS 13.0, *)
-    func fetchAndDisplayPushNotificationNudges() async throws {
-//        let pushNotificationNudgeObjects = try! BackendNudgeMainObject.debugObjects()
-        let pushNotificationNudgeObjects = try await fetchPushNotificationNudges()
+    func fetchAndDisplayPushNotificationActions() async throws {
+//        let pushNotificationActionsObjects = try! BackendActionsMainObject.debugObjects()
+        let pushNotificationActionObjects = try await fetchPushNotificationActions()
         
         // Filter the objects to get only the ones that are not expired
-        let nonExpiredNudges = pushNotificationNudgeObjects.filter { !$0.isExpired }
+        let nonExpiredActions = pushNotificationActionObjects.filter { !$0.internalObj.isExpired }
        
         // Find the expired objects by subtracting non-expired ones from all fetched objects
-        let expiredObjects = Set(pushNotificationNudgeObjects).subtracting(nonExpiredNudges)
+        let expiredObjects = Set(pushNotificationActionObjects).subtracting(nonExpiredActions)
 
         // Call a function for each expired object
-        expiredObjects.forEach { expiredNudge in
-            CFNotificationController.shared.track(nudgeRef: expiredNudge.ref, response: .expired)
+        expiredObjects.forEach { expiredAction in
+            CFNotificationController.shared.track(response: ActionRepsonse.Expired, expiredAt: expiredAction.internalObj.expiredAt, refTime: expiredAction.internalObj.refTime, modelId: expiredAction.internalObj.modelId, invId: expiredAction.internalObj.invId, actionId: expiredAction.internalObj.actionId, details: "")
         }
         
-        for object in nonExpiredNudges {
-            CFNotificationController.shared.triggerNudgeNotification(object: object)
+        for object in nonExpiredActions {
+            CFNotificationController.shared.triggerActionNotification(object: object)
         }
     }
     
     
     @available(iOS 13.0, *)
-    func fetchAndDisplayInAppMessagesNudges(nudgeScreenType: NudgeScreenType) async throws {
-        let inAppMessageNudgeObjects = try await fetchInAppMessagesNudges(nudgeScreenType: nudgeScreenType)
+    func fetchAndDisplayInAppMessagesAction(actionScreenType: ActionScreenType) async throws {
+        let inAppMessageActionObjects = try await fetchInAppMessagesActions(actionScreenType: actionScreenType)
         
         // Filter the objects to get only the ones that are not expired
-        let nonExpiredNudges = inAppMessageNudgeObjects.filter { !$0.isExpired }
+        let nonExpiredAction = inAppMessageActionObjects.filter { !$0.internalObj.isExpired }
         
         // Find the expired objects by subtracting non-expired ones from all fetched objects
-        let expiredObjects = Set(inAppMessageNudgeObjects).subtracting(nonExpiredNudges)
+        let expiredObjects = Set(inAppMessageActionObjects).subtracting(nonExpiredAction)
 
         // Call a function for each expired object
-        expiredObjects.forEach { expiredNudge in
-            CFNotificationController.shared.track(nudgeRef: expiredNudge.ref, response: .expired)
+        expiredObjects.forEach { expiredAction in
+            CFNotificationController.shared.track(response: ActionRepsonse.Expired, expiredAt: expiredAction.internalObj.expiredAt, refTime: expiredAction.internalObj.refTime, modelId: expiredAction.internalObj.modelId, invId: expiredAction.internalObj.invId, actionId: expiredAction.internalObj.actionId, details: "")
         }
-        if(!nonExpiredNudges.isEmpty){
+        if(!nonExpiredAction.isEmpty){
             if (CoreConstants.shared.isAppOpen) {
                     DispatchQueue.main.async {
                         guard let window = UIApplication.shared.windows.first,
                               let rootViewController = window.rootViewController else {
-                                nonExpiredNudges.forEach { nudge in
-                                    CFNotificationController.shared.track(nudgeRef: nudge.ref, response: .error, errorDetails: "unable to show nudge, UI controller not found")
+                            nonExpiredAction.forEach { action in
+                                    CFNotificationController.shared.track(response: ActionRepsonse.Expired, expiredAt: action.internalObj.expiredAt, refTime: action.internalObj.refTime, modelId: action.internalObj.modelId, invId: action.internalObj.invId, actionId: action.internalObj.actionId, details: "unable to show actions, UI controller not found")
                                 }
                                 return // or perform some other action
                             }
-                            CFNudgePresenter.presentWithData(in: rootViewController, objects: nonExpiredNudges)
+                            CFActionPresenter.presentWithData(in: rootViewController, objects: nonExpiredAction)
                     }
             }else{
-                var storedNudges = MMKVHelper.shared.readNudges()
-                if(!storedNudges.isEmpty){
-                    storedNudges.append(contentsOf: nonExpiredNudges)
-                    MMKVHelper.shared.writeNudges(objects: storedNudges)
+                var storedActions = MMKVHelper.shared.readActions()
+                if(!storedActions.isEmpty){
+                    storedActions.append(contentsOf: nonExpiredAction)
+                    MMKVHelper.shared.writeActions(objects: storedActions)
                     return
                 }
-                MMKVHelper.shared.writeNudges(objects: nonExpiredNudges)
+                MMKVHelper.shared.writeActions(objects: nonExpiredAction)
             }
         }
     }
     
-    private func fetchAndDisplayNudgesTask() {
+    private func fetchAndDisplayActionTask() {
         if #available(iOS 13.0, *) {
             Task {
-                try await fetchAndDisplayPushNotificationNudges()
-                if(CoreConstants.shared.isAppOpen && CoreConstants.shared.autoShowInAppNudge){
-                    try await fetchAndDisplayInAppMessagesNudges(nudgeScreenType: NudgeScreenType.None)
+                try await fetchAndDisplayPushNotificationActions()
+                if(CoreConstants.shared.isAppOpen && CoreConstants.shared.autoShowInAppMessage){
+                    try await fetchAndDisplayInAppMessagesAction(actionScreenType: ActionScreenType.None)
                 }
             }
         }
     }
     
     
-    public func showInAppMessages(nudgeScreenType: NudgeScreenType) {
+    public func showInAppMessages(actionScreenType: ActionScreenType) {
         if #available(iOS 13.0, *) {
             Task {
-                if(CoreConstants.shared.isAppOpen && !CoreConstants.shared.autoShowInAppNudge){
-                    try await fetchAndDisplayInAppMessagesNudges(nudgeScreenType: nudgeScreenType)
+                if(CoreConstants.shared.isAppOpen && !CoreConstants.shared.autoShowInAppMessage){
+                    try await fetchAndDisplayInAppMessagesAction(actionScreenType: actionScreenType)
                 }
             }
         }
@@ -194,9 +194,9 @@ class CFNudgeListener {
 }
 
 #if DEBUG
-extension BackendNudgeMainObject {
+extension BackendActionMainObject {
     
-    static func debugObjects() throws -> [BackendNudgeMainObject] {
+    static func debugObjects() throws -> [BackendActionMainObject] {
         let json = """
         [
           {
@@ -280,7 +280,7 @@ extension BackendNudgeMainObject {
         """
         let data = json.data(using: .utf8)!
         let decoder = JSONDecoder.new
-        let objects = try decoder.decode([BackendNudgeMainObject].self, from: data)
+        let objects = try decoder.decode([BackendActionMainObject].self, from: data)
         return objects
     }
 }

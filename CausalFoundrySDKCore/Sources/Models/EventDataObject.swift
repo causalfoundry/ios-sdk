@@ -27,7 +27,7 @@ struct EventDataObject: Codable, Hashable {
         self.ts = ISO8601DateFormatter().string(from: ts)
         self.name = name
         self.property = property
-        self.ctx = ctx.dictionary
+        self.ctx = ctx.serializeToFlatMap()
     }
 
     init(from decoder: Decoder) throws {

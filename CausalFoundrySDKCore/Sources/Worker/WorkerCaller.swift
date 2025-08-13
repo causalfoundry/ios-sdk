@@ -13,19 +13,19 @@ public enum WorkerCaller {
     // Method to update events at session end
 
     private static var eventUploadTaskIdentifier = "ai.causalfoundry.ingestAppEvents"
-    private static var nudgeDownloadTaskIdentifier = "ai.causalfoundry.fetchNudges"
+    private static var actionDownloadTaskIdentifier = "ai.causalfoundry.fetchActions"
 
     static func registerBackgroundTask() {
         if(CausalFoundry.shared.isBackgroundAppRefreshEnabled()){
             registerEventUploadTask()
-            registerNudgeDownloadTask()
+            registerActionDownloadTask()
         }
     }
 
     static func scheduleBackgroundTasks() {
         if(CausalFoundry.shared.isBackgroundAppRefreshEnabled()){
             scheduleEventUploadTask()
-            scheduleNudgeDownloadTask()
+            scheduleActionDownloadTask()
         }
     }
 
@@ -36,7 +36,6 @@ public enum WorkerCaller {
                 do {
                     
                     try await InjestEvenstuploader.uploadEvents()
-                    try await ExceptionEventsUploader.uploadEvents()
                     try await CatalogEventsUploader.uploadEvents()
                     print("Background task \(task.identifier) completed")
                     task.setTaskCompleted(success: true)
@@ -50,14 +49,14 @@ public enum WorkerCaller {
         }
     }
 
-    private static func registerNudgeDownloadTask() {
-        print("Register background task: \(WorkerCaller.nudgeDownloadTaskIdentifier)")
-        BGTaskScheduler.shared.register(forTaskWithIdentifier: WorkerCaller.nudgeDownloadTaskIdentifier, using: nil) { task in
+    private static func registerActionDownloadTask() {
+        print("Register background task: \(WorkerCaller.actionDownloadTaskIdentifier)")
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: WorkerCaller.actionDownloadTaskIdentifier, using: nil) { task in
             Task {
                 do {
-                    try await CFNudgeListener.shared.fetchAndDisplayPushNotificationNudges()
-                    if(CoreConstants.shared.isAppOpen && CoreConstants.shared.autoShowInAppNudge){
-                        try await CFNudgeListener.shared.fetchAndDisplayInAppMessagesNudges(nudgeScreenType: NudgeScreenType.None)
+                    try await CFActionListener.shared.fetchAndDisplayPushNotificationActions()
+                    if(CoreConstants.shared.isAppOpen && CoreConstants.shared.autoShowInAppMessage){
+                        try await CFActionListener.shared.fetchAndDisplayInAppMessagesAction(actionScreenType: ActionScreenType.None)
                     }
                     print("Background task \(task.identifier) completed")
                     task.setTaskCompleted(success: true)
@@ -65,7 +64,7 @@ public enum WorkerCaller {
                     print("Background task error: \(error.localizedDescription)")
                     task.setTaskCompleted(success: false)
                 }
-                scheduleNudgeDownloadTask()
+                scheduleActionDownloadTask()
             }
         }
     }
@@ -86,14 +85,14 @@ public enum WorkerCaller {
         }
     }
 
-    private static func scheduleNudgeDownloadTask(earliestBeginDate: Date = Date(timeIntervalSinceNow: CFNudgeListener.shared.timeInterval)) {
-        let request = BGAppRefreshTaskRequest(identifier: WorkerCaller.nudgeDownloadTaskIdentifier)
+    private static func scheduleActionDownloadTask(earliestBeginDate: Date = Date(timeIntervalSinceNow: CFActionListener.shared.timeInterval)) {
+        let request = BGAppRefreshTaskRequest(identifier: WorkerCaller.actionDownloadTaskIdentifier)
         request.earliestBeginDate = earliestBeginDate
         do {
             try BGTaskScheduler.shared.submit(request)
             print("Submitted background task: \(request.identifier)")
             // add breakpoint to print statement above and execute command:
-            // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"cai.causalfoundry.fetchNudges"]
+            // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"cai.causalfoundry.fetchActions"]
         } catch {
             print("Unable to schedule background task: \(error)")
         }
@@ -102,7 +101,6 @@ public enum WorkerCaller {
     public static func performUpload() async throws {
         try await InjestEvenstuploader.uploadEvents()
         try await CatalogEventsUploader.uploadEvents()
-        try await ExceptionEventsUploader.uploadEvents()
     }
     
     public static func performSanitizedUpload(indexToRemove : Int?){

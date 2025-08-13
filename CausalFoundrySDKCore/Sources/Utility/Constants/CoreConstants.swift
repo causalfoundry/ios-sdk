@@ -51,7 +51,7 @@ public class CoreConstants {
     public var updateImmediately: Bool = false
 
     public var pauseSDK: Bool = false
-    public var autoShowInAppNudge: Bool = true
+    public var autoShowInAppMessage: Bool = true
     var sessionStartTime: Int64 = 0
     var sessionEndTime: Int64 = 0
 
@@ -83,10 +83,10 @@ public class CoreConstants {
 public protocol EnumComposable: Codable, RawRepresentable, CaseIterable {}
 
 extension CoreConstants {
-    func isSearchItemModelObjectValid(itemValue: SearchItemModel, eventType: CoreEventType) -> Bool {
+    func isSearchItemModelObjectValid(itemValue: String, eventType: CoreEventType) -> Bool {
 
         let eventName = eventType.rawValue
-        guard !itemValue.id.isEmpty else {
+        guard !itemValue.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_id")
             return false
         }

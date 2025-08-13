@@ -15,13 +15,11 @@ public class CFCoreEvent {
     
     public func logIngest<T: Codable>(eventType: CoreEventType,
                                           logObject: T?,
-                                          contentBlock: ContentBlock? = CoreConstants.shared.contentBlock,
                                           isUpdateImmediately: Bool? = CoreConstants.shared.updateImmediately,
                                           eventTime: Int64? = 0) {
         
-        CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventType: eventType,
+        CFCoreSetupInterfaceImpl.shared.trackSDKEvent(eventName: eventType,
                                                       logObject: logObject,
-                                                      contentBlock: contentBlock,
                                                       isUpdateImmediately: isUpdateImmediately,
                                                       eventTime: eventTime)
     }

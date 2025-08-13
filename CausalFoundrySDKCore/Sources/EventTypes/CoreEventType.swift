@@ -13,7 +13,7 @@ public enum CoreEventType: String, EnumComposable {
     case App
     case Search
     case Media
-    case NudgeResponse
+    case ActionResponse
     case Rate
     case Track
     case ModuleSelection
@@ -25,7 +25,7 @@ public enum CoreEventType: String, EnumComposable {
         case .App: return "app"
         case .Search: return "search"
         case .Media: return "media"
-        case .NudgeResponse: return "nudge_response"
+        case .ActionResponse: return "action_response"
         case .Rate: return "rate"
         case .Track: return "track"
         case .ModuleSelection: return "module_selection"

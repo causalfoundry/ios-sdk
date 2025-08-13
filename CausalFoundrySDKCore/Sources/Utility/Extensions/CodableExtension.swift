@@ -12,11 +12,11 @@ import Foundation
 struct JSONCodingKeys: CodingKey {
     var stringValue: String
     var intValue: Int?
-
+    
     init?(stringValue: String) {
         self.stringValue = stringValue
     }
-
+    
     init?(intValue: Int) {
         self.init(stringValue: "\(intValue)")
         self.intValue = intValue
@@ -30,7 +30,7 @@ extension KeyedDecodingContainer {
         let container = try nestedContainer(keyedBy: JSONCodingKeys.self, forKey: key)
         return try container.decode(type)
     }
-
+    
     func decode(_: [[String: Any]].Type, forKey key: K) throws -> [[String: Any]] {
         var container = try nestedUnkeyedContainer(forKey: key)
         if let decodedData = try container.decode([Any].self) as? [[String: Any]] {
@@ -39,7 +39,7 @@ extension KeyedDecodingContainer {
             return []
         }
     }
-
+    
     func decodeIfPresent(_ type: [String: Any].Type, forKey key: K) throws -> [String: Any]? {
         guard contains(key) else {
             return nil
@@ -49,12 +49,12 @@ extension KeyedDecodingContainer {
         }
         return try decode(type, forKey: key)
     }
-
+    
     func decode(_ type: [Any].Type, forKey key: K) throws -> [Any] {
         var container = try nestedUnkeyedContainer(forKey: key)
         return try container.decode(type)
     }
-
+    
     func decodeIfPresent(_ type: [Any].Type, forKey key: K) throws -> [Any]? {
         guard contains(key) else {
             return nil
@@ -64,7 +64,7 @@ extension KeyedDecodingContainer {
         }
         return try decode(type, forKey: key)
     }
-
+    
     func decode(_: [String: Any].Type) throws -> [String: Any] {
         var dictionary = [String: Any]()
         for key in allKeys {
@@ -107,7 +107,7 @@ extension UnkeyedDecodingContainer {
         }
         return array
     }
-
+    
     mutating func decode(_ type: [String: Any].Type) throws -> [String: Any] {
         let nestedContainer = try self.nestedContainer(keyedBy: JSONCodingKeys.self)
         return try nestedContainer.decode(type)
@@ -141,7 +141,7 @@ extension KeyedEncodingContainer {
             }
         }
     }
-
+    
     mutating func encodeIfPresent(_ value: [Any]?, forKey key: KeyedEncodingContainer<K>.Key) throws {
         guard let safeValue = value else {
             return
@@ -169,7 +169,7 @@ extension UnkeyedEncodingContainer {
             try encodeIfPresent(dict)
         }
     }
-
+    
     mutating func encodeIfPresent(_ value: [String: Any]) throws {
         var container = nestedContainer(keyedBy: JSONCodingKeys.self)
         for item in value {
@@ -215,17 +215,131 @@ extension Encodable {
         let encoder = JSONEncoder()
         guard let data = try? encoder.encode(self) else { return nil }
         guard let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
-        
-        guard let dict = jsonObject as? [String: Any], dict.isStrictlyPrimitive else {
-            return nil
-        }
-        return dict
+        return jsonObject as? [String: Any]
     }
-
+    
     var prettyJSON: String {
         dictionary?.prettyJSON ?? "{}"
     }
+    
+    func serializeToFlatMap() -> [String: Any] {
+        guard let dict = dictionary else { return [:] }
+        return flattenMap(dict)
+    }
+    
+    func serializeToFlatMapString() -> [String: String] {
+        guard let dict = dictionary else { return [:] }
+        return flattenMapToString(dict)
+    }
 }
+
+// Convert Any to snake_case key Dictionary<String, Any>
+func flattenMap(_ input: [String: Any?]) -> [String: Any] {
+    var result: [String: Any] = [:]
+    
+    for (key, value) in input {
+        let newKey = key.toSnakeCase()
+        
+        switch value {
+        case nil:
+            continue
+        case let str as String:
+            if !str.isEmpty {
+                result[newKey] = str
+            }
+        case let num as Int:
+            result[newKey] = num
+        case let num as Double:
+            result[newKey] = num
+        case let num as Float:
+            result[newKey] = num
+        case let bool as Bool:
+            result[newKey] = bool
+        case let list as [Any?]:
+            let joined = list.compactMap { $0 }.map { "\($0)" }.joined(separator: ", ")
+            if !joined.isEmpty {
+                result[newKey] = joined
+            }
+        case let dict as [String: Any?]:
+            let nested = flattenMap(dict)
+            result.merge(nested) { _, new in new }
+        default:
+            if value == nil || value is NSNull {
+                continue
+            }
+            if let dictValue = value as? [String: Any?] {
+                let nested = flattenMap(dictValue)
+                result.merge(nested) { _, new in new }
+            } else if let arrayValue = value as? [Any?] {
+                let joined = arrayValue.compactMap { $0 }.map { "\($0)" }.joined(separator: ", ")
+                if !joined.isEmpty {
+                    result[newKey] = joined
+                }
+            } else {
+                result[newKey] = "\(value!)"
+            }
+        }
+        
+    }
+    
+    return result
+}
+
+// Flatten to [String: String]
+func flattenMapToString(_ input: [String: Any?]) -> [String: String] {
+    var result: [String: String] = [:]
+    
+    for (key, value) in input {
+        let newKey = key.toSnakeCase()
+        
+        switch value {
+        case nil:
+            continue
+        case let str as String:
+            if !str.isEmpty {
+                result[newKey] = str
+            }
+        case let num as Int:
+            result[newKey] = "\(num)"
+        case let num as Double:
+            result[newKey] = "\(num)"
+        case let num as Float:
+            result[newKey] = "\(num)"
+        case let bool as Bool:
+            result[newKey] = "\(bool)"
+        case let list as [Any?]:
+            let joined = list.compactMap { $0 }.map { "\($0)" }.joined(separator: ", ")
+            if !joined.isEmpty {
+                result[newKey] = joined
+            }
+        case let dict as [String: Any?]:
+            let nested = flattenMapToString(dict)
+            result.merge(nested) { _, new in new }
+        default:
+            if value == nil || value is NSNull {
+                continue
+            }
+            if let dictValue = value as? [String: Any?] {
+                let nested = flattenMapToString(dictValue)
+                result.merge(nested) { _, new in new }
+            } else if let arrayValue = value as? [Any?] {
+                let joined = arrayValue.compactMap { $0 }.map { "\($0)" }.joined(separator: ", ")
+                if !joined.isEmpty {
+                    result[newKey] = joined
+                }
+            } else {
+                let str = "\(value!)"
+                if !str.isEmpty {
+                    result[newKey] = str
+                }
+            }
+        }
+        
+    }
+    
+    return result
+}
+
 
 extension Dictionary {
     var prettyJSON: String {

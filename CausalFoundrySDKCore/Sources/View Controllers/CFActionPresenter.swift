@@ -1,5 +1,5 @@
 //
-//  CFNudgePresenter.swift
+//  CFActionPresenter.swift
 //
 //
 //  Created by Causal Foundry on 07.12.23.
@@ -7,49 +7,49 @@
 
 import UIKit
 
-public final class CFNudgePresenter {
+public final class CFActionPresenter {
     
     @available(iOS 13.0, *)
     public static func present(in uiViewController: UIViewController) {
-        let objects = MMKVHelper.shared.readNudges().filter { !$0.isExpired }
+        let objects = MMKVHelper.shared.readActions().filter { !$0.internalObj.isExpired }
         
         guard !objects.isEmpty else { return }
         
-        let vc = CFNudgeViewController(objects: objects)
+        let vc = CFActionViewController(objects: objects)
         uiViewController.present(vc, animated: true)
         
-        MMKVHelper.shared.writeNudges(objects: [])
+        MMKVHelper.shared.writeActions(objects: [])
     }
     
-    public static func presentWithData(in uiViewController: UIViewController, objects : [BackendNudgeMainObject]) {
+    public static func presentWithData(in uiViewController: UIViewController, objects : [BackendActionMainObject]) {
         if #available(iOS 13.0, *) {
             guard !objects.isEmpty else { return }
             if uiViewController.presentedViewController != nil {
                 DispatchQueue.main.asyncAfter(deadline: .now() + NotificationConstants.shared.IN_APP_MESSAGE_INITIAL_DELAY) {
-                    let vc = CFNudgeViewController(objects: objects)
+                    let vc = CFActionViewController(objects: objects)
                     uiViewController.present(vc, animated: true)
-                    MMKVHelper.shared.writeNudges(objects: [])
+                    MMKVHelper.shared.writeActions(objects: [])
                 }
             }else {
-                let vc = CFNudgeViewController(objects: objects)
+                let vc = CFActionViewController(objects: objects)
                 uiViewController.present(vc, animated: true)
-                MMKVHelper.shared.writeNudges(objects: [])
+                MMKVHelper.shared.writeActions(objects: [])
             }
         }
     }
 }
 
 @available(iOS 13.0, *)
-fileprivate final class CFNudgeViewController: UITableViewController {
+fileprivate final class CFActionViewController: UITableViewController {
     
     private enum Section: Int {
         case one
     }
         
     private lazy var dataSource = makeDataSource()
-    private var objects: [BackendNudgeMainObject]
+    private var objects: [BackendActionMainObject]
     
-    init(objects: [BackendNudgeMainObject]) {
+    init(objects: [BackendActionMainObject]) {
         self.objects = objects
         super.init(nibName: nil, bundle: nil)
     }
@@ -67,7 +67,7 @@ fileprivate final class CFNudgeViewController: UITableViewController {
         tableView.isOpaque = false
         tableView.separatorColor = .clear
         tableView.backgroundColor = .clear
-        tableView.register(CFNudgeCell.self, forCellReuseIdentifier: "CFNudgeCell")
+        tableView.register(CFActionCell.self, forCellReuseIdentifier: "CFActionCell")
         tableView.dataSource = dataSource
         
         updateDatasource()
@@ -80,9 +80,8 @@ fileprivate final class CFNudgeViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let object = dataSource.itemIdentifier(for: indexPath) else { return }
         CFNotificationController.shared.trackAndOpen(object: object)
-        if let cta = object.nd.cta, cta == "redirect" || cta == "add_to_cart",
-           let itemType = object.nd.message.tmplCFG?.itemPairCFG?.itemType, !itemType.isEmpty,
-           let itemID = object.extra?.itemPair?.ids?.first, !itemID.isEmpty
+        if let cta = object.attr["cta_type"], cta == "redirect" || cta == "add_to_cart",
+           let itemID = object.attr["cta_id"], !itemID.isEmpty
         {
             removeAllObjects()
         }else{
@@ -92,15 +91,15 @@ fileprivate final class CFNudgeViewController: UITableViewController {
     }
     
     @available(iOS 13.0, *)
-    private func makeDataSource() -> UITableViewDiffableDataSource<Section, BackendNudgeMainObject> {
+    private func makeDataSource() -> UITableViewDiffableDataSource<Section, BackendActionMainObject> {
         UITableViewDiffableDataSource(tableView: tableView, cellProvider: {  tableView, indexPath, object in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CFNudgeCell", for: indexPath) as? CFNudgeCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CFActionCell", for: indexPath) as? CFActionCell
             cell?.object = object
-            cell?.nudgeView?.closeAction = { [weak self] in
+            cell?.actionView?.closeAction = { [weak self] in
                 if (self?.objects.firstIndex(of: object)) != nil {
                     self?.remove(object: object)
                     self?.updateDatasource()
-                    CFNotificationController.shared.track(nudgeRef: object.ref, response: .discard)
+                    CFNotificationController.shared.track(response: ActionRepsonse.Discard, expiredAt: object.internalObj.expiredAt, refTime: object.internalObj.refTime, modelId: object.internalObj.modelId, invId: object.internalObj.invId, actionId: object.internalObj.actionId, details: "")
                 }
             }
             return cell
@@ -113,17 +112,17 @@ fileprivate final class CFNudgeViewController: UITableViewController {
                 dismiss(animated: true)
                 return
             }
-            var snapshot = NSDiffableDataSourceSnapshot<Section, BackendNudgeMainObject>()
+            var snapshot = NSDiffableDataSourceSnapshot<Section, BackendActionMainObject>()
             snapshot.appendSections([Section.one])
             snapshot.appendItems(objects, toSection: .one)
             dataSource.apply(snapshot, animatingDifferences: true)
             
             objects.forEach { object in
-                CFNotificationController.shared.track(nudgeRef: object.ref, response: .shown)
+                CFNotificationController.shared.track(response: ActionRepsonse.Shown, expiredAt: object.internalObj.expiredAt, refTime: object.internalObj.refTime, modelId: object.internalObj.modelId, invId: object.internalObj.invId, actionId: object.internalObj.actionId, details: "")
             }
     }
     
-    private func remove(object: BackendNudgeMainObject) {
+    private func remove(object: BackendActionMainObject) {
         guard let index = objects.firstIndex(of: object) else { return }
         objects.remove(at: index)
     }
@@ -133,25 +132,25 @@ fileprivate final class CFNudgeViewController: UITableViewController {
 }
 
 @available(iOS 13.0, *)
-fileprivate final class CFNudgeCell: UITableViewCell {
+fileprivate final class CFActionCell: UITableViewCell {
     
-    var nudgeView: CFNudgeView?
+    var actionView: CFActionView?
     
-    var object: BackendNudgeMainObject? {
+    var object: BackendActionMainObject? {
         didSet {
-            nudgeView?.removeFromSuperview()
+            actionView?.removeFromSuperview()
             guard let object = object else { return }
-            nudgeView = CFNudgeView(object: object)
-            nudgeView!.layer.masksToBounds = true
-            nudgeView!.layer.cornerRadius = 8
-            nudgeView!.translatesAutoresizingMaskIntoConstraints = false
-            contentView.addSubview(nudgeView!)
+            actionView = CFActionView(object: object)
+            actionView!.layer.masksToBounds = true
+            actionView!.layer.cornerRadius = 8
+            actionView!.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview(actionView!)
             let inset: CGFloat = 6.0
             NSLayoutConstraint.activate([
-                nudgeView!.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: inset),
-                nudgeView!.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -inset),
-                nudgeView!.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: inset),
-                nudgeView!.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -inset)
+                actionView!.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: inset),
+                actionView!.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -inset),
+                actionView!.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: inset),
+                actionView!.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -inset)
             ])
         }
     }
@@ -162,25 +161,25 @@ fileprivate final class CFNudgeCell: UITableViewCell {
     }
 }
 
-fileprivate final class CFNudgeView: UIView {
+fileprivate final class CFActionView: UIView {
     
     var closeAction: (() -> Void)?
     
     @available(iOS 13.0, *)
-    init(object: BackendNudgeMainObject) {
+    init(object: BackendActionMainObject) {
         super.init(frame: .zero)
         
         backgroundColor = .systemBackground
         
         let titleView = UILabel(frame: .zero)
-        titleView.text = object.nd.message.title
+        titleView.text = object.content["title"]
         titleView.font = UIFont.preferredFont(forTextStyle: .headline)
         titleView.numberOfLines = 0
         titleView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(titleView)
         
         let bodyView = UILabel(frame: .zero)
-        bodyView.attributedText = object.nd.message.body.htmlAttributedString().with(font:UIFont.preferredFont(forTextStyle: .body))
+        bodyView.attributedText = (object.content["body"] ?? "").htmlAttributedString().with(font:UIFont.preferredFont(forTextStyle: .body))
         bodyView.numberOfLines = 0
         bodyView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -223,7 +222,7 @@ fileprivate final class CFNudgeView: UIView {
 
 //#if DEBUG
 //#Preview {
-//    let debugObjects = try? BackendNudgeMainObject.debugObjects()
-//    return CFNudgeView(object: debugObjects!.first!)
+//    let debugObjects = try? BackendActionMainObject.debugObjects()
+//    return CFActionView(object: debugObjects!.first!)
 //}
 //#endif

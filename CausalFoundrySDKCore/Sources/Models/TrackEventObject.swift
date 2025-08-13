@@ -10,9 +10,9 @@ import Foundation
 public struct TrackEventObject: Codable {
     var name: String
     var property: String?
-    var meta: Encodable?
+    var meta: [String: Any]?
 
-    public init(name: String, property: String? = nil, meta: Encodable? = nil) {
+    public init(name: String, property: String? = nil, meta: [String: Any]? = nil) {
         self.name = name
         self.property = property
         self.meta = meta
@@ -29,12 +29,7 @@ public struct TrackEventObject: Codable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         name = try values.decode(String.self, forKey: .name)
         property = try values.decodeIfPresent(String.self, forKey: .property)
-
-        if let metaData = try? values.decodeIfPresent(Data.self, forKey: .meta) {
-            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
-        } else {
-            meta = nil
-        }
+        meta = try values.decodeIfPresent([String: Any].self, forKey: .meta)
     }
 
     // MARK: Encodable
@@ -42,9 +37,7 @@ public struct TrackEventObject: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
         try container.encodeIfPresent(property, forKey: .property)
-        if let metaData = meta {
-            try container.encode(metaData, forKey: .meta)
-        }
+        try container.encodeIfPresent(meta, forKey: .meta)
     }
 }
 

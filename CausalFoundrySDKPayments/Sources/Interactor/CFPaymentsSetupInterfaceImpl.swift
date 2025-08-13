@@ -30,9 +30,9 @@ internal class CFPaymentsSetupInterfaceImpl: CFPaymentsSetupInterface {
         
         if let eventObject = validatePaymentsEvent(eventType: eventType, logObject: logObject){
             CFSetup().track(
-                contentBlockName: ContentBlock.Payment.rawValue,
-                eventType: eventType.rawValue,
-                logObject: eventObject,
+                eventName: eventType.rawValue,
+                eventProperty: "",
+                eventCtx: eventObject,
                 updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
                 eventTime: eventTime ?? 0
             )

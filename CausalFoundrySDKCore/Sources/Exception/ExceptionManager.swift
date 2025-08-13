@@ -147,15 +147,15 @@ public enum ExceptionManager {
         )
     }
 
-    public static func throwInvalidNudgeException(message: String, nudgeObject: String) {
+    public static func throwInvalidActionException(message: String, actionObject: String) {
         let exception = IllegalArgumentException(message)
 
         let exceptionDataObject = ExceptionDataObject(
             title: message,
-            eventType: CoreEventType.NudgeResponse.rawValue,
+            eventType: CoreEventType.ActionResponse.rawValue,
             exceptionType: "IllegalArgumentException",
             exceptionSource: "SDK",
-            stackTrace: "Nudge Object:\n\(nudgeObject) \n\nException:\n\(exception)",
+            stackTrace: "Action Object:\n\(actionObject) \n\nException:\n\(exception)",
             ts: Date().convertMillisToTimeString()
         )
         

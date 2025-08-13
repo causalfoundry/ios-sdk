@@ -21,7 +21,7 @@ public class CFSetup: NSObject, IngestProtocol {
 
         CoreConstants.shared.sessionStartTime = Int64(Date().timeIntervalSince1970 * 1000)
         CoreConstants.shared.sessionEndTime = Int64(Date().timeIntervalSince1970 * 1000)
-        CFNudgeListener.shared.beginListening()
+        CFActionListener.shared.beginListening()
     }
 
     func initalize(pauseSDK: Bool, updateImmediately: Bool) {
@@ -39,7 +39,7 @@ public class CFSetup: NSObject, IngestProtocol {
         if !appUserId.isEmpty {
             CoreConstants.shared.userId = appUserId
             MMKVHelper.shared.writeUserBackup(userId: appUserId)
-            CFNudgeListener.shared.beginListening()
+            CFActionListener.shared.beginListening()
         }
     }
 

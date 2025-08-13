@@ -11,5 +11,5 @@ enum APIConstants {
     static let trackEvent = "\(CoreConstants.shared.apiUrl)ingest/log"
     static let ingestExceptionEvent = "\(CoreConstants.shared.apiUrl)ingest/sdk/crash"
     static let updateCatalog = "\(CoreConstants.shared.apiUrl)ingest/catalog/"
-    static let fetchNudge = "\(CoreConstants.shared.apiUrl)nudge/sdk/"
+    static let fetchAction = "\(CoreConstants.shared.apiUrl)nudge/sdk/"
 }
