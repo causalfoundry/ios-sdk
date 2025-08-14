@@ -26,19 +26,8 @@ internal class CFLoyaltySetupInterfaceImpl: CFLoyaltySetupInterface {
         if CoreConstants.shared.pauseSDK {
             return
         }
+        validateLoyaltyEvent(eventType: eventType, logObject: logObject, isUpdateImmediately: isUpdateImmediately, eventTime: eventTime)
         
-        
-        if let eventObject = validateLoyaltyEvent(eventType: eventType, logObject: logObject){
-            CFSetup().track(
-                eventName: eventType.rawValue,
-                eventProperty: "",
-                eventCtx: eventObject,
-                updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
-                eventTime: eventTime ?? 0
-            )
-        }else{
-            print("Unknown event object type")
-        }
     }
     
     func trackCatalogEvent(catalogType: LoyaltyCatalogType, catalogModel: Any) {
@@ -48,18 +37,59 @@ internal class CFLoyaltySetupInterfaceImpl: CFLoyaltySetupInterface {
         CfLoyaltyCatalog.callCatalogAPI(catalogType: catalogType, catalogModel: catalogModel)
     }
     
-    private func validateLoyaltyEvent<T: Codable>(eventType: LoyaltyEventType, logObject: T?) -> T? {
+    private func validateLoyaltyEvent<T: Codable>(eventType: LoyaltyEventType, logObject: T?, isUpdateImmediately: Bool? = CoreConstants.shared.updateImmediately,
+                                                  eventTime: Int64? = 0) {
         switch eventType {
         case .Level:
-            return LoyaltyEventValidator.validateLevelEvent(logObject: logObject) as? T
+            if let eventObject = LoyaltyEventValidator.validateLevelEvent(logObject: logObject){
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: nil,
+                    eventCtx: eventObject,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         case .Milestone:
-            return LoyaltyEventValidator.validateMilestoneEvent(logObject: logObject) as? T
+            if let eventObject = LoyaltyEventValidator.validateMilestoneEvent(logObject: logObject){
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: eventObject.action,
+                    eventCtx: eventObject,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         case .Promo:
-            return LoyaltyEventValidator.validatePromoEvent(logObject: logObject) as? T
+            if let eventObject = LoyaltyEventValidator.validatePromoEvent(logObject: logObject){
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: eventObject.promoAction,
+                    eventCtx: eventObject,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         case .Reward:
-            return LoyaltyEventValidator.validateRewardEvent(logObject: logObject) as? T
+            if let eventObject = LoyaltyEventValidator.validateRewardEvent(logObject: logObject){
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: eventObject.rewardAction,
+                    eventCtx: eventObject,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         case .Survey:
-            return LoyaltyEventValidator.validateSurveyEvent(logObject: logObject) as? T
+            if let eventObject = LoyaltyEventValidator.validateSurveyEvent(logObject: logObject){
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: eventObject.action,
+                    eventCtx: eventObject,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         }
     }
 }

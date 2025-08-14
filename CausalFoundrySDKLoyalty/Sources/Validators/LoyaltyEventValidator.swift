@@ -46,6 +46,9 @@ public class LoyaltyEventValidator {
         if(eventObject.id.isEmpty){
             ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.Milestone.rawValue, elementName: "milestone_id")
             return nil
+        } else if !CoreConstants.shared.enumContains(MilestoneAction.self, name: eventObject.action) {
+            ExceptionManager.throwEnumException(eventType: LoyaltyEventType.Milestone.rawValue, className: "milestone action")
+            return nil
         }
         
         return eventObject
@@ -65,15 +68,20 @@ public class LoyaltyEventValidator {
         if(eventObject.promoId.isEmpty){
             ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.Promo.rawValue, elementName: "promo_id")
             return nil
+        }else if !CoreConstants.shared.enumContains(PromoAction.self, name: eventObject.promoAction) {
+            ExceptionManager.throwEnumException(eventType: LoyaltyEventType.Promo.rawValue, className: "promo action")
+            return nil
+        }else if !CoreConstants.shared.enumContains(PromoType.self, name: eventObject.promoType) {
+            ExceptionManager.throwEnumException(eventType: LoyaltyEventType.Promo.rawValue, className: "promo type")
+            return nil
         }
         
         for item in eventObject.promoItemsList {
-            if(!LoyaltyConstants.isItemTypeObjectValid(itemValue: item, eventType: LoyaltyEventType.Promo)){
+            if(item.isEmpty){
+                ExceptionManager.throwInvalidException(eventType: LoyaltyEventType.Promo.rawValue, paramName: "promo item id", className: "promoItemsList")
                 return nil
             }
         }
-
-        
         return eventObject
     }
     
@@ -87,16 +95,19 @@ public class LoyaltyEventValidator {
             return nil
         }
         
-        if(eventObject.action == SurveyAction.Submit.rawValue && eventObject.responseList.isEmpty){
+        if !CoreConstants.shared.enumContains(SurveyAction.self, name: eventObject.action) {
+            ExceptionManager.throwEnumException(eventType: LoyaltyEventType.Survey.rawValue, className: "survey action")
+            return nil
+        }else if(eventObject.action == SurveyAction.Submit.rawValue && eventObject.responseList.isEmpty){
             ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.Survey.rawValue, elementName: "response_list")
             return nil
-        }else if(eventObject.survey.id.isEmpty){
+        }else if(eventObject.surveyId.isEmpty){
             ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.Survey.rawValue, elementName: "survey id")
             return nil
-        }else if(!LoyaltyConstants.isSurveyResponseListValid(responseList: eventObject.responseList, eventType: .Survey)){
+        }else if !CoreConstants.shared.enumContains(SurveyType.self, name: eventObject.surveyType) {
+            ExceptionManager.throwEnumException(eventType: LoyaltyEventType.Survey.rawValue, className: "survey type")
             return nil
         }
-    
         return eventObject
     }
     
@@ -113,13 +124,29 @@ public class LoyaltyEventValidator {
         if(eventObject.rewardId.isEmpty){
             ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.Reward.rawValue, elementName: "reward_id")
             return nil
-        }else if(eventObject.action == RewardAction.Add.rawValue && eventObject.accPoints == 0){
+        }else if !CoreConstants.shared.enumContains(RewardAction.self, name: eventObject.rewardAction) {
+            ExceptionManager.throwEnumException(eventType: LoyaltyEventType.Promo.rawValue, className: "reward action")
+            return nil
+        }else if(eventObject.rewardAction == RewardAction.Add.rawValue && eventObject.accPoints == 0){
             ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.Reward.rawValue, elementName: "acc_points")
             return nil
-        }else if(eventObject.action == RewardAction.Redeem.rawValue && eventObject.redeem == nil){
-            ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.Reward.rawValue, elementName: "redeem object")
+        }else if(eventObject.totalPoints == nil){
+            ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.Reward.rawValue, elementName: "total_points")
             return nil
-        }else if(eventObject.action == RewardAction.Redeem.rawValue && !LoyaltyConstants.isRedeemObjectValid(redeemObject: eventObject.redeem!, eventType: .Reward)){
+        }else if(eventObject.rewardAction == RewardAction.Redeem.rawValue && eventObject.redeemPointsWithdrawn! < 0){
+            ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.Reward.rawValue, elementName: "redeem points withdrawn")
+            return nil
+        }else if(eventObject.rewardAction == RewardAction.Redeem.rawValue && eventObject.redeemIsSuccessful == nil){
+            ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.Reward.rawValue, elementName: "redeem is_successful")
+            return nil
+        }else if !CoreConstants.shared.enumContains(RewardAction.self, name: eventObject.rewardAction) {
+            ExceptionManager.throwEnumException(eventType: LoyaltyEventType.Promo.rawValue, className: "reward action")
+            return nil
+        }else if eventObject.redeemType == RedeemType.Cash.rawValue, eventObject.redeemCurrency == nil {
+            ExceptionManager.throwIsRequiredException(eventType: LoyaltyEventType.Promo.rawValue, elementName: "redeem currency")
+            return nil
+        } else if eventObject.redeemType == RedeemType.Cash.rawValue, !CoreConstants.shared.enumContains(CurrencyCode.self, name: eventObject.redeemCurrency!) {
+            ExceptionManager.throwEnumException(eventType: LoyaltyEventType.Promo.rawValue, className: String(describing: CurrencyCode.self))
             return nil
         }
     
