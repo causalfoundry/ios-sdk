@@ -27,18 +27,8 @@ internal class CFPatientMgmtSetupInterfaceImpl: CFPatientMgmtSetupInterface {
             return
         }
         
-    
-        if let eventObject = validatePatientMgmtEvent(eventType: eventType, logObject: logObject){
-            CFSetup().track(
-                eventName: eventType.rawValue,
-                eventProperty: "",
-                eventCtx: eventObject,
-                updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
-                eventTime: eventTime ?? 0
-            )
-        }else{
-            print("Unknown event object type")
-        }
+        
+        validatePatientMgmtEvent(eventType: eventType, logObject: logObject, isUpdateImmediately: isUpdateImmediately, eventTime: eventTime)
     }
     
     func trackCatalogEvent(patientMgmtCatalogType: PatientMgmtCatalogSubject, catalogModel: Any) {
@@ -67,15 +57,50 @@ internal class CFPatientMgmtSetupInterfaceImpl: CFPatientMgmtSetupInterface {
             
         }
     }
-        
-    func validatePatientMgmtEvent<T: Codable>(eventType: PatientMgmtEventType, logObject: T?) -> T? {
+    
+    func validatePatientMgmtEvent<T: Codable>(eventType: PatientMgmtEventType, logObject: T?, isUpdateImmediately: Bool? = CoreConstants.shared.updateImmediately,
+                                              eventTime: Int64? = 0) {
         switch eventType {
         case .Patient:
-            return PatientEventValidator.validatePatientObject(logObject: logObject) as? T
+            if let eventObject = PatientMgmtEventValidator.validatePatientObject(logObject: logObject){
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: eventObject.action,
+                    eventCtx: eventObject,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         case .Encounter:
-            return EncounterEventValidator.validateEncounterObject(logObject: logObject) as? T
+            if let eventObject = PatientMgmtEventValidator.validateEncounterObject(logObject: logObject){
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: eventObject.action,
+                    eventCtx: eventObject,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         case .Appointment:
-            return AppointmentEventValidator.validateAppointmentObject(logObject: logObject) as? T
+            if let eventObject = PatientMgmtEventValidator.validateAppointmentObject(logObject: logObject){
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: eventObject.action,
+                    eventCtx: eventObject,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
+        case .Diagnosis:
+            if let eventObject = PatientMgmtEventValidator.validateDiagnosisObject(logObject: logObject){
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: eventObject.name,
+                    eventCtx: eventObject,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         }
     }
     
