@@ -28,27 +28,42 @@ internal class CFELearnSetupInterfaceImpl: CFELearnSetupInterface {
         }
         
         
-        if let eventObject = validateELearnEvent(eventType: eventType, logObject: logObject){
-            CFSetup().track(
-                eventName: eventType.rawValue,
-                eventProperty: "",
-                eventCtx: eventObject,
-                updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
-                eventTime: eventTime ?? 0
-            )
-        }else{
-            print("Unknown event object type")
-        }
+        validateELearnEvent(eventType: eventType, logObject: logObject, isUpdateImmediately: isUpdateImmediately, eventTime: eventTime)
     }
     
-    private func validateELearnEvent<T: Codable>(eventType: ELearnEventType, logObject: T?) -> T? {
+    private func validateELearnEvent<T: Codable>(eventType: ELearnEventType, logObject: T?, isUpdateImmediately: Bool?, eventTime: Int64?) {
+        
         switch eventType {
         case .Question:
-            return ELearnEventValidator.validateQuestionObject(logObject: logObject) as? T
+            if let eventObject = ELearnEventValidator.validateQuestionObject(logObject: logObject){
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: eventObject.action,
+                    eventCtx: eventObject,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         case .Module:
-            return ELearnEventValidator.validateModuleObject(logObject: logObject) as? T
+            if let eventObject = ELearnEventValidator.validateModuleObject(logObject: logObject){
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: eventObject.action,
+                    eventCtx: eventObject,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         case .Exam:
-            return ELearnEventValidator.validateExamObject(logObject: logObject) as? T
+            if let eventObject = ELearnEventValidator.validateExamObject(logObject: logObject){
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: eventObject.action,
+                    eventCtx: eventObject,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         }
     }
 }
