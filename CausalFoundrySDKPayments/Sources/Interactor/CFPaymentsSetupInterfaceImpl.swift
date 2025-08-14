@@ -26,27 +26,21 @@ internal class CFPaymentsSetupInterfaceImpl: CFPaymentsSetupInterface {
         if CoreConstants.shared.pauseSDK {
             return
         }
-        
-        
-        if let eventObject = validatePaymentsEvent(eventType: eventType, logObject: logObject){
-            CFSetup().track(
-                eventName: eventType.rawValue,
-                eventProperty: "",
-                eventCtx: eventObject,
-                updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
-                eventTime: eventTime ?? 0
-            )
-        }else{
-            print("Unknown event object type")
-        }
+        validatePaymentsEvent(eventType: eventType, logObject: logObject, isUpdateImmediately: isUpdateImmediately, eventTime: eventTime)
     }
     
-    private func validatePaymentsEvent<T: Codable>(eventType: PaymentsEventType, logObject: T?) -> T? {
+    private func validatePaymentsEvent<T: Codable>(eventType: PaymentsEventType, logObject: T?, isUpdateImmediately: Bool?, eventTime: Int64?) {
         switch eventType {
-        case .DeferredPayment:
-            return PaymentsEventValidator.validateDeferredPaymentsObject(logObject: logObject) as? T
-        case .PaymentMethod:
-            return PaymentsEventValidator.validatePaymentMethodObject(logObject: logObject) as? T
+        case .Payment:
+            if let eventObject = PaymentsEventValidator.validatePaymentsObject(logObject: logObject){
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: eventObject.action,
+                    eventCtx: eventObject,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         }
     }
 }

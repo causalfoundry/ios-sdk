@@ -8,13 +8,11 @@
 import Foundation
 
 public enum PaymentsEventType: String, CaseIterable, Codable {
-    case DeferredPayment
-    case PaymentMethod
+    case Payment
     
     public var rawValue: String {
         switch self {
-        case .DeferredPayment: return "deferred_payment"
-        case .PaymentMethod: return "payment_method"
+        case .Payment: return "payment"
         }
     }
     

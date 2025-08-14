@@ -10,10 +10,10 @@ import Foundation
 
 public class PaymentsEventValidator {
     
-    static func validateDeferredPaymentsObject<T: Codable>(logObject: T?) -> DeferredPaymentObject? {
-        guard let eventObject = logObject as? DeferredPaymentObject else {
+    static func validatePaymentsObject<T: Codable>(logObject: T?) -> PaymentObject? {
+        guard let eventObject = logObject as? PaymentObject else {
             ExceptionManager.throwInvalidException(
-                eventType: PaymentsEventType.DeferredPayment.rawValue,
+                eventType: PaymentsEventType.Payment.rawValue,
                 paramName: "DeferredPaymentObject",
                 className: "DeferredPaymentObject"
             )
@@ -21,33 +21,22 @@ public class PaymentsEventValidator {
         }
         
         if(eventObject.paymentId.isEmpty){
-            ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.DeferredPayment.rawValue, elementName: "payment_id")
+            ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.Payment.rawValue, elementName: "payment_id")
             return nil
         } else if(eventObject.orderId.isEmpty){
-            ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.DeferredPayment.rawValue, elementName: "order_id")
+            ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.Payment.rawValue, elementName: "order_id")
+            return nil
+        } else if !CoreConstants.shared.enumContains(PaymentMethod.self, name: eventObject.method) {
+            ExceptionManager.throwEnumException(eventType: PaymentsEventType.Payment.rawValue, className: "payment method")
+            return nil
+        } else if !CoreConstants.shared.enumContains(PaymentAction.self, name: eventObject.action) {
+            ExceptionManager.throwEnumException(eventType: PaymentsEventType.Payment.rawValue, className: "payment action")
+            return nil
+        } else if !CoreConstants.shared.enumContains(CurrencyCode.self, name: eventObject.currency) {
+            ExceptionManager.throwEnumException(eventType: PaymentsEventType.Payment.rawValue, className: "payment currency")
             return nil
         }
         
-        return eventObject
-    }
-    
-    static func validatePaymentMethodObject<T: Codable>(logObject: T?) -> PaymentMethodObject? {
-        guard let eventObject = logObject as? PaymentMethodObject else {
-            ExceptionManager.throwInvalidException(
-                eventType: PaymentsEventType.PaymentMethod.rawValue,
-                paramName: "PaymentMethodObject",
-                className: "PaymentMethodObject"
-            )
-            return nil
-        }
-        
-        if(eventObject.paymentId.isEmpty){
-            ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.PaymentMethod.rawValue, elementName: "payment_id")
-            return nil
-        } else if(eventObject.orderId.isEmpty){
-            ExceptionManager.throwIsRequiredException(eventType: PaymentsEventType.PaymentMethod.rawValue, elementName: "order_id")
-            return nil
-        }
         return eventObject
     }
 
