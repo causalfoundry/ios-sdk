@@ -81,7 +81,7 @@ public struct PatientEventObject: Codable {
         try container.encodeIfPresent(gender, forKey: .gender)
         try container.encodeIfPresent(registrationDate, forKey: .registrationDate)
         if let metaData = meta {
-            try container.encode(metaData, forKey: .meta)
+            try container.encodeIfPresent(metaData, forKey: .meta)
         }
     }
 }

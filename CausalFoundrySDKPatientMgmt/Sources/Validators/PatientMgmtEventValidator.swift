@@ -24,21 +24,28 @@ public class PatientMgmtEventValidator {
             // Will throw an exception if the action provided is null or no action is provided at all.
             if eventObject.appointmentId.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Appointment.rawValue, paramName: "appointmentId" , className: "appointmentId")
+                return nil
             } else if eventObject.patientId.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Appointment.rawValue, paramName: "patientId" , className: "patientId")
+                return nil
             } else if eventObject.siteId.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Appointment.rawValue, paramName: "site Id" , className: "site Id")
+                return nil
             } else if eventObject.location.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Appointment.rawValue, paramName: "location" , className: "location")
+                return nil
             } else if eventObject.status.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Appointment.rawValue, paramName: "status" , className: "status")
+                return nil
             } else if eventObject.type.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Appointment.rawValue, paramName: "type" , className: "type")
+                return nil
             } else if eventObject.category.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Appointment.rawValue, paramName: "category" , className: "category")
+                return nil
             }
         }
-        return nil
+        return eventObject
     }
     
     static func validateEncounterObject<T:Codable>(logObject: T?) -> EncounterEventObject? {
@@ -55,19 +62,25 @@ public class PatientMgmtEventValidator {
             // Will throw an exception if the action provided is null or no action is provided at all.
             if eventObject.encounterId.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Encounter.rawValue, paramName: "encounterId" , className: "encounterId")
+                return nil
             } else if eventObject.patientId.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Encounter.rawValue, paramName: "patientId" , className: "patientId")
+                return nil
             } else if eventObject.siteId.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Encounter.rawValue, paramName: "site Id" , className: "site Id")
+                return nil
             } else if eventObject.location.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Encounter.rawValue, paramName: "location" , className: "location")
+                return nil
             } else if eventObject.type.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Encounter.rawValue, paramName: "type" , className: "type")
+                return nil
             } else if eventObject.category.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Encounter.rawValue, paramName: "category" , className: "category")
+                return nil
             }
         }
-        return nil
+        return eventObject
     }
     
     static func validatePatientObject<T:Codable>(logObject: T?) -> PatientEventObject? {
@@ -84,16 +97,20 @@ public class PatientMgmtEventValidator {
             // Will throw an exception if the action provided is null or no action is provided at all.
             if eventObject.patientId.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Patient.rawValue, paramName: "patientId" , className: "patientId")
+                return nil
             } else if eventObject.siteId.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Patient.rawValue, paramName: "site Id" , className: "site Id")
+                return nil
             } else if eventObject.location.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Patient.rawValue, paramName: "location" , className: "location")
+                return nil
             } else if eventObject.type.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Patient.rawValue, paramName: "type" , className: "type")
+                return nil
             }
         }
         
-        return nil
+        return eventObject
     }
     
     static func validateDiagnosisObject<T:Codable>(logObject: T?) -> DiagnosisEventObject? {
@@ -110,20 +127,26 @@ public class PatientMgmtEventValidator {
             // Will throw an exception if the action provided is null or no action is provided at all.
             if eventObject.encounterId.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Diagnosis.rawValue, paramName: "encounterId" , className: "encounterId")
+                return nil
             } else if eventObject.patientId.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Diagnosis.rawValue, paramName: "patientId" , className: "patientId")
+                return nil
             } else if eventObject.siteId.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Diagnosis.rawValue, paramName: "site Id" , className: "site Id")
+                return nil
             } else if eventObject.location.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Diagnosis.rawValue, paramName: "location" , className: "location")
+                return nil
             } else if eventObject.type.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Diagnosis.rawValue, paramName: "type" , className: "type")
+                return nil
             }else if eventObject.category.isEmpty {
                 ExceptionManager.throwInvalidException(eventType: PatientMgmtEventType.Diagnosis.rawValue, paramName: "category" , className: "category")
+                return nil
             }
         }
         
-        return nil
+        return eventObject
     }
 }
 
