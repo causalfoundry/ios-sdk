@@ -28,8 +28,8 @@ enum ECommerceConstants {
             ExceptionManager.throwItemQuantityException(eventType: eventName)
             return false
         }
-        if itemValue.price < 0 {
-            ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_price")
+        if itemValue.unitPrice < 0 {
+            ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_unit_price")
             return false
         }
         if !CoreConstants.shared.enumContains(CurrencyCode.self, name:itemValue.currency) {
@@ -37,36 +37,6 @@ enum ECommerceConstants {
             return false
         }
         if !CoreConstants.shared.enumContains(ItemType.self, name:itemValue.type) {
-            ExceptionManager.throwEnumException(eventType: eventName, className: "ItemType")
-            return false
-        }
-//        if eventType == .checkout, itemValue.type == ItemType.blood.rawValue {
-//            if itemValue.meta == nil {
-//                ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "Blood Meta Properties")
-//                return false
-//            } else if !(itemValue.meta is BloodMetaModel) {
-//                ExceptionManager.throwEnumException(eventType: eventName, className: "Blood Meta Properties")
-//                return false
-//            }
-//        } 
-//        if eventType == .checkout, itemValue.type == ItemType.oxygen.rawValue {
-//            if itemValue.meta == nil {
-//                ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "Oxygen Meta Properties")
-//                return false
-//            } else if !(itemValue.meta is OxygenMetaModel) {
-//                ExceptionManager.throwEnumException(eventType: eventName, className: "Oxygen Meta Properties")
-//                return false
-//            }
-//        }
-        return true
-    }
-
-    static func isItemTypeObjectValid(itemValue: ItemTypeModel, eventType: EComEventType) -> Bool {
-        let eventName = eventType.rawValue
-        if itemValue.itemId.isEmpty {
-            ExceptionManager.throwIsRequiredException(eventType: eventName, elementName: "item_id")
-            return false
-        } else if !CoreConstants.shared.enumContains(ItemType.self, name: itemValue.type) {
             ExceptionManager.throwEnumException(eventType: eventName, className: "ItemType")
             return false
         }

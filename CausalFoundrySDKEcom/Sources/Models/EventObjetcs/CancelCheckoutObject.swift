@@ -10,11 +10,11 @@ import Foundation
 public struct CancelCheckoutObject: Codable {
     var checkoutId: String
     var type: String
-    var itemList: [ItemTypeModel] = []
+    var itemList: [String] = []
     var reason: String = ""
     var meta: Encodable? = nil
 
-    public init(checkoutId: String, type: CancelType, itemList: [ItemTypeModel], reason: String = "", meta: Encodable? = nil) {
+    public init(checkoutId: String, type: CancelType, itemList: [String], reason: String = "", meta: Encodable? = nil) {
         self.checkoutId = checkoutId
         self.type = type.rawValue
         self.itemList = itemList
@@ -50,7 +50,7 @@ public struct CancelCheckoutObject: Codable {
         checkoutId = try container.decode(String.self, forKey: .checkoutId)
         type = try container.decode(String.self, forKey: .type)
         reason = try container.decode(String.self, forKey: .reason)
-        itemList = try container.decode([ItemTypeModel].self, forKey: .itemList)
+        itemList = try container.decode([String].self, forKey: .itemList)
         if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {

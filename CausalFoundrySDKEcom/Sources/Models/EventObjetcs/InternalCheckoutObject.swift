@@ -1,5 +1,5 @@
 //
-//  CheckoutObject.swift
+//  InternalCheckoutObject.swift
 //
 //
 //  Created by moizhassankh on 05/12/23.
@@ -8,13 +8,13 @@
 import CausalFoundrySDKCore
 import Foundation
 
-public struct CheckoutObject: Codable {
+internal struct InternalCheckoutObject: Codable {
     var orderId: String
     var cartId: String
     var isSuccessful: Bool
     var cartPrice: Float
     var shopMode: String
-    var itemList: [ItemModel]
+    var itemObject: ItemModel
     var meta: Encodable?
 
     private enum CodingKeys: String, CodingKey {
@@ -23,17 +23,17 @@ public struct CheckoutObject: Codable {
         case isSuccessful = "is_successful"
         case cartPrice  = "cart_price"
         case shopMode = "shop_mode"
-        case itemList = "items"
+        case item
         case meta
     }
 
-    public init(orderId: String, cartId: String, isSuccessful: Bool, cartPrice: Float, shopMode: ShopMode, itemList: [ItemModel], meta: Encodable? = nil) {
+    public init(orderId: String, cartId: String, isSuccessful: Bool, cartPrice: Float, shopMode: String, itemObject: ItemModel, meta: Encodable? = nil) {
         self.orderId = orderId
         self.cartId = cartId
         self.isSuccessful = isSuccessful
         self.cartPrice = cartPrice
-        self.shopMode = shopMode.rawValue
-        self.itemList = itemList
+        self.shopMode = shopMode
+        self.itemObject = itemObject
         self.meta = meta
     }
 
@@ -45,7 +45,7 @@ public struct CheckoutObject: Codable {
         try container.encode(isSuccessful, forKey: .isSuccessful)
         try container.encode(cartPrice, forKey: .cartPrice)
         try container.encode(shopMode, forKey: .shopMode)
-        try container.encode(itemList, forKey: .itemList)
+        try container.encode(itemObject, forKey: .item)
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
@@ -60,7 +60,7 @@ public struct CheckoutObject: Codable {
         isSuccessful = try container.decode(Bool.self, forKey: .isSuccessful)
         cartPrice = try container.decode(Float.self, forKey: .cartPrice)
         shopMode = try container.decode(String.self, forKey: .shopMode) // Decoding enum from rawValue
-        itemList = try container.decode([ItemModel].self, forKey: .itemList)
+        itemObject = try container.decode(ItemModel.self, forKey: .item)
         if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {

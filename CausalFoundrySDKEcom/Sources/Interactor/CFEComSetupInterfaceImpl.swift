@@ -27,18 +27,7 @@ internal class CFEComSetupInterfaceImpl: CFEComSetupInterface {
             return
         }
         
-        
-        if let eventObject = validateEComEvent(eventType: eventType, logObject: logObject){
-            CFSetup().track(
-                eventName: eventType.rawValue,
-                eventProperty: "",
-                eventCtx: eventObject,
-                updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
-                eventTime: eventTime ?? 0
-            )
-        }else{
-            print("Unknown event object type")
-        }
+        validateEComEvent(eventType: eventType, logObject: logObject, isUpdateImmediately: isUpdateImmediately, eventTime: eventTime)
     }
     
     func trackCatalogEvent(catalogType: EComCatalogType, catalogModel: Any) {
@@ -49,24 +38,80 @@ internal class CFEComSetupInterfaceImpl: CFEComSetupInterface {
     }
     
     
-    private func validateEComEvent<T: Codable>(eventType: EComEventType, logObject: T?) -> T? {
+    private func validateEComEvent<T: Codable>(eventType: EComEventType, logObject: T?, isUpdateImmediately: Bool?, eventTime: Int64?) {
         switch eventType {
         case .Item:
-            return ItemEventValidator.validateEvent(logObject: logObject) as? T
+            if let logobj = EcomEventValidator.validateViewItemEvent(logObject: logObject) {
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: logobj.action,
+                    eventCtx: logobj,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         case .Cart:
-            return CartEventValidator.validateEvent(logObject: logObject) as? T
+            if let logobj = EcomEventValidator.validateCartEvent(logObject: logObject) {
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: logobj.action,
+                    eventCtx: logobj,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         case .Checkout:
-            return CheckoutEventValidator.validateEvent(logObject: logObject) as? T
+            if let checkoutList = EcomEventValidator.validateCheckoutEvent(logObject: logObject) {
+                checkoutList.forEach { order in
+                    CFSetup().track(
+                        eventName: eventType.rawValue, // assuming .checkout is an enum case
+                        eventProperty: order.isSuccessful ? "success" : "failure",
+                        eventCtx: order,
+                        updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                        eventTime: eventTime ?? 0
+                    )
+                }
+            }
         case .CancelCheckout:
-            return CancelCheckoutEventValidator.validateEvent(logObject: logObject) as? T
+            if let logobj = EcomEventValidator.validateCancelCheckoutEvent(logObject: logObject) {
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: logobj.type,
+                    eventCtx: logobj,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         case .Delivery:
-            return DeliveryEventValidator.validateEvent(logObject: logObject) as? T
+            if let logobj = EcomEventValidator.validateDeliveryEvent(logObject: logObject) {
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: logobj.action,
+                    eventCtx: logobj,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         case .ItemReport:
-            return ItemReportEventValidator.validateEvent(logObject: logObject) as? T
+            if let logobj = EcomEventValidator.validateItemReportEvent(logObject: logObject) {
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: nil,
+                    eventCtx: logobj,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         case .ItemRequest:
-            return ItemRequestEventValidator.validateEvent(logObject: logObject) as? T
-        case .ItemVerification:
-            return ItemVerificationEventValidator.validateEvent(logObject: logObject) as? T
+            if let logobj = EcomEventValidator.validateItemRequestEvent(logObject: logObject) {
+                CFSetup().track(
+                    eventName: eventType.rawValue,
+                    eventProperty: nil,
+                    eventCtx: logobj,
+                    updateImmediately: isUpdateImmediately ?? CoreConstants.shared.updateImmediately,
+                    eventTime: eventTime ?? 0
+                )
+            }
         }
     }
 }

@@ -12,13 +12,12 @@ public struct ItemModel: Codable {
     var id: String
     var type: String
     var quantity: Int
-    var price: Float
+    var unitPrice: Double
     var currency: String
+    var discount: Double? = 0
     var stockStatus: String? = ""
     var promoId: String?  = ""
-    var discount: Float? = 0
     var facilityId: String? = ""
-    var subscription: SubscriptionObject? = nil
     var meta: Encodable?
 
     enum CodingKeys: String, CodingKey {
@@ -31,20 +30,18 @@ public struct ItemModel: Codable {
         case promoId = "promo_id"
         case discount
         case facilityId = "facility_id"
-        case subscription
         case meta
     }
-    public init(id: String, type: ItemType, quantity: Int, price: Float, currency: CurrencyCode,  stockStatus: ItemStockStatus? = ItemStockStatus.None, promoId: String? = "", discount: Float? = 0, facilityId: String? = "", subscription: SubscriptionObject? = nil, meta: Encodable? = nil) {
+    public init(id: String, type: ItemType, quantity: Int, unitPrice: Double, currency: CurrencyCode,  stockStatus: ItemStockStatus? = ItemStockStatus.None, promoId: String? = "", discount: Double? = 0, facilityId: String? = "", meta: Encodable? = nil) {
         self.id = id
         self.type = type.rawValue
         self.quantity = quantity
-        self.price = price
+        self.unitPrice = unitPrice
         self.currency = currency.rawValue
         self.stockStatus = stockStatus?.rawValue
         self.promoId = promoId
         self.discount = discount
         self.facilityId = facilityId
-        self.subscription = subscription
         self.meta = meta
     }
 
@@ -54,15 +51,12 @@ public struct ItemModel: Codable {
         try container.encode(id, forKey: .id)
         try container.encode(type, forKey: .type)
         try container.encode(quantity, forKey: .quantity)
-        try container.encode(price, forKey: .price)
+        try container.encode(unitPrice, forKey: .price)
         try container.encode(currency, forKey: .currency)
         try container.encodeIfPresent(stockStatus, forKey: .stockStatus) // Encoding enum as rawValue
         try container.encodeIfPresent(promoId, forKey: .promoId)
         try container.encodeIfPresent(discount, forKey: .discount)
         try container.encodeIfPresent(facilityId, forKey: .facilityId)
-        if let subscriptionData = subscription {
-            try container.encodeIfPresent(subscriptionData, forKey: .subscription)
-        }
         if let metaData = meta {
             try container.encodeIfPresent(metaData, forKey: .meta)
         }
@@ -75,13 +69,12 @@ public struct ItemModel: Codable {
         id = try container.decode(String.self, forKey: .id)
         type = try container.decode(String.self, forKey: .type)
         quantity = try container.decode(Int.self, forKey: .quantity)
-        price = try container.decode(Float.self, forKey: .price)
+        unitPrice = try container.decode(Double.self, forKey: .price)
         currency = try container.decode(String.self, forKey: .currency)
         stockStatus = try container.decodeIfPresent(String.self, forKey: .stockStatus) // Decoding enum from rawValue
         promoId = try? container.decodeIfPresent(String.self, forKey: .promoId)
-        discount = try? container.decodeIfPresent(Float.self, forKey: .discount)
+        discount = try? container.decodeIfPresent(Double.self, forKey: .discount)
         facilityId = try? container.decodeIfPresent(String.self, forKey: .facilityId)
-        subscription = try? container.decodeIfPresent(SubscriptionObject.self, forKey: .subscription)
         if let metaString = try container.decodeIfPresent(String.self, forKey: .meta) {
             if(type == "blood"){
                 let metaData = metaString.data(using: .utf8)!

@@ -11,25 +11,19 @@ public struct CartObject: Codable {
     var cartId: String
     var action: String
     var item: ItemModel
-    var cartPrice: Float
-    var currency: String
     var meta: Encodable?
 
     private enum CodingKeys: String, CodingKey {
-        case cartId = "id"
+        case cartId = "cart_id"
         case action
         case item
-        case cartPrice = "cart_price"
-        case currency
         case meta
     }
 
-    public init(cartId: String, action: CartAction, item: ItemModel, cartPrice: Float, currency: CurrencyCode, meta: Encodable? = nil) {
+    public init(cartId: String, action: CartAction, item: ItemModel, meta: Encodable? = nil) {
         self.cartId = cartId
         self.action = action.rawValue
         self.item = item
-        self.cartPrice = cartPrice
-        self.currency = currency.rawValue
         self.meta = meta
     }
     
@@ -39,8 +33,6 @@ public struct CartObject: Codable {
         try container.encode(cartId, forKey: .cartId)
         try container.encode(action, forKey: .action)
         try container.encode(item, forKey: .item)
-        try container.encode(cartPrice, forKey: .cartPrice)
-        try container.encode(currency, forKey: .currency)
         if let metaData = meta {
             try container.encode(metaData, forKey: .meta)
         }
@@ -53,8 +45,6 @@ public struct CartObject: Codable {
         cartId = try container.decode(String.self, forKey: .cartId)
         action = try container.decode(String.self, forKey: .action)
         item = try container.decode(ItemModel.self, forKey: .item)
-        cartPrice = try container.decode(Float.self, forKey: .cartPrice)
-        currency = try container.decode(String.self, forKey: .currency)
         if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {

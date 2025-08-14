@@ -14,7 +14,6 @@ public enum EComEventType: String, CaseIterable, Codable {
     case Cart
     case CancelCheckout
     case ItemReport
-    case ItemVerification
     case ItemRequest
     
     public var rawValue: String {
@@ -25,7 +24,6 @@ public enum EComEventType: String, CaseIterable, Codable {
         case .Cart: return "cart"
         case .CancelCheckout: return "cancel_checkout"
         case .ItemReport: return "item_report"
-        case .ItemVerification: return "item_verification"
         case .ItemRequest: return "item_request"
         }
     }
