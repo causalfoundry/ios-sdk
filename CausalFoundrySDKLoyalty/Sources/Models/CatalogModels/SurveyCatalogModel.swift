@@ -8,7 +8,6 @@
 import Foundation
 
 public struct SurveyCatalogModel: Codable {
-    var id: String
     var name: String
     var duration: Int
     var type: String
@@ -21,7 +20,6 @@ public struct SurveyCatalogModel: Codable {
     var organization_name: String
 
     enum CodingKeys: String, CodingKey {
-        case id
         case name
         case duration
         case type
@@ -35,8 +33,7 @@ public struct SurveyCatalogModel: Codable {
     }
 
     public init(
-        id: String,
-        name: String = "",
+        name: String,
         duration: Int = 0,
         type: String = "",
         reward_id: String = "",
@@ -47,7 +44,6 @@ public struct SurveyCatalogModel: Codable {
         organization_id: String = "",
         organization_name: String = ""
     ) {
-        self.id = id
         self.name = name
         self.duration = duration
         self.type = type
@@ -62,7 +58,6 @@ public struct SurveyCatalogModel: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
         duration = try container.decode(Int.self, forKey: .duration)
         type = try container.decode(String.self, forKey: .type)
@@ -77,7 +72,6 @@ public struct SurveyCatalogModel: Codable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
         try container.encode(name, forKey: .name)
         try container.encode(duration, forKey: .duration)
         try container.encode(type, forKey: .type)

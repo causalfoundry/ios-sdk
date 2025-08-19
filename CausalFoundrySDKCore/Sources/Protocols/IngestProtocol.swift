@@ -14,7 +14,8 @@ protocol IngestProtocol {
 
     func updateUserId(appUserId: String)
 
-    func updateCoreCatalogItem(subject: CatalogSubject,
+    func updateCatalogItem(subject: CatalogSubject,
+                               subjectId: String,
                                catalogObject: Data)
 
     func track<T: Codable>(

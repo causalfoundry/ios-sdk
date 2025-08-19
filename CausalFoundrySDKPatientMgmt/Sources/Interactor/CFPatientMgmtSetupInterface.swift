@@ -14,5 +14,5 @@ protocol CFPatientMgmtSetupInterface {
                        isUpdateImmediately: Bool?,
                        eventTime: Int64?)
 
-    func trackCatalogEvent(patientMgmtCatalogType: PatientMgmtCatalogSubject, catalogModel: Any)
+    func trackCatalogEvent<T: Codable>(patientMgmtCatalogType: PatientMgmtCatalogType, subjectId: String, catalogModel: T)
 }

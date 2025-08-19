@@ -24,8 +24,8 @@ public class CFEComEvent {
                                                       eventTime: eventTime)
     }
     
-    public func logCatalog(catalogType: EComCatalogType, catalogModel: Any) {
-        CFEComSetupInterfaceImpl.shared.trackCatalogEvent(catalogType: catalogType, catalogModel: catalogModel)
+    public func logCatalog<T: Codable>(eComCatalogType: EComCatalogType, subjectId: String, catalogModel: T) {
+        CFEComSetupInterfaceImpl.shared.trackCatalogEvent(eComCatalogType: eComCatalogType, subjectId: subjectId, catalogModel: catalogModel)
     }
     
 }

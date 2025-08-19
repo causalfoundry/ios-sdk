@@ -8,7 +8,6 @@
 import Foundation
 
 public struct SiteCatalogModel: Codable, Equatable {
-    var siteId: String
     var name: String
     var type: String
     var country: String?
@@ -24,10 +23,10 @@ public struct SiteCatalogModel: Codable, Equatable {
     var culture: String?
     var parentSiteId: String?
     var serviceList: [String]?
+    let meta: [String: String]?
     
     
     public enum CodingKeys: String, CodingKey {
-        case siteId = "id"
         case name
         case type
         case country
@@ -43,11 +42,11 @@ public struct SiteCatalogModel: Codable, Equatable {
         case culture
         case parentSiteId = "parent_id"
         case serviceList = "service_list"
+        case meta
     }
     
 
-    public init(siteId: String, name: String = "", type: String = "", country: String? = "", regionState: String? = "", city: String? = "", streetAddress: String? = "", zipcode: String? = "", level: String? = "", category: String? = "", isActive: Bool? = true, latitude: Double? = 0, longitude: Double? = 0, culture: String? = "", parentSiteId: String? = "", serviceList: [String]? = []) {
-        self.siteId = siteId
+    public init(name: String = "", type: String = "", country: String? = "", regionState: String? = "", city: String? = "", streetAddress: String? = "", zipcode: String? = "", level: String? = "", category: String? = "", isActive: Bool? = true, latitude: Double? = 0, longitude: Double? = 0, culture: String? = "", parentSiteId: String? = "", serviceList: [String]? = [], meta: [String: String]? = nil) {
         self.name = name
         self.type = type
         self.country = country
@@ -63,13 +62,13 @@ public struct SiteCatalogModel: Codable, Equatable {
         self.culture = culture
         self.parentSiteId = parentSiteId
         self.serviceList = serviceList
+        self.meta = meta
     }
     
     
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(siteId, forKey: .siteId)
         try container.encode(name, forKey: .name)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(country, forKey: .country)
@@ -85,13 +84,13 @@ public struct SiteCatalogModel: Codable, Equatable {
         try container.encodeIfPresent(culture, forKey: .culture)
         try container.encodeIfPresent(parentSiteId, forKey: .parentSiteId)
         try container.encodeIfPresent(serviceList, forKey: .serviceList)
+        try container.encodeIfPresent(meta, forKey: .meta)
         
     }
 
     // Decoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        siteId = try container.decode(String.self, forKey: .siteId)
         name = try container.decode(String.self, forKey: .name)
         type = try container.decode(String.self, forKey: .type)
         country = try container.decodeIfPresent(String.self, forKey: .country)
@@ -107,6 +106,7 @@ public struct SiteCatalogModel: Codable, Equatable {
         culture = try container.decodeIfPresent(String.self, forKey: .culture)
         parentSiteId = try container.decodeIfPresent(String.self, forKey: .parentSiteId)
         serviceList = try container.decodeIfPresent([String].self, forKey: .serviceList)
+        meta = try container.decodeIfPresent([String: String].self, forKey: .meta)
         
     }
 

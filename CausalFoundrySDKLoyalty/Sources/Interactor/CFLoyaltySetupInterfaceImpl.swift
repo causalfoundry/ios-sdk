@@ -30,11 +30,35 @@ internal class CFLoyaltySetupInterfaceImpl: CFLoyaltySetupInterface {
         
     }
     
-    func trackCatalogEvent(catalogType: LoyaltyCatalogType, catalogModel: Any) {
+    func trackCatalogEvent<T: Codable>(loyaltyCatalogType: LoyaltyCatalogType, subjectId: String, catalogModel: T) {
         if CoreConstants.shared.pauseSDK{
             return
         }
-        CfLoyaltyCatalog.callCatalogAPI(catalogType: catalogType, catalogModel: catalogModel)
+        var subject: CatalogSubject? = nil
+        var catalogData: Codable? = nil
+        
+        switch(loyaltyCatalogType){
+        case .Survey:
+            if let model = catalogModel as? SurveyCatalogModel {
+                subject = .survey
+                catalogData = LoyaltyConstants.verifyCatalogForSurvey(subjectId: subjectId, surveyCatalogModel: model)
+            }
+        case .Reward:
+            if let model = catalogModel as? RewardCatalogModel {
+                subject = .reward
+                catalogData = LoyaltyConstants.verifyCatalogForReward(subjectId: subjectId, rewardCatalogModel: model)
+            }
+        }
+        
+        if let subject = subject, let catalogData = catalogData {
+            CFSetup().updateCatalogItem(subject: subject, subjectId: subjectId, catalogObject: catalogData)
+        } else {
+            ExceptionManager.throwIllegalStateException(
+                eventType: "loyalty catalog",
+                message: "Please use correct catalog properties with provided item type",
+                className: "CfEComCatalog"
+            )
+        }
     }
     
     private func validateLoyaltyEvent<T: Codable>(eventType: LoyaltyEventType, logObject: T?, isUpdateImmediately: Bool? = CoreConstants.shared.updateImmediately,

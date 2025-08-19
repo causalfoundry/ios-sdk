@@ -14,5 +14,5 @@ protocol CFCoreSetupInterface {
                        isUpdateImmediately: Bool?,
                        eventTime: Int64?)
 
-    func trackCatalogEvent(coreCatalogType: CoreCatalogSubject, catalogModel: Any)
+    func trackCatalogEvent<T: Codable>(coreCatalogType: CoreCatalogType, subjectId: String, catalogModel: T)
 }

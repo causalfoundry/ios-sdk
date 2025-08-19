@@ -18,6 +18,14 @@ struct MainBody: Codable {
     }
 }
 
+struct MainCatalogBody: Codable {
+    let data: [CatalogItemModel]
+
+    enum CodingKeys: String, CodingKey {
+        case data
+    }
+}
+
 // MARK: - Helper functions for creating encoders and decoders
 
 public extension JSONEncoder {

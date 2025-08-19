@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum CoreCatalogSubject: String, CaseIterable, Codable {
+public enum CoreCatalogType: String, CaseIterable, Codable {
     case User
     case Site
     case Media

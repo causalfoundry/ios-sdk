@@ -31,21 +31,19 @@ internal class CFCoreSetupInterfaceImpl: CFCoreSetupInterface {
             
         }
     
-    func trackCatalogEvent(coreCatalogType: CoreCatalogSubject, catalogModel: Any) {
+    func trackCatalogEvent<T: Codable>(coreCatalogType: CoreCatalogType, subjectId: String, catalogModel: T) {
         if CoreConstants.shared.pauseSDK{
             return
         }
-        validateCoreCatalogEvent(coreCatalogType: coreCatalogType, catalogObject: catalogModel)
+        validateCoreCatalogEvent(coreCatalogType: coreCatalogType,subjectId:subjectId, catalogObject: catalogModel)
     }
     
-    private func validateCoreCatalogEvent(coreCatalogType: CoreCatalogSubject, catalogObject: Any) {
+    private func validateCoreCatalogEvent<T: Codable>(coreCatalogType: CoreCatalogType, subjectId: String, catalogObject: T) {
         switch coreCatalogType {
         case .User:
             switch catalogObject {
             case let userCatalogModel as UserCatalogModel:
-                CfCoreCatalog.updateUserCatalogData(userCatalogModel: userCatalogModel)
-            case let catalogString as String:
-                CfCoreCatalog.updateUserCatalog(userCatalogModelString: catalogString)
+                CfCoreCatalog.updateUserCatalogData(subjectId: subjectId, userCatalogModel: userCatalogModel)
             default:
                 ExceptionManager.throwInvalidException(
                     eventType: "User Catalog", paramName: "UserCatalogModel", className: String(describing: UserCatalogModel.self)
@@ -54,9 +52,7 @@ internal class CFCoreSetupInterfaceImpl: CFCoreSetupInterface {
         case .Site:
             switch catalogObject {
             case let catalogObject as SiteCatalogModel:
-                CfCoreCatalog.updateSiteCatalog(siteCatalogModel: catalogObject)
-            case let catalogObject as String:
-                CfCoreCatalog.updateSiteCatalogString(siteCatalogString: catalogObject)
+                CfCoreCatalog.updateSiteCatalog(subjectId: subjectId, siteCatalogModel: catalogObject)
             default:
                 ExceptionManager.throwInvalidException(
                     eventType: "Site Catalog", paramName: "SiteCatalogModel", className: String(describing: SiteCatalogModel.self)
@@ -65,9 +61,7 @@ internal class CFCoreSetupInterfaceImpl: CFCoreSetupInterface {
         case .Media:
             switch catalogObject {
             case let mediaCatalogModel as MediaCatalogModel:
-                CfCoreCatalog.updateMediaCatalogData(mediaCatalogModel: mediaCatalogModel)
-            case let catalogString as String:
-                CfCoreCatalog.updateMediaCatalog(mediaCatalogModelString: catalogString)
+                CfCoreCatalog.updateMediaCatalogData(subjectId: subjectId, mediaCatalogModel: mediaCatalogModel)
             default:
                 ExceptionManager.throwInvalidException(
                     eventType: "Media Catalog", paramName: "MediaCatalogModel", className: String(describing: MediaCatalogModel.self)

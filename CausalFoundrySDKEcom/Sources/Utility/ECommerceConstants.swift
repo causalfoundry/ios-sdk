@@ -46,10 +46,10 @@ enum ECommerceConstants {
     
     // MARK: VERIFY CATALOGS
     
-    static func verifyCatalogForDrug(drugCatalogModel: DrugCatalogModel) -> DrugCatalogModel? {
+    static func verifyCatalogForDrug(subjectId: String, drugCatalogModel: DrugCatalogModel) -> DrugCatalogModel? {
         let catalogName = CatalogSubject.drug.rawValue + " catalog"
 
-        if(drugCatalogModel.drugId.isEmpty){
+        if(subjectId.isEmpty){
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "drug Id")
             return nil
         } else if(drugCatalogModel.name.isEmpty){
@@ -60,10 +60,10 @@ enum ECommerceConstants {
         return drugCatalogModel
     }
 
-    static func verifyCatalogForGrocery(groceryCatalogModel: GroceryCatalogModel) -> GroceryCatalogModel? {
+    static func verifyCatalogForGrocery(subjectId: String, groceryCatalogModel: GroceryCatalogModel) -> GroceryCatalogModel? {
         let catalogName = CatalogSubject.grocery.rawValue + " catalog"
 
-        if(groceryCatalogModel.groceryId.isEmpty){
+        if(subjectId.isEmpty){
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "grocery item Id")
             return nil
         } else if(groceryCatalogModel.name.isEmpty){
@@ -74,10 +74,10 @@ enum ECommerceConstants {
         return groceryCatalogModel
     }
 
-    static func verifyCatalogForBlood(bloodCatalogModel: BloodCatalogModel) -> BloodCatalogModel? {
+    static func verifyCatalogForBlood(subjectId: String, bloodCatalogModel: BloodCatalogModel) -> BloodCatalogModel? {
         let catalogName = CatalogSubject.blood.rawValue + " catalog"
 
-        if(bloodCatalogModel.itemId.isEmpty){
+        if(subjectId.isEmpty){
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "blood item Id")
             return nil
         } else if(bloodCatalogModel.bloodGroup.isEmpty){
@@ -88,20 +88,20 @@ enum ECommerceConstants {
         return bloodCatalogModel
     }
 
-    static func verifyCatalogForOxygen(oxygenCatalogModel: OxygenCatalogModel) -> OxygenCatalogModel? {
+    static func verifyCatalogForOxygen(subjectId: String, oxygenCatalogModel: OxygenCatalogModel) -> OxygenCatalogModel? {
         let catalogName = CatalogSubject.oxygen.rawValue + " catalog"
 
-        if(oxygenCatalogModel.itemId.isEmpty){
+        if(subjectId.isEmpty){
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "oxygen item Id")
             return nil
         }
         return oxygenCatalogModel
     }
 
-    static func verifyCatalogForMedicalEquipment(medicalEquipmentCatalogModel: MedicalEquipmentCatalogModel) -> MedicalEquipmentCatalogModel? {
+    static func verifyCatalogForMedicalEquipment(subjectId: String, medicalEquipmentCatalogModel: MedicalEquipmentCatalogModel) -> MedicalEquipmentCatalogModel? {
         let catalogName = CatalogSubject.medical_equipment.rawValue + " catalog"
 
-        if(medicalEquipmentCatalogModel.itemId.isEmpty){
+        if(subjectId.isEmpty){
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "medical equipment item Id")
             return nil
         }else if(medicalEquipmentCatalogModel.name.isEmpty){
@@ -112,10 +112,10 @@ enum ECommerceConstants {
         return medicalEquipmentCatalogModel
     }
 
-    static func verifyCatalogForFacility(facilityCatalogModel: FacilityCatalogModel) -> FacilityCatalogModel? {
+    static func verifyCatalogForFacility(subjectId: String, facilityCatalogModel: FacilityCatalogModel) -> FacilityCatalogModel? {
         let catalogName = CatalogSubject.facility.rawValue + " catalog"
 
-        if(facilityCatalogModel.facilityId.isEmpty){
+        if(subjectId.isEmpty){
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "facility Id")
             return nil
         }else if(facilityCatalogModel.name.isEmpty){

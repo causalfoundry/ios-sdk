@@ -8,8 +8,7 @@
 import Foundation
 
 public struct PatientCatalogModel: Codable {
-    var patientId: String
-    var country: String?
+    var country: String
     var regionState: String?
     var city: String?
     var profession: String?
@@ -32,7 +31,6 @@ public struct PatientCatalogModel: Codable {
     var hasEmail: Bool?
     
     public enum CodingKeys: String, CodingKey {
-        case patientId = "id"
         case country
         case regionState = "region_state"
         case city
@@ -56,9 +54,8 @@ public struct PatientCatalogModel: Codable {
         case hasEmail = "has_email"
     }
 
-    public init(patientId: String, country: String?  = "", regionState: String? = "", city: String? = "", profession: String? = "", educationLevel: String? = "", siteIdList: [String]? = [], insuranceId: String? = "", insuranceType: String? = "", insuranceStatus: Bool? = false, landmark: String? = "", phoneNumberCategory: String? = "", programId: String? = "", familyId: String? = "", hwIdList: [String]? = [], buddyIdList: [String]? = [], transportMode: String? = "", maritalStatus: String? = "", employmentStatus: String? = "", nationality: String? = "", hasWhatsapp: Bool? = false, hasEmail: Bool? = false) {
+    public init(country: String, regionState: String? = "", city: String? = "", profession: String? = "", educationLevel: String? = "", siteIdList: [String]? = [], insuranceId: String? = "", insuranceType: String? = "", insuranceStatus: Bool? = false, landmark: String? = "", phoneNumberCategory: String? = "", programId: String? = "", familyId: String? = "", hwIdList: [String]? = [], buddyIdList: [String]? = [], transportMode: String? = "", maritalStatus: String? = "", employmentStatus: String? = "", nationality: String? = "", hasWhatsapp: Bool? = false, hasEmail: Bool? = false) {
         
-        self.patientId = patientId
         self.country = country
         self.regionState = regionState
         self.city = city
@@ -87,8 +84,7 @@ public struct PatientCatalogModel: Codable {
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(patientId, forKey: .patientId)
-        try container.encodeIfPresent(country, forKey: .country)
+        try container.encode(country, forKey: .country)
         try container.encodeIfPresent(regionState, forKey: .regionState)
         try container.encodeIfPresent(city, forKey: .city)
         try container.encodeIfPresent(profession, forKey: .profession)
@@ -117,8 +113,7 @@ public struct PatientCatalogModel: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        patientId = try container.decode(String.self, forKey: .patientId)
-        country = try container.decodeIfPresent(String.self, forKey: .country)
+        country = try container.decode(String.self, forKey: .country)
         regionState = try container.decodeIfPresent(String.self, forKey: .regionState)
         city = try container.decodeIfPresent(String.self, forKey: .city)
         profession = try container.decodeIfPresent(String.self, forKey: .profession)

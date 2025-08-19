@@ -14,5 +14,5 @@ protocol CFEComSetupInterface {
                        isUpdateImmediately: Bool?,
                        eventTime: Int64?)
 
-    func trackCatalogEvent(catalogType: EComCatalogType, catalogModel: Any)
+    func trackCatalogEvent<T: Codable>(eComCatalogType: EComCatalogType, subjectId: String, catalogModel: T)
 }

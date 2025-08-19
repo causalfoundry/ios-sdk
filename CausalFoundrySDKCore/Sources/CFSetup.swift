@@ -43,10 +43,12 @@ public class CFSetup: NSObject, IngestProtocol {
         }
     }
 
-    public func updateCoreCatalogItem(subject: CatalogSubject, catalogObject: Data) {
-        let oldData = MMKVHelper.shared.readCatalogData(subject: subject) ?? Data()
-        let newData = MMKVHelper.shared.getCoreCatalogTypeData(newData: catalogObject, oldData: oldData, subject: subject)
-        catalogAPIHandler.updateCoreCatalogItem(subject: subject, catalogObject: newData ?? catalogObject)
+    public func updateCatalogItem<T: Codable>(subject: CatalogSubject, subjectId: String, catalogObject: T) {
+        catalogAPIHandler.updateCoreCatalogItem(catalogObject: CatalogItemModel(
+            id: subjectId,
+            type: subject.rawValue,
+            keyValues: catalogObject
+        ))
     }
 
     public func track<T: Codable>(eventName: String, eventProperty: String?, eventCtx: T?, updateImmediately: Bool, eventTime: Int64 = 0) {

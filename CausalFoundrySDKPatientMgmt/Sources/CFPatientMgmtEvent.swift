@@ -25,8 +25,8 @@ public class CFPatientMgmtEvent {
                                                       eventTime: eventTime)
     }
     
-    public func logCatalog(patientMgmtCatalogType: PatientMgmtCatalogSubject, catalogModel: Any) {
-        CFPatientMgmtSetupInterfaceImpl.shared.trackCatalogEvent(patientMgmtCatalogType: patientMgmtCatalogType, catalogModel: catalogModel)
+    public func logCatalog<T: Codable>(patientMgmtCatalogType: PatientMgmtCatalogType, subjectId: String, catalogModel: T) {
+        CFPatientMgmtSetupInterfaceImpl.shared.trackCatalogEvent(patientMgmtCatalogType: patientMgmtCatalogType, subjectId: subjectId, catalogModel: catalogModel)
     }
     
 }

@@ -11,10 +11,10 @@ import Foundation
 enum LoyaltyConstants {
     static let contentBlockName = "loyalty"
 
-    static func verifyCatalogForSurvey(surveyCatalogModel: SurveyCatalogModel) -> SurveyCatalogModel? {
+    static func verifyCatalogForSurvey(subjectId: String, surveyCatalogModel: SurveyCatalogModel) -> SurveyCatalogModel? {
         let catalogName = CatalogSubject.survey.rawValue + " catalog"
 
-        if surveyCatalogModel.id.isEmpty {
+        if subjectId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "survey Id")
             return nil
         } else if surveyCatalogModel.name.isEmpty {
@@ -31,10 +31,10 @@ enum LoyaltyConstants {
         }
     }
 
-    static func verifyCatalogForReward(rewardCatalogModel: RewardCatalogModel) -> RewardCatalogModel? {
+    static func verifyCatalogForReward(subjectId: String, rewardCatalogModel: RewardCatalogModel) -> RewardCatalogModel? {
         let catalogName = CatalogSubject.reward.rawValue + " catalog"
 
-        if rewardCatalogModel.id.isEmpty {
+        if subjectId.isEmpty {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "reward Id")
             return nil
         } else if rewardCatalogModel.name.isEmpty {

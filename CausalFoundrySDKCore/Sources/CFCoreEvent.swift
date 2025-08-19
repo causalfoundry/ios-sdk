@@ -24,8 +24,8 @@ public class CFCoreEvent {
                                                       eventTime: eventTime)
     }
     
-    public func logCatalog(coreCatalogType: CoreCatalogSubject, catalogModel: Any) {
-        CFCoreSetupInterfaceImpl.shared.trackCatalogEvent(coreCatalogType: coreCatalogType, catalogModel: catalogModel)
+    public func logCatalog<T: Codable>(coreCatalogType: CoreCatalogType, subjectId: String, catalogModel: T) {
+        CFCoreSetupInterfaceImpl.shared.trackCatalogEvent(coreCatalogType: coreCatalogType, subjectId: subjectId, catalogModel: catalogModel)
     }
     
 }

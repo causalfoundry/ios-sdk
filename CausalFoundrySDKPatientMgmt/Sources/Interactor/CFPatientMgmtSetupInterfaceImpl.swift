@@ -31,30 +31,35 @@ internal class CFPatientMgmtSetupInterfaceImpl: CFPatientMgmtSetupInterface {
         validatePatientMgmtEvent(eventType: eventType, logObject: logObject, isUpdateImmediately: isUpdateImmediately, eventTime: eventTime)
     }
     
-    func trackCatalogEvent(patientMgmtCatalogType: PatientMgmtCatalogSubject, catalogModel: Any) {
+    func trackCatalogEvent<T: Codable>(patientMgmtCatalogType: PatientMgmtCatalogType, subjectId: String, catalogModel: T) {
         if CoreConstants.shared.pauseSDK{
             return
         }
-        switch patientMgmtCatalogType {
+        
+        var subject: CatalogSubject? = nil
+        var catalogData: Codable? = nil
+        
+        switch(patientMgmtCatalogType){
         case .UserHcw:
-            switch catalogModel {
-            case let catalogObject as HcwCatalogModel:
-                CfPatientMgmtCatalog.updateHcwCatalog(hcwCatalogModel: catalogObject)
-            default:
-                ExceptionManager.throwInvalidException(
-                    eventType: "Hcw Catalog", paramName: "HcwCatalogModel", className: String(describing: HcwCatalogModel.self)
-                )
+            if let model = catalogModel as? HcwCatalogModel {
+                subject = .user_chw
+                catalogData = PatientMgmtConstants.verifyHcwCatalog(hcwId:subjectId, hcwCatalogModel: model)
             }
         case .Patient:
-            switch catalogModel {
-            case let catalogObject as PatientCatalogModel:
-                CfPatientMgmtCatalog.updatePatientCatalog(patientCatalogModel: catalogObject)
-            default:
-                ExceptionManager.throwInvalidException(
-                    eventType: "Patient Catalog", paramName: "PatientCatalogModel", className: String(describing: PatientCatalogModel.self)
-                )
+            if let model = catalogModel as? PatientCatalogModel {
+                subject = .patient
+                catalogData = PatientMgmtConstants.verifyPatientCatalog(patientId: subjectId, patientCatalogModel: model)
             }
-            
+        }
+        
+        if let subject = subject, let catalogData = catalogData {
+            CFSetup().updateCatalogItem(subject: subject, subjectId: subjectId, catalogObject: catalogData)
+        } else {
+            ExceptionManager.throwIllegalStateException(
+                eventType: "patient mgmt catalog",
+                message: "Please use correct catalog properties with provided item type",
+                className: "CFPatientMgmtCatalog"
+            )
         }
     }
     

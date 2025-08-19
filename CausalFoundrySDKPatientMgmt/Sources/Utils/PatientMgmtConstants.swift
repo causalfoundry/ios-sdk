@@ -11,10 +11,10 @@ import Foundation
 enum PatientMgmtConstants {
     static var contentBlockName: String = "patient_mgmt"
 
-    static func verifyHcwCatalog(hcwCatalogModel: HcwCatalogModel) -> HcwCatalogModel? {
+    static func verifyHcwCatalog(hcwId: String, hcwCatalogModel: HcwCatalogModel) -> HcwCatalogModel? {
         let catalogName = "HCW catalog"
 
-        guard !hcwCatalogModel.hcwId.isEmpty else {
+        guard !hcwId.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Hcw Id")
             return nil
         }
@@ -43,21 +43,22 @@ enum PatientMgmtConstants {
         return hcwCatalogModel
     }
 
-    static func verifyPatientCatalog(patientCatalogModel: PatientCatalogModel) -> PatientCatalogModel? {
+    static func verifyPatientCatalog(patientId: String, patientCatalogModel: PatientCatalogModel) -> PatientCatalogModel? {
         let catalogName = CatalogSubject.patient.rawValue + " catalog"
 
-        guard !patientCatalogModel.patientId.isEmpty else {
+        guard !patientId.isEmpty else {
             ExceptionManager.throwIsRequiredException(eventType: catalogName, elementName: "Patient Id")
             return nil
         }
 
-        if let country = patientCatalogModel.country, !country.isEmpty {
+        let country = patientCatalogModel.country
+        if !country.isEmpty {
             guard CountryCode(rawValue: country) != nil else {
                 ExceptionManager.throwEnumException(eventType: catalogName, className: "CountryCode")
                 return nil
             }
         }
-
+            
         if let educationLevel = patientCatalogModel.educationLevel,
            !educationLevel.isEmpty,
            !CoreConstants.shared.enumContains(EducationalLevel.self, name: educationLevel) {

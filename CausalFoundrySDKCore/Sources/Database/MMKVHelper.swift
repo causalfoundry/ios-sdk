@@ -18,10 +18,10 @@ public class MMKVHelper {
         case eventData
         case currency
         case actions
+        case localCFDimensionsKey
     }
 
     private struct CatalogHelper: Codable {
-        let subject: CatalogSubject
         let data: Data
     }
 
@@ -83,18 +83,17 @@ extension MMKVHelper {
         delete(for: Key.eventData.rawValue)
     }
 
-    public func writeCatalogData(subject: CatalogSubject, data: Data) {
-        let object = CatalogHelper(subject: subject, data: data)
-        write(object, for: subject.rawValue)
+    func writeCatalogData(data: [CatalogItemModel]) {
+        write(data, for: Key.localCFDimensionsKey.rawValue)
     }
 
-    public func readCatalogData(subject: CatalogSubject) -> Data? {
-        let object: CatalogHelper? = read(for: subject.rawValue)
-        return object?.data
+    func readCatalogData() -> [CatalogItemModel] {
+        let object: [CatalogItemModel]? = read(for: Key.localCFDimensionsKey.rawValue)
+        return object ?? []
     }
     
-    func deleteCatalogData(subject: CatalogSubject) {
-        delete(for: subject.rawValue)
+    func deleteCatalogData() {
+        delete(for: Key.localCFDimensionsKey.rawValue)
     }
 
     func readActions() -> [BackendActionMainObject] {

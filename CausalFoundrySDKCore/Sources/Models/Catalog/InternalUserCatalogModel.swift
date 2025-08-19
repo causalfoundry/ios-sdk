@@ -8,7 +8,7 @@
 import Foundation
 
 public struct InternalUserCatalogModel: Codable, Equatable {
-    var userId: String
+    
     var name: String?
     var country: String?
     var regionState: String?
@@ -28,10 +28,10 @@ public struct InternalUserCatalogModel: Codable, Equatable {
     var maritalStatus: String?
     var familyMembers: String?
     var childrenUnderFive: String?
+    var meta: [String: String]?
 
     
     enum CodingKeys: String, CodingKey {
-        case userId = "id"
         case name
         case country
         case regionState = "region_state"
@@ -51,12 +51,12 @@ public struct InternalUserCatalogModel: Codable, Equatable {
         case maritalStatus = "marital_status"
         case familyMembers = "family_members"
         case childrenUnderFive = "children_under_five"
+        case meta
     }
     
 
-    public init(userId: String, name: String? = "", country: String? = "", regionState: String? = "", city: String? = "", workplace: String? = "", profession: String? = "", zipcode: String? = "", language: String? = "", experience: String? = "", educationLevel: String? = "", organizationId: String? = "", organizationName: String? = "", timezone: String? = "", accountType: String? = "", birthYear: Int? = 0, gender: String? = "", maritalStatus: String? = "", familyMembers: String? = "", childrenUnderFive: String? = "") {
+    public init(name: String? = "", country: String? = "", regionState: String? = "", city: String? = "", workplace: String? = "", profession: String? = "", zipcode: String? = "", language: String? = "", experience: String? = "", educationLevel: String? = "", organizationId: String? = "", organizationName: String? = "", timezone: String? = "", accountType: String? = "", birthYear: Int? = 0, gender: String? = "", maritalStatus: String? = "", familyMembers: String? = "", childrenUnderFive: String? = "", meta: [String: String]? = nil) {
         
-        self.userId = userId
         self.name = name
         self.country = country
         self.regionState = regionState
@@ -76,13 +76,13 @@ public struct InternalUserCatalogModel: Codable, Equatable {
         self.maritalStatus = maritalStatus
         self.familyMembers = familyMembers
         self.childrenUnderFive = childrenUnderFive
+        self.meta = meta
     }
     
     // MARK: - Encoding
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(userId, forKey: .userId)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(country, forKey: .country)
         try container.encodeIfPresent(regionState, forKey: .regionState)
@@ -102,6 +102,7 @@ public struct InternalUserCatalogModel: Codable, Equatable {
         try container.encodeIfPresent(maritalStatus, forKey: .maritalStatus)
         try container.encodeIfPresent(familyMembers, forKey: .familyMembers)
         try container.encodeIfPresent(childrenUnderFive, forKey: .childrenUnderFive)
+        try container.encodeIfPresent(meta, forKey: .meta)
         
     }
 
@@ -109,7 +110,6 @@ public struct InternalUserCatalogModel: Codable, Equatable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        userId = try container.decode(String.self, forKey: .userId)
         name = try container.decodeIfPresent(String.self, forKey: .name)
         country = try container.decodeIfPresent(String.self, forKey: .country)
         regionState = try container.decodeIfPresent(String.self, forKey: .regionState)
@@ -129,6 +129,7 @@ public struct InternalUserCatalogModel: Codable, Equatable {
         maritalStatus = try container.decodeIfPresent(String.self, forKey: .maritalStatus)
         familyMembers = try container.decodeIfPresent(String.self, forKey: .familyMembers)
         childrenUnderFive = try container.decodeIfPresent(String.self, forKey: .childrenUnderFive)
+        meta = try container.decodeIfPresent([String: String].self, forKey: .meta)
     }
 }
 

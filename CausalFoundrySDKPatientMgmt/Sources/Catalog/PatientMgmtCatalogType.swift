@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum PatientMgmtCatalogSubject: String, CaseIterable, Codable {
+public enum PatientMgmtCatalogType: String, CaseIterable, Codable {
     case UserHcw
     case Patient
     

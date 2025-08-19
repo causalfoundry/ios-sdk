@@ -8,25 +8,44 @@
 import Foundation
 
 public class CatalogAPIHandler {
-    public func updateCoreCatalogItem(subject: CatalogSubject, catalogObject: Data) {
+    func updateCoreCatalogItem(catalogObject: CatalogItemModel) {
         if #available(iOS 13.0, *) {
-            guard !CoreConstants.shared.pauseSDK else { return }
-            MMKVHelper.shared.writeCatalogData(subject: subject, data: catalogObject)
+            var prevEvent = MMKVHelper.shared.readCatalogData()
+            prevEvent.append(catalogObject)
+            MMKVHelper.shared.writeCatalogData(data: prevEvent)
         }
     }
-
-    public func callCatalogAPI(catalogMainObject: [Any], catalogSubject: String, completion: @escaping (_ success: Bool) -> Void) {
+    
+    
+    func callCatalogAPI(catalogMainObject: [CatalogItemModel], callback: @escaping (Bool) -> Void) {
         if #available(iOS 13.0, *) {
-            let url = URL(string: "\(APIConstants.updateCatalog)\(catalogSubject)")!
-            let arrayWithoutDuplicates = Array(NSOrderedSet(array: catalogMainObject)) as! [Any]
-            BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: arrayWithoutDuplicates) { result in
-                switch result {
-                case .success:
-                    completion(true)
-                case .failure:
-                    completion(false)
-                }
+            let url = URL(string: "\(APIConstants.updateCatalog)")!
+            
+            
+            let mainBody = MainCatalogBody(
+                data: catalogMainObject
+            )
+            
+            let dictionary = mainBody.dictionary ?? [:]
+            
+            if dictionary.isEmpty {
+                print("No More Injest events")
+                return
             }
+                
+            print("==========")
+            print(dictionary)
+            print("==========")
+            callback(true)
+            
+            //            BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: catalogArray) { result in
+            //                switch result {
+            //                case .success:
+            //                    callback(true)
+            //                case .failure:
+            //                    callback(false)
+            //                }
+            //            }
         }
     }
 }

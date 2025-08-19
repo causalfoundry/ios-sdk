@@ -24,8 +24,8 @@ public class CFLoyaltyEvent {
                                                       eventTime: eventTime)
     }
     
-    public func logCatalog(catalogType: LoyaltyCatalogType, catalogModel: Any) {
-        CFLoyaltySetupInterfaceImpl.shared.trackCatalogEvent(catalogType: catalogType, catalogModel: catalogModel)
+    public func logCatalog<T: Codable>(loyaltyCatalogType: LoyaltyCatalogType, subjectId: String, catalogModel: T) {
+        CFLoyaltySetupInterfaceImpl.shared.trackCatalogEvent(loyaltyCatalogType: loyaltyCatalogType, subjectId: subjectId, catalogModel: catalogModel)
     }
     
 }

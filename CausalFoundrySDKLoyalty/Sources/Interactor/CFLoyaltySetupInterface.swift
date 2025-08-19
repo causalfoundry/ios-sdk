@@ -14,5 +14,5 @@ protocol CFLoyaltySetupInterface {
                        isUpdateImmediately: Bool?,
                        eventTime: Int64?)
 
-    func trackCatalogEvent(catalogType: LoyaltyCatalogType, catalogModel: Any)
+    func trackCatalogEvent<T: Codable>(loyaltyCatalogType: LoyaltyCatalogType, subjectId: String, catalogModel: T)
 }
