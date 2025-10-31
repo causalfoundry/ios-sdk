@@ -129,16 +129,6 @@ public class EcomEventValidator {
             return nil
         }
         
-        if (eventObject.deliveryCoordinates != nil && (eventObject.deliveryCoordinates?.lat == 0 || eventObject.deliveryCoordinates?.lng == 0)) {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.Delivery.rawValue, elementName: "deliveryCoordinates")
-            return nil
-        }
-        
-        if (eventObject.dispatchCoordinates != nil && (eventObject.dispatchCoordinates?.lat == 0 || eventObject.dispatchCoordinates?.lng == 0)) {
-            ExceptionManager.throwIsRequiredException(eventType: EComEventType.Delivery.rawValue, elementName: "dispatchCoordinates")
-            return nil
-        }
-        
         return eventObject
     }
     

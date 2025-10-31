@@ -21,11 +21,10 @@ public struct MilestoneObject: Codable {
 
     // CodingKeys for encoding and decoding
     private enum CodingKeys: String, CodingKey {
-        case id
+        case id = "milestone_id"
         case action
         case meta
     }
-
     // Encode the object to JSON
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

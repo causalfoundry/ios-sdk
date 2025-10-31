@@ -20,7 +20,6 @@ enum InjestEvenstuploader {
         try await withCheckedThrowingContinuation { continuation in
             injestAPIHandler.updateEventTrack(eventArray: filteredArray) { success in
                 if success {
-                    print("deleteInjestEvenstuploader")
                     MMKVHelper.shared.deleteDataEventLogs()
                     continuation.resume(with: .success(()))
                 } else {
@@ -70,7 +69,6 @@ public enum CatalogEventsUploader {
         try await withCheckedThrowingContinuation { continuation in
             catalogAPIHandler.callCatalogAPI(catalogMainObject: filteredArray) { success in
                 if success {
-                    print("deleteCatalogData")
                     MMKVHelper.shared.deleteCatalogData()
                     continuation.resume(with: .success(()))
                 } else {

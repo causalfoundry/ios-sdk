@@ -15,7 +15,7 @@ public struct ExamObject: Codable {
     var meta: Encodable?
 
     private enum CodingKeys: String, CodingKey {
-        case id
+        case id = "exam_id"
         case action
         case duration
         case score

@@ -13,8 +13,8 @@ public struct DeliveryObject: Codable {
     var action: String
     var isUrgent: Bool
     var deliveryTs: String?
-    var deliveryCoordinates: CoordinatesObject?
-    var dispatchCoordinates: CoordinatesObject?
+    var deliveryCoordinates: [Double]?
+    var dispatchCoordinates: [Double]?
     var meta: Encodable?
 
     private enum CodingKeys: String, CodingKey {
@@ -28,7 +28,7 @@ public struct DeliveryObject: Codable {
         case meta
     }
 
-    public init(deliveryId: String, orderId: String, action: DeliveryAction, isUrgent: Bool = false, deliveryTs: Int64 = 0, deliveryCoordinates: CoordinatesObject? = nil, dispatchCoordinates: CoordinatesObject? = nil, meta: Encodable? = nil) {
+    public init(deliveryId: String, orderId: String, action: DeliveryAction, isUrgent: Bool = false, deliveryTs: Int64 = 0, deliveryCoordinates: [Double]? = nil, dispatchCoordinates: [Double]? = nil, meta: Encodable? = nil) {
         self.deliveryId = deliveryId
         self.orderId = orderId
         self.action = action.rawValue
@@ -64,8 +64,8 @@ public struct DeliveryObject: Codable {
         action = try container.decode(String.self, forKey: .action)
         isUrgent = try container.decode(Bool.self, forKey: .isUrgent)
         deliveryTs = try container.decodeIfPresent(String.self, forKey: .deliveryTs)
-        deliveryCoordinates = try container.decodeIfPresent(CoordinatesObject.self, forKey: .deliveryCoordinates)
-        dispatchCoordinates = try container.decodeIfPresent(CoordinatesObject.self, forKey: .dispatchCoordinates)
+        deliveryCoordinates = try container.decodeIfPresent([Double].self, forKey: .deliveryCoordinates)
+        dispatchCoordinates = try container.decodeIfPresent([Double].self, forKey: .dispatchCoordinates)
         if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
             meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
         } else {

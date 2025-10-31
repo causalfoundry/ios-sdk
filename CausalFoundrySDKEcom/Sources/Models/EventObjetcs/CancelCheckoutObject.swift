@@ -26,7 +26,7 @@ public struct CancelCheckoutObject: Codable {
     private enum CodingKeys: String, CodingKey {
         case checkoutId = "id"
         case type
-        case itemList = "items"
+        case itemList = "items_list"
         case reason
         case meta
     }

@@ -15,7 +15,7 @@ public struct QuestionObject: Codable {
     var meta: Encodable?
 
     private enum CodingKeys: String, CodingKey {
-        case id
+        case id = "question_id"
         case examId = "exam_id"
         case action
         case answerId = "answer_id"

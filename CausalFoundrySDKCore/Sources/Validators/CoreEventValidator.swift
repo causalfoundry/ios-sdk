@@ -261,10 +261,10 @@ public class CoreEventValidator {
         
         if let eventObject = eventObject {
             // Will throw an exception if the action provided is null or no action is provided at all.
-            if eventObject.action_id.isEmpty {
-                ExceptionManager.throwIsRequiredException(eventType: CoreEventType.ActionResponse.rawValue, elementName:  "actionId/ref")
+            if eventObject.response.isEmpty {
+                ExceptionManager.throwIsRequiredException(eventType: CoreEventType.ActionResponse.rawValue, elementName:  "action.response")
             }
-            else if CoreConstants.shared.enumContains(ActionRepsonse.self, name: eventObject.response) {
+            else if !CoreConstants.shared.enumContains(ActionRepsonse.self, name: eventObject.response) {
                 ExceptionManager.throwEnumException(eventType: CoreEventType.ActionResponse.rawValue, className:  "action_response")
             }
             else {

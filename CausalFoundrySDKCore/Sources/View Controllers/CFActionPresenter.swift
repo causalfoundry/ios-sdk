@@ -11,7 +11,9 @@ public final class CFActionPresenter {
     
     @available(iOS 13.0, *)
     public static func present(in uiViewController: UIViewController) {
-        let objects = MMKVHelper.shared.readActions().filter { !$0.internalObj.isExpired }
+        let objects = MMKVHelper.shared.readActions().filter { nudge in
+            !(nudge.payload?.isExpired ?? false) && (nudge.error?.isEmpty ?? true)
+        }
         
         guard !objects.isEmpty else { return }
         
@@ -21,7 +23,7 @@ public final class CFActionPresenter {
         MMKVHelper.shared.writeActions(objects: [])
     }
     
-    public static func presentWithData(in uiViewController: UIViewController, objects : [BackendActionMainObject]) {
+    public static func presentWithData(in uiViewController: UIViewController, objects : [NudgeResponseItem]) {
         if #available(iOS 13.0, *) {
             guard !objects.isEmpty else { return }
             if uiViewController.presentedViewController != nil {
@@ -47,9 +49,9 @@ fileprivate final class CFActionViewController: UITableViewController {
     }
         
     private lazy var dataSource = makeDataSource()
-    private var objects: [BackendActionMainObject]
+    private var objects: [NudgeResponseItem]
     
-    init(objects: [BackendActionMainObject]) {
+    init(objects: [NudgeResponseItem]) {
         self.objects = objects
         super.init(nibName: nil, bundle: nil)
     }
@@ -79,9 +81,9 @@ fileprivate final class CFActionViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let object = dataSource.itemIdentifier(for: indexPath) else { return }
-        CFNotificationController.shared.trackAndOpen(object: object)
-        if let cta = object.attr["cta_type"], cta == "redirect" || cta == "add_to_cart",
-           let itemID = object.attr["cta_id"], !itemID.isEmpty
+        CFNotificationController.shared.trackAndOpen(object: object.payload!)
+        if let cta = object.payload?.attr?["cta_type"], cta == "redirect" || cta == "add_to_cart",
+           let itemID = object.payload?.attr?["cta_id"], !itemID.isEmpty
         {
             removeAllObjects()
         }else{
@@ -91,7 +93,7 @@ fileprivate final class CFActionViewController: UITableViewController {
     }
     
     @available(iOS 13.0, *)
-    private func makeDataSource() -> UITableViewDiffableDataSource<Section, BackendActionMainObject> {
+    private func makeDataSource() -> UITableViewDiffableDataSource<Section, NudgeResponseItem> {
         UITableViewDiffableDataSource(tableView: tableView, cellProvider: {  tableView, indexPath, object in
             let cell = tableView.dequeueReusableCell(withIdentifier: "CFActionCell", for: indexPath) as? CFActionCell
             cell?.object = object
@@ -99,7 +101,7 @@ fileprivate final class CFActionViewController: UITableViewController {
                 if (self?.objects.firstIndex(of: object)) != nil {
                     self?.remove(object: object)
                     self?.updateDatasource()
-                    CFNotificationController.shared.track(response: ActionRepsonse.Discard, expiredAt: object.internalObj.expiredAt, refTime: object.internalObj.refTime, modelId: object.internalObj.modelId, invId: object.internalObj.invId, actionId: object.internalObj.actionId, details: "")
+                    CFNotificationController.shared.track(payload: object.payload, response: ActionRepsonse.Discard, details: "")
                 }
             }
             return cell
@@ -112,17 +114,17 @@ fileprivate final class CFActionViewController: UITableViewController {
                 dismiss(animated: true)
                 return
             }
-            var snapshot = NSDiffableDataSourceSnapshot<Section, BackendActionMainObject>()
+            var snapshot = NSDiffableDataSourceSnapshot<Section, NudgeResponseItem>()
             snapshot.appendSections([Section.one])
             snapshot.appendItems(objects, toSection: .one)
             dataSource.apply(snapshot, animatingDifferences: true)
             
             objects.forEach { object in
-                CFNotificationController.shared.track(response: ActionRepsonse.Shown, expiredAt: object.internalObj.expiredAt, refTime: object.internalObj.refTime, modelId: object.internalObj.modelId, invId: object.internalObj.invId, actionId: object.internalObj.actionId, details: "")
+                CFNotificationController.shared.track(payload: object.payload, response: ActionRepsonse.Shown, details: "")
             }
     }
     
-    private func remove(object: BackendActionMainObject) {
+    private func remove(object: NudgeResponseItem) {
         guard let index = objects.firstIndex(of: object) else { return }
         objects.remove(at: index)
     }
@@ -136,7 +138,7 @@ fileprivate final class CFActionCell: UITableViewCell {
     
     var actionView: CFActionView?
     
-    var object: BackendActionMainObject? {
+    var object: NudgeResponseItem? {
         didSet {
             actionView?.removeFromSuperview()
             guard let object = object else { return }
@@ -166,20 +168,20 @@ fileprivate final class CFActionView: UIView {
     var closeAction: (() -> Void)?
     
     @available(iOS 13.0, *)
-    init(object: BackendActionMainObject) {
+    init(object: NudgeResponseItem) {
         super.init(frame: .zero)
         
         backgroundColor = .systemBackground
         
         let titleView = UILabel(frame: .zero)
-        titleView.text = object.content["title"]
+        titleView.text = object.payload?.content?["title"]
         titleView.font = UIFont.preferredFont(forTextStyle: .headline)
         titleView.numberOfLines = 0
         titleView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(titleView)
         
         let bodyView = UILabel(frame: .zero)
-        bodyView.attributedText = (object.content["body"] ?? "").htmlAttributedString().with(font:UIFont.preferredFont(forTextStyle: .body))
+        bodyView.attributedText = (object.payload?.content?["body"] ?? "").htmlAttributedString().with(font:UIFont.preferredFont(forTextStyle: .body))
         bodyView.numberOfLines = 0
         bodyView.translatesAutoresizingMaskIntoConstraints = false
         

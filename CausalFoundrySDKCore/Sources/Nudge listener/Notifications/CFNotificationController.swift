@@ -30,19 +30,19 @@ public final class CFNotificationController: NSObject {
      }
      */
 
-    func triggerActionNotification(object: BackendActionMainObject) {
+    func triggerActionNotification(object: Nudge) {
         if #available(iOS 13.0, *) {
             Task {
                 let settings = await center.notificationSettings()
                 guard settings.authorizationStatus == .authorized else {
-                    track(response: ActionRepsonse.Block, expiredAt: object.internalObj.expiredAt, refTime: object.internalObj.refTime, modelId: object.internalObj.modelId, invId: object.internalObj.invId, actionId: object.internalObj.actionId, details: "")
+                    track(payload: object, response: ActionRepsonse.Block, details: "")
                     return
                 }
                 let identifier = UUID().uuidString
                 let content = UNMutableNotificationContent()
-                content.title = object.content["title"] ?? ""
-                content.body = (object.content["body"] ?? "").htmlAttributedString().with(font:UIFont.preferredFont(forTextStyle: .body)).string
-                content.categoryIdentifier = "BackendActionMainObject"
+                content.title = object.content?["title"] ?? ""
+                content.body = (object.content?["body"] ?? "").htmlAttributedString().with(font:UIFont.preferredFont(forTextStyle: .body)).string
+                content.categoryIdentifier = "Nudge"
                 if let data = object.toData() {
                     content.userInfo = [userInfoKey: data]
                 }
@@ -55,15 +55,15 @@ public final class CFNotificationController: NSObject {
         }
     }
     
-    func track(response: ActionRepsonse, expiredAt : String, refTime : String, modelId : String, invId : String, actionId : String, details : String = "") {
-        let actionResponseObj = ActionRepsonseObject(response: response, expiredAt: expiredAt, refTime: refTime, modelId: modelId, invId: invId, actionId: actionId, details: details)
-        CFCoreEvent.shared.logIngest(eventType: .ActionResponse, logObject: actionResponseObj)
+    func track(payload: Nudge?, response: ActionRepsonse, details : String = "") {
+        let actionResponseObj = ActionRepsonseObject(response: response.rawValue, details: details, internalObject: payload?.internalObject)
+        CFCoreEvent.shared.logIngest(eventType: .ActionResponse, logObject: actionResponseObj, isUpdateImmediately: true)
     }
     
-    func trackAndOpen(object: BackendActionMainObject) {
-        track(response: ActionRepsonse.Open, expiredAt: object.internalObj.expiredAt, refTime: object.internalObj.refTime, modelId: object.internalObj.modelId, invId: object.internalObj.invId, actionId: object.internalObj.actionId, details: "")
-        if let cta = object.attr["cta_type"], cta == "redirect" || cta == "add_to_cart",
-           let itemID = object.attr["cta_id"]
+    func trackAndOpen(object: Nudge) {
+        track(payload:object, response: ActionRepsonse.Open, details: "")
+        if let cta = object.attr?["cta_type"], cta == "redirect" || cta == "add_to_cart",
+           let itemID = object.attr?["cta_id"]
         {
             if let closure = ActionOnClickObject.actionOnClickInterface {
                 closure(cta, itemID)
@@ -76,7 +76,7 @@ extension CFNotificationController: UNUserNotificationCenterDelegate {
     public func userNotificationCenter(_: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // notification is presented
         if let data = notification.request.content.userInfo[userInfoKey] as? Data, let object = data.toObject() {
-            track(response: ActionRepsonse.Shown, expiredAt: object.internalObj.expiredAt, refTime: object.internalObj.refTime, modelId: object.internalObj.modelId, invId: object.internalObj.invId, actionId: object.internalObj.actionId, details: "")
+            track(payload:object, response: ActionRepsonse.Shown, details: "")
         }
         completionHandler(options)
     }
@@ -91,8 +91,8 @@ extension CFNotificationController: UNUserNotificationCenterDelegate {
 }
 
 private extension Data {
-    func toObject() -> BackendActionMainObject? {
+    func toObject() -> Nudge? {
         let decoder = JSONDecoder.new
-        return try? decoder.decode(BackendActionMainObject.self, from: self)
+        return try? decoder.decode(Nudge.self, from: self)
     }
 }

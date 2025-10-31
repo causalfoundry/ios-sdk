@@ -32,20 +32,14 @@ public class CatalogAPIHandler {
                 print("No More Injest events")
                 return
             }
-                
-            print("==========")
-            print(dictionary)
-            print("==========")
-            callback(true)
-            
-            //            BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: catalogArray) { result in
-            //                switch result {
-            //                case .success:
-            //                    callback(true)
-            //                case .failure:
-            //                    callback(false)
-            //                }
-            //            }
+            BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: dictionary) { result in
+                switch result {
+                case .success:
+                    callback(true)
+                case .failure:
+                    callback(false)
+                }
+            }
         }
     }
 }

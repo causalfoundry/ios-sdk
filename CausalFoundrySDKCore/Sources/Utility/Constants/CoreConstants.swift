@@ -11,8 +11,8 @@ import UIKit
 public class CoreConstants {
     public static let shared = CoreConstants()
 
-    public let devUrl = "https://api-dev.causalfoundry.ai/v1/"
-    public let prodUrl = "https://api.causalfoundry.ai/v1/"
+    public let devUrl = "https://api.kenkai.io/v1/"
+    public let prodUrl = "https://api.kenkai.io/v1/"
     public private(set) var apiUrl: String
 
     

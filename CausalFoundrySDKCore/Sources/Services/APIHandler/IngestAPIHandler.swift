@@ -81,20 +81,15 @@ public class IngestAPIHandler: NSObject {
                 print("No More Injest events")
                 return
             }
-                
-            print("==========")
-            print(dictionary)
-            print("==========")
-            callback(true)
-//            let url = URL(string: APIConstants.trackEvent)!
-//            BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: dictionary) { result in
-//                switch result {
-//                case .success:
-//                    callback(true)
-//                case .failure:
-//                    callback(false)
-//                }
-//            }
+            let url = URL(string: APIConstants.trackEvent)!
+            BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: dictionary) { result in
+                switch result {
+                case .success:
+                    callback(true)
+                case .failure:
+                    callback(false)
+                }
+            }
         }
     }
 

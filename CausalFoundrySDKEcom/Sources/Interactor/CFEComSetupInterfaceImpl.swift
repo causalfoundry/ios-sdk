@@ -33,7 +33,6 @@ internal class CFEComSetupInterfaceImpl: CFEComSetupInterface {
     func trackCatalogEvent<T: Codable>(eComCatalogType: EComCatalogType, subjectId: String, catalogModel: T) {
         guard !CoreConstants.shared.pauseSDK else { return }
 
-        print("trackCatalogEvent called")
         var subject: CatalogSubject? = nil
         var catalogData: Codable? = nil
 

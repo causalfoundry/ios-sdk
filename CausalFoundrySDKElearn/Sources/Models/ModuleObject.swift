@@ -13,7 +13,7 @@ public struct ModuleObject: Codable {
     var meta: Encodable?
 
     private enum CodingKeys: String, CodingKey {
-        case id
+        case id = "module_id"
         case progress
         case action
         case meta

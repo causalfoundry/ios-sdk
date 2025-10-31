@@ -20,7 +20,7 @@ public struct PromoObject: Codable {
         case promoAction = "action"
         case promoTitle = "title"
         case promoType = "type"
-        case promoItemsList = "items"
+        case promoItemsList = "items_list"
         case meta
     }
 

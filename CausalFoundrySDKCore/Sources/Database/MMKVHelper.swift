@@ -96,12 +96,12 @@ extension MMKVHelper {
         delete(for: Key.localCFDimensionsKey.rawValue)
     }
 
-    func readActions() -> [BackendActionMainObject] {
-        let object: [BackendActionMainObject]? = read(for: Key.actions.rawValue)
+    func readActions() -> [NudgeResponseItem] {
+        let object: [NudgeResponseItem]? = read(for: Key.actions.rawValue)
         return object ?? []
     }
 
-    func writeActions(objects: [BackendActionMainObject]) {
+    func writeActions(objects: [NudgeResponseItem]) {
         write(objects, for: Key.actions.rawValue)
     }
     
