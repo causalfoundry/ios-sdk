@@ -19,7 +19,7 @@ public struct SurveyEventObject: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case action
-        case id
+        case surveyId = "survey_id"
         case type
         case isCompleted = "is_completed"
         case rewardId = "reward_id"
@@ -42,7 +42,7 @@ public struct SurveyEventObject: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         action = try container.decode(String.self, forKey: .action)
-        surveyId = try container.decode(String.self, forKey: .id)
+        surveyId = try container.decode(String.self, forKey: .surveyId)
         surveyType = try container.decode(String.self, forKey: .type)
         isCompleted = try container.decode(Bool.self, forKey: .isCompleted)
         rewardId = try container.decodeIfPresent(String.self, forKey: .rewardId)
@@ -59,7 +59,7 @@ public struct SurveyEventObject: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(action, forKey: .action)
-        try container.encode(surveyId, forKey: .id)
+        try container.encode(surveyId, forKey: .surveyId)
         try container.encode(surveyType, forKey: .type)
         try container.encode(isCompleted, forKey: .isCompleted)
         try container.encodeIfPresent(rewardId, forKey: .rewardId)

@@ -23,7 +23,7 @@ public struct MediaObject: Codable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case id
+        case id = "media_id"
         case type
         case action
         case seekTime = "seek_time"
