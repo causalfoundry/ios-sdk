@@ -4,32 +4,32 @@
 import PackageDescription
 
 let package = Package(
-    name: "CausalFoundrySDK",
+    name: "KenkaiSDK",
     platforms: [.iOS(.v12)],
     products: [
         .library(
-            name: "CausalFoundrySDKCore",
-            targets: ["CausalFoundrySDKCore"]
+            name: "KenkaiSDKCore",
+            targets: ["KenkaiSDKCore"]
         ),
         .library(
-            name: "CausalFoundrySDKEcom",
-            targets: ["CausalFoundrySDKEcom"]
+            name: "KenkaiSDKEcom",
+            targets: ["KenkaiSDKEcom"]
         ),
         .library(
-            name: "CausalFoundrySDKPayments",
-            targets: ["CausalFoundrySDKPayments"]
+            name: "KenkaiSDKPayments",
+            targets: ["KenkaiSDKPayments"]
         ),
         .library(
-            name: "CausalFoundrySDKElearn",
-            targets: ["CausalFoundrySDKElearn"]
+            name: "KenkaiSDKElearn",
+            targets: ["KenkaiSDKElearn"]
         ),
         .library(
-            name: "CausalFoundrySDKPatientMgmt",
-            targets: ["CausalFoundrySDKPatientMgmt"]
+            name: "KenkaiSDKPatientMgmt",
+            targets: ["KenkaiSDKPatientMgmt"]
         ),
         .library(
-            name: "CausalFoundrySDKLoyalty",
-            targets: ["CausalFoundrySDKLoyalty"]
+            name: "KenkaiSDKLoyalty",
+            targets: ["KenkaiSDKLoyalty"]
         ),
     ],
     /*
@@ -39,68 +39,68 @@ let package = Package(
         */
     targets: [
         .target(
-            name: "CausalFoundrySDKCore",
+            name: "KenkaiSDKCore",
             dependencies: ["MMKV"],
-            path: "CausalFoundrySDKCore/Sources"
+            path: "KenkaiSDKCore/Sources"
         ),
         .target(
-            name: "CausalFoundrySDKEcom",
-            dependencies: ["CausalFoundrySDKCore"],
-            path: "CausalFoundrySDKEcom/Sources"
+            name: "KenkaiSDKEcom",
+            dependencies: ["KenkaiSDKCore"],
+            path: "KenkaiSDKEcom/Sources"
         ),
         .target(
-            name: "CausalFoundrySDKPayments",
-            dependencies: ["CausalFoundrySDKCore"],
-            path: "CausalFoundrySDKPayments/Sources"
+            name: "KenkaiSDKPayments",
+            dependencies: ["KenkaiSDKCore"],
+            path: "KenkaiSDKPayments/Sources"
         ),
         .target(
-            name: "CausalFoundrySDKPatientMgmt",
-            dependencies: ["CausalFoundrySDKCore"],
-            path: "CausalFoundrySDKPatientMgmt/Sources"
+            name: "KenkaiSDKPatientMgmt",
+            dependencies: ["KenkaiSDKCore"],
+            path: "KenkaiSDKPatientMgmt/Sources"
         ),
         .target(
-            name: "CausalFoundrySDKLoyalty",
-            dependencies: ["CausalFoundrySDKCore"],
-            path: "CausalFoundrySDKLoyalty/Sources"
+            name: "KenkaiSDKLoyalty",
+            dependencies: ["KenkaiSDKCore"],
+            path: "KenkaiSDKLoyalty/Sources"
         ),
         .target(
-            name: "CausalFoundrySDKElearn",
-            dependencies: ["CausalFoundrySDKCore"],
-            path: "CausalFoundrySDKElearn/Sources"
+            name: "KenkaiSDKElearn",
+            dependencies: ["KenkaiSDKCore"],
+            path: "KenkaiSDKElearn/Sources"
         ),
         .binaryTarget(
             name: "MMKV",
             path: "Frameworks/MMKV.xcframework"
         ),
         .testTarget(
-            name: "CausalFoundrySDKCoreTests",
-            dependencies: ["CausalFoundrySDKCore"],
-            path: "CausalFoundrySDKCore/Tests"
+            name: "KenkaiSDKCoreTests",
+            dependencies: ["KenkaiSDKCore"],
+            path: "KenkaiSDKCore/Tests"
         ),
         .testTarget(
-            name: "CausalFoundrySDKEcomTests",
-            dependencies: ["CausalFoundrySDKEcom"],
-            path: "CausalFoundrySDKEcom/Tests"
+            name: "KenkaiSDKEcomTests",
+            dependencies: ["KenkaiSDKEcom"],
+            path: "KenkaiSDKEcom/Tests"
         ),
         .testTarget(
-            name: "CausalFoundrySDKElearnTests",
-            dependencies: ["CausalFoundrySDKElearn"],
-            path: "CausalFoundrySDKElearn/Tests"
+            name: "KenkaiSDKElearnTests",
+            dependencies: ["KenkaiSDKElearn"],
+            path: "KenkaiSDKElearn/Tests"
         ),
         .testTarget(
-            name: "CausalFoundrySDKPaymentsTests",
-            dependencies: ["CausalFoundrySDKPayments"],
-            path: "CausalFoundrySDKPayments/Tests"
+            name: "KenkaiSDKPaymentsTests",
+            dependencies: ["KenkaiSDKPayments"],
+            path: "KenkaiSDKPayments/Tests"
         ),
         .testTarget(
-            name: "CausalFoundrySDKLoyaltyTests",
-            dependencies: ["CausalFoundrySDKLoyalty"],
-            path: "CausalFoundrySDKLoyalty/Tests"
+            name: "KenkaiSDKLoyaltyTests",
+            dependencies: ["KenkaiSDKLoyalty"],
+            path: "KenkaiSDKLoyalty/Tests"
         ),
         .testTarget(
-            name: "CausalFoundrySDKPatientMgmtTests",
-            dependencies: ["CausalFoundrySDKPatientMgmt"],
-            path: "CausalFoundrySDKPatientMgmt/Tests"
+            name: "KenkaiSDKPatientMgmtTests",
+            dependencies: ["KenkaiSDKPatientMgmt"],
+            path: "KenkaiSDKPatientMgmt/Tests"
         ),
     ]
 )
