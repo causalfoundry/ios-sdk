@@ -148,16 +148,26 @@ class CFActionListener {
         }
         
         if (CoreConstants.shared.isAppOpen) {
-                DispatchQueue.main.async {
-                    guard let window = UIApplication.shared.windows.first,
-                          let rootViewController = window.rootViewController else {
-                        validNonExpiredNudges.forEach { action in
-                            CFNotificationController.shared.track(payload: action.payload, response: ActionRepsonse.Expired, details: "unable to show actions, UI controller not found")
-                            }
-                            return // or perform some other action
-                        }
-                        CFActionPresenter.presentWithData(in: rootViewController, objects: validNonExpiredNudges)
+            let nudgesToShow = validNonExpiredNudges
+
+            Task { @MainActor in
+                guard let window = UIApplication.shared.windows.first,
+                      let rootViewController = window.rootViewController else {
+                    nudgesToShow.forEach { action in
+                        CFNotificationController.shared.track(
+                            payload: action.payload,
+                            response: .Expired,
+                            details: "unable to show actions, UI controller not found"
+                        )
+                    }
+                    return
                 }
+
+                CFActionPresenter.presentWithData(
+                    in: rootViewController,
+                    objects: nudgesToShow
+                )
+            }
         }else{
             var storedActions = MMKVHelper.shared.readActions()
             if(!storedActions.isEmpty){
