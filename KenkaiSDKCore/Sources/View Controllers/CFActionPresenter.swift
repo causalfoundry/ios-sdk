@@ -18,6 +18,15 @@ public final class CFActionPresenter {
         guard !objects.isEmpty else { return }
         
         let vc = CFActionViewController(objects: objects)
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.definesPresentationContext = true
+        vc.isModalInPresentation = true
+        if #available(iOS 15.0, *) {
+            if let sheet = vc.sheetPresentationController {
+                sheet.prefersGrabberVisible = false
+                sheet.detents = [.large()] // or remove detents entirely
+            }
+        }
         uiViewController.present(vc, animated: true)
         
         MMKVHelper.shared.writeActions(objects: [])
@@ -42,48 +51,81 @@ public final class CFActionPresenter {
 }
 
 @available(iOS 13.0, *)
-fileprivate final class CFActionViewController: UITableViewController {
+fileprivate final class CFActionViewController: UIViewController, UITableViewDelegate {
     
     private enum Section: Int {
         case one
     }
         
-    private lazy var dataSource = makeDataSource()
+    private let tableView = UITableView()
     private var objects: [NudgeResponseItem]
-    
+    private lazy var dataSource = makeDataSource()
+
     init(objects: [NudgeResponseItem]) {
         self.objects = objects
         super.init(nibName: nil, bundle: nil)
+        modalPresentationStyle = .overCurrentContext
+        isModalInPresentation = true
+        definesPresentationContext = true
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
+    required init?(coder: NSCoder) { fatalError() }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        isModalInPresentation = true
-        modalPresentationStyle = .overFullScreen
+
+        let overlay = UIView()
+        overlay.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        overlay.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(overlay)
+        
+        
+        NSLayoutConstraint.activate([
+            overlay.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            overlay.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            overlay.topAnchor.constraint(equalTo: view.topAnchor),
+            overlay.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleOverlayTap))
+        overlay.addGestureRecognizer(tapGesture)
+
+        view.addSubview(tableView)
+        
         view.backgroundColor = .clear
-        
-        tableView.isOpaque = false
-        tableView.separatorColor = .clear
+
         tableView.backgroundColor = .clear
-        tableView.register(CFActionCell.self, forCellReuseIdentifier: "CFActionCell")
+        tableView.separatorStyle = .none
+        tableView.delegate = self
         tableView.dataSource = dataSource
-        
+        tableView.register(CFActionCell.self, forCellReuseIdentifier: "CFActionCell")
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(tableView)
+
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+
         updateDatasource()
     }
+    
+    @objc private func handleOverlayTap() {
+        dismiss(animated: true)
+    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let object = dataSource.itemIdentifier(for: indexPath) else { return }
         CFNotificationController.shared.trackAndOpen(object: object.payload!)
-        if let cta = object.payload?.attr?["cta_type"], cta == "redirect" || cta == "add_to_cart",
-           let itemID = object.payload?.attr?["cta_id"], !itemID.isEmpty
+        if ((object.payload?.attr) != nil)
         {
             removeAllObjects()
         }else{
@@ -221,10 +263,3 @@ fileprivate final class CFActionView: UIView {
         closeAction?()
     }
 }
-
-//#if DEBUG
-//#Preview {
-//    let debugObjects = try? BackendActionMainObject.debugObjects()
-//    return CFActionView(object: debugObjects!.first!)
-//}
-//#endif

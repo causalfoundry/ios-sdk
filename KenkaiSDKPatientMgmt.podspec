@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "KenkaiSDKPatientMgmt"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "Kenkai Patient Mgmt SDK"
   s.description  = "Kenkai SDK for Patient Mgmt related events (https://docs.causalfoundry.ai/)"
   s.homepage     = "https://docs.causalfoundry.ai/"

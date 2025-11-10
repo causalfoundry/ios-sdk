@@ -28,5 +28,26 @@ public class CFCoreEvent {
         CFCoreSetupInterfaceImpl.shared.trackCatalogEvent(coreCatalogType: coreCatalogType, subjectId: subjectId, catalogModel: catalogModel)
     }
     
+    public func showInAppMessage(actionScreenType: ActionScreenType) {
+        CFActionListener.shared.showInAppMessages(actionScreenType: actionScreenType)
+    }
+    
+    public func fetchActions(
+        invActionType: InvActionType,
+        actionRenderMethodType: ActionRenderMethodType,
+        deliveryMode: ActionDeliveryMode,
+        actionAttr: [String: String]?,
+        onResult: @escaping ([NudgeResponseItem]) -> Void
+    ) {
+        CFActionListener.shared.fetchActions(
+            invActionType: invActionType,
+            actionRenderMethodType: actionRenderMethodType,
+            deliveryMode: deliveryMode,
+            actionAttr: actionAttr,
+            onResult: onResult
+        )
+    }
+    
+    
 }
 

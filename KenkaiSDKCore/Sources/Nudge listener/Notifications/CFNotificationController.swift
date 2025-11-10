@@ -33,8 +33,8 @@ public final class CFNotificationController: NSObject {
     func triggerActionNotification(object: Nudge) {
         if #available(iOS 13.0, *) {
             Task {
-                let settings = await center.notificationSettings()
-                guard settings.authorizationStatus == .authorized else {
+                let settings = await checkNotificationsEnabled()
+                if !settings {
                     track(payload: object, response: ActionRepsonse.Block, details: "")
                     return
                 }
@@ -55,6 +55,11 @@ public final class CFNotificationController: NSObject {
         }
     }
     
+    func checkNotificationsEnabled() async -> Bool {
+        let settings = await center.notificationSettings()
+        return settings.authorizationStatus == .authorized
+    }
+    
     func track(payload: Nudge?, response: ActionRepsonse, details : String = "") {
         let actionResponseObj = ActionRepsonseObject(response: response.rawValue, details: details, internalObject: payload?.internalObject)
         CFCoreEvent.shared.logIngest(eventType: .ActionResponse, logObject: actionResponseObj, isUpdateImmediately: true)
@@ -62,13 +67,7 @@ public final class CFNotificationController: NSObject {
     
     func trackAndOpen(object: Nudge) {
         track(payload:object, response: ActionRepsonse.Open, details: "")
-        if let cta = object.attr?["cta_type"], cta == "redirect" || cta == "add_to_cart",
-           let itemID = object.attr?["cta_id"]
-        {
-            if let closure = ActionOnClickObject.actionOnClickInterface {
-                closure(cta, itemID)
-            }
-        }
+        ActionOnClickObject.actionOnClickInterface?(object.attr)
     }
 }
 

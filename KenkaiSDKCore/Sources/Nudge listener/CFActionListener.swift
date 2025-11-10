@@ -34,7 +34,10 @@ class CFActionListener {
     }
     
     @available(iOS 13.0, *)
-    private func fetchActionsfromBackend(actionType: InvActionType, renderMethod: ActionRenderMethodType, actionScreenType: String = "") async throws -> ActionAPIResponse {
+    private func fetchActionsfromBackend(invActionType: InvActionType,
+                                         actionRenderMethodType: ActionRenderMethodType,
+                                         deliveryMode: ActionDeliveryMode,
+                                         actionAttr: [String: String]?) async throws -> ActionAPIResponse {
       var userId = CoreConstants.shared.userId
       
       if(userId == nil || userId?.isEmpty == true){
@@ -47,8 +50,10 @@ class CFActionListener {
       guard let userID = userId, !userID.isEmpty else {
         return ActionAPIResponse(data: [])
       }
-        let attr: [String: String]? = !actionScreenType.isEmpty ? ["render_page": actionScreenType] : nil
-        let nudgeRequestData = ActionRequestObject(userId: userID, actionType: actionType.rawValue, renderMethod: renderMethod.rawValue, attr: attr)
+        
+        let nudgeRequestData = ActionRequestObject(userId: userID, actionType: invActionType.rawValue, renderMethod: actionRenderMethodType.rawValue,
+                                                   deliveryMode: deliveryMode.rawValue,
+                                                   attr: actionAttr)
       
       let dictionary = nudgeRequestData.dictionary ?? [:]
     
@@ -88,7 +93,8 @@ class CFActionListener {
     @available(iOS 13.0, *)
     func fetchAndDisplayPushNotificationActions() async throws {
 //        let pushNotificationActionObjects = try! ActionAPIResponse.debugObjects().data
-        let pushNotificationActionObjects = try await fetchActionsfromBackend(actionType: .Message, renderMethod: .PushNotification).data
+        let pushNotificationActionObjects = try await fetchActionsfromBackend(invActionType: InvActionType.Message, actionRenderMethodType: ActionRenderMethodType.PushNotification,
+                                                                              deliveryMode: ActionDeliveryMode.OneOff, actionAttr: nil).data
         
         
         // Filter out expired or errored nudges
@@ -123,8 +129,9 @@ class CFActionListener {
     @available(iOS 13.0, *)
     func fetchAndDisplayInAppMessagesAction(actionScreenType: ActionScreenType) async throws {
 //        let inAppMessageActionObjects = try! ActionAPIResponse.debugObjects().data
-        let inAppMessageActionObjects = try await fetchActionsfromBackend(actionType: .Message, renderMethod: .InAppMessage, actionScreenType: actionScreenType.rawValue).data
-        
+        let attr: [String: String]? = !actionScreenType.rawValue.isEmpty ? ["render_page": actionScreenType.rawValue] : nil
+        let inAppMessageActionObjects = try await fetchActionsfromBackend(invActionType: InvActionType.Message, actionRenderMethodType: ActionRenderMethodType.InAppMessage,
+                                                                              deliveryMode: ActionDeliveryMode.OneOff, actionAttr: attr).data
         
         // Filter out expired or errored nudges
         let validNonExpiredNudges = inAppMessageActionObjects?.filter { nudge in
@@ -156,7 +163,7 @@ class CFActionListener {
                     nudgesToShow.forEach { action in
                         CFNotificationController.shared.track(
                             payload: action.payload,
-                            response: .Expired,
+                            response: .Error,
                             details: "unable to show actions, UI controller not found"
                         )
                     }
@@ -177,6 +184,44 @@ class CFActionListener {
             }
             MMKVHelper.shared.writeActions(objects: validNonExpiredNudges)
         }
+    }
+    
+    
+    @available(iOS 13.0, *)
+    func fetchActionsCF(
+        invActionType: InvActionType,
+        actionRenderMethodType: ActionRenderMethodType,
+        deliveryMode: ActionDeliveryMode,
+        actionAttr: [String: String]?,
+        onResult: (([NudgeResponseItem]) -> Void)
+    ) async throws {
+        
+        let fetchedActionObjects = try await fetchActionsfromBackend(invActionType: invActionType, actionRenderMethodType: actionRenderMethodType,
+                                                                     deliveryMode: deliveryMode, actionAttr: actionAttr).data
+        
+        // Filter out expired or errored nudges
+        let validNonExpiredNudges = fetchedActionObjects?.filter { nudge in
+          !(nudge.payload?.isExpired ?? false) && (nudge.error?.isEmpty ?? true)
+        } ?? []
+
+        // Filter out nudges with errors
+        let erroredNudges = fetchedActionObjects?.filter { nudge in
+            !(nudge.error?.isEmpty ?? true)
+        } ?? []
+        
+        // Find the expired objects by subtracting non-expired ones from all fetched objects
+        let expiredObjects = fetchedActionObjects?.filter { nudge in
+          !(validNonExpiredNudges.contains(where: { $0.payload == nudge.payload })) &&
+            !(erroredNudges.contains(where: { $0.payload == nudge.payload }))
+        } ?? []
+        
+        // Call a function for each expired object
+        expiredObjects.forEach { expiredNudge in
+            CFNotificationController.shared.track(payload: expiredNudge.payload, response: ActionRepsonse.Expired)
+        }
+        
+        onResult(validNonExpiredNudges)
+        
     }
     
     private func fetchAndDisplayActionTask() {
@@ -200,6 +245,26 @@ class CFActionListener {
             }
         }
     }
+    
+    public func fetchActions(
+        invActionType: InvActionType,
+        actionRenderMethodType: ActionRenderMethodType,
+        deliveryMode: ActionDeliveryMode,
+        actionAttr: [String: String]?,
+        onResult: @escaping ([NudgeResponseItem]) -> Void
+    ) {
+        if #available(iOS 13.0, *) {
+            Task {
+                try await fetchActionsCF(
+                    invActionType: invActionType,
+                    actionRenderMethodType: actionRenderMethodType,
+                    deliveryMode: deliveryMode,
+                    actionAttr: actionAttr,
+                    onResult: onResult
+                )
+            }
+        }
+    }
 }
 
 #if DEBUG
@@ -207,7 +272,7 @@ extension ActionAPIResponse {
     
     static func debugObjects() throws -> ActionAPIResponse {
         let json = """
-        {"data":[{"user_id":"sdkTestUserId","payload":{"type":"message","render_method":"push_notification","delivery_mode":"one-off","content":{"body":"Some text here for the body","title":"Hello World"},"attr":{"cta_type":"redirect", "cta_id":"123"},"tags":null,"internal":{"inv_id":62,"action_id":33,"ref_time":"2025-10-23T14:27:00Z","expired_at":"2025-11-25T14:27:00Z","followup_of_ref":"0001-01-01T00:00:00Z","template_vals":{}}},"error":null,"queued_at":"2025-10-23T14:27:29.277756Z"}]}
+        {"data":[{"user_id":"sdkTestUserId","payload":{"type":"message","render_method":"push_notification","delivery_mode":"one-off","content":{"body":"Some text here for the body","title":"Hello World"},"attr":{"cta_type":"redirect", "cta_id":"123", "cta_id_ss":"123ss"},"tags":null,"internal":{"inv_id":62,"action_id":33,"ref_time":"2025-10-23T14:27:00Z","expired_at":"2025-11-25T14:27:00Z","followup_of_ref":"0001-01-01T00:00:00Z","template_vals":{}}},"error":null,"queued_at":"2025-10-23T14:27:29.277756Z"}]}
         """
         let data = json.data(using: .utf8)!
         let decoder = JSONDecoder.new

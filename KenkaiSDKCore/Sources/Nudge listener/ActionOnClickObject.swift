@@ -10,7 +10,7 @@ import Foundation
 
 public class ActionOnClickObject {
     
-    public static var actionOnClickInterface: ((String, String) -> Void)?
+    public static var actionOnClickInterface: (([String: String]?) -> Void)?
     
 }
 

@@ -35,7 +35,11 @@ public class CfCoreCatalog {
             ExceptionManager.throwEnumException(eventType: catalogName, className: String(describing: MembersCount.self))
         }
 
-        CFSetup().updateCatalogItem(subject: CatalogSubject.user, subjectId: subjectId, catalogObject: userCatalogModel.toInternalUserCatalogModel())
+        if #available(iOS 13.0, *) {
+            Task {
+                CFSetup().updateCatalogItem(subject: CatalogSubject.user, subjectId: subjectId, catalogObject: await userCatalogModel.toInternalUserCatalogModel())
+            }
+        }
     }
     
     
