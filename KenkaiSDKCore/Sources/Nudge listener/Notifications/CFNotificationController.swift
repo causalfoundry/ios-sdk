@@ -62,13 +62,7 @@ public final class CFNotificationController: NSObject {
     
     func trackAndOpen(object: Nudge) {
         track(payload:object, response: ActionRepsonse.Open, details: "")
-        if let cta = object.attr?["cta_type"], cta == "redirect" || cta == "add_to_cart",
-           let itemID = object.attr?["cta_id"]
-        {
-            if let closure = ActionOnClickObject.actionOnClickInterface {
-                closure(cta, itemID)
-            }
-        }
+        ActionOnClickObject.actionOnClickInterface?(object.attr)
     }
 }
 
