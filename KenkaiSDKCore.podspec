@@ -19,10 +19,10 @@ Pod::Spec.new do |s|
     LICENSE
   }
   s.author       = { "Developer" => "engineering@kenkai.io" }
-  s.platform     = :ios, "12.0"
+  s.platform     = :ios, "13.0"
   s.source       = { :git => "https://github.com/causalfoundry/ios-sdk.git", :tag => s.version.to_s }
   
-  ios_deployment_target = '12.0'
+  ios_deployment_target = '13.0'
   s.ios.deployment_target = ios_deployment_target
   s.prefix_header_file = false
   
@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
   s.framework = 'Foundation'
   s.ios.framework = 'UIKit'
 
-  s.platforms        = { :ios => '12.0' }
+  s.platforms        = { :ios => '13.0' }
   s.swift_version    = '5.0'
   s.vendored_frameworks = "Frameworks/MMKV.xcframework"
 end
