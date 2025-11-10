@@ -8,6 +8,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 - Include `CFCoreEvent.shared.fetchActions(...)"` for fetching any type of actions with the relevant params
 - Update Action callbacks to return all attributes from the action request
+- Default include `notification_permission` in user catalog/dimension with default values as `granted` & `denied`
 
 
 ## **[1.0.0]  - 31.10.2025**

@@ -28,6 +28,7 @@ public struct InternalUserCatalogModel: Codable, Equatable {
     var maritalStatus: String?
     var familyMembers: String?
     var childrenUnderFive: String?
+    var notificationPermission: String?
     var meta: [String: String]?
 
     
@@ -51,11 +52,12 @@ public struct InternalUserCatalogModel: Codable, Equatable {
         case maritalStatus = "marital_status"
         case familyMembers = "family_members"
         case childrenUnderFive = "children_under_five"
+        case notificationPermission = "notification_permission"
         case meta
     }
     
 
-    public init(name: String? = "", country: String? = "", regionState: String? = "", city: String? = "", workplace: String? = "", profession: String? = "", zipcode: String? = "", language: String? = "", experience: String? = "", educationLevel: String? = "", organizationId: String? = "", organizationName: String? = "", timezone: String? = "", accountType: String? = "", birthYear: Int? = 0, gender: String? = "", maritalStatus: String? = "", familyMembers: String? = "", childrenUnderFive: String? = "", meta: [String: String]? = nil) {
+    public init(name: String? = "", country: String? = "", regionState: String? = "", city: String? = "", workplace: String? = "", profession: String? = "", zipcode: String? = "", language: String? = "", experience: String? = "", educationLevel: String? = "", organizationId: String? = "", organizationName: String? = "", timezone: String? = "", accountType: String? = "", birthYear: Int? = 0, gender: String? = "", maritalStatus: String? = "", familyMembers: String? = "", childrenUnderFive: String? = "", notificationPermission: String? = "", meta: [String: String]? = nil) {
         
         self.name = name
         self.country = country
@@ -76,6 +78,7 @@ public struct InternalUserCatalogModel: Codable, Equatable {
         self.maritalStatus = maritalStatus
         self.familyMembers = familyMembers
         self.childrenUnderFive = childrenUnderFive
+        self.notificationPermission = notificationPermission
         self.meta = meta
     }
     
@@ -102,6 +105,7 @@ public struct InternalUserCatalogModel: Codable, Equatable {
         try container.encodeIfPresent(maritalStatus, forKey: .maritalStatus)
         try container.encodeIfPresent(familyMembers, forKey: .familyMembers)
         try container.encodeIfPresent(childrenUnderFive, forKey: .childrenUnderFive)
+        try container.encodeIfPresent(notificationPermission, forKey: .notificationPermission)
         try container.encodeIfPresent(meta, forKey: .meta)
         
     }
@@ -129,6 +133,7 @@ public struct InternalUserCatalogModel: Codable, Equatable {
         maritalStatus = try container.decodeIfPresent(String.self, forKey: .maritalStatus)
         familyMembers = try container.decodeIfPresent(String.self, forKey: .familyMembers)
         childrenUnderFive = try container.decodeIfPresent(String.self, forKey: .childrenUnderFive)
+        notificationPermission = try container.decodeIfPresent(String.self, forKey: .notificationPermission)
         meta = try container.decodeIfPresent([String: String].self, forKey: .meta)
     }
 }

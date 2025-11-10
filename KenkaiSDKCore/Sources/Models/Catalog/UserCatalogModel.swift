@@ -129,7 +129,13 @@ public struct UserCatalogModel: Codable, Equatable {
 }
 
 extension UserCatalogModel {
-    func toInternalUserCatalogModel() -> InternalUserCatalogModel {
+    func toInternalUserCatalogModel() async -> InternalUserCatalogModel {
+        
+        
+        // Get notification permission
+        let isEnabled = await CFNotificationController.shared.checkNotificationsEnabled()
+        let notifPermission = isEnabled ? "granted" : "denied"
+        
         return InternalUserCatalogModel(
             name: self.name,
             country: self.country,
@@ -150,8 +156,10 @@ extension UserCatalogModel {
             maritalStatus: self.maritalStatus,
             familyMembers: self.familyMembers,
             childrenUnderFive: self.childrenUnderFive,
+            notificationPermission: notifPermission,
             meta: self.meta
         )
     }
 }
+
 

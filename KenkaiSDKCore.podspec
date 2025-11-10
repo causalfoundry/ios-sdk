@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "KenkaiSDKCore"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "Kenkai Core SDK"
   s.description  = "Kenkai Core SDK (https://docs.causalfoundry.ai/)"
   s.homepage     = "https://docs.causalfoundry.ai/"

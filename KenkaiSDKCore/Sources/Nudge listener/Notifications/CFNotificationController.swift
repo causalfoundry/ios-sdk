@@ -33,8 +33,8 @@ public final class CFNotificationController: NSObject {
     func triggerActionNotification(object: Nudge) {
         if #available(iOS 13.0, *) {
             Task {
-                let settings = await center.notificationSettings()
-                guard settings.authorizationStatus == .authorized else {
+                let settings = await checkNotificationsEnabled()
+                if !settings {
                     track(payload: object, response: ActionRepsonse.Block, details: "")
                     return
                 }
@@ -53,6 +53,11 @@ public final class CFNotificationController: NSObject {
                 
             }
         }
+    }
+    
+    func checkNotificationsEnabled() async -> Bool {
+        let settings = await center.notificationSettings()
+        return settings.authorizationStatus == .authorized
     }
     
     func track(payload: Nudge?, response: ActionRepsonse, details : String = "") {
