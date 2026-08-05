@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "KenkaiSDKPayments"
-  s.version      = "1.0.1"
+  s.version      = "1.0.2"
   s.summary      = "Kenkai Payments SDK"
   s.description  = "Keankai SDK for Payments related events (https://docs.causalfoundry.ai/)"
   s.homepage     = "https://docs.causalfoundry.ai/"
