@@ -4,9 +4,14 @@ Documenting the changes in the SDK subject to each release version.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## **[1.0.9]  - 05.08.2026**
+
+- Updated Body text color for InApp Message
+
+
 ## **[1.0.2]  - 05.08.2026**
 
-- Fixed InApp Message theme for lisght mode only
+- Fixed InApp Message theme for light mode only
 
 
 ## **[1.0.1]  - 10.11.2025**

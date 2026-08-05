@@ -225,7 +225,7 @@ fileprivate final class CFActionView: UIView {
         
         let bodyView = UILabel(frame: .zero)
         bodyView.attributedText = (object.payload?.content?["body"] ?? "").htmlAttributedString().with(font:UIFont.preferredFont(forTextStyle: .body))
-        bodyView.textColor = .black
+        bodyView.textColor = UIColor(red: 102.0 / 255.0, green: 112.0 / 255.0, blue: 133.0 / 255.0, alpha: 1.0)
         bodyView.numberOfLines = 0
         bodyView.translatesAutoresizingMaskIntoConstraints = false
         
