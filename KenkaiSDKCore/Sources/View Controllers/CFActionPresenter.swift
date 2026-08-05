@@ -213,23 +213,28 @@ fileprivate final class CFActionView: UIView {
     init(object: NudgeResponseItem) {
         super.init(frame: .zero)
         
-        backgroundColor = .systemBackground
+        backgroundColor = .white
         
         let titleView = UILabel(frame: .zero)
         titleView.text = object.payload?.content?["title"]
         titleView.font = UIFont.preferredFont(forTextStyle: .headline)
+        titleView.textColor = .black
         titleView.numberOfLines = 0
         titleView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(titleView)
         
         let bodyView = UILabel(frame: .zero)
         bodyView.attributedText = (object.payload?.content?["body"] ?? "").htmlAttributedString().with(font:UIFont.preferredFont(forTextStyle: .body))
+        bodyView.textColor = .black
         bodyView.numberOfLines = 0
         bodyView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(bodyView)
     
-        let button = UIButton(type: .close)
+        let button = UIButton(type: .system)
+        let closeImage = UIImage(systemName: "xmark")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        button.setImage(closeImage, for: .normal)
+        button.accessibilityLabel = "Close"
         button.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         addSubview(button)
