@@ -67,6 +67,15 @@ internal class CFCoreSetupInterfaceImpl: CFCoreSetupInterface {
                     eventType: "Media Catalog", paramName: "MediaCatalogModel", className: String(describing: MediaCatalogModel.self)
                 )
             }
+        case .Other:
+            switch catalogObject {
+            case let otherCatalogModel as OtherCatalogModel:
+                CfCoreCatalog.updateOtherCatalog(subjectId: subjectId, otherCatalogModel: otherCatalogModel)
+            default:
+                ExceptionManager.throwInvalidException(
+                    eventType: "Other Catalog", paramName: "OtherCatalogModel", className: String(describing: OtherCatalogModel.self)
+                )
+            }
         }
     }
     

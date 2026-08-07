@@ -11,12 +11,14 @@ public enum CoreCatalogType: String, CaseIterable, Codable {
     case User
     case Site
     case Media
+    case Other
     
     public var rawValue: String {
         switch self {
         case .User: return "user"
         case .Site: return "site"
         case .Media: return "media"
+        case .Other: return "other"
         }
     }
     

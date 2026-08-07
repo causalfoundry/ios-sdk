@@ -44,9 +44,14 @@ public class CFSetup: NSObject, IngestProtocol {
     }
 
     public func updateCatalogItem<T: Codable>(subject: CatalogSubject, subjectId: String, catalogObject: T) {
+        updateCatalogItem(subject: subject.rawValue, subjectId: subjectId, catalogObject: catalogObject)
+    }
+
+    func updateCatalogItem<T: Codable>(subject: String, subjectId: String, catalogObject: T) {
+        guard !subject.isEmpty, !subjectId.isEmpty else { return }
         catalogAPIHandler.updateCoreCatalogItem(catalogObject: CatalogItemModel(
             id: subjectId,
-            type: subject.rawValue,
+            type: subject,
             keyValues: catalogObject
         ))
     }

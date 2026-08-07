@@ -136,12 +136,24 @@ public enum ExceptionManager {
     }
     
     public static func throwNameAlreadyInUseException(_ name: String) {
-        let message = "Invalid event name provided, you cannot use \"\(name)\" as it is already in use"
+        throwNameAlreadyInUseException(
+            name,
+            itemType: "event",
+            eventType: CoreEventType.Track.rawValue
+        )
+    }
+
+    static func throwNameAlreadyInUseException(
+        _ name: String,
+        itemType: String,
+        eventType: String
+    ) {
+        let message = "Invalid \(itemType) name provided, you cannot use \"\(name)\" as it is already in use"
         let exception = IllegalArgumentException(message)
     
         callExceptionAPI(
             title: message,
-            eventType: CoreEventType.Track.rawValue,
+            eventType: eventType,
             exceptionType: "IllegalArgumentException",
             stackTrace: exception
         )

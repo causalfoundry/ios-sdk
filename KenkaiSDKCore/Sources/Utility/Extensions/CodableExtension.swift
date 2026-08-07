@@ -126,6 +126,12 @@ extension KeyedEncodingContainer {
             let typeID = CFGetTypeID(item.value as CFTypeRef)
             if let val = item.value as? Int, typeID == CFNumberGetTypeID() {
                 try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+            } else if let val = item.value as? Int64, typeID == CFNumberGetTypeID() {
+                try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+            } else if let val = item.value as? UInt, typeID == CFNumberGetTypeID() {
+                try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+            } else if let val = item.value as? UInt64, typeID == CFNumberGetTypeID() {
+                try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
             } else if let val = item.value as? String {
                 try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
             } else if let val = item.value as? Double, typeID == CFNumberGetTypeID() {
@@ -147,6 +153,12 @@ extension KeyedEncodingContainer {
             return
         }
         if let val = safeValue as? [Int] {
+            try encodeIfPresent(val, forKey: key)
+        } else if let val = safeValue as? [Int64] {
+            try encodeIfPresent(val, forKey: key)
+        } else if let val = safeValue as? [UInt] {
+            try encodeIfPresent(val, forKey: key)
+        } else if let val = safeValue as? [UInt64] {
             try encodeIfPresent(val, forKey: key)
         } else if let val = safeValue as? [String] {
             try encodeIfPresent(val, forKey: key)
@@ -175,6 +187,12 @@ extension UnkeyedEncodingContainer {
         for item in value {
             let typeID = CFGetTypeID(item.value as CFTypeRef)
             if let val = item.value as? Int, typeID == CFNumberGetTypeID() {
+                try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+            } else if let val = item.value as? Int64, typeID == CFNumberGetTypeID() {
+                try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+            } else if let val = item.value as? UInt, typeID == CFNumberGetTypeID() {
+                try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
+            } else if let val = item.value as? UInt64, typeID == CFNumberGetTypeID() {
                 try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
             } else if let val = item.value as? String {
                 try container.encodeIfPresent(val, forKey: JSONCodingKeys(stringValue: item.key)!)
@@ -233,6 +251,14 @@ extension Encodable {
     }
 }
 
+private func flatString(_ value: Any) -> String {
+    if let number = value as? NSNumber,
+       CFGetTypeID(number as CFTypeRef) == CFBooleanGetTypeID() {
+        return String(number.boolValue)
+    }
+    return "\(value)"
+}
+
 // Convert Any to snake_case key Dictionary<String, Any>
 func flattenMap(_ input: [String: Any?]) -> [String: Any] {
     var result: [String: Any] = [:]
@@ -243,6 +269,8 @@ func flattenMap(_ input: [String: Any?]) -> [String: Any] {
         switch value {
         case nil:
             continue
+        case let bool as NSNumber where CFGetTypeID(bool as CFTypeRef) == CFBooleanGetTypeID():
+            result[newKey] = bool.boolValue
         case let str as String:
             if !str.isEmpty {
                 result[newKey] = str
@@ -256,7 +284,7 @@ func flattenMap(_ input: [String: Any?]) -> [String: Any] {
         case let bool as Bool:
             result[newKey] = bool
         case let list as [Any?]:
-            let joined = list.compactMap { $0 }.map { "\($0)" }.joined(separator: ", ")
+            let joined = list.compactMap { $0 }.map(flatString).joined(separator: ", ")
             if !joined.isEmpty {
                 result[newKey] = joined
             }
@@ -295,6 +323,8 @@ func flattenMapToString(_ input: [String: Any?]) -> [String: String] {
         switch value {
         case nil:
             continue
+        case let bool as NSNumber where CFGetTypeID(bool as CFTypeRef) == CFBooleanGetTypeID():
+            result[newKey] = String(bool.boolValue)
         case let str as String:
             if !str.isEmpty {
                 result[newKey] = str
@@ -308,7 +338,7 @@ func flattenMapToString(_ input: [String: Any?]) -> [String: String] {
         case let bool as Bool:
             result[newKey] = "\(bool)"
         case let list as [Any?]:
-            let joined = list.compactMap { $0 }.map { "\($0)" }.joined(separator: ", ")
+            let joined = list.compactMap { $0 }.map(flatString).joined(separator: ", ")
             if !joined.isEmpty {
                 result[newKey] = joined
             }

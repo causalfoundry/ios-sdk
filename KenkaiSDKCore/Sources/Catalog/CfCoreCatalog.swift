@@ -88,5 +88,29 @@ public class CfCoreCatalog {
         CFSetup().updateCatalogItem(subject: CatalogSubject.site, subjectId: subjectId, catalogObject: siteCatalogModel)
         
     }
+
+    public static func updateOtherCatalog(subjectId: String, otherCatalogModel: OtherCatalogModel) {
+        let catalogName = otherCatalogModel.name.toSnakeCase()
+
+        if subjectId.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: CoreCatalogType.Other.rawValue, elementName: "Subject Id")
+            return
+        } else if catalogName.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: CoreCatalogType.Other.rawValue, elementName: "Catalog Name")
+            return
+        } else if otherCatalogModel.meta.isEmpty {
+            ExceptionManager.throwIsRequiredException(eventType: CoreCatalogType.Other.rawValue, elementName: "Catalog Meta")
+            return
+        } else if CatalogSubject.allCases.contains(where: { $0.rawValue == catalogName }) || catalogName == CoreCatalogType.Other.rawValue {
+            ExceptionManager.throwNameAlreadyInUseException(
+                otherCatalogModel.name,
+                itemType: "catalog",
+                eventType: CoreCatalogType.Other.rawValue
+            )
+            return
+        }
+
+        CFSetup().updateCatalogItem(subject: catalogName, subjectId: subjectId, catalogObject: otherCatalogModel)
+    }
     
 }

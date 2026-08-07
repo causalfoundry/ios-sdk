@@ -38,11 +38,10 @@ public struct NudgeResponseItem: Codable, Equatable, Hashable {
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(payload?.ref) // or some unique identifier of Nudge
-        hasher.combine(error)
     }
 
     public static func == (lhs: NudgeResponseItem, rhs: NudgeResponseItem) -> Bool {
-        return lhs.payload?.ref == rhs.payload?.ref && lhs.error == rhs.error
+        return lhs.payload?.ref == rhs.payload?.ref
     }
     
 }
@@ -56,6 +55,7 @@ struct Nudge: Codable {
 
     var ref: String? {
         guard let internalObject = internalObject else { return nil }
+        if case let .string(outputId)? = internalObject["output_id"], !outputId.isEmpty { return outputId }
         if case let .string(ref)? = internalObject["ref_time"] { return ref }
         return nil
     }
@@ -87,6 +87,3 @@ extension Nudge: Equatable {
                lhs.internalObject?.jsonData == rhs.internalObject?.jsonData
     }
 }
-
-
-

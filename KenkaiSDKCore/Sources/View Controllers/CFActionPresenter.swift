@@ -62,7 +62,7 @@ fileprivate final class CFActionViewController: UIViewController, UITableViewDel
     private lazy var dataSource = makeDataSource()
 
     init(objects: [NudgeResponseItem]) {
-        self.objects = objects
+        self.objects = objects.removingDuplicates()
         super.init(nibName: nil, bundle: nil)
         modalPresentationStyle = .overCurrentContext
         isModalInPresentation = true

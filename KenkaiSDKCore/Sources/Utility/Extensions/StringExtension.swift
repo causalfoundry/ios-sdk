@@ -18,8 +18,8 @@ extension String {
     
     func toSnakeCase() -> String {
         return self
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-            .replacingOccurrences(of: " ", with: "_")
+            .replacingOccurrences(of: #"^[\s\p{Z}\uFEFF]+|[\s\p{Z}\uFEFF]+$"#, with: "", options: .regularExpression)
+            .replacingOccurrences(of: #"[\s\p{Z}\uFEFF]+"#, with: "_", options: .regularExpression)
             .lowercased()
     }
 }
