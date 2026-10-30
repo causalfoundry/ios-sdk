@@ -4,6 +4,12 @@ Documenting the changes in the SDK subject to each release version.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## **[1.0.11]  - 01.11.2026**
+
+- Removed the "Enable Background App Refresh" alert that was shown on every app launch when Background App Refresh was off
+- Fixed a possible crash when Background App Refresh was turned on while the app was running, by always registering background tasks at launch
+
+
 ## **[1.0.10]  - 07.08.2026**
 
 - Added support for custom catalogs using `CoreCatalogType.Other` and `OtherCatalogModel`, with Web-compatible recursive key normalization
