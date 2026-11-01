@@ -8,6 +8,8 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 - Removed the "Enable Background App Refresh" alert that was shown on every app launch when Background App Refresh was off
 - Fixed a possible crash when Background App Refresh was turned on while the app was running, by always registering background tasks at launch
+- Fixed a crash when `Kenkai.shared.configure()` was called more than once
+- Fixed debug builds crashing on network failures (e.g. app backgrounded mid-request); these are still reported as exception events
 
 
 ## **[1.0.10]  - 07.08.2026**

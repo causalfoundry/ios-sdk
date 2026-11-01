@@ -19,12 +19,16 @@ public class Kenkai {
 
     public static let shared = Kenkai()
     private var timer: DispatchSourceTimer?
-    
+    // Static so a second configure() (on any instance) can't add duplicate observers and re-register BG tasks, which crashes.
+    private static var isConfigured = false
+
     public init() {
         appStartTime = Int64(Date().timeIntervalSince1970 * 1000)
     }
 
     public func configure() {
+        guard !Kenkai.isConfigured else { return }
+        Kenkai.isConfigured = true
         setupNotifications()
     }
 
