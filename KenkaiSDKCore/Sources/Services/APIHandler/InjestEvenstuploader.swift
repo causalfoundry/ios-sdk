@@ -60,6 +60,8 @@ public enum CatalogEventsUploader {
     @available(iOS 13.0, *)
     public static func uploadEvents() async throws {
         guard !CoreConstants.shared.pauseSDK else { return }
+        // Before build() there is no SDK key: the API answers 401 and the items would be deleted as if uploaded.
+        guard !CoreConstants.shared.sdkKey.isEmpty else { return }
         let catalogAPIHandler = CatalogAPIHandler()
         let filteredArray = MMKVHelper.shared.readCatalogData().filter { !$0.isTypeOrSubjectEmpty }.removingDuplicates()
         guard filteredArray.count > 0 else {

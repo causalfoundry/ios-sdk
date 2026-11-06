@@ -57,7 +57,11 @@ public class CFSetup: NSObject, IngestProtocol {
     }
 
     public func track<T: Codable>(eventName: String, eventProperty: String?, eventCtx: T?, updateImmediately: Bool, eventTime: Int64 = 0) {
-        verifyAccessToken()
+        // Lifecycle and auto page events can fire before build() when the host delays init; drop them instead of crashing.
+        guard !CoreConstants.shared.sdkKey.isEmpty else {
+            print("Kenkai SDK is not initialized yet; dropping \(eventName) event")
+            return
+        }
         ingestApiHandler.ingestTrackAPI(eventName: eventName, eventProperty: eventProperty, eventCtx: eventCtx, updateImmediately: updateImmediately, eventTime: eventTime)
     }
 

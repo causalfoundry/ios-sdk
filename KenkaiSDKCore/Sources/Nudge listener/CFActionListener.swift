@@ -253,15 +253,25 @@ class CFActionListener {
         actionAttr: [String: String]?,
         onResult: @escaping ([NudgeResponseItem]) -> Void
     ) {
+        // Always answer the caller: empty before build() (late or no init) and when the request fails.
+        guard !CoreConstants.shared.sdkKey.isEmpty else {
+            onResult([])
+            return
+        }
         if #available(iOS 13.0, *) {
             Task {
-                try await fetchActionsCF(
-                    invActionType: invActionType,
-                    actionRenderMethodType: actionRenderMethodType,
-                    deliveryMode: deliveryMode,
-                    actionAttr: actionAttr,
-                    onResult: onResult
-                )
+                do {
+                    try await fetchActionsCF(
+                        invActionType: invActionType,
+                        actionRenderMethodType: actionRenderMethodType,
+                        deliveryMode: deliveryMode,
+                        actionAttr: actionAttr,
+                        onResult: onResult
+                    )
+                } catch {
+                    print("Kenkai fetchActions failed: \(error.localizedDescription)")
+                    onResult([])
+                }
             }
         }
     }

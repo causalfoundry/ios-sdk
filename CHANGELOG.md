@@ -4,6 +4,22 @@ Documenting the changes in the SDK subject to each release version.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## **[Unreleased]**
+
+- Fixed a crash when the app moved to the background and the SDK was initialized after launch (for example after login): background tasks are no longer submitted unless their handlers were registered at launch
+- Added `Kenkai.registerBackgroundTasks()`: call it from `application(_:didFinishLaunchingWithOptions:)` if you call `configure()` later, so background uploads keep working
+- Fixed a crash (`Access key not found`) when lifecycle or automatic page events fired before `CFLogBuilder().build()`; those events are now dropped
+- Release builds no longer crash on SDK validation errors raised before initialization (the debug-only crash now follows the build type from the start)
+- `fetchActions` now always calls back: with no actions before the SDK is initialized, and when the request fails (previously the callback never ran)
+- In-app messages and action fetches now work right after a late `configure()` (for example after login) without backgrounding the app first; the SDK treats the app as open when configured in the foreground
+- Fixed event uploads when anonymous users are not allowed: events are now sent for the logged-in user (previously nothing was uploaded at all), and the upload path always reports back, so background upload tasks finish and an event logged before login is stored instead of lost
+- Background task registration is skipped (instead of crashing) when the task identifiers are missing from `BGTaskSchedulerPermittedIdentifiers`, and background tasks that run before the SDK is initialized finish without doing work
+- Actions returned by `fetchActions` can now be read by the app (`payload.type`, `renderMethod`, `content`, `attr`, `error`)
+- Added `CFCoreEvent.shared.logActionResponse(action:response:details:)` to report how the user responded to an action the app shows itself
+- Catalog items logged before `CFLogBuilder().build()` now stay stored until the SDK is initialized (previously an upload before initialization sent them without an SDK key, the API rejected them, and they were deleted as if uploaded)
+- Report responses to actions you render yourself with `CFCoreEvent.shared.logActionResponse(action: item, response: .Shown)`, passing the item from `fetchActions` as is; building an `ActionRepsonseObject` by hand is no longer needed (the type, `CodableValue` and `payload.internalObject` are public for apps that persist actions)
+- The "Task ... completed" log line for every SDK request now includes the HTTP status code
+
 ## **[1.0.11]  - 01.11.2026**
 
 - Removed the "Enable Background App Refresh" alert that was shown on every app launch when Background App Refresh was off

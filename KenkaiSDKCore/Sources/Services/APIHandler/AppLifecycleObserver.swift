@@ -30,6 +30,21 @@ public class Kenkai {
         guard !Kenkai.isConfigured else { return }
         Kenkai.isConfigured = true
         setupNotifications()
+        // Configured after launch (e.g. after login): the foreground notifications already fired, so in-app
+        // messages would stay off until the app is backgrounded and reopened.
+        if UIApplication.shared.applicationState == .active {
+            CoreConstants.shared.isAppOpen = true
+        }
+    }
+
+    /// Registers the SDK's background tasks. `configure()` does this for you when called during launch.
+    /// If you call `configure()` later (for example after login), call this from
+    /// `application(_:didFinishLaunchingWithOptions:)`: iOS only accepts registration during launch.
+    /// Safe to call more than once.
+    public static func registerBackgroundTasks() {
+        if #available(iOS 13.0, *) {
+            WorkerCaller.registerBackgroundTask()
+        }
     }
 
     deinit {

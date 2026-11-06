@@ -61,7 +61,12 @@ public class CoreConstants {
 
     public var userIdKey: String = "userIdKey"
 
+    // build() sets this the same way; the default must match so release builds never crash on validation before init.
+    #if DEBUG
     public var isAppDebuggable: Bool = true
+    #else
+    public var isAppDebuggable: Bool = false
+    #endif
 
     public var logoutEvent: Bool = false
 
