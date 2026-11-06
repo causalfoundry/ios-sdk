@@ -4,7 +4,7 @@ Documenting the changes in the SDK subject to each release version.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
-## **[Unreleased]**
+## **[1.0.12]  - 06.11.2026**
 
 - Fixed a crash when the app moved to the background and the SDK was initialized after launch (for example after login): background tasks are no longer submitted unless their handlers were registered at launch
 - Added `Kenkai.registerBackgroundTasks()`: call it from `application(_:didFinishLaunchingWithOptions:)` if you call `configure()` later, so background uploads keep working
