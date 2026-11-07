@@ -10,9 +10,7 @@ import Foundation
 public class CatalogAPIHandler {
     func updateCoreCatalogItem(catalogObject: CatalogItemModel) {
         if #available(iOS 13.0, *) {
-            var prevEvent = MMKVHelper.shared.readCatalogData()
-            prevEvent.append(catalogObject)
-            MMKVHelper.shared.writeCatalogData(data: prevEvent)
+            MMKVHelper.shared.appendCatalogItem(catalogObject)
         }
     }
     

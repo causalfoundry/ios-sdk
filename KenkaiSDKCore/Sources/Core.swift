@@ -212,6 +212,8 @@ public class CFLogBuilder {
                 CoreConstants.shared.sdkKey = "Bearer \(appSdkKey)"
             }
             CFSetup().initalize(pauseSDK: pauseSDK, updateImmediately: updateImmediately)
+            // Async so that during launch this runs after the didFinishLaunching notification; see Kenkai.appInitialized().
+            DispatchQueue.main.async { Kenkai.shared.appInitialized() }
         }
     }
 }

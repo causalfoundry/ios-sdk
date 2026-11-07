@@ -74,13 +74,36 @@ extension MMKVHelper {
         let object: [EventDataObject]? = read(for: Key.eventData.rawValue)
         return object ?? []
     }
-    
+
     func writeEvents(eventsArray: [EventDataObject]) {
         write(eventsArray, for: Key.eventData.rawValue)
     }
 
     func deleteDataEventLogs() {
         delete(for: Key.eventData.rawValue)
+    }
+
+    // Appends and removals are serialized: an event logged while an upload is in flight must not be
+    // lost when the uploaded events are removed afterwards.
+    private static let storeLock = NSLock()
+
+    func appendInjectEvent(_ event: EventDataObject) {
+        MMKVHelper.storeLock.lock(); defer { MMKVHelper.storeLock.unlock() }
+        var events = readInjectEvents()
+        events.append(event)
+        writeEvents(eventsArray: events)
+    }
+
+    /// Removes only the uploaded events; anything stored since they were read stays queued.
+    func removeInjectEvents(_ uploaded: [EventDataObject]) {
+        MMKVHelper.storeLock.lock(); defer { MMKVHelper.storeLock.unlock() }
+        let sent = Set(uploaded)
+        let remaining = readInjectEvents().filter { !sent.contains($0) }
+        if remaining.isEmpty {
+            deleteDataEventLogs()
+        } else {
+            writeEvents(eventsArray: remaining)
+        }
     }
 
     func writeCatalogData(data: [CatalogItemModel]) {
@@ -91,9 +114,28 @@ extension MMKVHelper {
         let object: [CatalogItemModel]? = read(for: Key.localCFDimensionsKey.rawValue)
         return object ?? []
     }
-    
+
     func deleteCatalogData() {
         delete(for: Key.localCFDimensionsKey.rawValue)
+    }
+
+    func appendCatalogItem(_ item: CatalogItemModel) {
+        MMKVHelper.storeLock.lock(); defer { MMKVHelper.storeLock.unlock() }
+        var items = readCatalogData()
+        items.append(item)
+        writeCatalogData(data: items)
+    }
+
+    /// Removes only the uploaded catalog items; anything stored since they were read stays queued.
+    func removeCatalogData(_ uploaded: [CatalogItemModel]) {
+        MMKVHelper.storeLock.lock(); defer { MMKVHelper.storeLock.unlock() }
+        let sent = Set(uploaded)
+        let remaining = readCatalogData().filter { !sent.contains($0) }
+        if remaining.isEmpty {
+            deleteCatalogData()
+        } else {
+            writeCatalogData(data: remaining)
+        }
     }
 
     func readActions() -> [NudgeResponseItem] {

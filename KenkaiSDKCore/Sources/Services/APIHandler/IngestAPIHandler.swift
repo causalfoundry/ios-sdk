@@ -104,9 +104,7 @@ public class IngestAPIHandler: NSObject {
 
     private func storeEventTrack(eventObject: EventDataObject) {
         if #available(iOS 13.0, *) {
-            var prevEvent = MMKVHelper.shared.readInjectEvents()
-            prevEvent.append(eventObject)
-            MMKVHelper.shared.writeEvents(eventsArray: prevEvent)
+            MMKVHelper.shared.appendInjectEvent(eventObject)
         }
     }
 }
