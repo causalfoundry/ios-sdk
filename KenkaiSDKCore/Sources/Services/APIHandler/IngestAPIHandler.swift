@@ -12,7 +12,7 @@ public class IngestAPIHandler: NSObject {
 
     static let shared = IngestAPIHandler()
     
-    private let reachability = try! Reachability()
+    private let reachability = try? Reachability()
 
     func ingestTrackAPI<T: Codable>(eventName: String,
                                     eventProperty: String?,
@@ -23,7 +23,7 @@ public class IngestAPIHandler: NSObject {
         if #available(iOS 13.0, *) {
             guard !CoreConstants.shared.pauseSDK else { return }
             
-            let isInternetAvailable = reachability.connection == .wifi || reachability.connection == .cellular
+            let isInternetAvailable = reachability?.connection == .wifi || reachability?.connection == .cellular
             let eventObject = EventDataObject(ol: isInternetAvailable, ts: Date(), name: eventName, property: eventProperty ?? "", ctx: eventCtx)
 
             if updateImmediately && isInternetAvailable {
@@ -90,7 +90,10 @@ public class IngestAPIHandler: NSObject {
                 callback(false)
                 return
             }
-            let url = URL(string: APIConstants.trackEvent)!
+            guard let url = URL(string: APIConstants.trackEvent) else {
+                callback(false)
+                return
+            }
             BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: dictionary) { result in
                 switch result {
                 case .success:

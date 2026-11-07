@@ -59,7 +59,7 @@ public struct RewardEventObject: Codable {
         redeemIsSuccessful = try container.decodeIfPresent(Bool.self, forKey: .redeemIsSuccessful)
         redeemCurrency = try container.decodeIfPresent(String.self, forKey: .redeemCurrency)
         if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
-            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
+            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as? any Encodable)
         } else {
             meta = nil
         }

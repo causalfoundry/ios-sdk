@@ -22,8 +22,12 @@ public class CoreConstants {
             self.apiUrl = prodUrl
         }
     public func setApiUrl(to url: String) {
-            apiUrl = url
+        apiUrl = url
+        // The request builders skip calls on an invalid URL; in debug this surfaces the misconfiguration instead.
+        if URL(string: url) == nil {
+            ExceptionManager.throwInvalidException(eventType: "CFLog", paramName: "api url", className: "CoreConstants")
         }
+    }
     
     public var userId: String? {
         get {

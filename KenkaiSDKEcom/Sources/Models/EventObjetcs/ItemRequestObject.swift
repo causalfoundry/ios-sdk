@@ -45,7 +45,7 @@ public struct ItemRequestObject: Codable {
         itemName = try container.decode(String.self, forKey: .itemName)
         manufacturer = try container.decode(String.self, forKey: .manufacturer)
         if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
-            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
+            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as? any Encodable)
         } else {
             meta = nil
         }

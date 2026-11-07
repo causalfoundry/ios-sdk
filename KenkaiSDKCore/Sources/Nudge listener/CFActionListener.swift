@@ -59,7 +59,10 @@ class CFActionListener {
     
       return try await withCheckedThrowingContinuation { continuation in
         
-        let url = URL(string: APIConstants.fetchAction)!
+        guard let url = URL(string: APIConstants.fetchAction) else {
+          continuation.resume(throwing: URLError(.badURL))
+          return
+        }
         BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: dictionary) { result in
           switch result {
           case .success(let data):

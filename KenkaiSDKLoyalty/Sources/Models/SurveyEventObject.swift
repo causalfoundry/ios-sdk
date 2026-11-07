@@ -50,7 +50,7 @@ public struct SurveyEventObject: Codable {
         responseList = try container.decodeIfPresent([String].self, forKey: .responseList) ?? []
 
         if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
-            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
+            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as? any Encodable)
         } else {
             meta = nil
         }

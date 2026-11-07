@@ -27,11 +27,11 @@ public class MMKVHelper {
 
     public static let shared = MMKVHelper()
 
-    private let mmkv: MMKV
+    private let mmkv: MMKV?
 
     public init() {
         MMKV.initialize(rootDir: nil)
-        mmkv = MMKV(mmapID: "Core")!
+        mmkv = MMKV(mmapID: "Core")
     }
 }
 
@@ -150,14 +150,14 @@ extension MMKVHelper {
     private func write<T: Codable>(_ object: T?, for key: String) {
         let encoder = JSONEncoder.new
         guard let data = try? encoder.encode(object) else {
-            mmkv.removeValue(forKey: key)
+            mmkv?.removeValue(forKey: key)
             return
         }
-        mmkv.set(data, forKey: key)
+        mmkv?.set(data, forKey: key)
     }
     
     private func read<T: Codable>(for key: String) -> T? {
-        guard let data = mmkv.data(forKey: key) else {
+        guard let data = mmkv?.data(forKey: key) else {
             return nil
         }
         let decoder = JSONDecoder.new
@@ -165,7 +165,7 @@ extension MMKVHelper {
     }
     
     private func delete(for key: String) {
-        mmkv.removeValue(forKey: key)
+        mmkv?.removeValue(forKey: key)
     }
 }
 

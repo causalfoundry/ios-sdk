@@ -71,7 +71,7 @@ public struct PaymentObject: Codable {
         currency = try container.decode(String.self, forKey: .currency)
         isSuccessful = try container.decode(Bool.self, forKey: .isSuccessful)
         if let metaData = try container.decodeIfPresent(Data.self, forKey: .meta) {
-            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
+            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as? any Encodable)
         } else {
             meta = nil
         }

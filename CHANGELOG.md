@@ -8,6 +8,7 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/
 
 - When the SDK is initialized after launch (for example after login), the app-open event is now logged and stored events are synced right away; previously nothing was uploaded until a background task ran or the app was backgrounded and reopened
 - Fixed events and catalog items being lost when they were logged while an upload was in flight: a successful upload now removes only the uploaded items instead of clearing the whole store, and store writes are serialized
+- Release builds can no longer be crashed by the SDK: decoding an event object with `meta` from JSON, an empty SDK key passed to `build()`, a missing vendor identifier, an invalid API base URL, a failed MMKV open and a malformed `MinimumOSVersion` are now handled instead of trapping
 - Stored events are now also uploaded when the app returns to the foreground (`willEnterForeground`), not only on `didBecomeActive`, which iOS 26 did not always deliver after the keyboard had been dismissed; overlapping uploads are skipped so events are not sent twice
 
 ## **[1.0.12]  - 06.11.2026**

@@ -62,7 +62,7 @@ internal struct InternalCheckoutObject: Codable {
         shopMode = try container.decode(String.self, forKey: .shopMode) // Decoding enum from rawValue
         itemObject = try container.decode(ItemModel.self, forKey: .item)
         if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
-            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
+            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as? any Encodable)
         } else {
             meta = nil
         }

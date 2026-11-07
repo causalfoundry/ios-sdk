@@ -84,7 +84,7 @@ public struct ItemModel: Codable {
                 meta = try JSONDecoder().decode(OxygenMetaModel.self, from: metaData)
             }else{
                 let metaData = metaString.data(using: .utf8)!
-                meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
+                meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as? any Encodable)
             }
         } else {
             meta = nil

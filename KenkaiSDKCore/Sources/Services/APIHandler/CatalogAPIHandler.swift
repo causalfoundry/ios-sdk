@@ -17,7 +17,10 @@ public class CatalogAPIHandler {
     
     func callCatalogAPI(catalogMainObject: [CatalogItemModel], callback: @escaping (Bool) -> Void) {
         if #available(iOS 13.0, *) {
-            let url = URL(string: "\(APIConstants.updateCatalog)")!
+            guard let url = URL(string: APIConstants.updateCatalog) else {
+                callback(false)
+                return
+            }
             
             
             let mainBody = MainCatalogBody(
@@ -28,6 +31,7 @@ public class CatalogAPIHandler {
             
             if dictionary.isEmpty {
                 print("No More Injest events")
+                callback(false)
                 return
             }
             BackgroundRequestController.shared.request(url: url, httpMethod: .post, params: dictionary) { result in

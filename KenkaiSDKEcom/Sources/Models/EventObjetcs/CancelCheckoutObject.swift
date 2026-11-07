@@ -52,7 +52,7 @@ public struct CancelCheckoutObject: Codable {
         reason = try container.decode(String.self, forKey: .reason)
         itemList = try container.decode([String].self, forKey: .itemList)
         if let metaData = try? container.decodeIfPresent(Data.self, forKey: .meta) {
-            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as! any Encodable)
+            meta = try? (JSONSerialization.jsonObject(with: metaData, options: .allowFragments) as? any Encodable)
         } else {
             meta = nil
         }

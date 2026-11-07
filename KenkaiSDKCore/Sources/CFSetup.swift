@@ -13,8 +13,6 @@ public class CFSetup: NSObject, IngestProtocol {
     public let catalogAPIHandler = CatalogAPIHandler()
 
     private func setup() {
-        verifyAccessToken()
-       
         CoreConstants.shared.internalInfoObject = getInternalInfo()
 
         // Change implementation
@@ -65,12 +63,6 @@ public class CFSetup: NSObject, IngestProtocol {
         ingestApiHandler.ingestTrackAPI(eventName: eventName, eventProperty: eventProperty, eventCtx: eventCtx, updateImmediately: updateImmediately, eventTime: eventTime)
     }
 
-    private func verifyAccessToken() {
-        if CoreConstants.shared.sdkKey.isEmpty {
-            fatalError("Access key not found")
-        }
-    }
-
     // Get Application Info Of app
 
     private func getInternalInfo() -> InternalInfoObject {
@@ -81,7 +73,7 @@ public class CFSetup: NSObject, IngestProtocol {
             sdk: CoreConstants.shared.SDKVersion,
             app_id: application.bundleIdentifier(),
             app_version: application.versionBuild(),
-            device_id: UIDevice.current.identifierForVendor!.uuidString,
+            device_id: UIDevice.current.identifierForVendor?.uuidString ?? "",
             device_os: UIDevice.current.systemName
         )
     }
