@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "KenkaiSDKLoyalty"
-  s.version      = "1.0.12"
+  s.version      = "1.0.15"
   s.summary      = "Kenkai Loyalty SDK"
   s.description  = "Kenkai SDK for Loyalty section in the apps (https://docs.causalfoundry.ai/)"
   s.homepage     = "https://docs.causalfoundry.ai/"

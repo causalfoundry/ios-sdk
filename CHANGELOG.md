@@ -4,7 +4,7 @@ Documenting the changes in the SDK subject to each release version.
 
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
-## **[Unreleased]**
+## **[1.0.15]  - 07.11.2026**
 
 - When the SDK is initialized after launch (for example after login), the app-open event is now logged and stored events are synced right away; previously nothing was uploaded until a background task ran or the app was backgrounded and reopened
 - Fixed events and catalog items being lost when they were logged while an upload was in flight: a successful upload now removes only the uploaded items instead of clearing the whole store, and store writes are serialized
